@@ -45,13 +45,15 @@ export function checkAll(): { approved: number; rejected: number } {
     let pts = 0;
 
     const cc = charCount(md);
-    if (cc >= config.pipeline.minWords) pts += 30; else reasons.push(`薄い: ${cc}字`);
+    if (cc >= config.pipeline.minWords) pts += 30; else reasons.push(`薄い: ${cc}字（基準${config.pipeline.minWords}字）`);
 
+    // 深度基準（競合評価に基づく）: 長編はセクション数も伴う。
     const hc = headingCount(md);
-    if (hc >= 3) pts += 20; else reasons.push(`見出し不足: ${hc}`);
+    if (hc >= 8) pts += 20; else if (hc >= 5) { pts += 10; reasons.push(`見出しやや不足: ${hc}`); } else reasons.push(`見出し不足: ${hc}`);
 
     if (/よくある質問|FAQ/i.test(md)) pts += 10; else reasons.push("FAQなし");
     if (md.includes("|")) pts += 10; // 比較表
+    if (/実質負担|給付金|還元/.test(md)) pts += 5; // 負担額の具体性（日本市場の成約要因）
 
     // コンプライアンス：ステマ規制の広告表記が必須。
     const hasAd = /【?広告】?|プロモーション|ＰＲ|PR|アフィリエイト/.test(md);
