@@ -14,7 +14,32 @@ const d = post.data;
 <Base title={d.title} description={d.description} article={d}>
   <article>
     <h1>{d.title}</h1>
-    <p style="color:var(--mut);font-size:13px">By {d.author} · Updated {d.updatedDate || d.pubDate}</p>
+    <div class="meta">
+      <span class="badge">✓ 3軸で検証済み</span>
+      <span>更新日: {d.updatedDate || d.pubDate}</span>
+      <span>執筆: {d.author}</span>
+    </div>
+    <nav class="toc" id="toc" hidden>
+      <div class="toc-title">📑 この記事の目次</div>
+      <ol id="toc-list"></ol>
+    </nav>
     <Content />
   </article>
+  <script is:inline>
+    // 目次を h2 から自動生成（CVR: 迷子防止と要点への直行導線）
+    const hs = Array.from(document.querySelectorAll("main article h2"));
+    if (hs.length >= 2) {
+      const list = document.getElementById("toc-list");
+      hs.forEach((h, i) => {
+        if (!h.id) h.id = "sec-" + (i + 1);
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = "#" + h.id;
+        a.textContent = h.textContent.replace(/^[0-9]+\.\s*/, "");
+        li.appendChild(a);
+        list.appendChild(li);
+      });
+      document.getElementById("toc").hidden = false;
+    }
+  </script>
 </Base>
