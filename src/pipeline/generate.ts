@@ -69,6 +69,11 @@ async function writeBody(item: KeywordItem, tools: Tool[], axes: string[], subsi
 
   let body = [p1, p2, p3].map((s) => s.trim()).join("\n\n");
 
+  // 見出しの整形: プロンプトの節番号や「冒頭：」が見出しにそのまま残ると機械生成感が出るため除去。
+  body = body
+    .replace(/^(#{2,3})\s*\d+[\.．、]?\s*/gm, "$1 ")
+    .replace(/^(#{2,3})\s*(冒頭|前半|中盤|後半)[:：]\s*/gm, "$1 ");
+
   // 目標に届かない場合は、まだ書かれていない読者の疑問を1回だけ補筆。
   if (charCount(body) < config.pipeline.minWords + 300 && !isOffline()) {
     const p4 = await chat(
