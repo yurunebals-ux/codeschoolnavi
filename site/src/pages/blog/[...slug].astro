@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import Thumb from "../../components/Thumb.astro";
+import Avatar from "../../components/Avatar.astro";
 import pricewatch from "../../data/pricewatch.json";
 
 export async function getStaticPaths() {
@@ -46,6 +47,13 @@ const changeDates: string[] = hasWatch ? watch.observations.map((o: any) => o.da
       </aside>
     )}
     <Content />
+    <section class="authorbox">
+      <span class="ab-av"><Avatar size={52} /></span>
+      <div>
+        <b>執筆・検証：コードスクールナビ編集部（編集長 ナビ）</b>
+        <p>各スクールの<b>公式サイト・料金表・教育訓練給付の指定講座情報</b>をもとに「教育の質・サポート・実績」の3軸で比較しています。掲載後も公式サイトの料金表示を毎日自動照合し、変化を検出した場合は記事を見直します。広告の有無は評価・掲載順に影響しません。誤りのご指摘は<a href="/about/">運営者情報</a>から（確認のうえ訂正します）。</p>
+      </div>
+    </section>
   </article>
   <script is:inline>
     // 目次を h2 から自動生成（CVR: 迷子防止と要点への直行導線）
@@ -70,5 +78,9 @@ const changeDates: string[] = hasWatch ? watch.observations.map((o: any) => o.da
     .pricelog .pl-title{font-weight:800;color:#0c4a6e;font-size:13.5px;margin-bottom:6px}
     .pricelog .pl-body{font-size:13px;color:#0f172a;margin:0 0 6px}
     .pricelog .pl-note{font-size:11.5px;color:#64748b;margin:0}
+    .authorbox{display:flex;gap:14px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px 18px;margin:34px 0 0}
+    .authorbox .ab-av{flex:none;line-height:0}
+    .authorbox b{color:#0f2744;font-size:14px}
+    .authorbox p{font-size:12.5px;color:#475569;line-height:1.8;margin:4px 0 0}
   </style>
 </Base>
