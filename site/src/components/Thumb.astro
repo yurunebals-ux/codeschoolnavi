@@ -1,0 +1,56 @@
+---
+// 記事アイキャッチの自動生成（競合分析F: 画像ゼロが「AIっぽさ」最大の原因 → 全記事にサムネイル）
+// カテゴリ別の配色＋タイトルタイポグラフィ。ビルド時に決定的に生成（無人運用のまま画像リッチに）。
+const { title = "", cat = "解説" } = Astro.props;
+
+const themes: Record<string, { g1: string; g2: string; label: string }> = {
+  "給付金":   { g1: "#047857", g2: "#0f766e", label: "給付金で安く" },
+  "比較":     { g1: "#1e40af", g2: "#4338ca", label: "徹底比較" },
+  "評判・口コミ": { g1: "#6d28d9", g2: "#9d174d", label: "評判・口コミ" },
+  "解説":     { g1: "#b45309", g2: "#c2410c", label: "解説" },
+};
+const t = themes[cat] ?? themes["解説"];
+// inline SVGを同一ページに複数置くためグラデーションIDは一意にする（id衝突で全部同色になる）
+const gid = "g" + t.g1.slice(1) + t.g2.slice(1);
+
+// タイトル → 表示用に整形して最大3行に折り返し
+const clean = title.replace(/【[^】]*】/g, "").replace(/[｜|].*$/, "").replace(/\s+/g, " ").trim();
+const N = 11;
+const lines: string[] = [];
+let cur = "";
+for (const ch of clean) {
+  cur += ch;
+  if (cur.length >= N) { lines.push(cur); cur = ""; }
+  if (lines.length === 3) break;
+}
+if (cur && lines.length < 3) lines.push(cur);
+if (lines.length === 3 && clean.length > N * 3) lines[2] = lines[2].slice(0, N - 1) + "…";
+const fs = 44;
+const startY = 190 - ((lines.length - 1) * (fs + 10)) / 2;
+---
+<svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={title} preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color={t.g1} />
+      <stop offset="1" stop-color={t.g2} />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill={`url(#${gid})`} />
+  <!-- 装飾: コード風ウォーターマークと図形 -->
+  <text x="596" y="330" text-anchor="end" font-family="ui-monospace,monospace" font-size="120" font-weight="800" fill="#ffffff" opacity="0.10">&lt;/&gt;</text>
+  <circle cx="52" cy="322" r="90" fill="#ffffff" opacity="0.06" />
+  <circle cx="612" cy="28" r="56" fill="#ffffff" opacity="0.08" />
+  <rect x="0" y="348" width="640" height="12" fill="#f97316" />
+  <!-- カテゴリチップ -->
+  <rect x="36" y="34" rx="15" width={t.label.length * 15 + 34} height="30" fill="#ffffff" opacity="0.94" />
+  <text x={36 + 17} y="55" font-family="-apple-system,'Hiragino Sans','Noto Sans JP',sans-serif" font-size="15" font-weight="700" fill={t.g1}>{t.label}</text>
+  <!-- タイトル -->
+  {lines.map((ln, i) => (
+    <text x="36" y={startY + i * (fs + 10)} font-family="-apple-system,'Hiragino Sans','Noto Sans JP',sans-serif" font-size={fs} font-weight="800" fill="#ffffff" letter-spacing="1">{ln}</text>
+  ))}
+  <!-- ブランド -->
+  <rect x="36" y="298" rx="6" width="26" height="26" fill="#ffffff" opacity="0.92" />
+  <text x="41" y="316" font-family="ui-monospace,monospace" font-size="11" font-weight="800" fill={t.g1}>&lt;/&gt;</text>
+  <text x="70" y="316" font-family="-apple-system,'Hiragino Sans','Noto Sans JP',sans-serif" font-size="15" font-weight="700" fill="#ffffff" opacity="0.92">コードスクールナビ</text>
+</svg>
+
