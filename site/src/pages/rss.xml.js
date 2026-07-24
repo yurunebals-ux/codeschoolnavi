@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 export async function GET(context) {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
   return rss({
-    title: import.meta.env.SITE_NAME || "プログラミングスクール比較ナビ",
+    title: import.meta.env.SITE_TITLE || "コードスクールナビ｜プログラミングスクール比較",
     description: "プログラミングスクールの比較・評判・料金の最新記事",
     site: context.site,
     items: posts
