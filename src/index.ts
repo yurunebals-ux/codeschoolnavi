@@ -1,6 +1,7 @@
 // Project Director: runs the whole team in order for one daily cycle.
 import { config } from "./lib/config.js";
 import { buildKeywords } from "./pipeline/keyword.js";
+import { priceWatchRun } from "./pipeline/pricewatch.js";
 import { generateNext } from "./pipeline/generate.js";
 import { checkAll } from "./pipeline/quality.js";
 import { publishRun } from "./pipeline/publish.js";
@@ -13,6 +14,9 @@ async function cycle() {
   const state = loadState();
   const queued = state.keywords.filter((k) => k.status === "queued").length;
   if (queued < config.pipeline.perCycle) buildKeywords(40);
+
+  // 独自データ：公式サイト表示料金の定点観測（失敗してもサイクルは止めない）
+  await priceWatchRun().catch((e) => console.log("[pricewatch] skip:", (e as Error).message));
 
   for (let i = 0; i < config.pipeline.perCycle; i++) {
     const made = await generateNext();
