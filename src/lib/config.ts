@@ -41,9 +41,11 @@ export const config = {
     niche: env("SITE_NICHE", "programming-schools"),
   },
   pipeline: {
-    perCycle: num("ARTICLES_PER_CYCLE", 3),
+    // 競合評価（2026-07-24）: 浅い記事3本/日より深い記事1本/日。
+    perCycle: num("ARTICLES_PER_CYCLE", 1),
     qualityMin: num("QUALITY_MIN_SCORE", 70),
-    minWords: num("MIN_WORDS", 1200),
+    // 実質文字数（記号除外）。生成は6,000字超を目標、合格ラインは4,200字。
+    minWords: num("MIN_WORDS", 4200),
   },
   indexNowKey: env("INDEXNOW_KEY"),
   gsc: {
