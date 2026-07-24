@@ -99,8 +99,9 @@
       "kind": "money",
       "cluster": "転職特化",
       "score": 91,
-      "status": "approved",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-07-24T15:25:14.110Z"
     },
     {
       "slug": "hyoban-coachtech",
@@ -112,8 +113,9 @@
       "kind": "money",
       "cluster": "転職特化",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-07-24T15:25:14.110Z"
     },
     {
       "slug": "hyoban-samurai",
@@ -545,14 +547,14 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 6,
-  "estimatedMrrUsd": 1800,
+  "publishedCount": 8,
+  "estimatedMrrUsd": 2400,
   "history": [
     {
       "date": "2026-07-24",
-      "published": 6,
-      "estimatedMrrUsd": 1800
+      "published": 8,
+      "estimatedMrrUsd": 2400
     }
   ],
-  "lastRun": "2026-07-24T15:11:20.022Z"
+  "lastRun": "2026-07-24T15:25:14.114Z"
 }

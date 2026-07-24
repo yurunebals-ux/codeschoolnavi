@@ -95,5 +95,5 @@ A. 生活スタイルや学習環境によります。オンラインは場所�
 
 - [給付金対象のプログラミングスクールおすすめ｜最大70%還元の条件も解説](/blog/kyufukin-osusume/)
 - [DMM WEBCAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmwebcamp/)
-- [RUNTEQの評判・口コミは？特徴を解説](/blog/hyoban-runteq/)
-- [TechAcademyの評判・口コミは？特徴を解説](/blog/hyoban-techacademy/)
+- [ポテパンキャンプの評判・口コミは？特徴を解説](/blog/hyoban-potepan/)
+- [COACHTECHの評判・口コミは？特徴を解説](/blog/hyoban-coachtech/)

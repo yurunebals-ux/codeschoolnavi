@@ -104,7 +104,7 @@ A. オンラインでも質の高いメンタリングや実践課題があれ�
 
 ## あわせて読みたい
 
+- [ポテパンキャンプの評判・口コミは？特徴を解説](/blog/hyoban-potepan/)
+- [COACHTECHの評判・口コミは？特徴を解説](/blog/hyoban-coachtech/)
 - [RUNTEQの評判・口コミは？特徴を解説](/blog/hyoban-runteq/)
 - [DMM WEBCAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmwebcamp/)
-- [テックキャンプの評判・口コミは？特徴を解説](/blog/hyoban-techcamp/)
-- [TechAcademyの評判・口コミは？特徴を解説](/blog/hyoban-techacademy/)

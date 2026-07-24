@@ -98,5 +98,5 @@ TechAcademyはオンライン完結かつ現役エンジニアからの直接指
 
 - [給付金対象のプログラミングスクールおすすめ｜最大70%還元の条件も解説](/blog/kyufukin-osusume/)
 - [CodeCampの評判・口コミは？特徴を解説](/blog/hyoban-codecamp/)
-- [RUNTEQの評判・口コミは？特徴を解説](/blog/hyoban-runteq/)
-- [DMM WEBCAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmwebcamp/)
+- [ポテパンキャンプの評判・口コミは？特徴を解説](/blog/hyoban-potepan/)
+- [COACHTECHの評判・口コミは？特徴を解説](/blog/hyoban-coachtech/)

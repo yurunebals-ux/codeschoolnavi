@@ -101,6 +101,6 @@ RUNTEQは、Web系自社開発企業への転職を目指し、約9ヶ月の長�
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜最大70%還元の条件も解説](/blog/kyufukin-osusume/)
+- [ポテパンキャンプの評判・口コミは？特徴を解説](/blog/hyoban-potepan/)
+- [COACHTECHの評判・口コミは？特徴を解説](/blog/hyoban-coachtech/)
 - [DMM WEBCAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmwebcamp/)
-- [テックキャンプの評判・口コミは？特徴を解説](/blog/hyoban-techcamp/)
-- [TechAcademyの評判・口コミは？特徴を解説](/blog/hyoban-techacademy/)
