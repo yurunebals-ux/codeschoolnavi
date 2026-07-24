@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
+import Thumb from "../../components/Thumb.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -10,6 +11,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await post.render();
 const d = post.data;
+const cat = d.title.includes("給付金") ? "給付金" : (d.title.includes("比較") || d.title.includes("おすすめ")) ? "比較" : d.title.includes("評判") ? "評判・口コミ" : "解説";
 ---
 <Base title={d.title} description={d.description} article={d}>
   <article>
@@ -19,6 +21,7 @@ const d = post.data;
       <span>更新日: {d.updatedDate || d.pubDate}</span>
       <span>執筆: {d.author}</span>
     </div>
+    <div class="eyecatch"><Thumb title={d.title} cat={cat} /></div>
     <nav class="toc" id="toc" hidden>
       <div class="toc-title">📑 この記事の目次</div>
       <ol id="toc-list"></ol>
