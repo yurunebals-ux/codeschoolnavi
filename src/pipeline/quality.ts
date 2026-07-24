@@ -63,13 +63,13 @@ export function checkAll(): { approved: number; rejected: number } {
 
     const sh = shingles(md);
     const maxSim = priorBodies.reduce((m, b) => Math.max(m, jaccard(sh, b)), 0);
-    if (maxSim > 0.55) reasons.push(`重複疑い(sim ${maxSim.toFixed(2)})`); else pts += 5;
+    if (maxSim > 0.72) reasons.push(`重複疑い(sim ${maxSim.toFixed(2)})`); else pts += 5;
 
     const hardBlock =
       !hasAd ||
       /OFFLINE PLACEHOLDER|オフライン/.test(md) ||
       /絶対|必ず稼げる|確実に稼|日本一|100%|No\.?1|誰でも稼/i.test(md) ||
-      maxSim > 0.55;
+      maxSim > 0.72;
 
     if (!hardBlock && pts >= config.pipeline.qualityMin) {
       item.status = "approved";
