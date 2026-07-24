@@ -57,8 +57,9 @@
       "kind": "money",
       "cluster": "転職保証付き",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-07-24T10:41:29.482Z"
     },
     {
       "slug": "hyoban-techcamp",
@@ -70,8 +71,9 @@
       "kind": "money",
       "cluster": "転職保証付き",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-07-24T10:41:29.482Z"
     },
     {
       "slug": "hyoban-runteq",
@@ -83,8 +85,9 @@
       "kind": "money",
       "cluster": "転職特化",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-07-24T10:41:29.483Z"
     },
     {
       "slug": "hyoban-potepan",
@@ -542,14 +545,14 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 3,
-  "estimatedMrrUsd": 900,
+  "publishedCount": 6,
+  "estimatedMrrUsd": 1800,
   "history": [
     {
       "date": "2026-07-24",
-      "published": 3,
-      "estimatedMrrUsd": 900
+      "published": 6,
+      "estimatedMrrUsd": 1800
     }
   ],
-  "lastRun": "2026-07-24T10:38:06.736Z"
+  "lastRun": "2026-07-24T10:41:29.483Z"
 }
