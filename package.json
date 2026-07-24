@@ -1,0 +1,27 @@
+{
+  "name": "affiliate-autopilot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Autonomous SEO affiliate content system for overseas (English) SaaS niches.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "keyword:build": "tsx src/pipeline/keyword.ts",
+    "generate:next": "tsx src/pipeline/generate.ts",
+    "quality:check": "tsx src/pipeline/quality.ts",
+    "publish:run": "tsx src/pipeline/publish.ts",
+    "analytics:loop": "tsx src/pipeline/analytics.ts",
+    "dashboard:build": "tsx src/pipeline/dashboard.ts",
+    "cycle": "tsx src/index.ts cycle",
+    "status": "tsx src/index.ts status"
+  },
+  "dependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1"
+  }
+}

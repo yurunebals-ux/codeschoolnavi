@@ -1,0 +1,57 @@
+---
+const { title, description, article } = Astro.props;
+const site = import.meta.env.SITE_NAME || "Best SaaS Picks";
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | {site}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={article ? "article" : "website"} />
+    {article && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: article.title,
+        author: { "@type": "Person", name: article.author },
+        datePublished: article.pubDate,
+        dateModified: article.updatedDate || article.pubDate,
+      })} />
+    )}
+    <style>
+      :root{--fg:#1a1a1a;--mut:#666;--acc:#0b57d0;--bd:#e5e5e5}
+      *{box-sizing:border-box}
+      body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--fg);line-height:1.65}
+      header,footer{border-bottom:1px solid var(--bd)}
+      footer{border:0;border-top:1px solid var(--bd);margin-top:48px;color:var(--mut);font-size:14px}
+      .wrap{max-width:760px;margin:0 auto;padding:20px}
+      nav a{margin-right:16px;color:var(--fg);text-decoration:none;font-weight:600}
+      main.wrap :is(h2,h3){margin-top:32px}
+      table{width:100%;border-collapse:collapse;margin:16px 0}
+      th,td{border:1px solid var(--bd);padding:8px 10px;text-align:left;font-size:14px}
+      a{color:var(--acc)}
+      blockquote{background:#f6f8fa;border-left:3px solid var(--acc);margin:16px 0;padding:10px 14px;color:var(--mut);font-size:14px}
+      @media (prefers-color-scheme:dark){:root{--fg:#e6edf3;--mut:#9da7b3;--bd:#30363d}body{background:#0d1117}blockquote{background:#161b22}}
+    </style>
+  </head>
+  <body>
+    <header><div class="wrap"><nav>
+      <a href="/">{site}</a>
+      <a href="/shindan/">診断</a>
+      <a href="/about/">運営者情報</a>
+      <a href="/disclosure/">広告について</a>
+      <a href="/privacy/">プライバシー</a>
+    </nav></div></header>
+    <main class="wrap"><slot /></main>
+    <footer><div class="wrap">
+      <p>【広告】当サイトはアフィリエイト広告（プロモーション）を利用しています。詳しくは<a href="/disclosure/">広告について</a>をご覧ください。</p>
+      <p>© {new Date().getFullYear()} {site}</p>
+    </div></footer>
+  </body>
+</html>

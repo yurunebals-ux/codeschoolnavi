@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>デプロイ手順｜codeschoolnavi.com</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--bd:#30363d;--fg:#e6edf3;--mut:#8b949e;--acc:#58a6ff;--green:#3fb950}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Sans",sans-serif;background:var(--bg);color:var(--fg);line-height:1.65}
+.wrap{max-width:900px;margin:0 auto;padding:24px}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--mut);font-size:13px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:18px;margin-bottom:16px}
+.card h2{font-size:16px;margin:0 0 6px}
+.card .who{font-size:11px;color:var(--mut);margin-bottom:10px}
+.you{color:#d29922}.me{color:var(--green)}
+.step{display:flex;gap:12px;margin:10px 0}
+.num{flex:0 0 24px;height:24px;border-radius:50%;background:var(--acc);color:#04122b;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:12px}
+code{background:#0d1117;border:1px solid var(--bd);border-radius:4px;padding:1px 6px;font-size:12px;color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--bd)}th{color:var(--mut);font-weight:500}
+.note{background:#58a6ff12;border:1px solid #58a6ff44;border-radius:8px;padding:12px;font-size:13px;margin-bottom:16px}
+a{color:var(--acc)}
+</style>
+</head>
+<body><div class="wrap">
+<h1>公開までの手順｜codeschoolnavi.com</h1>
+<div class="sub">プログラミングスクール比較サイト ・ <span class="you">■あなた</span>=要ログイン/購入 ・ <span class="me">■私</span>=代行可能</div>
+
+<div class="note">
+全体像:<b>GitHub</b>にコードを置く → <b>Cloudflare Pages</b>が自動でサイトを公開 → <b>GitHub Actions</b>が毎日AIで記事を生成・追加 → Pagesが自動で再公開。サーバー費0円で無人運転になります。
+</div>
+
+<div class="card">
+<h2>STEP 0. ドメイン取得</h2>
+<div class="who you">■あなた（購入が必要）</div>
+<div class="step"><div class="num">1</div><div><b>codeschoolnavi.com</b> を取得（<a href="https://dash.cloudflare.com/" target="_blank">Cloudflare Registrar</a> 推奨・約¥1,500/年）。CloudflareならDNSも自動で楽です。</div></div>
+</div>
+
+<div class="card">
+<h2>STEP 1. GitHubにコードを置く</h2>
+<div class="who you">■あなた=アカウント作成 / <span class="me">■私=アップロード代行可</span></div>
+<div class="step"><div class="num">1</div><div><a href="https://github.com/signup" target="_blank">GitHub</a> の無料アカウントを作成（または既存でOK）。</div></div>
+<div class="step"><div class="num">2</div><div>新しいリポジトリ（例 <code>codeschoolnavi</code>）を作成。</div></div>
+<div class="step"><div class="num">3</div><div>納品したzipの中身をアップロード（ログイン後の画面で私が代行できます）。</div></div>
+</div>
+
+<div class="card">
+<h2>STEP 2. Cloudflare Pagesで公開</h2>
+<div class="who you">■あなた=アカウント作成 / <span class="me">■私=設定代行可</span></div>
+<div class="step"><div class="num">1</div><div>Cloudflare → <b>Workers &amp; Pages</b> → <b>Pages</b> → GitHubリポジトリを接続。</div></div>
+<div class="step"><div class="num">2</div><div>ビルド設定を以下の通りに入力:</div></div>
+<table>
+<tr><th>項目</th><th>値</th></tr>
+<tr><td>Framework preset</td><td>Astro</td></tr>
+<tr><td>Root directory（重要）</td><td><code>site</code></td></tr>
+<tr><td>Build command</td><td><code>npm install && npm run build</code></td></tr>
+<tr><td>Build output directory</td><td><code>dist</code></td></tr>
+</table>
+<div class="step" style="margin-top:10px"><div class="num">3</div><div>環境変数に <code>SITE_URL=https://codeschoolnavi.com</code> と <code>SITE_NAME</code> を追加。</div></div>
+</div>
+
+<div class="card">
+<h2>STEP 3. 独自ドメインを接続</h2>
+<div class="who you">■あなた=承認 / <span class="me">■私=設定代行可</span></div>
+<div class="step"><div class="num">1</div><div>Pagesプロジェクト → <b>Custom domains</b> → <code>codeschoolnavi.com</code> を追加。CloudflareでDNSも取得済みなら自動設定されます。</div></div>
+</div>
+
+<div class="card">
+<h2>STEP 4. 毎日の自動記事生成をON</h2>
+<div class="who you">■あなた=APIキー入力 / <span class="me">■私=設定代行可</span></div>
+<div class="step"><div class="num">1</div><div>GitHubリポジトリ → Settings → <b>Secrets and variables → Actions</b> に登録:
+<code>LLM_API_KEY</code>（AIのAPIキー）、<code>SITE_URL</code>、<code>SITE_NAME</code>、<code>INDEXNOW_KEY</code>（生成済み: <code>a77cf03e731e2c8ffbef06cf3fd92398</code>）。</div></div>
+<div class="step"><div class="num">2</div><div>これで <code>.github/workflows/daily.yml</code> が毎日自動で記事を生成・公開します。</div></div>
+</div>
+
+<div class="card">
+<h2>STEP 5. ASPにサイト登録 → 提携 → リンク反映</h2>
+<div class="who you">■あなた=ログインのみ / <span class="me">■私=登録〜提携〜リンク反映まで代行</span></div>
+<div class="step"><div class="num">1</div><div>公開された <code>codeschoolnavi.com</code> を <b>もしも</b>・<b>A8</b> にメディア（サイト）登録。</div></div>
+<div class="step"><div class="num">2</div><div>私が全対象校へ<b>提携申請</b>→承認後に<b>広告リンク取得</b>→<code>affiliates.json</code>へ反映。もしもの高単価CPA（RUNTEQ¥7,000／インターノウス¥14,000 等）が有効化されます。</div></div>
+</div>
+
+<div class="note">
+<b>あなたが実際にやるのは:</b> ①ドメイン購入 ②GitHub/Cloudflareアカウント作成＆ログイン ③AIのAPIキー用意 ④各ASPにログイン。<br>
+それ以外（アップロード・ビルド設定・ドメイン接続・提携申請・リンク反映）は、ログイン済み画面で私が代行できます。
+</div>
+
+</div></body></html>

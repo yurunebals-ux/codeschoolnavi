@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>アフィリエイト申込ガイド（日本ASP版）</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--bd:#30363d;--fg:#e6edf3;--mut:#8b949e;--acc:#58a6ff;--green:#3fb950;--amber:#d29922;--red:#f85149}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Sans",sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:24px}
+h1{font-size:23px;margin:0 0 4px}
+.sub{color:var(--mut);font-size:13px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:18px;margin-bottom:16px}
+.card h2{font-size:16px;margin:0 0 12px}
+.step{display:flex;gap:12px;margin-bottom:14px}
+.num{flex:0 0 26px;height:26px;border-radius:50%;background:var(--acc);color:#04122b;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px}
+.step .b{font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--bd);vertical-align:top}
+th{color:var(--mut);font-weight:500}
+a{color:var(--acc)}
+.pill{display:inline-block;border-radius:5px;padding:1px 7px;font-size:11px;border:1px solid;white-space:nowrap}
+.easy{color:var(--green);border-color:#3fb95055;background:#3fb95015}
+.mid{color:var(--amber);border-color:#d2992255;background:#d2992215}
+.chk{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--bd);cursor:pointer}
+.chk:last-child{border-bottom:0}
+.chk input{margin-top:3px;width:16px;height:16px;accent-color:var(--acc)}
+.chk .t{font-size:14px}
+code{background:#0d1117;border:1px solid var(--bd);border-radius:4px;padding:1px 6px;font-size:12px;color:var(--acc)}
+.note{background:#58a6ff12;border:1px solid #58a6ff44;border-radius:8px;padding:12px;font-size:13px;margin-bottom:16px}
+.warn{background:#d2992218;border:1px solid #d2992255;border-radius:8px;padding:12px;font-size:13px;margin-bottom:16px}
+.prio{font-size:12px;color:var(--mut)}
+.done{text-decoration:line-through;color:var(--mut)}
+</style>
+</head>
+<body><div class="wrap">
+<h1>アフィリエイト申込ガイド（日本ASP版）</h1>
+<div class="sub">プログラミングスクール比較サイト向け ・ 登録はすべて無料 ・ 所要 約40〜60分</div>
+
+<div class="note">
+<b>順番が重要:</b> 日本のASPは登録時（またはプログラム提携時）に<b>あなたのサイトURL</b>を審査します。
+まず ①ドメイン取得 → ②システムをデプロイして記事を数本公開・広告表記ページを設置 → ③下の各ASPに登録 → ④スクール案件と提携申請、の順が通りやすいです。
+<b>A8.net はサイト審査なしで即登録できる</b>ので最初に。次に案件が豊富な afb・アクセストレード・もしも へ。
+</div>
+
+<div class="warn">
+<b>⚠ ステマ規制（必須）:</b> 2023年10月以降、広告には「広告」「PR」等の明瞭な表記が義務です。
+本システムは全記事の冒頭とフッターに<b>【広告】表記を自動付与</b>済み。表記のない記事は品質ゲートが自動で公開を止めます。
+</div>
+
+<div class="card">
+<h2>登録するASP（優先順）</h2>
+<table>
+<thead><tr><th>#</th><th>ASP</th><th>特徴 / 得意ジャンル</th><th>サイト審査</th><th>登録URL</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b>A8.net</b><div class="prio">最大手・案件数No.1</div></td><td>ほぼ全ジャンル。プログラミングスクール案件も多数</td><td><span class="pill easy">なし（即登録）</span></td><td><a href="https://www.a8.net/" target="_blank">a8.net</a></td></tr>
+<tr><td>2</td><td><b>afb（アフィb）</b><div class="prio">美容・スクール系に強い・最低支払777円</div></td><td>スクール、美容、健康、金融</td><td><span class="pill mid">あり（易しめ）</span></td><td><a href="https://www.afi-b.com/" target="_blank">afi-b.com</a></td></tr>
+<tr><td>3</td><td><b>アクセストレード</b><div class="prio">金融・通信・スクールに強い</div></td><td>プログラミングスクール、格安SIM、証券</td><td><span class="pill mid">あり</span></td><td><a href="https://www.accesstrade.ne.jp/" target="_blank">accesstrade.ne.jp</a></td></tr>
+<tr><td>4</td><td><b>もしもアフィリエイト</b><div class="prio">W報酬・Amazon/楽天と好相性</div></td><td>物販、スクール、サービス全般</td><td><span class="pill mid">あり（易しめ）</span></td><td><a href="https://af.moshimo.com/" target="_blank">af.moshimo.com</a></td></tr>
+<tr><td>5</td><td><b>バリューコマース</b><div class="prio">Yahoo系・物販に強い</div></td><td>物販、旅行、金融</td><td><span class="pill mid">あり</span></td><td><a href="https://www.valuecommerce.ne.jp/" target="_blank">valuecommerce.ne.jp</a></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="card">
+<h2>登録〜案件提携の手順（各ASP共通）</h2>
+<div class="step"><div class="num">1</div><div class="b">上のURLから「無料会員登録」。メール認証 → 基本情報とサイトURLを入力。</div></div>
+<div class="step"><div class="num">2</div><div class="b">報酬の振込先口座を登録（ゆうちょ等）。</div></div>
+<div class="step"><div class="num">3</div><div class="b">管理画面で「プログラミングスクール」を検索し、<code>data/affiliates.json</code> に載っている各スクール（テックキャンプ / DMM WEBCAMP / TechAcademy / RUNTEQ / 侍エンジニア / Aidemy 等）と<b>提携申請</b>。</div></div>
+<div class="step"><div class="num">4</div><div class="b">提携承認後、各案件の<b>広告リンク（計測URL）</b>を取得。</div></div>
+<div class="step"><div class="num">5</div><div class="b"><code>data/affiliates.json</code> の各スクールの <code>affiliate_url</code>（現在 <code>REPLACE-...</code>）を取得したリンクに置き換えて保存 → <code>git push</code>。</div></div>
+</div>
+
+<div class="card">
+<h2>登録前チェックリスト（サイト側の準備）</h2>
+<label class="chk"><input type="checkbox"><span class="t">ドメインを取得し <code>SITE_URL</code> に設定（約1,500円/年）</span></label>
+<label class="chk"><input type="checkbox"><span class="t">システムをデプロイし、記事が数本公開されている</span></label>
+<label class="chk"><input type="checkbox"><span class="t">「広告について」「プライバシー」「運営者情報」ページが表示される（構築済み）</span></label>
+<label class="chk"><input type="checkbox"><span class="t">全記事の冒頭・フッターに【広告】表記が出ている（自動付与・構築済み）</span></label>
+</div>
+
+<div class="card">
+<h2>登録チェックリスト（ASP別）</h2>
+<label class="chk"><input type="checkbox"><span class="t">A8.net に登録</span></label>
+<label class="chk"><input type="checkbox"><span class="t">afb に登録 → スクール案件と提携</span></label>
+<label class="chk"><input type="checkbox"><span class="t">アクセストレード に登録 → スクール案件と提携</span></label>
+<label class="chk"><input type="checkbox"><span class="t">もしもアフィリエイト に登録</span></label>
+<label class="chk"><input type="checkbox"><span class="t">取得したリンクを affiliates.json に貼付 → git push</span></label>
+</div>
+
+<div class="card">
+<h2>承認後：リンクの貼り方</h2>
+<div class="b" style="font-size:14px">
+<code>data/affiliates.json</code> の該当行を書き換えるだけ。例：<br><br>
+<code>"affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-TECHCAMP-LINK"</code><br>↓<br>
+<code>"affiliate_url": "https://px.a8.net/svt/ejp?a8mat=あなたの固有ID"</code><br><br>
+保存して <code>git push</code> すれば、次の自動サイクルから正しいリンクで記事が公開されます。
+</div>
+</div>
+
+<script>
+document.querySelectorAll('.chk input').forEach(cb=>{cb.addEventListener('change',()=>{cb.closest('.chk').querySelector('.t').classList.toggle('done',cb.checked)})});
+</script>
+</div></body></html>

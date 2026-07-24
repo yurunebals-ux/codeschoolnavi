@@ -1,0 +1,28 @@
+---
+import Base from "../layouts/Base.astro";
+---
+<Base title="30秒でわかる｜あなたに合うプログラミングスクール診断" description="目的を選ぶだけで、あなたに合うプログラミングスクールの選び方ページへ案内します。">
+  <h1>あなたに合うスクール診断</h1>
+  <p>いちばん近い目的を選んでください。最適な比較ページをご案内します（30秒）。</p>
+
+  <div id="q">
+    <button class="opt" data-go="/blog/osusume-hikaku-hosho/">未経験から<strong>転職</strong>したい</button>
+    <button class="opt" data-go="/blog/kyufukin-osusume/">できるだけ<strong>費用を抑えたい（給付金）</strong></button>
+    <button class="opt" data-go="/blog/osusume-hikaku-free/"><strong>無料</strong>で学びたい・就職支援がほしい</button>
+    <button class="opt" data-go="/blog/osusume-hikaku-ai/"><strong>AI・データ分析</strong>を学びたい</button>
+    <button class="opt" data-go="/blog/osusume-online-fukugyo/"><strong>副業</strong>で稼げるスキルがほしい</button>
+    <button class="opt" data-go="/blog/imiaru-erabikata/">まだ迷っている・<strong>後悔したくない</strong></button>
+  </div>
+
+  <style>
+    #q{display:grid;gap:10px;margin-top:16px}
+    .opt{text-align:left;padding:14px 16px;border:1px solid var(--bd);border-radius:10px;background:transparent;color:var(--fg);font-size:15px;cursor:pointer}
+    .opt:hover{border-color:var(--acc)}
+    @media (prefers-color-scheme:dark){.opt:hover{background:#161b22}}
+  </style>
+  <script is:inline>
+    document.querySelectorAll('.opt').forEach((b) => {
+      b.addEventListener('click', () => { window.location.href = b.getAttribute('data-go'); });
+    });
+  </script>
+</Base>
