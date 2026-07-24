@@ -1,11 +1,11 @@
 // ROLE: Publishing & Ops
 // Moves approved drafts into the Astro content dir, updates state + MRR estimate,
 // commits (if in a git repo & PUBLISH_COMMIT=1), and pings IndexNow.
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { execSync } from "node:child_process";
 import { config, paths } from "../lib/config.js";
-import { loadState, saveState } from "../lib/store.js";
+import { loadState, saveState, type KeywordItem } from "../lib/store.js";
 
 // Rough recurring-revenue model: each published buyer-intent article is assumed
 // to eventually convert a small trickle of recurring signups. Very approximate,
@@ -14,10 +14,64 @@ import { loadState, saveState } from "../lib/store.js";
 // 平均報酬 約2万円 × 早期の低い月間成約率を見込んだ保守値。
 const REV_PER_ARTICLE_YEN = 300;
 
+// ---- 内部リンク（競合評価②: 記事間リンクほぼゼロの解消） ----
+// 給付金ハブを常に優先し、同クラスタ→新着の順で最大4本。既存の関連ブロックは張り替える。
+const HUB_SLUGS = ["kyufukin-osusume"];
+
+function relatedFor(item: KeywordItem, published: KeywordItem[]): KeywordItem[] {
+  const peers = published.filter((k) => k.slug !== item.slug);
+  const rel: KeywordItem[] = [];
+  for (const hs of HUB_SLUGS) {
+    const hub = peers.find((k) => k.slug === hs);
+    if (hub) rel.push(hub);
+  }
+  for (const k of peers) {
+    if (k.cluster === item.cluster && !rel.includes(k)) rel.push(k);
+  }
+  const latest = [...peers].sort((a, b) => (b.publishedAt ?? "").localeCompare(a.publishedAt ?? ""));
+  for (const k of latest) if (!rel.includes(k)) rel.push(k);
+  return rel.slice(0, 4);
+}
+
+function upsertRelatedLinks(md: string, rel: KeywordItem[]): string {
+  // 既存の関連ブロック（末尾）を除去してから付け直す。
+  const stripped = md.replace(/\n## (関連記事|あわせて読みたい)\n[\s\S]*$/, "").trimEnd();
+  if (!rel.length) return stripped + "\n";
+  const links = rel.map((r) => `- [${r.keyword}](/blog/${r.slug}/)`).join("\n");
+  return `${stripped}\n\n## あわせて読みたい\n\n${links}\n`;
+}
+
+// 公開済み全記事の内部リンクを最新状態に張り替える（過去記事のレトロフィット含む）。
+export function refreshInternalLinks(): number {
+  const state = loadState();
+  const published = state.keywords.filter((k) => k.status === "published");
+  let changed = 0;
+  for (const k of published) {
+    const p = resolve(paths.blog, `${k.slug}.md`);
+    if (!existsSync(p)) continue;
+    const md = readFileSync(p, "utf8");
+    const out = upsertRelatedLinks(md, relatedFor(k, published));
+    if (out !== md) { writeFileSync(p, out); changed++; }
+  }
+  if (changed) console.log(`[ops] 内部リンクを更新: ${changed}本`);
+  return changed;
+}
+
+// 料金定点観測データをサイト側へ同期（記事ページの「料金表示の監視ログ」用）。
+function syncPricewatch(): boolean {
+  const src = resolve(paths.data, "pricewatch.json");
+  const dest = resolve(paths.root, "site/src/data/pricewatch.json");
+  if (!existsSync(src)) return false;
+  const before = existsSync(dest) ? readFileSync(dest, "utf8") : "";
+  if (before === readFileSync(src, "utf8")) return false;
+  copyFileSync(src, dest);
+  console.log("[ops] pricewatch.json をサイトへ同期");
+  return true;
+}
+
 export async function publishRun(): Promise<number> {
   const state = loadState();
   const approved = state.keywords.filter((k) => k.status === "approved");
-  if (!approved.length) { console.log("[ops] nothing approved to publish."); return 0; }
 
   mkdirSync(paths.blog, { recursive: true });
   const publishedUrls: string[] = [];
@@ -25,18 +79,7 @@ export async function publishRun(): Promise<number> {
   for (const item of approved) {
     const src = resolve(paths.drafts, `${item.slug}.md`);
     if (!existsSync(src)) continue;
-    let md = readFileSync(src, "utf8");
-
-    // Internal linking: connect this page to its cluster (pillar first, then peers).
-    const related = state.keywords
-      .filter((k) => k.status === "published" && k.cluster === item.cluster && k.slug !== item.slug)
-      .sort((a, b) => (a.kind === "pillar" ? -1 : 0) - (b.kind === "pillar" ? -1 : 0))
-      .slice(0, 5);
-    if (related.length) {
-      const links = related.map((r) => `- [${r.keyword}](/blog/${r.slug}/)`).join("\n");
-      md += `\n\n## 関連記事\n\n${links}\n`;
-    }
-
+    const md = readFileSync(src, "utf8");
     const dest = resolve(paths.blog, `${item.slug}.md`);
     writeFileSync(dest, md);
     item.status = "published";
@@ -45,20 +88,26 @@ export async function publishRun(): Promise<number> {
     publishedUrls.push(`${config.site.url}/blog/${item.slug}/`);
     console.log(`[ops] published ${item.slug}`);
   }
-
-  state.estimatedMrrUsd = Math.round(state.publishedCount * REV_PER_ARTICLE_YEN);
-  const today = new Date().toISOString().slice(0, 10);
-  const hist = state.history.find((h) => h.date === today);
-  if (hist) { hist.published = state.publishedCount; hist.estimatedMrrUsd = state.estimatedMrrUsd; }
-  else state.history.push({ date: today, published: state.publishedCount, estimatedMrrUsd: state.estimatedMrrUsd });
-  state.lastRun = new Date().toISOString();
   saveState(state);
 
+  // 新規公開の有無に関わらず、内部リンクと観測データを毎日メンテナンスする。
+  const linkChanges = refreshInternalLinks();
+  const pwChanged = syncPricewatch();
+
+  const state2 = loadState();
+  state2.estimatedMrrUsd = Math.round(state2.publishedCount * REV_PER_ARTICLE_YEN);
+  const today = new Date().toISOString().slice(0, 10);
+  const hist = state2.history.find((h) => h.date === today);
+  if (hist) { hist.published = state2.publishedCount; hist.estimatedMrrUsd = state2.estimatedMrrUsd; }
+  else state2.history.push({ date: today, published: state2.publishedCount, estimatedMrrUsd: state2.estimatedMrrUsd });
+  state2.lastRun = new Date().toISOString();
+  saveState(state2);
+
   writeSiteMeta();
-  if (process.env.PUBLISH_COMMIT === "1") tryCommit(publishedUrls.length);
+  if (process.env.PUBLISH_COMMIT === "1" && (publishedUrls.length || linkChanges || pwChanged)) tryCommit(publishedUrls.length);
   if (config.indexNowKey && publishedUrls.length) await pingIndexNow(publishedUrls);
 
-  console.log(`[ops] +${publishedUrls.length}本 公開. 累計=${state.publishedCount}, 推定月収≒¥${state.estimatedMrrUsd.toLocaleString()}`);
+  console.log(`[ops] +${publishedUrls.length}本 公開. 累計=${state2.publishedCount}, 内部リンク更新=${linkChanges}本`);
   return publishedUrls.length;
 }
 
@@ -76,7 +125,8 @@ function writeSiteMeta() {
 function tryCommit(n: number) {
   try {
     execSync("git add -A", { cwd: paths.root, stdio: "ignore" });
-    execSync(`git commit -m "content: publish ${n} article(s)"`, { cwd: paths.root, stdio: "ignore" });
+    const msg = n > 0 ? `content: publish ${n} article(s)` : "chore: refresh internal links / pricewatch";
+    execSync(`git commit -m "${msg}"`, { cwd: paths.root, stdio: "ignore" });
     if (process.env.PUBLISH_PUSH === "1") execSync("git push", { cwd: paths.root, stdio: "ignore" });
     console.log("[ops] committed to git.");
   } catch { console.log("[ops] git commit skipped (no repo or nothing to commit)."); }
