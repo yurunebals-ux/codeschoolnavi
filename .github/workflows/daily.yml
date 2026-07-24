@@ -22,7 +22,8 @@ jobs:
       SITE_NAME: "コードスクールナビ"
       SITE_AUTHOR: "編集部"
       SITE_NICHE: "programming-schools"
-      ARTICLES_PER_CYCLE: "3"
+      ARTICLES_PER_CYCLE: "1"
+      MIN_WORDS: "4200"
       INDEXNOW_KEY: "a77cf03e731e2c8ffbef06cf3fd92398"
       MONETIZATION_START: ${{ vars.MONETIZATION_START }}
       PUBLISH_COMMIT: "1"
