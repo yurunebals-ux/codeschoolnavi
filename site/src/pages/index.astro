@@ -1,40 +1,113 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
+import Thumb from "../components/Thumb.astro";
+import schools from "../data/schools.json";
+
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate));
 const chip = (t: string) =>
   t.includes("給付金") ? "給付金" : (t.includes("比較") || t.includes("おすすめ")) ? "比較" : t.includes("評判") ? "評判・口コミ" : "解説";
+const latest = posts[0]?.data.pubDate ?? "";
 ---
-<Base title="プログラミングスクールの比較・評判" description="主要なプログラミングスクールを料金・評判・特徴で比較し、あなたに合う一校を解説します。">
+<Base title="プログラミングスクールの比較・評判" description="主要プログラミングスクールの受講料・期間・給付金・転職支援を横並びで比較。評判記事は毎日更新、デメリットも正直に記載します。">
   <section class="hero" slot="hero"><div class="wrap">
-    <h1>プログラミングスクールを、<br />正直に比較。</h1>
-    <p>料金・サポート・転職実績を実際に比較し、目的別におすすめを解説します。広告掲載の有無は評価や順位に影響しません。</p>
+    <p class="kicker">スクール選びで後悔したくない人のための比較サイト</p>
+    <h1>受講料・給付金・転職支援。<br />答えは「横並びの比較」で出す。</h1>
+    <p>主要スクールの受講料・期間・保証内容を公式情報から整理し、ひとつの表で比べられるようにしました。給付金で受講料が最大70%戻る条件も解説。デメリットも隠さず書きます。</p>
     <div class="actions">
-      <a class="primary" href="/shindan/">30秒であなたに合う一校を診断する</a>
-      <a class="ghost" href="/blog/kyufukin-osusume/">給付金で最大70%還元を見る</a>
+      <a class="primary" href="/shindan/">30秒であなたに合う一校を診断</a>
+      <a class="ghost" href="/blog/kyufukin-osusume/">給付金で安くする方法を見る</a>
     </div>
     <ul class="points">
-      <li>教育の質・サポート・実績の3軸で検証</li>
-      <li>デメリットも正直に記載</li>
-      <li>毎日更新</li>
+      <li>掲載{schools.table.length}校を同じ軸で比較</li>
+      <li>評判記事{posts.length}本・毎日更新（最終更新 {latest}）</li>
+      <li>広告の有無は評価に影響しません</li>
     </ul>
   </div></section>
 
-  <div class="section-title">
-    <h2>新着記事</h2>
-    <span class="sub">全{posts.length}本 ・ 毎日更新</span>
-  </div>
-  <ul class="cards">
-    {posts.map((p) => (
-      <li>
-        <a class="card" href={`/blog/${p.slug}/`}>
-          <span class="chip">{chip(p.data.title)}</span>
-          <span class="t">{p.data.title}</span>
-          <span class="d">{p.data.pubDate} 更新 ・ {p.data.author}</span>
-        </a>
-      </li>
-    ))}
-  </ul>
-  {posts.length === 0 && <p><em>新しい記事を順次公開しています。もうしばらくお待ちください。</em></p>}
+  <section class="sec">
+    <div class="sec-head"><h2>目的から探す</h2><span class="en">PURPOSE</span></div>
+    <div class="nav4">
+      <a class="navcard" href="/blog/hyoban-dmmwebcamp/"><span class="ic">🎯</span><b>転職を目指す</b><small>転職保証つきスクールの実力は</small></a>
+      <a class="navcard" href="/blog/kyufukin-osusume/"><span class="ic">💴</span><b>給付金で安く</b><small>最大70%還元の条件と対象校</small></a>
+      <a class="navcard" href="/blog/hyoban-techacademy/"><span class="ic">🏠</span><b>オンライン完結</b><small>働きながら自宅で学びたい</small></a>
+      <a class="navcard" href="/shindan/"><span class="ic">🧭</span><b>迷ったら診断</b><small>3つの質問で候補を絞る</small></a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>編集部ピックアップ</h2><span class="en">EDITOR'S PICK</span><span class="note">目的別・公開情報に基づく編集部の見解です</span></div>
+    <div class="picks">
+      {schools.picks.map((s) => (
+        <article class="pick">
+          <div class="ribbon">{s.purpose}</div>
+          <h3>{s.name}<small>{s.sub}</small></h3>
+          <dl class="specs">
+            <div><dt>料金</dt><dd><b>{s.price}</b></dd></div>
+            <div><dt>期間</dt><dd>{s.period}</dd></div>
+            <div><dt>形式</dt><dd>{s.form}</dd></div>
+          </dl>
+          <ul class="tags">{s.tags.map((tg) => <li>{tg}</li>)}</ul>
+          <p class="fit">✓ {s.fit}</p>
+          <a class="more" href={s.review}>評判・注意点をくわしく見る</a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>掲載{schools.table.length}校をざっくり比較</h2><span class="en">COMPARISON</span></div>
+    <table>
+      <thead><tr><th>スクール</th><th>形式</th><th>期間</th><th>料金（税込）</th><th>ここが特徴</th><th>詳細</th></tr></thead>
+      <tbody>
+        {schools.table.map((s) => (
+          <tr>
+            <td><b>{s.name}</b></td><td>{s.form}</td><td>{s.period}</td><td>{s.price}</td><td>{s.point}</td>
+            <td><a href={s.review}>評判を見る</a></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <p class="tnote">※料金・内容は各記事の更新日時点の公式情報に基づきます。最新条件は必ず公式サイトでご確認ください。</p>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>新着の評判・比較記事</h2><span class="en">ARTICLES</span><span class="note">全{posts.length}本 ・ 毎日更新</span></div>
+    <ul class="cards">
+      {posts.map((p) => (
+        <li>
+          <a class="card" href={`/blog/${p.slug}/`}>
+            <span class="cthumb"><Thumb title={p.data.title} cat={chip(p.data.title)} /></span>
+            <span class="cbody">
+              <span class="chip">{chip(p.data.title)}</span>
+              <span class="t">{p.data.title}</span>
+              <span class="d">{p.data.pubDate} 更新 ・ {p.data.author}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>失敗しない選び方 3ステップ</h2><span class="en">HOW TO CHOOSE</span></div>
+    <ol class="steps">
+      <li><b>目的を決める</b><span>転職が最優先なら保証つき、スキル習得だけならオンライン完結型も選択肢。</span></li>
+      <li><b>給付金の対象か調べる</b><span>教育訓練給付の対象コースなら受講料の最大70%が戻ります。条件が細かいので事前確認を。</span></li>
+      <li><b>負担額で比べる</b><span>定価ではなく「給付金適用後の自己負担」で比較すると順位が入れ替わることがあります。</span></li>
+    </ol>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>よくある質問</h2><span class="en">FAQ</span></div>
+    <details><summary>「プログラミングスクールはやめとけ」と聞きますが本当ですか？</summary><p>独学で十分な人がいる一方、保証や伴走が必要な人もいます。費用が高く感じられる背景と、向き不向きの整理は<a href="/blog/kyufukin-osusume/">こちらの記事</a>で中立的に解説しています。</p></details>
+    <details><summary>給付金はいくら戻りますか？</summary><p>対象コースなら受講料の最大70%（条件により80%）が支給されます。対象校・条件は<a href="/blog/kyufukin-osusume/">給付金対象スクールまとめ</a>をご覧ください。</p></details>
+    <details><summary>このサイトの評価は広告に影響されますか？</summary><p>されません。当サイトはアフィリエイト広告を利用していますが、記事の評価・掲載順は編集部の検証ルール（教育の質・サポート・実績の3軸）のみで決めています。詳細は<a href="/disclosure/">広告について</a>へ。</p></details>
+  </section>
+
+  <section class="sec policy">
+    <div class="sec-head"><h2>編集方針</h2><span class="en">EDITORIAL POLICY</span></div>
+    <p>コードスクールナビ編集部は、各スクールの<b>公式サイト・料金表・給付金の指定講座情報</b>を定期的に確認し、「教育の質」「サポート」「実績」の3軸で整理しています。良い点だけでなく<b>注意点・向かない人</b>を必ず記載し、記事には更新日を明示します。内容の誤りを見つけた場合は<a href="/about/">運営者情報</a>のページからご連絡ください。</p>
+  </section>
 </Base>
