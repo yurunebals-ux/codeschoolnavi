@@ -1,6 +1,6 @@
 ---
 const { title, description, article } = Astro.props;
-const site = import.meta.env.SITE_NAME || "Best SaaS Picks";
+const site = import.meta.env.SITE_TITLE || "コードスクールナビ";
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
