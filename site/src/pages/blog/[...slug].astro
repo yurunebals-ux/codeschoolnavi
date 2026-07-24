@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import Thumb from "../../components/Thumb.astro";
+import pricewatch from "../../data/pricewatch.json";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -12,6 +13,13 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 const d = post.data;
 const cat = d.title.includes("給付金") ? "給付金" : (d.title.includes("比較") || d.title.includes("おすすめ")) ? "比較" : d.title.includes("評判") ? "評判・口コミ" : "解説";
+
+// 独自データ：この記事のスクールに公式料金の観測記録があれば「監視ログ」を表示。
+// slug 規約 hyoban-<id> と pricewatch.json のキーを対応させる。
+const watchId = post.slug.startsWith("hyoban-") ? post.slug.slice("hyoban-".length) : null;
+const watch = watchId ? (pricewatch as any).schools?.[watchId] : null;
+const hasWatch = !!(watch && watch.lastChecked);
+const changeDates: string[] = hasWatch ? watch.observations.map((o: any) => o.date).slice(-5).reverse() : [];
 ---
 <Base title={d.title} description={d.description} article={d}>
   <article>
@@ -26,11 +34,23 @@ const cat = d.title.includes("給付金") ? "給付金" : (d.title.includes("比
       <div class="toc-title">📑 この記事の目次</div>
       <ol id="toc-list"></ol>
     </nav>
+    {hasWatch && (
+      <aside class="pricelog">
+        <div class="pl-title">🔎 料金表示の自動監視（当サイト独自）</div>
+        <p class="pl-body">
+          {watch.name}の公式サイトの料金表示を毎日自動で確認しています。
+          <b>最終確認日: {watch.lastChecked}</b>
+          {changeDates.length > 0 && <span> ／ 表示の変化を検出した日: {changeDates.join("、")}</span>}
+        </p>
+        <p class="pl-note">※価格そのものは必ず<a href={watch.url} target="_blank" rel="nofollow noopener">公式サイト</a>でご確認ください。本ログは記事の料金情報が古くなっていないかを確認するための当サイト独自の仕組みです。</p>
+      </aside>
+    )}
     <Content />
   </article>
   <script is:inline>
     // 目次を h2 から自動生成（CVR: 迷子防止と要点への直行導線）
-    const hs = Array.from(document.querySelectorAll("main article h2"));
+    const hs = Array.from(document.querySelectorAll("main article h2"))
+      .filter((h) => !/あわせて読みたい|関連記事/.test(h.textContent));
     if (hs.length >= 2) {
       const list = document.getElementById("toc-list");
       hs.forEach((h, i) => {
@@ -45,4 +65,10 @@ const cat = d.title.includes("給付金") ? "給付金" : (d.title.includes("比
       document.getElementById("toc").hidden = false;
     }
   </script>
+  <style>
+    .pricelog{background:#f0f9ff;border:1px solid #bae6fd;border-radius:12px;padding:14px 18px;margin:0 0 24px}
+    .pricelog .pl-title{font-weight:800;color:#0c4a6e;font-size:13.5px;margin-bottom:6px}
+    .pricelog .pl-body{font-size:13px;color:#0f172a;margin:0 0 6px}
+    .pricelog .pl-note{font-size:11.5px;color:#64748b;margin:0}
+  </style>
 </Base>
