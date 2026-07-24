@@ -1,0 +1,60 @@
+name: daily-content-cycle
+
+on:
+  schedule:
+    - cron: "0 2 * * *" # 02:00 UTC daily (~11:00 JST)
+  workflow_dispatch: {} # allow manual runs
+
+permissions:
+  contents: write # to commit published articles
+
+jobs:
+  cycle:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: content-cycle
+      cancel-in-progress: false
+    env:
+      LLM_PROVIDER: ${{ secrets.LLM_PROVIDER }}
+      LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+      LLM_MODEL: ${{ secrets.LLM_MODEL }}
+      LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+      SITE_URL: ${{ secrets.SITE_URL }}
+      SITE_NAME: ${{ secrets.SITE_NAME }}
+      SITE_AUTHOR: ${{ secrets.SITE_AUTHOR }}
+      SITE_NICHE: ${{ secrets.SITE_NICHE }}
+      ARTICLES_PER_CYCLE: ${{ vars.ARTICLES_PER_CYCLE || '3' }}
+      INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+      MONETIZATION_START: ${{ vars.MONETIZATION_START }}
+      PUBLISH_COMMIT: "1"
+      PUBLISH_PUSH: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - name: Install deps
+        run: npm install
+      - name: Configure git
+        run: |
+          git config user.name "content-bot"
+          git config user.email "bot@users.noreply.github.com"
+      - name: Run daily cycle
+        run: npm run cycle
+      - name: Upload dashboard artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboard
+          path: dashboard.html
+      - name: Fail-notify (open an issue on error)
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Daily cycle failed: run ${context.runId}`,
+              body: `The automated content cycle failed. See the run logs: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
+            })
