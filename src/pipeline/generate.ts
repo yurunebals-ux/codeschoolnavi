@@ -13,7 +13,7 @@ interface Tool {
   reward_yen: number; affiliate_url: string; one_liner: string; price_from_yen: number;
   period?: string; langs?: string; job_support?: string; refund?: string; portfolio?: string; format?: string;
 }
-interface Affiliates { disclosure: string; tools: Tool[]; review_axes?: string[]; }
+interface Affiliates { disclosure: string; tools: Tool[]; review_axes?: string[]; subsidy_ids?: string[]; }
 
 function toolsFor(item: KeywordItem, all: Tool[]): Tool[] {
   if (item.kind === "pillar" || item.template.startsWith("money:best-for") || (item.kind === "info" && item.tools.length > 1)) {
@@ -32,28 +32,51 @@ function comparisonTable(tools: Tool[]): string {
   return [head, ...rows].join("\n");
 }
 
-async function writeBody(item: KeywordItem, tools: Tool[], axes: string[]): Promise<string> {
-  const list = tools.map((t) => `${t.name}（${t.category}／${t.format ?? ""}／${t.period ?? ""}／転職支援:${t.job_support ?? "?"}／${t.price_from_yen === 0 ? "無料" : t.price_from_yen.toLocaleString() + "円〜"}／${t.one_liner}）`).join("\n");
+// 日本語の実質文字数（記号・空白除外）。quality.ts と同一基準。
+function charCount(md: string): number {
+  return md.replace(/[#>*`|\-\s]/g, "").length;
+}
+
+// 競合評価で判明した最重要課題「深度1/10」への対策：
+// 上位サイト並みの長編（目標6,000字超）を、小型モデルでも安定して出せるよう
+// 前半・中盤・後半の3回に分けて生成し、不足時は補筆する。
+async function writeBody(item: KeywordItem, tools: Tool[], axes: string[], subsidyIds: string[]): Promise<string> {
+  const list = tools.map((t) => `${t.name}（${t.category}／${t.format ?? ""}／${t.period ?? ""}／転職支援:${t.job_support ?? "?"}／返金:${t.refund ?? "?"}／${t.price_from_yen === 0 ? "無料" : t.price_from_yen.toLocaleString() + "円〜"}／${t.one_liner}）`).join("\n");
   const axesText = axes.length ? axes.join("・") : "教育の質・サポート・料金";
-  const system = `${persona("writer")}\n${persona("editor")}\nあなたは日本語ネイティブのプロ編集者です。読者の意思決定に役立つ、正直で中立的な記事を書きます。H1（# タイトル）は付けません。誇大・断定（絶対/必ず/日本一 等）は使いません。事実（価格・実績）を捏造しません。水増しせず具体的に書きます。`;
-  // 構成は事例の丸写しではなく、検索意図（比較検討→意思決定）から私が設計した順序。
-  const prompt = [
+  const subsidyNames = tools.filter((t) => subsidyIds.includes(t.id)).map((t) => t.name);
+  const subsidyLine = subsidyNames.length
+    ? `教育訓練給付（最大70%還元）の対象コースがあるのは: ${subsidyNames.join("・")}。それ以外は対象外と明記する。`
+    : `今回のスクールに給付金対象の明確な情報はないため、給付金の一般的な仕組みのみ説明し対象と断定しない。`;
+  const system = `${persona("writer")}\n${persona("editor")}\nあなたは日本語ネイティブのプロ編集者です。読者がこの1本で意思決定を完了できる、深く正直で中立的な記事を書きます。H1（# タイトル）は付けません。誇大・断定（絶対/必ず/日本一 等）は使いません。事実（価格・実績）を捏造せず、与えられたデータの範囲で書きます。同じ内容の言い換えによる水増しは禁止。具体例・判断基準・数字で深くします。`;
+  const ctx = [
     `TOPIC: ${item.keyword}`,
     `想定読者: プログラミングスクールを比較検討中で、申込直前の人。`,
     `扱ってよいサービス（この中だけ。長所も短所も正直に）:\n${list}`,
-    `本記事の検証軸（信頼性のため冒頭近くで明示する）: ${axesText}。`,
-    `以下の順で ## 見出しを付けて構成する:`,
-    `1. 冒頭: 読者の悩みに一文で共感し、結論（おすすめを1〜3校）を先に明示。`,
-    `2. この記事の比較・検証方法（上記の検証軸で公平に比較したと明記）。`,
-    `3. 失敗しない選び方（目的・形式・期間・料金・転職支援の観点で判断基準を提示）。`,
-    `4. 各スクールの特徴・向いている人・注意点（デメリットも正直に併記）。`,
-    `5. 「やめとけ」と言われる理由への中立的な見解（過度に煽らず事実ベース）。`,
-    `6. 料金と、卒業後のキャリア・年収の一般的な実態（断定しない）。`,
-    `7. よくある質問（3つ）。`,
-    `8. まとめ（迷ったらまず無料カウンセリング/無料相談を勧める自然なCTA）。`,
-    `文字数の目安: 1800〜2600字。広告表記は自動付与するので本文には書かない。`,
+    `本記事の検証軸: ${axesText}。`,
   ].join("\n");
-  return chat(prompt, { system, maxTokens: 3200, temperature: 0.7 });
+
+  const p1 = await chat(
+    `${ctx}\n\nこれは全体で6,000字以上になる長編記事の【前半】です。次のセクションだけを ## 見出しで書いてください（この部分だけで1,800字以上）:\n1. 冒頭: 読者の悩みに具体的に共感し、結論（目的別のおすすめ1〜3校）を先に明示\n2. この記事の比較・検証方法（検証軸を明記）\n3. 失敗しない選び方（目的・形式・期間・料金・転職支援それぞれの判断基準を具体的に）\n4. 比較一覧表（| スクール | 形式 | 期間 | 転職支援 | 返金保証 | 受講料(税込) | の6列）`,
+    { system, maxTokens: 4000, temperature: 0.7 });
+
+  const p2 = await chat(
+    `${ctx}\n\n長編記事の【中盤】です。前半には結論・検証方法・選び方・比較表が既にあります。重複せず、次のセクションだけを ## 見出しで書いてください（この部分だけで2,500字以上）:\n5. 各スクールの詳細（1校ずつ ### 小見出しで: 特徴・カリキュラム・向いている人・向かない人・注意点。デメリット必須）\n6. 料金の詳細と給付金でいくら安くなるか: ${subsidyLine} 対象校は「受講料 − 給付金＝実質負担額」の計算例を示す`,
+    { system, maxTokens: 6000, temperature: 0.7 });
+
+  const p3 = await chat(
+    `${ctx}\n\n長編記事の【後半】です。前半・中盤には結論、選び方、比較表、各校詳細、料金・給付金の解説が既にあります。重複せず、次のセクションだけを ## 見出しで書いてください（この部分だけで1,800字以上）:\n7. 目的別の使い分け（「◯◯な人は△△」を全スクール分、明確に）\n8. 「やめとけ」と言われる理由への中立的な見解（事実ベースで）\n9. 卒業後のキャリア・年収の一般的な実態（断定しない）\n10. よくある質問（5問。### で質問文を見出しに）\n11. まとめ（迷ったら無料カウンセリング/無料相談を勧める自然なCTA）`,
+    { system, maxTokens: 4000, temperature: 0.7 });
+
+  let body = [p1, p2, p3].map((s) => s.trim()).join("\n\n");
+
+  // 目標に届かない場合は、まだ書かれていない読者の疑問を1回だけ補筆。
+  if (charCount(body) < config.pipeline.minWords + 300 && !isOffline()) {
+    const p4 = await chat(
+      `${ctx}\n\n以下は執筆済みの記事です。この記事でまだ答えられていない、申込直前の読者が抱く疑問を3つ選び、それぞれ ### の見出しで具体的に解説してください（合計1,200字以上。既出内容の繰り返し禁止。見出しは「## さらに詳しく知りたい人へ」の配下に置く想定で ### のみ）:\n\n---\n${body.slice(0, 6000)}`,
+      { system, maxTokens: 3000, temperature: 0.7 });
+    body += `\n\n## さらに詳しく知りたい人へ\n\n${p4.trim()}`;
+  }
+  return body;
 }
 
 export async function generateNext(): Promise<KeywordItem | null> {
@@ -63,7 +86,7 @@ export async function generateNext(): Promise<KeywordItem | null> {
   if (!item) { console.log("[writer] キュー待ちなし。"); return null; }
 
   const tools = toolsFor(item, aff.tools);
-  let body = await writeBody(item, tools, aff.review_axes ?? []);
+  let body = await writeBody(item, tools, aff.review_axes ?? [], aff.subsidy_ids ?? []);
 
   if (/pillar|money:vs|money:best-for/.test(item.template) && !body.includes("|")) {
     body += `\n\n## 比較一覧\n\n${comparisonTable(tools)}\n`;
