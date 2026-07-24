@@ -3,15 +3,36 @@ import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate));
+const chip = (t: string) =>
+  t.includes("給付金") ? "給付金" : (t.includes("比較") || t.includes("おすすめ")) ? "比較" : t.includes("評判") ? "評判・口コミ" : "解説";
 ---
 <Base title="プログラミングスクールの比較・評判" description="主要なプログラミングスクールを料金・評判・特徴で比較し、あなたに合う一校を解説します。">
-  <h1>プログラミングスクールを、正直に比較</h1>
-  <p>料金・サポート・転職実績を実際に比較し、目的別におすすめを解説します。当サイトはアフィリエイト広告を利用していますが、評価や順位には影響しません。</p>
-  <ul>
+  <section class="hero" slot="hero"><div class="wrap">
+    <h1>プログラミングスクールを、<br />正直に比較。</h1>
+    <p>料金・サポート・転職実績を実際に比較し、目的別におすすめを解説します。広告掲載の有無は評価や順位に影響しません。</p>
+    <div class="actions">
+      <a class="primary" href="/shindan/">30秒であなたに合う一校を診断する</a>
+      <a class="ghost" href="/blog/kyufukin-osusume/">給付金で最大70%還元を見る</a>
+    </div>
+    <ul class="points">
+      <li>教育の質・サポート・実績の3軸で検証</li>
+      <li>デメリットも正直に記載</li>
+      <li>毎日更新</li>
+    </ul>
+  </div></section>
+
+  <div class="section-title">
+    <h2>新着記事</h2>
+    <span class="sub">全{posts.length}本 ・ 毎日更新</span>
+  </div>
+  <ul class="cards">
     {posts.map((p) => (
       <li>
-        <a href={`/blog/${p.slug}/`}>{p.data.title}</a>
-        <span style="color:var(--mut);font-size:13px"> — {p.data.pubDate}</span>
+        <a class="card" href={`/blog/${p.slug}/`}>
+          <span class="chip">{chip(p.data.title)}</span>
+          <span class="t">{p.data.title}</span>
+          <span class="d">{p.data.pubDate} 更新 ・ {p.data.author}</span>
+        </a>
       </li>
     ))}
   </ul>
