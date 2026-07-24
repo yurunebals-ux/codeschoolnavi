@@ -99,9 +99,8 @@
       "kind": "money",
       "cluster": "転職特化",
       "score": 91,
-      "status": "rejected",
-      "createdAt": "2026-07-24T10:36:35.550Z",
-      "rejectReason": "score=95; アフィリンクなし; オフラインのダミー本文"
+      "status": "approved",
+      "createdAt": "2026-07-24T10:36:35.550Z"
     },
     {
       "slug": "hyoban-coachtech",
