@@ -15,7 +15,7 @@
       "kind": "pillar",
       "cluster": "給付金対象",
       "score": 98,
-      "status": "published",
+      "status": "queued",
       "createdAt": "2026-07-24T10:36:35.550Z",
       "publishedAt": "2026-07-24T10:38:06.736Z"
     },
@@ -29,7 +29,7 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 91,
-      "status": "published",
+      "status": "queued",
       "createdAt": "2026-07-24T10:36:35.550Z",
       "publishedAt": "2026-07-24T10:38:06.736Z"
     },
@@ -43,7 +43,7 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 91,
-      "status": "published",
+      "status": "queued",
       "createdAt": "2026-07-24T10:36:35.550Z",
       "publishedAt": "2026-07-24T10:38:06.736Z"
     },
@@ -57,7 +57,7 @@
       "kind": "money",
       "cluster": "転職保証付き",
       "score": 91,
-      "status": "published",
+      "status": "queued",
       "createdAt": "2026-07-24T10:36:35.550Z",
       "publishedAt": "2026-07-24T10:41:29.482Z"
     },
@@ -71,7 +71,7 @@
       "kind": "money",
       "cluster": "転職保証付き",
       "score": 91,
-      "status": "published",
+      "status": "queued",
       "createdAt": "2026-07-24T10:36:35.550Z",
       "publishedAt": "2026-07-24T10:41:29.482Z"
     },
@@ -85,7 +85,7 @@
       "kind": "money",
       "cluster": "転職特化",
       "score": 91,
-      "status": "published",
+      "status": "queued",
       "createdAt": "2026-07-24T10:36:35.550Z",
       "publishedAt": "2026-07-24T10:41:29.483Z"
     },
