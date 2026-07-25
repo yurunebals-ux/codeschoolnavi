@@ -89,7 +89,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       /* 記事内の注意喚起。広告表記(blockquote)と同じ灰色にすると読み飛ばされるので、
          「知らないと不利益になる情報」だけはっきり色を変える。名称変更の告知など。 */
       .renote{background:#eff6ff;border:1px solid #bfdbfe;border-left:4px solid #2563eb;border-radius:10px;margin:14px 0 22px;padding:14px 16px;color:#1e3a5f;font-size:14px;line-height:1.8}
-      .renote strong{color:#1d4ed8}
+      /* main article strong の蛍光ペンは行をまたぐと途中で切れて汚いので、注記の中では殺す */
+      .renote strong{background:none;color:#1d4ed8}
 
       /* Article meta */
       .meta{color:var(--mut);font-size:13px;margin-bottom:18px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
