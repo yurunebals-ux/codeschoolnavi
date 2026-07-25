@@ -3,6 +3,9 @@ import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import Thumb from "../../components/Thumb.astro";
 import Avatar from "../../components/Avatar.astro";
+import FigPrice from "../../components/FigPrice.astro";
+import FigMap from "../../components/FigMap.astro";
+import FigKyufu from "../../components/FigKyufu.astro";
 import pricewatch from "../../data/pricewatch.json";
 
 export async function getStaticPaths() {
@@ -21,6 +24,20 @@ const watchId = post.slug.startsWith("hyoban-") ? post.slug.slice("hyoban-".leng
 const watch = watchId ? (pricewatch as any).schools?.[watchId] : null;
 const hasWatch = !!(watch && watch.lastChecked);
 const changeDates: string[] = hasWatch ? watch.observations.map((o: any) => o.date).slice(-5).reverse() : [];
+
+// 記事内の図解。slug/タイトルから対象スクールを特定し、schools.json のデータで作図する。
+// 図はいったん本文の後ろに出力し、直後のインラインスクリプトで h2 の位置へ移動させる
+// （Astro のマークダウンは分割できないため。JSが無効でも図は本文末に残るので情報は失われない）。
+const ALIAS: Record<string, string> = {
+  techacademy: "TechAcademy",
+  dmmwebcamp: "SHIFT TERAS CAMPUS",
+  techcamp: "テックキャンプ",
+  codecamp: "CodeCamp",
+  runteq: "RUNTEQ",
+  kikagaku: "キカガク",
+};
+const school = watchId && ALIAS[watchId] ? ALIAS[watchId] : null;
+const isKyufu = cat === "給付金";
 ---
 <Base title={d.title} description={d.description} article={d}>
   <article>
@@ -47,6 +64,38 @@ const changeDates: string[] = hasWatch ? watch.observations.map((o: any) => o.da
       </aside>
     )}
     <Content />
+
+    <div id="figbank">
+      <div class="figslot" data-after="1"><FigPrice highlight={school} /></div>
+      {isKyufu && <div class="figslot" data-after="2"><FigKyufu /></div>}
+      <div class="figslot" data-after={isKyufu ? 4 : 3}><FigMap highlight={school} /></div>
+    </div>
+    <script is:inline>
+      // 図解を本文の見出し位置へ移す。パース中に実行されるので、下に一瞬見えることはない。
+      (function () {
+        var art = document.currentScript.closest("article");
+        if (!art) return;
+        var bank = art.querySelector("#figbank");
+        if (!bank) return;
+        var h2s = Array.prototype.slice.call(art.querySelectorAll("h2"));
+        var slots = Array.prototype.slice.call(bank.querySelectorAll(".figslot"));
+        slots.forEach(function (slot) {
+          var n = parseInt(slot.getAttribute("data-after"), 10);
+          if (!h2s.length) return;
+          var h2 = h2s[Math.min(n, h2s.length) - 1];
+          if (!h2) return;
+          // 見出し直後の最初の段落のあとに置く（見出しと本文の間に挟まないため）
+          var anchor = h2, el = h2.nextElementSibling;
+          while (el && !/^H[123]$/.test(el.tagName)) {
+            if (el.tagName === "P") { anchor = el; break; }
+            el = el.nextElementSibling;
+          }
+          anchor.parentNode.insertBefore(slot, anchor.nextSibling);
+        });
+        bank.remove();
+      })();
+    </script>
+
     <section class="authorbox">
       <span class="ab-av"><Avatar size={52} /></span>
       <div>
