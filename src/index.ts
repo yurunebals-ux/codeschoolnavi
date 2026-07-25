@@ -4,13 +4,17 @@ import { buildKeywords } from "./pipeline/keyword.js";
 import { priceWatchRun } from "./pipeline/pricewatch.js";
 import { generateNext } from "./pipeline/generate.js";
 import { checkAll } from "./pipeline/quality.js";
-import { publishRun } from "./pipeline/publish.js";
+import { polishRun } from "./pipeline/polish.js";
+import { publishRun, reconcilePublished } from "./pipeline/publish.js";
 import { analyticsLoop } from "./pipeline/analytics.js";
 import { buildDashboard } from "./pipeline/dashboard.js";
 import { loadState } from "./lib/store.js";
 
 async function cycle() {
   console.log("=== DAILY CYCLE START ===");
+  // 生成の前に状態を実ファイルへ突き合わせる。ここを飛ばすと、状態が壊れたときに
+  // 公開中の記事を書き直して上書きしてしまう。
+  reconcilePublished();
   const state = loadState();
   const queued = state.keywords.filter((k) => k.status === "queued").length;
   if (queued < config.pipeline.perCycle) buildKeywords(40);
@@ -23,6 +27,11 @@ async function cycle() {
     if (!made) break;
   }
   checkAll();
+
+  // 公開済み記事の文体改稿を1本。新規生成より後・公開より前に置くことで、
+  // 改稿した記事も同じコミットに乗る。失敗してもサイクルは止めない。
+  await polishRun().catch((e) => console.log("[polish] skip:", (e as Error).message));
+
   await publishRun();
   await analyticsLoop();
   buildDashboard();
