@@ -30,7 +30,7 @@
       "price": "792,000円〜",
       "period": "6ヶ月",
       "form": "オンライン",
-      "tags": ["給付金で最大80%還元対象", "AI・機械学習の体系学習", "長期でじっくり"],
+      "tags": ["専門実践給付金の対象（条件を満たせば最大80%）", "AI・機械学習の体系学習", "長期でじっくり"],
       "fit": "AI分野へ本気で進みたい人（給付金の条件確認は必須）",
       "review": "/blog/kyufukin-osusume/"
     }
@@ -41,7 +41,7 @@
     { "name": "テックキャンプ", "form": "オンライン/通学", "period": "10週間〜", "price": "197,000円〜", "point": "短期集中で未経験からのエンジニア転職", "review": "/blog/hyoban-techcamp/" },
     { "name": "CodeCamp", "form": "オンライン", "period": "2〜6ヶ月", "price": "165,000円〜", "point": "マンツーマンレッスン・平日夜間や週末も受講しやすい", "review": "/blog/hyoban-codecamp/" },
     { "name": "RUNTEQ", "form": "オンライン", "period": "約9ヶ月", "price": "550,000円〜", "point": "Web系自社開発企業への転職に強い実践型", "review": "/blog/hyoban-runteq/" },
-    { "name": "キカガク", "form": "オンライン", "period": "6ヶ月", "price": "792,000円〜", "point": "AI特化・給付金で最大80%還元対象", "review": "/blog/kyufukin-osusume/" }
+    { "name": "キカガク", "form": "オンライン", "period": "6ヶ月", "price": "792,000円〜", "point": "AI特化・専門実践給付金の対象（条件つき）", "review": "/blog/kyufukin-osusume/" }
   ]
 }
 
