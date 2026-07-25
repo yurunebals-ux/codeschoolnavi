@@ -142,6 +142,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       .sec-head .en{color:#94a3b8;font-size:11px;font-weight:800;letter-spacing:.18em}
       .sec-head .note{color:var(--mut);font-size:12px;margin-left:auto}
 
+      /* 案E: 編集長バンド（トップページのE-E-A-T。ヒーロー直下＝最初に「誰が書いているか」を見せる） */
+      .editorband{margin-top:30px}
+      .eb{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--cta);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--fg);box-shadow:0 1px 3px rgba(15,39,68,.06);transition:box-shadow .15s,transform .15s}
+      .eb:hover{box-shadow:0 6px 16px rgba(15,39,68,.13);transform:translateY(-1px)}
+      .eb-av{flex:none;line-height:0}
+      .eb-body{display:block}
+      .eb-body b{display:block;color:var(--navy);font-size:14.5px;letter-spacing:.01em}
+      .eb-lead{display:block;margin-top:5px;font-size:13.5px;color:#334155;line-height:1.85}
+      /* 蛍光ペン風の強調は行をまたぐと途中で切れて汚くなるので、inline-block で折らせない
+         （12文字なので360px幅でも1行に収まる） */
+      .eb-lead em{display:inline-block;font-style:normal;font-weight:700;color:var(--navy);background:linear-gradient(transparent 62%,#fed7aa 62%)}
+      .eb-more{display:block;margin-top:7px;font-size:12.5px;font-weight:800;color:var(--cta)}
+      .eb-note{margin:7px 0 0;font-size:11px;color:var(--mut);line-height:1.6}
+      @media (max-width:560px){
+        .eb{gap:12px;padding:14px 15px}
+        .eb-lead{font-size:12.5px;line-height:1.8}
+      }
+
       /* 目的別ナビ */
       .nav4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
       @media (max-width:720px){ .nav4{grid-template-columns:repeat(2,1fr)} }
@@ -209,8 +227,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <body>
     <header class="site"><div class="wrap nav">
       <a class="brand" href="/"><span class="logo">&lt;/&gt;</span>{site}</a>
+      <a class="item keep" href="/kyufukin/">給付金ガイド</a>
       <a class="item" href="/about/">運営者情報</a>
-      <a class="item keep" href="/disclosure/">広告について</a>
+      <a class="item" href="/disclosure/">広告について</a>
       <a class="item" href="/privacy/">プライバシー</a>
       <a class="cta" href="/shindan/">30秒診断</a>
     </div></header>
@@ -222,6 +241,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <p>【広告】当サイトはアフィリエイト広告（プロモーション）を利用していますが、評価や順位には影響しません。詳しくは<a href="/disclosure/">広告について</a>をご覧ください。</p>
       <div class="links">
         <a href="/shindan/">スクール診断</a>
+        <a href="/kyufukin/">給付金ガイド</a>
         <a href="/about/">運営者情報</a>
         <a href="/disclosure/">広告について</a>
         <a href="/privacy/">プライバシーポリシー</a>
