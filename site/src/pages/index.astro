@@ -3,12 +3,21 @@ import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Thumb from "../components/Thumb.astro";
 import schools from "../data/schools.json";
+import pricewatch from "../data/pricewatch.json";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate));
 const chip = (t: string) =>
-  t.includes("給付金") ? "給付金" : (t.includes("比較") || t.includes("おすすめ")) ? "比較" : t.includes("評判") ? "評判・口コミ" : "解説";
+  t.includes("給付金") ? "給付金" : (t.includes("比較") || t.includes("おすすめ")) ? "比較" : t.includes("評判") ? "評判・口コミ" : t.includes("やめとけ") ? "やめとけ" : "解説";
 const latest = posts[0]?.data.pubDate ?? "";
+
+// 案C: ヒーローに料金監視の稼働実績を出す。「毎日実際に動いているサイト」であることを一次情報で示す。
+// 価格そのものは断定せず、監視校数・最終確認日・表示変化の検知件数だけを主張する（景表法・自動監視の性質上）。
+const watched = Object.values((pricewatch as any).schools ?? {}) as any[];
+const pwCount = watched.length;
+const pwLast = watched.map((s) => s.lastChecked).filter(Boolean).sort().pop() ?? "";
+const pwChanges = watched.reduce((n, s) => n + (s.observations?.length ?? 0), 0);
+const pwLastMd = pwLast ? `${Number(pwLast.slice(5, 7))}/${Number(pwLast.slice(8, 10))}` : "—";
 ---
 <Base title="プログラミングスクールの比較・評判" description="主要プログラミングスクールの受講料・期間・給付金・転職支援を横並びで比較。評判記事は毎日更新、デメリットも正直に記載します。">
   <section class="hero" slot="hero"><div class="wrap">
@@ -24,6 +33,16 @@ const latest = posts[0]?.data.pubDate ?? "";
       <li>評判記事{posts.length}本・毎日更新（最終更新 {latest}）</li>
       <li>広告の有無は評価に影響しません</li>
     </ul>
+
+    <a class="pw" href="/about/">
+      <span class="pw-head"><i class="dot"></i>料金監視 稼働中<em>当サイト独自</em></span>
+      <span class="pw-stats">
+        <span class="pw-cell"><b>{pwCount}<small>校</small></b><small>掲載＋候補校の公式料金</small></span>
+        <span class="pw-cell"><b>{pwLastMd}</b><small>最終確認日</small></span>
+        <span class="pw-cell"><b>{pwChanges}<small>件</small></b><small>表示変化を検知</small></span>
+      </span>
+      <span class="pw-note">記事の料金が古くならないよう自動観測しています。価格は必ず公式サイトでご確認ください →</span>
+    </a>
   </div></section>
 
   <section class="sec">
