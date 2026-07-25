@@ -2,7 +2,7 @@
   "keywords": [
     {
       "slug": "kyufukin-osusume",
-      "keyword": "給付金対象のプログラミングスクールおすすめ｜最大70%還元の条件も解説",
+      "keyword": "給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説",
       "template": "pillar:subsidy",
       "tools": [
         "techacademy",
@@ -15,10 +15,9 @@
       "kind": "pillar",
       "cluster": "給付金対象",
       "score": 98,
-      "status": "rejected",
+      "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-07-24T10:38:06.736Z",
-      "rejectReason": "score=105; 誇大・断定表現"
+      "publishedAt": "2026-07-24T10:38:06.736Z"
     },
     {
       "slug": "hyoban-techacademy",
@@ -30,7 +29,7 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 91,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
       "publishedAt": "2026-07-24T10:38:06.736Z"
     },
@@ -44,7 +43,7 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 91,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
       "publishedAt": "2026-07-24T10:38:06.736Z"
     },
@@ -58,7 +57,7 @@
       "kind": "money",
       "cluster": "転職保証付き",
       "score": 91,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
       "publishedAt": "2026-07-24T10:41:29.482Z"
     },
@@ -72,7 +71,7 @@
       "kind": "money",
       "cluster": "転職保証付き",
       "score": 91,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
       "publishedAt": "2026-07-24T10:41:29.482Z"
     },
@@ -86,7 +85,7 @@
       "kind": "money",
       "cluster": "転職特化",
       "score": 91,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
       "publishedAt": "2026-07-24T10:41:29.483Z"
     },
@@ -555,12 +554,7 @@
       "date": "2026-07-24",
       "published": 8,
       "estimatedMrrUsd": 2400
-    },
-    {
-      "date": "2026-07-25",
-      "published": 8,
-      "estimatedMrrUsd": 2400
     }
   ],
-  "lastRun": "2026-07-25T05:21:55.446Z"
+  "lastRun": "2026-07-24T15:25:14.114Z"
 }
