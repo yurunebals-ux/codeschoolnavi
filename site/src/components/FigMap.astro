@@ -1,0 +1,88 @@
+---
+// 記事本文に差し込む図解その2：料金×受講期間の4象限マップ。
+// 散布図にすると校名ラベルが必ず重なるので、象限に分けて名前を並べる方式にした。
+// これなら学校が増えても崩れないし、「自分はどの象限を見るべきか」で読めるようになる。
+import schools from "../data/schools.json";
+
+interface Props { highlight?: string | null; }
+const { highlight = null } = Astro.props;
+
+const table = (schools as any).table as { name: string; price: string; period: string }[];
+const yen = (s: string) => Number(String(s).replace(/[^0-9]/g, "")) || 0;
+
+// 「4〜16週」「3〜4ヶ月」「10週間〜」「約9ヶ月」を月数の中央値に正規化する
+const months = (s: string): number => {
+  const src = String(s);
+  const ns = (src.match(/[0-9]+/g) || []).map(Number);
+  if (ns.length === 0) return 0;
+  const mid = ns.length >= 2 ? (ns[0] + ns[1]) / 2 : ns[0];
+  return /週/.test(src) ? Math.round((mid / 4.345) * 10) / 10 : mid;
+};
+
+const PRICE_LINE = 250000; // 25万円
+const MONTH_LINE = 4;      // 4か月
+
+const pts = table
+  .map((t) => ({ name: t.name.replace(/[（(].*$/, "").trim(), yen: yen(t.price), mo: months(t.period) }))
+  .filter((p) => p.yen > 0 && p.mo > 0);
+
+if (pts.length === 0) throw new Error("[FigMap] schools.json から料金・期間を読めませんでした");
+
+const isHit = (n: string) => !!highlight && (n === highlight || n.startsWith(highlight) || highlight.startsWith(n));
+
+const bucket = (hi: boolean, lo: boolean) =>
+  pts.filter((p) => (p.yen > PRICE_LINE) === hi && (p.mo > MONTH_LINE - 0.01) === lo);
+
+const QUAD = [
+  { x: 60, y: 56, hi: false, lo: true, title: "安め × 長め", note: "自分のペースで基礎から", items: bucket(false, true) },
+  { x: 368, y: 56, hi: true, lo: true, title: "高め × 長め", note: "実務レベルの課題まで踏み込む", items: bucket(true, true), accent: true },
+  { x: 60, y: 186, hi: false, lo: false, title: "安め × 短め", note: "まず触ってみる・基礎を固める", items: bucket(false, false) },
+  { x: 368, y: 186, hi: true, lo: false, title: "高め × 短め", note: "短期集中で一気に仕上げる", items: bucket(true, false) },
+];
+const BW = 272, BH = 112;
+---
+<figure class="fig2">
+  <svg viewBox="0 0 700 336" role="img" aria-label="受講料と受講期間で4つに分けたスクール分布図">
+    <rect x="0" y="0" width="700" height="336" fill="#fbfcfe" />
+    <text x="18" y="26" class="m-t">料金と期間で4つに分けると、選ぶ場所が決まる</text>
+    <text x="18" y="42" class="m-n">境目は受講料25万円・期間4か月。「安いほど短い」わけではないので、2軸で見ます。</text>
+
+    {QUAD.map((q) => (
+      <g>
+        <rect x={q.x} y={q.y} width={BW} height={BH} rx="9" fill={q.accent ? "#eff6ff" : "#ffffff"} stroke={q.accent ? "#bfdbfe" : "#e2e8f0"} />
+        <text x={q.x + 14} y={q.y + 24} class="m-q">{q.title}</text>
+        <text x={q.x + 14} y={q.y + 41} class="m-qn">{q.note}</text>
+        {q.items.length === 0 && <text x={q.x + 14} y={q.y + 68} class="m-none">当サイト掲載校では該当なし</text>}
+        {q.items.map((p, i) => (
+          <text x={q.x + 14} y={q.y + 65 + i * 18} class={isHit(p.name) ? "m-ih" : "m-i"}>
+            {isHit(p.name) ? "▶ " : "・"}{p.name}（{Math.round(p.yen / 10000)}万円〜／約{p.mo}か月）
+          </text>
+        ))}
+      </g>
+    ))}
+
+    {/* rotate(-90) では文字が下から上へ流れるため、先頭に「下端のラベル」を書く */}
+    <text x="18" y="180" class="m-ax" transform="rotate(-90 18 180)" text-anchor="middle">短い ←　期間　→ 長い</text>
+    <text x="350" y="322" class="m-ax" text-anchor="middle">安い ←　受講料　→ 高い</text>
+
+    <text x="18" y="336" class="m-f"></text>
+  </svg>
+  <figcaption>
+    図：目的が「転職」なら右上（長め・高め）、「まず適性を確かめたい」なら左下（短め・安め）が合います。料金と期間はセットで見ないと判断を誤ります。数値は公式サイト表示の最安コースをもとに、期間に幅がある場合は中央値を採用しました。
+  </figcaption>
+
+  <style>
+    .fig2{margin:26px 0 28px;padding:0}
+    .fig2 svg{width:100%;height:auto;display:block;border:1px solid #e2e8f0;border-radius:12px;background:#fbfcfe}
+    .fig2 figcaption{font-size:12px;color:#64748b;line-height:1.8;margin-top:9px}
+    .fig2 svg text{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP","Segoe UI",Roboto,sans-serif}
+    .m-t{font-size:13.5px;font-weight:800;fill:#0f2744}
+    .m-n{font-size:10.5px;fill:#64748b}
+    .m-q{font-size:12.5px;font-weight:800;fill:#0f2744}
+    .m-qn{font-size:10px;fill:#64748b}
+    .m-i{font-size:11px;font-weight:600;fill:#334155}
+    .m-ih{font-size:11.5px;font-weight:800;fill:#c2410c}
+    .m-none{font-size:10.5px;fill:#94a3b8}
+    .m-ax{font-size:10px;font-weight:700;fill:#94a3b8}
+  </style>
+</figure>

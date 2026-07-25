@@ -1,0 +1,88 @@
+---
+// 記事本文に差し込む図解その1：受講料の相対位置。
+// schools.json の price 文字列から数値を機械的に取り出すので、
+// 料金監視で数字が更新されたら図も自動で追従する。
+import schools from "../data/schools.json";
+
+interface Props { highlight?: string | null; }
+const { highlight = null } = Astro.props;
+
+const table = (schools as any).table as { name: string; price: string; period: string; form: string }[];
+const num = (s: string) => Number(String(s).replace(/[^0-9]/g, "")) || 0;
+
+const rows = table
+  .map((t) => ({ name: t.name, yen: num(t.price), label: t.price }))
+  .filter((r) => r.yen > 0)
+  .sort((a, b) => a.yen - b.yen);
+
+if (rows.length === 0) throw new Error("[FigPrice] schools.json から料金を読めませんでした");
+
+const max = rows[rows.length - 1].yen;
+// 「（旧DMM WEBCAMP）」のような補足は図では落とす（軸ラベルは短いほど読める）
+const short = (n: string) => {
+  const base = n.replace(/[（(].*$/, "").trim();
+  return base.length > 18 ? base.slice(0, 17) + "…" : base;
+};
+const isHit = (n: string) => !!highlight && (n === highlight || n.startsWith(highlight) || n.includes(highlight));
+const hit = rows.some((r) => isHit(r.name));
+
+// レイアウト
+const X0 = 196;         // バー開始（校名の欄を広めに取る）
+const W = 380;          // バー最大長（右側に金額を書く余白を残す）
+const ROW = 34;
+const TOP = 46;
+const H = TOP + rows.length * ROW + 34;
+const median = rows[Math.floor(rows.length / 2)].yen;
+---
+<figure class="fig">
+  <svg viewBox={`0 0 700 ${H}`} role="img" aria-label="各スクールの受講料の比較図">
+    <rect x="0" y="0" width="700" height={H} fill="#fbfcfe" />
+    <text x="18" y="26" class="g-t">受講料の下限で並べるとこうなる（単位：万円）</text>
+
+    {[0, 20, 40, 60, 80].map((v) => {
+      const x = X0 + (v * 10000 * W) / max;
+      const inRange = !(x > X0 + W + 2);
+      return inRange ? (
+        <g>
+          <line x1={x} y1={TOP - 8} x2={x} y2={TOP + rows.length * ROW - 6} stroke="#eef2f7" stroke-width="1" />
+          <text x={x} y={TOP + rows.length * ROW + 12} class="g-s" text-anchor="middle">{v}</text>
+        </g>
+      ) : null;
+    })}
+    <line x1={X0} y1={TOP - 8} x2={X0} y2={TOP + rows.length * ROW - 6} stroke="#cbd5e1" stroke-width="1" />
+
+    {rows.map((r, i) => {
+      const y = TOP + i * ROW;
+      const w = Math.max(3, (r.yen * W) / max);
+      const on = isHit(r.name);
+      return (
+        <g>
+          <text x={X0 - 10} y={y + 13} class={on ? "g-nh" : "g-n"} text-anchor="end">{short(r.name)}</text>
+          <rect x={X0} y={y} width={w} height={19} rx="3" fill={on ? "#f97316" : "#93c5fd"} />
+          <text x={X0 + w + 8} y={y + 14} class={on ? "g-vh" : "g-v"}>{r.label}</text>
+        </g>
+      );
+    })}
+
+    <text x="18" y={H - 8} class="g-f">※各スクール公式サイトの表示（税込・最安コース）を当サイトが毎日自動照合した値。中央値は約{Math.round(median / 10000)}万円。</text>
+  </svg>
+  <figcaption>
+    {hit
+      ? "図：全体のどのあたりの価格帯なのかを先に押さえておくと、金額の話が具体的になります（オレンジがこの記事で扱うスクール）。"
+      : "図：まず市場全体の価格帯を押さえておきます。安い順に並べると、下限だけで4倍以上の開きがあります。"}
+  </figcaption>
+
+  <style>
+    .fig{margin:26px 0 28px;padding:0}
+    .fig svg{width:100%;height:auto;display:block;border:1px solid #e2e8f0;border-radius:12px;background:#fbfcfe}
+    .fig figcaption{font-size:12px;color:#64748b;line-height:1.8;margin-top:9px}
+    .fig svg text{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP","Segoe UI",Roboto,sans-serif}
+    .g-t{font-size:13.5px;font-weight:800;fill:#0f2744}
+    .g-n{font-size:11.5px;font-weight:600;fill:#475569}
+    .g-nh{font-size:12px;font-weight:800;fill:#9a3412}
+    .g-v{font-size:11px;font-weight:700;fill:#64748b}
+    .g-vh{font-size:11.5px;font-weight:800;fill:#c2410c}
+    .g-s{font-size:9.5px;fill:#94a3b8}
+    .g-f{font-size:9.5px;fill:#94a3b8}
+  </style>
+</figure>
