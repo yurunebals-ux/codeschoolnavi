@@ -15,9 +15,10 @@
       "kind": "pillar",
       "cluster": "給付金対象",
       "score": 98,
-      "status": "queued",
+      "status": "rejected",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-07-24T10:38:06.736Z"
+      "publishedAt": "2026-07-24T10:38:06.736Z",
+      "rejectReason": "score=105; 誇大・断定表現"
     },
     {
       "slug": "hyoban-techacademy",
@@ -554,7 +555,12 @@
       "date": "2026-07-24",
       "published": 8,
       "estimatedMrrUsd": 2400
+    },
+    {
+      "date": "2026-07-25",
+      "published": 8,
+      "estimatedMrrUsd": 2400
     }
   ],
-  "lastRun": "2026-07-24T15:25:14.114Z"
+  "lastRun": "2026-07-25T05:21:55.446Z"
 }

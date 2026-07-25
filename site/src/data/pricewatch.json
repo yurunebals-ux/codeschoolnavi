@@ -4,14 +4,25 @@
     "techacademy": {
       "name": "TechAcademy",
       "url": "https://techacademy.jp/",
-      "observations": [],
-      "lastChecked": "2026-07-24"
+      "observations": [
+        {
+          "date": "2026-07-25",
+          "prices": [
+            50000,
+            55000
+          ],
+          "min": 50000,
+          "source": "https://techacademy.jp/course"
+        }
+      ],
+      "lastChecked": "2026-07-25"
     },
     "dmmwebcamp": {
       "name": "SHIFT TERAS CAMPUS（旧DMM WEBCAMP）",
       "url": "https://web-camp.io/",
       "observations": [],
-      "lastChecked": "2026-07-24"
+      "lastChecked": "2026-07-24",
+      "lastError": "2026-07-25: 価格表記を検出できず"
     },
     "techcamp": {
       "name": "テックキャンプ",
@@ -27,15 +38,42 @@
             877800
           ],
           "min": 55000
+        },
+        {
+          "date": "2026-07-25",
+          "prices": [
+            55000,
+            131560,
+            237800,
+            657800,
+            877800,
+            1500000
+          ],
+          "min": 55000,
+          "source": "https://tech-camp.in/"
         }
       ],
-      "lastChecked": "2026-07-24"
+      "lastChecked": "2026-07-25"
     },
     "codecamp": {
       "name": "CodeCamp",
       "url": "https://codecamp.jp/",
-      "observations": [],
-      "lastChecked": "2026-07-24"
+      "observations": [
+        {
+          "date": "2026-07-25",
+          "prices": [
+            10000,
+            13200,
+            17600,
+            30000,
+            31900,
+            46200
+          ],
+          "min": 10000,
+          "source": "https://codecamp.jp/courses"
+        }
+      ],
+      "lastChecked": "2026-07-25"
     },
     "runteq": {
       "name": "RUNTEQ",
@@ -68,25 +106,37 @@
           "min": 22600
         }
       ],
-      "lastChecked": "2026-07-24"
+      "lastChecked": "2026-07-25"
     },
     "kikagaku": {
       "name": "キカガク",
       "url": "https://www.kikagaku.ai/",
       "observations": [],
-      "lastChecked": "2026-07-24"
+      "lastChecked": "2026-07-24",
+      "lastError": "2026-07-25: 価格表記を検出できず"
     },
     "aidemy": {
       "name": "Aidemy",
       "url": "https://aidemy.net/",
       "observations": [],
-      "lastChecked": "2026-07-24"
+      "lastChecked": "2026-07-24",
+      "lastError": "2026-07-25: 価格表記を検出できず"
     },
     "techis": {
       "name": "テックアイエス",
       "url": "https://techis.jp/",
-      "observations": [],
-      "lastChecked": "2026-07-24"
+      "observations": [
+        {
+          "date": "2026-07-25",
+          "prices": [
+            50000,
+            640000
+          ],
+          "min": 50000,
+          "source": "https://techis.jp/"
+        }
+      ],
+      "lastChecked": "2026-07-25"
     }
   }
 }

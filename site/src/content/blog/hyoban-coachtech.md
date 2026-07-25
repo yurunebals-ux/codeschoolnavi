@@ -259,7 +259,4 @@ COACHTECHは、フリーランス志望者や実践的な開発経験を重視�
 
 ## あわせて読みたい
 
-- [給付金対象のプログラミングスクールおすすめ｜最大70%還元の条件も解説](/blog/kyufukin-osusume/)
-- [RUNTEQの評判・口コミは？特徴を解説](/blog/hyoban-runteq/)
 - [ポテパンキャンプの評判・口コミは？特徴を解説](/blog/hyoban-potepan/)
-- [DMM WEBCAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmwebcamp/)

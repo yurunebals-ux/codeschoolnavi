@@ -264,7 +264,4 @@ WebサービスやITベンチャー、受託開発企業が多い傾向です。
 
 ## あわせて読みたい
 
-- [給付金対象のプログラミングスクールおすすめ｜最大70%還元の条件も解説](/blog/kyufukin-osusume/)
-- [RUNTEQの評判・口コミは？特徴を解説](/blog/hyoban-runteq/)
 - [COACHTECHの評判・口コミは？特徴を解説](/blog/hyoban-coachtech/)
-- [DMM WEBCAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmwebcamp/)
