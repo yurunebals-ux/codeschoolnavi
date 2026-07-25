@@ -14,8 +14,9 @@ const lastChecked = schools.map((s: any) => s.lastChecked).filter(Boolean).sort(
   <div class="greet">
     <div class="greet-av"><Avatar size={72} /></div>
     <div>
-      <b>編集長「ナビ」よりごあいさつ</b>
+      <b>編集長 佐倉 透（さくら とおる）よりごあいさつ</b>
       <p>スクール選びで一番怖いのは「申し込んでから気づく後悔」です。だから当サイトは、良いことだけを並べません。デメリット・向かない人・給付金の細かい条件まで、申込前に知っておくべきことを全部書く——それがこのサイトの唯一のルールです。迷ったら、まず比較表と「やめとけと言われる理由」の章から読んでください。</p>
+      <p class="sign">コードスクールナビ　編集長　佐倉 透</p>
     </div>
   </div>
 
@@ -26,7 +27,7 @@ const lastChecked = schools.map((s: any) => s.lastChecked).filter(Boolean).sort(
   <p>記事の料金情報が古くならないよう、掲載スクール{watched}校の公式サイトの料金表示を<b>毎日自動で照合</b>しています{lastChecked && <span>（最終確認日: {lastChecked}）</span>}。表示の変化を検出した日付は各記事の「料金表示の自動監視」欄で公開しており、変化があった記事は内容を見直します。価格そのものは必ず公式サイトでご確認ください。</p>
 
   <h2>コンテンツ制作の体制</h2>
-  <p>当サイトは、公式情報の収集・料金の照合・比較表の作成に自動化技術を積極的に活用し、編集部が定めた編集ルールと品質基準（構成・文字数・広告表記・誇大表現の禁止・重複排除）を満たした記事のみを公開しています。毎日更新を続けられるのはこの体制のためです。誤りを発見した場合は速やかに訂正します。</p>
+  <p>当サイトは、公式情報の収集・料金の照合・比較表の作成に自動化技術を積極的に活用し、編集部が定めた編集ルールと品質基準（構成・文字数・広告表記・誇大表現の禁止・重複排除）を満たした記事のみを公開しています。毎日更新を続けられるのはこの体制のためです。誤りを発見した場合は速やかに訂正します。なお編集長「佐倉 透」は、当サイトの編集責任者としてのペンネームです（実在の個人の経歴・保有資格を主張するものではありません）。</p>
 
   <h2>訂正・お問い合わせ</h2>
   <p>掲載内容の誤りのご指摘や、スクール運営者様からの情報更新のご連絡は info@codeschoolnavi.com までお願いします。確認のうえ、事実に基づき訂正・更新します。</p>
@@ -39,5 +40,6 @@ const lastChecked = schools.map((s: any) => s.lastChecked).filter(Boolean).sort(
     .greet-av{flex:none}
     .greet b{color:#0f2744;font-size:15px}
     .greet p{font-size:13.5px;color:#334155;line-height:1.9;margin:6px 0 0}
+    .greet .sign{margin-top:8px;font-size:12.5px;color:#64748b;text-align:right}
   </style>
 </Base>
