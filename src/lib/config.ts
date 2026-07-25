@@ -46,6 +46,9 @@ export const config = {
     qualityMin: num("QUALITY_MIN_SCORE", 70),
     // 実質文字数（記号除外）。生成は6,000字超を目標、合格ラインは4,200字。
     minWords: num("MIN_WORDS", 4200),
+    // AI文体スコアの上限（src/lib/aiese.ts）。これを超えたらQAで却下。
+    // 実測: 推敲導入前の記事は43〜73。生成側は30以下を目標に書き直す。
+    aieseMax: num("AIESE_MAX", 55),
   },
   indexNowKey: env("INDEXNOW_KEY"),
   gsc: {
