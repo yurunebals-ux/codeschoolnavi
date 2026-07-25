@@ -1,28 +1,222 @@
 ---
+import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
+import schools from "../data/schools.json";
+
+// 【重要】このページは以前、まだ公開していない記事へリンクしていて6択のうち5つが404だった。
+// 原因は「キーワードキューにある予定スラッグ」を直接リンク先にしていたこと。
+// 対策は2段構え:
+//   (1) 診断結果をこのページ内で出す（遷移しないので404が起きない）
+//   (2) 参考リンクは実在するものだけを通し、存在しないパスがあればビルドを落とす
+const posts = await getCollection("blog", ({ data }) => !data.draft);
+const livePosts = new Set(posts.map((p) => `/blog/${p.slug}/`));
+const staticPages = new Set(["/", "/about/", "/disclosure/", "/privacy/", "/shindan/", "/kyufukin/"]);
+const exists = (href: string) => livePosts.has(href) || staticPages.has(href);
+
+const table = (schools as any).table as { name: string; form: string; period: string; price: string; point: string; review: string }[];
+const byName = (n: string) => {
+  const s = table.find((t) => t.name === n || t.name.startsWith(n));
+  if (!s) throw new Error(`[shindan] schools.json に「${n}」がありません`);
+  return s;
+};
+
+type Result = {
+  key: string;
+  label: string;
+  lead: string;
+  picks: { name: string; why: string }[];
+  caution: string;
+  next: { href: string; text: string }[];
+};
+
+const results: Result[] = [
+  {
+    key: "tenshoku",
+    label: "未経験からエンジニアに転職したい",
+    lead: "転職目的なら、見るべきは「料金」より先に転職支援の中身です。求人を紹介してくれるのか、職務経歴書とポートフォリオまで見てくれるのか。ここが薄いスクールは、卒業後に一人で放り出されます。",
+    picks: [
+      { name: "SHIFT TERAS CAMPUS（旧DMM WEBCAMP）", why: "転職保証つきのコースがある。はじめての転職でセーフティネットが欲しい人向け" },
+      { name: "RUNTEQ", why: "学習時間が長く、実務に近い課題まで踏み込む。自己学習の時間を確保できる人向け" },
+      { name: "テックキャンプ", why: "短期集中で一気に仕上げたい人向け。学習負荷は重い" },
+    ],
+    caution: "転職保証は「誰でも使える」ものではありません。年齢・学習時間・転職活動の条件を満たさないと対象外です。申込前に、保証の適用条件を書面で確認してください。",
+    next: [
+      { href: "/blog/hyoban-dmmwebcamp/", text: "SHIFT TERAS CAMPUS（旧DMM WEBCAMP）の評判を読む" },
+      { href: "/blog/hyoban-runteq/", text: "RUNTEQの評判を読む" },
+      { href: "/blog/hyoban-techcamp/", text: "テックキャンプの評判を読む" },
+    ],
+  },
+  {
+    key: "kyufukin",
+    label: "できるだけ費用を抑えたい（給付金を使いたい）",
+    lead: "教育訓練給付を使えれば、受講料の20〜80%が戻ってきます。ただし対象はスクール単位ではなく講座単位で、手続きは受講開始の2週間前までに終わらせないと1円も出ません。先に制度側の条件を確認してから、講座を選ぶ順番が正解です。",
+    picks: [
+      { name: "TechAcademy", why: "給付金対象コースあり。オンライン完結で働きながら進めやすい" },
+      { name: "SHIFT TERAS CAMPUS（旧DMM WEBCAMP）", why: "給付金対象コースあり。転職支援もまとめて欲しい人向け" },
+      { name: "キカガク", why: "受講料は高いが、専門実践の対象講座なので実質負担は大きく下がる" },
+    ],
+    caution: "給付金は後払いです。受講料はいったん全額を自分で払います。それと、パソコン代や受験料は「教育訓練経費」に入りません。",
+    next: [
+      { href: "/kyufukin/", text: "給付金の対象・金額・申請の流れを図で見る（当サイトの解説）" },
+      { href: "/blog/kyufukin-osusume/", text: "給付金対象スクールの比較記事を読む" },
+    ],
+  },
+  {
+    key: "free",
+    label: "無料で学びたい・就職支援がほしい",
+    lead: "正直に書きます。無料スクールは「無料の理由」がはっきりしています。提携企業への就職が前提で、年齢（多くは20代）や上京可否、選考通過が条件です。条件に合えば強力ですが、合わない人が申し込むと時間を失います。",
+    picks: [
+      { name: "TechAcademy", why: "無料ではないが、給付金対象コースなら実質負担を下げられる" },
+      { name: "CodeCamp", why: "無料ではないが、マンツーマンで挫折しにくい。まず無料相談で相性を見る手も" },
+    ],
+    caution: "当サイトはまだ無料スクールの検証記事を出していません（検証中です）。ここで名前だけ挙げて誘導するのは不誠実なので、出せる段階になったら公開します。",
+    next: [
+      { href: "/kyufukin/", text: "先に「実質負担をどこまで下げられるか」を確認する" },
+      { href: "/about/", text: "当サイトの検証方法と、まだ書いていないことについて" },
+    ],
+  },
+  {
+    key: "ai",
+    label: "AI・データ分析を学びたい",
+    lead: "AI系は受講料が跳ね上がります（60万〜80万円台）。そのぶん専門実践教育訓練の対象講座が多く、給付金を使えるかどうかで実質負担が3分の1近くまで変わります。制度の確認を飛ばすと一番損をする分野です。",
+    picks: [
+      { name: "キカガク", why: "AI・機械学習を6か月で体系的に。専門実践の対象講座あり" },
+      { name: "TechAcademy", why: "まずPythonやデータ分析の短期コースで適性を見たい人向け" },
+    ],
+    caution: "Aidemyのように「講座によって対象・非対象が分かれる」ケースがあります。パンフレットの「給付金対象」表記だけで判断せず、厚労省の検索システムで講座名を確認してください。",
+    next: [
+      { href: "/kyufukin/", text: "対象講座の確認方法と申請の流れを見る" },
+      { href: "/blog/kyufukin-osusume/", text: "AI系を含む給付金対象スクールの比較を読む" },
+    ],
+  },
+  {
+    key: "fukugyo",
+    label: "副業で稼げるスキルがほしい",
+    lead: "副業目的なら、転職保証は要りません。要るのは「納品できる状態」まで持っていける課題と、質問への回答速度です。学習時間が細切れになるので、メンタリングの頻度で選ぶと失敗しにくいです。",
+    picks: [
+      { name: "TechAcademy", why: "週2回の現役エンジニア面談。副業向けコースもある" },
+      { name: "CodeCamp", why: "マンツーマンで、平日夜や休日にも進めやすい" },
+    ],
+    caution: "「受講したらすぐ月◯万円」という話は疑ってください。案件を取るまでの営業や実績づくりは、どのスクールでも自分の仕事として残ります。",
+    next: [
+      { href: "/blog/hyoban-techacademy/", text: "TechAcademyの評判を読む" },
+      { href: "/blog/hyoban-codecamp/", text: "CodeCampの評判を読む" },
+      { href: "/blog/hyoban-coachtech/", text: "COACHTECHの評判を読む" },
+    ],
+  },
+  {
+    key: "mayou",
+    label: "まだ迷っている・後悔したくない",
+    lead: "迷っている段階で比較表を睨んでも決まりません。順番を変えましょう。まず「やめとけ」と言われる理由を先に読んで、自分がその落とし穴に当てはまるかを確認する。当てはまらないと分かってから、2社だけ無料相談を受けて比べる。これが一番失敗が少ない進め方です。",
+    picks: [
+      { name: "TechAcademy", why: "オンライン完結で最も条件が読みやすい。比較の基準点に置きやすい" },
+      { name: "SHIFT TERAS CAMPUS（旧DMM WEBCAMP）", why: "転職支援まで含めた「上限側」の基準点として" },
+    ],
+    caution: "無料カウンセリングはその場で申し込まないでください。持ち帰って、料金・期間・保証条件を並べて比べる時間をとる。ここで焦らせてくる相手は、それ自体が判断材料になります。",
+    next: [
+      { href: "/blog/hyoban-potepan/", text: "評判記事の読み方の例（ポテパンキャンプ）" },
+      { href: "/about/", text: "当サイトが何をどう検証しているか" },
+    ],
+  },
+];
+
+// ビルド時の自己検査。リンク先が実在しなければここで落ちる（＝404を本番に出さない）。
+const broken = results.flatMap((r) => r.next.map((n) => n.href)).filter((h) => !exists(h));
+if (broken.length) throw new Error(`[shindan] 存在しないリンク先: ${broken.join(", ")}`);
+results.forEach((r) => r.picks.forEach((p) => byName(p.name)));
 ---
-<Base title="30秒でわかる｜あなたに合うプログラミングスクール診断" description="目的を選ぶだけで、あなたに合うプログラミングスクールの選び方ページへ案内します。">
+<Base title="30秒でわかる｜あなたに合うプログラミングスクール診断" description="いちばん近い目的を選ぶだけで、候補校・注意点・次にやることをその場で表示します。ページ遷移なしで結果が出ます。">
   <h1>あなたに合うスクール診断</h1>
-  <p>いちばん近い目的を選んでください。最適な比較ページをご案内します（30秒）。</p>
+  <p class="sub">いちばん近い目的をひとつ選んでください。<b>候補校・つまずきやすい点・次にやること</b>をこの画面に出します（30秒）。</p>
 
   <div id="q">
-    <button class="opt" data-go="/blog/osusume-hikaku-hosho/">未経験から<strong>転職</strong>したい</button>
-    <button class="opt" data-go="/blog/kyufukin-osusume/">できるだけ<strong>費用を抑えたい（給付金）</strong></button>
-    <button class="opt" data-go="/blog/osusume-hikaku-free/"><strong>無料</strong>で学びたい・就職支援がほしい</button>
-    <button class="opt" data-go="/blog/osusume-hikaku-ai/"><strong>AI・データ分析</strong>を学びたい</button>
-    <button class="opt" data-go="/blog/osusume-online-fukugyo/"><strong>副業</strong>で稼げるスキルがほしい</button>
-    <button class="opt" data-go="/blog/imiaru-erabikata/">まだ迷っている・<strong>後悔したくない</strong></button>
+    {results.map((r, i) => (
+      <button class="opt" data-go={r.key}><span class="num">{i + 1}</span>{r.label}</button>
+    ))}
   </div>
 
+  {results.map((r) => (
+    <section class="res" id={`res-${r.key}`} hidden>
+      <div class="res-head">
+        <span class="res-tag">診断結果</span>
+        <h2>{r.label}</h2>
+      </div>
+      <p class="lead">{r.lead}</p>
+
+      <div class="cards">
+        {r.picks.map((p) => {
+          const s = byName(p.name);
+          return (
+            <div class="card">
+              <div class="c-name">{s.name}</div>
+              <div class="c-spec">
+                <span>{s.price}</span><span>{s.period}</span><span>{s.form}</span>
+              </div>
+              <p class="c-why">{p.why}</p>
+            </div>
+          );
+        })}
+      </div>
+
+      <div class="caution"><b>先に知っておくこと</b><p>{r.caution}</p></div>
+
+      <div class="next">
+        <b>次にやること</b>
+        <ul>{r.next.map((n) => <li><a href={n.href}>{n.text}</a></li>)}</ul>
+      </div>
+
+      <button class="again" data-again>もう一度選び直す</button>
+    </section>
+  ))}
+
+  <p class="foot">※料金・期間は各スクール公式サイトの表示にもとづき、当サイトが毎日自動で照合しています。最新の金額は必ず公式サイトでご確認ください。</p>
+
   <style>
-    #q{display:grid;gap:10px;margin-top:16px}
-    .opt{text-align:left;padding:14px 16px;border:1px solid var(--bd);border-radius:10px;background:transparent;color:var(--fg);font-size:15px;cursor:pointer}
-    .opt:hover{border-color:var(--acc)}
-    @media (prefers-color-scheme:dark){.opt:hover{background:#161b22}}
+    .sub{color:#475569;font-size:14.5px;line-height:1.9}
+    #q{display:grid;gap:10px;margin-top:18px}
+    .opt{display:flex;align-items:center;gap:12px;text-align:left;padding:15px 16px;border:1px solid var(--bd);border-radius:10px;background:#fff;color:var(--fg);font-size:15px;font-weight:600;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+    .opt:hover{border-color:var(--acc);box-shadow:0 2px 10px rgba(15,39,68,.07)}
+    .opt .num{flex:none;width:24px;height:24px;border-radius:50%;background:#eef2f7;color:#0f2744;font-size:12.5px;font-weight:800;display:grid;place-items:center}
+    .res{margin-top:22px;border:1px solid #e2e8f0;border-radius:14px;padding:20px 20px 18px;background:#fff}
+    .res-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .res-tag{flex:none;background:#0f2744;color:#fff;font-size:11px;font-weight:800;padding:4px 9px;border-radius:999px;letter-spacing:.04em}
+    .res h2{margin:0;font-size:19px;line-height:1.5}
+    .lead{font-size:14px;color:#334155;line-height:1.95;margin:12px 0 18px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+    .card{border:1px solid #e6ebf2;border-radius:10px;padding:12px 13px;background:#fbfcfe}
+    .c-name{font-weight:800;font-size:14px;color:#0f2744;line-height:1.45}
+    .c-spec{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+    .c-spec span{font-size:11.5px;background:#eef2f7;color:#334155;padding:3px 7px;border-radius:5px}
+    .c-why{font-size:12.5px;color:#475569;line-height:1.8;margin:0}
+    .caution{margin:18px 0 0;background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:13px 15px}
+    .caution b{font-size:13px;color:#9a3412}
+    .caution p{font-size:13px;color:#7c2d12;line-height:1.85;margin:5px 0 0}
+    .next{margin:16px 0 0}
+    .next b{font-size:13px;color:#0f2744}
+    .next ul{margin:7px 0 0;padding-left:20px}
+    .next li{font-size:13.5px;line-height:2}
+    .again{margin:18px 0 0;background:transparent;border:1px solid var(--bd);border-radius:8px;padding:9px 14px;font-size:13px;color:#475569;cursor:pointer}
+    .again:hover{border-color:var(--acc)}
+    .foot{font-size:11.5px;color:#94a3b8;margin-top:20px;line-height:1.8}
+    @media (max-width:560px){.res{padding:16px 14px}.res h2{font-size:17px}}
   </style>
   <script is:inline>
-    document.querySelectorAll('.opt').forEach((b) => {
-      b.addEventListener('click', () => { window.location.href = b.getAttribute('data-go'); });
+    const opts = document.querySelectorAll(".opt");
+    const hideAll = () => document.querySelectorAll(".res").forEach((s) => (s.hidden = true));
+    opts.forEach((b) => {
+      b.addEventListener("click", () => {
+        hideAll();
+        const el = document.getElementById("res-" + b.getAttribute("data-go"));
+        if (!el) return;
+        el.hidden = false;
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+    document.querySelectorAll("[data-again]").forEach((b) => {
+      b.addEventListener("click", () => {
+        hideAll();
+        document.getElementById("q").scrollIntoView({ behavior: "smooth", block: "center" });
+      });
     });
   </script>
 </Base>

@@ -1,0 +1,331 @@
+---
+import Base from "../layouts/Base.astro";
+
+// 教育訓練給付制度の一次情報にもとづく解説ページ。
+// 数字を1か所に集めておき、本文・表・図の全部をここから描く（表記ズレを構造的に防ぐ）。
+const TYPES = [
+  {
+    key: "ippan",
+    name: "一般教育訓練給付金",
+    rate: "20%",
+    ratePct: 20,
+    cap: "上限10万円",
+    need: "通算1年以上",
+    pre: "不要",
+    target: "簿記・宅建・TOEICなど幅広い一般講座。プログラミング系もここに入るコースが多い",
+    color: "#93c5fd",
+  },
+  {
+    key: "tokutei",
+    name: "特定一般教育訓練給付金",
+    rate: "40%",
+    ratePct: 40,
+    cap: "上限20万円",
+    need: "通算1年以上",
+    pre: "必要（受講開始2週間前まで）",
+    target: "早期のキャリア形成に役立つ講座。資格を取って就職すると10%上乗せされ、合計50%・上限25万円になる",
+    color: "#60a5fa",
+  },
+  {
+    key: "senmon",
+    name: "専門実践教育訓練給付金",
+    rate: "最大80%",
+    ratePct: 80,
+    cap: "年間上限64万円",
+    need: "通算2年以上",
+    pre: "必要（受講開始2週間前まで）",
+    target: "中長期のキャリア形成に資する講座。AI・データサイエンス系の長期コースが多い。最長3年で計192万円まで",
+    color: "#2563eb",
+  },
+];
+
+const senmonBreak = [
+  { label: "受講中", pct: "50%", cap: "年間上限40万円", when: "6か月ごとに支給" },
+  { label: "＋資格取得または就職", pct: "20%", cap: "年間上限16万円", when: "就職等の日から1か月以内に申請" },
+  { label: "＋賃金が5%以上上がった", pct: "10%", cap: "年間上限8万円", when: "6か月経過日から6か月以内に申請" },
+];
+
+const pitfalls = [
+  {
+    q: "スクールごと対象、ではない",
+    a: "対象になるのは講座（コース）単位です。同じスクールでも、対象のコースと対象外のコースが並んでいます。パンフレットの「給付金対象」という表記だけで判断せず、厚生労働省の検索システムで講座名を引いて、対象として登録されているかを自分の目で確かめてください。",
+  },
+  {
+    q: "全額を先に払う（後払い）",
+    a: "給付金は立て替え方式です。受講料はいったん自分で全額払い、あとから戻ってきます。専門実践なら6か月ごとに分割で戻るので、手元のお金の計画は「全額払える前提」で立ててください。",
+  },
+  {
+    q: "対象になる費用は入学料と受講料だけ",
+    a: "パソコン代、書籍代、受験料、交通費は教育訓練経費に入りません。「総額の80%が戻る」と考えると計算が合わなくなります。",
+  },
+  {
+    q: "手続きが1日遅れると1円も出ない",
+    a: "専門実践と特定一般は、受講開始日の2週間前までにハローワークでの手続きが終わっていることが条件です。この期限は後から救済されません。申込よりも先に、まずハローワークの予約を取るのが正しい順番です。",
+  },
+  {
+    q: "退職してから動くなら1年が期限",
+    a: "離職した人は、原則として離職日の翌日から1年以内に受講を開始する必要があります（妊娠・出産・疾病などの理由があれば延長できます）。",
+  },
+];
+---
+<Base
+  title="教育訓練給付金の対象と申請手順｜スクール代を最大80%取り戻す"
+  description="プログラミングスクールで使える教育訓練給付金の3種類、給付率と上限、雇用保険の加入期間の条件、受講開始2週間前までの事前手続き、申請期限を図で整理しました。厚生労働省・ハローワークの一次情報にもとづく解説です。"
+>
+  <h1>教育訓練給付金で、スクール代はどこまで戻るのか</h1>
+
+  <p class="lede">
+    スクール比較でいちばん金額が動くのは、割引キャンペーンではなく給付金です。うまく噛み合えば受講料の20%から80%が戻ってきます。
+    ただ、この制度は「対象校を選ぶ」制度ではありません。<b>対象は講座単位</b>で、しかも<b>受講開始の2週間前までに手続きが終わっていないと、条件を満たしていても1円も出ません</b>。
+    順番を間違えた人が毎年います。ここでは、判定・金額・手続きの3つを図にして、迷わない順番に並べ直しました。
+  </p>
+
+  <div class="src">
+    出典：厚生労働省「専門実践教育訓練給付金のご案内」、ハローワークインターネットサービス「教育訓練給付金」、教育訓練給付制度［検索システム］（いずれも公的機関の一次情報。制度は改正されるため、申込前に最新版をご確認ください）
+  </div>
+
+  <h2>まず結論：3種類のどれに当たるかで金額が決まる</h2>
+  <p>
+    教育訓練給付は1種類ではなく3階建てです。あなたが選んだ講座がどの階に登録されているかで、戻る額が4倍変わります。
+  </p>
+
+  <figure class="fig">
+    <svg viewBox="0 0 700 260" role="img" aria-label="3種類の教育訓練給付金の給付率と上限の比較図">
+      <rect x="0" y="0" width="700" height="260" fill="#fbfcfe" />
+      <text x="20" y="28" class="ft">給付率と上限のちがい</text>
+      <line x1="200" y1="44" x2="200" y2="230" stroke="#e2e8f0" stroke-width="1" />
+      <line x1="360" y1="44" x2="360" y2="230" stroke="#eef2f7" stroke-width="1" />
+      <line x1="520" y1="44" x2="520" y2="230" stroke="#eef2f7" stroke-width="1" />
+      <text x="200" y="248" class="fs" text-anchor="middle">0%</text>
+      <text x="360" y="248" class="fs" text-anchor="middle">40%</text>
+      <text x="520" y="248" class="fs" text-anchor="middle">80%</text>
+
+      <g>
+        <text x="20" y="72" class="fl">一般</text>
+        <rect x="200" y="58" width="80" height="26" rx="4" fill="#93c5fd" />
+        <text x="290" y="76" class="fv">20%・上限10万円</text>
+      </g>
+      <g>
+        <text x="20" y="128" class="fl">特定一般</text>
+        <rect x="200" y="114" width="160" height="26" rx="4" fill="#60a5fa" />
+        <rect x="360" y="114" width="40" height="26" rx="4" fill="#bfdbfe" />
+        <text x="410" y="132" class="fv">40%・上限20万円</text>
+        <text x="410" y="147" class="fn">（資格取得＋就職で＋10%＝50%）</text>
+      </g>
+      <g>
+        <text x="20" y="190" class="fl">専門実践</text>
+        <rect x="200" y="176" width="200" height="26" rx="4" fill="#2563eb" />
+        <rect x="400" y="176" width="80" height="26" rx="4" fill="#3b82f6" />
+        <rect x="480" y="176" width="40" height="26" rx="4" fill="#93c5fd" />
+        <text x="248" y="194" class="fw">受講中50%</text>
+        <text x="404" y="194" class="fw">＋20%</text>
+        <text x="530" y="188" class="fv">最大80%</text>
+        <text x="530" y="203" class="fn">年上限64万円</text>
+      </g>
+    </svg>
+    <figcaption>図1：同じ受講料でも、講座がどの区分で登録されているかで戻る額が変わる。専門実践の20%分と10%分は、修了後の資格取得・就職・賃上げを満たしてから追加で支給される。</figcaption>
+  </figure>
+
+  <table>
+    <thead>
+      <tr><th>区分</th><th>給付率</th><th>上限</th><th>雇用保険の加入期間</th><th>事前手続き</th></tr>
+    </thead>
+    <tbody>
+      {TYPES.map((t) => (
+        <tr>
+          <td><b>{t.name}</b></td>
+          <td>{t.rate}</td>
+          <td>{t.cap}</td>
+          <td>{t.need}</td>
+          <td>{t.pre}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <h3>専門実践の「最大80%」の中身</h3>
+  <p>
+    80%は一度に振り込まれるわけではありません。3段階の合計です。ここを誤解すると、受講中の資金計画がずれます。
+  </p>
+  <ul class="bd">
+    {senmonBreak.map((b) => (
+      <li><b>{b.label}：{b.pct}</b>（{b.cap}）— {b.when}</li>
+    ))}
+  </ul>
+  <p class="small">
+    最長3年まで受けられるため、上限まで使い切ると合計192万円になります。ただし年間上限があるので、1年で一気に受け取ることはできません。
+  </p>
+
+  <h2>自分が対象かどうかを、上から順に判定する</h2>
+  <p>
+    条件は複雑に見えますが、判定の順番を固定すると3分で終わります。上から順に読んでください。途中で「いいえ」になったら、その先は読まなくて構いません。
+  </p>
+
+  <figure class="fig">
+    <svg viewBox="0 0 700 430" role="img" aria-label="教育訓練給付金の対象かどうかを判定するフローチャート">
+      <rect x="0" y="0" width="700" height="430" fill="#fbfcfe" />
+
+      <rect x="150" y="14" width="400" height="42" rx="8" fill="#0f2744" />
+      <text x="350" y="41" class="fh" text-anchor="middle">受けたい講座が「給付金対象講座」に登録されているか</text>
+      <text x="350" y="72" class="fn" text-anchor="middle">厚生労働省の検索システムで講座名を確認（スクール単位ではなく講座単位）</text>
+
+      <path d="M350 80 L350 104" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ar)" />
+      <rect x="150" y="106" width="400" height="42" rx="8" fill="#fff" stroke="#c7d2e0" />
+      <text x="350" y="133" class="fb" text-anchor="middle">雇用保険に入っている（または入っていた）</text>
+
+      <path d="M350 148 L350 172" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ar)" />
+      <rect x="150" y="174" width="400" height="56" rx="8" fill="#fff" stroke="#c7d2e0" />
+      <text x="350" y="196" class="fb" text-anchor="middle">加入期間が足りている</text>
+      <text x="350" y="216" class="fn" text-anchor="middle">初回：一般・特定一般は1年以上／専門実践は2年以上　※2回目以降は前回から3年以上</text>
+
+      <path d="M350 230 L350 254" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ar)" />
+      <rect x="150" y="256" width="400" height="56" rx="8" fill="#fff" stroke="#c7d2e0" />
+      <text x="350" y="278" class="fb" text-anchor="middle">すでに退職している場合、期限内か</text>
+      <text x="350" y="298" class="fn" text-anchor="middle">離職日の翌日から1年以内に受講を開始する（延長制度あり）</text>
+
+      <path d="M350 312 L350 336" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ar)" />
+      <rect x="120" y="338" width="460" height="56" rx="8" fill="#fff7ed" stroke="#fdba74" />
+      <text x="350" y="360" class="fb" text-anchor="middle">専門実践・特定一般なら、事前手続きが2週間前までに終わるか</text>
+      <text x="350" y="380" class="fn" text-anchor="middle">キャリアコンサルティング＋ジョブ・カード＋受給資格確認票をハローワークへ</text>
+
+      <text x="350" y="418" class="fg" text-anchor="middle">ここまで全部「はい」なら対象。ひとつでも「いいえ」なら、その条件を先に片づける</text>
+
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0 0 L10 5 L0 10 z" fill="#94a3b8" />
+        </marker>
+      </defs>
+    </svg>
+    <figcaption>図2：判定は上から順に。3段目の「加入期間が足りている」でつまずく人がいちばん多く、下2段（離職後1年、受講開始2週間前）は、あとから取り返せない期限です。</figcaption>
+  </figure>
+
+  <h2>申請の流れと、絶対に外せない期限</h2>
+  <p>
+    ここがいちばん誤解されます。<b>申し込んでから手続きするのではなく、手続きを終えてから申し込む</b>のが正しい順番です。時間軸で並べます。
+  </p>
+
+  <figure class="fig">
+    <svg viewBox="0 0 880 300" role="img" aria-label="教育訓練給付金の申請タイムライン">
+      <rect x="0" y="0" width="880" height="300" fill="#fbfcfe" />
+      <text x="20" y="28" class="ft">申請タイムライン（専門実践の場合）</text>
+
+      <line x1="60" y1="120" x2="830" y2="120" stroke="#cbd5e1" stroke-width="3" />
+
+      <circle cx="110" cy="120" r="9" fill="#f97316" />
+      <text x="110" y="98" class="fp" text-anchor="middle">2週間前まで</text>
+      <text x="110" y="150" class="fb2" text-anchor="middle">ハローワーク</text>
+      <text x="110" y="167" class="fn" text-anchor="middle">事前手続き</text>
+      <text x="110" y="183" class="fn" text-anchor="middle">・キャリア相談</text>
+      <text x="110" y="199" class="fn" text-anchor="middle">・ジョブ・カード</text>
+      <text x="110" y="215" class="fn" text-anchor="middle">・受給資格確認票</text>
+
+      <circle cx="290" cy="120" r="9" fill="#2563eb" />
+      <text x="290" y="98" class="fp2" text-anchor="middle">受講開始日</text>
+      <text x="290" y="150" class="fb2" text-anchor="middle">受講料を全額支払う</text>
+      <text x="290" y="167" class="fn" text-anchor="middle">給付は後払い</text>
+
+      <circle cx="470" cy="120" r="9" fill="#2563eb" />
+      <text x="470" y="98" class="fp2" text-anchor="middle">6か月ごと</text>
+      <text x="470" y="150" class="fb2" text-anchor="middle">50%分を受け取る</text>
+      <text x="470" y="167" class="fn" text-anchor="middle">期間終了後1か月以内に</text>
+      <text x="470" y="183" class="fn" text-anchor="middle">支給申請（毎回必要）</text>
+
+      <circle cx="650" cy="120" r="9" fill="#2563eb" />
+      <text x="650" y="98" class="fp2" text-anchor="middle">修了</text>
+      <text x="650" y="150" class="fb2" text-anchor="middle">資格取得・就職で＋20%</text>
+      <text x="650" y="167" class="fn" text-anchor="middle">その日から1か月以内に申請</text>
+
+      <circle cx="815" cy="120" r="9" fill="#22c55e" />
+      <text x="808" y="98" class="fp3" text-anchor="middle">賃上げ後</text>
+      <text x="808" y="150" class="fb2" text-anchor="middle">賃金5%アップで＋10%</text>
+      <text x="808" y="167" class="fn" text-anchor="middle">6か月経過日から</text>
+      <text x="808" y="183" class="fn" text-anchor="middle">6か月以内に申請</text>
+
+      <rect x="60" y="248" width="770" height="34" rx="7" fill="#fff7ed" stroke="#fdba74" />
+      <text x="445" y="270" class="fb" text-anchor="middle">一般・特定一般は、修了日の翌日から1か月以内に1回だけ申請する</text>
+    </svg>
+    <figcaption>図3：専門実践は「6か月ごとに毎回申請」が必要です。1回出せば自動で振り込まれ続ける制度ではありません。</figcaption>
+  </figure>
+
+  <h3>やることを順番どおりに</h3>
+  <ol class="steps2">
+    <li><b>講座を検索して対象か確認する</b><span>厚生労働省の教育訓練給付制度［検索システム］で、コース名そのものを検索します。スクール名で出てきても、コースが違えば対象外です。</span></li>
+    <li><b>ハローワークに電話して予約する</b><span>住所を管轄するハローワークです。専門実践・特定一般は訓練前キャリアコンサルティングの予約が必要で、混みます。受講開始日から逆算して1か月前には連絡してください。</span></li>
+    <li><b>ジョブ・カードを作る</b><span>キャリアコンサルタントと面談しながら作成します。当日いきなりは作れないので、様式を先に見ておくと早く終わります。</span></li>
+    <li><b>受給資格確認票を提出する</b><span>ジョブ・カードと本人確認書類を添えて、<b>受講開始日の2週間前まで</b>に提出します。この日付が制度の分かれ目です。</span></li>
+    <li><b>スクールに申し込み、受講料を払う</b><span>領収書と受講証明書は捨てないでください。支給申請でそのまま必要になります。</span></li>
+    <li><b>期限内に支給申請する</b><span>専門実践は6か月ごと、一般・特定一般は修了後1か月以内。就職や賃上げの上乗せ分は、それぞれ別の期限で追加申請します。</span></li>
+  </ol>
+
+  <h2>働いていない人向けの、もう一つの給付金</h2>
+  <p>
+    専門実践の対象講座を受ける<b>45歳未満の離職者</b>には、受講中の生活費にあてる<b>教育訓練支援給付金</b>があります。額は雇用保険の基本手当日額の60%で、2か月ごとに支給されます（令和7年4月1日より前に受講を開始した人は80%）。
+    これは令和8年度末までの暫定措置なので、使うつもりなら期限を意識してください。受講に専念することが条件で、働きながらは使えません。
+  </p>
+
+  <h2>ここで失敗する人が多い、5つの落とし穴</h2>
+  {pitfalls.map((p) => (
+    <details>
+      <summary>{p.q}</summary>
+      <p>{p.a}</p>
+    </details>
+  ))}
+
+  <h2>次にやること</h2>
+  <p>
+    制度の側の条件が分かったら、次は「対象講座を持っているスクールのうち、自分の目的に合うのはどれか」です。順番を逆にすると、対象外のコースに申し込んでから気づくことになります。
+  </p>
+  <ul class="bd">
+    <li><a href="/blog/kyufukin-osusume/">給付金対象コースがあるスクールの比較を読む</a></li>
+    <li><a href="/shindan/">30秒診断で、目的別の候補校を見る</a></li>
+    <li><a href="/about/">当サイトが何をどう検証しているか</a></li>
+  </ul>
+
+  <div class="disc">
+    <b>この記事の位置づけ</b>
+    <p>
+      当サイトは制度の運営主体ではありません。ここに書いた条件・金額はいずれも厚生労働省およびハローワークの公表資料にもとづきますが、制度は毎年改正されます。
+      実際の受給可否と金額は、必ず住所を管轄するハローワークで確認してください。当サイトの記載と公的機関の案内が食い違う場合は、公的機関の案内が正です。
+    </p>
+    <p class="who">文責：編集長 佐倉 透（さくら とおる）／最終確認 2026年7月</p>
+  </div>
+
+  <style>
+    .lede{font-size:15px;line-height:2;color:#334155;background:#fff;border:1px solid var(--bd);border-left:5px solid var(--acc);border-radius:10px;padding:16px 18px}
+    .src{font-size:11.5px;color:#64748b;line-height:1.8;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:8px;padding:10px 13px;margin:14px 0 0}
+    .fig{margin:22px 0 26px;padding:0}
+    .fig svg{width:100%;height:auto;display:block;border:1px solid #e2e8f0;border-radius:12px;background:#fbfcfe}
+    .fig figcaption{font-size:12px;color:#64748b;line-height:1.8;margin-top:9px}
+    .ft{font-size:14px;font-weight:800;fill:#0f2744}
+    .fh{font-size:13.5px;font-weight:800;fill:#ffffff}
+    .fb{font-size:13px;font-weight:700;fill:#0f2744}
+    .fb2{font-size:12px;font-weight:800;fill:#0f2744}
+    .fl{font-size:13px;font-weight:800;fill:#0f2744}
+    .fv{font-size:12.5px;font-weight:700;fill:#334155}
+    .fw{font-size:11.5px;font-weight:800;fill:#ffffff}
+    .fn{font-size:10.5px;fill:#64748b}
+    .fs{font-size:10px;fill:#94a3b8}
+    .fg{font-size:12.5px;font-weight:800;fill:#166534}
+    .fp{font-size:11.5px;font-weight:800;fill:#c2410c}
+    .fp2{font-size:11.5px;font-weight:800;fill:#1e40af}
+    .fp3{font-size:11.5px;font-weight:800;fill:#15803d}
+    .fig svg text{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP","Segoe UI",Roboto,sans-serif}
+    .bd{font-size:14px;line-height:2}
+    .bd b{background:linear-gradient(transparent 60%,#fde047 60%);padding:0 1px}
+    .small{font-size:13px;color:#64748b;line-height:1.9}
+    .steps2{counter-reset:s2;list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px}
+    .steps2 li{counter-increment:s2;background:#fff;border:1px solid var(--bd);border-radius:12px;padding:13px 16px 13px 56px;position:relative;margin:0}
+    .steps2 li::before{content:counter(s2);position:absolute;left:15px;top:13px;width:28px;height:28px;border-radius:999px;background:var(--navy);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+    .steps2 b{display:block;color:var(--navy);font-size:14.5px;margin-bottom:3px}
+    .steps2 span{color:#475569;font-size:13.5px;line-height:1.85}
+    .steps2 b + span b{display:inline;font-size:inherit;background:linear-gradient(transparent 60%,#fde047 60%)}
+    .disc{margin:34px 0 0;background:#f8fafc;border:1px solid var(--bd);border-radius:12px;padding:16px 18px}
+    .disc b{font-size:13px;color:var(--navy)}
+    .disc p{font-size:12.5px;color:#475569;line-height:1.9;margin:6px 0 0}
+    .disc .who{font-size:12px;color:#64748b;margin-top:10px}
+    @media (max-width:560px){
+      .fig svg{border-radius:9px}
+      .fig figcaption{font-size:11.5px}
+    }
+  </style>
+</Base>

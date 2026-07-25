@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Thumb from "../components/Thumb.astro";
+import Avatar from "../components/Avatar.astro";
 import schools from "../data/schools.json";
 import pricewatch from "../data/pricewatch.json";
 
@@ -23,7 +24,7 @@ const pwLastMd = pwLast ? `${Number(pwLast.slice(5, 7))}/${Number(pwLast.slice(8
   <section class="hero" slot="hero"><div class="wrap">
     <p class="kicker">スクール選びで後悔したくない人のための比較サイト</p>
     <h1>受講料・給付金・転職支援。<br />答えは「横並びの比較」で出す。</h1>
-    <p>主要スクールの受講料・期間・保証内容を公式情報から整理し、ひとつの表で比べられるようにしました。給付金で受講料が最大70%戻る条件も解説。デメリットも隠さず書きます。</p>
+    <p>主要スクールの受講料・期間・保証内容を公式情報から整理し、ひとつの表で比べられるようにしました。給付金で受講料の20〜80%が戻る仕組みも、区分ごとの条件つきで解説。デメリットも隠さず書きます。</p>
     <div class="actions">
       <a class="primary" href="/shindan/">30秒であなたに合う一校を診断</a>
       <a class="ghost" href="/blog/kyufukin-osusume/">給付金で安くする方法を見る</a>
@@ -45,11 +46,26 @@ const pwLastMd = pwLast ? `${Number(pwLast.slice(5, 7))}/${Number(pwLast.slice(8
     </a>
   </div></section>
 
+  {/* 案E: 一番人が来るページに「誰が書いているか」を出す（E-E-A-T）。
+      /about/ と記事ページには編集長を出していたのに、トップだけ人の気配がゼロだった。
+      演出の線引きは不変: ペンネームであることをその場で明示し、経歴・資格は主張しない。 */}
+  <section class="sec editorband">
+    <a class="eb" href="/about/">
+      <span class="eb-av"><Avatar size={60} /></span>
+      <span class="eb-body">
+        <b>編集長 佐倉 透（さくら とおる）</b>
+        <span class="eb-lead">記事は公式サイトの情報を照合し、編集部の基準を満たしたものだけを公開しています。<em>良い点だけを並べません。</em>デメリットと向かない人を必ず書くのが、このサイトの唯一のルールです。</span>
+        <span class="eb-more">編集方針と運営者情報を見る →</span>
+      </span>
+    </a>
+    <p class="eb-note">「佐倉 透」は編集責任者としてのペンネームです（実在の個人の経歴・保有資格を主張するものではありません）。</p>
+  </section>
+
   <section class="sec">
     <div class="sec-head"><h2>目的から探す</h2><span class="en">PURPOSE</span></div>
     <div class="nav4">
       <a class="navcard" href="/blog/hyoban-dmmwebcamp/"><span class="ic">🎯</span><b>転職を目指す</b><small>転職保証つきスクールの実力は</small></a>
-      <a class="navcard" href="/blog/kyufukin-osusume/"><span class="ic">💴</span><b>給付金で安く</b><small>最大70%還元の条件と対象校</small></a>
+      <a class="navcard" href="/blog/kyufukin-osusume/"><span class="ic">💴</span><b>給付金で安く</b><small>区分別の還元率と対象校</small></a>
       <a class="navcard" href="/blog/hyoban-techacademy/"><span class="ic">🏠</span><b>オンライン完結</b><small>働きながら自宅で学びたい</small></a>
       <a class="navcard" href="/shindan/"><span class="ic">🧭</span><b>迷ったら診断</b><small>3つの質問で候補を絞る</small></a>
     </div>
@@ -113,7 +129,7 @@ const pwLastMd = pwLast ? `${Number(pwLast.slice(5, 7))}/${Number(pwLast.slice(8
     <div class="sec-head"><h2>失敗しない選び方 3ステップ</h2><span class="en">HOW TO CHOOSE</span></div>
     <ol class="steps">
       <li><b>目的を決める</b><span>転職が最優先なら保証つき、スキル習得だけならオンライン完結型も選択肢。</span></li>
-      <li><b>給付金の対象か調べる</b><span>教育訓練給付の対象コースなら受講料の最大70%が戻ります。条件が細かいので事前確認を。</span></li>
+      <li><b>給付金の対象か調べる</b><span>対象コースなら受講料の20〜80%が戻ります。割合は講座の指定区分と雇用保険の加入期間で変わるので、申込前に確認を。</span></li>
       <li><b>負担額で比べる</b><span>定価ではなく「給付金適用後の自己負担」で比較すると順位が入れ替わることがあります。</span></li>
     </ol>
   </section>
@@ -121,7 +137,7 @@ const pwLastMd = pwLast ? `${Number(pwLast.slice(5, 7))}/${Number(pwLast.slice(8
   <section class="sec">
     <div class="sec-head"><h2>よくある質問</h2><span class="en">FAQ</span></div>
     <details><summary>「プログラミングスクールはやめとけ」と聞きますが本当ですか？</summary><p>独学で十分な人がいる一方、保証や伴走が必要な人もいます。費用が高く感じられる背景と、向き不向きの整理は<a href="/blog/kyufukin-osusume/">こちらの記事</a>で中立的に解説しています。</p></details>
-    <details><summary>給付金はいくら戻りますか？</summary><p>対象コースなら受講料の最大70%（条件により80%）が支給されます。対象校・条件は<a href="/blog/kyufukin-osusume/">給付金対象スクールまとめ</a>をご覧ください。</p></details>
+    <details><summary>給付金はいくら戻りますか？</summary><p>講座の指定区分で変わります。一般教育訓練は20%（上限10万円）、特定一般は40%（上限20万円）、専門実践は受講中50%（年間上限40万円）で、修了後に就職すると20%・賃金が上がるとさらに10%が上乗せされ最大80%（年間上限64万円）です。専門実践と特定一般は<b>受講開始日の2週間前まで</b>にハローワークでの手続きが必要です。対象校と申請手順は<a href="/kyufukin/">給付金の使い方</a>と<a href="/blog/kyufukin-osusume/">給付金対象スクールまとめ</a>をご覧ください。</p></details>
     <details><summary>このサイトの評価は広告に影響されますか？</summary><p>されません。当サイトはアフィリエイト広告を利用していますが、記事の評価・掲載順は編集部の検証ルール（教育の質・サポート・実績の3軸）のみで決めています。詳細は<a href="/disclosure/">広告について</a>へ。</p></details>
   </section>
 
