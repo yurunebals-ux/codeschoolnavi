@@ -89,14 +89,31 @@ for (const t of tokens) {
   for (let i = 0; i < t.length; i += per) fitted.push(t.slice(i, i + per));
 }
 
-const lines: string[] = [];
-let cur = "";
-for (const t of fitted) {
-  const sep = cur && !isWide(t) && !isWide(cur.slice(-1)) ? " " : "";
-  const next = cur + sep + t;
-  if (cur && w(next) > cfg.N) { lines.push(cur); cur = t; } else cur = next;
+// 行頭禁則。中黒や句読点・小書き仮名・長音符が行頭に来ると和文組版として素人臭くなるので、
+// 直前の行に「追い込む」（上限幅を1文字だけ超えることを許す）。
+const ngStart = /^[、。，．・：；？！」』）］｝〉》”’ー々ぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮヵヶ〜…]/;
+const wrap = (cap: number) => {
+  const out: string[] = [];
+  let cur = "";
+  for (const t of fitted) {
+    const sep = cur && !isWide(t) && !isWide(cur.slice(-1)) ? " " : "";
+    const next = cur + sep + t;
+    if (cur && w(next) > cap && !ngStart.test(t)) { out.push(cur); cur = t; } else cur = next;
+  }
+  if (cur) out.push(cur);
+  return out;
+};
+// 貪欲な折り返しだと最終行に1文字だけ残る「泣き別れ」が起きる
+// （実測: 「DMM WEBCAMPの評判／・口コミは？特徴を解／説」）。
+// 行数を増やさない範囲で1行の上限幅を詰めていき、行長が均等になる組を採用する。
+let lines = wrap(cfg.N);
+if (lines.length > 1) {
+  const total = fitted.reduce((n, t) => n + w(t), 0);
+  for (let cap = Math.ceil(total / lines.length); cap < cfg.N; cap++) {
+    const cand = wrap(cap);
+    if (cand.length === lines.length) { lines = cand; break; }
+  }
 }
-if (cur) lines.push(cur);
 if (lines.length > 3) {
   lines.length = 3;
   while (lines[2] && w(lines[2]) > cfg.N - 1) lines[2] = lines[2].slice(0, -1);
