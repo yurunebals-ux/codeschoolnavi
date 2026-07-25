@@ -19,7 +19,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         "@context": "https://schema.org",
         "@type": "Article",
         headline: article.title,
-        author: { "@type": "Person", name: article.author },
+        author: { "@type": "Person", name: "佐倉 透", jobTitle: "編集長", url: new URL("/about/", Astro.site).toString() },
+        publisher: { "@type": "Organization", name: site, url: new URL("/", Astro.site).toString() },
         datePublished: article.pubDate,
         dateModified: article.updatedDate || article.pubDate,
       })} />
