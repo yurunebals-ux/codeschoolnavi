@@ -64,6 +64,13 @@ export function checkAll(): { approved: number; rejected: number } {
     // 注意: 「オフライン」は通常の日本語として本文に登場するため、
     // ダミー検出は英語マーカー（llm.tsのオフラインモード出力）のみで判定する。
     if (/OFFLINE PLACEHOLDER/.test(md)) reasons.push("オフラインのダミー本文");
+    // 提携が未承認のスクールは data/affiliates.json の affiliate_url が
+    // プレースホルダ（px.a8.net/REPLACE-... など）のままになっている。
+    // generate.ts の比較表フォールバックはその値をそのままMarkdownリンクにするので、
+    // 放っておくと rel="sponsored" 付きの死んだ外部リンクが公開記事に載る。
+    // 読者を空振りさせるうえSEO上も損なので、公開前にここで確実に止める。
+    const hasDeadLink = /REPLACE-WITH-YOUR|PENDING-A8-APPROVAL/.test(md);
+    if (hasDeadLink) reasons.push("提携未承認のプレースホルダURLが本文に残っている");
     if (/絶対|必ず稼げる|確実に稼|日本一|100%|No\.?1|誰でも稼/i.test(md)) reasons.push("誇大・断定表現");
 
     const sh = shingles(md);
@@ -81,6 +88,7 @@ export function checkAll(): { approved: number; rejected: number } {
 
     const hardBlock =
       !hasAd ||
+      hasDeadLink ||
       /OFFLINE PLACEHOLDER/.test(md) ||
       /絶対|必ず稼げる|確実に稼|日本一|100%|No\.?1|誰でも稼/i.test(md) ||
       maxSim > 0.72 ||
