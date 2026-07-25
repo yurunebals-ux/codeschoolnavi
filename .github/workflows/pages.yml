@@ -36,9 +36,8 @@ jobs:
         env:
           SITE_URL: "https://codeschoolnavi.com"
           SITE_TITLE: "コードスクールナビ"
-      # DNS切替後に有効化する（切替前に有効化するとgithub.ioでの検証ができないため）
-      # - name: Custom domain (CNAME)
-      #   run: echo "codeschoolnavi.com" > site/dist/CNAME
+      - name: Custom domain (CNAME)
+        run: echo "codeschoolnavi.com" > site/dist/CNAME
       - name: Guard against empty build
         run: test -f site/dist/index.html && test -d site/dist/blog
       - uses: actions/upload-pages-artifact@v3
