@@ -11,6 +11,8 @@
     "keyword:build": "tsx src/pipeline/keyword.ts",
     "generate:next": "tsx src/pipeline/generate.ts",
     "quality:check": "tsx src/pipeline/quality.ts",
+    "aiese:scan": "tsx src/lib/aiese.ts",
+    "polish:run": "tsx src/pipeline/polish.ts",
     "publish:run": "tsx src/pipeline/publish.ts",
     "analytics:loop": "tsx src/pipeline/analytics.ts",
     "dashboard:build": "tsx src/pipeline/dashboard.ts",

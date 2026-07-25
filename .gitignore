@@ -5,3 +5,10 @@ site/node_modules/
 site/dist/
 data/*.local.json
 *.log
+site/.astro/
+# site側のlockfileは未コミット運用（CIは npm install で解決。ブラウザ経由コミットのコストを避ける）
+site/package-lock.json
+# 検証用スクリーンショット・使い捨てスクリプトはリポジトリ直下に置かない（CIの git add -A で混入するため）
+/*.png
+/*.jpg
+/*.cjs
