@@ -41,6 +41,37 @@ function upsertRelatedLinks(md: string, rel: KeywordItem[]): string {
   return `${stripped}\n\n## あわせて読みたい\n\n${links}\n`;
 }
 
+// 状態ファイルと実ファイルの食い違いを直す。
+// 実害の例（実際に発生していた）: 公開済み8本のうち6本が status="queued" のままで、
+//   (1) generateNext がそれを未執筆と見なして書き直し、公開中の記事を上書きする
+//   (2) refreshInternalLinks が published だけを見るため、内部リンクが更新されない
+// 放置運用では誰も気づけないので、サイクルの先頭で毎回突き合わせる。
+// 真実の情報源は「site/src/content/blog に .md があるか」。
+export function reconcilePublished(): number {
+  const state = loadState();
+  let fixed = 0;
+  for (const k of state.keywords) {
+    if (k.status === "published") continue;
+    const p = resolve(paths.blog, `${k.slug}.md`);
+    if (!existsSync(p)) continue;
+    k.status = "published";
+    if (!k.publishedAt) {
+      // 記事のfrontmatterのpubDateを公開日として拾う（無ければ今日）。
+      const m = readFileSync(p, "utf8").match(/^pubDate:\s*([0-9]{4}-[0-9]{2}-[0-9]{2})/m);
+      k.publishedAt = m ? new Date(`${m[1]}T00:00:00Z`).toISOString() : new Date().toISOString();
+    }
+    fixed++;
+  }
+  const realCount = state.keywords.filter((k) => k.status === "published").length;
+  const countFixed = state.publishedCount !== realCount;
+  state.publishedCount = realCount;
+  if (fixed || countFixed) {
+    saveState(state);
+    console.log(`[ops] 状態を実ファイルに合わせて修復: ${fixed}件をpublishedに、累計=${realCount}`);
+  }
+  return fixed;
+}
+
 // 公開済み全記事の内部リンクを最新状態に張り替える（過去記事のレトロフィット含む）。
 export function refreshInternalLinks(): number {
   const state = loadState();
@@ -104,7 +135,12 @@ export async function publishRun(): Promise<number> {
   saveState(state2);
 
   writeSiteMeta();
-  if (process.env.PUBLISH_COMMIT === "1" && (publishedUrls.length || linkChanges || pwChanged)) tryCommit(publishedUrls.length);
+  // 何を変更したかを個別に数え上げる方式だと、新しい工程（文体改稿など）を
+  // 足したときに commit 条件を直し忘れて変更が失われる。作業ツリーが汚れて
+  // いるかどうかで判断する。
+  if (process.env.PUBLISH_COMMIT === "1" && (publishedUrls.length || linkChanges || pwChanged || isDirty())) {
+    tryCommit(publishedUrls.length);
+  }
   if (config.indexNowKey && publishedUrls.length) await pingIndexNow(publishedUrls);
 
   console.log(`[ops] +${publishedUrls.length}本 公開. 累計=${state2.publishedCount}, 内部リンク更新=${linkChanges}本`);
@@ -120,6 +156,13 @@ function writeSiteMeta() {
   if (config.indexNowKey && /^[a-zA-Z0-9-]{8,}$/.test(config.indexNowKey)) {
     writeFileSync(resolve(pub, `${config.indexNowKey}.txt`), config.indexNowKey);
   }
+}
+
+// 未コミットの変更があるか。git が無い環境では false（＝従来どおりの判定に任せる）。
+function isDirty(): boolean {
+  try {
+    return execSync("git status --porcelain", { cwd: paths.root }).toString().trim().length > 0;
+  } catch { return false; }
 }
 
 function tryCommit(n: number) {

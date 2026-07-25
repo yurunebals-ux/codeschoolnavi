@@ -4,6 +4,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { config, paths } from "../lib/config.js";
 import { loadState, saveState, type KeywordItem } from "../lib/store.js";
+import { scanAiese } from "../lib/aiese.js";
 
 // 日本語は空白で分かち書きしないため、文字数（記号・空白除外）で長さを測る。
 function charCount(md: string): number {
@@ -69,17 +70,27 @@ export function checkAll(): { approved: number; rejected: number } {
     const maxSim = priorBodies.reduce((m, b) => Math.max(m, jaccard(sh, b)), 0);
     if (maxSim > 0.72) reasons.push(`重複疑い(sim ${maxSim.toFixed(2)})`); else pts += 5;
 
+    // 文体（AIっぽさ）。生成側の推敲で30以下まで落とす設計なので、
+    // ここは「推敲が機能しなかった原稿」を止めるための後段の網。
+    // 閾値を厳しくしすぎると1本も公開されず収益が止まるため、
+    // 減点は細かく、ブロックは明確に酷いものだけに限る。
+    const ai = scanAiese(md);
+    if (ai.score <= 30) pts += 10;
+    else if (ai.score <= 45) pts += 5;
+    else reasons.push(`AI文体(score ${ai.score}: ${[...ai.top(4), ...ai.structure, ...ai.rhythm].join("、")})`);
+
     const hardBlock =
       !hasAd ||
       /OFFLINE PLACEHOLDER/.test(md) ||
       /絶対|必ず稼げる|確実に稼|日本一|100%|No\.?1|誰でも稼/i.test(md) ||
-      maxSim > 0.72;
+      maxSim > 0.72 ||
+      ai.score > config.pipeline.aieseMax;
 
     if (!hardBlock && pts >= config.pipeline.qualityMin) {
       item.status = "approved";
       priorBodies.push(sh);
       approved++;
-      console.log(`[qa] 承認 "${item.keyword}" score=${pts}`);
+      console.log(`[qa] 承認 "${item.keyword}" score=${pts} 文体=${ai.score}`);
     } else {
       reject(item, `score=${pts}; ${reasons.join("; ")}`);
       rejected++;

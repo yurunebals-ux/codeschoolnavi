@@ -37,9 +37,11 @@ export function buildKeywords(limit = 40): number {
     add(`osusume-hikaku-${cid}`, `${clabel}のプログラミングスクールおすすめ比較`, "pillar:osusume", ids, 9, "pillar", clabel);
   }
 
-  // 特別ハブ：給付金対象（最大70%還元）— 需要が大きく成約に強い高収益ページ（自作の分析による設計）
+  // 特別ハブ：給付金対象 — 需要が大きく成約に強い高収益ページ（自作の分析による設計）
+  // タイトルに「最大◯%」を出さない: 戻る割合は講座の指定区分（一般20%／特定一般40%／
+  // 専門実践は条件付きで最大80%）で変わるため、一律の数字は景品表示法上の誤認リスクになる。
   if (aff.subsidy_ids && aff.subsidy_ids.length) {
-    add(`kyufukin-osusume`, `給付金対象のプログラミングスクールおすすめ｜最大70%還元の条件も解説`, "pillar:subsidy", aff.subsidy_ids, 10, "pillar", "給付金対象");
+    add(`kyufukin-osusume`, `給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説`, "pillar:subsidy", aff.subsidy_ids, 10, "pillar", "給付金対象");
   }
   // 特別ハブ：「意味ない/やめとけ」への中立的回答（検索需要が非常に多い）
   add(`imiaru-erabikata`, `プログラミングスクールは意味ない？やめとけと言われる理由と後悔しない選び方`, "pillar:doubt", aff.tools.slice(0, 6).map((t) => t.id), 9, "pillar", "選び方");
