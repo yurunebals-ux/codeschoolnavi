@@ -1,0 +1,56 @@
+name: deploy-pages
+
+# 無料・無制限のデプロイ先（GitHub Pages）。Netlifyのクレジット上限（1デプロイ=15クレジット／
+# Personalプラン1,000クレジット=月66デプロイ）に依存せず、毎日の自動公開を止めないための本番デプロイ経路。
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - name: Install site deps
+        run: npm install
+        working-directory: site
+      - name: Build site
+        run: npm run build
+        working-directory: site
+        env:
+          SITE_URL: "https://codeschoolnavi.com"
+          SITE_TITLE: "コードスクールナビ"
+      # DNS切替後に有効化する（切替前に有効化するとgithub.ioでの検証ができないため）
+      # - name: Custom domain (CNAME)
+      #   run: echo "codeschoolnavi.com" > site/dist/CNAME
+      - name: Guard against empty build
+        run: test -f site/dist/index.html && test -d site/dist/blog
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
