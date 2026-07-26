@@ -127,8 +127,9 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-07-26T05:38:52.892Z"
     },
     {
       "slug": "hyoban-aidemy",
@@ -547,14 +548,19 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 8,
-  "estimatedMrrUsd": 2400,
+  "publishedCount": 9,
+  "estimatedMrrUsd": 2700,
   "history": [
     {
       "date": "2026-07-24",
       "published": 8,
       "estimatedMrrUsd": 2400
+    },
+    {
+      "date": "2026-07-26",
+      "published": 9,
+      "estimatedMrrUsd": 2700
     }
   ],
-  "lastRun": "2026-07-24T15:25:14.114Z"
+  "lastRun": "2026-07-26T05:38:52.897Z"
 }
