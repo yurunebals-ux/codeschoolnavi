@@ -141,8 +141,9 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-07-27T05:58:09.278Z"
     },
     {
       "slug": "hyoban-kikagaku",
@@ -548,8 +549,8 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 9,
-  "estimatedMrrUsd": 2700,
+  "publishedCount": 10,
+  "estimatedMrrUsd": 3000,
   "history": [
     {
       "date": "2026-07-24",
@@ -560,7 +561,12 @@
       "date": "2026-07-26",
       "published": 9,
       "estimatedMrrUsd": 2700
+    },
+    {
+      "date": "2026-07-27",
+      "published": 10,
+      "estimatedMrrUsd": 3000
     }
   ],
-  "lastRun": "2026-07-26T05:38:52.897Z"
+  "lastRun": "2026-07-27T05:58:09.283Z"
 }

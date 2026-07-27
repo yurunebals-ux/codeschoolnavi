@@ -98,5 +98,5 @@ TechAcademyはオンライン完結かつ現役エンジニアからの直接指
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [CodeCampの評判・口コミは？特徴を解説](/blog/hyoban-codecamp/)
+- [Aidemyの評判・口コミは？特徴を解説](/blog/hyoban-aidemy/)
 - [侍エンジニアの評判・口コミは？特徴を解説](/blog/hyoban-samurai/)
-- [ポテパンキャンプの評判・口コミは？特徴を解説](/blog/hyoban-potepan/)
