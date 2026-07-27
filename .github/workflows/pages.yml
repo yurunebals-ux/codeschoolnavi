@@ -9,6 +9,14 @@ on:
     paths:
       - "site/**"
       - ".github/workflows/pages.yml"
+  # daily-content-cycle が記事をコミットしても、その push は既定の GITHUB_TOKEN で行われる。
+  # GitHub は再帰を防ぐため、このトークンによる push では workflow を起動しない。
+  # そのため push トリガーだけだと、書けた記事がリポジトリに入るだけでサイトに出ない
+  # （実際に 2026-07-26 の cron で 9 本目が公開されず、本番が 404 のままだった）。
+  # workflow_run はトークンに関係なく発火するので、こちらで拾う。
+  workflow_run:
+    workflows: ["daily-content-cycle"]
+    types: [completed]
   workflow_dispatch: {}
 
 permissions:
@@ -22,6 +30,10 @@ concurrency:
 
 jobs:
   build:
+    # workflow_run 経由のときは、daily 側が成功した回だけデプロイする。
+    # types: [completed] は失敗・中止でも発火するため、ここで絞らないと
+    # 記事が書けなかった日に古い内容で上書きデプロイしてしまう。
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
