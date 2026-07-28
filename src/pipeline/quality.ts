@@ -60,7 +60,12 @@ export function checkAll(): { approved: number; rejected: number } {
     const hasAd = /【?広告】?|プロモーション|ＰＲ|PR|アフィリエイト/.test(md);
     if (hasAd) pts += 15; else reasons.push("広告表記なし（ステマ規制ブロック）");
 
-    if (/\]\(https?:\/\//.test(md)) pts += 10; else reasons.push("アフィリンクなし");
+    // 収益導線は本文ではなくテンプレート側（site/src/components/Cta.astro が
+    // offers.json を読む）が持つ。本文にリンクを焼き込むと、提携が承認された日に
+    // 全記事を書き直すことになるうえ、未承認のうちは下のプレースホルダ検査に
+    // 引っかかって1本も公開できない。だからここで見るのは本文の外部リンクではなく
+    // 「記事間を回遊させる内部リンクがあるか」にする。
+    if (/\]\(\/blog\//.test(md)) pts += 10; else reasons.push("内部リンクなし");
     // 注意: 「オフライン」は通常の日本語として本文に登場するため、
     // ダミー検出は英語マーカー（llm.tsのオフラインモード出力）のみで判定する。
     if (/OFFLINE PLACEHOLDER/.test(md)) reasons.push("オフラインのダミー本文");

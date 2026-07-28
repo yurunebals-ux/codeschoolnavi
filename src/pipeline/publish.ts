@@ -6,6 +6,7 @@ import { resolve } from "node:path";
 import { execSync } from "node:child_process";
 import { config, paths } from "../lib/config.js";
 import { loadState, saveState, type KeywordItem } from "../lib/store.js";
+import { syncOffers } from "./offers.js";
 
 // Rough recurring-revenue model: each published buyer-intent article is assumed
 // to eventually convert a small trickle of recurring signups. Very approximate,
@@ -124,6 +125,10 @@ export async function publishRun(): Promise<number> {
   // 新規公開の有無に関わらず、内部リンクと観測データを毎日メンテナンスする。
   const linkChanges = refreshInternalLinks();
   const pwChanged = syncPricewatch();
+  // 申し込み導線（CTA）の遷移先も毎日作り直す。提携が承認されて
+  // data/affiliates.json の affiliate_url を差し替えた翌日には、
+  // 記事もトップページも自動でアフィリンクへ切り替わる。
+  const offersChanged = syncOffers();
 
   const state2 = loadState();
   state2.estimatedMrrUsd = Math.round(state2.publishedCount * REV_PER_ARTICLE_YEN);
@@ -138,7 +143,7 @@ export async function publishRun(): Promise<number> {
   // 何を変更したかを個別に数え上げる方式だと、新しい工程（文体改稿など）を
   // 足したときに commit 条件を直し忘れて変更が失われる。作業ツリーが汚れて
   // いるかどうかで判断する。
-  if (process.env.PUBLISH_COMMIT === "1" && (publishedUrls.length || linkChanges || pwChanged || isDirty())) {
+  if (process.env.PUBLISH_COMMIT === "1" && (publishedUrls.length || linkChanges || pwChanged || offersChanged || isDirty())) {
     tryCommit(publishedUrls.length);
   }
   if (config.indexNowKey && publishedUrls.length) await pingIndexNow(publishedUrls);
