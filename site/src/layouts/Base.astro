@@ -71,9 +71,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
       /* 外部（アフィリエイト/公式）リンク → オレンジCTAボタン化。
          rehype-external-links が rel="sponsored" を自動付与するのを利用 */
-      main article a[rel~="sponsored"]{display:inline-block;background:var(--cta);color:#fff !important;font-weight:800;text-decoration:none;padding:10px 20px;border-radius:999px;font-size:14.5px;margin:4px 2px;box-shadow:0 3px 10px rgba(249,115,22,.35);line-height:1.4}
-      main article a[rel~="sponsored"]::after{content:" ↗";font-size:12px}
-      main article a[rel~="sponsored"]:hover{filter:brightness(1.07);color:#fff}
+      /* :not([class]) が要る。この規則は「本文のMarkdownから生えた素のリンク」だけを
+         ボタン化したいもので、rel だけで判定すると、こちらで見た目を決めている
+         CTA（.cta-btn / .t-official / .pl-official）まで巻き込む。
+         実際、料金監視ボックスの「公式サイト」を提携リンクに変えた瞬間、
+         文章の途中に大きなオレンジのボタンが挟まって一文が分断された（本番の目視で発見）。 */
+      main article a[rel~="sponsored"]:not([class]){display:inline-block;background:var(--cta);color:#fff !important;font-weight:800;text-decoration:none;padding:10px 20px;border-radius:999px;font-size:14.5px;margin:4px 2px;box-shadow:0 3px 10px rgba(249,115,22,.35);line-height:1.4}
+      main article a[rel~="sponsored"]:not([class])::after{content:" ↗";font-size:12px}
+      main article a[rel~="sponsored"]:not([class]):hover{filter:brightness(1.07);color:#fff}
+      /* 料金監視ボックスの「公式サイト」は文中のリンク。ボタンにしない。 */
+      .pl-official{font-weight:700;text-decoration:underline}
+      .pl-official .cta-pr{margin-left:4px;font-size:9.5px;padding:1px 4px;vertical-align:middle;text-decoration:none}
 
       /* 目次ボックス */
       .toc{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px 20px;margin:20px 0 26px;box-shadow:0 1px 3px rgba(15,39,68,.06)}
