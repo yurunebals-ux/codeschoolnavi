@@ -193,6 +193,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       .pick .more{margin-top:auto;text-align:center;background:var(--cta);color:#fff;font-weight:800;text-decoration:none;border-radius:999px;padding:10px 14px;font-size:13.5px;box-shadow:0 3px 10px rgba(249,115,22,.32)}
       .pick .more:hover{filter:brightness(1.06);color:#fff}
       .tnote{color:var(--mut);font-size:12px;margin-top:8px}
+      /* 比較表の1列目を固定する。表は overflow-x:auto なので、スマホでは
+         横に流れて右端の列が見えない。スクール名と公式リンクだけは常に見せる。 */
+      .tname{white-space:normal;min-width:11em;line-height:1.45}
+      table thead th:first-child,table tbody td:first-child{position:sticky;left:0;z-index:1;box-shadow:1px 0 0 var(--bd)}
+      table thead th:first-child{background:var(--navy)}
+      table tbody td:first-child{background:var(--card)}
+      table tbody tr:nth-child(even) td:first-child{background:#f8fafc}
 
       /* サムネイル付き記事カード */
       .cards{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
