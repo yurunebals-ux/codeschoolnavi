@@ -110,4 +110,4 @@ RUNTEQの申込を検討する際は、まず無料カウンセリングを活�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [ポテパンキャンプの評判・口コミは？特徴を解説](/blog/hyoban-potepan/)
 - [COACHTECHの評判・口コミは？特徴を解説](/blog/hyoban-coachtech/)
-- [Aidemyの評判・口コミは？特徴を解説](/blog/hyoban-aidemy/)
+- [キカガクの評判・口コミは？特徴を解説](/blog/hyoban-kikagaku/)

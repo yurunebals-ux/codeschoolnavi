@@ -155,8 +155,9 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-07-28T05:23:02.503Z"
     },
     {
       "slug": "hyoban-programmercollege",
@@ -549,8 +550,8 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 10,
-  "estimatedMrrUsd": 3000,
+  "publishedCount": 11,
+  "estimatedMrrUsd": 3300,
   "history": [
     {
       "date": "2026-07-24",
@@ -566,7 +567,12 @@
       "date": "2026-07-27",
       "published": 10,
       "estimatedMrrUsd": 3000
+    },
+    {
+      "date": "2026-07-28",
+      "published": 11,
+      "estimatedMrrUsd": 3300
     }
   ],
-  "lastRun": "2026-07-27T05:58:09.283Z"
+  "lastRun": "2026-07-28T05:23:02.508Z"
 }
