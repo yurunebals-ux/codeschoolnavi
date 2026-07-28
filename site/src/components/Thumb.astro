@@ -2,7 +2,11 @@
 // 記事アイキャッチの自動生成（競合分析F: 画像ゼロが「AIっぽさ」最大の原因 → 全記事にサムネイル）
 // 案A: 全記事が同一構図だと「量産テンプレ」に見えるため、レイアウト3種 × 配色2種 × 装飾4種を
 // タイトルのFNV-1aハッシュで決定的に選ぶ。無人運用のまま構図が散らばり、再ビルドでも同じ絵になる。
-const { title = "", cat = "解説" } = Astro.props;
+const { title = "", cat = "解説", compact = false } = Astro.props;
+// compact: 一覧の横組み小カード用。幅118pxのスロットに640x360の絵を slice で入れると
+// タイトル文字が左右に切れて「壊れている」ように見えたので、
+// 文字を持たない正方形のタイルを別に描く（配色とモチーフは同じ規則で選ぶので、
+// 大きいサムネと並んでも世界観がそろう）。
 
 // カテゴリごとに4パレット。評判記事のように同カテゴリが並ぶ一覧でも色が単調にならないよう、
 // 同系色の中で「明度」と「2色目の色相」を大きく振る（サムネイルサイズでも別物に見えることが条件）。
@@ -127,6 +131,25 @@ const glyph = key === "給付金" ? "¥" : key === "評判・口コミ" ? "★" 
 // 装飾の濃淡もハッシュで少し振る
 const dots = [0, 1, 2, 3, 4].flatMap((r) => [0, 1, 2, 3].map((c) => ({ r, c })));
 ---
+{compact && (
+  <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={title} preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id={`${uid}c`} x1={dir.x1} y1={dir.y1} x2={dir.x2} y2={dir.y2}>
+        <stop offset="0" stop-color={g1} />
+        <stop offset="1" stop-color={g2} />
+      </linearGradient>
+    </defs>
+    <rect width="240" height="240" fill={`url(#${uid}c)`} />
+    {motif === 0 && <g><circle cx="26" cy="214" r="72" fill="#ffffff" opacity="0.07" /><circle cx="220" cy="24" r="44" fill="#ffffff" opacity="0.09" /></g>}
+    {motif === 1 && <g opacity="0.15">{[0,1,2,3].map((r)=>[0,1,2,3].map((c)=>(<circle cx={168+c*26} cy={40+r*26} r="4.5" fill="#ffffff" />)))}</g>}
+    {motif === 2 && <g fill="none" stroke="#ffffff" stroke-width="11"><circle cx="234" cy="236" r="52" opacity="0.11" /><circle cx="234" cy="236" r="94" opacity="0.08" /></g>}
+    {motif === 3 && <g opacity="0.10" fill="#ffffff">{[0,1,2,3].map((i)=>(<rect x={132+i*34} y="-40" width="16" height="320" transform={`rotate(18 ${132+i*34} 120)`} />))}</g>}
+    <rect x="0" y="0" width="240" height="7" fill="#f97316" opacity="0.9" />
+    <text x="120" y="146" text-anchor="middle" font-family="ui-monospace,monospace" font-size="86" font-weight="800" fill="#ffffff" opacity="0.92">{glyph}</text>
+    <text x="120" y="196" text-anchor="middle" font-family="-apple-system,'Hiragino Sans','Noto Sans JP',sans-serif" font-size="21" font-weight="700" fill="#ffffff" opacity="0.85">{label}</text>
+  </svg>
+)}
+{!compact && (
 <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={title} preserveAspectRatio="xMidYMid slice">
   <defs>
     <linearGradient id={uid} x1={dir.x1} y1={dir.y1} x2={dir.x2} y2={dir.y2}>
@@ -208,3 +231,4 @@ const dots = [0, 1, 2, 3, 4].flatMap((r) => [0, 1, 2, 3].map((c) => ({ r, c })))
     </g>
   )}
 </svg>
+)}

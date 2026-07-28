@@ -1,0 +1,65 @@
+---
+// 「目的から探す」4カードのアイコン。
+//
+// 絵文字（🎯💴🏠🧭）をやめた理由:
+//  - OS/ブラウザで字形が変わるので、意図した見た目にならない
+//  - サイズも色もそろわず、カードが4つ並ぶと余計に散らかって見える
+//  - フォント依存なので、絵文字が無い環境では豆腐になる
+// 意味を絵にした単色SVGに置き換え、カードの色でカテゴリを覚えてもらう。
+interface Props { kind: "tenshoku" | "kyufu" | "online" | "shindan" }
+const { kind } = Astro.props as Props;
+const tone: Record<Props["kind"], [string, string]> = {
+  tenshoku: ["#1d4ed8", "#dbeafe"],
+  kyufu:    ["#047857", "#d1fae5"],
+  online:   ["#7c3aed", "#ede9fe"],
+  shindan:  ["#c2410c", "#ffedd5"],
+};
+const [fg, bg] = tone[kind];
+---
+<span class="navic" style={`--ic-bg:${bg};--ic-fg:${fg}`}>
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+       stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    {kind === "tenshoku" && (
+      <g>
+        {/* 鞄＝転職 */}
+        <rect x="2.5" y="7.5" width="19" height="12.5" rx="2.5" />
+        <path d="M8.5 7.5V5.8A1.8 1.8 0 0 1 10.3 4h3.4a1.8 1.8 0 0 1 1.8 1.8v1.7" />
+        <path d="M2.5 12.5h19" />
+        <path d="M10.5 12.5v2h3v-2" />
+      </g>
+    )}
+    {kind === "kyufu" && (
+      <g>
+        {/* 硬貨＋下向き矢印＝負担が下がる */}
+        <circle cx="10" cy="9" r="5.5" />
+        <path d="M8 7.6h4M8 10h4M10 6.4v5.4" />
+        <path d="M17.5 12.5v7" />
+        <path d="M14.6 16.6l2.9 2.9 2.9-2.9" />
+      </g>
+    )}
+    {kind === "online" && (
+      <g>
+        {/* 画面の中のコード＝オンライン完結 */}
+        <rect x="2.5" y="4" width="19" height="13" rx="2.2" />
+        <path d="M8 20h8M12 17v3" />
+        <path d="M9.6 8.6L7.4 10.5l2.2 1.9M14.4 8.6l2.2 1.9-2.2 1.9" />
+      </g>
+    )}
+    {kind === "shindan" && (
+      <g>
+        {/* 分岐＝3つの質問で候補を絞る */}
+        <circle cx="6" cy="5.5" r="2.2" />
+        <circle cx="18" cy="12" r="2.2" />
+        <circle cx="6" cy="18.5" r="2.2" />
+        <path d="M8.2 5.5h4.3a3 3 0 0 1 3 3v1.3" />
+        <path d="M8.2 18.5h4.3a3 3 0 0 0 3-3v-1.3" />
+      </g>
+    )}
+  </svg>
+</span>
+<style is:global>
+  .navic{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:11px;background:var(--ic-bg);color:var(--ic-fg);flex:none;margin-bottom:4px}
+  .navcard:hover .navic{transform:scale(1.06)}
+  .navic{transition:transform .15s}
+  @media (prefers-reduced-motion:reduce){ .navic{transition:none} .navcard:hover .navic{transform:none} }
+</style>

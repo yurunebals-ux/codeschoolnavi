@@ -1,0 +1,86 @@
+---
+// ヒーローの装飾レイヤー。
+//
+// なぜ写真ではなくSVGか:
+//  - 作業環境から外部の画像を取得できない（フリー素材サイトに到達不可）ため、写真は持ち込めない
+//  - 加えて、この手の比較サイトに「ノートPCの前で笑う人」の定番ストック写真を敷くと、
+//    かえって量産アフィサイトに見える。ここは中身（横並びの比較）を絵にしたほうが効く
+//  - SVGなら追加リクエスト0・数KB・ライセンスリスク0で、LCPを悪化させない
+//
+// 中身は「比較表」のメタファー: 長さの違う棒が並んで、1本だけ手前に出ている。
+// 文字の可読性を守るため、左3分の1には濃い装飾を置かない（コピーが乗る領域）。
+const uid = "ha";
+---
+<svg class="heroart" viewBox="0 0 1440 560" xmlns="http://www.w3.org/2000/svg"
+     preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id={`${uid}-glow1`} cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#60a5fa" stop-opacity="0.55" />
+      <stop offset="1" stop-color="#60a5fa" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id={`${uid}-glow2`} cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.42" />
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id={`${uid}-glow3`} cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#f97316" stop-opacity="0.30" />
+      <stop offset="1" stop-color="#f97316" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id={`${uid}-bar`} x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.26" />
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.06" />
+    </linearGradient>
+    <linearGradient id={`${uid}-barhi`} x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fb923c" stop-opacity="0.80" />
+      <stop offset="1" stop-color="#f97316" stop-opacity="0.45" />
+    </linearGradient>
+    <pattern id={`${uid}-dots`} width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="1.6" cy="1.6" r="1.6" fill="#ffffff" opacity="0.10" />
+    </pattern>
+    <linearGradient id={`${uid}-fade`} x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#000000" stop-opacity="1" />
+      <stop offset="0.62" stop-color="#000000" stop-opacity="1" />
+      <stop offset="0.80" stop-color="#000000" stop-opacity="0.45" />
+      <stop offset="1" stop-color="#000000" stop-opacity="0" />
+    </linearGradient>
+    <mask id={`${uid}-mask`}>
+      <rect width="1440" height="560" fill="#ffffff" />
+      {/* 左側はコピーが乗るので装飾を薄くする（黒＝隠す） */}
+      <rect width="1440" height="560" fill={`url(#${uid}-fade)`} />
+    </mask>
+  </defs>
+
+  {/* 面全体のごく薄いドットグリッド */}
+  <rect width="1440" height="560" fill={`url(#${uid}-dots)`} opacity="0.75" />
+
+  {/* 光。奥行きを出すだけで、形は主張させない */}
+  <circle cx="1180" cy="70" r="420" fill={`url(#${uid}-glow1)`} />
+  <circle cx="1400" cy="430" r="360" fill={`url(#${uid}-glow2)`} />
+  <circle cx="900" cy="560" r="300" fill={`url(#${uid}-glow3)`} />
+
+  {/* 「横並びの比較」のメタファー。長さの違う棒が並び、1本だけ手前に出ている */}
+  <g mask={`url(#${uid}-mask)`}>
+    <g transform="translate(880 108)">
+      <rect x="0" y="0"   rx="9" width="620" height="18" fill={`url(#${uid}-bar)`} />
+      <rect x="0" y="52"  rx="9" width="470" height="18" fill={`url(#${uid}-bar)`} />
+      <rect x="0" y="104" rx="9" width="700" height="18" fill={`url(#${uid}-barhi)`} />
+      <rect x="0" y="156" rx="9" width="380" height="18" fill={`url(#${uid}-bar)`} />
+      <rect x="0" y="208" rx="9" width="540" height="18" fill={`url(#${uid}-bar)`} />
+      <rect x="0" y="260" rx="9" width="300" height="18" fill={`url(#${uid}-bar)`} />
+      {/* 棒の起点をそろえる縦のガイド線＝「同じ軸で比べる」。
+          本文側へはみ出すと「謎の区切り線」に見えるので、棒より内側に短く引く。 */}
+      <rect x="-16" y="6" width="2" height="276" fill="#ffffff" opacity="0.20" />
+    </g>
+  </g>
+
+  {/* 上下の縁をなじませる */}
+  <rect y="500" width="1440" height="60" fill="#0f2744" opacity="0.28" />
+</svg>
+<style is:global>
+  /* ヒーローの中身より背面に敷く。クリックを奪わない。 */
+  .hero{position:relative;overflow:hidden;isolation:isolate}
+  .hero > .wrap{position:relative;z-index:1}
+  .heroart{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block}
+  /* モバイルでは棒の装飾が文字の裏に回り込みやすいので、さらに落とす */
+  @media (max-width:720px){ .heroart{opacity:.55} }
+</style>
