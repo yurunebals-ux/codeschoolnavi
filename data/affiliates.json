@@ -3,55 +3,433 @@
   "market": "japan",
   "currency": "JPY",
   "disclosure": "本記事にはプロモーション（広告）が含まれます。当サイトは広告収益で運営しており、紹介するサービスの申込により報酬を受け取る場合がありますが、評価・順位に影響を与えません。",
-  "review_axes": ["教育の質・実践性", "サポート・転職支援", "料金の妥当性・返金保証"],
-  "subsidy_ids": ["techacademy", "dmmwebcamp", "techcamp", "aidemy", "kikagaku", "techis"],
+  "review_axes": [
+    "教育の質・実践性",
+    "サポート・転職支援",
+    "料金の妥当性・返金保証"
+  ],
+  "subsidy_ids": [
+    "techacademy",
+    "dmmwebcamp",
+    "techcamp",
+    "aidemy",
+    "kikagaku",
+    "techis"
+  ],
   "_asp_note": "主力ASPは【もしもアフィリエイト】。プログラミングスクール43件と豊富で、無料相談/無料カウンセリング参加のCPAが¥7,000〜14,000と高い（RUNTEQ7000/インターノウス14000/テックエリート12000/ウズウズ11000/AddedPallas10000/techmeets10000/SiiD8000/FJORD5000）。ただし、もしもの提携申請には『審査を通した登録メディア(サイト)』が必須。2026-07-25時点: メディア『コードスクールナビ』は登録済み、提携申請17件はすべて審査中（否認0件）。提携中はSHIFT TERAS CAMPUS（審査なしのため即提携・広告リンク取得済み）と楽天市場の2件のみ。A8は先行して一括提携申請済み（承認待ち）: ninjacode/potepan/dmmaicamp/winschool/skillhacks。",
-  "a8_applied_ids": ["ninjacode", "potepan", "dmmaicamp", "winschool", "skillhacks"],
+  "a8_applied_ids": [
+    "ninjacode",
+    "potepan",
+    "dmmaicamp",
+    "winschool",
+    "skillhacks"
+  ],
   "moshimo_target_programs": [
-    { "name": "RUNTEQ（Claude Codeコース 無料キャリア相談）", "moshimo_promotion_id": "7595", "reward_yen": 7000, "type": "無料相談CPA" },
-    { "name": "インターノウス（未経験ITエンジニア転職 無料面談）", "reward_yen": 14000, "type": "無料面談CPA" },
-    { "name": "テックエリート（コーチング型 無料説明会）", "reward_yen": 12000, "type": "無料説明会CPA" },
-    { "name": "ウズウズカレッジ（就職支援型 無料カウンセリング）", "reward_yen": 11000, "type": "無料相談CPA" },
-    { "name": "AddedPallas（無料カウンセリング）", "reward_yen": 10000, "type": "無料相談CPA" },
-    { "name": "techmeets（無料カウンセリング着座）", "reward_yen": 10000, "type": "無料相談CPA" },
-    { "name": "SiiD（社会人向けAIスクール 個別説明会）", "reward_yen": 8000, "type": "無料説明会CPA" },
-    { "name": "FJORD BOOT CAMP（無料体験3日）", "reward_yen": 5000, "type": "無料体験CPA" }
+    {
+      "name": "RUNTEQ（Claude Codeコース 無料キャリア相談）",
+      "moshimo_promotion_id": "7595",
+      "reward_yen": 7000,
+      "type": "無料相談CPA"
+    },
+    {
+      "name": "インターノウス（未経験ITエンジニア転職 無料面談）",
+      "reward_yen": 14000,
+      "type": "無料面談CPA"
+    },
+    {
+      "name": "テックエリート（コーチング型 無料説明会）",
+      "reward_yen": 12000,
+      "type": "無料説明会CPA"
+    },
+    {
+      "name": "ウズウズカレッジ（就職支援型 無料カウンセリング）",
+      "reward_yen": 11000,
+      "type": "無料相談CPA"
+    },
+    {
+      "name": "AddedPallas（無料カウンセリング）",
+      "reward_yen": 10000,
+      "type": "無料相談CPA"
+    },
+    {
+      "name": "techmeets（無料カウンセリング着座）",
+      "reward_yen": 10000,
+      "type": "無料相談CPA"
+    },
+    {
+      "name": "SiiD（社会人向けAIスクール 個別説明会）",
+      "reward_yen": 8000,
+      "type": "無料説明会CPA"
+    },
+    {
+      "name": "FJORD BOOT CAMP（無料体験3日）",
+      "reward_yen": 5000,
+      "type": "無料体験CPA"
+    }
   ],
   "audiences": [
-    { "id": "mikeiken", "label": "未経験者" },
-    { "id": "shakaijin", "label": "社会人" },
-    { "id": "daigakusei", "label": "大学生" },
-    { "id": "tenshoku", "label": "転職希望者" },
-    { "id": "fukugyo", "label": "副業したい人" },
-    { "id": "yondai", "label": "40代" },
-    { "id": "josei", "label": "女性" }
+    {
+      "id": "mikeiken",
+      "label": "未経験者"
+    },
+    {
+      "id": "shakaijin",
+      "label": "社会人"
+    },
+    {
+      "id": "daigakusei",
+      "label": "大学生"
+    },
+    {
+      "id": "tenshoku",
+      "label": "転職希望者"
+    },
+    {
+      "id": "fukugyo",
+      "label": "副業したい人"
+    },
+    {
+      "id": "yondai",
+      "label": "40代"
+    },
+    {
+      "id": "josei",
+      "label": "女性"
+    }
   ],
   "tools": [
-    { "id": "techacademy", "name": "TechAcademy", "category": "オンライン学習", "categoryId": "online", "reward_yen": 10000, "cookie_days": 30, "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-TECHACADEMY-LINK", "one_liner": "オンライン完結・現役エンジニアの週2メンタリング。", "price_from_yen": 185900, "period": "4〜16週間", "langs": "Java/PHP/Python等", "job_support": "あり", "refund": "なし", "portfolio": "あり", "format": "オンライン" },
-    { "id": "codecamp", "name": "CodeCamp", "category": "オンライン学習", "categoryId": "online", "reward_yen": 9000, "cookie_days": 30, "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-CODECAMP-LINK", "one_liner": "マンツーマン指導・社会人に人気のオンライン特化。", "price_from_yen": 165000, "period": "2〜6ヶ月", "langs": "Java/PHP/Ruby等", "job_support": "あり", "refund": "なし", "portfolio": "あり", "format": "オンライン" },
-    { "id": "dmmwebcamp", "name": "SHIFT TERAS CAMPUS", "category": "転職保証付き", "categoryId": "hosho", "reward_yen": 1000, "cookie_days": 30, "asp": "もしも", "moshimo_status": "提携中(2026-07-25)", "moshimo_promotion_id": "1363", "reward_note": "無料カウンセリング申込1,000円(ほぼ全承認)/参加完了15,000円(月次手動)/本申込25,000円。本人申込NG・広告出稿NG・再訪問30日。reward_yenは確実に発生する1,000円を採用（保守的推定）", "affiliate_url": "https://af.moshimo.com/af/c/click?a_id=5712690&p_id=1363&pc_id=2297&pl_id=68018", "one_liner": "転職保証コースあり。未経験からの転職実績が豊富。", "price_from_yen": 169800, "period": "3〜4ヶ月", "langs": "Ruby/JavaScript等", "job_support": "あり", "refund": "あり(条件付)", "portfolio": "あり", "format": "オンライン/通学" },
-    { "id": "techcamp", "name": "テックキャンプ", "category": "転職保証付き", "categoryId": "hosho", "reward_yen": 30000, "cookie_days": 30, "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-TECHCAMP-LINK", "one_liner": "短期集中で未経験からエンジニア転職を目指す大手。", "price_from_yen": 197000, "period": "10週間〜", "langs": "Ruby/JavaScript等", "job_support": "あり", "refund": "あり(条件付)", "portfolio": "あり", "format": "オンライン/通学" },
-    { "id": "runteq", "name": "RUNTEQ", "category": "転職特化", "categoryId": "tenshoku", "reward_yen": 25000, "cookie_days": 30, "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-RUNTEQ-LINK", "one_liner": "Web系自社開発企業への転職に強い実践カリキュラム。", "price_from_yen": 550000, "period": "約9ヶ月", "langs": "Ruby on Rails", "job_support": "あり", "refund": "なし", "portfolio": "あり", "format": "オンライン" },
-    { "id": "potepan", "name": "ポテパンキャンプ", "category": "転職特化", "categoryId": "tenshoku", "reward_yen": 30000, "cookie_days": 90, "asp": "A8", "a8_status": "申請中(2026-07-23)", "a8_program_id": "s00000017938002", "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-POTEPAN", "one_liner": "Web系開発企業への転職に特化。実務レベルの課題。", "price_from_yen": 440000, "period": "約5ヶ月", "langs": "Ruby on Rails", "job_support": "あり", "refund": "なし", "portfolio": "あり", "format": "オンライン" },
-    { "id": "coachtech", "name": "COACHTECH", "category": "転職特化", "categoryId": "tenshoku", "reward_yen": 25000, "cookie_days": 30, "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-COACHTECH-LINK", "one_liner": "フリーランス特化。実案件レベルの開発を経験できる。", "price_from_yen": 429000, "period": "3〜9ヶ月", "langs": "PHP/Laravel等", "job_support": "あり", "refund": "あり(条件付)", "portfolio": "あり", "format": "オンライン" },
-    { "id": "samurai", "name": "侍エンジニア", "category": "マンツーマン指導", "categoryId": "mtm", "reward_yen": 30000, "cookie_days": 30, "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-SAMURAI-LINK", "one_liner": "専属講師のマンツーマンでオーダーメイド学習。", "price_from_yen": 165000, "period": "4〜48週間", "langs": "多数から選択", "job_support": "あり", "refund": "あり(条件付)", "portfolio": "あり", "format": "オンライン" },
-    { "id": "aidemy", "name": "Aidemy", "category": "AI・データ分析", "categoryId": "ai", "reward_yen": 30000, "cookie_days": 30, "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-AIDEMY-LINK", "one_liner": "AI・機械学習・データ分析に特化したオンライン講座。", "price_from_yen": 528000, "period": "3〜9ヶ月", "langs": "Python", "job_support": "あり", "refund": "あり(8日以内)", "portfolio": "あり", "format": "オンライン" },
-    { "id": "kikagaku", "name": "キカガク", "category": "AI・データ分析", "categoryId": "ai", "reward_yen": 30000, "cookie_days": 30, "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-KIKAGAKU-LINK", "one_liner": "AI・機械学習を長期コースで体系的に学べる。給付金対象。", "price_from_yen": 792000, "period": "6ヶ月", "langs": "Python", "job_support": "あり", "refund": "なし", "portfolio": "あり", "format": "オンライン" },
-    { "id": "programmercollege", "name": "プログラマカレッジ", "category": "無料スクール", "categoryId": "free", "reward_yen": 20000, "cookie_days": 30, "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-PROGRAMMERCOLLEGE-LINK", "one_liner": "受講料無料。20代の就職支援に特化。", "price_from_yen": 0, "period": "1〜3ヶ月", "langs": "Java/PHP等", "job_support": "あり", "refund": "―", "portfolio": "あり", "format": "オンライン" },
-    { "id": "techis", "name": "テックアイエス", "category": "マンツーマン指導", "categoryId": "mtm", "reward_yen": 25000, "cookie_days": 30, "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-TECHIS-LINK", "one_liner": "5分以内の質問対応が売り。長期の就業支援あり。", "price_from_yen": 343200, "period": "6ヶ月〜", "langs": "Java/PHP等", "job_support": "あり", "refund": "あり(条件付)", "portfolio": "あり", "format": "オンライン/通学", "asp": "afb/アクセストレード（要登録）" },
-
-    { "id": "ninjacode", "name": "忍者CODE", "category": "オンライン学習", "categoryId": "online", "reward_yen": 17500, "cookie_days": 90, "asp": "A8", "a8_status": "申請中(2026-07-23)", "a8_program_id": "s00000025234001", "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-NINJACODE", "one_liner": "未経験からプロを目指すオンライン特化。無料相談/体験あり。", "price_from_yen": 98000, "period": "1〜6ヶ月", "langs": "HTML/CSS/JS/PHP等", "job_support": "あり(案件保証プランあり)", "refund": "なし", "portfolio": "あり", "format": "オンライン" },
-    { "id": "dmmaicamp", "name": "DMM 生成AI CAMP", "category": "AI・データ分析", "categoryId": "ai", "reward_yen": 7519, "cookie_days": 90, "asp": "A8", "a8_status": "申請中(2026-07-23)", "a8_program_id": "s00000027398001", "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-DMMAICAMP", "one_liner": "ChatGPT等の生成AIを実務に活かす学び放題。無料セミナーあり。", "price_from_yen": 16280, "period": "月額制", "langs": "生成AI活用", "job_support": "―", "refund": "なし", "portfolio": "―", "format": "オンライン" },
-    { "id": "winschool", "name": "Winスクール", "category": "通学・オンライン", "categoryId": "tsugaku", "reward_yen": 10000, "cookie_days": 90, "asp": "A8", "a8_status": "申請中(2026-07-23)", "a8_program_id": "s00000023621001", "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-WINSCHOOL", "one_liner": "資格と仕事に強い個人レッスン。全国に教室、オンラインも可。", "price_from_yen": 200000, "period": "1〜6ヶ月", "langs": "Python/Java等", "job_support": "あり", "refund": "なし", "portfolio": "あり", "format": "通学/オンライン" },
-    { "id": "skillhacks", "name": "SkillHacks", "category": "独学・買い切り", "categoryId": "dokugaku", "reward_yen": 6835, "cookie_days": 90, "asp": "A8", "a8_status": "申請中(2026-07-23)", "a8_program_id": "s00000021268001", "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-SKILLHACKS", "one_liner": "買い切り型の動画教材。質問無制限で独学に向く。", "price_from_yen": 69800, "period": "無期限(買い切り)", "langs": "HTML/CSS/JS等", "job_support": "―", "refund": "なし", "portfolio": "―", "format": "オンライン" }
+    {
+      "id": "techacademy",
+      "name": "TechAcademy",
+      "category": "オンライン学習",
+      "categoryId": "online",
+      "reward_yen": 10000,
+      "cookie_days": 30,
+      "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-TECHACADEMY-LINK",
+      "official_url": "https://techacademy.jp/",
+      "one_liner": "オンライン完結・現役エンジニアの週2メンタリング。",
+      "price_from_yen": 185900,
+      "period": "4〜16週間",
+      "langs": "Java/PHP/Python等",
+      "job_support": "あり",
+      "refund": "なし",
+      "portfolio": "あり",
+      "format": "オンライン"
+    },
+    {
+      "id": "codecamp",
+      "name": "CodeCamp",
+      "category": "オンライン学習",
+      "categoryId": "online",
+      "reward_yen": 9000,
+      "cookie_days": 30,
+      "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-CODECAMP-LINK",
+      "official_url": "https://codecamp.jp/",
+      "one_liner": "マンツーマン指導・社会人に人気のオンライン特化。",
+      "price_from_yen": 165000,
+      "period": "2〜6ヶ月",
+      "langs": "Java/PHP/Ruby等",
+      "job_support": "あり",
+      "refund": "なし",
+      "portfolio": "あり",
+      "format": "オンライン"
+    },
+    {
+      "id": "dmmwebcamp",
+      "name": "SHIFT TERAS CAMPUS",
+      "category": "転職保証付き",
+      "categoryId": "hosho",
+      "reward_yen": 1000,
+      "cookie_days": 30,
+      "asp": "もしも",
+      "moshimo_status": "提携中(2026-07-25)",
+      "moshimo_promotion_id": "1363",
+      "reward_note": "無料カウンセリング申込1,000円(ほぼ全承認)/参加完了15,000円(月次手動)/本申込25,000円。本人申込NG・広告出稿NG・再訪問30日。reward_yenは確実に発生する1,000円を採用（保守的推定）",
+      "affiliate_url": "https://af.moshimo.com/af/c/click?a_id=5712690&p_id=1363&pc_id=2297&pl_id=68018",
+      "official_url": "https://web-camp.io/",
+      "one_liner": "転職保証コースあり。未経験からの転職実績が豊富。",
+      "price_from_yen": 169800,
+      "period": "3〜4ヶ月",
+      "langs": "Ruby/JavaScript等",
+      "job_support": "あり",
+      "refund": "あり(条件付)",
+      "portfolio": "あり",
+      "format": "オンライン/通学"
+    },
+    {
+      "id": "techcamp",
+      "name": "テックキャンプ",
+      "category": "転職保証付き",
+      "categoryId": "hosho",
+      "reward_yen": 30000,
+      "cookie_days": 30,
+      "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-TECHCAMP-LINK",
+      "official_url": "https://tech-camp.in/",
+      "one_liner": "短期集中で未経験からエンジニア転職を目指す大手。",
+      "price_from_yen": 197000,
+      "period": "10週間〜",
+      "langs": "Ruby/JavaScript等",
+      "job_support": "あり",
+      "refund": "あり(条件付)",
+      "portfolio": "あり",
+      "format": "オンライン/通学"
+    },
+    {
+      "id": "runteq",
+      "name": "RUNTEQ",
+      "category": "転職特化",
+      "categoryId": "tenshoku",
+      "reward_yen": 25000,
+      "cookie_days": 30,
+      "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-RUNTEQ-LINK",
+      "official_url": "https://runteq.jp/",
+      "one_liner": "Web系自社開発企業への転職に強い実践カリキュラム。",
+      "price_from_yen": 550000,
+      "period": "約9ヶ月",
+      "langs": "Ruby on Rails",
+      "job_support": "あり",
+      "refund": "なし",
+      "portfolio": "あり",
+      "format": "オンライン"
+    },
+    {
+      "id": "potepan",
+      "name": "ポテパンキャンプ",
+      "category": "転職特化",
+      "categoryId": "tenshoku",
+      "reward_yen": 30000,
+      "cookie_days": 90,
+      "asp": "A8",
+      "a8_status": "申請中(2026-07-23)",
+      "a8_program_id": "s00000017938002",
+      "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-POTEPAN",
+      "official_url": "https://camp.potepan.com/",
+      "one_liner": "Web系開発企業への転職に特化。実務レベルの課題。",
+      "price_from_yen": 440000,
+      "period": "約5ヶ月",
+      "langs": "Ruby on Rails",
+      "job_support": "あり",
+      "refund": "なし",
+      "portfolio": "あり",
+      "format": "オンライン"
+    },
+    {
+      "id": "coachtech",
+      "name": "COACHTECH",
+      "category": "転職特化",
+      "categoryId": "tenshoku",
+      "reward_yen": 25000,
+      "cookie_days": 30,
+      "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-COACHTECH-LINK",
+      "official_url": "https://coachtech.site/",
+      "one_liner": "フリーランス特化。実案件レベルの開発を経験できる。",
+      "price_from_yen": 429000,
+      "period": "3〜9ヶ月",
+      "langs": "PHP/Laravel等",
+      "job_support": "あり",
+      "refund": "あり(条件付)",
+      "portfolio": "あり",
+      "format": "オンライン"
+    },
+    {
+      "id": "samurai",
+      "name": "侍エンジニア",
+      "category": "マンツーマン指導",
+      "categoryId": "mtm",
+      "reward_yen": 30000,
+      "cookie_days": 30,
+      "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-SAMURAI-LINK",
+      "official_url": "https://www.sejuku.net/",
+      "one_liner": "専属講師のマンツーマンでオーダーメイド学習。",
+      "price_from_yen": 165000,
+      "period": "4〜48週間",
+      "langs": "多数から選択",
+      "job_support": "あり",
+      "refund": "あり(条件付)",
+      "portfolio": "あり",
+      "format": "オンライン"
+    },
+    {
+      "id": "aidemy",
+      "name": "Aidemy",
+      "category": "AI・データ分析",
+      "categoryId": "ai",
+      "reward_yen": 30000,
+      "cookie_days": 30,
+      "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-AIDEMY-LINK",
+      "official_url": "https://aidemy.net/",
+      "one_liner": "AI・機械学習・データ分析に特化したオンライン講座。",
+      "price_from_yen": 528000,
+      "period": "3〜9ヶ月",
+      "langs": "Python",
+      "job_support": "あり",
+      "refund": "あり(8日以内)",
+      "portfolio": "あり",
+      "format": "オンライン"
+    },
+    {
+      "id": "kikagaku",
+      "name": "キカガク",
+      "category": "AI・データ分析",
+      "categoryId": "ai",
+      "reward_yen": 30000,
+      "cookie_days": 30,
+      "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-KIKAGAKU-LINK",
+      "official_url": "https://www.kikagaku.ai/",
+      "one_liner": "AI・機械学習を長期コースで体系的に学べる。給付金対象。",
+      "price_from_yen": 792000,
+      "period": "6ヶ月",
+      "langs": "Python",
+      "job_support": "あり",
+      "refund": "なし",
+      "portfolio": "あり",
+      "format": "オンライン"
+    },
+    {
+      "id": "programmercollege",
+      "name": "プログラマカレッジ",
+      "category": "無料スクール",
+      "categoryId": "free",
+      "reward_yen": 20000,
+      "cookie_days": 30,
+      "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-PROGRAMMERCOLLEGE-LINK",
+      "one_liner": "受講料無料。20代の就職支援に特化。",
+      "price_from_yen": 0,
+      "period": "1〜3ヶ月",
+      "langs": "Java/PHP等",
+      "job_support": "あり",
+      "refund": "―",
+      "portfolio": "あり",
+      "format": "オンライン"
+    },
+    {
+      "id": "techis",
+      "name": "テックアイエス",
+      "category": "マンツーマン指導",
+      "categoryId": "mtm",
+      "reward_yen": 25000,
+      "cookie_days": 30,
+      "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-TECHIS-LINK",
+      "official_url": "https://techis.jp/",
+      "one_liner": "5分以内の質問対応が売り。長期の就業支援あり。",
+      "price_from_yen": 343200,
+      "period": "6ヶ月〜",
+      "langs": "Java/PHP等",
+      "job_support": "あり",
+      "refund": "あり(条件付)",
+      "portfolio": "あり",
+      "format": "オンライン/通学",
+      "asp": "afb/アクセストレード（要登録）"
+    },
+    {
+      "id": "ninjacode",
+      "name": "忍者CODE",
+      "category": "オンライン学習",
+      "categoryId": "online",
+      "reward_yen": 17500,
+      "cookie_days": 90,
+      "asp": "A8",
+      "a8_status": "申請中(2026-07-23)",
+      "a8_program_id": "s00000025234001",
+      "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-NINJACODE",
+      "one_liner": "未経験からプロを目指すオンライン特化。無料相談/体験あり。",
+      "price_from_yen": 98000,
+      "period": "1〜6ヶ月",
+      "langs": "HTML/CSS/JS/PHP等",
+      "job_support": "あり(案件保証プランあり)",
+      "refund": "なし",
+      "portfolio": "あり",
+      "format": "オンライン"
+    },
+    {
+      "id": "dmmaicamp",
+      "name": "DMM 生成AI CAMP",
+      "category": "AI・データ分析",
+      "categoryId": "ai",
+      "reward_yen": 7519,
+      "cookie_days": 90,
+      "asp": "A8",
+      "a8_status": "申請中(2026-07-23)",
+      "a8_program_id": "s00000027398001",
+      "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-DMMAICAMP",
+      "one_liner": "ChatGPT等の生成AIを実務に活かす学び放題。無料セミナーあり。",
+      "price_from_yen": 16280,
+      "period": "月額制",
+      "langs": "生成AI活用",
+      "job_support": "―",
+      "refund": "なし",
+      "portfolio": "―",
+      "format": "オンライン"
+    },
+    {
+      "id": "winschool",
+      "name": "Winスクール",
+      "category": "通学・オンライン",
+      "categoryId": "tsugaku",
+      "reward_yen": 10000,
+      "cookie_days": 90,
+      "asp": "A8",
+      "a8_status": "申請中(2026-07-23)",
+      "a8_program_id": "s00000023621001",
+      "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-WINSCHOOL",
+      "one_liner": "資格と仕事に強い個人レッスン。全国に教室、オンラインも可。",
+      "price_from_yen": 200000,
+      "period": "1〜6ヶ月",
+      "langs": "Python/Java等",
+      "job_support": "あり",
+      "refund": "なし",
+      "portfolio": "あり",
+      "format": "通学/オンライン"
+    },
+    {
+      "id": "skillhacks",
+      "name": "SkillHacks",
+      "category": "独学・買い切り",
+      "categoryId": "dokugaku",
+      "reward_yen": 6835,
+      "cookie_days": 90,
+      "asp": "A8",
+      "a8_status": "申請中(2026-07-23)",
+      "a8_program_id": "s00000021268001",
+      "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-SKILLHACKS",
+      "one_liner": "買い切り型の動画教材。質問無制限で独学に向く。",
+      "price_from_yen": 69800,
+      "period": "無期限(買い切り)",
+      "langs": "HTML/CSS/JS等",
+      "job_support": "―",
+      "refund": "なし",
+      "portfolio": "―",
+      "format": "オンライン"
+    }
   ],
   "comparison_pairs": [
-    ["ninjacode", "potepan"],
-    ["ninjacode", "skillhacks"],
-    ["dmmaicamp", "aidemy"],
-    ["techacademy", "codecamp"],
-    ["dmmwebcamp", "techcamp"],
-    ["runteq", "potepan"],
-    ["aidemy", "kikagaku"]
+    [
+      "ninjacode",
+      "potepan"
+    ],
+    [
+      "ninjacode",
+      "skillhacks"
+    ],
+    [
+      "dmmaicamp",
+      "aidemy"
+    ],
+    [
+      "techacademy",
+      "codecamp"
+    ],
+    [
+      "dmmwebcamp",
+      "techcamp"
+    ],
+    [
+      "runteq",
+      "potepan"
+    ],
+    [
+      "aidemy",
+      "kikagaku"
+    ]
   ]
 }
