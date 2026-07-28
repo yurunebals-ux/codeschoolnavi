@@ -91,6 +91,14 @@
       "label": "公式サイトで最新の料金を見る",
       "short": "公式サイトを見る",
       "note": "料金・開講日は変わることがあります。申し込み前に公式サイトでご確認ください。"
+    },
+    "skillhacks": {
+      "name": "SkillHacks",
+      "href": "https://px.a8.net/svt/ejp?a8mat=4B8B4S+AP7HY2+4K3S+5YJRM",
+      "sponsored": true,
+      "label": "SkillHacksの公式サイトを見る",
+      "short": "公式サイトを見る",
+      "note": "料金・開講日は変わることがあります。申し込み前に公式サイトでご確認ください。"
     }
   }
 }
