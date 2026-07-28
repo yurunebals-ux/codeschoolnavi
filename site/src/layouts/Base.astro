@@ -106,6 +106,22 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       .eyecatch{border-radius:14px;overflow:hidden;margin:0 0 24px;box-shadow:0 2px 10px rgba(15,39,68,.12)}
       .eyecatch svg{width:100%;height:auto;display:block}
 
+      /* 給付金ガイドの入口バナー。情報量が多いページなので、
+         読み始める前に「3階建て」と「2週間前」だけ頭に入る状態を作る。 */
+      .kbanner{position:relative;overflow:hidden;isolation:isolate;background:linear-gradient(160deg,#064e3b 0%,#065f46 55%,#0f766e 100%);color:#fff;padding:38px 0 34px}
+      .kbanner > .wrap{position:relative;z-index:1}
+      .kb-art{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block}
+      .kb-kicker{color:#a7f3d0;font-size:12.5px;font-weight:700;letter-spacing:.05em;margin:0 0 8px}
+      .kbanner h1{color:#fff;margin:0 0 18px}
+      .kb-rates{list-style:none;display:flex;gap:10px;padding:0;margin:0 0 16px;flex-wrap:wrap}
+      .kb-rates li{flex:1;min-width:150px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:11px 14px;margin:0;display:flex;flex-direction:column;gap:1px}
+      .kb-rates b{font-size:26px;font-weight:800;line-height:1.15;font-variant-numeric:tabular-nums}
+      .kb-rates span{font-size:13px;font-weight:700;color:#d1fae5}
+      .kb-rates small{font-size:11.5px;color:#a7f3d0}
+      .kb-warn{margin:0;font-size:13.5px;line-height:1.8;color:#ecfdf5;background:rgba(0,0,0,.16);border-left:3px solid #fbbf24;border-radius:0 8px 8px 0;padding:9px 14px}
+      .kb-warn b{color:#fde68a}
+      @media (max-width:560px){ .kb-rates li{min-width:calc(50% - 5px)} .kb-rates b{font-size:22px} }
+
       /* Hero (homepage) */
       .hero{background:linear-gradient(160deg,#0f2744 0%,#1e3a8a 60%,#2563eb 100%);color:#fff;padding:44px 0 40px;margin:0}
       .hero .kicker{color:#93c5fd;font-size:13.5px;font-weight:700;letter-spacing:.06em;margin-bottom:10px}
@@ -221,6 +237,35 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       .card .t{display:block;font-size:15.5px;font-weight:700;color:var(--navy);line-height:1.5}
       .card:hover .t{color:var(--acc)}
       .card .d{color:var(--mut);font-size:12.5px}
+
+      /* 最新1本を大きく見せるカード。サムネと本文を横に組んで、一覧との差を出す */
+      .feat{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:0;background:var(--card);border:1px solid var(--bd);border-radius:16px;overflow:hidden;text-decoration:none;color:var(--fg);box-shadow:0 2px 10px rgba(15,39,68,.09);margin-bottom:14px;transition:box-shadow .15s,transform .15s,border-color .15s}
+      .feat:hover{box-shadow:0 10px 26px rgba(15,39,68,.15);transform:translateY(-2px);border-color:#bfdbfe}
+      .feat-thumb{display:block;overflow:hidden;min-height:100%}
+      .feat-thumb svg{width:100%;height:100%;display:block;object-fit:cover}
+      .feat-body{display:flex;flex-direction:column;gap:8px;padding:20px 22px 18px;justify-content:center}
+      .feat-tags{display:flex;align-items:center;gap:8px}
+      .feat .chip{display:inline-block;background:var(--chip);color:var(--chip-fg);border-radius:999px;padding:2px 11px;font-size:12px;font-weight:700}
+      .feat-new{background:var(--cta);color:#fff;font-size:11px;font-weight:800;border-radius:999px;padding:2px 9px;letter-spacing:.04em}
+      .feat-t{font-size:20px;font-weight:800;color:var(--navy);line-height:1.5}
+      .feat:hover .feat-t{color:var(--acc)}
+      .feat-d{font-size:13px;color:#475569;line-height:1.75;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+      .feat .d{color:var(--mut);font-size:12.5px}
+      @media (max-width:720px){
+        .feat{grid-template-columns:1fr}
+        .feat-thumb{aspect-ratio:16/9}
+        .feat-body{padding:16px 16px 15px}
+        .feat-t{font-size:17px}
+      }
+
+      /* 一覧側は横組みの小カード。同じ大きさのサムネが延々と続くのを避ける */
+      .card.row{flex-direction:row;align-items:stretch}
+      .card.row .cthumb{flex:none;width:104px;aspect-ratio:auto}
+      .card.row .cbody{gap:5px;padding:12px 14px;min-width:0}
+      .card.row .t{font-size:14px;line-height:1.55}
+      .card.row .chip{font-size:11px;padding:1px 9px}
+      .card.row .d{font-size:11.5px}
+      @media (max-width:400px){ .card.row .cthumb{width:96px} }
 
       /* 選び方ステップ */
       .steps{list-style:none;counter-reset:st;padding:0;margin:0;display:grid;gap:10px}
