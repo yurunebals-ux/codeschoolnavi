@@ -74,7 +74,7 @@ const ctaAfter = figMapAfter + 1;
           <b>最終確認日: {watch.lastChecked}</b>
           {changeDates.length > 0 && <span> ／ 表示の変化を検出した日: {changeDates.join("、")}</span>}
         </p>
-        <p class="pl-note">※価格そのものは必ず<a href={watchOffer?.href ?? watch.url} target="_blank" rel={watchOffer?.sponsored ? "sponsored nofollow noopener" : "nofollow noopener"}>公式サイト{watchOffer?.sponsored && <span class="cta-pr">PR</span>}</a>でご確認ください。本ログは記事の料金情報が古くなっていないかを確認するための当サイト独自の仕組みです。</p>
+        <p class="pl-note">※価格そのものは必ず<a class="pl-official" href={watchOffer?.href ?? watch.url} target="_blank" rel={watchOffer?.sponsored ? "sponsored nofollow noopener" : "nofollow noopener"}>公式サイト{watchOffer?.sponsored && <span class="cta-pr">PR</span>}</a>でご確認ください。本ログは記事の料金情報が古くなっていないかを確認するための当サイト独自の仕組みです。</p>
       </aside>
     )}
     <Content />
