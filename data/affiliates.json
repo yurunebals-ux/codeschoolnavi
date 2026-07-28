@@ -16,7 +16,7 @@
     "kikagaku",
     "techis"
   ],
-  "_asp_note": "主力ASPは【もしもアフィリエイト】。プログラミングスクール43件と豊富で、無料相談/無料カウンセリング参加のCPAが¥7,000〜14,000と高い（RUNTEQ7000/インターノウス14000/テックエリート12000/ウズウズ11000/AddedPallas10000/techmeets10000/SiiD8000/FJORD5000）。ただし、もしもの提携申請には『審査を通した登録メディア(サイト)』が必須。2026-07-28時点: メディア『コードスクールナビ』は登録済み、提携中2件（SHIFT TERAS CAMPUS・楽天）／申請中15件／否認1件（ウズウズIT）。【A8は要注意】2026-07-28にログインして確認したところ、記録にあった『5件申請中(2026-07-23)』は事実ではなかった。口座(メディアID a26040297282 / サイト名 salary_money30)の申込中プログラムは0件、参加中6件はすべてデフォルトか無関係な案件、解除・終了・新着承認も0件。オーナーに確認済みで他のA8アカウントは無い。つまり申請は送信されていない。codeschoolnavi.com のサイト登録からやり直す必要がある。",
+  "_asp_note": "主力ASPは【もしもアフィリエイト】。プログラミングスクール43件と豊富で、無料相談/無料カウンセリング参加のCPAが¥7,000〜14,000と高い（RUNTEQ7000/インターノウス14000/テックエリート12000/ウズウズ11000/AddedPallas10000/techmeets10000/SiiD8000/FJORD5000）。ただし、もしもの提携申請には『審査を通した登録メディア(サイト)』が必須。2026-07-28時点: メディア『コードスクールナビ』は登録済み、提携中2件（SHIFT TERAS CAMPUS・楽天）／申請中15件／否認1件（ウズウズIT）。【A8は要注意】2026-07-28にログインして確認したところ、記録にあった『5件申請中(2026-07-23)』は事実ではなかった。口座(メディアID a26040297282 / サイト名 salary_money30)の申込中プログラムは0件、参加中6件はすべてデフォルトか無関係な案件、解除・終了・新着承認も0件。オーナーに確認済みで他のA8アカウントは無く、申請は送信されていなかった。同日、A8にサイト「コードスクールナビ」(ウェブサイトID 002)を登録し5件を申請し直した。SkillHacksは即時提携で提携完了、忍者CODE/ポテパン/DMM生成AI CAMP/Winスクールは審査中。【重要】A8の広告リンク(a8mat)は登録サイトごとに異なる。必ず「コードスクールナビ」を選んで発行すること。",
   "a8_applied_ids": [
     "ninjacode",
     "potepan",
@@ -200,7 +200,7 @@
       "reward_yen": 30000,
       "cookie_days": 90,
       "asp": "A8",
-      "a8_status": "未申請（2026-07-28 確認：A8に該当申請は存在しなかった）",
+      "a8_status": "審査中（2026-07-28申請・サイト=コードスクールナビ）",
       "a8_program_id": "s00000017938002",
       "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-POTEPAN",
       "official_url": "https://camp.potepan.com/",
@@ -329,7 +329,7 @@
       "reward_yen": 17500,
       "cookie_days": 90,
       "asp": "A8",
-      "a8_status": "未申請（2026-07-28 確認：A8に該当申請は存在しなかった）",
+      "a8_status": "審査中（2026-07-28申請・サイト=コードスクールナビ）",
       "a8_program_id": "s00000025234001",
       "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-NINJACODE",
       "one_liner": "未経験からプロを目指すオンライン特化。無料相談/体験あり。",
@@ -349,7 +349,7 @@
       "reward_yen": 7519,
       "cookie_days": 90,
       "asp": "A8",
-      "a8_status": "未申請（2026-07-28 確認：A8に該当申請は存在しなかった）",
+      "a8_status": "審査中（2026-07-28申請・サイト=コードスクールナビ）",
       "a8_program_id": "s00000027398001",
       "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-DMMAICAMP",
       "one_liner": "ChatGPT等の生成AIを実務に活かす学び放題。無料セミナーあり。",
@@ -369,7 +369,7 @@
       "reward_yen": 10000,
       "cookie_days": 90,
       "asp": "A8",
-      "a8_status": "未申請（2026-07-28 確認：A8に該当申請は存在しなかった）",
+      "a8_status": "審査中（2026-07-28申請・サイト=コードスクールナビ）",
       "a8_program_id": "s00000023621001",
       "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-WINSCHOOL",
       "one_liner": "資格と仕事に強い個人レッスン。全国に教室、オンラインも可。",
@@ -389,9 +389,9 @@
       "reward_yen": 6835,
       "cookie_days": 90,
       "asp": "A8",
-      "a8_status": "未申請（2026-07-28 確認：A8に該当申請は存在しなかった）",
+      "a8_status": "提携中(2026-07-28・即時提携)",
       "a8_program_id": "s00000021268001",
-      "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-SKILLHACKS",
+      "affiliate_url": "https://px.a8.net/svt/ejp?a8mat=4B8B4S+AP7HY2+4K3S+5YJRM",
       "one_liner": "買い切り型の動画教材。質問無制限で独学に向く。",
       "price_from_yen": 69800,
       "period": "無期限(買い切り)",
@@ -399,7 +399,9 @@
       "job_support": "―",
       "refund": "なし",
       "portfolio": "―",
-      "format": "オンライン"
+      "format": "オンライン",
+      "official_url": "https://brain-holdings.com/skillhacks/",
+      "reward_note": "A8即時提携。広告リンクは登録サイト「コードスクールナビ」で発行したもの（a8matはサイトごとに異なる。salary_money30用のリンクを貼ると成果が別サイトに計上される）"
     }
   ],
   "comparison_pairs": [
@@ -432,5 +434,5 @@
       "kikagaku"
     ]
   ],
-  "a8_applied_ids_note": "下の a8_applied_ids は『申請しようとした対象』であって『申請済み』ではない。2026-07-28 の確認でA8に該当申請は存在しなかった。"
+  "a8_applied_ids_note": "2026-07-28にA8へサイト「コードスクールナビ」(ウェブサイトID 002)を登録し、5件を申請し直した。skillhacksは即時提携で提携完了、残り4件は審査中。"
 }
