@@ -1,0 +1,69 @@
+---
+// 申し込み導線（CTA）。データは site/src/data/offers.json（src/pipeline/offers.ts が生成）。
+//
+// 設計:
+//  - 出せるURLが無いスクールは「何も描画しない」。空振りリンクを作らないため。
+//  - 提携済み(sponsored)のときだけ rel="sponsored" と PR バッジを出す。
+//    ステマ規制上、広告リンクは「広告だと分かる」必要がある。逆に、提携していない
+//    ただの公式サイト参照に PR を付けるのは事実と違うので付けない。
+//  - variant="block" は記事内の大きめカード、"slim" はトップのカード内ボタン。
+import offersFile from "../data/offers.json";
+
+interface Props {
+  id: string | null | undefined;
+  variant?: "block" | "slim";
+  /** block のときの見出し。省略時は既定文言。 */
+  heading?: string;
+}
+
+const { id, variant = "block", heading } = Astro.props;
+const offer = id ? (offersFile as any).offers?.[id] : null;
+const rel = offer?.sponsored
+  ? "sponsored nofollow noopener"
+  : "nofollow noopener";
+---
+{offer && variant === "slim" && (
+  <a class="cta-slim" href={offer.href} target="_blank" rel={rel}>
+    {offer.sponsored && <span class="cta-pr">PR</span>}
+    <span>{offer.short}</span>
+  </a>
+)}
+{offer && variant === "block" && (
+  <aside class="ctabox">
+    <div class="cta-head">
+      {offer.sponsored && <span class="cta-pr">PR</span>}
+      <b>{heading ?? `${offer.name}が気になったら`}</b>
+    </div>
+    <a class="cta-btn" href={offer.href} target="_blank" rel={rel}>{offer.label}</a>
+    <p class="cta-note">{offer.note}</p>
+  </aside>
+)}
+<style is:global>
+  /* 実行時にJSで移動させる要素があるため、スコープ付き<style>では当たらない。
+     Astro のスコープ規則は .foo[data-astro-cid-x] に変換されるが、
+     JSで動かした要素はその属性を失わない一方、innerHTML由来の要素には付かない。
+     過去に給付金の判定パネルで踏んだので、CTAは最初から is:global で書く。 */
+  .ctabox{background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:14px 18px;margin:26px 0}
+  .ctabox .cta-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .ctabox .cta-head b{color:#7c2d12;font-size:14.5px}
+  .cta-pr{flex:none;background:#7c2d12;color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.06em;border-radius:4px;padding:2px 6px;line-height:1.5}
+  .cta-btn{display:block;text-align:center;background:var(--cta,#f97316);color:#fff;font-weight:800;text-decoration:none;border-radius:999px;padding:13px 16px;font-size:15px;box-shadow:0 3px 10px rgba(249,115,22,.32)}
+  .cta-btn:hover{filter:brightness(1.06);color:#fff}
+  .cta-note{font-size:11.5px;color:#9a3412;margin:8px 0 0;text-align:center}
+
+  .cta-slim{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;background:var(--cta,#f97316);color:#fff;font-weight:800;text-decoration:none;border-radius:999px;padding:10px 14px;font-size:13.5px;box-shadow:0 3px 10px rgba(249,115,22,.32)}
+  .cta-slim:hover{filter:brightness(1.06);color:#fff}
+  .cta-slim .cta-pr{background:rgba(0,0,0,.28)}
+
+  /* ピックアップカード内。.more が margin-top:auto で下端に寄るので、
+     その下にぶら下げる。カード内では記事への導線を上、外部への導線を下にする
+     （先に評判を読んでもらったほうが、読者にとっても成約率にとっても良い）。
+     オレンジのボタンを2つ縦に並べると、どちらが本命か分からなくなって
+     両方とも押されなくなる。内部リンク側は輪郭線だけの副ボタンに落とす。 */
+  .pick .more{margin-bottom:8px;background:#fff;color:var(--acc,#2563eb);border:1.5px solid var(--acc,#2563eb);box-shadow:none;font-size:13px}
+  .pick .more:hover{background:var(--chip,#eff6ff);color:var(--acc,#2563eb);filter:none}
+  .pick .cta-slim{margin-top:0}
+  /* 一覧表のスクール名セルに置く小さな公式リンク */
+  .t-official{display:inline-block;margin-top:3px;font-size:12px;font-weight:700;white-space:nowrap}
+  .t-official .cta-pr{margin-left:4px;font-size:9.5px;padding:1px 4px;vertical-align:middle}
+</style>
