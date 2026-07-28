@@ -4,6 +4,8 @@ import Base from "../layouts/Base.astro";
 import Thumb from "../components/Thumb.astro";
 import Avatar from "../components/Avatar.astro";
 import Cta from "../components/Cta.astro";
+import HeroArt from "../components/HeroArt.astro";
+import NavIcon from "../components/NavIcon.astro";
 import schools from "../data/schools.json";
 import pricewatch from "../data/pricewatch.json";
 import offersFile from "../data/offers.json";
@@ -29,7 +31,7 @@ const pwChanges = watched.reduce((n, s) => n + (s.observations?.length ?? 0), 0)
 const pwLastMd = pwLast ? `${Number(pwLast.slice(5, 7))}/${Number(pwLast.slice(8, 10))}` : "—";
 ---
 <Base title="プログラミングスクールの比較・評判" description="主要プログラミングスクールの受講料・期間・給付金・転職支援を横並びで比較。評判記事は毎日更新、デメリットも正直に記載します。">
-  <section class="hero" slot="hero"><div class="wrap">
+  <section class="hero" slot="hero"><HeroArt /><div class="wrap">
     <p class="kicker">スクール選びで後悔したくない人のための比較サイト</p>
     <h1>受講料・給付金・転職支援。<br />答えは「横並びの比較」で出す。</h1>
     <p>主要スクールの受講料・期間・保証内容を公式情報から整理し、ひとつの表で比べられるようにしました。給付金で受講料の20〜80%が戻る仕組みも、区分ごとの条件つきで解説。デメリットも隠さず書きます。</p>
@@ -72,10 +74,10 @@ const pwLastMd = pwLast ? `${Number(pwLast.slice(5, 7))}/${Number(pwLast.slice(8
   <section class="sec">
     <div class="sec-head"><h2>目的から探す</h2><span class="en">PURPOSE</span></div>
     <div class="nav4">
-      <a class="navcard" href="/blog/hyoban-dmmwebcamp/"><span class="ic">🎯</span><b>転職を目指す</b><small>転職保証つきスクールの実力は</small></a>
-      <a class="navcard" href="/blog/kyufukin-osusume/"><span class="ic">💴</span><b>給付金で安く</b><small>区分別の還元率と対象校</small></a>
-      <a class="navcard" href="/blog/hyoban-techacademy/"><span class="ic">🏠</span><b>オンライン完結</b><small>働きながら自宅で学びたい</small></a>
-      <a class="navcard" href="/shindan/"><span class="ic">🧭</span><b>迷ったら診断</b><small>3つの質問で候補を絞る</small></a>
+      <a class="navcard" href="/blog/hyoban-dmmwebcamp/"><NavIcon kind="tenshoku" /><b>転職を目指す</b><small>転職保証つきスクールの実力は</small></a>
+      <a class="navcard" href="/blog/kyufukin-osusume/"><NavIcon kind="kyufu" /><b>給付金で安く</b><small>区分別の還元率と対象校</small></a>
+      <a class="navcard" href="/blog/hyoban-techacademy/"><NavIcon kind="online" /><b>オンライン完結</b><small>働きながら自宅で学びたい</small></a>
+      <a class="navcard" href="/shindan/"><NavIcon kind="shindan" /><b>迷ったら診断</b><small>3つの質問で候補を絞る</small></a>
     </div>
   </section>
 
@@ -125,15 +127,29 @@ const pwLastMd = pwLast ? `${Number(pwLast.slice(5, 7))}/${Number(pwLast.slice(8
 
   <section class="sec">
     <div class="sec-head"><h2>新着の評判・比較記事</h2><span class="en">ARTICLES</span><span class="note">全{posts.length}本 ・ 毎日更新</span></div>
+    {/* 全部を同じ大きさのサムネで並べると、10枚のグラデーションが延々と続いて
+        「量産テンプレ」に見える（実測: この一覧だけでページの33%＝1,842pxあった）。
+        最新1本だけ大きく見せ、残りは横組みの小カードにして、リズムと情報密度を上げる。 */}
+    {posts[0] && (
+      <a class="feat" href={`/blog/${posts[0].slug}/`}>
+        <span class="feat-thumb"><Thumb title={posts[0].data.title} cat={chip(posts[0].data.title)} /></span>
+        <span class="feat-body">
+          <span class="feat-tags"><span class="chip">{chip(posts[0].data.title)}</span><span class="feat-new">最新</span></span>
+          <span class="feat-t">{posts[0].data.title}</span>
+          <span class="feat-d">{posts[0].data.description}</span>
+          <span class="d">{posts[0].data.pubDate} 更新 ・ {posts[0].data.author}</span>
+        </span>
+      </a>
+    )}
     <ul class="cards">
-      {posts.map((p) => (
+      {posts.slice(1).map((p) => (
         <li>
-          <a class="card" href={`/blog/${p.slug}/`}>
-            <span class="cthumb"><Thumb title={p.data.title} cat={chip(p.data.title)} /></span>
+          <a class="card row" href={`/blog/${p.slug}/`}>
+            <span class="cthumb"><Thumb title={p.data.title} cat={chip(p.data.title)} compact /></span>
             <span class="cbody">
               <span class="chip">{chip(p.data.title)}</span>
               <span class="t">{p.data.title}</span>
-              <span class="d">{p.data.pubDate} 更新 ・ {p.data.author}</span>
+              <span class="d">{p.data.pubDate} 更新</span>
             </span>
           </a>
         </li>

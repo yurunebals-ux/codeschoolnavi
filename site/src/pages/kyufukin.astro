@@ -72,7 +72,42 @@ const pitfalls = [
   title="教育訓練給付金の対象と申請手順｜スクール代を最大80%取り戻す"
   description="プログラミングスクールで使える教育訓練給付金の3種類、給付率と上限、雇用保険の加入期間の条件、受講開始2週間前までの事前手続き、申請期限を図で整理しました。厚生労働省・ハローワークの一次情報にもとづく解説です。"
 >
-  <h1>教育訓練給付金で、スクール代はどこまで戻るのか</h1>
+  <section class="kbanner" slot="hero">
+    {/* 情報量の多いページなので、入口に「3階建て」だけを絵で置いて読み始めの負担を下げる。
+        数字は下の TYPES から描くので、本文の表と食い違うことがない。 */}
+    <svg class="kb-art" viewBox="0 0 1440 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <radialGradient id="kb-g1" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stop-color="#34d399" stop-opacity="0.45" /><stop offset="1" stop-color="#34d399" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="kb-g2" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stop-color="#38bdf8" stop-opacity="0.34" /><stop offset="1" stop-color="#38bdf8" stop-opacity="0" />
+        </radialGradient>
+        <pattern id="kb-dots" width="26" height="26" patternUnits="userSpaceOnUse">
+          <circle cx="1.6" cy="1.6" r="1.6" fill="#ffffff" opacity="0.10" />
+        </pattern>
+      </defs>
+      <rect width="1440" height="460" fill="url(#kb-dots)" />
+      <circle cx="1210" cy="40" r="360" fill="url(#kb-g1)" />
+      <circle cx="1380" cy="380" r="300" fill="url(#kb-g2)" />
+      {/* 3階建てを階段で表す */}
+      <g opacity="0.5">
+        <rect x="1000" y="300" rx="8" width="96" height="86"  fill="#ffffff" opacity="0.14" />
+        <rect x="1112" y="248" rx="8" width="96" height="138" fill="#ffffff" opacity="0.18" />
+        <rect x="1224" y="160" rx="8" width="96" height="226" fill="#ffffff" opacity="0.26" />
+      </g>
+    </svg>
+    <div class="wrap">
+      <p class="kb-kicker">厚生労働省・ハローワークの一次情報にもとづく解説</p>
+      <h1>教育訓練給付金で、スクール代はどこまで戻るのか</h1>
+      <ul class="kb-rates">
+        {TYPES.map((t) => (
+          <li><b>{t.rate}</b><span>{t.name.replace("教育訓練給付金", "")}</span><small>{t.cap}</small></li>
+        ))}
+      </ul>
+      <p class="kb-warn">対象は<b>講座単位</b>。<b>受講開始の2週間前まで</b>に手続きが終わっていないと、条件を満たしても1円も出ません。</p>
+    </div>
+  </section>
 
   <p class="lede">
     スクール比較でいちばん金額が動くのは、割引キャンペーンではなく給付金です。うまく噛み合えば受講料の20%から80%が戻ってきます。
