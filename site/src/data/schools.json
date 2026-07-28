@@ -1,47 +1,109 @@
 {
-  "note": "トップページの比較モジュール用データ。数値・特徴は公開済み記事（給付金ハブ・各校評判記事）の記載と一致させること。",
+  "note": "トップページの比較モジュール用データ。数値・特徴は公開済み記事（給付金ハブ・各校評判記事）の記載と一致させること。 id は data/affiliates.json の tools[].id と一致させること（CTAの遷移先の解決に使う）。",
   "picks": [
     {
+      "id": "dmmwebcamp",
       "purpose": "転職サポート重視",
       "name": "SHIFT TERAS CAMPUS",
       "sub": "旧DMM WEBCAMP",
       "price": "169,800円〜",
       "period": "3〜4ヶ月",
       "form": "オンライン/通学",
-      "tags": ["転職保証つき", "未経験からの転職実績", "給付金対象コースあり"],
+      "tags": [
+        "転職保証つき",
+        "未経験からの転職実績",
+        "給付金対象コースあり"
+      ],
       "fit": "はじめての転職で、伴走とセーフティネットが欲しい人",
       "review": "/blog/hyoban-dmmwebcamp/"
     },
     {
+      "id": "techacademy",
       "purpose": "費用・給付金重視",
       "name": "TechAcademy",
       "sub": "テックアカデミー",
       "price": "185,900円〜",
       "period": "4〜16週",
       "form": "オンライン完結",
-      "tags": ["週2回の現役エンジニア面談", "給付金対象コースあり", "副業向けコースも"],
+      "tags": [
+        "週2回の現役エンジニア面談",
+        "給付金対象コースあり",
+        "副業向けコースも"
+      ],
       "fit": "働きながら、費用を抑えてオンラインで完結させたい人",
       "review": "/blog/hyoban-techacademy/"
     },
     {
+      "id": "kikagaku",
       "purpose": "AI・データ特化",
       "name": "キカガク",
       "sub": "AI人材育成長期コース",
       "price": "792,000円〜",
       "period": "6ヶ月",
       "form": "オンライン",
-      "tags": ["専門実践給付金の対象（条件を満たせば最大80%）", "AI・機械学習の体系学習", "長期でじっくり"],
+      "tags": [
+        "専門実践給付金の対象（条件を満たせば最大80%）",
+        "AI・機械学習の体系学習",
+        "長期でじっくり"
+      ],
       "fit": "AI分野へ本気で進みたい人（給付金の条件確認は必須）",
       "review": "/blog/kyufukin-osusume/"
     }
   ],
   "table": [
-    { "name": "TechAcademy", "form": "オンライン", "period": "4〜16週", "price": "185,900円〜", "point": "オンライン完結・週2回の現役エンジニアメンタリング", "review": "/blog/hyoban-techacademy/" },
-    { "name": "SHIFT TERAS CAMPUS（旧DMM WEBCAMP）", "form": "オンライン/通学", "period": "3〜4ヶ月", "price": "169,800円〜", "point": "転職保証つき・未経験からの転職実績", "review": "/blog/hyoban-dmmwebcamp/" },
-    { "name": "テックキャンプ", "form": "オンライン/通学", "period": "10週間〜", "price": "197,000円〜", "point": "短期集中で未経験からのエンジニア転職", "review": "/blog/hyoban-techcamp/" },
-    { "name": "CodeCamp", "form": "オンライン", "period": "2〜6ヶ月", "price": "165,000円〜", "point": "マンツーマンレッスン・平日夜間や週末も受講しやすい", "review": "/blog/hyoban-codecamp/" },
-    { "name": "RUNTEQ", "form": "オンライン", "period": "約9ヶ月", "price": "550,000円〜", "point": "Web系自社開発企業への転職に強い実践型", "review": "/blog/hyoban-runteq/" },
-    { "name": "キカガク", "form": "オンライン", "period": "6ヶ月", "price": "792,000円〜", "point": "AI特化・専門実践給付金の対象（条件つき）", "review": "/blog/kyufukin-osusume/" }
+    {
+      "id": "techacademy",
+      "name": "TechAcademy",
+      "form": "オンライン",
+      "period": "4〜16週",
+      "price": "185,900円〜",
+      "point": "オンライン完結・週2回の現役エンジニアメンタリング",
+      "review": "/blog/hyoban-techacademy/"
+    },
+    {
+      "id": "dmmwebcamp",
+      "name": "SHIFT TERAS CAMPUS（旧DMM WEBCAMP）",
+      "form": "オンライン/通学",
+      "period": "3〜4ヶ月",
+      "price": "169,800円〜",
+      "point": "転職保証つき・未経験からの転職実績",
+      "review": "/blog/hyoban-dmmwebcamp/"
+    },
+    {
+      "id": "techcamp",
+      "name": "テックキャンプ",
+      "form": "オンライン/通学",
+      "period": "10週間〜",
+      "price": "197,000円〜",
+      "point": "短期集中で未経験からのエンジニア転職",
+      "review": "/blog/hyoban-techcamp/"
+    },
+    {
+      "id": "codecamp",
+      "name": "CodeCamp",
+      "form": "オンライン",
+      "period": "2〜6ヶ月",
+      "price": "165,000円〜",
+      "point": "マンツーマンレッスン・平日夜間や週末も受講しやすい",
+      "review": "/blog/hyoban-codecamp/"
+    },
+    {
+      "id": "runteq",
+      "name": "RUNTEQ",
+      "form": "オンライン",
+      "period": "約9ヶ月",
+      "price": "550,000円〜",
+      "point": "Web系自社開発企業への転職に強い実践型",
+      "review": "/blog/hyoban-runteq/"
+    },
+    {
+      "id": "kikagaku",
+      "name": "キカガク",
+      "form": "オンライン",
+      "period": "6ヶ月",
+      "price": "792,000円〜",
+      "point": "AI特化・専門実践給付金の対象（条件つき）",
+      "review": "/blog/kyufukin-osusume/"
+    }
   ]
 }
-

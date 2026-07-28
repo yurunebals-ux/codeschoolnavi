@@ -1,0 +1,96 @@
+{
+  "_note": "自動生成（src/pipeline/offers.ts）。手で編集しない。提携が承認されたら data/affiliates.json の affiliate_url を差し替えれば、ここも全ページのCTAも自動で切り替わる。",
+  "picks": {
+    "kyufukin": "dmmwebcamp"
+  },
+  "offers": {
+    "techacademy": {
+      "name": "TechAcademy",
+      "href": "https://techacademy.jp/",
+      "sponsored": false,
+      "label": "公式サイトで最新の料金を見る",
+      "short": "公式サイトを見る",
+      "note": "料金・開講日は変わることがあります。申し込み前に公式サイトでご確認ください。"
+    },
+    "codecamp": {
+      "name": "CodeCamp",
+      "href": "https://codecamp.jp/",
+      "sponsored": false,
+      "label": "公式サイトで最新の料金を見る",
+      "short": "公式サイトを見る",
+      "note": "料金・開講日は変わることがあります。申し込み前に公式サイトでご確認ください。"
+    },
+    "dmmwebcamp": {
+      "name": "SHIFT TERAS CAMPUS",
+      "href": "https://af.moshimo.com/af/c/click?a_id=5712690&p_id=1363&pc_id=2297&pl_id=68018",
+      "sponsored": true,
+      "label": "SHIFT TERAS CAMPUSの無料カウンセリングを見る",
+      "short": "無料カウンセリングを見る",
+      "note": "相談は無料。その場で申し込む必要はありません。"
+    },
+    "techcamp": {
+      "name": "テックキャンプ",
+      "href": "https://tech-camp.in/",
+      "sponsored": false,
+      "label": "公式サイトで最新の料金を見る",
+      "short": "公式サイトを見る",
+      "note": "料金・開講日は変わることがあります。申し込み前に公式サイトでご確認ください。"
+    },
+    "runteq": {
+      "name": "RUNTEQ",
+      "href": "https://runteq.jp/",
+      "sponsored": false,
+      "label": "公式サイトで最新の料金を見る",
+      "short": "公式サイトを見る",
+      "note": "料金・開講日は変わることがあります。申し込み前に公式サイトでご確認ください。"
+    },
+    "potepan": {
+      "name": "ポテパンキャンプ",
+      "href": "https://camp.potepan.com/",
+      "sponsored": false,
+      "label": "公式サイトで最新の料金を見る",
+      "short": "公式サイトを見る",
+      "note": "料金・開講日は変わることがあります。申し込み前に公式サイトでご確認ください。"
+    },
+    "coachtech": {
+      "name": "COACHTECH",
+      "href": "https://coachtech.site/",
+      "sponsored": false,
+      "label": "公式サイトで最新の料金を見る",
+      "short": "公式サイトを見る",
+      "note": "料金・開講日は変わることがあります。申し込み前に公式サイトでご確認ください。"
+    },
+    "samurai": {
+      "name": "侍エンジニア",
+      "href": "https://www.sejuku.net/",
+      "sponsored": false,
+      "label": "公式サイトで最新の料金を見る",
+      "short": "公式サイトを見る",
+      "note": "料金・開講日は変わることがあります。申し込み前に公式サイトでご確認ください。"
+    },
+    "aidemy": {
+      "name": "Aidemy",
+      "href": "https://aidemy.net/",
+      "sponsored": false,
+      "label": "公式サイトで最新の料金を見る",
+      "short": "公式サイトを見る",
+      "note": "料金・開講日は変わることがあります。申し込み前に公式サイトでご確認ください。"
+    },
+    "kikagaku": {
+      "name": "キカガク",
+      "href": "https://www.kikagaku.ai/",
+      "sponsored": false,
+      "label": "公式サイトで最新の料金を見る",
+      "short": "公式サイトを見る",
+      "note": "料金・開講日は変わることがあります。申し込み前に公式サイトでご確認ください。"
+    },
+    "techis": {
+      "name": "テックアイエス",
+      "href": "https://techis.jp/",
+      "sponsored": false,
+      "label": "公式サイトで最新の料金を見る",
+      "short": "公式サイトを見る",
+      "note": "料金・開講日は変わることがあります。申し込み前に公式サイトでご確認ください。"
+    }
+  }
+}
