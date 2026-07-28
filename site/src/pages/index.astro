@@ -3,8 +3,16 @@ import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Thumb from "../components/Thumb.astro";
 import Avatar from "../components/Avatar.astro";
+import Cta from "../components/Cta.astro";
 import schools from "../data/schools.json";
 import pricewatch from "../data/pricewatch.json";
+import offersFile from "../data/offers.json";
+
+// 比較表の「公式」列。CTAと同じ offers.json から引くので、提携が承認されれば
+// ここも自動でアフィリンクに変わる。出せるURLが無い行はリンクを出さない。
+const offers = (offersFile as any).offers ?? {};
+const hasSponsored = schools.table.some((s: any) => offers[s.id]?.sponsored)
+  || schools.picks.some((s: any) => offers[s.id]?.sponsored);
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate));
@@ -86,6 +94,7 @@ const pwLastMd = pwLast ? `${Number(pwLast.slice(5, 7))}/${Number(pwLast.slice(8
           <ul class="tags">{s.tags.map((tg) => <li>{tg}</li>)}</ul>
           <p class="fit">✓ {s.fit}</p>
           <a class="more" href={s.review}>評判・注意点をくわしく見る</a>
+          <Cta id={s.id} variant="slim" />
         </article>
       ))}
     </div>
@@ -98,13 +107,20 @@ const pwLastMd = pwLast ? `${Number(pwLast.slice(5, 7))}/${Number(pwLast.slice(8
       <tbody>
         {schools.table.map((s) => (
           <tr>
-            <td><b>{s.name}</b></td><td>{s.form}</td><td>{s.period}</td><td>{s.price}</td><td>{s.point}</td>
+            {/* 公式リンクは独立した列にすると、表が横スクロールする幅のときに
+                画面外へ追い出されて誰にも押されない（実際そうなった）。
+                横スクロールしても残る1列目に入れる。 */}
+            <td class="tname"><b>{s.name}</b>{offers[s.id] && (
+              <><br /><a class="t-official" href={offers[s.id].href} target="_blank" rel={offers[s.id].sponsored ? "sponsored nofollow noopener" : "nofollow noopener"}>公式サイト ↗{offers[s.id].sponsored && <span class="cta-pr">PR</span>}</a></>
+            )}</td>
+            <td>{s.form}</td><td>{s.period}</td><td>{s.price}</td><td>{s.point}</td>
             <td><a href={s.review}>評判を見る</a></td>
           </tr>
         ))}
       </tbody>
     </table>
-    <p class="tnote">※料金・内容は各記事の更新日時点の公式情報に基づきます。最新条件は必ず公式サイトでご確認ください。</p>
+    <p class="tnote">※料金・内容は各記事の更新日時点の公式情報に基づきます。最新条件は必ず公式サイトでご確認ください。
+      {hasSponsored && <span> 「PR」の付いたリンクは広告（アフィリエイト）リンクです。報酬の有無は掲載順・評価に影響しません。</span>}</p>
   </section>
 
   <section class="sec">
