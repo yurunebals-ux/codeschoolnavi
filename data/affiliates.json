@@ -204,14 +204,15 @@
       "a8_program_id": "s00000017938002",
       "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-POTEPAN",
       "official_url": "https://camp.potepan.com/",
-      "one_liner": "Web系開発企業への転職に特化。実務レベルの課題。",
-      "price_from_yen": 440000,
-      "period": "約5ヶ月",
+      "one_liner": "Web系開発企業への転職に特化。29歳以下は無料のU29コースあり。",
+      "price_from_yen": 0,
+      "period": "3ヶ月(U29)／5ヶ月(Railsキャリア)",
       "langs": "Ruby on Rails",
       "job_support": "あり",
       "refund": "なし",
       "portfolio": "あり",
-      "format": "オンライン"
+      "format": "オンライン",
+      "price_note": "29歳以下=U29コース 無料(3ヶ月)／30歳以上=Railsキャリアコース 440,000円税込(5ヶ月/20週間)。2026-07-28 公式サイトで確認。Railsキャリアは経産省リスキリング支援事業の対象で条件を満たせば最大70%支給（※教育訓練給付金とは別制度。サイト内の「最大70%は古い数字」ルールをここに適用しないこと）"
     },
     {
       "id": "coachtech",
