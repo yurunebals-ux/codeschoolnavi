@@ -6,7 +6,9 @@ import Avatar from "../../components/Avatar.astro";
 import FigPrice from "../../components/FigPrice.astro";
 import FigMap from "../../components/FigMap.astro";
 import FigKyufu from "../../components/FigKyufu.astro";
+import Cta from "../../components/Cta.astro";
 import pricewatch from "../../data/pricewatch.json";
+import offersFile from "../../data/offers.json";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -38,6 +40,18 @@ const ALIAS: Record<string, string> = {
 };
 const school = watchId && ALIAS[watchId] ? ALIAS[watchId] : null;
 const isKyufu = cat === "給付金";
+
+// 申し込み導線。記事の主題スクールに紐づける。
+// 給付金ハブのように1校に紐づかない記事は offers.json の picks で指名する
+// （給付金対象のうち提携済みのものが自動で選ばれる。ハードコードしない）。
+const ctaId = watchId ?? (isKyufu ? (offersFile as any).picks?.kyufukin ?? null : null);
+// 料金監視ボックスの「公式サイト」は記事の一番上にある唯一の外部リンクなのに、
+// これまで素の公式URLだったので1円にもなっていなかった。提携済みならここも
+// アフィリンクにする（未提携なら従来どおり公式URL。PR表示も出さない）。
+const watchOffer = watchId ? (offersFile as any).offers?.[watchId] ?? null : null;
+// 図解とCTAの差し込み位置。CTAは図解より後ろ＝読者が判断材料を見たあとに置く。
+const figMapAfter = isKyufu ? 4 : 3;
+const ctaAfter = figMapAfter + 1;
 ---
 <Base title={d.title} description={d.description} article={d}>
   <article>
@@ -60,7 +74,7 @@ const isKyufu = cat === "給付金";
           <b>最終確認日: {watch.lastChecked}</b>
           {changeDates.length > 0 && <span> ／ 表示の変化を検出した日: {changeDates.join("、")}</span>}
         </p>
-        <p class="pl-note">※価格そのものは必ず<a href={watch.url} target="_blank" rel="nofollow noopener">公式サイト</a>でご確認ください。本ログは記事の料金情報が古くなっていないかを確認するための当サイト独自の仕組みです。</p>
+        <p class="pl-note">※価格そのものは必ず<a href={watchOffer?.href ?? watch.url} target="_blank" rel={watchOffer?.sponsored ? "sponsored nofollow noopener" : "nofollow noopener"}>公式サイト{watchOffer?.sponsored && <span class="cta-pr">PR</span>}</a>でご確認ください。本ログは記事の料金情報が古くなっていないかを確認するための当サイト独自の仕組みです。</p>
       </aside>
     )}
     <Content />
@@ -68,7 +82,8 @@ const isKyufu = cat === "給付金";
     <div id="figbank">
       <div class="figslot" data-after="1"><FigPrice highlight={school} /></div>
       {isKyufu && <div class="figslot" data-after="2"><FigKyufu /></div>}
-      <div class="figslot" data-after={isKyufu ? 4 : 3}><FigMap highlight={school} /></div>
+      <div class="figslot" data-after={figMapAfter}><FigMap highlight={school} /></div>
+      {ctaId && <div class="figslot" data-after={ctaAfter}><Cta id={ctaId} /></div>}
     </div>
     <script is:inline>
       // 図解を本文の見出し位置へ移す。パース中に実行されるので、下に一瞬見えることはない。
@@ -95,6 +110,8 @@ const isKyufu = cat === "給付金";
         bank.remove();
       })();
     </script>
+
+    <Cta id={ctaId} heading="この記事を読んで、次に動くなら" />
 
     <section class="authorbox">
       <span class="ab-av"><Avatar size={52} /></span>
