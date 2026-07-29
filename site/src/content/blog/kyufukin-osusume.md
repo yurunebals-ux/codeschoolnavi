@@ -104,7 +104,7 @@ A. オンラインでも質の高いメンタリングや実践課題があれ�
 
 ## あわせて読みたい
 
+- [プログラマカレッジの評判・口コミは？特徴を解説](/blog/hyoban-programmercollege/)
 - [キカガクの評判・口コミは？特徴を解説](/blog/hyoban-kikagaku/)
 - [Aidemyの評判・口コミは？特徴を解説](/blog/hyoban-aidemy/)
 - [侍エンジニアの評判・口コミは？特徴を解説](/blog/hyoban-samurai/)
-- [ポテパンキャンプの評判・口コミは？特徴を解説](/blog/hyoban-potepan/)

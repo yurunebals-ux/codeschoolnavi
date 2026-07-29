@@ -262,4 +262,4 @@ COACHTECHは、フリーランス志望者や実践的な開発経験を重視�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [RUNTEQの評判・口コミは？特徴を解説](/blog/hyoban-runteq/)
 - [ポテパンキャンプの評判・口コミは？特徴を解説](/blog/hyoban-potepan/)
-- [キカガクの評判・口コミは？特徴を解説](/blog/hyoban-kikagaku/)
+- [プログラマカレッジの評判・口コミは？特徴を解説](/blog/hyoban-programmercollege/)

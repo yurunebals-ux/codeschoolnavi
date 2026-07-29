@@ -245,5 +245,5 @@ draft: false
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Aidemyの評判・口コミは？特徴を解説](/blog/hyoban-aidemy/)
+- [プログラマカレッジの評判・口コミは？特徴を解説](/blog/hyoban-programmercollege/)
 - [侍エンジニアの評判・口コミは？特徴を解説](/blog/hyoban-samurai/)
-- [ポテパンキャンプの評判・口コミは？特徴を解説](/blog/hyoban-potepan/)

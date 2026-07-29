@@ -169,8 +169,9 @@
       "kind": "money",
       "cluster": "無料スクール",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-07-29T05:30:50.199Z"
     },
     {
       "slug": "hyoban-techis",
@@ -550,8 +551,8 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 11,
-  "estimatedMrrUsd": 3300,
+  "publishedCount": 12,
+  "estimatedMrrUsd": 3600,
   "history": [
     {
       "date": "2026-07-24",
@@ -572,7 +573,12 @@
       "date": "2026-07-28",
       "published": 11,
       "estimatedMrrUsd": 3300
+    },
+    {
+      "date": "2026-07-29",
+      "published": 12,
+      "estimatedMrrUsd": 3600
     }
   ],
-  "lastRun": "2026-07-28T05:23:02.508Z"
+  "lastRun": "2026-07-29T05:30:50.209Z"
 }
