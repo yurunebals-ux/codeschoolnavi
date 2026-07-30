@@ -183,8 +183,9 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-07-30T05:16:51.605Z"
     },
     {
       "slug": "hyoban-ninjacode",
@@ -551,8 +552,8 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 12,
-  "estimatedMrrUsd": 3600,
+  "publishedCount": 13,
+  "estimatedMrrUsd": 3900,
   "history": [
     {
       "date": "2026-07-24",
@@ -578,7 +579,12 @@
       "date": "2026-07-29",
       "published": 12,
       "estimatedMrrUsd": 3600
+    },
+    {
+      "date": "2026-07-30",
+      "published": 13,
+      "estimatedMrrUsd": 3900
     }
   ],
-  "lastRun": "2026-07-29T05:30:50.209Z"
+  "lastRun": "2026-07-30T05:16:51.611Z"
 }
