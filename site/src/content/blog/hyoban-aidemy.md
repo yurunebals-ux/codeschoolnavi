@@ -241,5 +241,5 @@ AI・機械学習分野でのキャリアを本格的に目指すかどうか。
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [キカガクの評判・口コミは？特徴を解説](/blog/hyoban-kikagaku/)
+- [忍者CODEの評判・口コミは？特徴を解説](/blog/hyoban-ninjacode/)
 - [テックアイエスの評判・口コミは？特徴を解説](/blog/hyoban-techis/)
-- [プログラマカレッジの評判・口コミは？特徴を解説](/blog/hyoban-programmercollege/)

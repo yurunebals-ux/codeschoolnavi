@@ -197,8 +197,9 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-07-31T05:42:56.283Z"
     },
     {
       "slug": "hyoban-dmmaicamp",
@@ -552,8 +553,8 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 13,
-  "estimatedMrrUsd": 3900,
+  "publishedCount": 14,
+  "estimatedMrrUsd": 4200,
   "history": [
     {
       "date": "2026-07-24",
@@ -584,7 +585,12 @@
       "date": "2026-07-30",
       "published": 13,
       "estimatedMrrUsd": 3900
+    },
+    {
+      "date": "2026-07-31",
+      "published": 14,
+      "estimatedMrrUsd": 4200
     }
   ],
-  "lastRun": "2026-07-30T05:16:51.611Z"
+  "lastRun": "2026-07-31T05:42:56.289Z"
 }
