@@ -211,4 +211,4 @@ draft: false
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [TechAcademyの評判・口コミは？特徴を解説](/blog/hyoban-techacademy/)
 - [CodeCampの評判・口コミは？特徴を解説](/blog/hyoban-codecamp/)
-- [テックアイエスの評判・口コミは？特徴を解説](/blog/hyoban-techis/)
+- [DMM 生成AI CAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmaicamp/)
