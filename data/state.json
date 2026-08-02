@@ -225,8 +225,9 @@
       "kind": "money",
       "cluster": "通学・オンライン",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-08-02T05:34:02.734Z"
     },
     {
       "slug": "hyoban-skillhacks",
@@ -554,8 +555,8 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 15,
-  "estimatedMrrUsd": 4500,
+  "publishedCount": 16,
+  "estimatedMrrUsd": 4800,
   "history": [
     {
       "date": "2026-07-24",
@@ -596,7 +597,12 @@
       "date": "2026-08-01",
       "published": 15,
       "estimatedMrrUsd": 4500
+    },
+    {
+      "date": "2026-08-02",
+      "published": 16,
+      "estimatedMrrUsd": 4800
     }
   ],
-  "lastRun": "2026-08-01T05:34:19.975Z"
+  "lastRun": "2026-08-02T05:34:02.740Z"
 }

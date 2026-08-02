@@ -242,4 +242,4 @@ AI・機械学習分野でのキャリアを本格的に目指すかどうか。
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [キカガクの評判・口コミは？特徴を解説](/blog/hyoban-kikagaku/)
 - [DMM 生成AI CAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmaicamp/)
-- [忍者CODEの評判・口コミは？特徴を解説](/blog/hyoban-ninjacode/)
+- [Winスクールの評判・口コミは？特徴を解説](/blog/hyoban-winschool/)

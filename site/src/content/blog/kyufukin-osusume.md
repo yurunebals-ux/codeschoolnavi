@@ -115,7 +115,7 @@ A. オンラインでも質の高いメンタリングや実践課題があれ�
 
 ## あわせて読みたい
 
+- [Winスクールの評判・口コミは？特徴を解説](/blog/hyoban-winschool/)
 - [DMM 生成AI CAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmaicamp/)
 - [忍者CODEの評判・口コミは？特徴を解説](/blog/hyoban-ninjacode/)
 - [テックアイエスの評判・口コミは？特徴を解説](/blog/hyoban-techis/)
-- [プログラマカレッジの評判・口コミは？特徴を解説](/blog/hyoban-programmercollege/)

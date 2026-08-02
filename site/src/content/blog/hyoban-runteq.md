@@ -112,4 +112,4 @@ RUNTEQの申し込みを検討する際は、まず無料カウンセリング�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [ポテパンキャンプの評判・口コミは？特徴を解説](/blog/hyoban-potepan/)
 - [COACHTECHの評判・口コミは？特徴を解説](/blog/hyoban-coachtech/)
-- [DMM 生成AI CAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmaicamp/)
+- [Winスクールの評判・口コミは？特徴を解説](/blog/hyoban-winschool/)

@@ -284,6 +284,6 @@ draft: false
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Winスクールの評判・口コミは？特徴を解説](/blog/hyoban-winschool/)
 - [DMM 生成AI CAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmaicamp/)
 - [忍者CODEの評判・口コミは？特徴を解説](/blog/hyoban-ninjacode/)
-- [テックアイエスの評判・口コミは？特徴を解説](/blog/hyoban-techis/)
