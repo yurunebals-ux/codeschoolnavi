@@ -239,8 +239,9 @@
       "kind": "money",
       "cluster": "独学・買い切り",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-08-03T05:49:35.821Z"
     },
     {
       "slug": "osusume-hikaku-online",
@@ -555,8 +556,8 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 16,
-  "estimatedMrrUsd": 4800,
+  "publishedCount": 17,
+  "estimatedMrrUsd": 5100,
   "history": [
     {
       "date": "2026-07-24",
@@ -602,7 +603,12 @@
       "date": "2026-08-02",
       "published": 16,
       "estimatedMrrUsd": 4800
+    },
+    {
+      "date": "2026-08-03",
+      "published": 17,
+      "estimatedMrrUsd": 5100
     }
   ],
-  "lastRun": "2026-08-02T05:34:02.740Z"
+  "lastRun": "2026-08-03T05:49:35.828Z"
 }
