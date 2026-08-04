@@ -232,4 +232,4 @@ DMM 生成AI CAMPには求人紹介や面接対策などの転職支援サービ
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Aidemyの評判・口コミは？特徴を解説](/blog/hyoban-aidemy/)
 - [キカガクの評判・口コミは？特徴を解説](/blog/hyoban-kikagaku/)
-- [SkillHacksの評判・口コミは？特徴を解説](/blog/hyoban-skillhacks/)
+- [オンライン学習のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-online/)

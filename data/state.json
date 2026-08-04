@@ -255,8 +255,9 @@
       "kind": "pillar",
       "cluster": "オンライン学習",
       "score": 89,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-08-04T05:21:06.171Z"
     },
     {
       "slug": "osusume-hikaku-hosho",
@@ -556,8 +557,8 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 17,
-  "estimatedMrrUsd": 5100,
+  "publishedCount": 18,
+  "estimatedMrrUsd": 5400,
   "history": [
     {
       "date": "2026-07-24",
@@ -608,7 +609,12 @@
       "date": "2026-08-03",
       "published": 17,
       "estimatedMrrUsd": 5100
+    },
+    {
+      "date": "2026-08-04",
+      "published": 18,
+      "estimatedMrrUsd": 5400
     }
   ],
-  "lastRun": "2026-08-03T05:49:35.828Z"
+  "lastRun": "2026-08-04T05:21:06.175Z"
 }
