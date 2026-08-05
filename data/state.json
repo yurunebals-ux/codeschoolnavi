@@ -270,8 +270,9 @@
       "kind": "pillar",
       "cluster": "転職保証付き",
       "score": 89,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-08-05T05:21:03.585Z"
     },
     {
       "slug": "osusume-hikaku-tenshoku",
@@ -557,8 +558,8 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 18,
-  "estimatedMrrUsd": 5400,
+  "publishedCount": 19,
+  "estimatedMrrUsd": 5700,
   "history": [
     {
       "date": "2026-07-24",
@@ -614,7 +615,12 @@
       "date": "2026-08-04",
       "published": 18,
       "estimatedMrrUsd": 5400
+    },
+    {
+      "date": "2026-08-05",
+      "published": 19,
+      "estimatedMrrUsd": 5700
     }
   ],
-  "lastRun": "2026-08-04T05:21:06.175Z"
+  "lastRun": "2026-08-05T05:21:03.593Z"
 }
