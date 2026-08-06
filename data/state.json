@@ -286,8 +286,9 @@
       "kind": "pillar",
       "cluster": "転職特化",
       "score": 89,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-08-06T05:23:22.692Z"
     },
     {
       "slug": "osusume-hikaku-mtm",
@@ -558,8 +559,8 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 19,
-  "estimatedMrrUsd": 5700,
+  "publishedCount": 20,
+  "estimatedMrrUsd": 6000,
   "history": [
     {
       "date": "2026-07-24",
@@ -620,7 +621,12 @@
       "date": "2026-08-05",
       "published": 19,
       "estimatedMrrUsd": 5700
+    },
+    {
+      "date": "2026-08-06",
+      "published": 20,
+      "estimatedMrrUsd": 6000
     }
   ],
-  "lastRun": "2026-08-05T05:21:03.593Z"
+  "lastRun": "2026-08-06T05:23:22.700Z"
 }

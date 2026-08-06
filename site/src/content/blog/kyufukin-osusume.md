@@ -115,7 +115,7 @@ A. オンラインでも質の高いメンタリングや実践課題があれ�
 
 ## あわせて読みたい
 
+- [転職特化のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-tenshoku/)
 - [転職保証付きのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-hosho/)
 - [オンライン学習のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-online/)
 - [SkillHacksの評判・口コミは？特徴を解説](/blog/hyoban-skillhacks/)
-- [Winスクールの評判・口コミは？特徴を解説](/blog/hyoban-winschool/)
