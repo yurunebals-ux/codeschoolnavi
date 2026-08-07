@@ -301,8 +301,9 @@
       "kind": "pillar",
       "cluster": "マンツーマン指導",
       "score": 89,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-08-07T04:30:54.438Z"
     },
     {
       "slug": "osusume-hikaku-ai",
@@ -559,8 +560,8 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 20,
-  "estimatedMrrUsd": 6000,
+  "publishedCount": 21,
+  "estimatedMrrUsd": 6300,
   "history": [
     {
       "date": "2026-07-24",
@@ -626,7 +627,12 @@
       "date": "2026-08-06",
       "published": 20,
       "estimatedMrrUsd": 6000
+    },
+    {
+      "date": "2026-08-07",
+      "published": 21,
+      "estimatedMrrUsd": 6300
     }
   ],
-  "lastRun": "2026-08-06T05:23:22.700Z"
+  "lastRun": "2026-08-07T04:30:54.444Z"
 }
