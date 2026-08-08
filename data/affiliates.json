@@ -49,7 +49,7 @@
       "moshimo_status": "提携中(2026-08-07確認)",
       "moshimo_promotion_id": "6813",
       "affiliate_url": "https://af.moshimo.com/af/c/click?a_id=5712676&p_id=6813&pc_id=19496&pl_id=90565",
-      "todo": "公式 uzuz-college.jp が料金非公開。裏取り後に tools へ追加"
+      "todo": "解消済み(2026-08-07): 公式で料金を裏取りし tools へ昇格した"
     },
     {
       "name": "AddedPallas（無料カウンセリング）",
@@ -63,7 +63,7 @@
       "moshimo_status": "提携中(2026-08-07確認)",
       "moshimo_promotion_id": "7180",
       "affiliate_url": "https://af.moshimo.com/af/c/click?a_id=5712684&p_id=7180&pc_id=20561&pl_id=90335",
-      "todo": "公式 techmeets.jp が料金を公開していないため、料金の裏取りができるまで tools へ追加しない（景表法対応）"
+      "todo": "解消済み(2026-08-07): 公式で料金を裏取りし tools へ昇格した"
     },
     {
       "name": "SiiD（社会人向けAIスクール 個別説明会）",
@@ -438,6 +438,52 @@
       "job_support": "―",
       "refund": "―",
       "portfolio": "あり(自作サービス)",
+      "format": "オンライン"
+    },
+    {
+      "id": "techmeets",
+      "name": "techmeets",
+      "category": "オンライン学習",
+      "categoryId": "online",
+      "reward_yen": 10000,
+      "cookie_days": 30,
+      "asp": "もしも",
+      "moshimo_status": "提携中(2026-08-07確認)",
+      "moshimo_promotion_id": "7180",
+      "reward_note": "無料カウンセリング着座 10,000円。審査あり・本人NG",
+      "affiliate_url": "https://af.moshimo.com/af/c/click?a_id=5712684&p_id=7180&pc_id=20561&pl_id=90335",
+      "official_url": "https://techmeets.jp/",
+      "one_liner": "実案件ベースで学ぶオンラインスクール。3プラン制で目的に合わせやすい。",
+      "price_from_yen": 165000,
+      "price_note": "ライト165,000円/スタンダード330,000円/エキスパート550,000円(いずれも税込)。2026-08-07 公式サイトで確認",
+      "period": "プランにより異なる",
+      "langs": "Web開発",
+      "job_support": "―",
+      "refund": "なし",
+      "portfolio": "あり(実案件)",
+      "format": "オンライン"
+    },
+    {
+      "id": "uzuzcollege",
+      "name": "ウズウズカレッジ",
+      "category": "資格・就職支援",
+      "categoryId": "tenshoku",
+      "reward_yen": 11000,
+      "cookie_days": 30,
+      "asp": "もしも",
+      "moshimo_status": "提携中(2026-08-07確認)",
+      "moshimo_promotion_id": "6813",
+      "reward_note": "有料コースの無料カウンセリング参加 11,000円。審査あり・本人NG",
+      "affiliate_url": "https://af.moshimo.com/af/c/click?a_id=5712676&p_id=6813&pc_id=19496&pl_id=90565",
+      "official_url": "https://uzuz-college.jp/",
+      "one_liner": "CCNA・AWSなど資格と就職支援を両立するITスクール。個別指導型。",
+      "price_from_yen": 220000,
+      "price_note": "CCNAコース220,000円(税込)・約1ヶ月。コースにより異なる。2026-08-07 公式サイトで確認。広告リンクの着地はAWSコースLP",
+      "period": "約1ヶ月〜(コースによる)",
+      "langs": "ネットワーク/クラウド(CCNA/AWS)",
+      "job_support": "あり",
+      "refund": "なし",
+      "portfolio": "―",
       "format": "オンライン"
     }
   ],

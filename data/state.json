@@ -1,6 +1,45 @@
 {
   "keywords": [
     {
+      "slug": "hyoban-uzuzcollege",
+      "keyword": "ウズウズカレッジの評判・口コミは？特徴を解説",
+      "template": "money:review",
+      "tools": [
+        "uzuzcollege"
+      ],
+      "kind": "money",
+      "cluster": "資格・就職支援",
+      "score": 95,
+      "status": "queued",
+      "createdAt": "2026-08-07T03:00:00.000Z"
+    },
+    {
+      "slug": "hyoban-techmeets",
+      "keyword": "techmeetsの評判・口コミは？特徴を解説",
+      "template": "money:review",
+      "tools": [
+        "techmeets"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 95,
+      "status": "queued",
+      "createdAt": "2026-08-07T03:00:00.000Z"
+    },
+    {
+      "slug": "hyoban-fjord",
+      "keyword": "フィヨルドブートキャンプの評判・口コミは？特徴を解説",
+      "template": "money:review",
+      "tools": [
+        "fjord"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 95,
+      "status": "queued",
+      "createdAt": "2026-08-07T03:00:00.000Z"
+    },
+    {
       "slug": "kyufukin-osusume",
       "keyword": "給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説",
       "template": "pillar:subsidy",
