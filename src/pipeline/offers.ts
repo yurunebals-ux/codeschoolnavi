@@ -66,6 +66,14 @@ function labelFor(t: Tool, sponsored: boolean): { label: string; short: string; 
       note: "相談は無料。その場で申し込む必要はありません。",
     };
   }
+  // 成果地点が「無料体験」の案件（フィヨルドの3日間無料体験など）は、そう書いたほうが実態に合う
+  if (/無料体験/.test(t.reward_note ?? "")) {
+    return {
+      label: `${t.name}の無料体験を見る`,
+      short: "無料体験を見る",
+      note: "体験は無料。期間内にやめれば料金はかかりません。",
+    };
+  }
   return { label: `${t.name}の公式サイトを見る`, short: "公式サイトを見る", note: priceNote };
 }
 
