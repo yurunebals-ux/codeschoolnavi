@@ -16,7 +16,7 @@
     "kikagaku",
     "techis"
   ],
-  "_asp_note": "【2026-08-07 更新】もしも: 提携中5件（SHIFT TERAS CAMPUS・楽天・フィヨルドブートキャンプ・techmeets・ウズウズカレッジ有料）／申請中9件（テラキャンAI・AddedPallas・SiiD・インターノウス・テックエリート・CodeCamp・キカガク・ポテパンフリーランス・ポテパンキャンプ）／否認5件（RUNTEQ×2・ウズカレIT・ウズウズIT・※RUNTEQは両プログラムとも否認）。A8: 提携中1件（SkillHacks）／審査中3件（忍者CODE・ポテパンキャンプ・DMM生成AI CAMP）／否認1件（Winスクール）。広告リンクは必ずサイト『コードスクールナビ』で発行（a8matはサイトごとに別物）。フィヨルドは tools 追加済み＝記事が生成されれば自動でCTAが付く。techmeets/ウズウズは料金非公開のため裏取りまで tools 保留。着地確認済み: FJORD → bootcamp.fjord.jp（rd_code付きLP）。",
+  "_asp_note": "【2026-08-07 更新】もしも: 提携中5件（SHIFT TERAS CAMPUS・楽天・フィヨルドブートキャンプ・techmeets・ウズウズカレッジ有料）／申請中9件（テラキャンAI・AddedPallas・SiiD・インターノウス・テックエリート・CodeCamp・キカガク・ポテパンフリーランス・ポテパンキャンプ）／否認5件（RUNTEQ×2・ウズカレIT・ウズウズIT・※RUNTEQは両プログラムとも否認）。A8: 提携中1件（SkillHacks）／審査中3件（忍者CODE・ポテパンキャンプ・DMM生成AI CAMP）／否認1件（Winスクール）。広告リンクは必ずサイト『コードスクールナビ』で発行（a8matはサイトごとに別物）。フィヨルドは tools 追加済み＝記事が生成されれば自動でCTAが付く。techmeets/ウズウズは料金非公開のため裏取りまで tools 保留。着地確認済み: FJORD → bootcamp.fjord.jp（rd_code付きLP）。【2026-08-07追記】侍エンジニア: もしもで発見し2件申請中(本体10,000円CPA+テラコヤ)。afbにも案件あり(面談完了10,186円)が口座無し。クリプテックアカデミア(無料体験8,000円・大学生限定)ももしもに存在、未申請の候補。",
   "a8_applied_ids": [
     "ninjacode",
     "potepan",
@@ -200,7 +200,7 @@
       "refund": "なし",
       "portfolio": "あり",
       "format": "オンライン",
-      "note_moshimo": "もしもの2プログラム（Claude Codeコース7595/通常7000円）はどちらも否認（2026-08-07確認）。A8等の代替経路を探すこと。"
+      "note_moshimo": "もしも2プログラムとも否認(2026-08-07確認)。A8は取り扱い0件(2026-08-07検索)。2021年頃はA8にあったが現在は撤退している模様。現状RUNTEQの収益化経路は無し。選択肢: ①サイト成長後にもしもへ再申請 ②afb等の新規ASP口座(オーナー作業) ③記事は回遊・専門性用として維持"
     },
     {
       "id": "potepan",
@@ -247,7 +247,7 @@
       "name": "侍エンジニア",
       "category": "マンツーマン指導",
       "categoryId": "mtm",
-      "reward_yen": 30000,
+      "reward_yen": 1000,
       "cookie_days": 30,
       "affiliate_url": "https://px.a8.net/REPLACE-WITH-YOUR-SAMURAI-LINK",
       "official_url": "https://www.sejuku.net/",
@@ -258,7 +258,10 @@
       "job_support": "あり",
       "refund": "あり(条件付)",
       "portfolio": "あり",
-      "format": "オンライン"
+      "format": "オンライン",
+      "asp": "もしも",
+      "moshimo_status": "申請中(2026-08-07。GSC最多表示クエリ「侍エンジニア 口コミ」の収益化のため申請)",
+      "reward_note": "SAMURAI ENGINEER無料カウンセリング: 面談実施完了10,000円/予約完了1,000円/本申込あり。審査あり・本人NG・再訪問90日。別途SAMURAI TERAKOYA(無料体験登録1,000円)も同日申請中"
     },
     {
       "id": "aidemy",
