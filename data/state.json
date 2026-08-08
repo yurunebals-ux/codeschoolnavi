@@ -10,8 +10,9 @@
       "kind": "money",
       "cluster": "資格・就職支援",
       "score": 95,
-      "status": "queued",
-      "createdAt": "2026-08-07T03:00:00.000Z"
+      "status": "published",
+      "createdAt": "2026-08-07T03:00:00.000Z",
+      "publishedAt": "2026-08-08T03:39:21.720Z"
     },
     {
       "slug": "hyoban-techmeets",
@@ -599,8 +600,8 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 21,
-  "estimatedMrrUsd": 6300,
+  "publishedCount": 22,
+  "estimatedMrrUsd": 6600,
   "history": [
     {
       "date": "2026-07-24",
@@ -671,7 +672,12 @@
       "date": "2026-08-07",
       "published": 21,
       "estimatedMrrUsd": 6300
+    },
+    {
+      "date": "2026-08-08",
+      "published": 22,
+      "estimatedMrrUsd": 6600
     }
   ],
-  "lastRun": "2026-08-07T04:30:54.444Z"
+  "lastRun": "2026-08-08T03:39:21.728Z"
 }

@@ -107,6 +107,22 @@
       "label": "フィヨルドブートキャンプの無料体験を見る",
       "short": "無料体験を見る",
       "note": "体験は無料。期間内にやめれば料金はかかりません。"
+    },
+    "techmeets": {
+      "name": "techmeets",
+      "href": "https://af.moshimo.com/af/c/click?a_id=5712684&p_id=7180&pc_id=20561&pl_id=90335",
+      "sponsored": true,
+      "label": "techmeetsの無料カウンセリングを見る",
+      "short": "無料カウンセリングを見る",
+      "note": "相談は無料。その場で申し込む必要はありません。"
+    },
+    "uzuzcollege": {
+      "name": "ウズウズカレッジ",
+      "href": "https://af.moshimo.com/af/c/click?a_id=5712676&p_id=6813&pc_id=19496&pl_id=90565",
+      "sponsored": true,
+      "label": "ウズウズカレッジの無料カウンセリングを見る",
+      "short": "無料カウンセリングを見る",
+      "note": "相談は無料。その場で申し込む必要はありません。"
     }
   }
 }
