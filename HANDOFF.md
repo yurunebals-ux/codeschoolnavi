@@ -374,3 +374,30 @@ SkillHacks の広告リンクは `data/affiliates.json` に反映済み（着地
 
 > 判断基準として残す: **料金を公式で裏取りできないスクールは、提携済みでも比較表・記事に載せない**（景表法）。
 > リンクだけ moshimo_target_programs に保持し、裏取りできた時点で tools へ昇格させる。
+
+## 15. 2026-08-08 ドメイン停止事故と復旧・キュー優先度操作
+
+### 事故: clientHold でサイト全落ち（8/7夜〜8/8朝）
+
+- 症状: codeschoolnavi.com が NXDOMAIN（dns.google/resolve で Status:3）。GitHub Pages は無事。
+- 原因: **ムームードメインの ICANN WHOIS 情報認証メールを15日間未確認 → レジストラが clientHold**。
+  lookup.icann.org で `clientHold` ステータスを確認して切り分けた。
+- 復旧: オーナーが認証メールのリンクをクリック → **翌朝（8/8 02:55 UTC）に解除を確認**。
+  復旧テスト: `dns.google/resolve?name=codeschoolnavi.com&type=A` が Status:0 ＋ GitHub Pages の4つのAレコード。
+  本番トップ・記事ページ・A8リンク・PR表記まで目視相当で確認済み。
+- **再発防止: レジストラからのメール（特にWHOIS認証・更新通知）は即対応。** ドメインは年次更新なので
+  来年の更新期限もオーナーのカレンダーに入れてもらうこと。
+
+### 2026-08-08 の対応（オーナー承認済み A〜D）
+
+| 項目 | 結果 |
+|---|---|
+| A: 記事キュー優先度 | state.json の keywords **先頭**に hyoban-uzuzcollege / hyoban-techmeets / hyoban-fjord を挿入（generateNext は配列順で先頭の queued を拾う）。提携済みリンク付き記事が3日連続で出る |
+| B: 料金裏取り | ウズウズカレッジ=CCNAコース220,000円税込（uzuz-college.jp/ccna/）、techmeets=165,000/330,000/550,000円税込（techmeets.jp）。**両方 tools へ昇格**（§14の保留を解除） |
+| C: クリプテックアカデミア | もしもで検索（`?words=`）→ 提携申請済み（申請中） |
+| D: GSC 未登録6件 | 3件=リダイレクト（正常）、2件=検出未登録、1件=クロール済未登録。**対応不要**（新規サイトの通常挙動） |
+
+- offers.json 再生成: 15件中 **提携済み5件**（dmmwebcamp / skillhacks / fjord / techmeets / uzuzcollege）。
+- ビルド 27ページ成功・プレースホルダ0・rel漏れ0を確認済み。
+- 申請中の棚: もしも12件（侍×2・クリプテック含む）＋ A8 3件（忍者CODE・ポテパン・DMM生成AI）。
+  承認が来たら affiliates.json の affiliate_url を1行差し替えるだけ。
