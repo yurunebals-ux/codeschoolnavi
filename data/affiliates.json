@@ -16,7 +16,7 @@
     "kikagaku",
     "techis"
   ],
-  "_asp_note": "主力ASPは【もしもアフィリエイト】。プログラミングスクール43件と豊富で、無料相談/無料カウンセリング参加のCPAが¥7,000〜14,000と高い（RUNTEQ7000/インターノウス14000/テックエリート12000/ウズウズ11000/AddedPallas10000/techmeets10000/SiiD8000/FJORD5000）。ただし、もしもの提携申請には『審査を通した登録メディア(サイト)』が必須。2026-07-28時点: メディア『コードスクールナビ』は登録済み、提携中2件（SHIFT TERAS CAMPUS・楽天）／申請中15件／否認1件（ウズウズIT）。【A8は要注意】2026-07-28にログインして確認したところ、記録にあった『5件申請中(2026-07-23)』は事実ではなかった。口座(メディアID a26040297282 / サイト名 salary_money30)の申込中プログラムは0件、参加中6件はすべてデフォルトか無関係な案件、解除・終了・新着承認も0件。オーナーに確認済みで他のA8アカウントは無く、申請は送信されていなかった。同日、A8にサイト「コードスクールナビ」(ウェブサイトID 002)を登録し5件を申請し直した。SkillHacksは即時提携で提携完了、忍者CODE/ポテパン/DMM生成AI CAMP/Winスクールは審査中。【重要】A8の広告リンク(a8mat)は登録サイトごとに異なる。必ず「コードスクールナビ」を選んで発行すること。",
+  "_asp_note": "【2026-08-07 更新】もしも: 提携中5件（SHIFT TERAS CAMPUS・楽天・フィヨルドブートキャンプ・techmeets・ウズウズカレッジ有料）／申請中9件（テラキャンAI・AddedPallas・SiiD・インターノウス・テックエリート・CodeCamp・キカガク・ポテパンフリーランス・ポテパンキャンプ）／否認5件（RUNTEQ×2・ウズカレIT・ウズウズIT・※RUNTEQは両プログラムとも否認）。A8: 提携中1件（SkillHacks）／審査中3件（忍者CODE・ポテパンキャンプ・DMM生成AI CAMP）／否認1件（Winスクール）。広告リンクは必ずサイト『コードスクールナビ』で発行（a8matはサイトごとに別物）。フィヨルドは tools 追加済み＝記事が生成されれば自動でCTAが付く。techmeets/ウズウズは料金非公開のため裏取りまで tools 保留。着地確認済み: FJORD → bootcamp.fjord.jp（rd_code付きLP）。",
   "a8_applied_ids": [
     "ninjacode",
     "potepan",
@@ -29,7 +29,8 @@
       "name": "RUNTEQ（Claude Codeコース 無料キャリア相談）",
       "moshimo_promotion_id": "7595",
       "reward_yen": 7000,
-      "type": "無料相談CPA"
+      "type": "無料相談CPA",
+      "moshimo_status": "否認(2026-08-07確認)"
     },
     {
       "name": "インターノウス（未経験ITエンジニア転職 無料面談）",
@@ -44,7 +45,11 @@
     {
       "name": "ウズウズカレッジ（就職支援型 無料カウンセリング）",
       "reward_yen": 11000,
-      "type": "無料相談CPA"
+      "type": "無料相談CPA",
+      "moshimo_status": "提携中(2026-08-07確認)",
+      "moshimo_promotion_id": "6813",
+      "affiliate_url": "https://af.moshimo.com/af/c/click?a_id=5712676&p_id=6813&pc_id=19496&pl_id=90565",
+      "todo": "公式 uzuz-college.jp が料金非公開。裏取り後に tools へ追加"
     },
     {
       "name": "AddedPallas（無料カウンセリング）",
@@ -54,7 +59,11 @@
     {
       "name": "techmeets（無料カウンセリング着座）",
       "reward_yen": 10000,
-      "type": "無料相談CPA"
+      "type": "無料相談CPA",
+      "moshimo_status": "提携中(2026-08-07確認)",
+      "moshimo_promotion_id": "7180",
+      "affiliate_url": "https://af.moshimo.com/af/c/click?a_id=5712684&p_id=7180&pc_id=20561&pl_id=90335",
+      "todo": "公式 techmeets.jp が料金を公開していないため、料金の裏取りができるまで tools へ追加しない（景表法対応）"
     },
     {
       "name": "SiiD（社会人向けAIスクール 個別説明会）",
@@ -190,7 +199,8 @@
       "job_support": "あり",
       "refund": "なし",
       "portfolio": "あり",
-      "format": "オンライン"
+      "format": "オンライン",
+      "note_moshimo": "もしもの2プログラム（Claude Codeコース7595/通常7000円）はどちらも否認（2026-08-07確認）。A8等の代替経路を探すこと。"
     },
     {
       "id": "potepan",
@@ -200,7 +210,7 @@
       "reward_yen": 30000,
       "cookie_days": 90,
       "asp": "A8",
-      "a8_status": "審査中（2026-07-28申請・サイト=コードスクールナビ）",
+      "a8_status": "審査中（2026-07-28申請・2026-08-07時点も申込中に残存）",
       "a8_program_id": "s00000017938002",
       "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-POTEPAN",
       "official_url": "https://camp.potepan.com/",
@@ -330,7 +340,7 @@
       "reward_yen": 17500,
       "cookie_days": 90,
       "asp": "A8",
-      "a8_status": "審査中（2026-07-28申請・サイト=コードスクールナビ）",
+      "a8_status": "審査中（2026-07-28申請・2026-08-07時点も申込中に残存）",
       "a8_program_id": "s00000025234001",
       "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-NINJACODE",
       "one_liner": "未経験からプロを目指すオンライン特化。無料相談/体験あり。",
@@ -350,7 +360,7 @@
       "reward_yen": 7519,
       "cookie_days": 90,
       "asp": "A8",
-      "a8_status": "審査中（2026-07-28申請・サイト=コードスクールナビ）",
+      "a8_status": "審査中（2026-07-28申請・2026-08-07時点も申込中に残存）",
       "a8_program_id": "s00000027398001",
       "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-DMMAICAMP",
       "one_liner": "ChatGPT等の生成AIを実務に活かす学び放題。無料セミナーあり。",
@@ -370,7 +380,7 @@
       "reward_yen": 10000,
       "cookie_days": 90,
       "asp": "A8",
-      "a8_status": "審査中（2026-07-28申請・サイト=コードスクールナビ）",
+      "a8_status": "否認（2026-08-07確認。申込中・参加中のどちらにも無い）",
       "a8_program_id": "s00000023621001",
       "affiliate_url": "https://px.a8.net/PENDING-A8-APPROVAL-WINSCHOOL",
       "one_liner": "資格と仕事に強い個人レッスン。全国に教室、オンラインも可。",
@@ -403,6 +413,29 @@
       "format": "オンライン",
       "official_url": "https://brain-holdings.com/skillhacks/",
       "reward_note": "A8即時提携。広告リンクは登録サイト「コードスクールナビ」で発行したもの（a8matはサイトごとに異なる。salary_money30用のリンクを貼ると成果が別サイトに計上される）"
+    },
+    {
+      "id": "fjord",
+      "name": "フィヨルドブートキャンプ",
+      "category": "オンライン学習",
+      "categoryId": "online",
+      "reward_yen": 5000,
+      "cookie_days": 30,
+      "asp": "もしも",
+      "moshimo_status": "提携中(2026-08-07確認)",
+      "moshimo_promotion_id": "7462",
+      "reward_note": "無料体験(3日間)の申込み完了 5,000円 ※専用リンク経由での申込が成果条件",
+      "affiliate_url": "https://af.moshimo.com/af/c/click?a_id=5712687&p_id=7462&pc_id=21548&pl_id=93643",
+      "official_url": "https://bootcamp.fjord.jp/",
+      "one_liner": "月額32,780円のサブスク型。Ruby on Railsとチーム開発を現役エンジニアの指導で学ぶ。",
+      "price_from_yen": 32780,
+      "price_note": "月額32,780円(税込)・入会金なし・3日間の無料体験あり（2026-08-07 公式サイトで確認）。月額制なので総額は学習期間に依存する",
+      "period": "月額制",
+      "langs": "Ruby on Rails/JS/TS",
+      "job_support": "―",
+      "refund": "―",
+      "portfolio": "あり(自作サービス)",
+      "format": "オンライン"
     }
   ],
   "comparison_pairs": [
