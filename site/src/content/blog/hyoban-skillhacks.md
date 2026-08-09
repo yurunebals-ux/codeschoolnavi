@@ -193,6 +193,6 @@ SkillHacksは返金保証に対応していません。購入前に教材内容�
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [techmeetsの評判・口コミは？特徴を解説](/blog/hyoban-techmeets/)
 - [ウズウズカレッジの評判・口コミは？特徴を解説](/blog/hyoban-uzuzcollege/)
 - [マンツーマン指導のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-mtm/)
-- [転職特化のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-tenshoku/)
