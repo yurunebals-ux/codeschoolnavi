@@ -218,4 +218,4 @@ SHIFT TERAS CAMPUSとテックキャンプの転職保証は、指定期間内�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [DMM WEBCAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmwebcamp/)
 - [テックキャンプの評判・口コミは？特徴を解説](/blog/hyoban-techcamp/)
-- [techmeetsの評判・口コミは？特徴を解説](/blog/hyoban-techmeets/)
+- [フィヨルドブートキャンプの評判・口コミは？特徴を解説](/blog/hyoban-fjord/)

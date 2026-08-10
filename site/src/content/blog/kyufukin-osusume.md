@@ -115,7 +115,7 @@ A. オンラインでも質の高いメンタリングや実践課題があれ�
 
 ## あわせて読みたい
 
+- [フィヨルドブートキャンプの評判・口コミは？特徴を解説](/blog/hyoban-fjord/)
 - [techmeetsの評判・口コミは？特徴を解説](/blog/hyoban-techmeets/)
 - [ウズウズカレッジの評判・口コミは？特徴を解説](/blog/hyoban-uzuzcollege/)
 - [マンツーマン指導のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-mtm/)
-- [転職特化のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-tenshoku/)

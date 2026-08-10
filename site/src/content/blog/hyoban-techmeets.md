@@ -186,6 +186,6 @@ techmeetsは転職支援サービスを提供していません。転職を目�
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [フィヨルドブートキャンプの評判・口コミは？特徴を解説](/blog/hyoban-fjord/)
 - [TechAcademyの評判・口コミは？特徴を解説](/blog/hyoban-techacademy/)
 - [CodeCampの評判・口コミは？特徴を解説](/blog/hyoban-codecamp/)
-- [忍者CODEの評判・口コミは？特徴を解説](/blog/hyoban-ninjacode/)
