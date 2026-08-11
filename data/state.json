@@ -359,8 +359,9 @@
       "kind": "pillar",
       "cluster": "AI・データ分析",
       "score": 89,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-08-11T03:50:08.261Z"
     },
     {
       "slug": "osusume-hikaku-free",
@@ -602,8 +603,8 @@
       "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
-  "publishedCount": 24,
-  "estimatedMrrUsd": 7200,
+  "publishedCount": 25,
+  "estimatedMrrUsd": 7500,
   "history": [
     {
       "date": "2026-07-24",
@@ -689,7 +690,12 @@
       "date": "2026-08-10",
       "published": 24,
       "estimatedMrrUsd": 7200
+    },
+    {
+      "date": "2026-08-11",
+      "published": 25,
+      "estimatedMrrUsd": 7500
     }
   ],
-  "lastRun": "2026-08-10T04:02:39.935Z"
+  "lastRun": "2026-08-11T03:50:08.274Z"
 }

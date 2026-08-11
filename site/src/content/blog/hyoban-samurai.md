@@ -255,4 +255,4 @@ draft: false
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [テックアイエスの評判・口コミは？特徴を解説](/blog/hyoban-techis/)
 - [マンツーマン指導のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-mtm/)
-- [フィヨルドブートキャンプの評判・口コミは？特徴を解説](/blog/hyoban-fjord/)
+- [AI・データ分析のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-ai/)
