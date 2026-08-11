@@ -1,6 +1,375 @@
 {
   "keywords": [
     {
+      "slug": "ryokin-uzuzcollege",
+      "keyword": "ウズウズカレッジの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "uzuzcollege"
+      ],
+      "kind": "money",
+      "cluster": "資格・就職支援",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-08-08T04:00:00.000Z"
+    },
+    {
+      "slug": "yametoke-uzuzcollege",
+      "keyword": "ウズウズカレッジはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "uzuzcollege"
+      ],
+      "kind": "money",
+      "cluster": "資格・就職支援",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-08-08T04:00:00.000Z"
+    },
+    {
+      "slug": "ryokin-skillhacks",
+      "keyword": "SkillHacksの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "skillhacks"
+      ],
+      "kind": "money",
+      "cluster": "独学・買い切り",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-08-08T04:00:00.000Z"
+    },
+    {
+      "slug": "yametoke-skillhacks",
+      "keyword": "SkillHacksはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "skillhacks"
+      ],
+      "kind": "money",
+      "cluster": "独学・買い切り",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-08-08T04:00:00.000Z"
+    },
+    {
+      "slug": "ryokin-samurai",
+      "keyword": "侍エンジニアの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "samurai"
+      ],
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-08-08T04:00:00.000Z"
+    },
+    {
+      "slug": "yametoke-samurai",
+      "keyword": "侍エンジニアはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "samurai"
+      ],
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-08-08T04:00:00.000Z"
+    },
+    {
+      "slug": "ryokin-fjord",
+      "keyword": "フィヨルドブートキャンプの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "fjord"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-08-08T04:00:00.000Z"
+    },
+    {
+      "slug": "yametoke-fjord",
+      "keyword": "フィヨルドブートキャンプはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "fjord"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-08-08T04:00:00.000Z"
+    },
+    {
+      "slug": "imiaru-erabikata",
+      "keyword": "プログラミングスクールは意味ない？やめとけと言われる理由と後悔しない選び方",
+      "template": "pillar:doubt",
+      "tools": [
+        "techacademy",
+        "codecamp",
+        "dmmwebcamp",
+        "techcamp",
+        "runteq",
+        "potepan"
+      ],
+      "kind": "pillar",
+      "cluster": "選び方",
+      "score": 89,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "osusume-hikaku-dokugaku",
+      "keyword": "独学・買い切りのプログラミングスクールおすすめ比較",
+      "template": "pillar:osusume",
+      "tools": [
+        "skillhacks"
+      ],
+      "kind": "pillar",
+      "cluster": "独学・買い切り",
+      "score": 89,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "ryokin-dmmwebcamp",
+      "keyword": "DMM WEBCAMPの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "dmmwebcamp"
+      ],
+      "kind": "money",
+      "cluster": "転職保証付き",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "yametoke-dmmwebcamp",
+      "keyword": "DMM WEBCAMPはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "dmmwebcamp"
+      ],
+      "kind": "money",
+      "cluster": "転職保証付き",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "ryokin-techmeets",
+      "keyword": "techmeetsの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "techmeets"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-08-08T04:00:00.000Z"
+    },
+    {
+      "slug": "yametoke-techmeets",
+      "keyword": "techmeetsはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "techmeets"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-08-08T04:00:00.000Z"
+    },
+    {
+      "slug": "ryokin-techacademy",
+      "keyword": "TechAcademyの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "techacademy"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "yametoke-techacademy",
+      "keyword": "TechAcademyはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "techacademy"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "ryokin-codecamp",
+      "keyword": "CodeCampの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "codecamp"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "yametoke-codecamp",
+      "keyword": "CodeCampはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "codecamp"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "ryokin-techcamp",
+      "keyword": "テックキャンプの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "techcamp"
+      ],
+      "kind": "money",
+      "cluster": "転職保証付き",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "yametoke-techcamp",
+      "keyword": "テックキャンプはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "techcamp"
+      ],
+      "kind": "money",
+      "cluster": "転職保証付き",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "ryokin-potepan",
+      "keyword": "ポテパンキャンプの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "potepan"
+      ],
+      "kind": "money",
+      "cluster": "転職特化",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "yametoke-potepan",
+      "keyword": "ポテパンキャンプはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "potepan"
+      ],
+      "kind": "money",
+      "cluster": "転職特化",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "ryokin-coachtech",
+      "keyword": "COACHTECHの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "coachtech"
+      ],
+      "kind": "money",
+      "cluster": "転職特化",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "yametoke-coachtech",
+      "keyword": "COACHTECHはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "coachtech"
+      ],
+      "kind": "money",
+      "cluster": "転職特化",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "osusume-hikaku-free",
+      "keyword": "無料スクールのプログラミングスクールおすすめ比較",
+      "template": "pillar:osusume",
+      "tools": [
+        "programmercollege"
+      ],
+      "kind": "pillar",
+      "cluster": "無料スクール",
+      "score": 89,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "osusume-hikaku-tsugaku",
+      "keyword": "通学・オンラインのプログラミングスクールおすすめ比較",
+      "template": "pillar:osusume",
+      "tools": [
+        "winschool"
+      ],
+      "kind": "pillar",
+      "cluster": "通学・オンライン",
+      "score": 89,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "ryokin-runteq",
+      "keyword": "RUNTEQの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "runteq"
+      ],
+      "kind": "money",
+      "cluster": "転職特化",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
+      "slug": "yametoke-runteq",
+      "keyword": "RUNTEQはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "runteq"
+      ],
+      "kind": "money",
+      "cluster": "転職特化",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-07-24T10:36:35.550Z"
+    },
+    {
       "slug": "hyoban-uzuzcollege",
       "keyword": "ウズウズカレッジの評判・口コミは？特徴を解説",
       "template": "money:review",
@@ -362,245 +731,6 @@
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
       "publishedAt": "2026-08-11T03:50:08.261Z"
-    },
-    {
-      "slug": "osusume-hikaku-free",
-      "keyword": "無料スクールのプログラミングスクールおすすめ比較",
-      "template": "pillar:osusume",
-      "tools": [
-        "programmercollege"
-      ],
-      "kind": "pillar",
-      "cluster": "無料スクール",
-      "score": 89,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "osusume-hikaku-tsugaku",
-      "keyword": "通学・オンラインのプログラミングスクールおすすめ比較",
-      "template": "pillar:osusume",
-      "tools": [
-        "winschool"
-      ],
-      "kind": "pillar",
-      "cluster": "通学・オンライン",
-      "score": 89,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "osusume-hikaku-dokugaku",
-      "keyword": "独学・買い切りのプログラミングスクールおすすめ比較",
-      "template": "pillar:osusume",
-      "tools": [
-        "skillhacks"
-      ],
-      "kind": "pillar",
-      "cluster": "独学・買い切り",
-      "score": 89,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "imiaru-erabikata",
-      "keyword": "プログラミングスクールは意味ない？やめとけと言われる理由と後悔しない選び方",
-      "template": "pillar:doubt",
-      "tools": [
-        "techacademy",
-        "codecamp",
-        "dmmwebcamp",
-        "techcamp",
-        "runteq",
-        "potepan"
-      ],
-      "kind": "pillar",
-      "cluster": "選び方",
-      "score": 89,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "ryokin-techacademy",
-      "keyword": "TechAcademyの料金は高い？他社と比較",
-      "template": "money:pricing",
-      "tools": [
-        "techacademy"
-      ],
-      "kind": "money",
-      "cluster": "オンライン学習",
-      "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "yametoke-techacademy",
-      "keyword": "TechAcademyはやめとけ？評判と後悔しない判断基準",
-      "template": "money:doubt",
-      "tools": [
-        "techacademy"
-      ],
-      "kind": "money",
-      "cluster": "オンライン学習",
-      "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "ryokin-codecamp",
-      "keyword": "CodeCampの料金は高い？他社と比較",
-      "template": "money:pricing",
-      "tools": [
-        "codecamp"
-      ],
-      "kind": "money",
-      "cluster": "オンライン学習",
-      "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "yametoke-codecamp",
-      "keyword": "CodeCampはやめとけ？評判と後悔しない判断基準",
-      "template": "money:doubt",
-      "tools": [
-        "codecamp"
-      ],
-      "kind": "money",
-      "cluster": "オンライン学習",
-      "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "ryokin-dmmwebcamp",
-      "keyword": "DMM WEBCAMPの料金は高い？他社と比較",
-      "template": "money:pricing",
-      "tools": [
-        "dmmwebcamp"
-      ],
-      "kind": "money",
-      "cluster": "転職保証付き",
-      "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "yametoke-dmmwebcamp",
-      "keyword": "DMM WEBCAMPはやめとけ？評判と後悔しない判断基準",
-      "template": "money:doubt",
-      "tools": [
-        "dmmwebcamp"
-      ],
-      "kind": "money",
-      "cluster": "転職保証付き",
-      "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "ryokin-techcamp",
-      "keyword": "テックキャンプの料金は高い？他社と比較",
-      "template": "money:pricing",
-      "tools": [
-        "techcamp"
-      ],
-      "kind": "money",
-      "cluster": "転職保証付き",
-      "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "yametoke-techcamp",
-      "keyword": "テックキャンプはやめとけ？評判と後悔しない判断基準",
-      "template": "money:doubt",
-      "tools": [
-        "techcamp"
-      ],
-      "kind": "money",
-      "cluster": "転職保証付き",
-      "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "ryokin-runteq",
-      "keyword": "RUNTEQの料金は高い？他社と比較",
-      "template": "money:pricing",
-      "tools": [
-        "runteq"
-      ],
-      "kind": "money",
-      "cluster": "転職特化",
-      "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "yametoke-runteq",
-      "keyword": "RUNTEQはやめとけ？評判と後悔しない判断基準",
-      "template": "money:doubt",
-      "tools": [
-        "runteq"
-      ],
-      "kind": "money",
-      "cluster": "転職特化",
-      "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "ryokin-potepan",
-      "keyword": "ポテパンキャンプの料金は高い？他社と比較",
-      "template": "money:pricing",
-      "tools": [
-        "potepan"
-      ],
-      "kind": "money",
-      "cluster": "転職特化",
-      "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "yametoke-potepan",
-      "keyword": "ポテパンキャンプはやめとけ？評判と後悔しない判断基準",
-      "template": "money:doubt",
-      "tools": [
-        "potepan"
-      ],
-      "kind": "money",
-      "cluster": "転職特化",
-      "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "ryokin-coachtech",
-      "keyword": "COACHTECHの料金は高い？他社と比較",
-      "template": "money:pricing",
-      "tools": [
-        "coachtech"
-      ],
-      "kind": "money",
-      "cluster": "転職特化",
-      "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
-    },
-    {
-      "slug": "yametoke-coachtech",
-      "keyword": "COACHTECHはやめとけ？評判と後悔しない判断基準",
-      "template": "money:doubt",
-      "tools": [
-        "coachtech"
-      ],
-      "kind": "money",
-      "cluster": "転職特化",
-      "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
     }
   ],
   "publishedCount": 25,
