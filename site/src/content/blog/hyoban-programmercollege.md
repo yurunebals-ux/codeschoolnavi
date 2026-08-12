@@ -284,6 +284,6 @@ draft: false
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [ウズウズカレッジの料金は高い？他社と比較](/blog/ryokin-uzuzcollege/)
 - [AI・データ分析のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-ai/)
 - [フィヨルドブートキャンプの評判・口コミは？特徴を解説](/blog/hyoban-fjord/)
-- [techmeetsの評判・口コミは？特徴を解説](/blog/hyoban-techmeets/)
