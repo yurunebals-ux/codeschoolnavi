@@ -32,6 +32,11 @@ export function checkAll(): { approved: number; rejected: number } {
   const drafted = state.keywords.filter((k) => k.status === "drafted");
   let approved = 0, rejected = 0;
 
+  // 給付金の対象講座を持つスクール。data/affiliates.json が唯一の正で、
+  // 各校の subsidy_note に「どのコースがどの区分で対象か」の裏取り結果が入っている。
+  const aff = JSON.parse(readFileSync(paths.affiliates, "utf8")) as { subsidy_ids?: string[] };
+  const subsidyIds = new Set(aff.subsidy_ids ?? []);
+
   const priorBodies: Set<string>[] = [];
   state.keywords.filter((k) => k.status === "approved" || k.status === "published").forEach((k) => {
     const p = resolve(paths.drafts, `${k.slug}.md`);
@@ -54,7 +59,32 @@ export function checkAll(): { approved: number; rejected: number } {
 
     if (/よくある質問|FAQ/i.test(md)) pts += 10; else reasons.push("FAQなし");
     if (md.includes("|")) pts += 10; // 比較表
-    if (/実質負担|給付金|還元/.test(md)) pts += 5; // 負担額の具体性（日本市場の成約要因）
+
+    // 給付金の扱い。
+    // 【なぜ条件を付けるか】以前はここが `if (/実質負担|給付金|還元/) pts += 5` の
+    // 一律加点だった。その結果、給付金の対象講座を持たないスクールの記事でも
+    // 「実質負担額◯◯円」と書けば加点され、検査が誤表示を積極的に奨励していた。
+    // 実際に公開25本中14本が、対象と確認できていない学校について割引額を計算していた。
+    const eligible = item.tools.some((id) => subsidyIds.has(id));
+    if (eligible) {
+      if (/実質負担|給付金|還元/.test(md)) pts += 5; // 負担額の具体性（日本市場の成約要因）
+    } else if (/対象ではない|対象外|対象講座はありません/.test(md)) {
+      pts += 5; // 対象外だと正直に書くことも同じだけ価値がある
+    }
+
+    // 【景表法】対象講座を持たないスクールの記事に、給付額を差し引く計算を載せない。
+    // 「◯◯円 − ◯◯円 ＝ 実質◯◯円」を見た読者は、その学校で給付が使えると受け取る。
+    // 本文のどこかに「対象か不明」と添えてあっても、具体的な金額のほうが強く残る。
+    const discountMath =
+      /[\d,]{3,}円\s*[-−–ー]\s*[\d,]{3,}円/.test(md) ||
+      /[\d,]{3,}円(?:が|の)?割引/.test(md) ||
+      /実質負担額[はがも：:]\s*[\d,]{3,}円/.test(md) ||
+      /実質[\d,]{3,}円/.test(md);
+    const subsidyContext = /給付金|教育訓練給付/.test(md);
+    const badSubsidyMath = !eligible && subsidyContext && discountMath;
+    if (badSubsidyMath) {
+      reasons.push("給付金の対象講座がないスクールなのに割引後の実質負担額を計算している（景表法）");
+    }
 
     // コンプライアンス：ステマ規制の広告表記が必須。
     const hasAd = /【?広告】?|プロモーション|ＰＲ|PR|アフィリエイト/.test(md);
@@ -97,6 +127,7 @@ export function checkAll(): { approved: number; rejected: number } {
       /OFFLINE PLACEHOLDER/.test(md) ||
       /絶対|必ず稼げる|確実に稼|日本一|100%|No\.?1|誰でも稼/i.test(md) ||
       maxSim > 0.72 ||
+      badSubsidyMath ||
       ai.score > config.pipeline.aieseMax;
 
     if (!hardBlock && pts >= config.pipeline.qualityMin) {
