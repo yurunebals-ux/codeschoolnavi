@@ -199,6 +199,6 @@ Winスクールには返金保証制度がありません。契約後のキャ�
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [SkillHacksの料金は高い？他社と比較](/blog/ryokin-skillhacks/)
 - [ウズウズカレッジはやめとけ？評判と後悔しない判断基準](/blog/yametoke-uzuzcollege/)
 - [ウズウズカレッジの料金は高い？他社と比較](/blog/ryokin-uzuzcollege/)
-- [AI・データ分析のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-ai/)
