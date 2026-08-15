@@ -52,8 +52,9 @@
       "kind": "money",
       "cluster": "独学・買い切り",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-08-08T04:00:00.000Z"
+      "status": "published",
+      "createdAt": "2026-08-08T04:00:00.000Z",
+      "publishedAt": "2026-08-15T02:56:55.112Z"
     },
     {
       "slug": "ryokin-samurai",
@@ -736,8 +737,8 @@
       "publishedAt": "2026-08-11T03:50:08.261Z"
     }
   ],
-  "publishedCount": 28,
-  "estimatedMrrUsd": 8400,
+  "publishedCount": 29,
+  "estimatedMrrUsd": 8700,
   "history": [
     {
       "date": "2026-07-24",
@@ -843,7 +844,12 @@
       "date": "2026-08-14",
       "published": 28,
       "estimatedMrrUsd": 8400
+    },
+    {
+      "date": "2026-08-15",
+      "published": 29,
+      "estimatedMrrUsd": 8700
     }
   ],
-  "lastRun": "2026-08-14T04:13:54.912Z"
+  "lastRun": "2026-08-15T02:56:55.121Z"
 }
