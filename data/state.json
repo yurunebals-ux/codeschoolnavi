@@ -66,8 +66,9 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-08-08T04:00:00.000Z"
+      "status": "published",
+      "createdAt": "2026-08-08T04:00:00.000Z",
+      "publishedAt": "2026-08-16T03:05:26.060Z"
     },
     {
       "slug": "yametoke-samurai",
@@ -737,8 +738,8 @@
       "publishedAt": "2026-08-11T03:50:08.261Z"
     }
   ],
-  "publishedCount": 29,
-  "estimatedMrrUsd": 8700,
+  "publishedCount": 30,
+  "estimatedMrrUsd": 9000,
   "history": [
     {
       "date": "2026-07-24",
@@ -849,7 +850,12 @@
       "date": "2026-08-15",
       "published": 29,
       "estimatedMrrUsd": 8700
+    },
+    {
+      "date": "2026-08-16",
+      "published": 30,
+      "estimatedMrrUsd": 9000
     }
   ],
-  "lastRun": "2026-08-15T02:56:55.121Z"
+  "lastRun": "2026-08-16T03:05:26.067Z"
 }

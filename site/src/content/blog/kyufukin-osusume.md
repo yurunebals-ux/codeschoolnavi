@@ -99,7 +99,7 @@ A. オンラインでも質の高いメンタリングや実践課題があれ�
 
 ## あわせて読みたい
 
+- [侍エンジニアの料金は高い？他社と比較](/blog/ryokin-samurai/)
 - [SkillHacksはやめとけ？評判と後悔しない判断基準](/blog/yametoke-skillhacks/)
 - [SkillHacksの料金は高い？他社と比較](/blog/ryokin-skillhacks/)
 - [ウズウズカレッジはやめとけ？評判と後悔しない判断基準](/blog/yametoke-uzuzcollege/)
-- [ウズウズカレッジの料金は高い？他社と比較](/blog/ryokin-uzuzcollege/)
