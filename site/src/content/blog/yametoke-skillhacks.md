@@ -195,4 +195,4 @@ SkillHacksは給付金対象講座ではありません。該当する講座番�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [SkillHacksの料金は高い？他社と比較](/blog/ryokin-skillhacks/)
 - [SkillHacksの評判・口コミは？特徴を解説](/blog/hyoban-skillhacks/)
-- [侍エンジニアはやめとけ？評判と後悔しない判断基準](/blog/yametoke-samurai/)
+- [フィヨルドブートキャンプの料金は高い？他社と比較](/blog/ryokin-fjord/)

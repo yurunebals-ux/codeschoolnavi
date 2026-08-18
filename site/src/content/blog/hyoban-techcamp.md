@@ -103,4 +103,4 @@ A. 生活スタイルや学習環境によって異なります。オンライ�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [DMM WEBCAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmwebcamp/)
 - [転職保証付きのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-hosho/)
-- [侍エンジニアはやめとけ？評判と後悔しない判断基準](/blog/yametoke-samurai/)
+- [フィヨルドブートキャンプの料金は高い？他社と比較](/blog/ryokin-fjord/)

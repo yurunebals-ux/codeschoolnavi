@@ -199,6 +199,6 @@ Winスクールには返金保証制度がありません。契約後のキャ�
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [フィヨルドブートキャンプの料金は高い？他社と比較](/blog/ryokin-fjord/)
 - [侍エンジニアはやめとけ？評判と後悔しない判断基準](/blog/yametoke-samurai/)
 - [侍エンジニアの料金は高い？他社と比較](/blog/ryokin-samurai/)
-- [SkillHacksはやめとけ？評判と後悔しない判断基準](/blog/yametoke-skillhacks/)

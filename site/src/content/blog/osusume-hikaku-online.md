@@ -181,6 +181,6 @@ CodeCampは受講期間が2〜6ヶ月と幅があり、スケジュール調整�
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [フィヨルドブートキャンプの料金は高い？他社と比較](/blog/ryokin-fjord/)
 - [techmeetsの評判・口コミは？特徴を解説](/blog/hyoban-techmeets/)
 - [フィヨルドブートキャンプの評判・口コミは？特徴を解説](/blog/hyoban-fjord/)
-- [TechAcademyの評判・口コミは？特徴を解説](/blog/hyoban-techacademy/)
