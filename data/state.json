@@ -108,8 +108,9 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-08-08T04:00:00.000Z"
+      "status": "published",
+      "createdAt": "2026-08-08T04:00:00.000Z",
+      "publishedAt": "2026-08-19T03:04:02.933Z"
     },
     {
       "slug": "imiaru-erabikata",
@@ -740,8 +741,8 @@
       "publishedAt": "2026-08-11T03:50:08.261Z"
     }
   ],
-  "publishedCount": 32,
-  "estimatedMrrUsd": 9600,
+  "publishedCount": 33,
+  "estimatedMrrUsd": 9900,
   "history": [
     {
       "date": "2026-07-24",
@@ -867,7 +868,12 @@
       "date": "2026-08-18",
       "published": 32,
       "estimatedMrrUsd": 9600
+    },
+    {
+      "date": "2026-08-19",
+      "published": 33,
+      "estimatedMrrUsd": 9900
     }
   ],
-  "lastRun": "2026-08-18T03:01:05.356Z"
+  "lastRun": "2026-08-19T03:04:02.942Z"
 }
