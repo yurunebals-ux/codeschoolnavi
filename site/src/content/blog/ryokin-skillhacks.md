@@ -209,4 +209,4 @@ SkillHacksに転職支援はありません。転職支援が必要な場合は�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [SkillHacksはやめとけ？評判と後悔しない判断基準](/blog/yametoke-skillhacks/)
 - [SkillHacksの評判・口コミは？特徴を解説](/blog/hyoban-skillhacks/)
-- [フィヨルドブートキャンプはやめとけ？評判と後悔しない判断基準](/blog/yametoke-fjord/)
+- [プログラミングスクールは意味ない？やめとけと言われる理由と後悔しない選び方](/blog/imiaru-erabikata/)
