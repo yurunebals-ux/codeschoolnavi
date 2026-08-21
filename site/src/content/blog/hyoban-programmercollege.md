@@ -236,6 +236,6 @@ draft: false
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [独学・買い切りのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-dokugaku/)
 - [プログラミングスクールは意味ない？やめとけと言われる理由と後悔しない選び方](/blog/imiaru-erabikata/)
 - [フィヨルドブートキャンプはやめとけ？評判と後悔しない判断基準](/blog/yametoke-fjord/)
-- [フィヨルドブートキャンプの料金は高い？他社と比較](/blog/ryokin-fjord/)

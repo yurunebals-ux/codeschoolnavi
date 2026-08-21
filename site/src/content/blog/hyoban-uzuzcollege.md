@@ -245,4 +245,4 @@ CCNAやAWSなどのIT資格に集中したい場合、ウズウズカレッジ�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [ウズウズカレッジの料金は高い？他社と比較](/blog/ryokin-uzuzcollege/)
 - [ウズウズカレッジはやめとけ？評判と後悔しない判断基準](/blog/yametoke-uzuzcollege/)
-- [プログラミングスクールは意味ない？やめとけと言われる理由と後悔しない選び方](/blog/imiaru-erabikata/)
+- [独学・買い切りのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-dokugaku/)
