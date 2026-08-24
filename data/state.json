@@ -183,8 +183,9 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-08-08T04:00:00.000Z"
+      "status": "published",
+      "createdAt": "2026-08-08T04:00:00.000Z",
+      "publishedAt": "2026-08-24T03:10:13.648Z"
     },
     {
       "slug": "yametoke-techmeets",
@@ -745,8 +746,8 @@
       "publishedAt": "2026-08-11T03:50:08.261Z"
     }
   ],
-  "publishedCount": 37,
-  "estimatedMrrUsd": 11100,
+  "publishedCount": 38,
+  "estimatedMrrUsd": 11400,
   "history": [
     {
       "date": "2026-07-24",
@@ -897,7 +898,12 @@
       "date": "2026-08-23",
       "published": 37,
       "estimatedMrrUsd": 11100
+    },
+    {
+      "date": "2026-08-24",
+      "published": 38,
+      "estimatedMrrUsd": 11400
     }
   ],
-  "lastRun": "2026-08-23T03:08:25.016Z"
+  "lastRun": "2026-08-24T03:10:13.655Z"
 }

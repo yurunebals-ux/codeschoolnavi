@@ -236,6 +236,6 @@ draft: false
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [techmeetsの料金は高い？他社と比較](/blog/ryokin-techmeets/)
 - [DMM WEBCAMPはやめとけ？評判と後悔しない判断基準](/blog/yametoke-dmmwebcamp/)
 - [DMM WEBCAMPの料金は高い？他社と比較](/blog/ryokin-dmmwebcamp/)
-- [独学・買い切りのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-dokugaku/)
