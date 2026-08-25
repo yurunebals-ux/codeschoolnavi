@@ -99,7 +99,7 @@ A. オンラインでも質の高いメンタリングや実践課題があれ�
 
 ## あわせて読みたい
 
+- [techmeetsはやめとけ？評判と後悔しない判断基準](/blog/yametoke-techmeets/)
 - [techmeetsの料金は高い？他社と比較](/blog/ryokin-techmeets/)
 - [DMM WEBCAMPはやめとけ？評判と後悔しない判断基準](/blog/yametoke-dmmwebcamp/)
 - [DMM WEBCAMPの料金は高い？他社と比較](/blog/ryokin-dmmwebcamp/)
-- [独学・買い切りのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-dokugaku/)

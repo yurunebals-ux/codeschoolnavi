@@ -197,8 +197,9 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-08-08T04:00:00.000Z"
+      "status": "published",
+      "createdAt": "2026-08-08T04:00:00.000Z",
+      "publishedAt": "2026-08-25T03:04:24.888Z"
     },
     {
       "slug": "ryokin-techacademy",
@@ -746,8 +747,8 @@
       "publishedAt": "2026-08-11T03:50:08.261Z"
     }
   ],
-  "publishedCount": 38,
-  "estimatedMrrUsd": 11400,
+  "publishedCount": 39,
+  "estimatedMrrUsd": 11700,
   "history": [
     {
       "date": "2026-07-24",
@@ -903,7 +904,12 @@
       "date": "2026-08-24",
       "published": 38,
       "estimatedMrrUsd": 11400
+    },
+    {
+      "date": "2026-08-25",
+      "published": 39,
+      "estimatedMrrUsd": 11700
     }
   ],
-  "lastRun": "2026-08-24T03:10:13.655Z"
+  "lastRun": "2026-08-25T03:04:24.895Z"
 }

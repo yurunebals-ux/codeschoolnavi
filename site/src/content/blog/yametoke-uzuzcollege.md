@@ -189,4 +189,4 @@ Zoomなどのビデオ通話を使った個別指導です。学習管理ツー�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [ウズウズカレッジの料金は高い？他社と比較](/blog/ryokin-uzuzcollege/)
 - [ウズウズカレッジの評判・口コミは？特徴を解説](/blog/hyoban-uzuzcollege/)
-- [techmeetsの料金は高い？他社と比較](/blog/ryokin-techmeets/)
+- [techmeetsはやめとけ？評判と後悔しない判断基準](/blog/yametoke-techmeets/)

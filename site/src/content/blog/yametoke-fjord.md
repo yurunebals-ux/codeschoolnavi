@@ -254,4 +254,4 @@ RubyやRailsの基礎から始まり、実践的なチーム開発を通じて�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [フィヨルドブートキャンプの料金は高い？他社と比較](/blog/ryokin-fjord/)
 - [techmeetsの料金は高い？他社と比較](/blog/ryokin-techmeets/)
-- [techmeetsの評判・口コミは？特徴を解説](/blog/hyoban-techmeets/)
+- [techmeetsはやめとけ？評判と後悔しない判断基準](/blog/yametoke-techmeets/)
