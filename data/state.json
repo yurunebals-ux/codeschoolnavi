@@ -211,8 +211,9 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-08-26T03:11:35.851Z"
     },
     {
       "slug": "yametoke-techacademy",
@@ -747,8 +748,8 @@
       "publishedAt": "2026-08-11T03:50:08.261Z"
     }
   ],
-  "publishedCount": 39,
-  "estimatedMrrUsd": 11700,
+  "publishedCount": 40,
+  "estimatedMrrUsd": 12000,
   "history": [
     {
       "date": "2026-07-24",
@@ -909,7 +910,12 @@
       "date": "2026-08-25",
       "published": 39,
       "estimatedMrrUsd": 11700
+    },
+    {
+      "date": "2026-08-26",
+      "published": 40,
+      "estimatedMrrUsd": 12000
     }
   ],
-  "lastRun": "2026-08-25T03:04:24.895Z"
+  "lastRun": "2026-08-26T03:11:35.860Z"
 }
