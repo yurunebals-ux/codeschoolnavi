@@ -225,8 +225,9 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-08-27T12:40:10.035Z"
     },
     {
       "slug": "ryokin-codecamp",
@@ -748,8 +749,8 @@
       "publishedAt": "2026-08-11T03:50:08.261Z"
     }
   ],
-  "publishedCount": 40,
-  "estimatedMrrUsd": 12000,
+  "publishedCount": 41,
+  "estimatedMrrUsd": 12300,
   "history": [
     {
       "date": "2026-07-24",
@@ -915,7 +916,12 @@
       "date": "2026-08-26",
       "published": 40,
       "estimatedMrrUsd": 12000
+    },
+    {
+      "date": "2026-08-27",
+      "published": 41,
+      "estimatedMrrUsd": 12300
     }
   ],
-  "lastRun": "2026-08-26T03:11:35.860Z"
+  "lastRun": "2026-08-27T12:40:10.044Z"
 }
