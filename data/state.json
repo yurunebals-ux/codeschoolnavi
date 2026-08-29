@@ -253,8 +253,9 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-08-29T08:50:02.709Z"
     },
     {
       "slug": "ryokin-techcamp",
@@ -750,8 +751,8 @@
       "publishedAt": "2026-08-11T03:50:08.261Z"
     }
   ],
-  "publishedCount": 42,
-  "estimatedMrrUsd": 12600,
+  "publishedCount": 43,
+  "estimatedMrrUsd": 12900,
   "history": [
     {
       "date": "2026-07-24",
@@ -927,7 +928,12 @@
       "date": "2026-08-28",
       "published": 42,
       "estimatedMrrUsd": 12600
+    },
+    {
+      "date": "2026-08-29",
+      "published": 43,
+      "estimatedMrrUsd": 12900
     }
   ],
-  "lastRun": "2026-08-28T14:13:31.419Z"
+  "lastRun": "2026-08-29T08:50:02.716Z"
 }

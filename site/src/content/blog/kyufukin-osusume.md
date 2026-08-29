@@ -99,7 +99,7 @@ A. オンラインでも質の高いメンタリングや実践課題があれ�
 
 ## あわせて読みたい
 
+- [CodeCampはやめとけ？評判と後悔しない判断基準](/blog/yametoke-codecamp/)
 - [CodeCampの料金は高い？他社と比較](/blog/ryokin-codecamp/)
 - [TechAcademyはやめとけ？評判と後悔しない判断基準](/blog/yametoke-techacademy/)
 - [TechAcademyの料金は高い？他社と比較](/blog/ryokin-techacademy/)
-- [techmeetsはやめとけ？評判と後悔しない判断基準](/blog/yametoke-techmeets/)
