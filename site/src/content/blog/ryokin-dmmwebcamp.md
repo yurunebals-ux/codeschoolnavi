@@ -230,5 +230,5 @@ SHIFT TERAS CAMPUSの保証は一定期間内に条件を満たせなかった�
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [DMM WEBCAMPはやめとけ？評判と後悔しない判断基準](/blog/yametoke-dmmwebcamp/)
+- [テックキャンプの料金は高い？他社と比較](/blog/ryokin-techcamp/)
 - [DMM WEBCAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmwebcamp/)
-- [テックキャンプの評判・口コミは？特徴を解説](/blog/hyoban-techcamp/)
