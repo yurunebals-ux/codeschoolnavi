@@ -281,8 +281,9 @@
       "kind": "money",
       "cluster": "転職保証付き",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "rejected",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "rejectReason": "score=105; 内部リンクなし; 誇大・断定表現"
     },
     {
       "slug": "ryokin-potepan",
@@ -939,7 +940,12 @@
       "date": "2026-08-30",
       "published": 44,
       "estimatedMrrUsd": 13200
+    },
+    {
+      "date": "2026-08-31",
+      "published": 44,
+      "estimatedMrrUsd": 13200
     }
   ],
-  "lastRun": "2026-08-30T08:08:15.208Z"
+  "lastRun": "2026-08-31T08:27:57.511Z"
 }
