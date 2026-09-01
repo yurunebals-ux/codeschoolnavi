@@ -271,6 +271,6 @@ WebサービスやITベンチャー、受託開発企業が多い傾向です。
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [ポテパンキャンプの料金は高い？他社と比較](/blog/ryokin-potepan/)
 - [RUNTEQの評判・口コミは？特徴を解説](/blog/hyoban-runteq/)
 - [COACHTECHの評判・口コミは？特徴を解説](/blog/hyoban-coachtech/)
-- [転職特化のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-tenshoku/)

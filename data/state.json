@@ -295,8 +295,9 @@
       "kind": "money",
       "cluster": "転職特化",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-09-01T07:35:06.455Z"
     },
     {
       "slug": "yametoke-potepan",
@@ -753,8 +754,8 @@
       "publishedAt": "2026-08-11T03:50:08.261Z"
     }
   ],
-  "publishedCount": 44,
-  "estimatedMrrUsd": 13200,
+  "publishedCount": 45,
+  "estimatedMrrUsd": 13500,
   "history": [
     {
       "date": "2026-07-24",
@@ -945,7 +946,12 @@
       "date": "2026-08-31",
       "published": 44,
       "estimatedMrrUsd": 13200
+    },
+    {
+      "date": "2026-09-01",
+      "published": 45,
+      "estimatedMrrUsd": 13500
     }
   ],
-  "lastRun": "2026-08-31T08:27:57.511Z"
+  "lastRun": "2026-09-01T07:35:06.470Z"
 }

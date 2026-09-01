@@ -203,6 +203,6 @@ TechAcademyやCodeCampは現役エンジニアによるメンタリングやマ�
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [ポテパンキャンプの料金は高い？他社と比較](/blog/ryokin-potepan/)
 - [テックキャンプの料金は高い？他社と比較](/blog/ryokin-techcamp/)
 - [CodeCampはやめとけ？評判と後悔しない判断基準](/blog/yametoke-codecamp/)
-- [CodeCampの料金は高い？他社と比較](/blog/ryokin-codecamp/)
