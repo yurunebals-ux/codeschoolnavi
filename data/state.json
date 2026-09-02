@@ -309,8 +309,9 @@
       "kind": "money",
       "cluster": "転職特化",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-09-02T07:00:15.813Z"
     },
     {
       "slug": "ryokin-coachtech",
@@ -754,8 +755,8 @@
       "publishedAt": "2026-08-11T03:50:08.261Z"
     }
   ],
-  "publishedCount": 45,
-  "estimatedMrrUsd": 13500,
+  "publishedCount": 46,
+  "estimatedMrrUsd": 13800,
   "history": [
     {
       "date": "2026-07-24",
@@ -951,7 +952,12 @@
       "date": "2026-09-01",
       "published": 45,
       "estimatedMrrUsd": 13500
+    },
+    {
+      "date": "2026-09-02",
+      "published": 46,
+      "estimatedMrrUsd": 13800
     }
   ],
-  "lastRun": "2026-09-01T07:35:06.470Z"
+  "lastRun": "2026-09-02T07:00:15.835Z"
 }
