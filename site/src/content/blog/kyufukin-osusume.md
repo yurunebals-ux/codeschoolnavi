@@ -99,7 +99,7 @@ A. オンラインでも質の高いメンタリングや実践課題があれ�
 
 ## あわせて読みたい
 
+- [COACHTECHの料金は高い？他社と比較](/blog/ryokin-coachtech/)
 - [ポテパンキャンプはやめとけ？評判と後悔しない判断基準](/blog/yametoke-potepan/)
 - [ポテパンキャンプの料金は高い？他社と比較](/blog/ryokin-potepan/)
 - [テックキャンプの料金は高い？他社と比較](/blog/ryokin-techcamp/)
-- [CodeCampはやめとけ？評判と後悔しない判断基準](/blog/yametoke-codecamp/)

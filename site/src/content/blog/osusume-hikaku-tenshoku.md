@@ -270,4 +270,4 @@ Web系自社開発企業への転職を目指し、約9ヶ月の学習に取り�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [ポテパンキャンプの料金は高い？他社と比較](/blog/ryokin-potepan/)
 - [ポテパンキャンプはやめとけ？評判と後悔しない判断基準](/blog/yametoke-potepan/)
-- [RUNTEQの評判・口コミは？特徴を解説](/blog/hyoban-runteq/)
+- [COACHTECHの料金は高い？他社と比較](/blog/ryokin-coachtech/)

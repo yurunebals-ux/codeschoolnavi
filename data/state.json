@@ -323,8 +323,9 @@
       "kind": "money",
       "cluster": "転職特化",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-09-03T07:03:34.385Z"
     },
     {
       "slug": "yametoke-coachtech",
@@ -755,8 +756,8 @@
       "publishedAt": "2026-08-11T03:50:08.261Z"
     }
   ],
-  "publishedCount": 46,
-  "estimatedMrrUsd": 13800,
+  "publishedCount": 47,
+  "estimatedMrrUsd": 14100,
   "history": [
     {
       "date": "2026-07-24",
@@ -957,7 +958,12 @@
       "date": "2026-09-02",
       "published": 46,
       "estimatedMrrUsd": 13800
+    },
+    {
+      "date": "2026-09-03",
+      "published": 47,
+      "estimatedMrrUsd": 14100
     }
   ],
-  "lastRun": "2026-09-02T07:00:15.835Z"
+  "lastRun": "2026-09-03T07:03:34.402Z"
 }
