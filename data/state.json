@@ -351,8 +351,9 @@
       "kind": "pillar",
       "cluster": "無料スクール",
       "score": 89,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "rejected",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "rejectReason": "score=105; 内部リンクなし; 提携未承認のプレースホルダURLが本文に残っている"
     },
     {
       "slug": "osusume-hikaku-tsugaku",
@@ -969,7 +970,12 @@
       "date": "2026-09-04",
       "published": 48,
       "estimatedMrrUsd": 14400
+    },
+    {
+      "date": "2026-09-05",
+      "published": 48,
+      "estimatedMrrUsd": 14400
     }
   ],
-  "lastRun": "2026-09-04T07:14:28.743Z"
+  "lastRun": "2026-09-05T06:51:17.967Z"
 }
