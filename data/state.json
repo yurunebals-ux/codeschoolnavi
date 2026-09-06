@@ -365,8 +365,9 @@
       "kind": "pillar",
       "cluster": "通学・オンライン",
       "score": 89,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-09-06T07:01:19.472Z"
     },
     {
       "slug": "ryokin-runteq",
@@ -758,8 +759,8 @@
       "publishedAt": "2026-08-11T03:50:08.261Z"
     }
   ],
-  "publishedCount": 48,
-  "estimatedMrrUsd": 14400,
+  "publishedCount": 49,
+  "estimatedMrrUsd": 14700,
   "history": [
     {
       "date": "2026-07-24",
@@ -975,7 +976,12 @@
       "date": "2026-09-05",
       "published": 48,
       "estimatedMrrUsd": 14400
+    },
+    {
+      "date": "2026-09-06",
+      "published": 49,
+      "estimatedMrrUsd": 14700
     }
   ],
-  "lastRun": "2026-09-05T06:51:17.967Z"
+  "lastRun": "2026-09-06T07:01:19.487Z"
 }
