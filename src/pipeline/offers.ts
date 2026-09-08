@@ -36,16 +36,32 @@ export interface Offer {
   note: string;
 }
 
+/** 給付金の対象講座を持つスクール（/kyufukin/ の一覧用） */
+export interface SubsidyEntry {
+  id: string;
+  name: string;
+  /** どのコースがどの区分で対象か。裏取り結果をそのまま出す */
+  note: string;
+}
+
 export interface OffersFile {
   _note: string;
   /** slug からスクールを引けないページ用（給付金ハブなど）の指名 */
   picks: Record<string, string>;
+  /**
+   * 給付金の対象講座を持つスクール一覧。
+   * 給付金ハブは「厚労省の検索システムで確認してください」と読者に丸投げしていたが、
+   * こちらで裏取りした結果を持っているなら出したほうが親切。
+   * affiliates.json を直せばページも自動で追従する（offers と同じ考え方）。
+   */
+  subsidy: SubsidyEntry[];
   offers: Record<string, Offer>;
 }
 
 interface Tool {
   id: string; name: string; affiliate_url?: string; official_url?: string;
   reward_note?: string; moshimo_status?: string; a8_status?: string;
+  subsidy_note?: string;
 }
 
 /**
@@ -108,11 +124,20 @@ export function buildOffers(): OffersFile {
     subsidy.find((id) => offers[id]) ??
     "";
 
+  // 給付金の対象講座を持つスクール。note が無いものは出さない
+  // （「対象らしい」だけで一覧に載せると、その時点で誤認のもとになる）。
+  const byId = new Map(aff.tools.map((t) => [t.id, t] as const));
+  const subsidyList: SubsidyEntry[] = subsidy
+    .map((id) => byId.get(id))
+    .filter((t): t is Tool => !!t && !!t.subsidy_note)
+    .map((t) => ({ id: t.id, name: t.name, note: t.subsidy_note! }));
+
   const out: OffersFile = {
     _note:
       "自動生成（src/pipeline/offers.ts）。手で編集しない。" +
       "提携が承認されたら data/affiliates.json の affiliate_url を差し替えれば、ここも全ページのCTAも自動で切り替わる。",
     picks: kyufukin ? { kyufukin } : {},
+    subsidy: subsidyList,
     offers,
   };
 
