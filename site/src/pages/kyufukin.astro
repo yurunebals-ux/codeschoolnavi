@@ -1,5 +1,14 @@
 ---
 import Base from "../layouts/Base.astro";
+import offersData from "../data/offers.json";
+
+// 給付金の対象講座を持つスクール。data/affiliates.json が唯一の正で、
+// src/pipeline/offers.ts が offers.json へ書き出す（手で編集しない）。
+// 新しく裏取りできた学校を affiliates.json に足せば、この一覧も自動で増える。
+const subsidySchools = (offersData.subsidy ?? []).map((s) => ({
+  ...s,
+  offer: (offersData.offers as Record<string, { href: string; sponsored: boolean }>)[s.id],
+}));
 
 // 教育訓練給付制度の一次情報にもとづく解説ページ。
 // 数字を1か所に集めておき、本文・表・図の全部をここから描く（表記ズレを構造的に防ぐ）。
@@ -383,6 +392,40 @@ const pitfalls = [
     </details>
   ))}
 
+  <h2>対象講座を持っているスクール（{subsidySchools.length}校）</h2>
+  <p>
+    どの学校に対象講座があるかは、厚生労働省の教育訓練講座検索システムと各校の公式サイトで当編集部が確認しました。
+    ただし<b>「対象講座がある」ことと「あなたが検討しているコースが対象」ことは別</b>です。
+    同じ学校でも、コースやプランによって対象・対象外が分かれます。下の但し書きはそこを書いています。
+  </p>
+  <ul class="subs">
+    {subsidySchools.map((s) => (
+      <li>
+        <div class="s-h">
+          <b>{s.name}</b>
+          {s.offer && (
+            <a
+              href={s.offer.href}
+              target="_blank"
+              rel={s.offer.sponsored ? "sponsored nofollow noopener" : "nofollow noopener"}
+            >
+              {s.offer.sponsored ? "公式サイト（PR）↗" : "公式サイト ↗"}
+            </a>
+          )}
+        </div>
+        <p>{s.note}</p>
+      </li>
+    ))}
+  </ul>
+  <p class="small">
+    ここに載っていない学校は、当編集部が確認した時点では対象講座が見つからなかったか、公式に記載がなかったものです。
+    <b>指定には期限があり、期間が終わると対象ではなくなります。</b>
+    実際、以前は指定されていたのに現在は期間が終了している講座もありました。
+    また<b>受講料の一部が戻る「経済産業省のリスキリング事業」は、この教育訓練給付金とは別の制度</b>です。
+    両方を「給付金」とまとめて紹介しているサイトがありますが、対象講座も申請先も違います。
+    最終的な可否は講座番号でハローワークに確認してください。
+  </p>
+
   <h2>次にやること</h2>
   <p>
     制度の側の条件が分かったら、次は「対象講座を持っているスクールのうち、自分の目的に合うのはどれか」です。順番を逆にすると、対象外のコースに申し込んでから気づくことになります。
@@ -596,6 +639,15 @@ const pitfalls = [
     .bd{font-size:14px;line-height:2}
     .bd b{background:linear-gradient(transparent 60%,#fde047 60%);padding:0 1px}
     .small{font-size:13px;color:#64748b;line-height:1.9}
+    /* 対象講座を持つスクール一覧。但し書き（どのコースが対象か）が主役なので、
+       校名を目立たせすぎず、注記が読める行間を優先する。 */
+    .subs{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+    .subs li{border:1px solid var(--bd);border-radius:12px;padding:12px 14px;background:#fff}
+    .subs .s-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .subs .s-h b{font-size:15px;color:#0f2744}
+    .subs .s-h a{font-size:12.5px;font-weight:700;color:#047857;text-decoration:none;white-space:nowrap}
+    .subs .s-h a:hover{text-decoration:underline}
+    .subs p{margin:6px 0 0;font-size:13.5px;line-height:1.9;color:#334155}
     .steps2{counter-reset:s2;list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px}
     .steps2 li{counter-increment:s2;background:#fff;border:1px solid var(--bd);border-radius:12px;padding:13px 16px 13px 56px;position:relative;margin:0}
     .steps2 li::before{content:counter(s2);position:absolute;left:15px;top:13px;width:28px;height:28px;border-radius:999px;background:var(--navy);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
