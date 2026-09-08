@@ -393,8 +393,9 @@
       "kind": "money",
       "cluster": "転職特化",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-07-24T10:36:35.550Z"
+      "status": "published",
+      "createdAt": "2026-07-24T10:36:35.550Z",
+      "publishedAt": "2026-09-08T07:07:08.353Z"
     },
     {
       "slug": "hyoban-uzuzcollege",
@@ -760,8 +761,8 @@
       "publishedAt": "2026-08-11T03:50:08.261Z"
     }
   ],
-  "publishedCount": 50,
-  "estimatedMrrUsd": 15000,
+  "publishedCount": 51,
+  "estimatedMrrUsd": 15300,
   "history": [
     {
       "date": "2026-07-24",
@@ -987,7 +988,12 @@
       "date": "2026-09-07",
       "published": 50,
       "estimatedMrrUsd": 15000
+    },
+    {
+      "date": "2026-09-08",
+      "published": 51,
+      "estimatedMrrUsd": 15300
     }
   ],
-  "lastRun": "2026-09-07T07:12:27.042Z"
+  "lastRun": "2026-09-08T07:07:08.365Z"
 }

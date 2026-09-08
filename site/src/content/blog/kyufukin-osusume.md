@@ -99,7 +99,7 @@ A. オンラインでも質の高いメンタリングや実践課題があれ�
 
 ## あわせて読みたい
 
+- [RUNTEQはやめとけ？評判と後悔しない判断基準](/blog/yametoke-runteq/)
 - [RUNTEQの料金は高い？他社と比較](/blog/ryokin-runteq/)
 - [通学・オンラインのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-tsugaku/)
 - [COACHTECHはやめとけ？評判と後悔しない判断基準](/blog/yametoke-coachtech/)
-- [COACHTECHの料金は高い？他社と比較](/blog/ryokin-coachtech/)
