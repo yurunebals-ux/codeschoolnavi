@@ -759,10 +759,565 @@
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
       "publishedAt": "2026-08-11T03:50:08.261Z"
+    },
+    {
+      "slug": "hyoban-skillupai",
+      "keyword": "スキルアップAIの評判・口コミは？特徴を解説",
+      "template": "money:review",
+      "tools": [
+        "skillupai"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 91,
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "publishedAt": "2026-09-09T07:15:31.726Z"
+    },
+    {
+      "slug": "hyoban-aijobcolle",
+      "keyword": "AIジョブカレの評判・口コミは？特徴を解説",
+      "template": "money:review",
+      "tools": [
+        "aijobcolle"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 91,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "hyoban-avilen",
+      "keyword": "AVILENの評判・口コミは？特徴を解説",
+      "template": "money:review",
+      "tools": [
+        "avilen"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 91,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "hyoban-cryptech",
+      "keyword": "クリプテックアカデミアの評判・口コミは？特徴を解説",
+      "template": "money:review",
+      "tools": [
+        "cryptech"
+      ],
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 91,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "ryokin-aidemy",
+      "keyword": "Aidemyの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "aidemy"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "yametoke-aidemy",
+      "keyword": "Aidemyはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "aidemy"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "ryokin-kikagaku",
+      "keyword": "キカガクの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "kikagaku"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "yametoke-kikagaku",
+      "keyword": "キカガクはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "kikagaku"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "ryokin-programmercollege",
+      "keyword": "プログラマカレッジの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "programmercollege"
+      ],
+      "kind": "money",
+      "cluster": "無料スクール",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "yametoke-programmercollege",
+      "keyword": "プログラマカレッジはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "programmercollege"
+      ],
+      "kind": "money",
+      "cluster": "無料スクール",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "ryokin-techis",
+      "keyword": "テックアイエスの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "techis"
+      ],
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "yametoke-techis",
+      "keyword": "テックアイエスはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "techis"
+      ],
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "ryokin-ninjacode",
+      "keyword": "忍者CODEの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "ninjacode"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "yametoke-ninjacode",
+      "keyword": "忍者CODEはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "ninjacode"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "ryokin-dmmaicamp",
+      "keyword": "DMM 生成AI CAMPの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "dmmaicamp"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "yametoke-dmmaicamp",
+      "keyword": "DMM 生成AI CAMPはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "dmmaicamp"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "ryokin-winschool",
+      "keyword": "Winスクールの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "winschool"
+      ],
+      "kind": "money",
+      "cluster": "通学・オンライン",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "yametoke-winschool",
+      "keyword": "Winスクールはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "winschool"
+      ],
+      "kind": "money",
+      "cluster": "通学・オンライン",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "ryokin-skillupai",
+      "keyword": "スキルアップAIの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "skillupai"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "yametoke-skillupai",
+      "keyword": "スキルアップAIはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "skillupai"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "ryokin-aijobcolle",
+      "keyword": "AIジョブカレの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "aijobcolle"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "yametoke-aijobcolle",
+      "keyword": "AIジョブカレはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "aijobcolle"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "ryokin-avilen",
+      "keyword": "AVILENの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "avilen"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "yametoke-avilen",
+      "keyword": "AVILENはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "avilen"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "ryokin-cryptech",
+      "keyword": "クリプテックアカデミアの料金は高い？他社と比較",
+      "template": "money:pricing",
+      "tools": [
+        "cryptech"
+      ],
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "yametoke-cryptech",
+      "keyword": "クリプテックアカデミアはやめとけ？評判と後悔しない判断基準",
+      "template": "money:doubt",
+      "tools": [
+        "cryptech"
+      ],
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "hikaku-ninjacode-potepan",
+      "keyword": "忍者CODEとポテパンキャンプを徹底比較｜どっちがおすすめ？",
+      "template": "money:vs",
+      "tools": [
+        "ninjacode",
+        "potepan"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "hikaku-ninjacode-skillhacks",
+      "keyword": "忍者CODEとSkillHacksを徹底比較｜どっちがおすすめ？",
+      "template": "money:vs",
+      "tools": [
+        "ninjacode",
+        "skillhacks"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "hikaku-dmmaicamp-aidemy",
+      "keyword": "DMM 生成AI CAMPとAidemyを徹底比較｜どっちがおすすめ？",
+      "template": "money:vs",
+      "tools": [
+        "dmmaicamp",
+        "aidemy"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "hikaku-techacademy-codecamp",
+      "keyword": "TechAcademyとCodeCampを徹底比較｜どっちがおすすめ？",
+      "template": "money:vs",
+      "tools": [
+        "techacademy",
+        "codecamp"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "hikaku-dmmwebcamp-techcamp",
+      "keyword": "SHIFT TERAS CAMPUSとテックキャンプを徹底比較｜どっちがおすすめ？",
+      "template": "money:vs",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp"
+      ],
+      "kind": "money",
+      "cluster": "転職保証付き",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "hikaku-runteq-potepan",
+      "keyword": "RUNTEQとポテパンキャンプを徹底比較｜どっちがおすすめ？",
+      "template": "money:vs",
+      "tools": [
+        "runteq",
+        "potepan"
+      ],
+      "kind": "money",
+      "cluster": "転職特化",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "hikaku-aidemy-kikagaku",
+      "keyword": "Aidemyとキカガクを徹底比較｜どっちがおすすめ？",
+      "template": "money:vs",
+      "tools": [
+        "aidemy",
+        "kikagaku"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "hikaku-skillupai-aidemy",
+      "keyword": "スキルアップAIとAidemyを徹底比較｜どっちがおすすめ？",
+      "template": "money:vs",
+      "tools": [
+        "skillupai",
+        "aidemy"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "hikaku-avilen-aijobcolle",
+      "keyword": "AVILENとAIジョブカレを徹底比較｜どっちがおすすめ？",
+      "template": "money:vs",
+      "tools": [
+        "avilen",
+        "aijobcolle"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "osusume-online-mikeiken",
+      "keyword": "未経験者におすすめのオンライン学習プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "techacademy",
+        "codecamp",
+        "ninjacode",
+        "fjord",
+        "techmeets"
+      ],
+      "audience": "mikeiken",
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "osusume-online-shakaijin",
+      "keyword": "社会人におすすめのオンライン学習プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "techacademy",
+        "codecamp",
+        "ninjacode",
+        "fjord",
+        "techmeets"
+      ],
+      "audience": "shakaijin",
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "osusume-online-daigakusei",
+      "keyword": "大学生におすすめのオンライン学習プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "techacademy",
+        "codecamp",
+        "ninjacode",
+        "fjord",
+        "techmeets"
+      ],
+      "audience": "daigakusei",
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "osusume-online-tenshoku",
+      "keyword": "転職希望者におすすめのオンライン学習プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "techacademy",
+        "codecamp",
+        "ninjacode",
+        "fjord",
+        "techmeets"
+      ],
+      "audience": "tenshoku",
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "osusume-online-fukugyo",
+      "keyword": "副業したい人におすすめのオンライン学習プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "techacademy",
+        "codecamp",
+        "ninjacode",
+        "fjord",
+        "techmeets"
+      ],
+      "audience": "fukugyo",
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-09T07:14:10.533Z"
     }
   ],
-  "publishedCount": 51,
-  "estimatedMrrUsd": 15300,
+  "publishedCount": 52,
+  "estimatedMrrUsd": 15600,
   "history": [
     {
       "date": "2026-07-24",
@@ -993,7 +1548,12 @@
       "date": "2026-09-08",
       "published": 51,
       "estimatedMrrUsd": 15300
+    },
+    {
+      "date": "2026-09-09",
+      "published": 52,
+      "estimatedMrrUsd": 15600
     }
   ],
-  "lastRun": "2026-09-08T07:07:08.365Z"
+  "lastRun": "2026-09-09T07:15:31.736Z"
 }
