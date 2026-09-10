@@ -784,8 +784,9 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "rejected",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "rejectReason": "score=105; 給付金の対象講座がないスクールなのに割引後の実質負担額を計算している（景表法）; 内部リンクなし"
     },
     {
       "slug": "hyoban-avilen",
@@ -1553,7 +1554,12 @@
       "date": "2026-09-09",
       "published": 52,
       "estimatedMrrUsd": 15600
+    },
+    {
+      "date": "2026-09-10",
+      "published": 52,
+      "estimatedMrrUsd": 15600
     }
   ],
-  "lastRun": "2026-09-09T07:15:31.736Z"
+  "lastRun": "2026-09-10T07:11:49.694Z"
 }
