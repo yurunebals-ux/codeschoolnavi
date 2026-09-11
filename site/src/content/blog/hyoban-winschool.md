@@ -200,5 +200,5 @@ Winスクールには返金保証制度がありません。契約後のキャ�
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [通学・オンラインのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-tsugaku/)
+- [50代からのAIエンジニア転職はスクール選びで何が変わるか](/blog/news-20260911-5mnke/)
 - [スキルアップAIの評判・口コミは？特徴を解説](/blog/hyoban-skillupai/)
-- [RUNTEQはやめとけ？評判と後悔しない判断基準](/blog/yametoke-runteq/)

@@ -457,7 +457,8 @@
       "score": 98,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-07-24T10:38:06.736Z"
+      "publishedAt": "2026-07-24T10:38:06.736Z",
+      "structure": 2
     },
     {
       "slug": "hyoban-techacademy",
@@ -471,7 +472,8 @@
       "score": 91,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-07-24T10:38:06.736Z"
+      "publishedAt": "2026-07-24T10:38:06.736Z",
+      "structure": 2
     },
     {
       "slug": "hyoban-codecamp",
@@ -1317,10 +1319,30 @@
       "score": 82,
       "status": "queued",
       "createdAt": "2026-09-09T07:14:10.533Z"
+    },
+    {
+      "slug": "news-20260911-5mnke",
+      "keyword": "50代からのAIエンジニア転職はスクール選びで何が変わるか",
+      "template": "news:commentary",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 95,
+      "status": "published",
+      "createdAt": "2026-09-11T07:10:03.982Z",
+      "news": {
+        "title": "50代未経験からAIエンジニアは目指せる？自動運転から読み解く将来性とは",
+        "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFB2S2NxcEt2ZE41ZFpfbnVNRnVQaV9rcFZlNkJKWGI5dlV2aW8yU1I5MDd4VUwxemtpMDFfVzNWZnVPZk5QMUNVU2FpaTQzeFlxcXc?oc=5",
+        "source": "自動運転ラボ",
+        "published": "Thu, 10 Sep 2026 18:38:44 GMT",
+        "snippet": "<a href=\"https://news.google.com/rss/articles/CBMiUkFVX3lxTFB2S2NxcEt2ZE41ZFpfbnVNRnVQaV9rcFZlNkJKWGI5dlV2aW8yU1I5MDd4VUwxemtpMDFfVzNWZnVPZk5QMUNVU2FpaTQzeFlxcXc?oc=5\" target=\"_blank\">50代未経験からAIエンジニアは目指せる？自動運転から読み解く将来性とは</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">自動運転ラボ</font>"
+      },
+      "structure": 2,
+      "publishedAt": "2026-09-11T07:11:41.899Z"
     }
   ],
-  "publishedCount": 52,
-  "estimatedMrrUsd": 15600,
+  "publishedCount": 53,
+  "estimatedMrrUsd": 15900,
   "history": [
     {
       "date": "2026-07-24",
@@ -1561,7 +1583,12 @@
       "date": "2026-09-10",
       "published": 52,
       "estimatedMrrUsd": 15600
+    },
+    {
+      "date": "2026-09-11",
+      "published": 53,
+      "estimatedMrrUsd": 15900
     }
   ],
-  "lastRun": "2026-09-10T07:11:49.694Z"
+  "lastRun": "2026-09-11T07:11:41.912Z"
 }

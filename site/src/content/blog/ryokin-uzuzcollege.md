@@ -156,4 +156,4 @@ CCNAやAWS認定はIT初心者にとって難易度は中程度から高めで�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [ウズウズカレッジはやめとけ？評判と後悔しない判断基準](/blog/yametoke-uzuzcollege/)
 - [ウズウズカレッジの評判・口コミは？特徴を解説](/blog/hyoban-uzuzcollege/)
-- [スキルアップAIの評判・口コミは？特徴を解説](/blog/hyoban-skillupai/)
+- [50代からのAIエンジニア転職はスクール選びで何が変わるか](/blog/news-20260911-5mnke/)
