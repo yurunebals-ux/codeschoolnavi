@@ -34,6 +34,8 @@ export interface Offer {
   short: string;
   /** ボタン下の一言（無料である旨など） */
   note: string;
+  /** 公式サイトURL。スクショの出典表記など「広告ではないリンク」に使う */
+  official?: string;
 }
 
 /** 給付金の対象講座を持つスクール（/kyufukin/ の一覧用） */
@@ -112,7 +114,7 @@ export function buildOffers(): OffersFile {
     else continue; // 出せるURLが無いスクールはCTA自体を出さない（空振りリンクを作らない）
 
     const { label, short, note } = labelFor(t, sponsored);
-    offers[t.id] = { name: t.name, href, sponsored, label, short, note };
+    offers[t.id] = { name: t.name, href, sponsored, label, short, note, official: usable(o) ? o : undefined };
   }
 
   // 給付金ハブのように「1校に紐づかない」ページ用の指名。
