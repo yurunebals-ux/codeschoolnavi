@@ -1,5 +1,5 @@
 ---
-const { title, description, article } = Astro.props;
+const { title, description, article, home = false } = Astro.props;
 const site = import.meta.env.SITE_TITLE || "コードスクールナビ";
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -26,11 +26,19 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       })} />
     )}
     <style is:global>
+      /* 案A ライト＆クリーン（2026-09-11）。
+         オーナー評「全体的に味気ない」への回答。濃紺ヒーロー＋灰色地＋同じ形の白カードの並びが
+         原因だったので、(1) 地を白にしてヒーローを明るく、(2) セクションごとに薄い色の帯、
+         (3) カテゴリ色（比較=青／評判=紫／給付金=緑／やめとけ=ローズ／解説=橙／学習=teal／ニュース=cyan）、
+         (4) スクロールで現れる・数字が増える・触ると持ち上がる動き（減光設定では止める）。 */
       :root{
-        --fg:#1e293b;--mut:#64748b;--bd:#e2e8f0;
+        --fg:#1e293b;--mut:#64748b;--bd:#e9eef5;
         --acc:#2563eb;--acc-dark:#1e40af;--navy:#0f2744;
-        --cta:#f97316;--bg:#f6f8fb;--card:#ffffff;
+        --cta:#f97316;--bg:#ffffff;--card:#ffffff;
         --chip:#eff6ff;--chip-fg:#1d4ed8;--notice:#fffbeb;--notice-bd:#fde68a;
+        --tint-blue:#f3f7ff;--tint-green:#f3faf6;--tint-warm:#fff7ee;--tint-violet:#f7f4ff;
+        --c-hikaku:#2563eb;--c-hyoban:#7c3aed;--c-kyufu:#059669;--c-yame:#e11d48;--c-kaisetsu:#ea580c;--c-gakushu:#0d9488;--c-news:#0e7490;
+        --shadow:0 2px 10px rgba(15,39,68,.06);--shadow-hi:0 12px 28px rgba(15,39,68,.12);
       }
       *{box-sizing:border-box}
       html{scroll-behavior:smooth}
@@ -47,6 +55,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       .nav a.cta{background:var(--cta);color:#fff;font-size:13.5px;font-weight:700;text-decoration:none;padding:8px 14px;border-radius:999px;white-space:nowrap;box-shadow:0 2px 8px rgba(249,115,22,.35)}
       .nav a.cta:hover{filter:brightness(1.06)}
       @media (max-width:640px){ .nav a.item{display:none} .nav a.item.keep{display:block} }
+      @media (max-width:420px){ .brand{font-size:15px;gap:7px} .logo{width:26px;height:26px;font-size:12px} }
 
       /* Main */
       main.wrap{padding-top:36px;padding-bottom:64px}
@@ -123,48 +132,56 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       @media (max-width:560px){ .kb-rates li{min-width:calc(50% - 5px)} .kb-rates b{font-size:22px} }
 
       /* Hero (homepage) */
-      .hero{background:linear-gradient(160deg,#0f2744 0%,#1e3a8a 60%,#2563eb 100%);color:#fff;padding:44px 0 40px;margin:0}
-      .hero .kicker{color:#93c5fd;font-size:13.5px;font-weight:700;letter-spacing:.06em;margin-bottom:10px}
-      .hero h1{color:#fff;font-size:clamp(26px,5vw,38px);margin-bottom:14px}
-      .hero p{color:#dbeafe;font-size:15.5px;max-width:640px;margin-bottom:22px}
+      .hero{background:linear-gradient(135deg,#eaf1ff 0%,#f7f9ff 48%,#fff2e6 100%);color:var(--navy);padding:48px 0 44px;margin:0}
+      /* 背景のぼかし玉。ゆっくり漂わせて「止まっている印象」を消す */
+      .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(48px);z-index:0;pointer-events:none;will-change:transform}
+      .hero::before{width:460px;height:460px;left:-140px;top:-180px;background:rgba(96,165,250,.38);animation:drift 14s ease-in-out infinite alternate}
+      .hero::after{width:380px;height:380px;left:50%;bottom:-220px;background:rgba(251,146,60,.30);animation:drift 18s ease-in-out infinite alternate-reverse}
+      @keyframes drift{from{transform:translate(0,0)}to{transform:translate(40px,28px)}}
+      .heroart{display:none}
+      .hero .kicker{color:var(--acc);font-size:13.5px;font-weight:700;letter-spacing:.06em;margin-bottom:10px}
+      .hero h1{color:var(--navy);font-size:clamp(26px,5vw,38px);margin-bottom:14px}
+      .hero h1 mark{background:linear-gradient(transparent 58%,#fde68a 58%);color:inherit;padding:0 2px}
+      .hero p{color:#475569;font-size:15.5px;max-width:640px;margin-bottom:22px}
       .hero .actions{display:flex;gap:12px;flex-wrap:wrap}
-      .hero a.primary{background:var(--cta);color:#fff;font-weight:800;text-decoration:none;padding:12px 22px;border-radius:999px;font-size:15px;box-shadow:0 4px 14px rgba(249,115,22,.45)}
-      .hero a.primary:hover{filter:brightness(1.07)}
-      .hero a.ghost{border:1.5px solid rgba(255,255,255,.55);color:#fff;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:999px;font-size:15px}
-      .hero a.ghost:hover{background:rgba(255,255,255,.12)}
+      .hero a.primary{background:var(--cta);color:#fff;font-weight:800;text-decoration:none;padding:12px 22px;border-radius:999px;font-size:15px;box-shadow:0 6px 18px rgba(249,115,22,.38);transition:transform .18s,box-shadow .18s}
+      .hero a.primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(249,115,22,.45)}
+      .hero a.ghost{border:1.5px solid var(--acc);color:var(--acc-dark);font-weight:700;text-decoration:none;padding:12px 22px;border-radius:999px;font-size:15px;background:rgba(255,255,255,.6);transition:background .18s,transform .18s}
+      .hero a.ghost:hover{background:#eff6ff;transform:translateY(-2px)}
       .hero .points{display:flex;gap:18px;flex-wrap:wrap;margin-top:26px;padding:0;list-style:none}
-      .hero .points li{font-size:13px;color:#bfdbfe;display:flex;align-items:center;gap:6px;margin:0}
-      .hero .points li::before{content:"✓";color:#4ade80;font-weight:800}
+      .hero .points li{font-size:13px;color:#475569;display:flex;align-items:center;gap:6px;margin:0}
+      .hero .points li::before{content:"✓";color:#16a34a;font-weight:800}
       /* 公式サイトのスクショを右側に斜めに重ねる。コピーが乗る左側には掛けない。
          画面幅が狭いときは非表示（文字の上に被ると読めない）。 */
       .hero{position:relative;overflow:hidden}
       .hero .wrap{position:relative;z-index:2}
       .hero-shots{position:absolute;right:-20px;top:50%;transform:translateY(-50%) rotate(-8deg);width:400px;z-index:1;pointer-events:none}
-      .hero-shots .hs{position:absolute;width:280px;border-radius:10px;overflow:hidden;box-shadow:0 18px 50px rgba(2,8,23,.55);border:1px solid rgba(255,255,255,.18);background:#0b1730}
-      .hero-shots .hs::before{content:"";display:block;height:9px;background:rgba(255,255,255,.12)}
-      .hero-shots .hs img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;opacity:.92}
+      .hero-shots .hs{position:absolute;width:280px;border-radius:10px;overflow:hidden;box-shadow:0 18px 50px rgba(15,39,68,.18);border:1px solid #dbe4f0;background:#fff;animation:floaty 6s ease-in-out infinite}
+      .hero-shots .hs::before{content:"";display:block;height:9px;background:#e8edf5}
+      .hero-shots .hs img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top}
       .hero-shots .hs-0{left:120px;top:-150px;z-index:3}
-      .hero-shots .hs-1{left:60px;top:-40px;z-index:2;opacity:.85}
-      .hero-shots .hs-2{left:0;top:70px;z-index:1;opacity:.7}
+      .hero-shots .hs-1{left:60px;top:-40px;z-index:2;animation-delay:-2s}
+      .hero-shots .hs-2{left:0;top:70px;z-index:1;animation-delay:-4s}
+      @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
       @media (max-width:1180px){ .hero-shots{display:none} }
       /* 扇がある間は、右側のSVGの棒が画像と喧嘩しないように少し引く */
-      .hero:has(.hero-shots) .heroart{opacity:.55}
+      .hero .hero-shots{z-index:1}
       /* 扇があるときはコピー側の幅を本文と同じ640pxに揃え、チェック項目が扇の下へ伸びないようにする */
       .hero:has(.hero-shots) .points{max-width:640px}
 
       /* 案C: ヒーローの料金監視ウィジェット（当サイト独自の稼働実績を一次情報で示す） */
-      .hero a.pw{display:block;margin-top:24px;max-width:560px;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:14px 16px 12px;backdrop-filter:blur(2px);transition:background .15s,border-color .15s,transform .15s}
-      .hero a.pw:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.4);transform:translateY(-1px)}
-      .hero .pw-head{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;color:#bfdbfe;letter-spacing:.04em}
+      .hero a.pw{display:block;margin-top:24px;max-width:560px;text-decoration:none;color:var(--navy);background:#fff;border:1px solid #dbe4f0;border-radius:14px;padding:14px 16px 12px;box-shadow:0 8px 24px rgba(15,39,68,.08);transition:box-shadow .18s,transform .18s}
+      .hero a.pw:hover{box-shadow:0 14px 32px rgba(15,39,68,.14);transform:translateY(-2px)}
+      .hero .pw-head{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;color:#1e3a8a;letter-spacing:.04em}
       .hero .pw-head em{font-style:normal;background:var(--cta);color:#fff;font-size:10.5px;font-weight:800;border-radius:999px;padding:2px 8px;letter-spacing:.02em}
       .hero .pw-head .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 0 rgba(74,222,128,.7);animation:pwpulse 2.4s infinite}
       @keyframes pwpulse{0%{box-shadow:0 0 0 0 rgba(74,222,128,.6)}70%{box-shadow:0 0 0 9px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
       .hero .pw-stats{display:flex;gap:10px;margin-top:10px}
-      .hero .pw-cell{flex:1;display:flex;flex-direction:column;gap:2px;border-left:2px solid rgba(147,197,253,.45);padding-left:10px}
-      .hero .pw-cell b{font-size:23px;font-weight:800;line-height:1.1;color:#fff;font-variant-numeric:tabular-nums}
-      .hero .pw-cell b small{font-size:12px;font-weight:700;margin-left:1px;color:#dbeafe}
-      .hero .pw-cell>small{font-size:11px;color:#bfdbfe;line-height:1.45}
-      .hero .pw-note{display:block;margin-top:10px;font-size:11.5px;color:#93c5fd;line-height:1.6}
+      .hero .pw-cell{flex:1;display:flex;flex-direction:column;gap:2px;border-left:2px solid #bfdbfe;padding-left:10px}
+      .hero .pw-cell b{font-size:23px;font-weight:800;line-height:1.1;color:var(--navy);font-variant-numeric:tabular-nums}
+      .hero .pw-cell b small{font-size:12px;font-weight:700;margin-left:1px;color:#64748b}
+      .hero .pw-cell>small{font-size:11px;color:#64748b;line-height:1.45}
+      .hero .pw-note{display:block;margin-top:10px;font-size:11.5px;color:#64748b;line-height:1.6}
       @media (prefers-reduced-motion:reduce){.hero .pw-head .dot{animation:none}}
       @media (max-width:560px){
         .hero .pw-stats{gap:8px}
@@ -182,16 +199,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       footer.site .copy{color:#64748b;font-size:12px;margin-top:14px}
 
       /* ==== ホームの意思決定モジュール（競合トップページ分析に基づく） ==== */
-      .sec{margin-top:46px}
-      .sec-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:16px;border-bottom:2px solid var(--navy);padding-bottom:8px}
-      .sec-head h2{border:0;margin:0;padding:0;font-size:20px}
-      .sec-head .en{color:#94a3b8;font-size:11px;font-weight:800;letter-spacing:.18em}
+      /* セクションは「帯」。main は幅820pxなので、::before を100vwに広げて色を敷く */
+      main.wrap.home{padding-top:0;position:relative;z-index:0}
+      .home .sec{margin:0;padding:40px 0;position:relative}
+      .home .sec::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);z-index:-1;background:var(--band,transparent)}
+      .home .sec.band-blue{--band:var(--tint-blue)}
+      .home .sec.band-green{--band:var(--tint-green)}
+      .home .sec.band-warm{--band:var(--tint-warm)}
+      .home .sec.band-violet{--band:var(--tint-violet)}
+      .sec-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+      .sec-head h2{border:0;margin:0;padding:0;font-size:21px;display:flex;align-items:center;gap:10px}
+      .sec-head h2::before{content:"";width:8px;height:24px;border-radius:4px;background:linear-gradient(180deg,var(--sec-c,#2563eb),color-mix(in srgb,var(--sec-c,#2563eb) 55%,#fff))}
+      .sec-head .en{color:var(--sec-c,#2563eb);opacity:.75;font-size:11px;font-weight:800;letter-spacing:.18em}
       .sec-head .note{color:var(--mut);font-size:12px;margin-left:auto}
 
       /* 案E: 編集長バンド（トップページのE-E-A-T。ヒーロー直下＝最初に「誰が書いているか」を見せる） */
       .editorband{margin-top:30px}
-      .eb{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--cta);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--fg);box-shadow:0 1px 3px rgba(15,39,68,.06);transition:box-shadow .15s,transform .15s}
-      .eb:hover{box-shadow:0 6px 16px rgba(15,39,68,.13);transform:translateY(-1px)}
+      .eb{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--cta);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--fg);box-shadow:var(--shadow);transition:box-shadow .18s,transform .18s}
+      .eb:hover{box-shadow:var(--shadow-hi);transform:translateY(-2px)}
       .eb-av{flex:none;line-height:0}
       .eb-body{display:block}
       .eb-body b{display:block;color:var(--navy);font-size:14.5px;letter-spacing:.01em}
@@ -209,8 +234,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       /* 目的別ナビ */
       .nav4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
       @media (max-width:720px){ .nav4{grid-template-columns:repeat(2,1fr)} }
-      .navcard{display:flex;flex-direction:column;gap:4px;background:var(--card);border:1px solid var(--bd);border-radius:13px;padding:15px 15px 13px;text-decoration:none;color:var(--fg);box-shadow:0 1px 3px rgba(15,39,68,.06);transition:box-shadow .15s,transform .15s}
-      .navcard:hover{box-shadow:0 6px 16px rgba(15,39,68,.13);transform:translateY(-2px)}
+      .navcard{display:flex;flex-direction:column;gap:4px;background:var(--card);border:1px solid var(--bd);border-top:4px solid var(--nc,#93c5fd);border-radius:13px;padding:15px 15px 13px;text-decoration:none;color:var(--fg);box-shadow:var(--shadow);transition:box-shadow .18s,transform .18s}
+      .navcard:hover{box-shadow:var(--shadow-hi);transform:translateY(-3px)}
+      .navcard:nth-child(1){--nc:#93c5fd}.navcard:nth-child(2){--nc:#86efac}.navcard:nth-child(3){--nc:#c4b5fd}.navcard:nth-child(4){--nc:#fdba74}
       .navcard .ic{font-size:21px}
       .navcard b{color:var(--navy);font-size:14.5px}
       .navcard small{color:var(--mut);font-size:11.5px;line-height:1.5}
@@ -218,8 +244,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       /* 編集部ピックアップ */
       .picks{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
       @media (max-width:820px){ .picks{grid-template-columns:1fr} }
-      .pick{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:0 18px 18px;box-shadow:0 1px 3px rgba(15,39,68,.07);display:flex;flex-direction:column}
-      .pick .ribbon{align-self:flex-start;background:var(--navy);color:#fff;font-size:12px;font-weight:800;border-radius:0 0 8px 8px;padding:6px 12px;letter-spacing:.03em}
+      .pick{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:0 18px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:box-shadow .18s,transform .18s}
+      .pick:hover{box-shadow:var(--shadow-hi);transform:translateY(-3px)}
+      .pick .ribbon{align-self:flex-start;background:var(--pc,var(--acc));color:#fff;font-size:12px;font-weight:800;border-radius:0 0 8px 8px;padding:6px 12px;letter-spacing:.03em}
+      .pick:nth-child(1){--pc:#2563eb}.pick:nth-child(2){--pc:#059669}.pick:nth-child(3){--pc:#7c3aed}
+      .pick .shot-card img{transition:transform .5s ease}
+      .pick:hover .shot-card img{transform:scale(1.04)}
       .pick h3{margin:12px 0 8px;font-size:18px;color:var(--navy);display:flex;flex-direction:column;gap:2px}
       .pick h3 small{color:var(--mut);font-size:12px;font-weight:600}
       .pick .specs{margin:0 0 10px;display:grid;gap:4px}
@@ -244,8 +274,21 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       /* サムネイル付き記事カード */
       .cards{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
       @media (max-width:720px){ .cards{grid-template-columns:1fr} }
-      .card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:hidden;text-decoration:none;color:var(--fg);box-shadow:0 1px 3px rgba(15,39,68,.06);transition:box-shadow .15s,transform .15s,border-color .15s}
-      .card:hover{box-shadow:0 6px 18px rgba(15,39,68,.12);transform:translateY(-2px);border-color:#bfdbfe}
+      .card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:hidden;text-decoration:none;color:var(--fg);box-shadow:var(--shadow);transition:box-shadow .18s,transform .18s,border-color .18s}
+      .card:hover{box-shadow:var(--shadow-hi);transform:translateY(-3px);border-color:#bfdbfe}
+      /* カテゴリ色。左の帯とチップの色で、一覧を眺めただけで記事の種類が分かる */
+      .card.row,.feat{border-left:5px solid var(--cc,#93c5fd)}
+      [data-cat="比較"]{--cc:var(--c-hikaku);--cbg:#eff6ff;--cfg:#1d4ed8}
+      [data-cat="評判・口コミ"]{--cc:var(--c-hyoban);--cbg:#f3e8ff;--cfg:#6d28d9}
+      [data-cat="給付金"]{--cc:var(--c-kyufu);--cbg:#ecfdf5;--cfg:#047857}
+      [data-cat="やめとけ"]{--cc:var(--c-yame);--cbg:#fff1f2;--cfg:#be123c}
+      [data-cat="解説"]{--cc:var(--c-kaisetsu);--cbg:#fff7ed;--cfg:#c2410c}
+      [data-cat="料金"]{--cc:#d97706;--cbg:#fffbeb;--cfg:#b45309}
+      [data-cat="学習・キャリア"]{--cc:var(--c-gakushu);--cbg:#f0fdfa;--cfg:#0f766e}
+      [data-cat="ニュース"]{--cc:var(--c-news);--cbg:#ecfeff;--cfg:#155e75}
+      [data-cat] .chip{background:var(--cbg,var(--chip));color:var(--cfg,var(--chip-fg))}
+      .more-link{display:block;margin:18px auto 0;width:max-content;background:#fff;border:1.5px solid var(--acc);color:var(--acc-dark);font-weight:800;text-decoration:none;border-radius:999px;padding:11px 26px;font-size:14px;transition:background .18s,transform .18s}
+      .more-link:hover{background:#eff6ff;transform:translateY(-2px)}
       .cthumb{display:block;aspect-ratio:16/9;overflow:hidden}
       .cthumb svg{width:100%;height:100%;display:block}
       .cbody{display:flex;flex-direction:column;gap:6px;padding:14px 16px 15px}
@@ -255,8 +298,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       .card .d{color:var(--mut);font-size:12.5px}
 
       /* 最新1本を大きく見せるカード。サムネと本文を横に組んで、一覧との差を出す */
-      .feat{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:0;background:var(--card);border:1px solid var(--bd);border-radius:16px;overflow:hidden;text-decoration:none;color:var(--fg);box-shadow:0 2px 10px rgba(15,39,68,.09);margin-bottom:14px;transition:box-shadow .15s,transform .15s,border-color .15s}
-      .feat:hover{box-shadow:0 10px 26px rgba(15,39,68,.15);transform:translateY(-2px);border-color:#bfdbfe}
+      .feat{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:0;background:var(--card);border:1px solid var(--bd);border-radius:16px;overflow:hidden;text-decoration:none;color:var(--fg);box-shadow:var(--shadow);margin-bottom:14px;transition:box-shadow .18s,transform .18s,border-color .18s}
+      .feat:hover{box-shadow:var(--shadow-hi);transform:translateY(-3px);border-color:#bfdbfe}
       .feat-thumb{display:block;overflow:hidden;min-height:100%}
       .feat-thumb svg{width:100%;height:100%;display:block;object-fit:cover}
       .feat-body{display:flex;flex-direction:column;gap:8px;padding:20px 22px 18px;justify-content:center}
@@ -285,13 +328,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
       /* 選び方ステップ */
       .steps{list-style:none;counter-reset:st;padding:0;margin:0;display:grid;gap:10px}
-      .steps li{counter-increment:st;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 16px 14px 58px;position:relative;margin:0}
-      .steps li::before{content:counter(st);position:absolute;left:16px;top:14px;width:30px;height:30px;border-radius:999px;background:var(--navy);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px}
+      .steps li{counter-increment:st;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 16px 14px 58px;position:relative;margin:0;box-shadow:var(--shadow)}
+      .steps li::before{content:counter(st);position:absolute;left:16px;top:14px;width:30px;height:30px;border-radius:999px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px}
       .steps b{display:block;color:var(--navy);font-size:15px;margin-bottom:2px}
       .steps span{color:var(--mut);font-size:13.5px;line-height:1.7}
 
       /* FAQ */
-      details{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:0;margin:0 0 10px;overflow:hidden}
+      details{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:0;margin:0 0 10px;overflow:hidden;box-shadow:var(--shadow)}
       summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:14.5px;padding:14px 16px;list-style:none;position:relative;padding-right:40px}
       summary::-webkit-details-marker{display:none}
       summary::after{content:"＋";position:absolute;right:16px;top:12px;color:var(--acc);font-weight:800}
@@ -304,7 +347,19 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       /* Shindan buttons reuse */
       .opt{text-align:left;padding:15px 18px;border:1px solid var(--bd);border-radius:12px;background:var(--card);color:var(--fg);font-size:15px;cursor:pointer;box-shadow:0 1px 3px rgba(15,39,68,.06)}
       .opt:hover{border-color:var(--acc);box-shadow:0 4px 12px rgba(37,99,235,.15)}
+
+      /* ==== 動き ====
+         .reveal はスクロールで視界に入ったときに現れる。JSが動く環境（html.js）でだけ最初を透明にする。
+         JSが落ちても記事が消えないように、既定は表示。--i で兄弟ごとに少しずつ遅らせる。 */
+      html.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease;transition-delay:calc(var(--i,0)*70ms)}
+      html.js .reveal.in{opacity:1;transform:none}
+      @media (prefers-reduced-motion:reduce){
+        html.js .reveal{opacity:1;transform:none;transition:none}
+        .hero::before,.hero::after,.hero-shots .hs,.hero .pw-head .dot{animation:none}
+        *{transition-duration:.01ms !important}
+      }
     </style>
+    <script is:inline>document.documentElement.classList.add("js")</script>
   </head>
   <body>
     <header class="site"><div class="wrap nav">
@@ -316,7 +371,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <a class="cta" href="/shindan/">30秒診断</a>
     </div></header>
     <slot name="hero" />
-    <main class="wrap"><slot /></main>
+    <main class:list={["wrap", { home }]}><slot /></main>
     <footer class="site"><div class="wrap inner">
       <div class="fbrand"><span class="logo">&lt;/&gt;</span>{site}</div>
       <p>プログラミングスクールを料金・サポート・転職実績で正直に比較する情報サイトです。</p>
@@ -330,5 +385,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       </div>
       <p class="copy">© {new Date().getFullYear()} {site}</p>
     </div></footer>
+    <script is:inline>
+      (function(){
+        var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var els = document.querySelectorAll(".reveal");
+        if ("IntersectionObserver" in window && !reduce) {
+          var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+          }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+          els.forEach(function(el){ io.observe(el); });
+        } else { els.forEach(function(el){ el.classList.add("in"); }); }
+        // 数字のカウントアップ（料金監視の実績など）。data-count に最終値。
+        document.querySelectorAll("[data-count]").forEach(function(el){
+          var end = Number(el.getAttribute("data-count")); if (!isFinite(end) || reduce) return;
+          var start = null, dur = 900;
+          function step(ts){ if (!start) start = ts; var p = Math.min(1, (ts - start) / dur); var v = Math.round(end * (1 - Math.pow(1 - p, 3))); el.firstChild.nodeValue = String(v); if (p < 1) requestAnimationFrame(step); }
+          el.firstChild.nodeValue = "0"; requestAnimationFrame(step);
+        });
+      })();
+    </script>
   </body>
 </html>
