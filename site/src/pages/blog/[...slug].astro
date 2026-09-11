@@ -9,6 +9,7 @@ import FigKyufu from "../../components/FigKyufu.astro";
 import Cta from "../../components/Cta.astro";
 import Shot from "../../components/Shot.astro";
 import pricewatch from "../../data/pricewatch.json";
+import { catOf } from "../../lib/cat";
 import offersFile from "../../data/offers.json";
 
 export async function getStaticPaths() {
@@ -19,7 +20,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await post.render();
 const d = post.data;
-const cat = d.title.includes("給付金") ? "給付金" : (d.title.includes("比較") || d.title.includes("おすすめ")) ? "比較" : d.title.includes("評判") ? "評判・口コミ" : "解説";
+const cat = catOf(d.title, d);
 
 // 独自データ：この記事のスクールに公式料金の観測記録があれば「監視ログ」を表示。
 // slug 規約 hyoban-<id> と pricewatch.json のキーを対応させる。
