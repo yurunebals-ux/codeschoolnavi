@@ -1,0 +1,56 @@
+name: regen-articles
+
+# 公開済み記事を新しい型（src/pipeline/generate.ts）で作り直す。
+# 日次サイクルでも1日2本ずつ進むが、まとめて進めたいときはここから手動実行する。
+on:
+  workflow_dispatch:
+    inputs:
+      count:
+        description: "作り直す本数（古い順）"
+        required: false
+        default: "5"
+      slugs:
+        description: "特定の記事だけ（カンマ区切り slug）。指定時は count を無視"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  regen:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: content-cycle
+      cancel-in-progress: false
+    env:
+      LLM_PROVIDER: "openai"
+      LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+      LLM_MODEL: "gpt-4.1-mini"
+      SITE_URL: "https://codeschoolnavi.com"
+      SITE_NAME: "コードスクールナビ"
+      SITE_AUTHOR: "編集部"
+      SITE_NICHE: "programming-schools"
+      MIN_WORDS: "4200"
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - run: npm install
+      - name: Regenerate
+        run: |
+          if [ -n "${{ inputs.slugs }}" ]; then
+            npx tsx src/pipeline/regen.ts --slugs="${{ inputs.slugs }}" --force
+          else
+            npx tsx src/pipeline/regen.ts --count=${{ inputs.count }}
+          fi
+      - name: Commit
+        run: |
+          git config user.name "content-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && echo "no changes" && exit 0
+          git commit -m "content: regenerate articles with structure v2"
+          git pull --rebase
+          git push
