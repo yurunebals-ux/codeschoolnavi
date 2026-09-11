@@ -200,6 +200,22 @@ export function normalizeHeadings(md: string): string {
   return out;
 }
 
+// 表の区切り行（|---|---|）が抜けた表を直す。LLMがときどき落とし、検査で却下されて1日分が空振りする
+// （2026-09-11 AVILEN 記事）。ヘッダ行の列数に合わせて区切り行を挿入する。
+export function repairTables(md: string): string {
+  const lines = md.split("\n");
+  const out: string[] = [];
+  for (let i = 0; i < lines.length; i++) {
+    out.push(lines[i]);
+    if (!/^\s*\|/.test(lines[i]) || (i > 0 && /^\s*\|/.test(lines[i - 1]))) continue; // 表の1行目だけ見る
+    const next = lines[i + 1] ?? "";
+    if (/^\s*\|\s*:?-{2,}/.test(next)) continue;
+    const n = lines[i].trim().replace(/^\|/, "").replace(/\|$/, "").split("|").length;
+    out.push("|" + " --- |".repeat(n));
+  }
+  return out.join("\n");
+}
+
 export function dedupeSections(md: string): string {
   const lines = md.split("\n");
   const heads: { title: string; start: number }[] = [];
@@ -445,7 +461,7 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
   const t1 = takeTitle(p1.trim());
   const d1 = takeDescription(t1.body);
   let body = [d1.body, p2].map((s) => s.trim()).filter(Boolean).join("\n\n");
-  body = dedupeSections(normalizeHeadings(body));
+  body = dedupeSections(normalizeHeadings(repairTables(body)));
   body = body
     .replace(/^(#{2,3})\s*\d{1,2}[\.．、)）]\s*/gm, "$1 ")
     .replace(/^(#{2,3})\s*(冒頭|前半|中盤|後半)[:：]\s*/gm, "$1 ");
