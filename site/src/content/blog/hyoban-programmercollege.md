@@ -236,6 +236,6 @@ draft: false
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [AI活用力の育成と投資効果、未経験採用のリアルを見極める時代](/blog/news-20260911-16rq8/)
 - [50代のAIエンジニア転職でスクール選びが左右するポイント](/blog/news-20260911-5mnke/)
 - [スキルアップAIの評判・口コミは？特徴を解説](/blog/hyoban-skillupai/)
-- [RUNTEQはやめとけ？評判と後悔しない判断基準](/blog/yametoke-runteq/)
