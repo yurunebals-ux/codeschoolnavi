@@ -18,7 +18,9 @@
     "dashboard:build": "tsx src/pipeline/dashboard.ts",
     "cycle": "tsx src/index.ts cycle",
     "status": "tsx src/index.ts status",
-    "shots:take": "tsx src/pipeline/shots.ts"
+    "shots:take": "tsx src/pipeline/shots.ts",
+    "regen:run": "tsx src/pipeline/regen.ts",
+    "news:run": "tsx src/pipeline/news.ts"
   },
   "dependencies": {
     "playwright": "^1.63.0",
