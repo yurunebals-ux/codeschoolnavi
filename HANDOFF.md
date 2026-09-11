@@ -560,3 +560,11 @@ LLMは後に来た具体的な指示に従うので、対象外でも計算し�
 - 「プログラミングスクール」11件: ポテパンキャンプ（カウンセリング10,000円／20,000円）、Winスクール（10,000円）、忍者CODE（ラグザス、17,500円）、SkillHacks（提携中 6,835円）。7/28 に申請した忍者CODE・ポテパン・DMM生成AI・Winスクールは全部「未提携」に戻っている＝否認済み
 - 登録情報の閲覧は再認証（パスワード）が要る。提携申請は「集客方法・訴求方法」を書ける（9/8〜）
 
+
+### 同日追記2: 再生成の初回結果・タグの言い換え・アクセス増施策・A8再申請
+
+- **regen-articles #1（手動、hyoban-skillupai / ryokin-runteq）: 2/2 採用。** 構成・数字・参考校比較は狙いどおり。見つけた欠点: 「/kyufukin/」がリンクにならず地の文に残った→ `generate.ts` で後処理（裸のパスを Markdown リンクに）。最終節が3つの H2 に割れるのは許容
+- カテゴリ表示「やめとけ」→「注意点」（`cat.ts`、配色は赤橙）。**記事タイトルの「やめとけ」は検索需要のため残す**（オーナーが変えたければ `keyword.ts` の money:doubt のタイトル型と既存記事の title を変える。URLは slug なので変わらない）。生成側の見出しも「やめておいたほうがいい人」→「向いていない人と、その人に合う代替校」に
+- アクセス増（実装済み）: og:image（記事=スクショ `-og.jpg` 1200×630 JPEG／他=`og-default.png`）、twitter:card、og:url/site_name/locale、BreadcrumbList 構造化データ、`max-image-preview:large`（Discover 向け）、RSS の自動発見、Article に image/mainEntityOfPage
+- アクセス増（未実施・オーナーの操作が要る）: Search Console の流入確認（前回 8/7）、Bing Webmaster Tools の登録（IndexNow は導入済みなので Bing への通知自体は届いている）、X 等での告知
+- A8 再申請（2026-09-11、新管理画面）: DMM 生成AI CAMP s00000027398001 ／ ポテパンキャンプ s00000017938002 ／ Winスクール s00000023621001 ／ 忍者CODE s00000025234001。アピールサイト=コードスクールナビ(002)、集客方法=SEO、訴求方法=比較・ランキング＋情報・ノウハウ記事。申請フォームは `/program/detail-not-partnered?programId=…` の下部。承認されたら `affiliates.json` の affiliate_url を差し替える（A8 のリンクは必ずサイト 002 で発行）
