@@ -196,5 +196,5 @@ SkillHacksには返金保証がない。購入前に公式サイトのカリキ�
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [SkillHacksの料金は高い？他社と比較](/blog/ryokin-skillhacks/)
-- [SkillHacksはやめとけ？評判と後悔しない判断基準](/blog/yametoke-skillhacks/)
+- [SkillHacksは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-skillhacks/)
 - [SkillHacksの評判・口コミは？特徴を解説](/blog/hyoban-skillhacks/)
