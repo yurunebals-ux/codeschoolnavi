@@ -1,0 +1,48 @@
+name: site-screenshots
+
+# 各スクールの公式サイトのファーストビューを撮って、サイトの写真要素にする。
+# 作業コンテナからは外部HTTPが通らないので、撮影はここ（CI）でしかできない。
+# 30日より古い画像だけ撮り直す（毎回撮るとリポジトリが画像差分で太る）。
+# 失敗した校は前回の画像を維持し、1校も撮れなくてもこのワークフローは失敗扱いにしない。
+
+on:
+  schedule:
+    - cron: "30 1 * * 0" # 毎週日曜 01:30 UTC（10:30 JST）
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "全校を撮り直す（30日ルールを無視）"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  shots:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: content-cycle # 記事のcronと同じ枠。同時にpushしてぶつからないようにする
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - name: Install deps
+        run: npm install
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Take screenshots
+        run: npx tsx src/pipeline/shots.ts ${{ inputs.force && '--force' || '' }}
+      - name: Commit and push
+        run: |
+          git config user.name "content-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add site/public/img/shots site/src/data/shots.json
+          if git diff --cached --quiet; then
+            echo "変更なし"; exit 0
+          fi
+          git commit -m "shots: 公式サイトのスクリーンショットを更新"
+          git pull --rebase origin main
+          git push origin HEAD:main
