@@ -135,6 +135,8 @@ export async function takeShots(): Promise<{ taken: number; skipped: number; fai
       const info = await img.toFile(out);
       // 一覧の小さいアイキャッチ用（幅320）。104pxの枠に960px画像を10枚並べるのは無駄なので別に持つ。
       await sharp(png).resize({ width: 320 }).webp({ quality: 74 }).toFile(resolve(OUT_DIR, `${t.id}-s.webp`));
+      // SNS共有用（og:image）。WebP を受け付けない共有先があるので JPEG、1200×630 に上を残して切る。
+      await sharp(png).resize({ width: 1200, height: 630, fit: "cover", position: "top" }).jpeg({ quality: 82 }).toFile(resolve(OUT_DIR, `${t.id}-og.jpg`));
       meta.shots[t.id] = {
         file: `/img/shots/${t.id}.webp`,
         takenAt: new Date().toISOString(),

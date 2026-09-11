@@ -280,7 +280,7 @@ function planFor(item: KeywordItem, tools: Tool[], all: Tool[], subsidyIds: stri
     return {
       factBoxFor: t, needTable: false,
       a: `1. 冒頭（見出しなし・200字以内）: 1文目に金額か期間。3文目までに編集部の判定（合う人／合わない人）を一言で。\n2. ## 編集部の判定：「◯◯な人には合う、△△な人には合わない」の形の見出し。判定理由を3つ、それぞれ数字か条件つきで。参考校（${peers}）との違いを最低1つ数字で示す。\n3. ## ${angle.title}（${t.name}に即した具体的な見出しに言い換えてよい）: ${angle.brief}\n4. ## 公式サイトの売り文句を読み解く: 公式の主張を3つ取り上げ（データの一言・学べる内容・転職支援・返金などから）、それぞれ「公式はこう書いている→条件・裏側→読者にとって何を意味するか」の順で書く。`,
-      b: `5. ## やめておいたほうがいい人と、その人が選ぶべき代替校: 条件を具体的に3つ。それぞれ参考校（${peers}）のどれが代わりになるかを、料金・期間・保証の数字つきで。\n6. ## ${kyufuHead}: ${subsidy}\n7. ${faq}\n8. ${last}`,
+      b: `5. ## 向いていない人と、その人に合う代替校: 条件を具体的に3つ。それぞれ参考校（${peers}）のどれが代わりになるかを、料金・期間・保証の数字つきで。\n6. ## ${kyufuHead}: ${subsidy}\n7. ${faq}\n8. ${last}`,
     };
   }
   if (item.template === "money:pricing" && t) {
@@ -297,7 +297,7 @@ function planFor(item: KeywordItem, tools: Tool[], all: Tool[], subsidyIds: stri
     return {
       factBoxFor: t, needTable: false,
       a: `1. 冒頭（見出しなし・200字以内）: 「やめとけ」と言われる理由になりうる事実を3つ、先に列挙する（料金・期間・保証条件・転職支援など、データにある事実だけ）。\n2. その3つについて、それぞれ ## 本当に◯◯なのか の形の見出しで1節ずつ検証する（合計3節）。各節は「事実（データ）→編集部の見方→どんな人なら問題にならないか」の順。`,
-      b: `5. ## 後悔しやすい人の条件と、代わりに見るべき学校: 条件を3つ、それぞれ参考校（${peers}）のどれが代わりになるかを数字つきで。\n6. ## ${kyufuHead}: ${subsidy}\n7. ## 申し込む前に潰しておく不安: 無料カウンセリングでそのまま口に出せる質問を5つ、「」で書く。それぞれ何を確かめる質問かを1文添える。\n8. ${faq}\n9. 最後の節（見出しは「まとめ」以外の具体的なもの）: 判断の分かれ目を1つだけ書き、その先の行動を2通り示す。要約は禁止。`,
+      b: `5. ## 合わない条件と、その場合に見るべき学校: 条件を3つ、それぞれ参考校（${peers}）のどれが代わりになるかを数字つきで。\n6. ## ${kyufuHead}: ${subsidy}\n7. ## 申し込む前に潰しておく不安: 無料カウンセリングでそのまま口に出せる質問を5つ、「」で書く。それぞれ何を確かめる質問かを1文添える。\n8. ${faq}\n9. 最後の節（見出しは「まとめ」以外の具体的なもの）: 判断の分かれ目を1つだけ書き、その先の行動を2通り示す。要約は禁止。`,
     };
   }
   if (item.template === "money:vs" && tools.length >= 2) {
@@ -386,6 +386,12 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
     .replace(/^(#{2,3})\s*\d+[\.．、]?\s*/gm, "$1 ")
     .replace(/^(#{2,3})\s*(冒頭|前半|中盤|後半)[:：]\s*/gm, "$1 ");
 
+  // 「/kyufukin/」とパスを地の文に書くだけでリンクにしないことがある（実測: ryokin-runteq）。
+  // Markdown リンクの中は触らず、裸のパスだけリンクに置き換える。
+  body = body.replace(/「?(?<!\]\()(?<![\w/])(\/kyufukin\/)」?/g, (m, path, off, str) => {
+    const before = str.slice(Math.max(0, off - 2), off);
+    return /\]\($/.test(before) || /\($/.test(before) ? m : "[給付金の使い方](/kyufukin/)";
+  });
   if (plan.factBoxFor) body = insertAfterIntro(body, factBox(plan.factBoxFor, subsidyIds.includes(plan.factBoxFor.id)));
   if (plan.needTable && !body.includes("|") && tools.length) body += `\n\n## 比較一覧\n\n${comparisonTable(tools)}\n`;
 
