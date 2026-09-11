@@ -1,0 +1,43 @@
+name: news-column
+
+# 週刊ニュースコラムを手動で1本作る（動作確認用）。通常は daily-content-cycle が週1で拾う。
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: content-cycle
+      cancel-in-progress: false
+    env:
+      LLM_PROVIDER: "openai"
+      LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+      LLM_MODEL: "gpt-4.1-mini"
+      SITE_URL: "https://codeschoolnavi.com"
+      SITE_NAME: "コードスクールナビ"
+      SITE_AUTHOR: "編集部"
+      SITE_NICHE: "programming-schools"
+      MIN_WORDS: "4200"
+      INDEXNOW_KEY: "a77cf03e731e2c8ffbef06cf3fd92398"
+      PUBLISH_COMMIT: "1"
+      PUBLISH_PUSH: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - run: npm install
+      - name: Configure git
+        run: |
+          git config user.name "content-bot"
+          git config user.email "bot@users.noreply.github.com"
+      - name: Pick news, write, check, publish
+        run: |
+          npx tsx src/pipeline/news.ts --force
+          npx tsx src/pipeline/generate.ts 1
+          npx tsx src/pipeline/quality.ts
+          npx tsx src/pipeline/publish.ts
