@@ -1,0 +1,55 @@
+---
+// 各スクールの公式サイトのファーストビュー（src/pipeline/shots.ts がCIで撮る）。
+//
+// 見せ方の根拠（2026-09-11 の競合分析）: 上位の比較サイトは各校ブロックの冒頭に
+// 公式サイトのスクショを1枚置き、コエテコ・マナビタイムは直下に「出典：〇〇」を添える。
+// 人物のストック写真をヒーローに使うサイトは無かった。ここもその型に合わせる。
+//
+// 画像が無いスクール（まだ撮れていない・撮影に失敗した）は何も描画しない。
+// 空の枠や「no image」を出すくらいなら、無いほうが読みやすい。
+import shotsFile from "../data/shots.json";
+
+interface Props {
+  id: string;            // affiliates.json の tools[].id
+  name: string;          // 表示名（altと出典に使う）
+  official?: string;     // 出典リンク先。無ければ撮影時のURL
+  variant?: "figure" | "card" | "plain";
+  eager?: boolean;       // ファーストビューに出すときだけ true（LCP対策）
+}
+const { id, name, official, variant = "figure", eager = false } = Astro.props;
+const shot = (shotsFile as any).shots?.[id] as { file: string; takenAt: string; w: number; h: number; source: string } | undefined;
+
+const taken = shot ? new Date(shot.takenAt) : null;
+const ym = taken ? `${taken.getFullYear()}年${taken.getMonth() + 1}月` : "";
+const src = official || shot?.source || "";
+---
+{shot && variant === "figure" && (
+  <figure class="shot shot-figure">
+    <img src={shot.file} width={shot.w} height={shot.h} alt={`${name}の公式サイト画像（${ym}撮影）`} loading={eager ? "eager" : "lazy"} decoding="async" />
+    <figcaption>出典：<a href={src} target="_blank" rel="nofollow noopener">{name}公式サイト</a>（{ym}時点の表示）</figcaption>
+  </figure>
+)}
+{shot && variant === "card" && (
+  <a class="shot shot-card" href={src} target="_blank" rel="nofollow noopener" aria-label={`${name}の公式サイトを開く`}>
+    <img src={shot.file} width={shot.w} height={shot.h} alt={`${name}の公式サイト画像（${ym}撮影）`} loading={eager ? "eager" : "lazy"} decoding="async" />
+    <span class="shot-src">出典：{name}公式サイト</span>
+  </a>
+)}
+{shot && variant === "plain" && (
+  <img class="shot shot-plain" src={shot.file} width={shot.w} height={shot.h} alt={`${name}の公式サイト画像（${ym}撮影）`} loading={eager ? "eager" : "lazy"} decoding="async" />
+)}
+
+<style is:global>
+  /* 記事内: 本文幅いっぱい。ブラウザ枠っぽい上端バーを付けて「サイトの画面」だと一目で分かるようにする */
+  .shot-figure{margin:0 0 22px;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 2px 10px rgba(15,39,68,.06)}
+  .shot-figure::before{content:"";display:block;height:10px;background:linear-gradient(90deg,#e2e8f0,#f1f5f9);border-bottom:1px solid #e2e8f0}
+  .shot-figure img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top}
+  .shot-figure figcaption{font-size:11.5px;color:#64748b;padding:8px 12px;background:#f8fafc;border-top:1px solid #e2e8f0}
+  .shot-figure figcaption a{color:#475569;text-decoration:underline}
+  /* トップのカード: 上部に敷く。高さを抑えて情報を押し下げすぎない */
+  .shot-card{display:block;position:relative;border-radius:10px 10px 0 0;overflow:hidden;background:#f1f5f9;margin:-18px -18px 14px}
+  .shot-card img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:top;transition:transform .35s}
+  .shot-card:hover img{transform:scale(1.03)}
+  .shot-card .shot-src{position:absolute;right:8px;bottom:8px;font-size:10.5px;color:#fff;background:rgba(15,23,42,.62);padding:2px 8px;border-radius:999px}
+  .shot-plain{display:block;width:100%;height:auto}
+</style>
