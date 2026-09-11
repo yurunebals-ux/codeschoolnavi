@@ -19,8 +19,14 @@ const REV_PER_ARTICLE_YEN = 300;
 // 給付金ハブを常に優先し、同クラスタ→新着の順で最大4本。既存の関連ブロックは張り替える。
 const HUB_SLUGS = ["kyufukin-osusume"];
 
+// 非公開（draft: true）にした記事へはリンクしない（404になる。2026-09-11 に発生）
+function isDraftFile(slug: string): boolean {
+  const p = resolve(paths.blog, `${slug}.md`);
+  return existsSync(p) && /^draft:\s*true/m.test(readFileSync(p, "utf8").slice(0, 600));
+}
+
 function relatedFor(item: KeywordItem, published: KeywordItem[]): KeywordItem[] {
-  const peers = published.filter((k) => k.slug !== item.slug);
+  const peers = published.filter((k) => k.slug !== item.slug && !isDraftFile(k.slug));
   const rel: KeywordItem[] = [];
   for (const hs of HUB_SLUGS) {
     const hub = peers.find((k) => k.slug === hs);
@@ -52,9 +58,13 @@ export function reconcilePublished(): number {
   const state = loadState();
   let fixed = 0;
   for (const k of state.keywords) {
-    if (k.status === "published") continue;
     const p = resolve(paths.blog, `${k.slug}.md`);
     if (!existsSync(p)) continue;
+    // 記事の title を手で直したら（「やめとけ」撤去など）state 側の keyword も追従させる。
+    // 関連リンクの文言は keyword から作るので、ここを直さないと古い題名が毎日張り直される（2026-09-11 に発生）。
+    const t = readFileSync(p, "utf8").match(/^title:\s*"?(.+?)"?\s*$/m)?.[1];
+    if (t && t !== k.keyword) { k.keyword = t; fixed++; }
+    if (k.status === "published") continue;
     k.status = "published";
     if (!k.publishedAt) {
       // 記事のfrontmatterのpubDateを公開日として拾う（無ければ今日）。

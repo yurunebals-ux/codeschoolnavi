@@ -417,7 +417,8 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
     const cd = takeDescription(ct.body);
     const lm = cd.body.match(/^\s*LEAD[:：]\s*(.+)\n/);
     const lead = lm ? lm[1].trim() : "";
-    const colBody = (lm ? cd.body.slice(lm[0].length) : cd.body).trim();
+    // 行末の空白2つ（Markdownの改行）と見出し末尾の空白を落とす。表示が崩れる
+    const colBody = (lm ? cd.body.slice(lm[0].length) : cd.body).trim().replace(/[ \t]+$/gm, "");
     const sources = usable.map((n) => `- [${n.title}](${n.link})（${n.source}、${n.published}）`).join("\n");
     let body2 = [lead, ...sections, colBody, `## 出典\n\n${sources}`].filter(Boolean).join("\n\n");
     body2 = dedupeSections(normalizeHeadings(body2));

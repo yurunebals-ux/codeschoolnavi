@@ -207,11 +207,14 @@ export async function newsRun(opts: { force?: boolean } = {}): Promise<string | 
   const grams = (t: string) => { const x = t.replace(/[\s「」『』【】（）()、。・:：\-｜|]/g, ""); const g = new Set<string>(); for (let i = 0; i < x.length - 1; i++) g.add(x.slice(i, i + 2)); return g; };
   const similar = (a: string, b: string) => { const A = grams(a), B = grams(b); let n = 0; for (const g of A) if (B.has(g)) n++; return n / Math.max(1, Math.min(A.size, B.size)); };
   const isPR = (it: NewsItem) => /prtimes|newscast|atpress|pr\.|プレスリリース/i.test(it.link + " " + it.source);
+  // 企業のオウンドメディアの「おすすめ転職エージェント」型（SEO記事）はニュースではない。2026-09-11 に混入
+  const isSeo = (it: NewsItem) => /おすすめ|ランキング|徹底比較|転職エージェント|選び方|完全ガイド|まとめ$/.test(it.title) || /\/(career-)?column\/|\/media\/|\/magazine\/|\/lab\//.test(it.link);
   let prCount = 0;
   for (const it of fresh.slice(0, 20)) {
     if (picked.length >= 3) break;
     // 同じ話題（同じプレスリリースを複数媒体が載せる）は1本だけ
     if (picked.some((p) => similar(p.title, it.title) > 0.35)) { console.log(`[news] 同じ話題: ${it.title.slice(0, 40)}`); continue; }
+    if (isSeo(it)) { console.log(`[news] SEO記事なので除外: ${it.title.slice(0, 40)}`); continue; }
     if (isPR(it) && prCount >= 1) continue; // プレスリリース由来は1本まで（宣伝ばかりにしない）
     const [en] = await enrichItems([it]);
     if (!en.text) { console.log(`[news] 本文なし: ${it.title.slice(0, 40)}`); continue; }
