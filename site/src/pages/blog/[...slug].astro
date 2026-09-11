@@ -67,7 +67,7 @@ const ctaAfter = figMapAfter + 1;
   <article>
     <h1>{d.title}</h1>
     <div class="meta">
-      <span class="badge">✓ 3軸で検証済み</span>
+      <span class="badge">{d.news ? "編集部コラム" : d.topic ? "学習・キャリア" : "✓ 3軸で検証済み"}</span>
       <span>更新日: {d.updatedDate || d.pubDate}</span>
       <span>執筆: {d.author}（編集長 佐倉 透）</span>
     </div>
