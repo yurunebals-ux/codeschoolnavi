@@ -5,6 +5,8 @@ import Thumb from "../components/Thumb.astro";
 import Avatar from "../components/Avatar.astro";
 import Cta from "../components/Cta.astro";
 import HeroArt from "../components/HeroArt.astro";
+import Shot from "../components/Shot.astro";
+import shotsFile from "../data/shots.json";
 import NavIcon from "../components/NavIcon.astro";
 import schools from "../data/schools.json";
 import pricewatch from "../data/pricewatch.json";
@@ -29,9 +31,27 @@ const pwCount = watched.length;
 const pwLast = watched.map((s) => s.lastChecked).filter(Boolean).sort().pop() ?? "";
 const pwChanges = watched.reduce((n, s) => n + (s.observations?.length ?? 0), 0);
 const pwLastMd = pwLast ? `${Number(pwLast.slice(5, 7))}/${Number(pwLast.slice(8, 10))}` : "—";
+
+// ヒーロー右側に敷く「公式サイトの画面」の扇。競合分析（2026-09-11）で上位サイトのヒーローに
+// 人物写真は無く、代わりに「実物の画面」が信頼感を作っていた。スクショがある校のうち
+// 比較表に載っている校を優先し、最大3枚。無ければ従来のSVGだけで描く（何も壊れない）。
+const shotIds = Object.keys((shotsFile as any).shots ?? {});
+const heroShots = [
+  ...schools.table.map((s: any) => s.id),
+  ...schools.picks.map((s: any) => s.id),
+].filter((id, i, a) => a.indexOf(id) === i && shotIds.includes(id)).slice(0, 3)
+ .map((id) => ({ id, name: (schools.table.find((s: any) => s.id === id) ?? schools.picks.find((s: any) => s.id === id))?.name ?? id }));
 ---
 <Base title="プログラミングスクールの比較・評判" description="主要プログラミングスクールの受講料・期間・給付金・転職支援を横並びで比較。評判記事は毎日更新、デメリットも正直に記載します。">
-  <section class="hero" slot="hero"><HeroArt /><div class="wrap">
+  <section class="hero" slot="hero"><HeroArt />
+    {heroShots.length > 0 && (
+      <div class="hero-shots" aria-hidden="true">
+        {heroShots.map((h, i) => (
+          <div class={`hs hs-${i}`}><Shot id={h.id} name={h.name} variant="plain" eager={i === 0} /></div>
+        ))}
+      </div>
+    )}
+    <div class="wrap">
     <p class="kicker">スクール選びで後悔したくない人のための比較サイト</p>
     <h1>受講料・給付金・転職支援。<br />答えは「横並びの比較」で出す。</h1>
     <p>主要スクールの受講料・期間・保証内容を公式情報から整理し、ひとつの表で比べられるようにしました。給付金で受講料の20〜80%が戻る仕組みも、区分ごとの条件つきで解説。デメリットも隠さず書きます。</p>
@@ -86,6 +106,7 @@ const pwLastMd = pwLast ? `${Number(pwLast.slice(5, 7))}/${Number(pwLast.slice(8
     <div class="picks">
       {schools.picks.map((s) => (
         <article class="pick">
+          <Shot id={s.id} name={s.name} variant="card" />
           <div class="ribbon">{s.purpose}</div>
           <h3>{s.name}<small>{s.sub}</small></h3>
           <dl class="specs">
