@@ -5,6 +5,8 @@ import { priceWatchRun } from "./pipeline/pricewatch.js";
 import { generateNext } from "./pipeline/generate.js";
 import { checkAll } from "./pipeline/quality.js";
 import { polishRun } from "./pipeline/polish.js";
+import { newsRun } from "./pipeline/news.js";
+import { regenRun } from "./pipeline/regen.js";
 import { publishRun, reconcilePublished } from "./pipeline/publish.js";
 import { analyticsLoop } from "./pipeline/analytics.js";
 import { buildDashboard } from "./pipeline/dashboard.js";
@@ -22,6 +24,9 @@ async function cycle() {
   // 独自データ：公式サイト表示料金の定点観測（失敗してもサイクルは止めない）
   await priceWatchRun().catch((e) => console.log("[pricewatch] skip:", (e as Error).message));
 
+  // 週1本のニュース解説の種を拾う（失敗しても止めない）
+  await newsRun().catch((e) => console.log("[news] skip:", (e as Error).message));
+
   for (let i = 0; i < config.pipeline.perCycle; i++) {
     const made = await generateNext();
     if (!made) break;
@@ -31,6 +36,8 @@ async function cycle() {
   // 公開済み記事の文体改稿を1本。新規生成より後・公開より前に置くことで、
   // 改稿した記事も同じコミットに乗る。失敗してもサイクルは止めない。
   await polishRun().catch((e) => console.log("[polish] skip:", (e as Error).message));
+  // 旧い型の公開記事を1日2本ずつ新しい型で作り直す（全記事が終われば何もしない）
+  await regenRun({ count: Number(process.env.REGEN_PER_CYCLE ?? 2) }).catch((e) => console.log("[regen] skip:", (e as Error).message));
 
   await publishRun();
   await analyticsLoop();
