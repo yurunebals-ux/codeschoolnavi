@@ -39,7 +39,7 @@ export interface Affiliates { disclosure: string; tools: Tool[]; review_axes?: s
 /** 記事の種類ごとの下限字数。単校記事に6,000字を課すと一般論で水増しされる。 */
 export function minWordsFor(item: KeywordItem): number {
   const base = config.pipeline.minWords; // ワークフローの MIN_WORDS（4200）
-  if (item.template === "news:weekly") return 2200;
+  if (item.template === "news:weekly") return 1800;
   if (item.template.startsWith("news:")) return 900;
   if (item.template.startsWith("topic:")) return Math.round(base * 0.7);
   if (/^money:(review|pricing|doubt)$|^info:what$/.test(item.template)) return Math.round(base * 0.75);
@@ -388,14 +388,43 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
 
   let p1: string, p2 = "";
   if (item.template === "news:weekly") {
-    // 本文が無い材料があれば取りに行く（再生成時など）。2本未満なら書かない
+    // 【2026-09-11 実測】材料を1回のプロンプトにまとめて渡すと、後半の呼び出しが材料を持たず
+    // 出典を捏造（example.com）し、参考校のデータに引きずられてスクール比較にすり替わった。
+    // なので (1) ニュース1本ごとに小さく書かせ、(2) コラムは3本の要約だけを見せて書かせ、
+    // (3) 出典一覧と骨組みは機械で組む。スクールのデータは渡さない。
     const items = await enrichItems((item.news?.items ?? []) as NewsItem[]).catch(() => (item.news?.items ?? []) as NewsItem[]);
     item.news = { ...(item.news ?? {}), items };
-    if (items.filter((n) => n.text).length < 2) throw new Error("ニュースの本文が2本未満のため書かない");
-    const plan2 = planFor(item, tools, all, subsidyIds);
-    p1 = await chat(`${ctx}\n\n${plan2.a}`, { system, maxTokens: 5000, temperature: 0.7 });
-    p2 = await chat(`${ctx}\n\n記事の【後半】です。前半にはニュース${items.length}本の解説がある。重複せず、次の構成だけを ## 見出しで書く:\n${plan2.b}`, { system, maxTokens: 4000, temperature: 0.7 });
-  } else if (item.template.startsWith("news:")) {
+    const usable = items.filter((n) => n.text);
+    if (usable.length < 2) throw new Error("ニュースの本文が2本未満のため書かない");
+    const newsSystem = `${persona("editor")}\nあなたは日本語ネイティブの編集者です。プログラミングやAIを学ぼうとしている社会人・学生に向けて、業界ニュースを自分の言葉で解説します。宣伝口調は使いません。${DATA_RULES.replace("下の「データ」", "下の「材料」")}\n\n${STYLE}`;
+    const sections: string[] = [];
+    const summaries: string[] = [];
+    for (const n of usable) {
+      const r = await chat(
+        `次のニュース1本について、読者（プログラミングやAIを学ぼうとしている人）向けの解説を書く。\n出力形式（この形式以外は書かない）:\n1行目: 「H: 」に続けて見出し（そのニュースの意味を言い切る文。25字以内。媒体名・「〜について」・番号は使わない）\n2行目以降: 段落を3つ。(1) 何が起きたか（材料の本文から自分の言葉で3〜5文。固有名詞・数字は本文にあるものだけ。15字を超えて写さない）(2) 背景（なぜ今この動きか）(3) 学ぶ人にとっての意味（誰が・何を・どう変えるべきか。言い切る）。合計400〜600字。箇条書きは使わない。\n\n【材料】\n見出し: ${n.title}\n媒体: ${n.source}\n公開日: ${n.published}\n本文:\n${(n.text || n.snippet).slice(0, 2500)}`,
+        { system: newsSystem, maxTokens: 1500, temperature: 0.6 });
+      const lines = r.trim().split("\n");
+      const hm = lines[0].match(/^H[:：]\s*(.+)$/);
+      const heading = (hm ? hm[1] : n.title).replace(/^#+\s*/, "").trim();
+      const paras = (hm ? lines.slice(1) : lines).join("\n").trim().replace(/^#+.*$/gm, "").trim();
+      sections.push(`## ${heading}\n\n出典：[${n.source}](${n.link})（${n.published.slice(0, 16)}）\n\n${paras}`);
+      summaries.push(`・${heading}（${n.source}）: ${paras.replace(/\s+/g, " ").slice(0, 300)}`);
+    }
+    const col = await chat(
+      `今週のニュース${usable.length}本の要約を読んで、コラムを書く。\n出力形式（この順で。この形式以外は書かない）:\nTITLE: 記事タイトル（40字以内。${usable.length}本に共通する論点を一言で言い切る。「今週のニュース」のような定型は禁止）\nDESCRIPTION: 80字以内の説明\nLEAD: 冒頭の1段落（120字以内。${usable.length}本が指している「ひとつの変化」を1文目で言い切る）\n## （論点を言い切る見出し）\n本文600字以上: ${usable.length}本を貫く論点をひとつ立て、賛成する立場と反対する立場の両方を書いたうえで、編集部の結論を書く。一般論で逃げず、「◯◯な人は今年中に△△、そうでない人は様子見」のように行動まで落とす。ニュースにない固有名詞・数字は出さない。\n## 今週の読者への宿題\n具体的な行動を3つ、文章で（各行動に「なぜ今か」を1文添える）。スクール名や商品名は出さない。\n\n【要約】\n${summaries.join("\n")}`,
+      { system: newsSystem, maxTokens: 2500, temperature: 0.7 });
+    const ct = takeTitle(col.trim());
+    const cd = takeDescription(ct.body);
+    const lm = cd.body.match(/^\s*LEAD[:：]\s*(.+)\n/);
+    const lead = lm ? lm[1].trim() : "";
+    const colBody = (lm ? cd.body.slice(lm[0].length) : cd.body).trim();
+    const sources = usable.map((n) => `- [${n.title}](${n.link})（${n.source}、${n.published.slice(0, 16)}）`).join("\n");
+    let body2 = [lead, ...sections, colBody, `## 出典\n\n${sources}`].filter(Boolean).join("\n\n");
+    body2 = dedupeSections(normalizeHeadings(body2));
+    body2 = dedupeSections(await depersonalizeAi(body2, newsSystem));
+    return { body: body2, description: cd.description, title: ct.title, tools: [] };
+  }
+  if (item.template.startsWith("news:")) {
     // 旧形式（1本）。本文を取れれば足す
     if (item.news?.link && !item.news.text) {
       const [en] = await enrichItems([item.news as NewsItem]).catch(() => [item.news as NewsItem]);
