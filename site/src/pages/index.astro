@@ -8,6 +8,7 @@ import HeroArt from "../components/HeroArt.astro";
 import Shot from "../components/Shot.astro";
 import shotsFile from "../data/shots.json";
 import NavIcon from "../components/NavIcon.astro";
+import { catOf } from "../lib/cat";
 import schools from "../data/schools.json";
 import pricewatch from "../data/pricewatch.json";
 import offersFile from "../data/offers.json";
@@ -20,8 +21,7 @@ const hasSponsored = schools.table.some((s: any) => offers[s.id]?.sponsored)
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate));
-const chip = (t: string) =>
-  t.includes("給付金") ? "給付金" : (t.includes("比較") || t.includes("おすすめ")) ? "比較" : t.includes("評判") ? "評判・口コミ" : t.includes("やめとけ") ? "やめとけ" : "解説";
+const chip = (p: any) => catOf(p.data.title, p.data);
 const latest = posts[0]?.data.pubDate ?? "";
 
 // 案C: ヒーローに料金監視の稼働実績を出す。「毎日実際に動いているサイト」であることを一次情報で示す。
@@ -42,7 +42,7 @@ const heroShots = [
 ].filter((id, i, a) => a.indexOf(id) === i && shotIds.includes(id)).slice(0, 3)
  .map((id) => ({ id, name: (schools.table.find((s: any) => s.id === id) ?? schools.picks.find((s: any) => s.id === id))?.name ?? id }));
 ---
-<Base title="プログラミングスクールの比較・評判" description="主要プログラミングスクールの受講料・期間・給付金・転職支援を横並びで比較。評判記事は毎日更新、デメリットも正直に記載します。">
+<Base home={true} title="プログラミングスクールの比較・評判" description="主要プログラミングスクールの受講料・期間・給付金・転職支援を横並びで比較。評判記事は毎日更新、デメリットも正直に記載します。">
   <section class="hero" slot="hero"><HeroArt />
     {heroShots.length > 0 && (
       <div class="hero-shots" aria-hidden="true">
@@ -53,7 +53,7 @@ const heroShots = [
     )}
     <div class="wrap">
     <p class="kicker">スクール選びで後悔したくない人のための比較サイト</p>
-    <h1>受講料・給付金・転職支援。<br />答えは「横並びの比較」で出す。</h1>
+    <h1>受講料・給付金・転職支援。<br />答えは<mark>「横並びの比較」</mark>で出す。</h1>
     <p>主要スクールの受講料・期間・保証内容を公式情報から整理し、ひとつの表で比べられるようにしました。給付金で受講料の20〜80%が戻る仕組みも、区分ごとの条件つきで解説。デメリットも隠さず書きます。</p>
     <div class="actions">
       <a class="primary" href="/shindan/">30秒であなたに合う一校を診断</a>
@@ -68,9 +68,9 @@ const heroShots = [
     <a class="pw" href="/about/">
       <span class="pw-head"><i class="dot"></i>料金監視 稼働中<em>当サイト独自</em></span>
       <span class="pw-stats">
-        <span class="pw-cell"><b>{pwCount}<small>校</small></b><small>掲載＋候補校の公式料金</small></span>
+        <span class="pw-cell"><b data-count={pwCount}>{pwCount}<small>校</small></b><small>掲載＋候補校の公式料金</small></span>
         <span class="pw-cell"><b>{pwLastMd}</b><small>最終確認日</small></span>
-        <span class="pw-cell"><b>{pwChanges}<small>件</small></b><small>表示変化を検知</small></span>
+        <span class="pw-cell"><b data-count={pwChanges}>{pwChanges}<small>件</small></b><small>表示変化を検知</small></span>
       </span>
       <span class="pw-note">記事の料金が古くならないよう自動観測しています。価格は必ず公式サイトでご確認ください →</span>
     </a>
@@ -79,7 +79,7 @@ const heroShots = [
   {/* 案E: 一番人が来るページに「誰が書いているか」を出す（E-E-A-T）。
       /about/ と記事ページには編集長を出していたのに、トップだけ人の気配がゼロだった。
       演出の線引きは不変: ペンネームであることをその場で明示し、経歴・資格は主張しない。 */}
-  <section class="sec editorband">
+  <section class="sec editorband reveal">
     <a class="eb" href="/about/">
       <span class="eb-av"><Avatar size={60} /></span>
       <span class="eb-body">
@@ -92,20 +92,20 @@ const heroShots = [
   </section>
 
   <section class="sec">
-    <div class="sec-head"><h2>目的から探す</h2><span class="en">PURPOSE</span></div>
+    <div class="sec-head reveal"><h2>目的から探す</h2><span class="en">PURPOSE</span></div>
     <div class="nav4">
-      <a class="navcard" href="/blog/hyoban-dmmwebcamp/"><NavIcon kind="tenshoku" /><b>転職を目指す</b><small>転職保証つきスクールの実力は</small></a>
-      <a class="navcard" href="/blog/kyufukin-osusume/"><NavIcon kind="kyufu" /><b>給付金で安く</b><small>区分別の還元率と対象校</small></a>
-      <a class="navcard" href="/blog/hyoban-techacademy/"><NavIcon kind="online" /><b>オンライン完結</b><small>働きながら自宅で学びたい</small></a>
-      <a class="navcard" href="/shindan/"><NavIcon kind="shindan" /><b>迷ったら診断</b><small>3つの質問で候補を絞る</small></a>
+      <a class="navcard reveal" style="--i:0" href="/blog/hyoban-dmmwebcamp/"><NavIcon kind="tenshoku" /><b>転職を目指す</b><small>転職保証つきスクールの実力は</small></a>
+      <a class="navcard reveal" style="--i:1" href="/blog/kyufukin-osusume/"><NavIcon kind="kyufu" /><b>給付金で安く</b><small>区分別の還元率と対象校</small></a>
+      <a class="navcard reveal" style="--i:2" href="/blog/hyoban-techacademy/"><NavIcon kind="online" /><b>オンライン完結</b><small>働きながら自宅で学びたい</small></a>
+      <a class="navcard reveal" style="--i:3" href="/shindan/"><NavIcon kind="shindan" /><b>迷ったら診断</b><small>3つの質問で候補を絞る</small></a>
     </div>
   </section>
 
-  <section class="sec">
-    <div class="sec-head"><h2>編集部ピックアップ</h2><span class="en">EDITOR'S PICK</span><span class="note">目的別・公開情報に基づく編集部の見解です</span></div>
+  <section class="sec band-blue">
+    <div class="sec-head reveal"><h2>編集部ピックアップ</h2><span class="en">EDITOR'S PICK</span><span class="note">目的別・公開情報に基づく編集部の見解です</span></div>
     <div class="picks">
-      {schools.picks.map((s) => (
-        <article class="pick">
+      {schools.picks.map((s, i) => (
+        <article class="pick reveal" style={`--i:${i}`}>
           <Shot id={s.id} name={s.name} variant="card" />
           <div class="ribbon">{s.purpose}</div>
           <h3>{s.name}<small>{s.sub}</small></h3>
@@ -124,7 +124,7 @@ const heroShots = [
   </section>
 
   <section class="sec">
-    <div class="sec-head"><h2>掲載{schools.table.length}校をざっくり比較</h2><span class="en">COMPARISON</span></div>
+    <div class="sec-head reveal"><h2>掲載{schools.table.length}校をざっくり比較</h2><span class="en">COMPARISON</span></div>
     <table>
       <thead><tr><th>スクール</th><th>形式</th><th>期間</th><th>料金（税込）</th><th>ここが特徴</th><th>詳細</th></tr></thead>
       <tbody>
@@ -146,29 +146,31 @@ const heroShots = [
       {hasSponsored && <span> 「PR」の付いたリンクは広告（アフィリエイト）リンクです。報酬の有無は掲載順・評価に影響しません。</span>}</p>
   </section>
 
-  <section class="sec">
-    <div class="sec-head"><h2>新着の評判・比較記事</h2><span class="en">ARTICLES</span><span class="note">全{posts.length}本 ・ 毎日更新</span></div>
+  <section class="sec band-green" style="--sec-c:#059669">
+    <div class="sec-head reveal"><h2>新着の評判・比較記事</h2><span class="en">ARTICLES</span><span class="note">全{posts.length}本 ・ 毎日更新</span></div>
     {/* 全部を同じ大きさのサムネで並べると、10枚のグラデーションが延々と続いて
         「量産テンプレ」に見える（実測: この一覧だけでページの33%＝1,842pxあった）。
         最新1本だけ大きく見せ、残りは横組みの小カードにして、リズムと情報密度を上げる。 */}
     {posts[0] && (
-      <a class="feat" href={`/blog/${posts[0].slug}/`}>
-        <span class="feat-thumb"><Thumb title={posts[0].data.title} cat={chip(posts[0].data.title)} /></span>
+      <a class="feat reveal" data-cat={chip(posts[0])} href={`/blog/${posts[0].slug}/`}>
+        <span class="feat-thumb"><Thumb title={posts[0].data.title} cat={chip(posts[0])} /></span>
         <span class="feat-body">
-          <span class="feat-tags"><span class="chip">{chip(posts[0].data.title)}</span><span class="feat-new">最新</span></span>
+          <span class="feat-tags"><span class="chip">{chip(posts[0])}</span><span class="feat-new">最新</span></span>
           <span class="feat-t">{posts[0].data.title}</span>
           <span class="feat-d">{posts[0].data.description}</span>
           <span class="d">{posts[0].data.pubDate} 更新 ・ {posts[0].data.author}</span>
         </span>
       </a>
     )}
+    {/* 一覧は10本で止めて /blog/ に送る。52本を縦に並べるとページの半分が同じ形のカードになり、
+        オーナー評「味気ない」の主因になっていた。 */}
     <ul class="cards">
-      {posts.slice(1).map((p) => (
-        <li>
-          <a class="card row" href={`/blog/${p.slug}/`}>
-            <span class="cthumb"><Thumb title={p.data.title} cat={chip(p.data.title)} compact /></span>
+      {posts.slice(1, 11).map((p, i) => (
+        <li class="reveal" style={`--i:${i % 2}`}>
+          <a class="card row" data-cat={chip(p)} href={`/blog/${p.slug}/`}>
+            <span class="cthumb"><Thumb title={p.data.title} cat={chip(p)} compact /></span>
             <span class="cbody">
-              <span class="chip">{chip(p.data.title)}</span>
+              <span class="chip">{chip(p)}</span>
               <span class="t">{p.data.title}</span>
               <span class="d">{p.data.pubDate} 更新</span>
             </span>
@@ -176,26 +178,27 @@ const heroShots = [
         </li>
       ))}
     </ul>
+    <a class="more-link reveal" href="/blog/">すべての記事を見る（全{posts.length}本）→</a>
   </section>
 
-  <section class="sec">
-    <div class="sec-head"><h2>失敗しない選び方 3ステップ</h2><span class="en">HOW TO CHOOSE</span></div>
+  <section class="sec" style="--sec-c:#7c3aed">
+    <div class="sec-head reveal"><h2>失敗しない選び方 3ステップ</h2><span class="en">HOW TO CHOOSE</span></div>
     <ol class="steps">
-      <li><b>目的を決める</b><span>転職が最優先なら保証つき、スキル習得だけならオンライン完結型も選択肢。</span></li>
-      <li><b>給付金の対象か調べる</b><span>対象コースなら受講料の20〜80%が戻ります。割合は講座の指定区分と雇用保険の加入期間で変わるので、申込前に確認を。</span></li>
-      <li><b>負担額で比べる</b><span>定価ではなく「給付金適用後の自己負担」で比較すると順位が入れ替わることがあります。</span></li>
+      <li class="reveal" style="--i:0"><b>目的を決める</b><span>転職が最優先なら保証つき、スキル習得だけならオンライン完結型も選択肢。</span></li>
+      <li class="reveal" style="--i:1"><b>給付金の対象か調べる</b><span>対象コースなら受講料の20〜80%が戻ります。割合は講座の指定区分と雇用保険の加入期間で変わるので、申込前に確認を。</span></li>
+      <li class="reveal" style="--i:2"><b>負担額で比べる</b><span>定価ではなく「給付金適用後の自己負担」で比較すると順位が入れ替わることがあります。</span></li>
     </ol>
   </section>
 
-  <section class="sec">
-    <div class="sec-head"><h2>よくある質問</h2><span class="en">FAQ</span></div>
+  <section class="sec band-warm" style="--sec-c:#ea580c">
+    <div class="sec-head reveal"><h2>よくある質問</h2><span class="en">FAQ</span></div>
     <details><summary>「プログラミングスクールはやめとけ」と聞きますが本当ですか？</summary><p>独学で十分な人がいる一方、保証や伴走が必要な人もいます。費用が高く感じられる背景と、向き不向きの整理は<a href="/blog/kyufukin-osusume/">こちらの記事</a>で中立的に解説しています。</p></details>
     <details><summary>給付金はいくら戻りますか？</summary><p>講座の指定区分で変わります。一般教育訓練は20%（上限10万円）、特定一般は40%（上限20万円）、専門実践は受講中50%（年間上限40万円）で、修了後に就職すると20%・賃金が上がるとさらに10%が上乗せされ最大80%（年間上限64万円）です。専門実践と特定一般は<b>受講開始日の2週間前まで</b>にハローワークでの手続きが必要です。対象校と申請手順は<a href="/kyufukin/">給付金の使い方</a>と<a href="/blog/kyufukin-osusume/">給付金対象スクールまとめ</a>をご覧ください。</p></details>
     <details><summary>このサイトの評価は広告に影響されますか？</summary><p>されません。当サイトはアフィリエイト広告を利用していますが、記事の評価・掲載順は編集部の検証ルール（教育の質・サポート・実績の3軸）のみで決めています。詳細は<a href="/disclosure/">広告について</a>へ。</p></details>
   </section>
 
   <section class="sec policy">
-    <div class="sec-head"><h2>編集方針</h2><span class="en">EDITORIAL POLICY</span></div>
+    <div class="sec-head reveal"><h2>編集方針</h2><span class="en">EDITORIAL POLICY</span></div>
     <p>コードスクールナビ編集部は、各スクールの<b>公式サイト・料金表・給付金の指定講座情報</b>を定期的に確認し、「教育の質」「サポート」「実績」の3軸で整理しています。良い点だけでなく<b>注意点・向かない人</b>を必ず記載し、記事には更新日を明示します。内容の誤りを見つけた場合は<a href="/about/">運営者情報</a>のページからご連絡ください。</p>
   </section>
 </Base>
