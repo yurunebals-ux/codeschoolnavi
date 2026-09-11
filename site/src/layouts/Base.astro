@@ -139,16 +139,18 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
          画面幅が狭いときは非表示（文字の上に被ると読めない）。 */
       .hero{position:relative;overflow:hidden}
       .hero .wrap{position:relative;z-index:2}
-      .hero-shots{position:absolute;right:-30px;top:50%;transform:translateY(-50%) rotate(-8deg);width:440px;z-index:1;pointer-events:none}
-      .hero-shots .hs{position:absolute;width:300px;border-radius:10px;overflow:hidden;box-shadow:0 18px 50px rgba(2,8,23,.55);border:1px solid rgba(255,255,255,.18);background:#0b1730}
+      .hero-shots{position:absolute;right:-20px;top:50%;transform:translateY(-50%) rotate(-8deg);width:400px;z-index:1;pointer-events:none}
+      .hero-shots .hs{position:absolute;width:280px;border-radius:10px;overflow:hidden;box-shadow:0 18px 50px rgba(2,8,23,.55);border:1px solid rgba(255,255,255,.18);background:#0b1730}
       .hero-shots .hs::before{content:"";display:block;height:9px;background:rgba(255,255,255,.12)}
       .hero-shots .hs img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;opacity:.92}
-      .hero-shots .hs-0{left:160px;top:-150px;z-index:3}
-      .hero-shots .hs-1{left:90px;top:-40px;z-index:2;opacity:.85}
-      .hero-shots .hs-2{left:20px;top:70px;z-index:1;opacity:.7}
+      .hero-shots .hs-0{left:120px;top:-150px;z-index:3}
+      .hero-shots .hs-1{left:60px;top:-40px;z-index:2;opacity:.85}
+      .hero-shots .hs-2{left:0;top:70px;z-index:1;opacity:.7}
       @media (max-width:1180px){ .hero-shots{display:none} }
       /* 扇がある間は、右側のSVGの棒が画像と喧嘩しないように少し引く */
       .hero:has(.hero-shots) .heroart{opacity:.55}
+      /* 扇があるときはコピー側の幅を本文と同じ640pxに揃え、チェック項目が扇の下へ伸びないようにする */
+      .hero:has(.hero-shots) .points{max-width:640px}
 
       /* 案C: ヒーローの料金監視ウィジェット（当サイト独自の稼働実績を一次情報で示す） */
       .hero a.pw{display:block;margin-top:24px;max-width:560px;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:14px 16px 12px;backdrop-filter:blur(2px);transition:background .15s,border-color .15s,transform .15s}
