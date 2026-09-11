@@ -28,7 +28,7 @@ export function schoolFromSlug(slug: string): string | null {
   return schoolsFromSlug(slug)[0] ?? null;
 }
 
-export interface ShotRef { id: string; name: string; file: string; small: string; official?: string; takenAt: string }
+export interface ShotRef { id: string; name: string; file: string; small: string; og: string; official?: string; takenAt: string }
 
 /** 記事のアイキャッチに使える公式サイトのスクショ（無ければ空） */
 export function shotsFor(slug: string): ShotRef[] {
@@ -39,6 +39,7 @@ export function shotsFor(slug: string): ShotRef[] {
       name: offers[id]?.name ?? id,
       file: shots[id].file,
       small: shots[id].file.replace(/\.webp$/, "-s.webp"),
+      og: shots[id].file.replace(/\.webp$/, "-og.jpg"),
       official: offers[id]?.official,
       takenAt: shots[id].takenAt ?? "",
     }));
