@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Thumb from "../components/Thumb.astro";
-import Avatar from "../components/Avatar.astro";
 import Cta from "../components/Cta.astro";
 import HeroArt from "../components/HeroArt.astro";
 import Shot from "../components/Shot.astro";
@@ -57,7 +56,7 @@ const heroShots = [
     <h1>受講料・給付金・転職支援。<br />答えは<mark>「横並びの比較」</mark>で出す。</h1>
     <p>主要スクールの受講料・期間・保証内容を公式情報から整理し、ひとつの表で比べられるようにしました。給付金で受講料の20〜80%が戻る仕組みも、区分ごとの条件つきで解説。デメリットも隠さず書きます。</p>
     <div class="actions">
-      <a class="primary" href="/shindan/">30秒であなたに合う一校を診断</a>
+      <a class="primary" href="/shindan/">6問で合う3校を診断する</a>
       <a class="ghost" href="/blog/kyufukin-osusume/">給付金で安くする方法を見る</a>
     </div>
     <ul class="points">
@@ -77,20 +76,7 @@ const heroShots = [
     </a>
   </div></section>
 
-  {/* 案E: 一番人が来るページに「誰が書いているか」を出す（E-E-A-T）。
-      /about/ と記事ページには編集長を出していたのに、トップだけ人の気配がゼロだった。
-      演出の線引きは不変: ペンネームであることをその場で明示し、経歴・資格は主張しない。 */}
-  <section class="sec editorband reveal">
-    <a class="eb" href="/about/">
-      <span class="eb-av"><Avatar size={60} /></span>
-      <span class="eb-body">
-        <b>編集長 佐倉 透（さくら とおる）</b>
-        <span class="eb-lead">記事は公式サイトの情報を照合し、編集部の基準を満たしたものだけを公開しています。<em>良い点だけを並べません。</em>デメリットと向かない人を必ず書くのが、このサイトの唯一のルールです。</span>
-        <span class="eb-more">編集方針と運営者情報を見る →</span>
-      </span>
-    </a>
-    <p class="eb-note">「佐倉 透」は編集責任者としてのペンネームです（実在の個人の経歴・保有資格を主張するものではありません）。</p>
-  </section>
+  {/* 編集長の紹介はトップに出さない（オーナー判断 2026-09-11）。運営者情報と記事ページには残る */}
 
   <section class="sec">
     <div class="sec-head reveal"><h2>目的から探す</h2><span class="en">PURPOSE</span></div>
@@ -98,7 +84,7 @@ const heroShots = [
       <a class="navcard reveal" style="--i:0" href="/blog/hyoban-dmmwebcamp/"><NavIcon kind="tenshoku" /><b>転職を目指す</b><small>転職保証つきスクールの実力は</small></a>
       <a class="navcard reveal" style="--i:1" href="/blog/kyufukin-osusume/"><NavIcon kind="kyufu" /><b>給付金で安く</b><small>区分別の還元率と対象校</small></a>
       <a class="navcard reveal" style="--i:2" href="/blog/hyoban-techacademy/"><NavIcon kind="online" /><b>オンライン完結</b><small>働きながら自宅で学びたい</small></a>
-      <a class="navcard reveal" style="--i:3" href="/shindan/"><NavIcon kind="shindan" /><b>迷ったら診断</b><small>3つの質問で候補を絞る</small></a>
+      <a class="navcard reveal" style="--i:3" href="/shindan/"><NavIcon kind="shindan" /><b>迷ったら診断</b><small>6問で合う3校と注意点を出す</small></a>
     </div>
   </section>
 

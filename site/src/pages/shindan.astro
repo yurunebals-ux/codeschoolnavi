@@ -1,222 +1,274 @@
 ---
+// スクール診断（6問）。
+//
+// 【2026-09-11 作り直し】以前は「目的を1つ選ぶ→固定の結果」で、オーナー評「やって肩透かし」。
+// 今回は 6 問（目的・予算・給付金・学習時間・形式・重視点）の答えで、掲載校のデータ
+// （site/src/data/catalog.json = data/affiliates.json をサイト側へ写したもの）を採点し、
+// 上位3校を「合った条件」「引っかかる条件」つきで出す。結果はページ内で出す（404 事故の再発防止）。
+// 評価は広告の有無に影響されない（採点式に sponsored は使わない）。
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
-import schools from "../data/schools.json";
+import catalog from "../data/catalog.json";
+import shotsFile from "../data/shots.json";
 
-// 【重要】このページは以前、まだ公開していない記事へリンクしていて6択のうち5つが404だった。
-// 原因は「キーワードキューにある予定スラッグ」を直接リンク先にしていたこと。
-// 対策は2段構え:
-//   (1) 診断結果をこのページ内で出す（遷移しないので404が起きない）
-//   (2) 参考リンクは実在するものだけを通し、存在しないパスがあればビルドを落とす
 const posts = await getCollection("blog", ({ data }) => !data.draft);
-const livePosts = new Set(posts.map((p) => `/blog/${p.slug}/`));
-const staticPages = new Set(["/", "/about/", "/disclosure/", "/privacy/", "/shindan/", "/kyufukin/"]);
-const exists = (href: string) => livePosts.has(href) || staticPages.has(href);
+const live = new Set(posts.map((p) => p.slug));
+const shots = (shotsFile as any).shots ?? {};
+// クライアントへ渡すデータ。評判記事があるものだけ review を付ける（存在しないリンクを出さない）
+const data = (catalog as any[]).map((c) => ({
+  ...c,
+  review: live.has(`hyoban-${c.id}`) ? `/blog/hyoban-${c.id}/` : null,
+  shot: shots[c.id]?.file ? shots[c.id].file.replace(/\.webp$/, "-s.webp") : null,
+}));
 
-const table = (schools as any).table as { name: string; form: string; period: string; price: string; point: string; review: string }[];
-const byName = (n: string) => {
-  const s = table.find((t) => t.name === n || t.name.startsWith(n));
-  if (!s) throw new Error(`[shindan] schools.json に「${n}」がありません`);
-  return s;
-};
-
-type Result = {
-  key: string;
-  label: string;
-  lead: string;
-  picks: { name: string; why: string }[];
-  caution: string;
-  next: { href: string; text: string }[];
-};
-
-const results: Result[] = [
-  {
-    key: "tenshoku",
-    label: "未経験からエンジニアに転職したい",
-    lead: "転職目的なら、見るべきは「料金」より先に転職支援の中身です。求人を紹介してくれるのか、職務経歴書とポートフォリオまで見てくれるのか。ここが薄いスクールは、卒業後に一人で放り出されます。",
-    picks: [
-      { name: "SHIFT TERAS CAMPUS（旧DMM WEBCAMP）", why: "転職保証つきのコースがある。はじめての転職でセーフティネットが欲しい人向け" },
-      { name: "RUNTEQ", why: "学習時間が長く、実務に近い課題まで踏み込む。自己学習の時間を確保できる人向け" },
-      { name: "テックキャンプ", why: "短期集中で一気に仕上げたい人向け。学習負荷は重い" },
-    ],
-    caution: "転職保証は「誰でも使える」ものではありません。年齢・学習時間・転職活動の条件を満たさないと対象外です。申込前に、保証の適用条件を書面で確認してください。",
-    next: [
-      { href: "/blog/hyoban-dmmwebcamp/", text: "SHIFT TERAS CAMPUS（旧DMM WEBCAMP）の評判を読む" },
-      { href: "/blog/hyoban-runteq/", text: "RUNTEQの評判を読む" },
-      { href: "/blog/hyoban-techcamp/", text: "テックキャンプの評判を読む" },
-    ],
-  },
-  {
-    key: "kyufukin",
-    label: "できるだけ費用を抑えたい（給付金を使いたい）",
-    lead: "教育訓練給付を使えれば、受講料の20〜80%が戻ってきます。ただし対象はスクール単位ではなく講座単位で、手続きは受講開始の2週間前までに終わらせないと1円も出ません。先に制度側の条件を確認してから、講座を選ぶ順番が正解です。",
-    picks: [
-      { name: "TechAcademy", why: "給付金対象コースあり。オンライン完結で働きながら進めやすい" },
-      { name: "SHIFT TERAS CAMPUS（旧DMM WEBCAMP）", why: "給付金対象コースあり。転職支援もまとめて欲しい人向け" },
-      { name: "キカガク", why: "受講料は高いが、専門実践の対象講座なので実質負担は大きく下がる" },
-    ],
-    caution: "給付金は後払いです。受講料はいったん全額を自分で払います。それと、パソコン代や受験料は「教育訓練経費」に入りません。",
-    next: [
-      { href: "/kyufukin/", text: "給付金の対象・金額・申請の流れを図で見る（当サイトの解説）" },
-      { href: "/blog/kyufukin-osusume/", text: "給付金対象スクールの比較記事を読む" },
-    ],
-  },
-  {
-    key: "free",
-    label: "無料で学びたい・就職支援がほしい",
-    lead: "正直に書きます。無料スクールは「無料の理由」がはっきりしています。提携企業への就職が前提で、年齢（多くは20代）や上京可否、選考通過が条件です。条件に合えば強力ですが、合わない人が申し込むと時間を失います。",
-    picks: [
-      { name: "TechAcademy", why: "無料ではないが、給付金対象コースなら実質負担を下げられる" },
-      { name: "CodeCamp", why: "無料ではないが、マンツーマンで挫折しにくい。まず無料相談で相性を見る手も" },
-    ],
-    caution: "当サイトはまだ無料スクールの検証記事を出していません（検証中です）。ここで名前だけ挙げて誘導するのは不誠実なので、出せる段階になったら公開します。",
-    next: [
-      { href: "/kyufukin/", text: "先に「実質負担をどこまで下げられるか」を確認する" },
-      { href: "/about/", text: "当サイトの検証方法と、まだ書いていないことについて" },
-    ],
-  },
-  {
-    key: "ai",
-    label: "AI・データ分析を学びたい",
-    lead: "AI系は受講料が跳ね上がります（60万〜80万円台）。そのぶん専門実践教育訓練の対象講座が多く、給付金を使えるかどうかで実質負担が3分の1近くまで変わります。制度の確認を飛ばすと一番損をする分野です。",
-    picks: [
-      { name: "キカガク", why: "AI・機械学習を6か月で体系的に。専門実践の対象講座あり" },
-      { name: "TechAcademy", why: "まずPythonやデータ分析の短期コースで適性を見たい人向け" },
-    ],
-    caution: "Aidemyのように「講座によって対象・非対象が分かれる」ケースがあります。パンフレットの「給付金対象」表記だけで判断せず、厚労省の検索システムで講座名を確認してください。",
-    next: [
-      { href: "/kyufukin/", text: "対象講座の確認方法と申請の流れを見る" },
-      { href: "/blog/kyufukin-osusume/", text: "AI系を含む給付金対象スクールの比較を読む" },
-    ],
-  },
-  {
-    key: "fukugyo",
-    label: "副業で稼げるスキルがほしい",
-    lead: "副業目的なら、転職保証は要りません。要るのは「納品できる状態」まで持っていける課題と、質問への回答速度です。学習時間が細切れになるので、メンタリングの頻度で選ぶと失敗しにくいです。",
-    picks: [
-      { name: "TechAcademy", why: "週2回の現役エンジニア面談。副業向けコースもある" },
-      { name: "CodeCamp", why: "マンツーマンで、平日夜や休日にも進めやすい" },
-    ],
-    caution: "「受講したらすぐ月◯万円」という話は疑ってください。案件を取るまでの営業や実績づくりは、どのスクールでも自分の仕事として残ります。",
-    next: [
-      { href: "/blog/hyoban-techacademy/", text: "TechAcademyの評判を読む" },
-      { href: "/blog/hyoban-codecamp/", text: "CodeCampの評判を読む" },
-      { href: "/blog/hyoban-coachtech/", text: "COACHTECHの評判を読む" },
-    ],
-  },
-  {
-    key: "mayou",
-    label: "まだ迷っている・後悔したくない",
-    lead: "迷っている段階で比較表を睨んでも決まりません。順番を変えましょう。まず「向いていない人の条件」を先に読んで、自分がその落とし穴に当てはまるかを確認する。当てはまらないと分かってから、2社だけ無料相談を受けて比べる。これが一番失敗が少ない進め方です。",
-    picks: [
-      { name: "TechAcademy", why: "オンライン完結で最も条件が読みやすい。比較の基準点に置きやすい" },
-      { name: "SHIFT TERAS CAMPUS（旧DMM WEBCAMP）", why: "転職支援まで含めた「上限側」の基準点として" },
-    ],
-    caution: "無料カウンセリングはその場で申し込まないでください。持ち帰って、料金・期間・保証条件を並べて比べる時間をとる。ここで焦らせてくる相手は、それ自体が判断材料になります。",
-    next: [
-      { href: "/blog/hyoban-potepan/", text: "評判記事の読み方の例（ポテパンキャンプ）" },
-      { href: "/about/", text: "当サイトが何をどう検証しているか" },
-    ],
-  },
+const questions = [
+  { key: "goal", q: "いちばん近い目的は？", opts: [
+    ["tenshoku", "エンジニアに転職したい", "転職支援・保証の有無を重く見ます"],
+    ["ai", "AI・データ分析を学びたい", "AI系の専門校を中心に選びます"],
+    ["fukugyo", "副業・フリーランスで稼ぎたい", "納品できる力と質問のしやすさで選びます"],
+    ["skill", "仕事や教養として身につけたい", "続けやすさと費用で選びます"],
+  ]},
+  { key: "budget", q: "受講料の上限は？（給付金を引く前の金額）", opts: [
+    ["20", "20万円まで", ""],
+    ["50", "50万円まで", ""],
+    ["100", "100万円まで", ""],
+    ["any", "内容が合えば気にしない", ""],
+  ]},
+  { key: "subsidy", q: "教育訓練給付金を使いたい？", opts: [
+    ["yes", "使いたい（会社員・雇用保険に入っている）", "対象講座のある学校を優先します"],
+    ["no", "使えない・よく分からない", "定価で比べます"],
+  ]},
+  { key: "time", q: "学習に使える時間は？", opts: [
+    ["night", "平日の夜だけ（週10時間未満）", "短期集中型は外します"],
+    ["mid", "週10〜20時間", ""],
+    ["full", "平日の昼も使える（週30時間以上）", "短期集中型も候補に入ります"],
+  ]},
+  { key: "format", q: "受講の形式は？", opts: [
+    ["online", "オンライン完結がいい", ""],
+    ["tsugaku", "通学できる教室がほしい", "通学校は少ないので候補が絞られます"],
+    ["any", "どちらでも", ""],
+  ]},
+  { key: "priority", q: "いちばん譲れないのは？", opts: [
+    ["support", "転職支援の手厚さ", ""],
+    ["refund", "返金保証があること", ""],
+    ["cheap", "料金の安さ", ""],
+    ["mentor", "マンツーマンで教わること", ""],
+  ]},
 ];
-
-// ビルド時の自己検査。リンク先が実在しなければここで落ちる（＝404を本番に出さない）。
-const broken = results.flatMap((r) => r.next.map((n) => n.href)).filter((h) => !exists(h));
-if (broken.length) throw new Error(`[shindan] 存在しないリンク先: ${broken.join(", ")}`);
-results.forEach((r) => r.picks.forEach((p) => byName(p.name)));
 ---
-<Base title="30秒でわかる｜あなたに合うプログラミングスクール診断" description="いちばん近い目的を選ぶだけで、候補校・注意点・次にやることをその場で表示します。ページ遷移なしで結果が出ます。">
+<Base title="6問でわかる｜あなたに合うプログラミングスクール診断" description="目的・予算・給付金・学習時間・形式・重視点の6問に答えると、掲載校のデータから合う3校と、引っかかる条件をその場で表示します。">
   <h1>あなたに合うスクール診断</h1>
-  <p class="sub">いちばん近い目的をひとつ選んでください。<b>候補校・つまずきやすい点・次にやること</b>をこの画面に出します（30秒）。</p>
+  <p class="sub">6問・1分。掲載{data.length}校の<b>料金・期間・形式・転職支援・返金・給付金</b>のデータで採点し、合う3校と「引っかかる条件」を出します。広告の有無は採点に入れていません。</p>
 
-  <div id="q">
-    {results.map((r, i) => (
-      <button class="opt" data-go={r.key}><span class="num">{i + 1}</span>{r.label}</button>
+  <div id="quiz" class="quiz">
+    <div class="prog"><span id="pbar"></span></div>
+    {questions.map((qq, i) => (
+      <section class="qs" data-q={qq.key} hidden={i !== 0}>
+        <div class="qn">Q{i + 1} / {questions.length}</div>
+        <h2>{qq.q}</h2>
+        <div class="opts">
+          {qq.opts.map(([v, label, hint]) => (
+            <button class="opt" data-v={v}><b>{label}</b>{hint && <small>{hint}</small>}</button>
+          ))}
+        </div>
+        {i > 0 && <button class="back" data-back>← 前の質問に戻る</button>}
+      </section>
     ))}
   </div>
 
-  {results.map((r) => (
-    <section class="res" id={`res-${r.key}`} hidden>
-      <div class="res-head">
-        <span class="res-tag">診断結果</span>
-        <h2>{r.label}</h2>
-      </div>
-      <p class="lead">{r.lead}</p>
+  <section id="result" class="result" hidden>
+    <div class="res-head"><span class="res-tag">診断結果</span><h2 id="res-title"></h2></div>
+    <p id="res-lead" class="lead"></p>
+    <div id="res-cards" class="rcards"></div>
+    <div id="res-out" class="outs"></div>
+    <div class="caution" id="res-caution"></div>
+    <div class="acts">
+      <button class="again" id="again">条件を変えてもう一度</button>
+      <a class="more-link" href="/blog/">評判記事を一覧で見る</a>
+    </div>
+  </section>
 
-      <div class="cards">
-        {r.picks.map((p) => {
-          const s = byName(p.name);
-          return (
-            <div class="card">
-              <div class="c-name">{s.name}</div>
-              <div class="c-spec">
-                <span>{s.price}</span><span>{s.period}</span><span>{s.form}</span>
+  <p class="foot">※料金・期間は各スクール公式サイトの表示にもとづき、当サイトが毎日自動で照合しています。給付金の対象講座は厚生労働省の講座検索で確認したものです。最新の条件は必ず公式サイトでご確認ください。「PR」の付いたリンクは広告（アフィリエイト）リンクですが、採点には使っていません。</p>
+
+  <script is:inline set:html={`window.__CSN_CATALOG=${JSON.stringify(data)};`}></script>
+  <script is:inline>
+    (function(){
+      const C = window.__CSN_CATALOG || [];
+      const ans = {};
+      const qs = Array.from(document.querySelectorAll(".qs"));
+      const pbar = document.getElementById("pbar");
+      let step = 0;
+      const show = (i) => { qs.forEach((s, k) => s.hidden = k !== i); step = i; pbar.style.width = (i / qs.length * 100) + "%"; qs[i].classList.remove("in"); requestAnimationFrame(() => qs[i].classList.add("in")); };
+      qs.forEach((s, i) => {
+        s.querySelectorAll(".opt").forEach((b) => b.addEventListener("click", () => {
+          ans[s.dataset.q] = b.dataset.v;
+          s.querySelectorAll(".opt").forEach((x) => x.classList.toggle("sel", x === b));
+          if (i + 1 < qs.length) show(i + 1); else finish();
+        }));
+        const back = s.querySelector("[data-back]");
+        if (back) back.addEventListener("click", () => show(i - 1));
+      });
+      document.getElementById("again").addEventListener("click", () => {
+        document.getElementById("result").hidden = true; document.getElementById("quiz").hidden = false; show(0);
+        document.getElementById("quiz").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      const yen = (n) => n === 0 ? "無料" : n == null ? "要問合せ" : n.toLocaleString() + "円〜";
+      const budgetYen = { "20": 200000, "50": 500000, "100": 1000000, "any": Infinity };
+
+      // 採点。各校について (点, 合った理由[], 引っかかる点[]) を返す。
+      function score(s) {
+        let pt = 0; const ok = []; const ng = [];
+        const g = ans.goal, b = budgetYen[ans.budget], sub = ans.subsidy === "yes", t = ans.time, f = ans.format, p = ans.priority;
+        const support = /あり/.test(s.job_support);
+        const refund = /あり/.test(s.refund);
+        const short = s.months !== null && s.months > 0 && s.months <= 3;
+        const monthly = s.months === 0;
+
+        // 目的
+        if (g === "tenshoku") {
+          if (support) { pt += 3; ok.push("転職支援あり"); } else ng.push("転職支援の記載がない");
+          if (s.guarantee) { pt += 2; ok.push("転職保証つきコースがある"); }
+          if (s.categoryId === "tenshoku") { pt += 2; ok.push("転職特化"); }
+          if (s.categoryId === "ai") pt -= 2;
+          if (s.categoryId === "dokugaku") { pt -= 3; ng.push("買い切り教材で転職支援はない"); }
+        } else if (g === "ai") {
+          if (s.categoryId === "ai") { pt += 5; ok.push("AI・データ分析の専門校"); } else { pt -= 4; ng.push("AI専門ではない"); }
+        } else if (g === "fukugyo") {
+          if (s.mtm) { pt += 2; ok.push("マンツーマンで納品レベルまで詰められる"); }
+          if (s.categoryId === "online" || s.categoryId === "dokugaku") { pt += 2; ok.push("自分のペースで進めやすい"); }
+          if (/案件/.test(s.job_support)) { pt += 2; ok.push("案件保証プランがある"); }
+          if (s.categoryId === "hosho" || s.categoryId === "tenshoku") { pt -= 2; ng.push("転職前提のカリキュラム"); }
+          if (s.categoryId === "ai") pt -= 2;
+        } else if (g === "skill") {
+          if (s.categoryId === "dokugaku" || monthly) { pt += 3; ok.push("買い切り・月額で始めやすい"); }
+          if (s.categoryId === "online" || s.mtm) { pt += 1; }
+          if (s.categoryId === "tenshoku" || s.categoryId === "hosho") { pt -= 2; ng.push("転職前提で費用も高め"); }
+        }
+        // 予算（給付金を使う場合は50%戻る前提で緩める）
+        if (s.price != null) {
+          const eff = sub && s.subsidy ? s.price * 0.5 : s.price;
+          if (s.price <= b) { pt += 2; ok.push("予算内（" + yen(s.price) + "）"); }
+          else if (eff <= b) { pt += 1; ok.push("給付金の対象講座なら予算内に収まる可能性"); }
+          else { pt -= 4; ng.push("予算超過（" + yen(s.price) + "）"); }
+        }
+        // 給付金
+        if (sub) { if (s.subsidy) { pt += 3; ok.push("給付金の対象講座あり"); } else ng.push("給付金の対象講座なし"); }
+        // 時間
+        if (t === "night") {
+          if (short && (s.categoryId === "hosho" || s.categoryId === "tenshoku")) { pt -= 3; ng.push("短期集中型で平日夜だけでは厳しい"); }
+          if (monthly || (s.months !== null && s.months >= 4)) { pt += 1; ok.push("期間に余裕がある"); }
+        } else if (t === "full") {
+          if (short) { pt += 2; ok.push("短期集中で早く仕上がる"); }
+        }
+        // 形式
+        if (f === "online") { if (s.online) { pt += 1; } else { pt -= 5; ng.push("オンライン完結ではない"); } }
+        if (f === "tsugaku") { if (s.tsugaku) { pt += 3; ok.push("通学できる"); } else { pt -= 3; ng.push("通学教室がない"); } }
+        // 重視点
+        if (p === "support") { if (support) pt += 2; else { pt -= 2; } }
+        if (p === "refund") { if (refund) { pt += 3; ok.push("返金保証あり（" + s.refund + "）"); } else { pt -= 2; ng.push("返金保証なし"); } }
+        if (p === "cheap") { if (s.price === 0) { pt += 3; ok.push("受講料が無料"); } else if (s.price != null && s.price <= 200000) { pt += 2; ok.push("20万円以内"); } else if (s.price != null && s.price >= 500000) { pt -= 2; } }
+        if (p === "mentor") { if (s.mtm) { pt += 3; ok.push("マンツーマン指導"); } else { pt -= 1; } }
+        // 共通の注意
+        if (!refund && p !== "refund") ng.push("返金保証" + (s.refund && s.refund !== "なし" ? "は" + s.refund : "なし"));
+        return { pt, ok: Array.from(new Set(ok)), ng: Array.from(new Set(ng)) };
+      }
+
+      function finish() {
+        const ranked = C.map((s) => ({ s, ...score(s) })).sort((a, b) => b.pt - a.pt);
+        const top = ranked.slice(0, 3);
+        const outs = ranked.slice(3, 6);
+        const labels = { tenshoku: "転職", ai: "AI・データ分析", fukugyo: "副業・フリーランス", skill: "スキル習得" };
+        const bud = { "20": "20万円まで", "50": "50万円まで", "100": "100万円まで", "any": "予算は問わない" }[ans.budget];
+        document.getElementById("res-title").textContent = labels[ans.goal] + "・" + bud + (ans.subsidy === "yes" ? "・給付金あり" : "") + " の人に合う3校";
+        document.getElementById("res-lead").textContent = "掲載" + C.length + "校を、あなたの答えに合わせて採点しました。合った条件と引っかかる条件を並べています。上位でも引っかかる条件は必ず読んでください。";
+        document.getElementById("res-cards").innerHTML = top.map((r, i) => `
+          <article class="rc">
+            <div class="rc-rank">${i + 1}</div>
+            ${r.s.shot ? `<img class="rc-shot" src="${r.s.shot}" alt="" loading="lazy" width="320" height="200">` : ""}
+            <div class="rc-body">
+              <h3>${r.s.name}<small>${r.s.category}</small></h3>
+              <div class="rc-spec"><span>${yen(r.s.price)}</span><span>${r.s.period || "期間は要確認"}</span><span>${r.s.format || ""}</span></div>
+              <ul class="ok">${r.ok.slice(0, 4).map((x) => `<li>${x}</li>`).join("")}</ul>
+              ${r.ng.length ? `<ul class="ng">${r.ng.slice(0, 3).map((x) => `<li>${x}</li>`).join("")}</ul>` : ""}
+              <div class="rc-links">
+                ${r.s.review ? `<a class="rev" href="${r.s.review}">評判・注意点を読む</a>` : ""}
+                <a class="off" href="${r.s.href}" target="_blank" rel="${r.s.sponsored ? "sponsored nofollow noopener" : "nofollow noopener"}">公式サイト${r.s.sponsored ? '<span class="pr">PR</span>' : ""}</a>
               </div>
-              <p class="c-why">{p.why}</p>
             </div>
-          );
-        })}
-      </div>
+          </article>`).join("");
+        const why = (r) => { const strong = r.ng.find((x) => !/^返金保証/.test(x)); return strong ? strong : "合った条件が上位より少ない（" + r.ok.length + "件）"; };
+        document.getElementById("res-out").innerHTML = outs.length ? `<b>惜しくも外れた3校と、その理由</b><ul>${outs.map((r) => `<li><span>${r.s.name}</span>：${why(r)}</li>`).join("")}</ul>` : "";
+        const cautions = [];
+        if (ans.subsidy === "yes") cautions.push("給付金は講座単位の指定です。受講開始日の2週間前までにハローワークで手続きを終えないと1円も出ません（<a href=\"/kyufukin/\">申請の流れ</a>）。");
+        if (ans.goal === "tenshoku") cautions.push("転職保証には年齢・学習時間・応募社数などの条件があります。適用条件は申込前に書面で確認してください。");
+        if (ans.priority === "cheap" || ans.budget === "20") cautions.push("無料・低価格のコースは、提携企業への就職や年齢（多くは20代）が条件になっていることがあります。");
+        cautions.push("無料カウンセリングはその場で申し込まず、2校を並べて比べてから決めるのが、いちばん後悔が少ない順番です。");
+        document.getElementById("res-caution").innerHTML = "<b>申し込む前に</b><ul>" + cautions.map((c) => "<li>" + c + "</li>").join("") + "</ul>";
+        document.getElementById("quiz").hidden = true;
+        const res = document.getElementById("result"); res.hidden = false;
+        res.classList.remove("in"); requestAnimationFrame(() => res.classList.add("in"));
+        res.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      show(0);
+    })();
+  </script>
 
-      <div class="caution"><b>先に知っておくこと</b><p>{r.caution}</p></div>
-
-      <div class="next">
-        <b>次にやること</b>
-        <ul>{r.next.map((n) => <li><a href={n.href}>{n.text}</a></li>)}</ul>
-      </div>
-
-      <button class="again" data-again>もう一度選び直す</button>
-    </section>
-  ))}
-
-  <p class="foot">※料金・期間は各スクール公式サイトの表示にもとづき、当サイトが毎日自動で照合しています。最新の金額は必ず公式サイトでご確認ください。</p>
-
-  <style>
+  <style is:global>
     .sub{color:#475569;font-size:14.5px;line-height:1.9}
-    #q{display:grid;gap:10px;margin-top:18px}
-    .opt{display:flex;align-items:center;gap:12px;text-align:left;padding:15px 16px;border:1px solid var(--bd);border-radius:10px;background:#fff;color:var(--fg);font-size:15px;font-weight:600;cursor:pointer;transition:border-color .15s,box-shadow .15s}
-    .opt:hover{border-color:var(--acc);box-shadow:0 2px 10px rgba(15,39,68,.07)}
-    .opt .num{flex:none;width:24px;height:24px;border-radius:50%;background:#eef2f7;color:#0f2744;font-size:12.5px;font-weight:800;display:grid;place-items:center}
-    .res{margin-top:22px;border:1px solid #e2e8f0;border-radius:14px;padding:20px 20px 18px;background:#fff}
+    .quiz{margin-top:18px;border:1px solid var(--bd);border-radius:16px;background:#fff;box-shadow:var(--shadow);padding:22px 22px 20px;position:relative;overflow:hidden}
+    .prog{position:absolute;left:0;top:0;right:0;height:5px;background:#eef2f7}
+    .prog span{display:block;height:100%;width:0;background:linear-gradient(90deg,#2563eb,#7c3aed);transition:width .35s ease}
+    .qs{opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s}
+    .qs.in{opacity:1;transform:none}
+    .qn{font-size:12px;font-weight:800;color:var(--acc);letter-spacing:.08em;margin-top:6px}
+    .qs h2{margin:6px 0 14px;font-size:20px;border:0;padding:0}
+    .opts{display:grid;gap:10px}
+    .opt{display:flex;flex-direction:column;gap:2px;text-align:left;padding:13px 16px;border:1px solid var(--bd);border-radius:12px;background:#fff;color:var(--fg);cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s}
+    .opt b{font-size:15px}
+    .opt small{font-size:12px;color:var(--mut)}
+    .opt:hover{border-color:var(--acc);box-shadow:0 4px 14px rgba(37,99,235,.12);transform:translateY(-1px)}
+    .opt.sel{border-color:var(--acc);background:#eff6ff}
+    .back{margin-top:14px;background:none;border:0;color:var(--mut);font-size:13px;cursor:pointer;padding:0}
+    .back:hover{color:var(--acc)}
+    .result{margin-top:22px;opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s}
+    .result.in{opacity:1;transform:none}
     .res-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-    .res-tag{flex:none;background:#0f2744;color:#fff;font-size:11px;font-weight:800;padding:4px 9px;border-radius:999px;letter-spacing:.04em}
-    .res h2{margin:0;font-size:19px;line-height:1.5}
+    .res-tag{flex:none;background:linear-gradient(90deg,#2563eb,#7c3aed);color:#fff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;letter-spacing:.04em}
+    .result h2{margin:0;font-size:19px;line-height:1.5;border:0;padding:0}
     .lead{font-size:14px;color:#334155;line-height:1.95;margin:12px 0 18px}
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
-    .card{border:1px solid #e6ebf2;border-radius:10px;padding:12px 13px;background:#fbfcfe}
-    .c-name{font-weight:800;font-size:14px;color:#0f2744;line-height:1.45}
-    .c-spec{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
-    .c-spec span{font-size:11.5px;background:#eef2f7;color:#334155;padding:3px 7px;border-radius:5px}
-    .c-why{font-size:12.5px;color:#475569;line-height:1.8;margin:0}
-    .caution{margin:18px 0 0;background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:13px 15px}
-    .caution b{font-size:13px;color:#9a3412}
-    .caution p{font-size:13px;color:#7c2d12;line-height:1.85;margin:5px 0 0}
-    .next{margin:16px 0 0}
-    .next b{font-size:13px;color:#0f2744}
-    .next ul{margin:7px 0 0;padding-left:20px}
-    .next li{font-size:13.5px;line-height:2}
-    .again{margin:18px 0 0;background:transparent;border:1px solid var(--bd);border-radius:8px;padding:9px 14px;font-size:13px;color:#475569;cursor:pointer}
+    .rcards{display:grid;gap:14px}
+    .rc{position:relative;display:grid;grid-template-columns:150px 1fr;gap:0;border:1px solid var(--bd);border-radius:14px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}
+    .rc-rank{position:absolute;left:10px;top:10px;z-index:2;width:30px;height:30px;border-radius:50%;background:#0f2744;color:#fff;font-weight:800;display:grid;place-items:center;font-size:15px}
+    .rc:first-child .rc-rank{background:linear-gradient(135deg,#f59e0b,#f97316)}
+    .rc-shot{width:100%;height:100%;object-fit:cover;object-position:left top;display:block;min-height:150px}
+    .rc-body{padding:14px 16px 14px}
+    .rc h3{margin:0 0 6px;font-size:17px;color:var(--navy);display:flex;flex-direction:column}
+    .rc h3 small{font-size:12px;color:var(--mut);font-weight:600}
+    .rc-spec{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+    .rc-spec span{font-size:11.5px;background:#eef2f7;color:#334155;padding:3px 8px;border-radius:6px}
+    .rc ul{list-style:none;padding:0;margin:0 0 6px;display:flex;flex-wrap:wrap;gap:6px}
+    .rc li{font-size:12.5px;border-radius:999px;padding:3px 10px;margin:0}
+    .rc .ok li{background:#ecfdf5;color:#047857}
+    .rc .ng li{background:#fff7ed;color:#c2410c}
+    .rc-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .rc-links a{font-size:13px;font-weight:700;text-decoration:none;border-radius:999px;padding:7px 14px}
+    .rc-links .rev{background:#fff;border:1.5px solid var(--acc);color:var(--acc-dark)}
+    .rc-links .off{background:var(--cta);color:#fff}
+    .rc-links .pr{margin-left:6px;font-size:10px;background:rgba(255,255,255,.25);padding:1px 5px;border-radius:4px}
+    .outs{margin:18px 0 0;font-size:13.5px;color:#334155}
+    .outs b{color:var(--navy)}
+    .outs ul{margin:6px 0 0;padding-left:20px}
+    .outs li{line-height:1.9}
+    .outs li span{font-weight:700}
+    .caution{margin:18px 0 0;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:13px 16px;font-size:13px;color:#7c2d12;line-height:1.85}
+    .caution b{color:#9a3412}
+    .caution ul{margin:6px 0 0;padding-left:20px}
+    .acts{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0 0}
+    .acts .more-link{margin:0}
+    .again{background:transparent;border:1px solid var(--bd);border-radius:999px;padding:11px 18px;font-size:14px;color:#475569;cursor:pointer}
     .again:hover{border-color:var(--acc)}
     .foot{font-size:11.5px;color:#94a3b8;margin-top:20px;line-height:1.8}
-    @media (max-width:560px){.res{padding:16px 14px}.res h2{font-size:17px}}
+    @media (max-width:560px){.quiz{padding:18px 14px 16px}.rc{grid-template-columns:1fr}.rc-shot{min-height:0;aspect-ratio:16/8}}
   </style>
-  <script is:inline>
-    const opts = document.querySelectorAll(".opt");
-    const hideAll = () => document.querySelectorAll(".res").forEach((s) => (s.hidden = true));
-    opts.forEach((b) => {
-      b.addEventListener("click", () => {
-        hideAll();
-        const el = document.getElementById("res-" + b.getAttribute("data-go"));
-        if (!el) return;
-        el.hidden = false;
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    });
-    document.querySelectorAll("[data-again]").forEach((b) => {
-      b.addEventListener("click", () => {
-        hideAll();
-        document.getElementById("q").scrollIntoView({ behavior: "smooth", block: "center" });
-      });
-    });
-  </script>
 </Base>
