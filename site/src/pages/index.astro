@@ -9,6 +9,7 @@ import Shot from "../components/Shot.astro";
 import shotsFile from "../data/shots.json";
 import NavIcon from "../components/NavIcon.astro";
 import { catOf } from "../lib/cat";
+import { shotsFor } from "../lib/school";
 import schools from "../data/schools.json";
 import pricewatch from "../data/pricewatch.json";
 import offersFile from "../data/offers.json";
@@ -153,7 +154,7 @@ const heroShots = [
         最新1本だけ大きく見せ、残りは横組みの小カードにして、リズムと情報密度を上げる。 */}
     {posts[0] && (
       <a class="feat reveal" data-cat={chip(posts[0])} href={`/blog/${posts[0].slug}/`}>
-        <span class="feat-thumb"><Thumb title={posts[0].data.title} cat={chip(posts[0])} /></span>
+        <span class="feat-thumb"><Thumb title={posts[0].data.title} cat={chip(posts[0])} shots={shotsFor(posts[0].slug)} eager={true} /></span>
         <span class="feat-body">
           <span class="feat-tags"><span class="chip">{chip(posts[0])}</span><span class="feat-new">最新</span></span>
           <span class="feat-t">{posts[0].data.title}</span>
@@ -168,7 +169,7 @@ const heroShots = [
       {posts.slice(1, 11).map((p, i) => (
         <li class="reveal" style={`--i:${i % 2}`}>
           <a class="card row" data-cat={chip(p)} href={`/blog/${p.slug}/`}>
-            <span class="cthumb"><Thumb title={p.data.title} cat={chip(p)} compact /></span>
+            <span class="cthumb"><Thumb title={p.data.title} cat={chip(p)} shots={shotsFor(p.slug)} compact /></span>
             <span class="cbody">
               <span class="chip">{chip(p)}</span>
               <span class="t">{p.data.title}</span>
