@@ -41,6 +41,54 @@ function isFresh(s: Shot | undefined): boolean {
   return age < MAX_AGE_DAYS;
 }
 
+/**
+ * ファーストビューを「読み込み終わった状態」で撮る。
+ * 初回運用（2026-09-11）で分かった失敗パターンと対策:
+ *   - SkillHacks: ほぼ白紙 → 遅延読み込みの画像が来る前に撮っていた。少しスクロールして戻すと発火する
+ *   - 侍エンジニア: ヒーローが灰色 → 動画/大きな画像の読込待ち。画像の complete を待つ
+ *   - スキルアップAI: 画面下にCookie同意バー → 画面下部に固定された要素を隠す
+ * それでも平坦な画像（色の分散が小さい＝白紙や単色）になったら、待ち時間を伸ばして1回だけ撮り直す。
+ */
+async function capture(page: import("playwright").Page): Promise<Buffer> {
+  const sharp = (await import("sharp")).default;
+  const settle = async (extraMs: number) => {
+    // 遅延読み込みを発火させる: 少し下へスクロールして戻す
+    await page.evaluate(() => window.scrollTo(0, 600)).catch(() => {});
+    await page.waitForTimeout(500);
+    await page.evaluate(() => window.scrollTo(0, 0)).catch(() => {});
+    // 画面内の画像が読み終わるまで待つ（最大5秒）
+    await page.evaluate(() => Promise.race([
+      Promise.all(Array.from(document.images).filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = () => r(null); }))),
+      new Promise((r) => setTimeout(r, 5000)),
+    ])).catch(() => {});
+    await page.waitForTimeout(1500 + extraMs);
+    // 画面下に固定されたバー（Cookie同意・追従CTA）と、名前で分かる同意UIを隠す。ヘッダーは残す
+    await page.evaluate(() => {
+      const vh = window.innerHeight;
+      for (const el of Array.from(document.querySelectorAll<HTMLElement>("body *"))) {
+        const cs = getComputedStyle(el);
+        if (cs.position !== "fixed" && cs.position !== "sticky") continue;
+        const r = el.getBoundingClientRect();
+        const bottomBar = r.top > vh * 0.55 && r.height < vh * 0.45 && r.width > vh * 0.4;
+        const named = /cookie|consent|gdpr|privacy-banner|cc-window|onetrust/i.test(el.id + " " + el.className);
+        if (bottomBar || named) el.style.setProperty("display", "none", "important");
+      }
+    }).catch(() => {});
+  };
+  await settle(0);
+  let png = await page.screenshot({ type: "png", clip: { x: 0, y: 0, width: 1280, height: 800 } });
+  const flat = async (buf: Buffer) => {
+    const st = await sharp(buf).stats();
+    return Math.max(...st.channels.map((c) => c.stdev)) < 14; // 白紙・単色に近い
+  };
+  if (await flat(png)) {
+    await settle(4000);
+    png = await page.screenshot({ type: "png", clip: { x: 0, y: 0, width: 1280, height: 800 } });
+    if (await flat(png)) throw new Error("画面がほぼ単色（遅延読み込み未完了か白紙）");
+  }
+  return png;
+}
+
 export async function takeShots(): Promise<{ taken: number; skipped: number; failed: string[] }> {
   const aff = JSON.parse(readFileSync(resolve(paths.data, "affiliates.json"), "utf8")) as { tools: Tool[] };
   const meta = loadMeta();
@@ -81,12 +129,7 @@ export async function takeShots(): Promise<{ taken: number; skipped: number; fai
         // SPAや広告タグでnetworkidleにならないサイトがある。loadまで待てていれば十分
         await page.goto(t.official_url!, { waitUntil: "load", timeout: 30000 });
       }
-      await page.waitForTimeout(1800); // ヒーローのフェードインや遅延画像を待つ
-      // 画面下に張り付くCookie同意・追従CTAだけを隠す（ヘッダーは残す）
-      await page.addStyleTag({ content: `
-        [class*="cookie" i], [id*="cookie" i], [class*="consent" i], [id*="consent" i] { display: none !important; }
-      ` }).catch(() => {});
-      const png = await page.screenshot({ type: "png", clip: { x: 0, y: 0, width: 1280, height: 800 } });
+      const png = await capture(page);
       const out = resolve(OUT_DIR, `${t.id}.webp`);
       const img = sharp(png).resize({ width: WIDTH }).webp({ quality: 78 });
       const info = await img.toFile(out);
