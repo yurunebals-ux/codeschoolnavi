@@ -1,7 +1,14 @@
 ---
-const { title, description, article, home = false } = Astro.props;
+const { title, description, article, home = false, ogImage } = Astro.props;
 const site = import.meta.env.SITE_TITLE || "コードスクールナビ";
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// SNS・Discover 用の画像。記事は主題スクールのスクショ、それ以外はサイト共通の1枚（site/public/og-default.png）。
+// これまで og:image が無く、X や LINE で共有されても文字だけのカードだった。
+const og = new URL(ogImage || "/og-default.png", Astro.site).toString();
+// パンくず（構造化データ）。検索結果のURL表示が「サイト名 › 記事一覧」になる。
+const crumbs = [{ name: site, url: new URL("/", Astro.site).toString() }];
+if (Astro.url.pathname.startsWith("/blog/") && Astro.url.pathname !== "/blog/") crumbs.push({ name: "記事一覧", url: new URL("/blog/", Astro.site).toString() });
+if (Astro.url.pathname !== "/") crumbs.push({ name: title, url: canonical.toString() });
 ---
 <!doctype html>
 <html lang="ja">
@@ -14,6 +21,19 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={article ? "article" : "website"} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site} />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:image" content={og} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={og} />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="alternate" type="application/rss+xml" title={site} href={new URL("/rss.xml", Astro.site)} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: crumbs.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: c.url })),
+    })} />
     {article && (
       <script type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
@@ -23,13 +43,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         publisher: { "@type": "Organization", name: site, url: new URL("/", Astro.site).toString() },
         datePublished: article.pubDate,
         dateModified: article.updatedDate || article.pubDate,
+        image: og,
+        mainEntityOfPage: canonical.toString(),
       })} />
     )}
     <style is:global>
       /* 案A ライト＆クリーン（2026-09-11）。
          オーナー評「全体的に味気ない」への回答。濃紺ヒーロー＋灰色地＋同じ形の白カードの並びが
          原因だったので、(1) 地を白にしてヒーローを明るく、(2) セクションごとに薄い色の帯、
-         (3) カテゴリ色（比較=青／評判=紫／給付金=緑／やめとけ=ローズ／解説=橙／学習=teal／ニュース=cyan）、
+         (3) カテゴリ色（比較=青／評判=紫／給付金=緑／注意点=赤橙／解説=橙／学習=teal／ニュース=cyan）、
          (4) スクロールで現れる・数字が増える・触ると持ち上がる動き（減光設定では止める）。 */
       :root{
         --fg:#1e293b;--mut:#64748b;--bd:#e9eef5;
@@ -283,7 +305,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       [data-cat="比較"]{--cc:var(--c-hikaku);--cbg:#eff6ff;--cfg:#1d4ed8}
       [data-cat="評判・口コミ"]{--cc:var(--c-hyoban);--cbg:#f3e8ff;--cfg:#6d28d9}
       [data-cat="給付金"]{--cc:var(--c-kyufu);--cbg:#ecfdf5;--cfg:#047857}
-      [data-cat="やめとけ"]{--cc:var(--c-yame);--cbg:#fff1f2;--cfg:#be123c}
+      [data-cat="注意点"]{--cc:#dc2626;--cbg:#fef2f2;--cfg:#b91c1c}
       [data-cat="解説"]{--cc:var(--c-kaisetsu);--cbg:#fff7ed;--cfg:#c2410c}
       [data-cat="料金"]{--cc:#d97706;--cbg:#fffbeb;--cfg:#b45309}
       [data-cat="学習・キャリア"]{--cc:var(--c-gakushu);--cbg:#f0fdfa;--cfg:#0f766e}
