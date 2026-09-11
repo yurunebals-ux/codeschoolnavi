@@ -62,11 +62,14 @@ export async function regenRun(opts: { count?: number; slugs?: string[]; force?:
     if (!existsSync(dest)) continue;
     const old = readFileSync(dest, "utf8");
     const pub = old.match(/^pubDate:\s*([0-9-]+)/m)?.[1] ?? new Date().toISOString().slice(0, 10);
+    // タイトルは公開中のファイルのものを正とする（state.json の keyword は古い型のタイトルを
+    // 持っていることがある。2026-09-11 に「やめとけ」型のタイトルを手で改題した）。
+    const curTitle = (() => { const m = old.match(/^title:\s*(.+)$/m); if (!m) return null; try { return JSON.parse(m[1]); } catch { return m[1].replace(/^["']|["']$/g, ""); } })();
     const today = new Date().toISOString().slice(0, 10);
     console.log(`[regen] 作り直し開始 "${item.keyword}"`);
     try {
       const { body, description, title, tools } = await writeArticle(item, aff);
-      const md = `${frontmatter(item, tools, description, { pub, upd: today }, title)}\n\n> 【広告】${aff.disclosure}\n\n${body.trim()}\n`;
+      const md = `${frontmatter(item, tools, description, { pub, upd: today }, title ?? curTitle)}\n\n> 【広告】${aff.disclosure}\n\n${body.trim()}\n`;
       const prior = [...bodies.entries()].filter(([s]) => s !== item.slug).map(([, v]) => v);
       const v = evaluateDraft(md, item, aff, prior);
       if (v.hardBlock || v.pts < 70) {
@@ -78,7 +81,7 @@ export async function regenRun(opts: { count?: number; slugs?: string[]; force?:
       const draft = resolve(paths.drafts, `${item.slug}.md`);
       writeFileSync(draft, md);
       item.structure = STRUCTURE_VERSION;
-      if (title) item.keyword = title;
+      if (title ?? curTitle) item.keyword = (title ?? curTitle)!;
       log.done[item.slug] = { date: today, version: STRUCTURE_VERSION, ok: true };
       ok++;
       console.log(`[regen] 採用 "${item.slug}" score=${v.pts} 文体=${v.aiScore}`);

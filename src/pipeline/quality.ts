@@ -31,7 +31,7 @@ function jaccard(a: Set<string>, b: Set<string>): number {
 
 export interface Verdict { pts: number; reasons: string[]; hardBlock: boolean; aiScore: number; shingle: Set<string> }
 
-interface AffMeta { subsidy_ids?: string[]; tools: { id: string; name: string }[] }
+interface AffMeta { subsidy_ids?: string[]; tools: { id: string; name: string; price_from_yen?: number; price_note?: string }[] }
 
 /**
  * 1本の原稿を採点する。生成サイクル（checkAll）と再生成（regen.ts）の両方から使う。
@@ -106,6 +106,23 @@ export function evaluateDraft(md: string, item: KeywordItem, aff: AffMeta, prior
   const fakeVoice = /という声(が|も)|との口コミ|口コミ(が|も)多い|口コミでは|と評判です|受講生の声/.test(md);
   if (fakeVoice) reasons.push("出典のない口コミ・評判の記述");
 
+  // 【ニュース・トピック】金額はデータにあるものだけ。「当サイトの調査によると平均30万円台」
+  // 「実質負担は約9万円」のような根拠のない数字が出た（2026-09-11 実測）。
+  let inventedMoney: string | null = null;
+  if (isNews || isTopic) {
+    const known = new Set<number>([100000, 200000, 400000, 160000, 80000, 640000]); // 給付金の区分上限
+    for (const t of aff.tools) {
+      if (t.price_from_yen) known.add(t.price_from_yen);
+      for (const m of (t.price_note ?? "").matchAll(/([\d,]+)(万)?円/g)) known.add(Number(m[1].replace(/,/g, "")) * (m[2] ? 10000 : 1));
+    }
+    for (const m of md.matchAll(/([\d,]+(?:\.\d+)?)(万)?円/g)) {
+      const v = Number(m[1].replace(/,/g, "")) * (m[2] ? 10000 : 1);
+      if (!known.has(v)) { inventedMoney = m[0]; break; }
+    }
+    if (/当サイトの調査|独自調査|平均\d/.test(md)) inventedMoney = inventedMoney ?? "当サイトの調査によると";
+  }
+  if (inventedMoney) reasons.push(`データにない金額・調査の言及: ${inventedMoney}`);
+
   // 構造（重複見出し・表崩れ・生成の残骸・空の節）。
   const structure = findStructureProblems(md);
   if (structure.length) reasons.push(`構造: ${structure.map((p) => `${p.kind}(${p.detail})`).join(", ")}`);
@@ -121,7 +138,7 @@ export function evaluateDraft(md: string, item: KeywordItem, aff: AffMeta, prior
 
   const hardBlock =
     !hasAd || hasDeadLink || /OFFLINE PLACEHOLDER/.test(md) || hype ||
-    maxSim > 0.72 || badSubsidyMath || subsidyDenied || fakeVoice || structure.length > 0 ||
+    maxSim > 0.72 || badSubsidyMath || subsidyDenied || fakeVoice || structure.length > 0 || !!inventedMoney ||
     ai.score > config.pipeline.aieseMax;
 
   return { pts, reasons, hardBlock, aiScore: ai.score, shingle: sh };

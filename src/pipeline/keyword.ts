@@ -46,13 +46,15 @@ export function buildKeywords(limit = 40): number {
     add(`kyufukin-osusume`, `給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説`, "pillar:subsidy", aff.subsidy_ids, 10, "pillar", "給付金対象");
   }
   // 特別ハブ：「意味ない/やめとけ」への中立的回答（検索需要が非常に多い）
-  add(`imiaru-erabikata`, `プログラミングスクールは意味ない？やめとけと言われる理由と後悔しない選び方`, "pillar:doubt", aff.tools.slice(0, 6).map((t) => t.id), 9, "pillar", "選び方");
+  add(`imiaru-erabikata`, `プログラミングスクールは意味ない？向いていない人の特徴と後悔しない選び方`, "pillar:doubt", aff.tools.slice(0, 6).map((t) => t.id), 9, "pillar", "選び方");
 
-  // 2) MONEY — 評判/料金/やめとけ/比較/おすすめ(対象者別)
+  // 2) MONEY — 評判/料金/向き不向き/比較/おすすめ(対象者別)
+  //   「◯◯はやめとけ」型のタイトルは検索量は大きいが、広告主がサイトを目視審査するときに
+  //   否定的見出しとして提携を断る理由になる（2026-09-11 オーナー判断で撤去。slug は不変）
   for (const t of aff.tools) {
     add(`hyoban-${t.id}`, `${t.name}の評判・口コミは？特徴を解説`, "money:review", [t.id], 9, "money", t.category);
     add(`ryokin-${t.id}`, `${t.name}の料金は高い？他社と比較`, "money:pricing", [t.id], 8, "money", t.category);
-    add(`yametoke-${t.id}`, `${t.name}はやめとけ？評判と後悔しない判断基準`, "money:doubt", [t.id], 8, "money", t.category);
+    add(`yametoke-${t.id}`, `${t.name}は自分に合う？向いていない人の条件と後悔しない判断基準`, "money:doubt", [t.id], 8, "money", t.category);
   }
   for (const [a, b] of aff.comparison_pairs) {
     const ta = byId.get(a), tb = byId.get(b);

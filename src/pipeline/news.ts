@@ -35,10 +35,11 @@ function loadLog(): Log {
 }
 
 function decode(s: string): string {
-  return s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
-    .replace(/<[^>]+>/g, "")
-    .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&#39;/g, "'")
-    .replace(/\s+/g, " ").trim();
+  // Google ニュースの description は HTML がエスケープされて入っている（&lt;a href=…&gt;）。
+  // 実体参照を戻してからタグを剥がさないと、タグが文字列として残る（2026-09-11 実測）。
+  const un = s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
+    .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&#39;/g, "'").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&");
+  return un.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 }
 
 async function fetchRss(q: string): Promise<Item[]> {
