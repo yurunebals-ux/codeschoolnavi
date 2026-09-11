@@ -203,6 +203,6 @@ TechAcademyやCodeCampは現役エンジニアによるメンタリングやマ�
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [50代からのAIエンジニア転職はスクール選びで何が変わるか](/blog/news-20260911-5mnke/)
+- [50代のAIエンジニア転職でスクール選びが左右するポイント](/blog/news-20260911-5mnke/)
 - [スキルアップAIの評判・口コミは？特徴を解説](/blog/hyoban-skillupai/)
-- [RUNTEQは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-runteq/)
+- [RUNTEQはやめとけ？評判と後悔しない判断基準](/blog/yametoke-runteq/)
