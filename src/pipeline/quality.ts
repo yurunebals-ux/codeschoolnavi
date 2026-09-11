@@ -97,7 +97,7 @@ export function evaluateDraft(md: string, item: KeywordItem, aff: AffMeta, prior
   // 内部リンク（回遊）。
   if (/\]\(\/(blog|kyufukin)\//.test(md)) pts += 10; else reasons.push("内部リンクなし");
   if (/OFFLINE PLACEHOLDER/.test(md)) reasons.push("オフラインのダミー本文");
-  const hasDeadLink = /REPLACE-WITH-YOUR|PENDING-A8-APPROVAL/.test(md);
+  const hasDeadLink = /REPLACE-WITH-YOUR|PENDING-A8-APPROVAL|example\.com|googleusercontent\.com/.test(md);
   if (hasDeadLink) reasons.push("提携未承認のプレースホルダURLが本文に残っている");
   const hype = /絶対|必ず稼げる|確実に稼|日本一|100%|No\.?1|誰でも稼/i.test(md);
   if (hype) reasons.push("誇大・断定表現");

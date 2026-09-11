@@ -466,6 +466,9 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
     .replace(/^(#{2,3})\s*\d{1,2}[\.．、)）]\s*/gm, "$1 ")
     .replace(/^(#{2,3})\s*(冒頭|前半|中盤|後半)[:：]\s*/gm, "$1 ");
 
+  // 自サイトへのリンクを絶対URLで書いてくる（https://example.com/kyufukin/ など。本番で4記事が
+  // example.com へ飛んでいた、2026-09-11 実測）。自サイト・example.com の絶対URLは相対パスに直す。
+  body = body.replace(/\]\(https?:\/\/(?:www\.)?(?:example\.com|codeschoolnavi\.com)(\/[^)\s]*)?\)/g, (_m, path) => `](${path || "/"})`);
   // 「/kyufukin/」とパスを地の文に書くだけでリンクにしないことがある（実測: ryokin-runteq）。
   // Markdown リンクの中は触らず、裸のパスだけリンクに置き換える。
   body = body.replace(/「?(?<!\]\()(?<![\w/])(\/kyufukin\/)」?/g, (m, path, off, str) => {
