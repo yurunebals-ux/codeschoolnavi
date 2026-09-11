@@ -137,6 +137,13 @@ export function extractText(html: string, cap = 2500): string {
   return text.slice(0, cap);
 }
 
+/** "Sun, 06 Sep 2026 18:38:44 GMT" → "2026年9月6日" */
+function fmtDate(s: string): string {
+  const d = new Date(s);
+  if (Number.isNaN(d.getTime())) return s;
+  return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+}
+
 function relevance(it: NewsItem): number {
   let s = 0;
   const hay = it.title + " " + it.snippet.slice(0, 120);
@@ -195,29 +202,38 @@ export async function newsRun(opts: { force?: boolean } = {}): Promise<string | 
   console.log(`[news] 候補 ${fresh.length}件（全${all.length}件）`);
 
   // 上位から本文を取りに行き、本文が取れた3本（媒体は重複させない）を採用
-  const picked: NewsItem[] = [];
+  const picked: (NewsItem & { rssLink: string })[] = [];
   const hosts = new Set<string>();
-  for (const it of fresh.slice(0, 15)) {
+  const grams = (t: string) => { const x = t.replace(/[\s「」『』【】（）()、。・:：\-｜|]/g, ""); const g = new Set<string>(); for (let i = 0; i < x.length - 1; i++) g.add(x.slice(i, i + 2)); return g; };
+  const similar = (a: string, b: string) => { const A = grams(a), B = grams(b); let n = 0; for (const g of A) if (B.has(g)) n++; return n / Math.max(1, Math.min(A.size, B.size)); };
+  const isPR = (it: NewsItem) => /prtimes|newscast|atpress|pr\.|プレスリリース/i.test(it.link + " " + it.source);
+  let prCount = 0;
+  for (const it of fresh.slice(0, 20)) {
     if (picked.length >= 3) break;
+    // 同じ話題（同じプレスリリースを複数媒体が載せる）は1本だけ
+    if (picked.some((p) => similar(p.title, it.title) > 0.35)) { console.log(`[news] 同じ話題: ${it.title.slice(0, 40)}`); continue; }
+    if (isPR(it) && prCount >= 1) continue; // プレスリリース由来は1本まで（宣伝ばかりにしない）
     const [en] = await enrichItems([it]);
     if (!en.text) { console.log(`[news] 本文なし: ${it.title.slice(0, 40)}`); continue; }
     const host = (() => { try { return new URL(en.link).host; } catch { return en.source; } })();
     if (hosts.has(host)) continue;
     hosts.add(host);
-    picked.push(en);
+    if (isPR(it)) prCount++;
+    picked.push({ ...en, rssLink: it.link, published: fmtDate(en.published) });
   }
   if (picked.length < 2) { console.log(`[news] 本文が取れたニュースが${picked.length}本。今週は書かない`); return null; }
 
   const date = new Date().toISOString().slice(0, 10);
   let h = 2166136261; for (const ch of picked.map((p) => p.link).join("|")) h = Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0;
-  const slug = `news-${date.replace(/-/g, "")}-${(h >>> 0).toString(36).slice(0, 5)}`;
+  let slug = `news-${date.replace(/-/g, "")}-${(h >>> 0).toString(36).slice(0, 5)}`;
+  if (state.keywords.some((k) => k.slug === slug)) slug += "-" + Date.now().toString(36).slice(-3);
   state.keywords.push({
     slug, keyword: `今週のAI・プログラミング学習ニュースと編集部の見方（${Number(date.slice(5, 7))}/${Number(date.slice(8, 10))}）`,
     template: "news:weekly", tools: [], kind: "news", cluster: "ニュース", score: 95, status: "queued", createdAt: new Date().toISOString(),
-    news: { items: picked } as any,
+    news: { items: picked.map(({ rssLink, ...rest }) => rest) } as any,
   });
   saveState(state);
-  for (const p of picked) log.used.push({ link: p.link, slug, date });
+  for (const p of picked) { log.used.push({ link: p.link, slug, date }); if (p.rssLink !== p.link) log.used.push({ link: p.rssLink, slug, date }); }
   log.lastRun = date;
   writeFileSync(LOG, JSON.stringify(log, null, 2) + "\n");
   console.log(`[news] キュー投入: ${picked.map((p) => `「${p.title.slice(0, 30)}」(${p.source})`).join(" / ")}`);

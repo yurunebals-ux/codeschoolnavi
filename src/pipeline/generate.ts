@@ -407,18 +407,18 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
       const hm = lines[0].match(/^H[:：]\s*(.+)$/);
       const heading = (hm ? hm[1] : n.title).replace(/^#+\s*/, "").trim();
       const paras = (hm ? lines.slice(1) : lines).join("\n").trim().replace(/^#+.*$/gm, "").trim();
-      sections.push(`## ${heading}\n\n出典：[${n.source}](${n.link})（${n.published.slice(0, 16)}）\n\n${paras}`);
+      sections.push(`## ${heading}\n\n出典：[${n.source}](${n.link})（${n.published}）\n\n${paras}`);
       summaries.push(`・${heading}（${n.source}）: ${paras.replace(/\s+/g, " ").slice(0, 300)}`);
     }
     const col = await chat(
-      `今週のニュース${usable.length}本の要約を読んで、コラムを書く。\n出力形式（この順で。この形式以外は書かない）:\nTITLE: 記事タイトル（40字以内。${usable.length}本に共通する論点を一言で言い切る。「今週のニュース」のような定型は禁止）\nDESCRIPTION: 80字以内の説明\nLEAD: 冒頭の1段落（120字以内。${usable.length}本が指している「ひとつの変化」を1文目で言い切る）\n## （論点を言い切る見出し）\n本文600字以上: ${usable.length}本を貫く論点をひとつ立て、賛成する立場と反対する立場の両方を書いたうえで、編集部の結論を書く。一般論で逃げず、「◯◯な人は今年中に△△、そうでない人は様子見」のように行動まで落とす。ニュースにない固有名詞・数字は出さない。\n## 今週の読者への宿題\n具体的な行動を3つ、文章で（各行動に「なぜ今か」を1文添える）。スクール名や商品名は出さない。\n\n【要約】\n${summaries.join("\n")}`,
+      `今週のニュース${usable.length}本の要約を読んで、コラムを書く。\n出力形式（この順で。この形式以外は書かない）:\nTITLE: 記事タイトル（40字以内。${usable.length}本に共通する論点を、読者の損得が伝わる言い方で言い切る。例「『AIの使い方』を教える講座は、もう選ぶ理由がない」「求人は増えたのに未経験の入口は狭い、その理由」。「〜の現状」「〜の動向」「今週のニュース」のような定型は禁止）\nDESCRIPTION: 80字以内の説明\nLEAD: 冒頭の1段落（120字以内。${usable.length}本が指している「ひとつの変化」を1文目で言い切る）\n## （論点を言い切る見出し）\n本文600字以上: ${usable.length}本を貫く論点をひとつ立て、賛成する立場と反対する立場の両方を書いたうえで、編集部の結論を書く。一般論で逃げず、「◯◯な人は今年中に△△、そうでない人は様子見」のように行動まで落とす。ニュースにない固有名詞・数字は出さない。\n## 今週の読者への宿題\n具体的な行動を3つ、文章で（各行動に「なぜ今か」を1文添える）。スクール名や商品名は出さない。\n\n【要約】\n${summaries.join("\n")}`,
       { system: newsSystem, maxTokens: 2500, temperature: 0.7 });
     const ct = takeTitle(col.trim());
     const cd = takeDescription(ct.body);
     const lm = cd.body.match(/^\s*LEAD[:：]\s*(.+)\n/);
     const lead = lm ? lm[1].trim() : "";
     const colBody = (lm ? cd.body.slice(lm[0].length) : cd.body).trim();
-    const sources = usable.map((n) => `- [${n.title}](${n.link})（${n.source}、${n.published.slice(0, 16)}）`).join("\n");
+    const sources = usable.map((n) => `- [${n.title}](${n.link})（${n.source}、${n.published}）`).join("\n");
     let body2 = [lead, ...sections, colBody, `## 出典\n\n${sources}`].filter(Boolean).join("\n\n");
     body2 = dedupeSections(normalizeHeadings(body2));
     body2 = dedupeSections(await depersonalizeAi(body2, newsSystem));
