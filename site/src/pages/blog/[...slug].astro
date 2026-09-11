@@ -7,6 +7,7 @@ import FigPrice from "../../components/FigPrice.astro";
 import FigMap from "../../components/FigMap.astro";
 import FigKyufu from "../../components/FigKyufu.astro";
 import Cta from "../../components/Cta.astro";
+import Shot from "../../components/Shot.astro";
 import pricewatch from "../../data/pricewatch.json";
 import offersFile from "../../data/offers.json";
 
@@ -22,8 +23,32 @@ const cat = d.title.includes("給付金") ? "給付金" : (d.title.includes("比
 
 // 独自データ：この記事のスクールに公式料金の観測記録があれば「監視ログ」を表示。
 // slug 規約 hyoban-<id> と pricewatch.json のキーを対応させる。
-const watchId = post.slug.startsWith("hyoban-") ? post.slug.slice("hyoban-".length) : null;
+// 【2026-09-11 修正】以前は hyoban- だけを見ていたため、ryokin-（料金）・yametoke-（やめとけ）・
+// hikaku-（比較）の記事は主題スクールが判定されず、CTAも料金監視も公式スクショも出ていなかった。
+// 8月に提携済み校の料金/やめとけ記事を優先して公開したのに、その23本にアフィリンクが1本も無かった。
+// slug 規約: <template>-<toolId> ／ hikaku-<a>-<b>（比較は提携済み側を主題にする）。
+function schoolFromSlug(slug: string): string | null {
+  // site/ の外（data/affiliates.json）は import できないので、offers.json（offers.ts が同期）を正とする
+  const ids = new Set(Object.keys((offersFile as any).offers ?? {}));
+  const m = slug.match(/^(hyoban|ryokin|yametoke|towa)-(.+)$/);
+  if (m && ids.has(m[2])) return m[2];
+  const h = slug.match(/^hikaku-(.+)$/);
+  if (h) {
+    // id にハイフンは無いので、先頭から最長一致で2つに割る
+    const parts = h[1].split("-");
+    for (let i = 1; i < parts.length; i++) {
+      const a = parts.slice(0, i).join("-"), b = parts.slice(i).join("-");
+      if (ids.has(a) && ids.has(b)) {
+        const off = (offersFile as any).offers ?? {};
+        return off[a]?.sponsored ? a : off[b]?.sponsored ? b : a;
+      }
+    }
+  }
+  return null;
+}
+const watchId = schoolFromSlug(post.slug);
 const watch = watchId ? (pricewatch as any).schools?.[watchId] : null;
+const watchTool = watchId ? (offersFile as any).offers?.[watchId] ?? null : null;
 const hasWatch = !!(watch && watch.lastChecked);
 const changeDates: string[] = hasWatch ? watch.observations.map((o: any) => o.date).slice(-5).reverse() : [];
 
@@ -66,6 +91,7 @@ const ctaAfter = figMapAfter + 1;
       <div class="toc-title">📑 この記事の目次</div>
       <ol id="toc-list"></ol>
     </nav>
+    {watchTool && <Shot id={watchId} name={watchTool.name} official={watchTool.official} />}
     {hasWatch && (
       <aside class="pricelog">
         <div class="pl-title">🔎 料金表示の自動監視（当サイト独自）</div>
