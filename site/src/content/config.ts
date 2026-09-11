@@ -10,6 +10,9 @@ const blog = defineCollection({
         updatedDate: z.coerce.date().transform((d) => d.toISOString().slice(0, 10)).optional(),
     tools: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    // ニュース解説／トピック記事のフラグ（src/pipeline/generate.ts が付ける）
+    news: z.boolean().default(false),
+    topic: z.boolean().default(false),
   }),
 });
 
