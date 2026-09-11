@@ -27,7 +27,12 @@ export interface KeywordItem {
   brief?: string;
   hubs?: string[];
   /** news:* 用。拾ったニュースの見出し・出典（本文はこの範囲でしか書かせない） */
-  news?: { title: string; link: string; source: string; published: string; snippet: string };
+  news?: {
+    // 旧形式（news:commentary、1本）
+    title?: string; link?: string; source?: string; published?: string; snippet?: string; text?: string;
+    // 新形式（news:weekly、3本＋本文）
+    items?: { title: string; link: string; source: string; published: string; snippet: string; text?: string }[];
+  };
   /** 記事の型のバージョン。再生成の対象判定に使う */
   structure?: number;
   // analytics feedback
