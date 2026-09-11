@@ -5,6 +5,7 @@ import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import Thumb from "../../components/Thumb.astro";
 import { catOf, type Cat } from "../../lib/cat";
+import { shotsFor } from "../../lib/school";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate));
@@ -37,7 +38,7 @@ const blurb: Record<string, string> = {
         {g.items.map((p, i) => (
           <li class="reveal" style={`--i:${i % 2}`}>
             <a class="card row" data-cat={g.cat} href={`/blog/${p.slug}/`}>
-              <span class="cthumb"><Thumb title={p.data.title} cat={g.cat} compact /></span>
+              <span class="cthumb"><Thumb title={p.data.title} cat={g.cat} shots={shotsFor(p.slug)} compact /></span>
               <span class="cbody">
                 <span class="chip">{g.cat}</span>
                 <span class="t">{p.data.title}</span>

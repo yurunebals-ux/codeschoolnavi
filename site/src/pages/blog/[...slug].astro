@@ -10,6 +10,7 @@ import Cta from "../../components/Cta.astro";
 import Shot from "../../components/Shot.astro";
 import pricewatch from "../../data/pricewatch.json";
 import { catOf } from "../../lib/cat";
+import { schoolFromSlug, shotsFor } from "../../lib/school";
 import offersFile from "../../data/offers.json";
 
 export async function getStaticPaths() {
@@ -28,26 +29,9 @@ const cat = catOf(d.title, d);
 // hikaku-（比較）の記事は主題スクールが判定されず、CTAも料金監視も公式スクショも出ていなかった。
 // 8月に提携済み校の料金/やめとけ記事を優先して公開したのに、その23本にアフィリンクが1本も無かった。
 // slug 規約: <template>-<toolId> ／ hikaku-<a>-<b>（比較は提携済み側を主題にする）。
-function schoolFromSlug(slug: string): string | null {
-  // site/ の外（data/affiliates.json）は import できないので、offers.json（offers.ts が同期）を正とする
-  const ids = new Set(Object.keys((offersFile as any).offers ?? {}));
-  const m = slug.match(/^(hyoban|ryokin|yametoke|towa)-(.+)$/);
-  if (m && ids.has(m[2])) return m[2];
-  const h = slug.match(/^hikaku-(.+)$/);
-  if (h) {
-    // id にハイフンは無いので、先頭から最長一致で2つに割る
-    const parts = h[1].split("-");
-    for (let i = 1; i < parts.length; i++) {
-      const a = parts.slice(0, i).join("-"), b = parts.slice(i).join("-");
-      if (ids.has(a) && ids.has(b)) {
-        const off = (offersFile as any).offers ?? {};
-        return off[a]?.sponsored ? a : off[b]?.sponsored ? b : a;
-      }
-    }
-  }
-  return null;
-}
+// slug → スクールの判定は site/src/lib/school.ts（一覧のアイキャッチと共用）
 const watchId = schoolFromSlug(post.slug);
+const eyeShots = shotsFor(post.slug);
 const watch = watchId ? (pricewatch as any).schools?.[watchId] : null;
 const watchTool = watchId ? (offersFile as any).offers?.[watchId] ?? null : null;
 const hasWatch = !!(watch && watch.lastChecked);
@@ -87,12 +71,15 @@ const ctaAfter = figMapAfter + 1;
       <span>更新日: {d.updatedDate || d.pubDate}</span>
       <span>執筆: {d.author}（編集長 佐倉 透）</span>
     </div>
-    <div class="eyecatch"><Thumb title={d.title} cat={cat} /></div>
+    <div class="eyecatch"><Thumb title={d.title} cat={cat} shots={eyeShots} eager={true} /></div>
+    {eyeShots.length > 0 && watchTool && (
+      <p class="shot-credit">出典：<a href={watchTool.official ?? watchTool.href} target="_blank" rel="nofollow noopener">{watchTool.name}公式サイト</a>（{eyeShots[0].takenAt.slice(0, 4)}年{Number(eyeShots[0].takenAt.slice(5, 7))}月時点の表示）。画像は当サイトが自動取得したもので、最新の画面とは異なることがあります。</p>
+    )}
     <nav class="toc" id="toc" hidden>
       <div class="toc-title">📑 この記事の目次</div>
       <ol id="toc-list"></ol>
     </nav>
-    {watchTool && <Shot id={watchId} name={watchTool.name} official={watchTool.official} />}
+    {watchTool && eyeShots.length === 0 && <Shot id={watchId} name={watchTool.name} official={watchTool.official} />}
     {hasWatch && (
       <aside class="pricelog">
         <div class="pl-title">🔎 料金表示の自動監視（当サイト独自）</div>
