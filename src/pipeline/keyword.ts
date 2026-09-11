@@ -1,7 +1,8 @@
 // ROLE: SEO Strategy Lead（日本市場）
 // 日本語の買い手直前キーワードをクラスター構造で生成。日本語はURLに使えないため、
 // slug は英字ID（tool.id / categoryId / audience.id）から生成し、表示キーワードは日本語。
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
+import { resolve } from "node:path";
 import { paths } from "../lib/config.js";
 import { loadState, saveState, type KeywordItem, type ArticleKind } from "../lib/store.js";
 
@@ -13,6 +14,7 @@ function score(intent: number, kind: ArticleKind): number {
   let s = intent * 9;
   if (kind === "money") s += 10;
   if (kind === "pillar") s += 8;
+  if (kind === "topic") s = 60; // 収益記事より下、情報記事より上。実際の順番は generate.ts の pickNext が決める
   return Math.max(0, Math.min(100, Math.round(s)));
 }
 
@@ -73,8 +75,23 @@ export function buildKeywords(limit = 40): number {
     add(`towa-${t.id}`, `${t.name}とは？特徴・コース・向いている人`, "info:what", [t.id], 5, "info", t.category);
   }
 
+  // 4) TOPIC — スクール比較以外の学習・キャリア・AIの話題（data/topics.json）。
+  // オーナー要望（2026-09-11）「提携校の比較や評判以外にもAIやコード関連のトピック記事も入れる」。
+  // pickNext が「比較・評判が2本続いたらトピックを1本」の割合で混ぜる。
+  const topicsPath = resolve(paths.data, "topics.json");
+  if (existsSync(topicsPath)) {
+    const tp = JSON.parse(readFileSync(topicsPath, "utf8")) as { topics: { slug: string; keyword: string; cluster: string; tools?: string[]; hubs?: string[]; brief: string }[] };
+    for (const t of tp.topics) {
+      if (existing.has(t.slug) || out.some((c) => c.slug === t.slug)) continue;
+      out.push({ slug: t.slug, keyword: t.keyword, template: "topic:guide", tools: (t.tools ?? []).filter((id) => byId.has(id)), kind: "topic", cluster: t.cluster, score: score(0, "topic"), status: "queued", createdAt: now, brief: t.brief, hubs: t.hubs ?? ["/kyufukin/"] });
+    }
+  }
+
   out.sort((a, b) => b.score - a.score);
-  const chosen = out.slice(0, limit);
+  // トピックは score が低いので上位 limit 件から漏れる。毎回5本までは必ず混ぜる。
+  const topicPick = out.filter((c) => c.kind === "topic").slice(0, 5);
+  const rest = out.filter((c) => c.kind !== "topic").slice(0, Math.max(0, limit - topicPick.length));
+  const chosen = [...rest, ...topicPick];
   state.keywords.push(...chosen);
   saveState(state);
   console.log(`[strategist] queued ${chosen.length} 件（${categories.length}クラスター、最上位: "${chosen[0]?.keyword}" @${chosen[0]?.score}）`);
