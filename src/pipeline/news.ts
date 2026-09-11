@@ -91,11 +91,39 @@ function parseFeed(xml: string, fallbackSource: string): NewsItem[] {
 /** Google ニュースの中継URL → 元記事URL。取れなければそのまま返す */
 async function resolveLink(link: string): Promise<string> {
   if (!/news\.google\.com/.test(link)) return link;
+  // (1) 旧形式: /articles/<base64> の中に元URLがそのまま入っている
+  const idm = link.match(/\/(?:articles|rss\/articles)\/([^?/]+)/);
+  const id = idm?.[1] ?? "";
+  try {
+    const raw = Buffer.from(id.replace(/-/g, "+").replace(/_/g, "/"), "base64").toString("latin1");
+    const m = raw.match(/https?:\/\/[^\x00-\x20"'<>]+/);
+    if (m && !/google\.com/.test(m[0])) return m[0];
+  } catch { /* 新形式 */ }
+  // (2) 新形式: 記事ページの署名とタイムスタンプで batchexecute を叩くと元URLが返る
   const r = await get(link);
   if (!r) return link;
   if (!/news\.google\.com/.test(r.url)) return r.url;
-  const m = r.body.match(/data-n-au="([^"]+)"/) || r.body.match(/href="(https?:\/\/(?!news\.google|accounts\.google|policies\.google|support\.google)[^"]+)"/);
-  return m ? unescapeEntities(m[1]) : link;
+  const sg = r.body.match(/data-n-a-sg="([^"]+)"/)?.[1];
+  const ts = r.body.match(/data-n-a-ts="([^"]+)"/)?.[1];
+  const aid = r.body.match(/data-n-a-id="([^"]+)"/)?.[1] ?? id;
+  if (sg && ts) {
+    try {
+      const req = JSON.stringify([[["Fbv4je", JSON.stringify(["garturlreq", [["X", "X", ["ja-JP", "JP"], null, null, 1, 1, "JP:ja", null, 180, null, null, null, null, null, 0, null, null, [1608992183, 723341000]], "ja-JP", "JP", 1, [2, 3, 4, 8], 1, 0, "655000234", 0, 0, null, 0], aid, Number(ts), sg]), null, "generic"]]]);
+      const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 15000);
+      const res = await fetch("https://news.google.com/_/DotsSplashUi/data/batchexecute", {
+        method: "POST", signal: ctrl.signal,
+        headers: { "content-type": "application/x-www-form-urlencoded;charset=UTF-8", "user-agent": UA },
+        body: "f.req=" + encodeURIComponent(req),
+      });
+      clearTimeout(t);
+      const txt = await res.text();
+      const m = txt.match(/"garturlres","(https?:[^"]+)"/) || txt.match(/https?:\\?\/\\?\/(?!news\.google)[^"\\]+/);
+      if (m) return (m[1] ?? m[0]).replace(/\\\//g, "/");
+    } catch { /* 失敗したら下へ */ }
+  }
+  // (3) 最後の手段: ページ内の外部リンク（Google のドメインと画像は除く）
+  const m2 = r.body.match(/data-n-au="([^"]+)"/) || r.body.match(/href="(https?:\/\/(?![^"]*google)[^"]+)"/);
+  return m2 && !/googleusercontent|gstatic/.test(m2[1]) ? unescapeEntities(m2[1]) : link;
 }
 
 /** 記事ページから本文らしいテキストを抜く（<article> があればそこ、無ければ本文の <p> をつなぐ） */
@@ -123,7 +151,8 @@ function relevance(it: NewsItem): number {
 export async function enrichItems(items: NewsItem[]): Promise<NewsItem[]> {
   const out: NewsItem[] = [];
   for (const it of items) {
-    if (it.text && it.text.length > 300) { out.push(it); continue; }
+    // 本文があっても、リンクが Google の中継や画像のままなら取り直す（2026-09-11 の事故: 画像URLに解決して本文が Google のページになった）
+    if (it.text && it.text.length > 300 && !/google/.test(it.link)) { out.push(it); continue; }
     const link = await resolveLink(it.link);
     const page = await get(link);
     const text = page ? extractText(page.body) : "";
@@ -133,15 +162,16 @@ export async function enrichItems(items: NewsItem[]): Promise<NewsItem[]> {
 }
 
 /** 週1回だけ実行。キューに未処理のニュースがある間は何もしない。 */
-export async function newsRun(): Promise<string | null> {
+export async function newsRun(opts: { force?: boolean } = {}): Promise<string | null> {
   const log = loadLog();
   const state = loadState();
+  if (opts.force) console.log("[news] --force: 週1回の間隔チェックを飛ばす");
   if (state.keywords.some((k) => k.template.startsWith("news:") && (k.status === "queued" || k.status === "drafted"))) {
     console.log("[news] 未処理のニュース記事があるためスキップ");
     return null;
   }
   const lastNews = state.keywords.filter((k) => k.template.startsWith("news:") && k.publishedAt).map((k) => k.publishedAt!).sort().pop();
-  if (lastNews && Date.now() - new Date(lastNews).getTime() < 6 * 86400000) {
+  if (!opts.force && lastNews && Date.now() - new Date(lastNews).getTime() < 6 * 86400000) {
     console.log("[news] 前回のニュース記事から6日未満。スキップ");
     return null;
   }
@@ -194,4 +224,4 @@ export async function newsRun(): Promise<string | null> {
   return slug;
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) newsRun();
+if (import.meta.url === `file://${process.argv[1]}`) newsRun({ force: process.argv.includes("--force") });

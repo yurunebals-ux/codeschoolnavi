@@ -193,7 +193,9 @@ function insertAfterIntro(body: string, block: string): string {
  * 出力を見ていないので、指示だけでは重複を防ぎきれない。残すのは長いほう（文字数）。
  */
 export function normalizeHeadings(md: string): string {
-  let out = md.replace(/^(#{2,3})\s+\d{1,2}[.．]\s*/gm, "$1 ");
+  // 節番号は「## 5. 」「## 5）」のように区切りがある場合だけ落とす。区切りなしで数字を消すと
+  // 「## 50代からの…」が「## 代からの…」になる（2026-09-11 実測）。
+  let out = md.replace(/^(#{2,3})\s+\d{1,2}[.．、)）]\s*/gm, "$1 ");
   out = out.replace(/^##\s+(?:まとめ|最後に|総括)\s*$/gm, "## 迷ったときの決め方");
   return out;
 }
@@ -415,7 +417,7 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
   let body = [d1.body, p2].map((s) => s.trim()).filter(Boolean).join("\n\n");
   body = dedupeSections(normalizeHeadings(body));
   body = body
-    .replace(/^(#{2,3})\s*\d+[\.．、]?\s*/gm, "$1 ")
+    .replace(/^(#{2,3})\s*\d{1,2}[\.．、)）]\s*/gm, "$1 ")
     .replace(/^(#{2,3})\s*(冒頭|前半|中盤|後半)[:：]\s*/gm, "$1 ");
 
   // 「/kyufukin/」とパスを地の文に書くだけでリンクにしないことがある（実測: ryokin-runteq）。
