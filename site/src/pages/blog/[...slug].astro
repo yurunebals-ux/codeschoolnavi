@@ -63,7 +63,7 @@ const watchOffer = watchId ? (offersFile as any).offers?.[watchId] ?? null : nul
 const figMapAfter = isKyufu ? 4 : 3;
 const ctaAfter = figMapAfter + 1;
 ---
-<Base title={d.title} description={d.description} article={d}>
+<Base title={d.title} description={d.description} article={d} ogImage={eyeShots[0]?.og}>
   <article>
     <h1>{d.title}</h1>
     <div class="meta">

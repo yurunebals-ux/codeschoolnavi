@@ -9,7 +9,7 @@ import { shotsFor } from "../../lib/school";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate));
-const order: Cat[] = ["評判・口コミ", "料金", "やめとけ", "比較", "給付金", "学習・キャリア", "ニュース", "解説"];
+const order: Cat[] = ["評判・口コミ", "料金", "注意点", "比較", "給付金", "学習・キャリア", "ニュース", "解説"];
 const groups = order
   .map((c) => ({ cat: c, items: posts.filter((p) => catOf(p.data.title, p.data) === c) }))
   .filter((g) => g.items.length);
@@ -18,14 +18,14 @@ const blurb: Record<string, string> = {
   "評判・口コミ": "1校ずつ、公式情報と編集部の基準で「合う人・合わない人」を判定した記事。",
   "料金": "受講料は高いのか。同カテゴリの他校と並べ、コース別の中身と給付金の適用を検証した記事。",
   "比較": "目的別・カテゴリ別に複数校を同じ軸で並べた記事。",
-  "やめとけ": "「やめとけ」と言われる理由を事実で検証し、後悔しやすい人の条件を書いた記事。",
+  "注意点": "申し込む前に知っておきたい条件や向き不向きを、事実で検証した記事。",
   "給付金": "教育訓練給付金の対象校と、いくら戻るかを区分ごとに整理した記事。",
   "学習・キャリア": "スクール比較の外側。学ぶ順番・独学との分かれ目・AI時代のキャリアの話。",
   "ニュース": "AI・プログラミング教育・リスキリング関連のニュースを、スクール選びの視点で短く解説。",
   "解説": "制度や用語、料金の読み方など。",
 };
 ---
-<Base title="記事一覧" description={`コードスクールナビの全記事（${posts.length}本）。評判・比較・やめとけ・給付金・学習とキャリア・ニュース解説をカテゴリ別に。`}>
+<Base title="記事一覧" description={`コードスクールナビの全記事（${posts.length}本）。評判・比較・注意点・給付金・学習とキャリア・ニュース解説をカテゴリ別に。`}>
   <h1>記事一覧 <small class="cnt">全{posts.length}本 ・ 毎日更新</small></h1>
   <nav class="catnav" aria-label="カテゴリ">
     {groups.map((g) => <a href={`#${anchor(g.cat)}`} data-cat={g.cat}><span class="chip">{g.cat}</span><small>{g.items.length}</small></a>)}
