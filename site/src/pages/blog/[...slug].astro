@@ -93,11 +93,12 @@ const ctaAfter = figMapAfter + 1;
     )}
     <Content />
 
+    {/* ニュースコラムにスクールの料金図解やCTAを挟まない（2026-09-11 本番で出典の直下に料金グラフが出ていた） */}
     <div id="figbank">
-      <div class="figslot" data-after="1"><FigPrice highlight={school} /></div>
+      {!d.news && <div class="figslot" data-after="1"><FigPrice highlight={school} /></div>}
       {isKyufu && <div class="figslot" data-after="2"><FigKyufu /></div>}
-      <div class="figslot" data-after={figMapAfter}><FigMap highlight={school} /></div>
-      {ctaId && <div class="figslot" data-after={ctaAfter}><Cta id={ctaId} /></div>}
+      {!d.news && <div class="figslot" data-after={figMapAfter}><FigMap highlight={school} /></div>}
+      {ctaId && !d.news && <div class="figslot" data-after={ctaAfter}><Cta id={ctaId} /></div>}
     </div>
     <script is:inline>
       // 図解を本文の見出し位置へ移す。パース中に実行されるので、下に一瞬見えることはない。
