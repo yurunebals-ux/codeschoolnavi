@@ -396,6 +396,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
             entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
           }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
           els.forEach(function(el){ io.observe(el); });
+          // 保険: 非表示タブや描画待ちで観測が遅れても、3秒後には全部出す（消えたままにしない）
+          setTimeout(function(){ els.forEach(function(el){ el.classList.add("in"); }); }, 3000);
         } else { els.forEach(function(el){ el.classList.add("in"); }); }
         // 数字のカウントアップ（料金監視の実績など）。data-count に最終値。
         document.querySelectorAll("[data-count]").forEach(function(el){
