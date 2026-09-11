@@ -133,6 +133,8 @@ export async function takeShots(): Promise<{ taken: number; skipped: number; fai
       const out = resolve(OUT_DIR, `${t.id}.webp`);
       const img = sharp(png).resize({ width: WIDTH }).webp({ quality: 78 });
       const info = await img.toFile(out);
+      // 一覧の小さいアイキャッチ用（幅320）。104pxの枠に960px画像を10枚並べるのは無駄なので別に持つ。
+      await sharp(png).resize({ width: 320 }).webp({ quality: 74 }).toFile(resolve(OUT_DIR, `${t.id}-s.webp`));
       meta.shots[t.id] = {
         file: `/img/shots/${t.id}.webp`,
         takenAt: new Date().toISOString(),
