@@ -3,9 +3,12 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import { paths } from "./config.js";
 
+/** 記事の型のバージョン。generate.ts の構成を変えたら上げる。regen.ts が旧バージョンの記事を作り直す */
+export const STRUCTURE_VERSION = 2;
+
 export type KeywordStatus = "queued" | "drafted" | "approved" | "published" | "rejected";
 
-export type ArticleKind = "money" | "info" | "pillar";
+export type ArticleKind = "money" | "info" | "pillar" | "topic" | "news";
 
 export interface KeywordItem {
   slug: string;
@@ -20,6 +23,13 @@ export interface KeywordItem {
   rejectReason?: string;
   createdAt: string;
   publishedAt?: string;
+  /** topic:* 用。data/topics.json の要点と内部リンク先 */
+  brief?: string;
+  hubs?: string[];
+  /** news:* 用。拾ったニュースの見出し・出典（本文はこの範囲でしか書かせない） */
+  news?: { title: string; link: string; source: string; published: string; snippet: string };
+  /** 記事の型のバージョン。再生成の対象判定に使う */
+  structure?: number;
   // analytics feedback
   impressions?: number;
   clicks?: number;
