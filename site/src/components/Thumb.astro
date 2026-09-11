@@ -2,7 +2,14 @@
 // 記事アイキャッチの自動生成（競合分析F: 画像ゼロが「AIっぽさ」最大の原因 → 全記事にサムネイル）
 // 案A: 全記事が同一構図だと「量産テンプレ」に見えるため、レイアウト3種 × 配色2種 × 装飾4種を
 // タイトルのFNV-1aハッシュで決定的に選ぶ。無人運用のまま構図が散らばり、再ビルドでも同じ絵になる。
-const { title = "", cat = "解説", compact = false } = Astro.props;
+import ThumbArt from "./ThumbArt.astro";
+const { title = "", cat = "解説", compact = false, shots = [] as { id: string; name: string; file: string; small: string; takenAt?: string }[], eager = false } = Astro.props;
+// 【2026-09-11】オーナー評「記事のアイキャッチが味気ない」。
+// 主題スクールの公式サイトのスクショ（site/src/data/shots.json）があるときは、
+// 生成SVGの代わりに実物の画面を使う（一覧でも「本物を扱っている」感が出る）。
+// 出典表記は画像の中に焼く（コエテコ方式）。2校比較は斜めに割って VS。
+const useShot = shots.length > 0;
+const ym = (t?: string) => t ? `${t.slice(0, 4)}年${Number(t.slice(5, 7))}月` : "";
 // compact: 一覧の横組み小カード用。幅118pxのスロットに640x360の絵を slice で入れると
 // タイトル文字が左右に切れて「壊れている」ように見えたので、
 // 文字を持たない正方形のタイルを別に描く（配色とモチーフは同じ規則で選ぶので、
@@ -137,7 +144,19 @@ const glyph = key === "給付金" ? "¥" : key === "評判・口コミ" ? "★" 
 // 装飾の濃淡もハッシュで少し振る
 const dots = [0, 1, 2, 3, 4].flatMap((r) => [0, 1, 2, 3].map((c) => ({ r, c })));
 ---
-{compact && (
+{useShot && (
+  <span class:list={["tshot", compact ? "tshot-c" : "tshot-f", shots.length > 1 && "tshot-vs"]} style={`--g1:${g1};--g2:${g2}`} role="img" aria-label={title}>
+    {shots.slice(0, 2).map((sh, i) => (
+      <img class={`ts-img ts-${i}`} src={compact ? sh.small : sh.file} alt="" loading={eager ? "eager" : "lazy"} decoding="async" width={compact ? 320 : 960} height={compact ? 200 : 600} />
+    ))}
+    {shots.length > 1 && <span class="ts-vs">VS</span>}
+    {!compact && <span class="ts-grad"></span>}
+    <span class="ts-chip">{label}</span>
+    {!compact && <span class="ts-name">{shots.map((sh) => sh.name).join("  ×  ")}</span>}
+    {!compact && <span class="ts-src">出典：{shots.map((sh) => sh.name).join("・")}公式サイト{shots[0].takenAt ? `（${ym(shots[0].takenAt)}時点）` : ""}</span>}
+  </span>
+)}
+{!useShot && compact && (
   <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={title} preserveAspectRatio="xMidYMid slice">
     <defs>
       <linearGradient id={`${uid}c`} x1={dir.x1} y1={dir.y1} x2={dir.x2} y2={dir.y2}>
@@ -151,11 +170,11 @@ const dots = [0, 1, 2, 3, 4].flatMap((r) => [0, 1, 2, 3].map((c) => ({ r, c })))
     {motif === 2 && <g fill="none" stroke="#ffffff" stroke-width="11"><circle cx="234" cy="236" r="52" opacity="0.11" /><circle cx="234" cy="236" r="94" opacity="0.08" /></g>}
     {motif === 3 && <g opacity="0.10" fill="#ffffff">{[0,1,2,3].map((i)=>(<rect x={132+i*34} y="-40" width="16" height="320" transform={`rotate(18 ${132+i*34} 120)`} />))}</g>}
     <rect x="0" y="0" width="240" height="7" fill="#f97316" opacity="0.9" />
-    <text x="120" y="146" text-anchor="middle" font-family="ui-monospace,monospace" font-size="86" font-weight="800" fill="#ffffff" opacity="0.92">{glyph}</text>
+    <g transform="translate(-290 -76) scale(0.78)"><ThumbArt cat={key} g1={g1} strong={true} /></g>
     <text x="120" y="196" text-anchor="middle" font-family="-apple-system,'Hiragino Sans','Noto Sans JP',sans-serif" font-size="21" font-weight="700" fill="#ffffff" opacity="0.85">{label}</text>
   </svg>
 )}
-{!compact && (
+{!useShot && !compact && (
 <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={title} preserveAspectRatio="xMidYMid slice">
   <defs>
     <linearGradient id={uid} x1={dir.x1} y1={dir.y1} x2={dir.x2} y2={dir.y2}>
@@ -168,11 +187,12 @@ const dots = [0, 1, 2, 3, 4].flatMap((r) => [0, 1, 2, 3].map((c) => ({ r, c })))
   <!-- 装飾モチーフ（4種） -->
   {motif === 0 && (
     <g>
-      <text x="600" y="332" text-anchor="end" font-family="ui-monospace,monospace" font-size="130" font-weight="800" fill="#ffffff" opacity="0.10">{glyph}</text>
       <circle cx="52" cy="322" r="90" fill="#ffffff" opacity="0.06" />
       <circle cx="612" cy="28" r="56" fill="#ffffff" opacity="0.08" />
     </g>
   )}
+  <!-- カテゴリの絵（右下）。文字と装飾だけだった頃の「味気なさ」対策 -->
+  <ThumbArt cat={key} g1={g1} faint={layout === 1} />
   {motif === 1 && (
     <g opacity="0.16">
       {dots.map((d) => <circle cx={470 + d.c * 42} cy={70 + d.r * 42} r="7" fill="#ffffff" />)}
@@ -238,3 +258,23 @@ const dots = [0, 1, 2, 3, 4].flatMap((r) => [0, 1, 2, 3].map((c) => ({ r, c })))
   )}
 </svg>
 )}
+
+<style is:global>
+  /* 公式スクショのアイキャッチ。親（.cthumb / .feat-thumb / .eyecatch）の枠いっぱいに敷く */
+  .tshot{display:block;position:relative;width:100%;height:100%;overflow:hidden;background:linear-gradient(135deg,var(--g1),var(--g2))}
+  .tshot .ts-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+  .tshot-c .ts-img{object-position:25% top}
+  .tshot-vs .ts-0{clip-path:polygon(0 0,100% 0,0 100%)}
+  .tshot-vs .ts-1{clip-path:polygon(100% 0,100% 100%,0 100%)}
+  .tshot-vs::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom left,transparent calc(50% - 3px),#fff calc(50% - 3px),#fff calc(50% + 3px),transparent calc(50% + 3px))}
+  .ts-vs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;background:#0f2744;color:#fff;font-weight:900;font-size:13px;letter-spacing:.05em;border-radius:999px;padding:5px 11px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+  .tshot-c .ts-vs{font-size:10px;padding:3px 7px}
+  .ts-chip{position:absolute;left:10px;top:10px;z-index:2;background:var(--g1);color:#fff;font-size:12px;font-weight:800;border-radius:999px;padding:3px 11px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .tshot-c .ts-chip{left:0;right:0;top:auto;bottom:0;border-radius:0;text-align:center;font-size:10.5px;padding:3px 4px;opacity:.96}
+  .ts-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,23,42,.82) 0%,rgba(15,23,42,.35) 38%,transparent 62%);z-index:1}
+  .ts-name{position:absolute;left:16px;bottom:34px;z-index:2;color:#fff;font-weight:800;font-size:clamp(15px,2.6vw,22px);line-height:1.3;text-shadow:0 2px 8px rgba(0,0,0,.5);max-width:80%}
+  .ts-src{position:absolute;left:16px;bottom:12px;z-index:2;color:rgba(255,255,255,.85);font-size:10.5px;font-weight:600;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+  .feat-thumb .tshot,.eyecatch .tshot{aspect-ratio:16/9}
+  .feat-thumb .tshot{aspect-ratio:auto;min-height:100%}
+  @media (max-width:720px){ .feat-thumb .tshot{aspect-ratio:16/9;min-height:0} }
+</style>
