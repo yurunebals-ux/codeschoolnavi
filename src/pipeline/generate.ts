@@ -21,6 +21,7 @@ import { chat, isOffline } from "../lib/llm.js";
 import { persona } from "../lib/team.js";
 import { scanAiese, deaiMechanical } from "../lib/aiese.js";
 import { findStructureProblems, headingList } from "../lib/structure.js";
+import { enrichItems, type NewsItem } from "./news.js";
 
 export interface Tool {
   id: string; name: string; category: string; categoryId: string;
@@ -38,6 +39,7 @@ export interface Affiliates { disclosure: string; tools: Tool[]; review_axes?: s
 /** 記事の種類ごとの下限字数。単校記事に6,000字を課すと一般論で水増しされる。 */
 export function minWordsFor(item: KeywordItem): number {
   const base = config.pipeline.minWords; // ワークフローの MIN_WORDS（4200）
+  if (item.template === "news:weekly") return 2200;
   if (item.template.startsWith("news:")) return 900;
   if (item.template.startsWith("topic:")) return Math.round(base * 0.7);
   if (/^money:(review|pricing|doubt)$|^info:what$/.test(item.template)) return Math.round(base * 0.75);
@@ -53,9 +55,9 @@ function toolsFor(item: KeywordItem, all: Tool[]): Tool[] {
   if (named.length) return named;
   if (item.template.startsWith("topic:")) return [];
   if (item.template.startsWith("news:")) {
-    // ニュースは「当サイトのデータ」と結びつけて書かせる。AIの話題なら AI 系、それ以外は転職系から2校。
-    // データを渡さないと、モデルは「当サイトの調査によると平均30万円台」のような数字を作る（2026-09-11 実測）。
-    const n = ((item as any).news?.title ?? "") + ((item as any).news?.snippet ?? "");
+    // ニュース記事はスクールに無理に結びつけない（オーナー方針 2026-09-11「全ての記事をアフィリエイトに
+    // 結びつけなくてもよい」）。参考としてAI系／転職系から2校だけ渡す。数字はここにあるものしか書けない。
+    const n = JSON.stringify(item.news ?? {});
     const cat = /AI|人工知能|生成|機械学習|データ/.test(n) ? "ai" : "tenshoku";
     return all.filter((t) => t.categoryId === cat).slice(0, 2);
   }
@@ -331,11 +333,20 @@ function planFor(item: KeywordItem, tools: Tool[], all: Tool[], subsidyIds: stri
       b: `3. 本文の後半として ## 見出し（読者の疑問文）を2つ。前半と重ならない論点を選ぶ（前半は「入口の判断」「学習の順番」「費用」あたりを扱う想定なので、後半は「つまずきどころ」「次の一歩」「スクールを使うべき人・使わなくていい人」を扱う）。\n4. ## よくある質問（### で質問文を3つ。答えは各120字以内）\n5. 最後の節（見出しは「まとめ」以外の具体的なもの）: 今日やることを手順で3つ。要約は禁止。`,
     };
   }
-  if (item.template.startsWith("news:")) {
-    const n = (item as any).news ?? {};
+  if (item.template === "news:weekly") {
+    const items: NewsItem[] = (item.news?.items ?? []) as NewsItem[];
+    const src = items.map((n, i) => `【ニュース${i + 1}】見出し: ${n.title}\n媒体: ${n.source}\n公開日: ${n.published}\nURL: ${n.link}\n本文（要約と論評の材料。15字を超えてそのまま写さない）:\n${(n.text || n.snippet).slice(0, 2500)}`).join("\n\n");
     return {
       needTable: false,
-      a: `これはニュース解説記事（全体で1,200〜2,000字）。最初の行に「TITLE: 」で記事タイトル（40字以内。ニュースの見出しをそのまま使わず、「〜はスクール選びにどう影響するか」のように読者への意味を示す）を書く。\n次の行に「DESCRIPTION: 」で80字以内の説明。\nそのあと本文:\n1. 冒頭（見出しなし・150字以内）: 何が報じられたかを事実だけで。1文目で出典に Markdown リンクする: [${n.source ?? "出典"}](${n.link ?? ""})\n2. ## このニュースがスクール選びにどう関係するか: 報じられた事実（下の見出しと抜粋にある範囲のみ）と、当サイトのデータ（スクール料金・給付金制度）を結びつけて書く。抜粋にない詳細を補って書かない。\n3. ## 読者が今やること: 具体的な行動を3つ。関連ページ（/kyufukin/ など）へ内部リンク。\n【ニュース】見出し: ${n.title ?? ""}\n媒体: ${n.source ?? ""}\n公開日: ${n.published ?? ""}\n抜粋: ${n.snippet ?? ""}\n【禁止】抜粋にない固有名詞・数字・発言を書くこと。記事本文の引用（15字を超える引用）。「当サイトの調査によると」「平均◯万円」のような、根拠を示せない数字や調査の言及。金額はデータにあるスクールの受講料と給付金の率だけ。`,
+      a: `これは週1本の「業界ニュースと編集部の見方」コラム（全体で2,200字以上）。読者はプログラミングやAIを学ぼうとしている社会人・学生。スクールの宣伝ではなく、読み物として面白いことが目的。\n最初の行に「TITLE: 」で記事タイトル（40字以内。3本に共通する論点を一言で言い切る。「今週のニュース」のような定型は禁止。例「AI人材の求人が増えても未経験の入口は広がらない、と読める3つの動き」）。\n次の行に「DESCRIPTION: 」で80字以内の説明。\nそのあと本文:\n1. 冒頭（見出しなし・200字以内）: 今週の3本が指している「ひとつの変化」を1文目に言い切る。\n2. ニュースごとに ## 見出し（そのニュースの意味を言い切る文。媒体名や「〜について」は使わない）を1つずつ、計${items.length}節。各節は「何が起きたか（媒体の本文から、自分の言葉で3〜5文。固有名詞・数字は本文にあるものだけ）→ 背景（なぜ今か）→ 学ぶ人にとっての意味（誰が・何を・いつまでに変えるべきか）」の順。各節400字以上。1文目で出典に Markdown リンク: [媒体名](URL)。\n【材料】\n${src}`,
+      b: `続きとして次を書く:\n3. ## 編集部の見方（見出しは論点を言い切る文に変える）: 3本を貫く論点をひとつ立て、賛成する立場と反対する立場の両方を書いたうえで、編集部の結論を書く。600字以上。一般論で逃げず、「◯◯な人は今年中に△△、そうでない人は様子見」のように行動まで落とす。\n4. ## 今週の読者への宿題: 具体的な行動を3つ（それぞれ「なぜ今か」を1文添える）。スクールに関係するものは自サイトの記事へ内部リンク（/blog/osusume-hikaku-ai/ や /kyufukin/ など）してよいが、関係が薄ければ無理に入れない。\n5. ## 出典: 3本を「- [見出し](URL)（媒体名、公開日）」の箇条書きで。\n【禁止】材料にない固有名詞・数字・発言。15字を超える引用。「当サイトの調査によると」「平均◯万円」のような根拠のない数字。スクールの宣伝口調。`,
+    };
+  }
+  if (item.template.startsWith("news:")) {
+    const n = (item.news ?? {}) as any;
+    return {
+      needTable: false,
+      a: `これはニュース解説記事（全体で1,200〜2,000字）。最初の行に「TITLE: 」で記事タイトル（40字以内。ニュースの見出しをそのまま使わず、読者への意味を示す）を書く。\n次の行に「DESCRIPTION: 」で80字以内の説明。\nそのあと本文:\n1. 冒頭（見出しなし・150字以内）: 何が報じられたかを事実だけで。1文目で出典に Markdown リンクする: [${n.source ?? "出典"}](${n.link ?? ""})\n2. ## このニュースが学ぶ人にどう関係するか: 報じられた事実（下の材料の範囲のみ）と背景を、自分の言葉で。\n3. ## 読者が今やること: 具体的な行動を3つ。\n【材料】見出し: ${n.title ?? ""}\n媒体: ${n.source ?? ""}\n公開日: ${n.published ?? ""}\n本文: ${(n.text || n.snippet || "").slice(0, 2500)}\n【禁止】材料にない固有名詞・数字・発言。15字を超える引用。根拠のない数字や調査の言及。`,
       b: ``,
     };
   }
@@ -374,8 +385,22 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
   const descLine = `最初の行に「DESCRIPTION: 」で、この記事の説明文（80字以内。検索結果と一覧カードに出る。数字か固有名詞を1つ入れ、「解説します」で終わらない）を書き、そのあと本文を続ける。`;
 
   let p1: string, p2 = "";
-  if (item.template.startsWith("news:")) {
-    p1 = await chat(`${ctx}\n\n${plan.a}`, { system, maxTokens: 3000, temperature: 0.6 });
+  if (item.template === "news:weekly") {
+    // 本文が無い材料があれば取りに行く（再生成時など）。2本未満なら書かない
+    const items = await enrichItems((item.news?.items ?? []) as NewsItem[]).catch(() => (item.news?.items ?? []) as NewsItem[]);
+    item.news = { ...(item.news ?? {}), items };
+    if (items.filter((n) => n.text).length < 2) throw new Error("ニュースの本文が2本未満のため書かない");
+    const plan2 = planFor(item, tools, all, subsidyIds);
+    p1 = await chat(`${ctx}\n\n${plan2.a}`, { system, maxTokens: 5000, temperature: 0.7 });
+    p2 = await chat(`${ctx}\n\n記事の【後半】です。前半にはニュース${items.length}本の解説がある。重複せず、次の構成だけを ## 見出しで書く:\n${plan2.b}`, { system, maxTokens: 4000, temperature: 0.7 });
+  } else if (item.template.startsWith("news:")) {
+    // 旧形式（1本）。本文を取れれば足す
+    if (item.news?.link && !item.news.text) {
+      const [en] = await enrichItems([item.news as NewsItem]).catch(() => [item.news as NewsItem]);
+      item.news = { ...item.news, ...en };
+    }
+    const plan1 = planFor(item, tools, all, subsidyIds);
+    p1 = await chat(`${ctx}\n\n${plan1.a}`, { system, maxTokens: 3000, temperature: 0.6 });
   } else {
     p1 = await chat(
       `${ctx}\n\nこれは全体で${total.toLocaleString()}字以上になる記事の【前半】です。${descLine}\n本文は次の構成だけを書く（この部分だけで${Math.round(total * 0.5).toLocaleString()}字以上）:\n${plan.a}`,
@@ -484,8 +509,10 @@ export function pickNext(state: ReturnType<typeof loadState>): KeywordItem | und
   const recent = [...state.keywords.filter((k) => k.status === "published")]
     .sort((a, b) => (b.publishedAt ?? "").localeCompare(a.publishedAt ?? ""))
     .slice(0, 2);
+  // 直近の1本が比較・評判系ならトピック記事を出す（1日おきに読み物）。オーナー方針（2026-09-11）
+  // 「全ての記事をアフィリエイトに結びつけなくてもよい。読みに来るだけでも面白いサイトに」。
   const topic = queued.find((k) => k.template.startsWith("topic:"));
-  if (topic && recent.length === 2 && recent.every((k) => !k.template.startsWith("topic:") && !k.template.startsWith("news:"))) return topic;
+  if (topic && recent.length >= 1 && !recent[0].template.startsWith("topic:") && !recent[0].template.startsWith("news:")) return topic;
   return queued.find((k) => !k.template.startsWith("topic:")) ?? queued[0];
 }
 

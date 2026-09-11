@@ -1,32 +1,48 @@
 // ROLE: ニュースデスク
 //
-// 週1本、AI・プログラミング学習・リスキリングに関するニュースを拾って
-// 「ニュース解説」記事の種をキューに入れる。本文は generate.ts の news:commentary が書く。
+// 週1本、AI・プログラミング学習・リスキリング業界のニュースを3本選び、
+// 「今週のニュースと編集部の見方」というコラム記事の材料を作る。本文は generate.ts の news:weekly が書く。
 //
-// 設計:
-//  - 情報源は Google ニュースの検索RSS（無料・鍵不要・GitHub Actions から到達可能）。
-//  - LLMには「見出し・媒体・抜粋」しか渡さない。抜粋にない事実を書かせない（捏造防止）。
-//  - 記事本文の引用はしない（著作権）。出典へリンクして詳細はそちらに誘導する。
-//  - 使ったニュースは data/news.json に記録し、同じ話題を二度書かない。
-//  - 失敗しても日次サイクルは止めない（呼び出し側で catch）。
+// 【2026-09-11 の作り直し】最初の1本（見出し＋抜粋だけを渡して書かせた）はオーナー評「中身が無さすぎる」。
+// 見出しと300字の抜粋から2,000字の解説は書けない。そこで:
+//   - 出典サイトの記事本文を取得して（各2,500字まで）、要約と論評の材料として渡す
+//   - 1本ではなく3本を束ね、共通する論点をコラムにする
+//   - 本文が取れたニュースが2本未満の週は書かない（薄い記事を出すくらいなら休む）
+//   - 記事本文の引用は15字まで（著作権）。要約と論評は自分の言葉で書かせる
+//   - スクール（アフィリエイト）は関係がある場合だけ触れる。無理に結びつけない
+//
+// 情報源: 直リンクの RSS（ITmedia AI+ / Ledge.ai / AINOW / Publickey / CodeZine / PR TIMES）と
+// Google ニュース検索 RSS（リンクは Google の中継URLなので解決を試みる）。
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { paths } from "../lib/config.js";
 import { loadState, saveState } from "../lib/store.js";
 
 const LOG = resolve(paths.data, "news.json");
-const QUERIES = [
-  "生成AI 学習 未経験",
-  "プログラミングスクール",
-  "リスキリング 教育訓練給付",
-  "エンジニア 転職 AI 求人",
-  "プログラミング教育 AI",
-];
-// 見出しにこの語が含まれるものを優先（読者との関連が強い順）
-const BOOST = ["プログラミング", "スクール", "リスキリング", "給付", "エンジニア", "生成AI", "学習", "転職", "未経験", "Python", "資格"];
-const BLOCK = /株価|決算|逮捕|訴訟|炎上|芸能|選挙/;
+const UA = "Mozilla/5.0 (compatible; codeschoolnavi-newsdesk/1.0; +https://codeschoolnavi.com/about/)";
 
-interface Item { title: string; link: string; source: string; published: string; snippet: string }
+const FEEDS = [
+  "https://rss.itmedia.co.jp/rss/2.0/aiplus.xml",
+  "https://ledge.ai/feed/",
+  "https://ainow.ai/feed/",
+  "https://www.publickey1.jp/atom.xml",
+  "https://codezine.jp/rss/new/20/index.xml",
+  "https://prtimes.jp/index.rdf",
+];
+const GOOGLE_QUERIES = ["プログラミングスクール", "リスキリング 教育訓練給付", "生成AI 人材育成", "エンジニア 未経験 転職"];
+
+// 見出しにこの語が含まれるものを優先（読者との関連が強い順に重み）
+const BOOST: [RegExp, number][] = [
+  [/プログラミングスクール|プログラミング教育|コーディング/, 4],
+  [/リスキリング|教育訓練給付|学び直し|給付金/, 4],
+  [/未経験|転職|求人|採用|人材育成|エンジニア不足/, 3],
+  [/生成AI|ChatGPT|Claude|Gemini|Copilot|LLM|AIエージェント/, 2],
+  [/Python|AI人材|データサイエン|E資格|G検定/, 2],
+  [/エンジニア|開発者|IT人材/, 1],
+];
+const BLOCK = /株価|決算|逮捕|訴訟|炎上|芸能|選挙|セール|クーポン|割引キャンペーン/;
+
+export interface NewsItem { title: string; link: string; source: string; published: string; snippet: string; text?: string }
 interface Log { used: { link: string; slug: string; date: string }[]; lastRun?: string }
 
 function loadLog(): Log {
@@ -34,40 +50,86 @@ function loadLog(): Log {
   try { return JSON.parse(readFileSync(LOG, "utf8")); } catch { return { used: [] }; }
 }
 
+function unescapeEntities(s: string): string {
+  return s.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&#39;|&apos;/g, "'").replace(/&nbsp;/g, " ").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n))).replace(/&amp;/g, "&");
+}
 function decode(s: string): string {
-  // Google ニュースの description は HTML がエスケープされて入っている（&lt;a href=…&gt;）。
-  // 実体参照を戻してからタグを剥がさないと、タグが文字列として残る（2026-09-11 実測）。
-  const un = s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
-    .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&#39;/g, "'").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&");
+  // RSS の description は HTML がエスケープされて入っていることがある。実体参照を戻してからタグを剥がす。
+  const un = unescapeEntities(s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1"));
   return un.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 }
 
-async function fetchRss(q: string): Promise<Item[]> {
-  const url = `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=ja&gl=JP&ceid=JP:ja`;
-  const res = await fetch(url, { headers: { "user-agent": "Mozilla/5.0 codeschoolnavi-newsdesk" } });
-  if (!res.ok) throw new Error(`rss ${res.status}`);
-  const xml = await res.text();
-  const items: Item[] = [];
-  for (const m of xml.matchAll(/<item>([\s\S]*?)<\/item>/g)) {
-    const x = m[1];
-    const pick = (tag: string) => decode((x.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`)) || [])[1] ?? "");
-    const title = pick("title").replace(/\s*-\s*[^-]+$/, ""); // 末尾の「 - 媒体名」を落とす
-    const link = pick("link");
-    const source = pick("source");
-    const published = pick("pubDate");
-    const snippet = pick("description").slice(0, 300);
-    if (title && link) items.push({ title, link, source, published, snippet });
-  }
-  return items;
+async function get(url: string, ms = 15000): Promise<{ url: string; body: string } | null> {
+  try {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), ms);
+    const res = await fetch(url, { headers: { "user-agent": UA, accept: "text/html,application/xml,application/rss+xml,*/*" }, redirect: "follow", signal: ctrl.signal });
+    clearTimeout(t);
+    if (!res.ok) return null;
+    return { url: res.url, body: await res.text() };
+  } catch { return null; }
 }
 
-function relevance(it: Item): number {
+/** RSS 2.0 / RDF / Atom を雑に読む（依存を増やさない） */
+function parseFeed(xml: string, fallbackSource: string): NewsItem[] {
+  const out: NewsItem[] = [];
+  const blocks = [...xml.matchAll(/<(item|entry)\b[\s\S]*?<\/\1>/g)].map((m) => m[0]);
+  const feedTitle = decode((xml.match(/<title[^>]*>([\s\S]*?)<\/title>/) || [])[1] ?? fallbackSource);
+  for (const x of blocks) {
+    const pick = (tag: string) => decode((x.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`)) || [])[1] ?? "");
+    let link = pick("link");
+    if (!link) link = (x.match(/<link[^>]*href="([^"]+)"/) || [])[1] ?? "";
+    const title = pick("title").replace(/\s*-\s*[^-]+$/, "");
+    const source = pick("source") || feedTitle;
+    const published = pick("pubDate") || pick("dc:date") || pick("published") || pick("updated");
+    const snippet = (pick("description") || pick("summary") || pick("content")).slice(0, 400);
+    if (title && link) out.push({ title, link, source, published, snippet });
+  }
+  return out;
+}
+
+/** Google ニュースの中継URL → 元記事URL。取れなければそのまま返す */
+async function resolveLink(link: string): Promise<string> {
+  if (!/news\.google\.com/.test(link)) return link;
+  const r = await get(link);
+  if (!r) return link;
+  if (!/news\.google\.com/.test(r.url)) return r.url;
+  const m = r.body.match(/data-n-au="([^"]+)"/) || r.body.match(/href="(https?:\/\/(?!news\.google|accounts\.google|policies\.google|support\.google)[^"]+)"/);
+  return m ? unescapeEntities(m[1]) : link;
+}
+
+/** 記事ページから本文らしいテキストを抜く（<article> があればそこ、無ければ本文の <p> をつなぐ） */
+export function extractText(html: string, cap = 2500): string {
+  let h = html.replace(/<(script|style|noscript|svg|nav|header|footer|aside|form|iframe)\b[\s\S]*?<\/\1>/gi, "");
+  const art = h.match(/<article\b[\s\S]*?<\/article>/i);
+  if (art) h = art[0];
+  const paras = [...h.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map((m) => decode(m[1])).filter((t) => t.length >= 30);
+  let text = paras.join("\n");
+  if (text.length < 300) text = decode(h).slice(0, cap); // <p> の無いサイト向け
+  return text.slice(0, cap);
+}
+
+function relevance(it: NewsItem): number {
   let s = 0;
-  for (const b of BOOST) if (it.title.includes(b)) s += 2;
+  const hay = it.title + " " + it.snippet.slice(0, 120);
+  for (const [re, w] of BOOST) if (re.test(hay)) s += w;
   if (BLOCK.test(it.title)) s -= 10;
   const age = (Date.now() - new Date(it.published).getTime()) / 86400000;
-  if (!Number.isNaN(age)) s -= Math.min(age, 14) * 0.3; // 新しいほど上
+  if (!Number.isNaN(age)) s -= Math.min(age, 14) * 0.25;
   return s;
+}
+
+/** 本文が無いニュースに本文を足す（generate.ts からも呼ぶ。古い形式の1本ニュースの再生成用） */
+export async function enrichItems(items: NewsItem[]): Promise<NewsItem[]> {
+  const out: NewsItem[] = [];
+  for (const it of items) {
+    if (it.text && it.text.length > 300) { out.push(it); continue; }
+    const link = await resolveLink(it.link);
+    const page = await get(link);
+    const text = page ? extractText(page.body) : "";
+    out.push({ ...it, link, text: text.length >= 300 ? text : "" });
+  }
+  return out;
 }
 
 /** 週1回だけ実行。キューに未処理のニュースがある間は何もしない。 */
@@ -85,31 +147,50 @@ export async function newsRun(): Promise<string | null> {
   }
 
   const seen = new Set(log.used.map((u) => u.link));
-  const all: Item[] = [];
-  for (const q of QUERIES) {
-    try { all.push(...(await fetchRss(q))); } catch (e) { console.log(`[news] RSS取得失敗 "${q}": ${(e as Error).message}`); }
+  const all: NewsItem[] = [];
+  for (const f of FEEDS) {
+    const r = await get(f);
+    if (r) all.push(...parseFeed(r.body, new URL(f).host)); else console.log(`[news] 取得失敗 ${f}`);
+  }
+  for (const q of GOOGLE_QUERIES) {
+    const r = await get(`https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=ja&gl=JP&ceid=JP:ja`);
+    if (r) all.push(...parseFeed(r.body, "Google ニュース"));
   }
   const fresh = all
     .filter((it) => !seen.has(it.link))
-    .filter((it) => { const age = (Date.now() - new Date(it.published).getTime()) / 86400000; return Number.isNaN(age) || age <= 10; })
+    .filter((it) => { const age = (Date.now() - new Date(it.published).getTime()) / 86400000; return Number.isNaN(age) || age <= 8; })
     .filter((it, i, a) => a.findIndex((x) => x.title === it.title) === i)
+    .filter((it) => relevance(it) >= 3)
     .sort((a, b) => relevance(b) - relevance(a));
-  const top = fresh[0];
-  if (!top || relevance(top) < 2) { console.log(`[news] 適したニュースなし（候補${fresh.length}件）`); return null; }
+  console.log(`[news] 候補 ${fresh.length}件（全${all.length}件）`);
+
+  // 上位から本文を取りに行き、本文が取れた3本（媒体は重複させない）を採用
+  const picked: NewsItem[] = [];
+  const hosts = new Set<string>();
+  for (const it of fresh.slice(0, 15)) {
+    if (picked.length >= 3) break;
+    const [en] = await enrichItems([it]);
+    if (!en.text) { console.log(`[news] 本文なし: ${it.title.slice(0, 40)}`); continue; }
+    const host = (() => { try { return new URL(en.link).host; } catch { return en.source; } })();
+    if (hosts.has(host)) continue;
+    hosts.add(host);
+    picked.push(en);
+  }
+  if (picked.length < 2) { console.log(`[news] 本文が取れたニュースが${picked.length}本。今週は書かない`); return null; }
 
   const date = new Date().toISOString().slice(0, 10);
-  let h = 2166136261; for (const ch of top.link) h = Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0;
+  let h = 2166136261; for (const ch of picked.map((p) => p.link).join("|")) h = Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0;
   const slug = `news-${date.replace(/-/g, "")}-${(h >>> 0).toString(36).slice(0, 5)}`;
   state.keywords.push({
-    slug, keyword: `${top.title}｜ニュース解説`, template: "news:commentary", tools: [], kind: "news",
-    cluster: "ニュース", score: 95, status: "queued", createdAt: new Date().toISOString(),
-    news: top,
+    slug, keyword: `今週のAI・プログラミング学習ニュースと編集部の見方（${Number(date.slice(5, 7))}/${Number(date.slice(8, 10))}）`,
+    template: "news:weekly", tools: [], kind: "news", cluster: "ニュース", score: 95, status: "queued", createdAt: new Date().toISOString(),
+    news: { items: picked } as any,
   });
   saveState(state);
-  log.used.push({ link: top.link, slug, date });
+  for (const p of picked) log.used.push({ link: p.link, slug, date });
   log.lastRun = date;
   writeFileSync(LOG, JSON.stringify(log, null, 2) + "\n");
-  console.log(`[news] キュー投入: "${top.title}"（${top.source}）`);
+  console.log(`[news] キュー投入: ${picked.map((p) => `「${p.title.slice(0, 30)}」(${p.source})`).join(" / ")}`);
   return slug;
 }
 

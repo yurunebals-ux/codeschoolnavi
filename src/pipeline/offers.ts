@@ -152,15 +152,56 @@ export function buildOffers(): OffersFile {
   return out;
 }
 
+/**
+ * 診断ページ（/shindan/）用のカタログ。affiliates.json の属性をサイト側へ写す。
+ * site/ は data/ を import できないので、offers.json と同じ経路で同期する。
+ */
+export function buildCatalog() {
+  const affPath = resolve(paths.data, "affiliates.json");
+  const aff = JSON.parse(readFileSync(affPath, "utf8")) as { tools: any[]; subsidy_ids?: string[] };
+  const offers = buildOffers().offers;
+  const sub = new Set(aff.subsidy_ids ?? []);
+  const months = (p: string): number | null => {
+    if (!p) return null;
+    const m = p.match(/(\d+)\s*(?:〜|~|-)?\s*(\d+)?\s*(ヶ月|か月|週|週間)/);
+    if (!m) return /月額|無期限/.test(p) ? 0 : null;
+    const n = Number(m[2] ?? m[1]);
+    return /週/.test(m[3]) ? Math.round(n / 4) : n;
+  };
+  return aff.tools
+    .filter((t) => offers[t.id])
+    .map((t) => ({
+      id: t.id, name: t.name, category: t.category, categoryId: t.categoryId,
+      price: t.price_from_yen ?? null,
+      period: t.period ?? "", months: months(t.period ?? ""),
+      format: t.format ?? "", job_support: t.job_support ?? "", refund: t.refund ?? "",
+      langs: t.langs ?? "", one_liner: t.one_liner ?? "",
+      subsidy: sub.has(t.id),
+      online: /オンライン/.test(t.format ?? ""), tsugaku: /通学/.test(t.format ?? ""),
+      guarantee: t.categoryId === "hosho",
+      mtm: t.categoryId === "mtm" || /マンツーマン/.test((t.format ?? "") + (t.one_liner ?? "")),
+      href: offers[t.id].href, sponsored: offers[t.id].sponsored,
+    }));
+}
+
 /** site/src/data/offers.json を更新。変化があったら true。 */
 export function syncOffers(): boolean {
   const out = buildOffers();
   const dest = resolve(paths.root, "site/src/data/offers.json");
   const body = JSON.stringify(out, null, 2) + "\n";
   const before = existsSync(dest) ? readFileSync(dest, "utf8") : "";
-  if (before === body) return false;
+  if (before === body) {
+    const cat0 = JSON.stringify(buildCatalog(), null, 2) + "\n";
+    const catDest0 = resolve(paths.root, "site/src/data/catalog.json");
+    if (!existsSync(catDest0) || readFileSync(catDest0, "utf8") !== cat0) { writeFileSync(catDest0, cat0); console.log("[ops] catalog.json を更新"); return true; }
+    return false;
+  }
   mkdirSync(dirname(dest), { recursive: true });
   writeFileSync(dest, body);
+  // 診断用カタログも同時に更新
+  const cat = JSON.stringify(buildCatalog(), null, 2) + "\n";
+  const catDest = resolve(paths.root, "site/src/data/catalog.json");
+  if (!existsSync(catDest) || readFileSync(catDest, "utf8") !== cat) writeFileSync(catDest, cat);
   const n = Object.keys(out.offers).length;
   const paid = Object.values(out.offers).filter((o) => o.sponsored).length;
   console.log(`[ops] offers.json を更新: ${n}件（うち提携済み ${paid}件）`);
