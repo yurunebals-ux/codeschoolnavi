@@ -47,7 +47,7 @@ const heroShots = [
     {heroShots.length > 0 && (
       <div class="hero-shots" aria-hidden="true">
         {heroShots.map((h, i) => (
-          <div class={`hs hs-${i}`}><Shot id={h.id} name={h.name} variant="plain" eager={i === 0} /></div>
+          <div class={`hs hs-${i}`}><Shot id={h.id} name={h.name} variant="plain" eager={true} /></div>
         ))}
       </div>
     )}
