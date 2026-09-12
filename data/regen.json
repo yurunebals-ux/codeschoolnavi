@@ -34,6 +34,16 @@
       "date": "2026-09-11",
       "version": 2,
       "ok": true
+    },
+    "hyoban-techcamp": {
+      "date": "2026-09-12",
+      "version": 2,
+      "ok": true
+    },
+    "hyoban-runteq": {
+      "date": "2026-09-12",
+      "version": 2,
+      "ok": true
     }
   }
 }

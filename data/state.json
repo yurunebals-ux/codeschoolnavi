@@ -517,7 +517,8 @@
       "score": 91,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-07-24T10:41:29.482Z"
+      "publishedAt": "2026-07-24T10:41:29.482Z",
+      "structure": 2
     },
     {
       "slug": "hyoban-runteq",
@@ -531,7 +532,8 @@
       "score": 91,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-07-24T10:41:29.483Z"
+      "publishedAt": "2026-07-24T10:41:29.483Z",
+      "structure": 2
     },
     {
       "slug": "hyoban-potepan",
@@ -819,8 +821,10 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "rejected",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "structure": 2,
+      "rejectReason": "score=55; 薄い: 2788字（基準3150字）; 見出し不足: 5"
     },
     {
       "slug": "ryokin-aidemy",
@@ -1716,7 +1720,12 @@
       "date": "2026-09-11",
       "published": 54,
       "estimatedMrrUsd": 16200
+    },
+    {
+      "date": "2026-09-12",
+      "published": 54,
+      "estimatedMrrUsd": 16200
     }
   ],
-  "lastRun": "2026-09-11T09:47:55.738Z"
+  "lastRun": "2026-09-12T07:03:25.941Z"
 }
