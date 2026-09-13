@@ -44,6 +44,16 @@
       "date": "2026-09-12",
       "version": 2,
       "ok": true
+    },
+    "hyoban-potepan": {
+      "date": "2026-09-13",
+      "version": 2,
+      "ok": true
+    },
+    "hyoban-coachtech": {
+      "date": "2026-09-13",
+      "version": 2,
+      "ok": true
     }
   }
 }

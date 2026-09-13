@@ -252,5 +252,5 @@ ITパスポートや基本情報技術者などの国家資格取得を目指す
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Winスクールの評判・口コミは？特徴を解説](/blog/hyoban-winschool/)
+- [Aidemyの料金は高い？他社と比較](/blog/ryokin-aidemy/)
 - [AI活用力の育成と投資効果、未経験採用のリアルを見極める時代](/blog/news-20260911-16rq8/)
-- [スキルアップAIの評判・口コミは？特徴を解説](/blog/hyoban-skillupai/)

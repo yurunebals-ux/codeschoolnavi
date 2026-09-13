@@ -236,6 +236,6 @@ draft: false
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Aidemyの料金は高い？他社と比較](/blog/ryokin-aidemy/)
 - [AI活用力の育成と投資効果、未経験採用のリアルを見極める時代](/blog/news-20260911-16rq8/)
 - [スキルアップAIの評判・口コミは？特徴を解説](/blog/hyoban-skillupai/)
-- [RUNTEQは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-runteq/)

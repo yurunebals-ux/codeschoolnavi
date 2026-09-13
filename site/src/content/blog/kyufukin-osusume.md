@@ -132,7 +132,7 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 
 ## あわせて読みたい
 
+- [Aidemyの料金は高い？他社と比較](/blog/ryokin-aidemy/)
 - [AI活用力の育成と投資効果、未経験採用のリアルを見極める時代](/blog/news-20260911-16rq8/)
 - [スキルアップAIの評判・口コミは？特徴を解説](/blog/hyoban-skillupai/)
 - [RUNTEQは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-runteq/)
-- [RUNTEQの料金は高い？他社と比較](/blog/ryokin-runteq/)
