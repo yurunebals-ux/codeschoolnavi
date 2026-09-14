@@ -1,0 +1,50 @@
+---
+// AIニュースの見方（ニュースデスク）。国内外のAI・エンジニア採用ニュースへの見解記事だけを新しい順に。
+// 「読みに来るだけでも面白いサイト」（オーナー方針 2026-09-11 / 09-14）の入口。Google ニュース申請時のセクションURLにもする。
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft && data.news))
+  .sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate));
+const [first, ...rest] = posts;
+const isWeekly = (p: any) => (p.body ?? "").includes("今週の読者への宿題");
+---
+<Base title="AIニュースの見方" description="国内外のAI・プログラミング学習・エンジニア採用のニュースを、学ぶ人の立場で解説。歓迎する見方と慎重な見方の両方を書いたうえで、編集部の結論と今やることを示します。毎日更新。">
+  <h1>AIニュースの見方 <small class="cnt">全{posts.length}本 ・ 毎日更新</small></h1>
+  <p class="lead">海外発のAIニュースは英語のまま流れていき、国内のニュースはスクールの宣伝に混ざって届きません。ここでは1本ずつ、<b>何が起きたか → なぜ今か → 歓迎する見方 → 慎重に見る見方 → 学ぶ人はどう動くか</b>の順で、編集部の見解を書いています。週に1本は3本を束ねた週間コラムです。<a href="/rss.xml">RSS</a>で購読できます。</p>
+
+  {first && (
+    <a class="feat reveal" data-cat="ニュース" href={`/blog/${first.slug}/`}>
+      <span class="feat-body">
+        <span class="feat-tags"><span class="chip">{isWeekly(first) ? "週間コラム" : "ニュースの見方"}</span><span class="feat-new">最新</span></span>
+        <span class="feat-t">{first.data.title}</span>
+        <span class="feat-d">{first.data.description}</span>
+        <span class="d">{first.data.pubDate}</span>
+      </span>
+    </a>
+  )}
+  <ul class="cards">
+    {rest.map((p, i) => (
+      <li class="reveal" style={`--i:${i % 2}`}>
+        <a class="card row" data-cat="ニュース" href={`/blog/${p.slug}/`}>
+          <span class="cbody">
+            <span class="chip">{isWeekly(p) ? "週間コラム" : "ニュースの見方"}</span>
+            <span class="t">{p.data.title}</span>
+            <span class="d">{p.data.pubDate}</span>
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <section class="policy" style="margin-top:36px">
+    <h2>このコーナーの決まり</h2>
+    <p>出典は必ず本文中と末尾に示し、引用は15字まで。材料の記事に書かれていない数字や発言は書きません。ニュースの評価では歓迎する見方と慎重な見方の両方を書き、そのうえで編集部の結論を出します。スクールの紹介は関係がある場合だけで、ニュース記事に広告リンクは置きません。</p>
+  </section>
+</Base>
+
+<style is:global>
+  .cnt{font-size:13px;font-weight:600;color:var(--mut);margin-left:8px}
+  .lead{font-size:15.5px;line-height:1.9;margin:0 0 26px}
+  main .feat{grid-template-columns:1fr}
+</style>
