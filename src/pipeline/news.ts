@@ -69,7 +69,8 @@ function loadLog(): Log {
 }
 
 function unescapeEntities(s: string): string {
-  return s.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&#39;|&apos;/g, "'").replace(/&nbsp;/g, " ").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n))).replace(/&amp;/g, "&");
+  // はてなブックマークのフィードは日本語を &#x4E07; のような16進の実体参照で書く（2026-09-14 実測）
+  return s.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&#39;|&apos;/g, "'").replace(/&nbsp;/g, " ").replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16))).replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n))).replace(/&amp;/g, "&");
 }
 function decode(s: string): string {
   // RSS の description は HTML がエスケープされて入っていることがある。実体参照を戻してからタグを剥がす。
@@ -338,7 +339,13 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
   const usedTitles = state.keywords.filter((k) => k.template.startsWith("news:")).flatMap((k) => [k.news?.title, ...(k.news?.items ?? []).map((i) => i.title)]).filter((t): t is string => !!t);
 
   const grams = (t: string) => { const x = t.replace(/[\s「」『』【】（）()、。・:：\-｜|]/g, ""); const g = new Set<string>(); for (let i = 0; i < x.length - 1; i++) g.add(x.slice(i, i + 2)); return g; };
-  const similar = (a: string, b: string) => { const A = grams(a), B = grams(b); let n = 0; for (const g of A) if (B.has(g)) n++; return n / Math.max(1, Math.min(A.size, B.size)); };
+  const words = (t: string) => new Set(t.toLowerCase().match(/[a-z0-9]{4,}/g) ?? []);
+  const similar = (a: string, b: string) => {
+    // 英語同士は単語で比べる（2-gram だと「Claude」「developers」だけで似ていると判定した）
+    if (isEnglish(a) && isEnglish(b)) { const A = words(a), B = words(b); let n = 0; for (const w of A) if (B.has(w)) n++; return n / Math.max(1, Math.min(A.size, B.size)) * 0.6; }
+    if (isEnglish(a) !== isEnglish(b)) return 0;
+    const A = grams(a), B = grams(b); let n = 0; for (const g of A) if (B.has(g)) n++; return n / Math.max(1, Math.min(A.size, B.size));
+  };
   const isPR = (it: NewsItem) => /prtimes|newscast|atpress|pr\.|プレスリリース/i.test(it.link + " " + it.source);
   // 企業のオウンドメディアの「おすすめ転職エージェント」型（SEO記事）はニュースではない。2026-09-11 に混入
   const isSeo = (it: NewsItem) => /おすすめ|ランキング|徹底比較|転職エージェント|選び方|完全ガイド|まとめ$/.test(it.title) || /\/(career-)?column\/|\/media\/|\/magazine\/|\/lab\//.test(it.link);
