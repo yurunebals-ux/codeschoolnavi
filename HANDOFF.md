@@ -622,3 +622,14 @@ LLMは後に来た具体的な指示に従うので、対象外でも計算し�
 ### 実測（2026-09-14 news-hot 1本目）
 - Google News 英語検索が quasa.io（無名媒体）の「Claude がミサイル開発に使われた」記事を拾い、「AI支援兵器開発を評価する理由」という節を書いた。学習サイトに載せる話題ではない → `draft: true` で非公開にし、(1) 軍事・兵器・政治・性的話題を BLOCK（見出し・抜粋・本文冒頭）(2) 英語は TRUSTED_EN の媒体だけ (3) 英語は「学ぶ人・働く人」に関わる語（developer/jobs/learn…）が無ければ減点、を入れた
 - 本文に裸の「/kyufukin/」が残った → `fixInternalLinks()` を全記事共通にして news:hot にも適用
+
+### §20 追記2: ネットの反応（まとめサイト風）と速報の実測（2026-09-14 夕方）
+- オーナー「ニュースに対するコメントも拾ってまとめサイトのように」→ `fetchReactions()`（news.ts）。**動くのは はてなブックマーク（エントリー情報API）と Hacker News（Algolia）**。Bluesky・Reddit は GitHub Actions から HTTP 403（環境変数 NEWS_BLUESKY / NEWS_REDDIT で有効化できる形で残置）
+- 反応が5件以上あれば「## ネットの反応」（歓迎・懸念・別の視点。要約＋40字以内の引用、ユーザー名なし、中傷語を含むコメントは材料から除外）を「なぜ今か」の後に入れ、出典（スレッドURLと件数）を機械で付ける。記事ページでは JS で `.reactions` の箱に包む
+- **情報源に はてなブックマーク人気エントリー（IT）と検索RSS（生成AI／プログラミングスクール）を追加**。`hatena:bookmarkcount` を関連度に加点（100ブクマで+4）。**フィードの見出しは `&#x4E07;` 形式の16進実体参照**なので decode で復号する（復号前は関連度も類似判定も壊れていた）
+- 本文が取れないページ（openai.com など Cloudflare／JS描画）は `r.jina.ai/<url>` 経由で読む
+- 英語判定は見出しでなく本文（Qiita・GIGAZINE の英字見出しを海外扱いしていた）。英語見出し同士の類似は単語で判定
+- 深い技術ネタ（GPU・量子化・tok/s…）は減点。1本目の反応つき記事が「DeepSeek×A100 を FP4 非対応で高速化」（note.com、はてブ154）で、読者から遠かった
+- `news-column` ワークフローの `dry` 入力: 候補と反応を調べるだけで書かない（ログの `[news]   はてブ: N件` などで確認）
+- 今日公開したニュース記事: Gartner（ITmedia）／ChatGPT Work Data agent（ITmedia）／DeepSeek×A100（note、反応つき）。兵器ネタ1本は非公開
+- **Netlify**: codeschoolnavi プロジェクトの Build status を Stopped に（オーナー承認済み）。本番は GitHub Pages なので影響なし。今日のコミット連打で Netlify のクレジットを使い切っていた
