@@ -101,6 +101,19 @@ const ctaAfter = figMapAfter + 1;
       {ctaId && !d.news && <div class="figslot" data-after={ctaAfter}><Cta id={ctaId} /></div>}
     </div>
     <script is:inline>
+      // ニュース記事の「ネットの反応」節をまとめサイト風の箱にする（見出しから次の ## まで）。
+      (function () {
+        var art = document.currentScript.closest("article");
+        if (!art) return;
+        var h2 = Array.prototype.slice.call(art.querySelectorAll("h2")).find(function (h) { return /ネットの反応/.test(h.textContent); });
+        if (!h2) return;
+        var box = document.createElement("div"); box.className = "reactions";
+        h2.parentNode.insertBefore(box, h2);
+        var el = h2;
+        while (el && !(el !== h2 && /^H2$/.test(el.tagName))) { var next = el.nextElementSibling; box.appendChild(el); el = next; }
+      })();
+    </script>
+    <script is:inline>
       // 図解を本文の見出し位置へ移す。パース中に実行されるので、下に一瞬見えることはない。
       (function () {
         var art = document.currentScript.closest("article");
@@ -154,6 +167,14 @@ const ctaAfter = figMapAfter + 1;
       document.getElementById("toc").hidden = false;
     }
   </script>
+  <style is:global>
+    /* ネットの反応（まとめサイト風の箱。JSで包むので is:global） */
+    .reactions{background:linear-gradient(180deg,#fff7ed,#fff);border:1px solid #fed7aa;border-radius:16px;padding:4px 22px 16px;margin:26px 0}
+    .reactions h2{border-left-color:#f97316 !important;margin-top:16px}
+    .reactions h3{font-size:15px;margin:18px 0 6px;padding-left:10px;border-left:3px solid #fdba74}
+    .reactions p{font-size:15px}
+    .reactions p:last-child{font-size:12.5px;color:var(--mut)}
+  </style>
   <style>
     .pricelog{background:#f0f9ff;border:1px solid #bae6fd;border-radius:12px;padding:14px 18px;margin:0 0 24px}
     .pricelog .pl-title{font-weight:800;color:#0c4a6e;font-size:13.5px;margin-bottom:6px}
