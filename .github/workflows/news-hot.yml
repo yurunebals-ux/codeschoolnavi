@@ -1,14 +1,11 @@
-name: news-column
+name: news-hot
 
-# ニュース記事を手動で1本作る（動作確認用）。通常は daily-content-cycle が毎日、直近2本がニュースでなければ拾う。
+# 速報: 1日2回（07:00 / 17:00 JST）AIニュース1本に見解を書く。前回から8時間未満なら休む。
 on:
-  workflow_dispatch:
-    inputs:
-      mode:
-        description: "weekly（3本束ねの週間コラム）/ hot（1本のニュースへの見解）"
-        default: "hot"
-        type: choice
-        options: [hot, weekly]
+  schedule:
+    - cron: "0 22 * * *"
+    - cron: "0 8 * * *"
+  workflow_dispatch: {}
 
 permissions:
   contents: write
@@ -44,7 +41,7 @@ jobs:
       - name: Pick news, write, check, publish
         run: |
           set -o pipefail
-          npx tsx src/pipeline/news.ts --force --${{ inputs.mode || 'hot' }} | tee news.log
+          npx tsx src/pipeline/news.ts --hot --min-hours=8 | tee news.log
           # ニュースが拾えなかった日は何も書かない（generate は次のキュー＝比較記事を書いてしまうため）
           grep -q "キュー投入" news.log || { echo "ニュース無し。終了"; exit 0; }
           npx tsx src/pipeline/generate.ts 1

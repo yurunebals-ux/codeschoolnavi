@@ -15,7 +15,7 @@ on:
   # （実際に 2026-07-26 の cron で 9 本目が公開されず、本番が 404 のままだった）。
   # workflow_run はトークンに関係なく発火するので、こちらで拾う。
   workflow_run:
-    workflows: ["daily-content-cycle", "site-screenshots", "regen-articles", "news-column"]
+    workflows: ["daily-content-cycle", "site-screenshots", "regen-articles", "news-column", "news-hot"]
     types: [completed]
   workflow_dispatch: {}
 
