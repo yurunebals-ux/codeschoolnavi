@@ -28,6 +28,10 @@ const FEEDS = [
   "https://www.publickey1.jp/atom.xml",
   "https://codezine.jp/rss/new/20/index.xml",
   "https://prtimes.jp/index.rdf",
+  // はてなブックマークの人気エントリー（IT）。ブックマークが多い＝反応（コメント）が取れる記事が並ぶ（まとめサイト向き）
+  "https://b.hatena.ne.jp/hotentry/it.rss",
+  "https://b.hatena.ne.jp/q/%E7%94%9F%E6%88%90AI?mode=rss&sort=recent",
+  "https://b.hatena.ne.jp/q/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%82%B9%E3%82%AF%E3%83%BC%E3%83%AB?mode=rss&sort=recent",
   // 海外（英語）。AIの一次ニュースは海外発が多く、日本語で「学ぶ人にとっての意味」を書く記事は少ない（2026-09-14 オーナー方針）
   "https://openai.com/news/rss.xml",
   "https://techcrunch.com/category/artificial-intelligence/feed/",
@@ -56,7 +60,7 @@ const TRUSTED_EN = /(^|\.)(techcrunch\.com|openai\.com|anthropic\.com|technology
 const EN_RELEVANT = /developer|coding|code|programmer|engineer|software|jobs?|hiring|layoff|junior|learn|student|education|skills?|career|workforce|entry.level|bootcamp|copilot|agent/i;
 export const isEnglish = (s: string) => !/[\u3040-\u30ff\u4e00-\u9faf]/.test(s);
 
-export interface NewsItem { title: string; link: string; source: string; published: string; snippet: string; text?: string }
+export interface NewsItem { title: string; link: string; source: string; published: string; snippet: string; text?: string; bookmarks?: number }
 interface Log { used: { link: string; slug: string; date: string }[]; lastRun?: string }
 
 function loadLog(): Log {
@@ -74,12 +78,13 @@ function decode(s: string): string {
 }
 
 let lastErr = "";
-async function get(url: string, ms = 15000, accept = "text/html,application/xml,application/rss+xml,*/*"): Promise<{ url: string; body: string } | null> {
+const BROWSER_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36";
+async function get(url: string, ms = 15000, accept = "text/html,application/xml,application/rss+xml,*/*", ua = UA): Promise<{ url: string; body: string } | null> {
   lastErr = "";
   try {
     const ctrl = new AbortController();
     const t = setTimeout(() => ctrl.abort(), ms);
-    const res = await fetch(url, { headers: { "user-agent": UA, accept }, redirect: "follow", signal: ctrl.signal });
+    const res = await fetch(url, { headers: { "user-agent": ua, accept, "accept-language": "ja,en;q=0.8" }, redirect: "follow", signal: ctrl.signal });
     clearTimeout(t);
     if (!res.ok) { lastErr = `HTTP ${res.status}`; return null; }
     return { url: res.url, body: await res.text() };
@@ -104,7 +109,10 @@ function parseFeed(xml: string, fallbackSource: string): NewsItem[] {
     const source = cleanSource(pick("source") || feedTitle);
     const published = pick("pubDate") || pick("dc:date") || pick("published") || pick("updated");
     const snippet = (pick("description") || pick("summary") || pick("content")).slice(0, 400);
-    if (title && link) out.push({ title, link, source, published, snippet });
+    // はてなブックマークのフィードは元記事のURLが link で、ブクマ数が hatena:bookmarkcount に入る（反応の多さの目安）
+    const bm = Number(pick("hatena:bookmarkcount") || 0) || undefined;
+    const src = /はてなブックマーク/.test(source) ? hostOf(link) || source : source;
+    if (title && link) out.push({ title, link, source: src, published, snippet, bookmarks: bm });
   }
   return out;
 }
@@ -171,8 +179,8 @@ function fmtDate(s: string): string {
 // 掲載は「要約＋40字以内の短い引用（出所明示）」に限り、ユーザー名は出さない（引用の要件と、個人を晒さないため）。
 export interface Reactions { threads: { platform: string; url: string; count: number }[]; comments: { platform: string; text: string; likes?: number }[] }
 
-async function getJson(url: string, ms = 12000): Promise<any | null> {
-  const r = await get(url, ms, "application/json");
+async function getJson(url: string, ms = 12000, ua = UA): Promise<any | null> {
+  const r = await get(url, ms, "application/json", ua);
   if (!r) return null;
   try { return JSON.parse(r.body); } catch { lastErr = "JSONではない"; return null; }
 }
@@ -205,7 +213,7 @@ export async function fetchReactions(link: string, title: string): Promise<React
   }
   // Bluesky（URL と見出しの両方で検索）
   for (const q of [link, title.slice(0, 40)]) {
-    const bs = await getJson(`https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(q)}&limit=25`);
+    const bs = await getJson(`https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(q)}&limit=25`, 12000, BROWSER_UA);
     const posts = (bs?.posts ?? []).filter((p: any) => (p.record?.text ?? "").length >= 20);
     console.log(`[news]   Bluesky(${q.slice(0, 20)}…): ${bs ? `${posts.length}件` : `取得失敗(${lastErr})`}`);
     if (!posts.length) continue;
@@ -245,6 +253,7 @@ function relevance(it: NewsItem): number {
   for (const [re, w] of BOOST) if (re.test(hay)) s += w;
   if (BLOCK.test(it.title) || BLOCK.test(it.snippet.slice(0, 200))) s -= 10;
   if (isEnglish(it.title) && !EN_RELEVANT.test(hay)) s -= 10;
+  if (it.bookmarks) s += Math.min(it.bookmarks / 25, 4); // 反応が多い記事を優先（100ブクマで+4）
   const age = (Date.now() - new Date(it.published).getTime()) / 86400000;
   if (!Number.isNaN(age)) s -= Math.min(age, 14) * 0.25;
   return s;
@@ -257,8 +266,14 @@ export async function enrichItems(items: NewsItem[]): Promise<NewsItem[]> {
     // 本文があっても、リンクが Google の中継や画像のままなら取り直す（2026-09-11 の事故: 画像URLに解決して本文が Google のページになった）
     if (it.text && it.text.length > 300 && !/google/.test(it.link)) { out.push(it); continue; }
     const link = await resolveLink(it.link);
-    const page = await get(link);
-    const text = page ? extractText(page.body, 4000) : "";
+    let page = await get(link);
+    if (!page) page = await get(link, 15000, undefined, BROWSER_UA); // ボット UA を弾くサイト向け
+    let text = page ? extractText(page.body, 4000) : "";
+    if (text.length < 300) {
+      // JS描画・Cloudflare で本文が取れないサイトは、レンダリング代行（r.jina.ai、無料・キー不要）を経由して読む
+      const jr = await get(`https://r.jina.ai/${link}`, 25000, "text/plain");
+      if (jr && jr.body.length >= 300) text = jr.body.replace(/^Title:.*\n|^URL Source:.*\n|^Markdown Content:\n/gm, "").replace(/!\[[^\]]*\]\([^)]*\)/g, "").replace(/\[([^\]]*)\]\([^)]*\)/g, "$1").replace(/\n{3,}/g, "\n\n").trim().slice(0, 4000);
+    }
     out.push({ ...it, link, text: text.length >= 300 ? text : "" });
   }
   return out;
