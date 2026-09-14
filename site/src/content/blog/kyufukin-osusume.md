@@ -132,7 +132,7 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 
 ## あわせて読みたい
 
+- [DeepSeek v4.1 Flash、FP4非対応A100で公式API超速化の技術革新](/blog/news-20260914-qamet/)
 - [OpenAIのChatGPT Work新機能「Data agent」登場、非エンジニアの分析作業を大幅削減](/blog/news-20260914-4bs6l/)
 - [Gartner調査で判明、2026年AIコーディング予算超過の実態と対策](/blog/news-20260914-vc3xv/)
 - [Aidemyは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-aidemy/)
-- [Aidemyの料金は高い？他社と比較](/blog/ryokin-aidemy/)

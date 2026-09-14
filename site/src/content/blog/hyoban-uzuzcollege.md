@@ -245,4 +245,4 @@ CCNAやAWSなどのIT資格に集中したい場合、ウズウズカレッジ�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [ウズウズカレッジの料金は高い？他社と比較](/blog/ryokin-uzuzcollege/)
 - [ウズウズカレッジは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-uzuzcollege/)
-- [OpenAIのChatGPT Work新機能「Data agent」登場、非エンジニアの分析作業を大幅削減](/blog/news-20260914-4bs6l/)
+- [DeepSeek v4.1 Flash、FP4非対応A100で公式API超速化の技術革新](/blog/news-20260914-qamet/)
