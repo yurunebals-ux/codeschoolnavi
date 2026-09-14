@@ -37,7 +37,7 @@ if (Astro.url.pathname !== "/") crumbs.push({ name: title, url: canonical.toStri
     {article && (
       <script type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "Article",
+        "@type": article.news ? "NewsArticle" : "Article",
         headline: article.title,
         author: { "@type": "Person", name: "佐倉 透", jobTitle: "編集長", url: new URL("/about/", Astro.site).toString() },
         publisher: { "@type": "Organization", name: site, url: new URL("/", Astro.site).toString() },
@@ -348,6 +348,10 @@ if (Astro.url.pathname !== "/") crumbs.push({ name: title, url: canonical.toStri
       .card.row .t{font-size:14px;line-height:1.55}
       .card.row .chip{font-size:11px;padding:1px 9px}
       .card.row .d{font-size:11.5px}
+      /* トップと /news/ のニュース3列（サムネ無し・題名で読ませる） */
+      .news3{grid-template-columns:repeat(3,1fr)}
+      @media (max-width:900px){ .news3{grid-template-columns:1fr} }
+      .news3 .card.row .t{font-size:15px;font-weight:700}
       @media (max-width:400px){ .card.row .cthumb{width:96px} }
 
       /* 選び方ステップ */
@@ -388,10 +392,10 @@ if (Astro.url.pathname !== "/") crumbs.push({ name: title, url: canonical.toStri
   <body>
     <header class="site"><div class="wrap nav">
       <a class="brand" href="/"><span class="logo">&lt;/&gt;</span>{site}</a>
+      <a class="item keep" href="/news/">AIニュース</a>
       <a class="item keep" href="/kyufukin/">給付金ガイド</a>
       <a class="item" href="/about/">運営者情報</a>
       <a class="item" href="/disclosure/">広告について</a>
-      <a class="item" href="/privacy/">プライバシー</a>
       <a class="cta" href="/shindan/">1分診断</a>
     </div></header>
     <slot name="hero" />
@@ -401,6 +405,7 @@ if (Astro.url.pathname !== "/") crumbs.push({ name: title, url: canonical.toStri
       <p>プログラミングスクールを料金・サポート・転職実績で正直に比較する情報サイトです。</p>
       <p>【広告】当サイトはアフィリエイト広告（プロモーション）を利用していますが、評価や順位には影響しません。詳しくは<a href="/disclosure/">広告について</a>をご覧ください。</p>
       <div class="links">
+        <a href="/news/">AIニュースの見方</a>
         <a href="/shindan/">スクール診断</a>
         <a href="/kyufukin/">給付金ガイド</a>
         <a href="/about/">運営者情報</a>
