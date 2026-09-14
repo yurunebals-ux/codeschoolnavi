@@ -21,7 +21,7 @@ import { chat, isOffline } from "../lib/llm.js";
 import { persona } from "../lib/team.js";
 import { scanAiese, deaiMechanical } from "../lib/aiese.js";
 import { findStructureProblems, headingList } from "../lib/structure.js";
-import { enrichItems, type NewsItem } from "./news.js";
+import { enrichItems, isEnglish, type NewsItem } from "./news.js";
 
 export interface Tool {
   id: string; name: string; category: string; categoryId: string;
@@ -40,6 +40,7 @@ export interface Affiliates { disclosure: string; tools: Tool[]; review_axes?: s
 export function minWordsFor(item: KeywordItem): number {
   const base = config.pipeline.minWords; // ワークフローの MIN_WORDS（4200）
   if (item.template === "news:weekly") return 1800;
+  if (item.template === "news:hot") return 1400;
   if (item.template.startsWith("news:")) return 900;
   if (item.template.startsWith("topic:")) return Math.round(base * 0.7);
   if (/^money:(review|pricing|doubt)$|^info:what$/.test(item.template)) return Math.round(base * 0.75);
@@ -417,7 +418,7 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
     const summaries: string[] = [];
     for (const n of usable) {
       const r = await chat(
-        `次のニュース1本について、読者（プログラミングやAIを学ぼうとしている人）向けの解説を書く。\n出力形式（この形式以外は書かない）:\n1行目: 「H: 」に続けて見出し（そのニュースの意味を言い切る文。25字以内。媒体名・「〜について」・番号は使わない）\n2行目以降: 段落を3つ。(1) 何が起きたか（材料の本文から自分の言葉で3〜5文。固有名詞・数字は本文にあるものだけ。15字を超えて写さない）(2) 背景（なぜ今この動きか）(3) 学ぶ人にとっての意味（誰が・何を・どう変えるべきか。言い切る）。合計400〜600字。箇条書きは使わない。\n\n【材料】\n見出し: ${n.title}\n媒体: ${n.source}\n公開日: ${n.published}\n本文:\n${(n.text || n.snippet).slice(0, 2500)}`,
+        `次のニュース1本について、読者（プログラミングやAIを学ぼうとしている人）向けの解説を書く。\n出力形式（この形式以外は書かない）:\n1行目: 「H: 」に続けて見出し（そのニュースの意味を言い切る文。25字以内。媒体名・「〜について」・番号は使わない）\n2行目以降: 段落を3つ。(1) 何が起きたか（材料の本文から自分の言葉で3〜5文。固有名詞・数字は本文にあるものだけ。15字を超えて写さない）(2) 背景（なぜ今この動きか）(3) 学ぶ人にとっての意味（誰が・何を・どう変えるべきか。言い切る）。合計400〜600字。箇条書きは使わない。${isEnglish(n.title) ? "材料は英語だが本文は日本語で書く。社名・製品名は原語のまま。日本の学ぶ人にとっての意味を(3)に含める。" : ""}\n\n【材料】\n見出し: ${n.title}\n媒体: ${n.source}\n公開日: ${n.published}\n本文:\n${(n.text || n.snippet).slice(0, 2500)}`,
         { system: newsSystem, maxTokens: 1500, temperature: 0.6 });
       const lines = r.trim().split("\n");
       const hm = lines[0].match(/^H[:：]\s*(.+)$/);
@@ -442,13 +443,28 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
     return { body: body2, description: cd.description, title: ct.title, tools: [] };
   }
   if (item.template.startsWith("news:")) {
-    // 旧形式（1本）。本文を取れれば足す
+    // 1本のニュースへの見解（news:hot。旧 news:commentary も同じ型で書く）。
+    // 【設計】材料＝媒体の本文（800字以上ないと書かない）。事実→背景→歓迎する見方→慎重な見方→編集部の結論、
+    // の順で賛否を必ず両方書く（オーナー方針: 評価には賛否の両方）。出典は機械で入れる。スクールのデータは渡さない。
     if (item.news?.link && !item.news.text) {
       const [en] = await enrichItems([item.news as NewsItem]).catch(() => [item.news as NewsItem]);
       item.news = { ...item.news, ...en };
     }
-    const plan1 = planFor(item, tools, all, subsidyIds);
-    p1 = await chat(`${ctx}\n\n${plan1.a}`, { system, maxTokens: 3000, temperature: 0.6 });
+    const n = (item.news ?? {}) as NewsItem;
+    if (!n.text || n.text.length < 800) throw new Error("ニュースの本文が800字未満のため書かない");
+    const newsSystem = `${persona("editor")}\nあなたは日本語ネイティブの編集者です。プログラミングやAIを学ぼうとしている社会人・学生に向けて、業界ニュース1本を取り上げ、自分の言葉で見解を書きます。宣伝口調は使いません。${DATA_RULES.replace("下の「データ」", "下の「材料」")}\n\n${STYLE}`;
+    const r = await chat(
+      `次のニュース1本について、見解記事を書く（全体で1,600〜2,200字）。\n出力形式（この順で。この形式以外は書かない）:\nTITLE: 記事タイトル（45字以内。検索で探される固有名詞（社名・製品名・制度名。例: OpenAI、Claude、教育訓練給付金）を必ず前半に入れ、後半で編集部の見方を言い切る。ニュースの見出しの写しは禁止。例「OpenAI の新モデル発表で、未経験がいま学ぶべきなのはプロンプトではなく設計だ」「AI研修のROIを3分で出せる、は半分正しい」）\nDESCRIPTION: 80字以内の説明\nLEAD: 冒頭の1段落（120字以内。何が起きたかを1文、編集部の見方を1文）\n## （何が起きたかを言い切る見出し）\n材料の本文から、自分の言葉で4〜6文。固有名詞・数字・日付は本文にあるものだけ。15字を超えて写さない。\n## （なぜ今この動きなのかを言い切る見出し）\n背景を3〜5文。材料に書かれていない事実は書かず、「〜と読める」「〜の流れの中にある」の形で推測と事実を分ける。\n## この動きを歓迎する見方\n賛成する立場の論拠を3〜4文。誰にとって何が良いか。\n## 慎重に見る見方\n反対・懸念の立場の論拠を3〜4文。誰が損をしうるか、見落とされている条件は何か。\n## 編集部の結論：学ぶ人はどう動くか\n賛否を踏まえた編集部の判断を言い切り、「◯◯な人は今月中に△△、そうでない人は様子見」のように行動まで落とす。5〜7文。自サイトの記事へ内部リンク（/kyufukin/ や /shindan/ や /blog/osusume-hikaku-ai/ など）を1つだけ入れてよいが、関係が薄ければ入れない。\n\n【禁止】材料にない固有名詞・数字・発言・調査。「当サイトの調査によると」「平均◯万円」。箇条書き。スクール名の宣伝。\n${isEnglish(n.title) ? "【海外ニュース】材料は英語。本文は日本語で書く。社名・製品名は原語のまま（初出でカタカナや短い説明を添える）。「日本の学ぶ人・転職市場にとっての意味」を結論の節で必ず1〜2文書く。\n" : ""}\n【材料】\n見出し: ${n.title}\n媒体: ${n.source}\n公開日: ${n.published}\nURL: ${n.link}\n本文:\n${n.text.slice(0, 4000)}`,
+      { system: newsSystem, maxTokens: 3500, temperature: 0.7 });
+    const ht = takeTitle(r.trim());
+    const hd = takeDescription(ht.body);
+    const lm = hd.body.match(/^\s*LEAD[:：]\s*(.+)\n/);
+    const lead = lm ? lm[1].trim() : "";
+    const hotBody = (lm ? hd.body.slice(lm[0].length) : hd.body).trim().replace(/[ \t]+$/gm, "");
+    let body3 = [lead, `出典：[${n.source}](${n.link})（${n.published}）`, hotBody, `## 出典\n\n- [${n.title}](${n.link})（${n.source}、${n.published}）`].filter(Boolean).join("\n\n");
+    body3 = dedupeSections(normalizeHeadings(body3));
+    body3 = dedupeSections(await depersonalizeAi(body3, newsSystem));
+    return { body: body3, description: hd.description, title: ht.title, tools: [] };
   } else {
     p1 = await chat(
       `${ctx}\n\nこれは全体で${total.toLocaleString()}字以上になる記事の【前半】です。${descLine}\n本文は次の構成だけを書く（この部分だけで${Math.round(total * 0.5).toLocaleString()}字以上）:\n${plan.a}`,
@@ -557,13 +573,14 @@ export function pickNext(state: ReturnType<typeof loadState>): KeywordItem | und
   if (!queued.length) return undefined;
   const news = queued.find((k) => k.template.startsWith("news:"));
   if (news) return news;
-  const recent = [...state.keywords.filter((k) => k.status === "published")]
-    .sort((a, b) => (b.publishedAt ?? "").localeCompare(a.publishedAt ?? ""))
-    .slice(0, 2);
-  // 直近の1本が比較・評判系ならトピック記事を出す（1日おきに読み物）。オーナー方針（2026-09-11）
-  // 「全ての記事をアフィリエイトに結びつけなくてもよい。読みに来るだけでも面白いサイトに」。
+  // ニュース以外は、トピック記事（学習・キャリアの読み物）と比較・評判記事を交互に出す。
+  // オーナー方針（2026-09-11）「全ての記事をアフィリエイトに結びつけなくてもよい。読みに来るだけでも面白いサイトに」。
+  // ニュースは間に挟まるので、「直近のニュース以外の1本」を見て交互にする（2026-09-14: 直近1本だけ見ていたので
+  // ニュースの翌日は必ず比較記事になり、トピックがほぼ出なかった）。
+  const lastNonNews = [...state.keywords.filter((k) => k.status === "published" && !k.template.startsWith("news:"))]
+    .sort((a, b) => (b.publishedAt ?? "").localeCompare(a.publishedAt ?? ""))[0];
   const topic = queued.find((k) => k.template.startsWith("topic:"));
-  if (topic && recent.length >= 1 && !recent[0].template.startsWith("topic:") && !recent[0].template.startsWith("news:")) return topic;
+  if (topic && lastNonNews && !lastNonNews.template.startsWith("topic:")) return topic;
   return queued.find((k) => !k.template.startsWith("topic:")) ?? queued[0];
 }
 

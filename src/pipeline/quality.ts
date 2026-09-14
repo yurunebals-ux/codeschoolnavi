@@ -50,7 +50,7 @@ export function evaluateDraft(md: string, item: KeywordItem, aff: AffMeta, prior
 
   // 深度基準: 長編はセクション数も伴う。ニュースは短いので緩める。
   const hc = headingCount(md);
-  const hNeed = item.template === "news:weekly" ? 5 : isNews ? 2 : isTopic ? 5 : 6;
+  const hNeed = item.template === "news:weekly" ? 5 : item.template === "news:hot" ? 4 : isNews ? 2 : isTopic ? 5 : 6;
   if (hc >= hNeed + 2) pts += 20; else if (hc >= hNeed) { pts += 10; reasons.push(`見出しやや不足: ${hc}`); } else reasons.push(`見出し不足: ${hc}`);
 
   if (isNews) pts += 10; else if (/よくある質問|FAQ/i.test(md)) pts += 10; else reasons.push("FAQなし");
