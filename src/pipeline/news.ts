@@ -211,8 +211,8 @@ export async function fetchReactions(link: string, title: string): Promise<React
       out.comments.push(...cs.slice(0, 12).map((text: string) => ({ platform: "Hacker News", text })));
     }
   }
-  // Bluesky（URL と見出しの両方で検索）
-  for (const q of [link, title.slice(0, 40)]) {
+  // Bluesky（URL と見出しの両方で検索）。GitHub Actions からは HTTP 403（2026-09-14 実測）なので既定では呼ばない
+  for (const q of process.env.NEWS_BLUESKY ? [link, title.slice(0, 40)] : []) {
     const bs = await getJson(`https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(q)}&limit=25`, 12000, BROWSER_UA);
     const posts = (bs?.posts ?? []).filter((p: any) => (p.record?.text ?? "").length >= 20);
     console.log(`[news]   Bluesky(${q.slice(0, 20)}…): ${bs ? `${posts.length}件` : `取得失敗(${lastErr})`}`);
@@ -228,10 +228,10 @@ export async function fetchReactions(link: string, title: string): Promise<React
     }
     if (out.comments.filter((c) => c.platform === "Bluesky").length >= 5) break;
   }
-  // Reddit（取れないことが多いので最後・失敗しても無視）
-  const rd = await getJson(`https://www.reddit.com/search.json?q=url%3A${encodeURIComponent(link)}&sort=comments&limit=3`);
+  // Reddit（GitHub Actions からは HTTP 403。既定では呼ばない）
+  const rd = process.env.NEWS_REDDIT ? await getJson(`https://www.reddit.com/search.json?q=url%3A${encodeURIComponent(link)}&sort=comments&limit=3`) : null;
   const post = rd?.data?.children?.map((c: any) => c.data).sort((a: any, b: any) => (b.num_comments ?? 0) - (a.num_comments ?? 0))[0];
-  console.log(`[news]   Reddit: ${rd ? (post ? `${post.num_comments ?? 0}件` : "該当なし") : `取得失敗(${lastErr})`}`);
+  if (process.env.NEWS_REDDIT) console.log(`[news]   Reddit: ${rd ? (post ? `${post.num_comments ?? 0}件` : "該当なし") : `取得失敗(${lastErr})`}`);
   if (post && (post.num_comments ?? 0) > 0 && post.permalink) {
     const th = await getJson(`https://www.reddit.com${post.permalink}.json?limit=20`);
     const cs = (th?.[1]?.data?.children ?? []).map((c: any) => c.data).filter((d: any) => d.body && d.body.length >= 20)
@@ -333,6 +333,9 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
     .filter((it) => relevance(it) >= 3)
     .sort((a, b) => relevance(b) - relevance(a));
   console.log(`[news] 候補 ${fresh.length}件（全${all.length}件）`);
+  for (const it of fresh.slice(0, 12)) console.log(`[news]   ${relevance(it).toFixed(1)} ${it.bookmarks ? `☆${it.bookmarks} ` : ""}${hostOf(it.link) || it.source} 「${it.title.slice(0, 40)}」`);
+  // 既に記事にしたニュースと同じ話題（別媒体の同じプレスリリース等）は使わない
+  const usedTitles = state.keywords.filter((k) => k.template.startsWith("news:")).flatMap((k) => [k.news?.title, ...(k.news?.items ?? []).map((i) => i.title)]).filter((t): t is string => !!t);
 
   const grams = (t: string) => { const x = t.replace(/[\s「」『』【】（）()、。・:：\-｜|]/g, ""); const g = new Set<string>(); for (let i = 0; i < x.length - 1; i++) g.add(x.slice(i, i + 2)); return g; };
   const similar = (a: string, b: string) => { const A = grams(a), B = grams(b); let n = 0; for (const g of A) if (B.has(g)) n++; return n / Math.max(1, Math.min(A.size, B.size)); };
@@ -355,9 +358,11 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
     for (const it of order) {
       if (cands.length >= 5) break;
       const [en] = await enrichItems([it]);
+      if (usedTitles.some((t) => similar(t, it.title) > 0.35)) { console.log(`[news] 既出の話題: ${it.title.slice(0, 40)}`); continue; }
       if (!en.text || en.text.length < 800) { console.log(`[news] 本文不足(${en.text?.length ?? 0}字 ${hostOf(en.link)}${lastErr ? " " + lastErr : ""}): ${it.title.slice(0, 40)}`); continue; }
       if (seen.has(en.link)) continue;
-      if (isEnglish(en.title) && !TRUSTED_EN.test(hostOf(en.link))) { console.log(`[news] 英語の無名媒体は使わない: ${hostOf(en.link)}`); continue; }
+      // 英語かどうかは見出しではなく本文で判定（Qiita や GIGAZINE の英字だけの見出しを海外扱いしていた）
+      if (isEnglish(en.text.slice(0, 300)) && !TRUSTED_EN.test(hostOf(en.link))) { console.log(`[news] 英語の無名媒体は使わない: ${hostOf(en.link)}`); continue; }
       if (BLOCK.test(en.text.slice(0, 1500))) { console.log(`[news] 本文に扱わない話題: ${it.title.slice(0, 40)}`); continue; }
       const rx = await fetchReactions(en.link, en.title).catch(() => ({ threads: [], comments: [] } as Reactions));
       console.log(`[news] 候補: 「${it.title.slice(0, 36)}」 反応${rx.comments.length}件（${rx.threads.map((t) => `${t.platform}${t.count}`).join("・") || "なし"}）`);
@@ -400,7 +405,8 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
     if (!en.text) { console.log(`[news] 本文なし: ${it.title.slice(0, 40)}`); continue; }
     const host = hostOf(en.link) || en.source;
     if (hosts.has(host)) continue;
-    if (isEnglish(en.title) && !TRUSTED_EN.test(host)) { console.log(`[news] 英語の無名媒体は使わない: ${host}`); continue; }
+    if (isEnglish((en.text ?? "").slice(0, 300)) && !TRUSTED_EN.test(host)) { console.log(`[news] 英語の無名媒体は使わない: ${host}`); continue; }
+    if (usedTitles.some((t) => similar(t, it.title) > 0.35)) { console.log(`[news] 既出の話題: ${it.title.slice(0, 40)}`); continue; }
     if (BLOCK.test(en.text.slice(0, 1500))) continue;
     hosts.add(host);
     if (isPR(it)) prCount++;
