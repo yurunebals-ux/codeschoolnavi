@@ -32,6 +32,8 @@ export interface KeywordItem {
     title?: string; link?: string; source?: string; published?: string; snippet?: string; text?: string;
     // 新形式（news:weekly、3本＋本文）
     items?: { title: string; link: string; source: string; published: string; snippet: string; text?: string }[];
+    // news:hot 用。ニュースへのネットの反応（はてなブックマーク／Hacker News／Bluesky／Reddit）。「まとめサイトのように」（オーナー 2026-09-14）
+    reactions?: { threads: { platform: string; url: string; count: number }[]; comments: { platform: string; text: string; likes?: number }[] };
   };
   /** 記事の型のバージョン。再生成の対象判定に使う */
   structure?: number;
