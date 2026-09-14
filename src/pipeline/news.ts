@@ -180,6 +180,7 @@ export async function fetchReactions(link: string, title: string): Promise<React
   const out: Reactions = { threads: [], comments: [] };
   // はてなブックマーク
   const hb = await getJson(`https://b.hatena.ne.jp/entry/jsonlite/?url=${encodeURIComponent(link)}`);
+  console.log(`[news]   はてブ: ${hb ? `${hb.count ?? 0}件（コメント付き${(hb.bookmarks ?? []).filter((b: any) => (b.comment ?? "").length >= 8).length}）` : "取得失敗"}`);
   if (hb && Array.isArray(hb.bookmarks)) {
     const cs = hb.bookmarks.map((b: any) => cleanComment(b.comment ?? "")).filter((c: string) => c.length >= 8);
     if (cs.length) {
@@ -190,6 +191,7 @@ export async function fetchReactions(link: string, title: string): Promise<React
   // Hacker News
   const hn = await getJson(`https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(link)}&restrictSearchableAttributes=url&tags=story&hitsPerPage=3`);
   const hit = hn?.hits?.sort((a: any, b: any) => (b.num_comments ?? 0) - (a.num_comments ?? 0))[0];
+  console.log(`[news]   HN: ${hn ? (hit ? `${hit.num_comments ?? 0}件` : "該当なし") : "取得失敗"}`);
   if (hit && (hit.num_comments ?? 0) > 0) {
     const item = await getJson(`https://hn.algolia.com/api/v1/items/${hit.objectID}`);
     const cs = (item?.children ?? []).map((c: any) => cleanComment(c.text ?? "")).filter((c: string) => c.length >= 20);
@@ -202,6 +204,7 @@ export async function fetchReactions(link: string, title: string): Promise<React
   for (const q of [link, title.slice(0, 40)]) {
     const bs = await getJson(`https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(q)}&limit=25`);
     const posts = (bs?.posts ?? []).filter((p: any) => (p.record?.text ?? "").length >= 20);
+    console.log(`[news]   Bluesky(${q.slice(0, 20)}…): ${bs ? `${posts.length}件` : "取得失敗"}`);
     if (!posts.length) continue;
     const seenT = new Set(out.comments.map((c) => c.text));
     const cs = posts
@@ -217,6 +220,7 @@ export async function fetchReactions(link: string, title: string): Promise<React
   // Reddit（取れないことが多いので最後・失敗しても無視）
   const rd = await getJson(`https://www.reddit.com/search.json?q=url%3A${encodeURIComponent(link)}&sort=comments&limit=3`);
   const post = rd?.data?.children?.map((c: any) => c.data).sort((a: any, b: any) => (b.num_comments ?? 0) - (a.num_comments ?? 0))[0];
+  console.log(`[news]   Reddit: ${rd ? (post ? `${post.num_comments ?? 0}件` : "該当なし") : "取得失敗"}`);
   if (post && (post.num_comments ?? 0) > 0 && post.permalink) {
     const th = await getJson(`https://www.reddit.com${post.permalink}.json?limit=20`);
     const cs = (th?.[1]?.data?.children ?? []).map((c: any) => c.data).filter((d: any) => d.body && d.body.length >= 20)
@@ -265,7 +269,7 @@ export async function enrichItems(items: NewsItem[]): Promise<NewsItem[]> {
  *   材料（本文の取れた記事）が無い日は自然に減る。
  * 【種類】前回の週間コラムから5日以上あいていれば週間コラム（3本束ね）、それ以外は news:hot（1本に見解）。
  */
-export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; minHours?: number } = {}): Promise<string | null> {
+export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; minHours?: number; dry?: boolean } = {}): Promise<string | null> {
   const log = loadLog();
   const state = loadState();
   if (opts.force) console.log("[news] --force: 割合と間隔のチェックを飛ばす");
@@ -327,13 +331,13 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
 
   if (mode === "hot") {
     // 1本に見解を書く。プレスリリースやSEO記事は避け、本文が800字以上取れた最上位のニュースを使う
-    const order = [...fresh.filter((it) => !isPR(it) && !isSeo(it)), ...fresh.filter((it) => isPR(it) && !isSeo(it))].slice(0, 12);
+    const order = [...fresh.filter((it) => !isPR(it) && !isSeo(it)), ...fresh.filter((it) => isPR(it) && !isSeo(it))].slice(0, 30);
     // 本文が取れた候補を最大5本まで集め、ネットの反応が多いものを優先する（「まとめサイトのように」）。
     const cands: { it: NewsItem; en: NewsItem; rx: Reactions; rank: number }[] = [];
     for (const it of order) {
       if (cands.length >= 5) break;
       const [en] = await enrichItems([it]);
-      if (!en.text || en.text.length < 800) { console.log(`[news] 本文不足: ${it.title.slice(0, 40)}`); continue; }
+      if (!en.text || en.text.length < 800) { console.log(`[news] 本文不足(${en.text?.length ?? 0}字 ${hostOf(en.link)}): ${it.title.slice(0, 40)}`); continue; }
       if (seen.has(en.link)) continue;
       if (isEnglish(en.title) && !TRUSTED_EN.test(hostOf(en.link))) { console.log(`[news] 英語の無名媒体は使わない: ${hostOf(en.link)}`); continue; }
       if (BLOCK.test(en.text.slice(0, 1500))) { console.log(`[news] 本文に扱わない話題: ${it.title.slice(0, 40)}`); continue; }
@@ -344,6 +348,7 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
     // 反応が5件以上ある候補があればその中で最多、無ければ関連度順の先頭
     const withRx = cands.filter((c) => c.rx.comments.length >= 5).sort((a, b) => b.rx.comments.length - a.rx.comments.length || a.rank - b.rank);
     const best = withRx[0] ?? cands[0];
+    if (opts.dry) { console.log(`[news] --dry: 候補${cands.length}本を評価しただけで終了（キューに入れない）`); return null; }
     if (best) {
       const { it, en, rx } = best;
       const slug = slugFor(en.link);
@@ -402,5 +407,5 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const m = process.argv.find((a) => a === "--hot" || a === "--weekly");
   const mh = process.argv.find((a) => a.startsWith("--min-hours="));
-  newsRun({ force: process.argv.includes("--force"), mode: m === "--hot" ? "hot" : m === "--weekly" ? "weekly" : undefined, minHours: mh ? Number(mh.split("=")[1]) : undefined });
+  newsRun({ force: process.argv.includes("--force"), mode: m === "--hot" ? "hot" : m === "--weekly" ? "weekly" : undefined, minHours: mh ? Number(mh.split("=")[1]) : undefined, dry: process.argv.includes("--dry") });
 }
