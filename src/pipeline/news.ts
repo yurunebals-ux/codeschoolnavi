@@ -84,6 +84,11 @@ async function get(url: string, ms = 15000): Promise<{ url: string; body: string
   } catch { return null; }
 }
 
+/** 媒体名の後始末。「ITmedia AI＋ 最新記事一覧」のようなフィード題名が出典に出ていた（2026-09-14） */
+function cleanSource(s: string): string {
+  return s.replace(/\s*[-－–|｜:：]?\s*(最新記事一覧|新着記事一覧|新着記事|記事一覧|RSS.*|フィード.*|Feed.*|News Feed.*)$/i, "").replace(/\s+/g, " ").trim().slice(0, 30) || s;
+}
+
 /** RSS 2.0 / RDF / Atom を雑に読む（依存を増やさない） */
 function parseFeed(xml: string, fallbackSource: string): NewsItem[] {
   const out: NewsItem[] = [];
@@ -94,7 +99,7 @@ function parseFeed(xml: string, fallbackSource: string): NewsItem[] {
     let link = pick("link");
     if (!link) link = (x.match(/<link[^>]*href="([^"]+)"/) || [])[1] ?? "";
     const title = pick("title").replace(/\s*-\s*[^-]+$/, "");
-    const source = pick("source") || feedTitle;
+    const source = cleanSource(pick("source") || feedTitle);
     const published = pick("pubDate") || pick("dc:date") || pick("published") || pick("updated");
     const snippet = (pick("description") || pick("summary") || pick("content")).slice(0, 400);
     if (title && link) out.push({ title, link, source, published, snippet });
