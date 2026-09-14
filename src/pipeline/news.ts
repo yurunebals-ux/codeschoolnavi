@@ -54,6 +54,8 @@ const BOOST: [RegExp, number][] = [
   [/agent|model|launch|release|open.?source|benchmark/i, 1],
 ];
 const BLOCK = /株価|決算|逮捕|訴訟|炎上|芸能|選挙|セール|クーポン|割引キャンペーン|IPO|earnings|stock|lawsuit|shares|valuation|軍事|兵器|ミサイル|戦争|武装|テロ|missile|weapon|military|warfare|terror|drone strike|deepfake|porn|sexual|suicide|self-harm|election|政治|政党/i;
+// 読者（これから学ぶ人）から遠い、深い技術ネタは減点（はてブ人気エントリーは GPU 自作や量子化の話が多い。2026-09-14 に DeepSeek×A100 の記事を書いた）
+const TOO_DEEP = /GPU|CUDA|FP\d|tok\/s|カーネル|量子化|VRAM|自作PC|ベンチマーク|Rust|C\+\+|Kubernetes|k8s|アーキテクチャ|コンパイラ|推論サーバ|Linux|メモリ帯域|TFLOPS/i;
 // 英語ニュースは媒体を絞る（Google News 英語検索は無名サイトも拾う。2026-09-14 に quasa.io の兵器ネタが混入）
 const TRUSTED_EN = /(^|\.)(techcrunch\.com|openai\.com|anthropic\.com|technologyreview\.com|theverge\.com|arstechnica\.com|wired\.com|reuters\.com|bloomberg\.com|nytimes\.com|ft\.com|venturebeat\.com|zdnet\.com|github\.blog|blog\.google|deepmind\.google|microsoft\.com|theinformation\.com|axios\.com|cnbc\.com|bbc\.com|theguardian\.com|stackoverflow\.blog|infoq\.com|thenewstack\.io)$/i;
 // 英語ニュースは「学ぶ人・働く人」に関係する語が無ければ扱わない（モデル発表だけの記事は多すぎる）
@@ -186,6 +188,9 @@ async function getJson(url: string, ms = 12000, ua = UA): Promise<any | null> {
   try { return JSON.parse(r.body); } catch { lastErr = "JSONではない"; return null; }
 }
 const cleanComment = (t: string) => decode(t).replace(/https?:\/\/\S+/g, "").replace(/\s+/g, " ").trim().slice(0, 220);
+// 中傷・罵倒を含むコメントは材料に入れない（1本目で「何やってんだこいつ」が引用された。2026-09-14）
+const ABUSE = /こいつ|バカ|馬鹿|アホ|クズ|死ね|キモ|気持ち悪|頭悪|無能|ゴミ|カス|老害|情弱|信者|工作員|idiot|stupid|moron|dumb|scam|garbage|trash/i;
+const okComment = (t: string) => t.length >= 8 && !ABUSE.test(t);
 
 export async function fetchReactions(link: string, title: string): Promise<Reactions> {
   const out: Reactions = { threads: [], comments: [] };
@@ -194,7 +199,7 @@ export async function fetchReactions(link: string, title: string): Promise<React
   // ブックマークが無いエントリーは API が literal null を返す（失敗ではない）
   console.log(`[news]   はてブ: ${hb ? `${hb.count ?? 0}件（コメント付き${(hb.bookmarks ?? []).filter((b: any) => (b.comment ?? "").length >= 8).length}）` : lastErr ? `取得失敗(${lastErr})` : "0件"}`);
   if (hb && Array.isArray(hb.bookmarks)) {
-    const cs = hb.bookmarks.map((b: any) => cleanComment(b.comment ?? "")).filter((c: string) => c.length >= 8);
+    const cs = hb.bookmarks.map((b: any) => cleanComment(b.comment ?? "")).filter(okComment);
     if (cs.length) {
       out.threads.push({ platform: "はてなブックマーク", url: hb.entry_url ?? `https://b.hatena.ne.jp/entry/s/${link.replace(/^https?:\/\//, "")}`, count: Number(hb.count ?? cs.length) });
       out.comments.push(...cs.slice(0, 15).map((text: string) => ({ platform: "はてなブックマーク", text })));
@@ -206,7 +211,7 @@ export async function fetchReactions(link: string, title: string): Promise<React
   console.log(`[news]   HN: ${hn ? (hit ? `${hit.num_comments ?? 0}件` : "該当なし") : `取得失敗(${lastErr})`}`);
   if (hit && (hit.num_comments ?? 0) > 0) {
     const item = await getJson(`https://hn.algolia.com/api/v1/items/${hit.objectID}`);
-    const cs = (item?.children ?? []).map((c: any) => cleanComment(c.text ?? "")).filter((c: string) => c.length >= 20);
+    const cs = (item?.children ?? []).map((c: any) => cleanComment(c.text ?? "")).filter((c: string) => c.length >= 20 && okComment(c));
     if (cs.length) {
       out.threads.push({ platform: "Hacker News", url: `https://news.ycombinator.com/item?id=${hit.objectID}`, count: hit.num_comments });
       out.comments.push(...cs.slice(0, 12).map((text: string) => ({ platform: "Hacker News", text })));
@@ -221,7 +226,7 @@ export async function fetchReactions(link: string, title: string): Promise<React
     const seenT = new Set(out.comments.map((c) => c.text));
     const cs = posts
       .map((p: any) => ({ platform: "Bluesky", text: cleanComment(p.record.text), likes: Number(p.likeCount ?? 0) }))
-      .filter((c: any) => c.text.length >= 12 && !seenT.has(c.text))
+      .filter((c: any) => c.text.length >= 12 && okComment(c.text) && !seenT.has(c.text))
       .sort((a: any, b: any) => (b.likes ?? 0) - (a.likes ?? 0)).slice(0, 10);
     if (cs.length) {
       if (!out.threads.some((t) => t.platform === "Bluesky")) out.threads.push({ platform: "Bluesky", url: `https://bsky.app/search?q=${encodeURIComponent(q)}`, count: posts.length });
@@ -235,7 +240,7 @@ export async function fetchReactions(link: string, title: string): Promise<React
   if (process.env.NEWS_REDDIT) console.log(`[news]   Reddit: ${rd ? (post ? `${post.num_comments ?? 0}件` : "該当なし") : `取得失敗(${lastErr})`}`);
   if (post && (post.num_comments ?? 0) > 0 && post.permalink) {
     const th = await getJson(`https://www.reddit.com${post.permalink}.json?limit=20`);
-    const cs = (th?.[1]?.data?.children ?? []).map((c: any) => c.data).filter((d: any) => d.body && d.body.length >= 20)
+    const cs = (th?.[1]?.data?.children ?? []).map((c: any) => c.data).filter((d: any) => d.body && d.body.length >= 20 && okComment(d.body))
       .map((d: any) => ({ platform: "Reddit", text: cleanComment(d.body), likes: Number(d.score ?? 0) }))
       .sort((a: any, b: any) => (b.likes ?? 0) - (a.likes ?? 0)).slice(0, 10);
     if (cs.length) {
@@ -255,6 +260,7 @@ function relevance(it: NewsItem): number {
   if (BLOCK.test(it.title) || BLOCK.test(it.snippet.slice(0, 200))) s -= 10;
   if (isEnglish(it.title) && !EN_RELEVANT.test(hay)) s -= 10;
   if (it.bookmarks) s += Math.min(it.bookmarks / 25, 4); // 反応が多い記事を優先（100ブクマで+4）
+  if (TOO_DEEP.test(it.title)) s -= 4;
   const age = (Date.now() - new Date(it.published).getTime()) / 86400000;
   if (!Number.isNaN(age)) s -= Math.min(age, 14) * 0.25;
   return s;
