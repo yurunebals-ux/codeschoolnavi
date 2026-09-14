@@ -19,7 +19,9 @@ async function cycle() {
   reconcilePublished();
   const state = loadState();
   const queued = state.keywords.filter((k) => k.status === "queued").length;
-  if (queued < config.pipeline.perCycle) buildKeywords(40);
+  const queuedTopics = state.keywords.filter((k) => k.status === "queued" && k.template.startsWith("topic:")).length;
+  // トピック記事は比較記事のキューが尽きるまで追加されず、9/11〜9/13 は一度も出なかった。トピックが切れたら補充する
+  if (queued < config.pipeline.perCycle || queuedTopics === 0) buildKeywords(40);
 
   // 独自データ：公式サイト表示料金の定点観測（失敗してもサイクルは止めない）
   await priceWatchRun().catch((e) => console.log("[pricewatch] skip:", (e as Error).message));
