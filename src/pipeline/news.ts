@@ -73,15 +73,17 @@ function decode(s: string): string {
   return un.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 }
 
-async function get(url: string, ms = 15000): Promise<{ url: string; body: string } | null> {
+let lastErr = "";
+async function get(url: string, ms = 15000, accept = "text/html,application/xml,application/rss+xml,*/*"): Promise<{ url: string; body: string } | null> {
+  lastErr = "";
   try {
     const ctrl = new AbortController();
     const t = setTimeout(() => ctrl.abort(), ms);
-    const res = await fetch(url, { headers: { "user-agent": UA, accept: "text/html,application/xml,application/rss+xml,*/*" }, redirect: "follow", signal: ctrl.signal });
+    const res = await fetch(url, { headers: { "user-agent": UA, accept }, redirect: "follow", signal: ctrl.signal });
     clearTimeout(t);
-    if (!res.ok) return null;
+    if (!res.ok) { lastErr = `HTTP ${res.status}`; return null; }
     return { url: res.url, body: await res.text() };
-  } catch { return null; }
+  } catch (e) { lastErr = String((e as Error).message ?? e).slice(0, 60); return null; }
 }
 
 /** 媒体名の後始末。「ITmedia AI＋ 最新記事一覧」のようなフィード題名が出典に出ていた（2026-09-14） */
@@ -170,9 +172,9 @@ function fmtDate(s: string): string {
 export interface Reactions { threads: { platform: string; url: string; count: number }[]; comments: { platform: string; text: string; likes?: number }[] }
 
 async function getJson(url: string, ms = 12000): Promise<any | null> {
-  const r = await get(url, ms);
+  const r = await get(url, ms, "application/json");
   if (!r) return null;
-  try { return JSON.parse(r.body); } catch { return null; }
+  try { return JSON.parse(r.body); } catch { lastErr = "JSONではない"; return null; }
 }
 const cleanComment = (t: string) => decode(t).replace(/https?:\/\/\S+/g, "").replace(/\s+/g, " ").trim().slice(0, 220);
 
@@ -180,7 +182,8 @@ export async function fetchReactions(link: string, title: string): Promise<React
   const out: Reactions = { threads: [], comments: [] };
   // はてなブックマーク
   const hb = await getJson(`https://b.hatena.ne.jp/entry/jsonlite/?url=${encodeURIComponent(link)}`);
-  console.log(`[news]   はてブ: ${hb ? `${hb.count ?? 0}件（コメント付き${(hb.bookmarks ?? []).filter((b: any) => (b.comment ?? "").length >= 8).length}）` : "取得失敗"}`);
+  // ブックマークが無いエントリーは API が literal null を返す（失敗ではない）
+  console.log(`[news]   はてブ: ${hb ? `${hb.count ?? 0}件（コメント付き${(hb.bookmarks ?? []).filter((b: any) => (b.comment ?? "").length >= 8).length}）` : lastErr ? `取得失敗(${lastErr})` : "0件"}`);
   if (hb && Array.isArray(hb.bookmarks)) {
     const cs = hb.bookmarks.map((b: any) => cleanComment(b.comment ?? "")).filter((c: string) => c.length >= 8);
     if (cs.length) {
@@ -191,7 +194,7 @@ export async function fetchReactions(link: string, title: string): Promise<React
   // Hacker News
   const hn = await getJson(`https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(link)}&restrictSearchableAttributes=url&tags=story&hitsPerPage=3`);
   const hit = hn?.hits?.sort((a: any, b: any) => (b.num_comments ?? 0) - (a.num_comments ?? 0))[0];
-  console.log(`[news]   HN: ${hn ? (hit ? `${hit.num_comments ?? 0}件` : "該当なし") : "取得失敗"}`);
+  console.log(`[news]   HN: ${hn ? (hit ? `${hit.num_comments ?? 0}件` : "該当なし") : `取得失敗(${lastErr})`}`);
   if (hit && (hit.num_comments ?? 0) > 0) {
     const item = await getJson(`https://hn.algolia.com/api/v1/items/${hit.objectID}`);
     const cs = (item?.children ?? []).map((c: any) => cleanComment(c.text ?? "")).filter((c: string) => c.length >= 20);
@@ -204,7 +207,7 @@ export async function fetchReactions(link: string, title: string): Promise<React
   for (const q of [link, title.slice(0, 40)]) {
     const bs = await getJson(`https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(q)}&limit=25`);
     const posts = (bs?.posts ?? []).filter((p: any) => (p.record?.text ?? "").length >= 20);
-    console.log(`[news]   Bluesky(${q.slice(0, 20)}…): ${bs ? `${posts.length}件` : "取得失敗"}`);
+    console.log(`[news]   Bluesky(${q.slice(0, 20)}…): ${bs ? `${posts.length}件` : `取得失敗(${lastErr})`}`);
     if (!posts.length) continue;
     const seenT = new Set(out.comments.map((c) => c.text));
     const cs = posts
@@ -220,7 +223,7 @@ export async function fetchReactions(link: string, title: string): Promise<React
   // Reddit（取れないことが多いので最後・失敗しても無視）
   const rd = await getJson(`https://www.reddit.com/search.json?q=url%3A${encodeURIComponent(link)}&sort=comments&limit=3`);
   const post = rd?.data?.children?.map((c: any) => c.data).sort((a: any, b: any) => (b.num_comments ?? 0) - (a.num_comments ?? 0))[0];
-  console.log(`[news]   Reddit: ${rd ? (post ? `${post.num_comments ?? 0}件` : "該当なし") : "取得失敗"}`);
+  console.log(`[news]   Reddit: ${rd ? (post ? `${post.num_comments ?? 0}件` : "該当なし") : `取得失敗(${lastErr})`}`);
   if (post && (post.num_comments ?? 0) > 0 && post.permalink) {
     const th = await getJson(`https://www.reddit.com${post.permalink}.json?limit=20`);
     const cs = (th?.[1]?.data?.children ?? []).map((c: any) => c.data).filter((d: any) => d.body && d.body.length >= 20)
@@ -337,7 +340,7 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
     for (const it of order) {
       if (cands.length >= 5) break;
       const [en] = await enrichItems([it]);
-      if (!en.text || en.text.length < 800) { console.log(`[news] 本文不足(${en.text?.length ?? 0}字 ${hostOf(en.link)}): ${it.title.slice(0, 40)}`); continue; }
+      if (!en.text || en.text.length < 800) { console.log(`[news] 本文不足(${en.text?.length ?? 0}字 ${hostOf(en.link)}${lastErr ? " " + lastErr : ""}): ${it.title.slice(0, 40)}`); continue; }
       if (seen.has(en.link)) continue;
       if (isEnglish(en.title) && !TRUSTED_EN.test(hostOf(en.link))) { console.log(`[news] 英語の無名媒体は使わない: ${hostOf(en.link)}`); continue; }
       if (BLOCK.test(en.text.slice(0, 1500))) { console.log(`[news] 本文に扱わない話題: ${it.title.slice(0, 40)}`); continue; }
