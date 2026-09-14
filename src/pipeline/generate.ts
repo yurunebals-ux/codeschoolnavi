@@ -469,13 +469,33 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
     if (!n.text || n.text.length < 800) throw new Error("ニュースの本文が800字未満のため書かない");
     const newsSystem = `${persona("editor")}\nあなたは日本語ネイティブの編集者です。プログラミングやAIを学ぼうとしている社会人・学生に向けて、業界ニュース1本を取り上げ、自分の言葉で見解を書きます。宣伝口調は使いません。${DATA_RULES.replace("下の「データ」", "下の「材料」")}\n\n${STYLE}`;
     const r = await chat(
-      `次のニュース1本について、見解記事を書く（全体で1,600〜2,200字）。\n出力形式（この順で。この形式以外は書かない）:\nTITLE: 記事タイトル（45字以内。検索で探される固有名詞（社名・製品名・制度名。例: OpenAI、Claude、教育訓練給付金）を必ず前半に入れ、後半で編集部の見方を言い切る。ニュースの見出しの写しは禁止。例「OpenAI の新モデル発表で、未経験がいま学ぶべきなのはプロンプトではなく設計だ」「AI研修のROIを3分で出せる、は半分正しい」）\nDESCRIPTION: 80字以内の説明\nLEAD: 冒頭の1段落（120字以内。何が起きたかを1文、編集部の見方を1文）\n## （何が起きたかを言い切る見出し）\n材料の本文から、自分の言葉で4〜6文。固有名詞・数字・日付は本文にあるものだけ。15字を超えて写さない。\n## （なぜ今この動きなのかを言い切る見出し）\n背景を3〜5文。材料に書かれていない事実は書かず、「〜と読める」「〜の流れの中にある」の形で推測と事実を分ける。\n## この動きを歓迎する見方\n賛成する立場の論拠を3〜4文。誰にとって何が良いか。\n## 慎重に見る見方\n反対・懸念の立場の論拠を3〜4文。誰が損をしうるか、見落とされている条件は何か。\n## 編集部の結論：学ぶ人はどう動くか\n賛否を踏まえた編集部の判断を言い切り、「◯◯な人は今月中に△△、そうでない人は様子見」のように行動まで落とす。5〜7文。自サイトの記事へ内部リンクを1つだけ入れてよい（必ず Markdown リンクの形: [給付金の使い方](/kyufukin/)、[6問診断](/shindan/)、[AIスクールの比較](/blog/osusume-hikaku-ai/)）。関係が薄ければ入れない。\n\n【禁止】材料にない固有名詞・数字・発言・調査。「当サイトの調査によると」「平均◯万円」。箇条書き。スクール名の宣伝。\n${isEnglish(n.title) ? "【海外ニュース】材料は英語。本文は日本語で書く。社名・製品名は原語のまま（初出でカタカナや短い説明を添える）。「日本の学ぶ人・転職市場にとっての意味」を結論の節で必ず1〜2文書く。\n" : ""}\n【材料】\n見出し: ${n.title}\n媒体: ${n.source}\n公開日: ${n.published}\nURL: ${n.link}\n本文:\n${n.text.slice(0, 4000)}`,
+      `次のニュース1本について、見解記事を書く（全体で1,600〜2,200字）。\n出力形式（この順で。この形式以外は書かない）:\nTITLE: 記事タイトル（45字以内。検索で探される固有名詞（社名・製品名・制度名。例: OpenAI、Claude、教育訓練給付金）を必ず前半に入れ、後半で編集部の見方を言い切る。ニュースの見出しの写しは禁止。例「OpenAI の新モデル発表で、未経験がいま学ぶべきなのはプロンプトではなく設計だ」「AI研修のROIを3分で出せる、は半分正しい」）\nDESCRIPTION: 80字以内の説明\nLEAD: 冒頭の1段落（120字以内。何が起きたかを1文、編集部の見方を1文）\n## （何が起きたかを言い切る見出し）\n材料の本文から、自分の言葉で4〜6文。固有名詞・数字・日付は本文にあるものだけ。15字を超えて写さない。\n## （なぜ今この動きなのかを言い切る見出し）\n背景を3〜5文。材料に書かれていない事実は書かず、「〜と読める」「〜の流れの中にある」の形で推測と事実を分ける。\n## この動きを歓迎する見方\n賛成する立場の論拠を3〜4文。誰にとって何が良いか。\n## 慎重に見る見方\n反対・懸念の立場の論拠を3〜4文。誰が損をしうるか、見落とされている条件は何か。\n## 編集部の結論：学ぶ人はどう動くか\n賛否${item.news?.reactions?.comments?.length ? "（ネットの反応の傾向も踏まえる）" : ""}を踏まえた編集部の判断を言い切り、「◯◯な人は今月中に△△、そうでない人は様子見」のように行動まで落とす。5〜7文。自サイトの記事へ内部リンクを1つだけ入れてよい（必ず Markdown リンクの形: [給付金の使い方](/kyufukin/)、[6問診断](/shindan/)、[AIスクールの比較](/blog/osusume-hikaku-ai/)）。関係が薄ければ入れない。\n\n【禁止】材料にない固有名詞・数字・発言・調査。「当サイトの調査によると」「平均◯万円」。箇条書き。スクール名の宣伝。\n${isEnglish(n.title) ? "【海外ニュース】材料は英語。本文は日本語で書く。社名・製品名は原語のまま（初出でカタカナや短い説明を添える）。「日本の学ぶ人・転職市場にとっての意味」を結論の節で必ず1〜2文書く。\n" : ""}\n【材料】\n見出し: ${n.title}\n媒体: ${n.source}\n公開日: ${n.published}\nURL: ${n.link}\n本文:\n${n.text.slice(0, 4000)}${item.news?.reactions?.comments?.length ? `\n\n【ネットの反応の傾向（参考。本文に引用しない）】\n${item.news.reactions.comments.slice(0, 10).map((c) => `- ${c.text.slice(0, 80)}`).join("\n")}` : ""}`,
       { system: newsSystem, maxTokens: 3500, temperature: 0.7 });
     const ht = takeTitle(r.trim());
     const hd = takeDescription(ht.body);
     const lm = hd.body.match(/^\s*LEAD[:：]\s*(.+)\n/);
     const lead = lm ? lm[1].trim() : "";
-    const hotBody = (lm ? hd.body.slice(lm[0].length) : hd.body).trim().replace(/[ \t]+$/gm, "");
+    let hotBody = (lm ? hd.body.slice(lm[0].length) : hd.body).trim().replace(/[ \t]+$/gm, "");
+
+    // ネットの反応（まとめサイト風）。反応が5件以上あるときだけ「なぜ今か」の節の後に挟む。
+    // 掲載は要約＋40字以内の短い引用（出所は節末に機械で明示）。ユーザー名は出さない。
+    const rx = item.news?.reactions;
+    if (rx && rx.comments.length >= 5) {
+      const list = rx.comments.slice(0, 30).map((c, i) => `${i + 1}. [${c.platform}${c.likes ? ` ♥${c.likes}` : ""}] ${c.text}`).join("\n");
+      const rxText = await chat(
+        `次のニュースに対するネット上のコメント（${rx.comments.length}件）を読み、「ネットの反応」の節を書く。\n出力形式（この形式以外は書かない。見出し「## ネットの反応」から始める）:\n## ネットの反応\n導入1文（どの立場の声が多いか）。\n### 歓迎・期待の声\n要約2〜3文＋短い引用を1つ（原文から40字以内をそのまま「」で。英語なら日本語に訳して「」）。\n### 懸念・批判の声\n同じ形。\n### 別の視点\n同じ形（該当する声が無ければこの小見出しは書かない）。\n【禁止】コメントにない意見の創作。ユーザー名・ハンドル名。40字を超える引用。個人や企業への中傷の引用。\n\n【ニュースの見出し】${n.title}\n【コメント】\n${list}`,
+        { system: newsSystem, maxTokens: 1500, temperature: 0.5 });
+      const rxSection = rxText.trim().replace(/[ \t]+$/gm, "");
+      if (/^## ネットの反応/m.test(rxSection)) {
+        const srcLine = `反応の出典：${rx.threads.map((t) => `[${t.platform}](${t.url})（${t.count}件）`).join("・")}`;
+        // 2つ目の ## 見出し（なぜ今か）の直後の段落末に挿入。見出しが2つ未満なら末尾へ
+        const heads = [...hotBody.matchAll(/^## .+$/gm)];
+        const at = heads[2]?.index;
+        hotBody = at != null
+          ? `${hotBody.slice(0, at).trimEnd()}\n\n${rxSection}\n\n${srcLine}\n\n${hotBody.slice(at)}`
+          : `${hotBody}\n\n${rxSection}\n\n${srcLine}`;
+      }
+    }
     let body3 = [lead, `出典：[${n.source}](${n.link})（${n.published}）`, hotBody, `## 出典\n\n- [${n.title}](${n.link})（${n.source}、${n.published}）`].filter(Boolean).join("\n\n");
     body3 = fixInternalLinks(dedupeSections(normalizeHeadings(body3)));
     body3 = dedupeSections(await depersonalizeAi(body3, newsSystem));
@@ -540,7 +560,7 @@ async function depersonalizeAi(body: string, system: string): Promise<string> {
     console.log(`[editor] 文体書き直し ${round}回目 score=${s.score} → ${s.structure.length + s.rhythm.length}件の構造/リズム指摘`);
 
     const revised = await chat(
-      `以下の記事を、意味・事実・数字・見出し構成・マークダウン記法・表・リンクを一切変えずに、文体だけ書き直してください。\n\n${orders}\n\n守ること:\n・見出し（## と ###）の文言・個数・順序は変えない。表（| で始まる行）は1文字も変えずにそのまま残す。\n・価格・期間・パーセント・スクール名は1文字も変えない。新しい事実を足さない。\n・文字数は減らさない（同じ長さか少し長く）。\n・記事全体を最初から最後まで出力する。省略や「（以下省略）」は禁止。\n\n---\n${out}`,
+      `以下の記事を、意味・事実・数字・見出し構成・マークダウン記法・表・リンクを一切変えずに、文体だけ書き直してください。\n\n${orders}\n\n守ること:\n・見出し（## と ###）の文言・個数・順序は変えない。表（| で始まる行）は1文字も変えずにそのまま残す。\n・価格・期間・パーセント・スクール名は1文字も変えない。新しい事実を足さない。「」で囲まれた引用と「出典：」「反応の出典：」で始まる行は1文字も変えない。\n・文字数は減らさない（同じ長さか少し長く）。\n・記事全体を最初から最後まで出力する。省略や「（以下省略）」は禁止。\n\n---\n${out}`,
       { system, maxTokens: 12000, temperature: 0.4 });
 
     const cand = deaiMechanical(revised.trim());

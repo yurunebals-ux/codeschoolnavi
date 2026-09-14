@@ -163,6 +163,73 @@ function fmtDate(s: string): string {
   return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
 }
 
+// ---- ネットの反応（コメント）を拾う。「ニュースに対するコメントも拾ってまとめサイトのように」（オーナー 2026-09-14）----
+// 使うのは公開APIだけ: はてなブックマーク（エントリー情報API）、Hacker News（Algolia API）、Bluesky（公開API）、Reddit（JSON）。
+// X（旧Twitter）とYahoo!コメントは API が有料／規約上不可なので使わない。
+// 掲載は「要約＋40字以内の短い引用（出所明示）」に限り、ユーザー名は出さない（引用の要件と、個人を晒さないため）。
+export interface Reactions { threads: { platform: string; url: string; count: number }[]; comments: { platform: string; text: string; likes?: number }[] }
+
+async function getJson(url: string, ms = 12000): Promise<any | null> {
+  const r = await get(url, ms);
+  if (!r) return null;
+  try { return JSON.parse(r.body); } catch { return null; }
+}
+const cleanComment = (t: string) => decode(t).replace(/https?:\/\/\S+/g, "").replace(/\s+/g, " ").trim().slice(0, 220);
+
+export async function fetchReactions(link: string, title: string): Promise<Reactions> {
+  const out: Reactions = { threads: [], comments: [] };
+  // はてなブックマーク
+  const hb = await getJson(`https://b.hatena.ne.jp/entry/jsonlite/?url=${encodeURIComponent(link)}`);
+  if (hb && Array.isArray(hb.bookmarks)) {
+    const cs = hb.bookmarks.map((b: any) => cleanComment(b.comment ?? "")).filter((c: string) => c.length >= 8);
+    if (cs.length) {
+      out.threads.push({ platform: "はてなブックマーク", url: hb.entry_url ?? `https://b.hatena.ne.jp/entry/s/${link.replace(/^https?:\/\//, "")}`, count: Number(hb.count ?? cs.length) });
+      out.comments.push(...cs.slice(0, 15).map((text: string) => ({ platform: "はてなブックマーク", text })));
+    }
+  }
+  // Hacker News
+  const hn = await getJson(`https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(link)}&restrictSearchableAttributes=url&tags=story&hitsPerPage=3`);
+  const hit = hn?.hits?.sort((a: any, b: any) => (b.num_comments ?? 0) - (a.num_comments ?? 0))[0];
+  if (hit && (hit.num_comments ?? 0) > 0) {
+    const item = await getJson(`https://hn.algolia.com/api/v1/items/${hit.objectID}`);
+    const cs = (item?.children ?? []).map((c: any) => cleanComment(c.text ?? "")).filter((c: string) => c.length >= 20);
+    if (cs.length) {
+      out.threads.push({ platform: "Hacker News", url: `https://news.ycombinator.com/item?id=${hit.objectID}`, count: hit.num_comments });
+      out.comments.push(...cs.slice(0, 12).map((text: string) => ({ platform: "Hacker News", text })));
+    }
+  }
+  // Bluesky（URL と見出しの両方で検索）
+  for (const q of [link, title.slice(0, 40)]) {
+    const bs = await getJson(`https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(q)}&limit=25`);
+    const posts = (bs?.posts ?? []).filter((p: any) => (p.record?.text ?? "").length >= 20);
+    if (!posts.length) continue;
+    const seenT = new Set(out.comments.map((c) => c.text));
+    const cs = posts
+      .map((p: any) => ({ platform: "Bluesky", text: cleanComment(p.record.text), likes: Number(p.likeCount ?? 0) }))
+      .filter((c: any) => c.text.length >= 12 && !seenT.has(c.text))
+      .sort((a: any, b: any) => (b.likes ?? 0) - (a.likes ?? 0)).slice(0, 10);
+    if (cs.length) {
+      if (!out.threads.some((t) => t.platform === "Bluesky")) out.threads.push({ platform: "Bluesky", url: `https://bsky.app/search?q=${encodeURIComponent(q)}`, count: posts.length });
+      out.comments.push(...cs);
+    }
+    if (out.comments.filter((c) => c.platform === "Bluesky").length >= 5) break;
+  }
+  // Reddit（取れないことが多いので最後・失敗しても無視）
+  const rd = await getJson(`https://www.reddit.com/search.json?q=url%3A${encodeURIComponent(link)}&sort=comments&limit=3`);
+  const post = rd?.data?.children?.map((c: any) => c.data).sort((a: any, b: any) => (b.num_comments ?? 0) - (a.num_comments ?? 0))[0];
+  if (post && (post.num_comments ?? 0) > 0 && post.permalink) {
+    const th = await getJson(`https://www.reddit.com${post.permalink}.json?limit=20`);
+    const cs = (th?.[1]?.data?.children ?? []).map((c: any) => c.data).filter((d: any) => d.body && d.body.length >= 20)
+      .map((d: any) => ({ platform: "Reddit", text: cleanComment(d.body), likes: Number(d.score ?? 0) }))
+      .sort((a: any, b: any) => (b.likes ?? 0) - (a.likes ?? 0)).slice(0, 10);
+    if (cs.length) {
+      out.threads.push({ platform: "Reddit", url: `https://www.reddit.com${post.permalink}`, count: post.num_comments });
+      out.comments.push(...cs);
+    }
+  }
+  return out;
+}
+
 const hostOf = (u: string) => { try { return new URL(u).host.replace(/^www\./, ""); } catch { return ""; } };
 
 function relevance(it: NewsItem): number {
@@ -261,23 +328,35 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
   if (mode === "hot") {
     // 1本に見解を書く。プレスリリースやSEO記事は避け、本文が800字以上取れた最上位のニュースを使う
     const order = [...fresh.filter((it) => !isPR(it) && !isSeo(it)), ...fresh.filter((it) => isPR(it) && !isSeo(it))].slice(0, 12);
+    // 本文が取れた候補を最大5本まで集め、ネットの反応が多いものを優先する（「まとめサイトのように」）。
+    const cands: { it: NewsItem; en: NewsItem; rx: Reactions; rank: number }[] = [];
     for (const it of order) {
+      if (cands.length >= 5) break;
       const [en] = await enrichItems([it]);
       if (!en.text || en.text.length < 800) { console.log(`[news] 本文不足: ${it.title.slice(0, 40)}`); continue; }
       if (seen.has(en.link)) continue;
       if (isEnglish(en.title) && !TRUSTED_EN.test(hostOf(en.link))) { console.log(`[news] 英語の無名媒体は使わない: ${hostOf(en.link)}`); continue; }
       if (BLOCK.test(en.text.slice(0, 1500))) { console.log(`[news] 本文に扱わない話題: ${it.title.slice(0, 40)}`); continue; }
+      const rx = await fetchReactions(en.link, en.title).catch(() => ({ threads: [], comments: [] } as Reactions));
+      console.log(`[news] 候補: 「${it.title.slice(0, 36)}」 反応${rx.comments.length}件（${rx.threads.map((t) => `${t.platform}${t.count}`).join("・") || "なし"}）`);
+      cands.push({ it, en, rx, rank: cands.length });
+    }
+    // 反応が5件以上ある候補があればその中で最多、無ければ関連度順の先頭
+    const withRx = cands.filter((c) => c.rx.comments.length >= 5).sort((a, b) => b.rx.comments.length - a.rx.comments.length || a.rank - b.rank);
+    const best = withRx[0] ?? cands[0];
+    if (best) {
+      const { it, en, rx } = best;
       const slug = slugFor(en.link);
       state.keywords.push({
         slug, keyword: `ニュースの見方: ${en.title.slice(0, 40)}`,
         template: "news:hot", tools: [], kind: "news", cluster: "ニュース", score: 96, status: "queued", createdAt: new Date().toISOString(),
-        news: { title: en.title, link: en.link, source: en.source, published: fmtDate(en.published), snippet: en.snippet, text: en.text } as any,
+        news: { title: en.title, link: en.link, source: en.source, published: fmtDate(en.published), snippet: en.snippet, text: en.text, reactions: rx.comments.length ? rx : undefined },
       });
       saveState(state);
       log.used.push({ link: en.link, slug, date }); if (it.link !== en.link) log.used.push({ link: it.link, slug, date });
       log.lastRun = date;
       writeFileSync(LOG, JSON.stringify(log, null, 2) + "\n");
-      console.log(`[news] キュー投入(hot): 「${en.title.slice(0, 40)}」(${en.source}) 本文${en.text.length}字`);
+      console.log(`[news] キュー投入(hot): 「${en.title.slice(0, 40)}」(${en.source}) 本文${en.text?.length ?? 0}字 反応${rx.comments.length}件`);
       return slug;
     }
     console.log("[news] 見解を書けるニュース（本文800字以上）が無い。今日は書かない");
