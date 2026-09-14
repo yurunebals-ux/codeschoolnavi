@@ -49,7 +49,11 @@ const BOOST: [RegExp, number][] = [
   [/developer|coding|programmer|engineer|software|jobs|hiring|layoff|junior/i, 2],
   [/agent|model|launch|release|open.?source|benchmark/i, 1],
 ];
-const BLOCK = /株価|決算|逮捕|訴訟|炎上|芸能|選挙|セール|クーポン|割引キャンペーン|IPO|earnings|stock|lawsuit|shares|valuation/i;
+const BLOCK = /株価|決算|逮捕|訴訟|炎上|芸能|選挙|セール|クーポン|割引キャンペーン|IPO|earnings|stock|lawsuit|shares|valuation|軍事|兵器|ミサイル|戦争|武装|テロ|missile|weapon|military|warfare|terror|drone strike|deepfake|porn|sexual|suicide|self-harm|election|政治|政党/i;
+// 英語ニュースは媒体を絞る（Google News 英語検索は無名サイトも拾う。2026-09-14 に quasa.io の兵器ネタが混入）
+const TRUSTED_EN = /(^|\.)(techcrunch\.com|openai\.com|anthropic\.com|technologyreview\.com|theverge\.com|arstechnica\.com|wired\.com|reuters\.com|bloomberg\.com|nytimes\.com|ft\.com|venturebeat\.com|zdnet\.com|github\.blog|blog\.google|deepmind\.google|microsoft\.com|theinformation\.com|axios\.com|cnbc\.com|bbc\.com|theguardian\.com|stackoverflow\.blog|infoq\.com|thenewstack\.io)$/i;
+// 英語ニュースは「学ぶ人・働く人」に関係する語が無ければ扱わない（モデル発表だけの記事は多すぎる）
+const EN_RELEVANT = /developer|coding|code|programmer|engineer|software|jobs?|hiring|layoff|junior|learn|student|education|skills?|career|workforce|entry.level|bootcamp|copilot|agent/i;
 export const isEnglish = (s: string) => !/[\u3040-\u30ff\u4e00-\u9faf]/.test(s);
 
 export interface NewsItem { title: string; link: string; source: string; published: string; snippet: string; text?: string }
@@ -154,11 +158,14 @@ function fmtDate(s: string): string {
   return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
 }
 
+const hostOf = (u: string) => { try { return new URL(u).host.replace(/^www\./, ""); } catch { return ""; } };
+
 function relevance(it: NewsItem): number {
   let s = 0;
   const hay = it.title + " " + it.snippet.slice(0, 120);
   for (const [re, w] of BOOST) if (re.test(hay)) s += w;
-  if (BLOCK.test(it.title)) s -= 10;
+  if (BLOCK.test(it.title) || BLOCK.test(it.snippet.slice(0, 200))) s -= 10;
+  if (isEnglish(it.title) && !EN_RELEVANT.test(hay)) s -= 10;
   const age = (Date.now() - new Date(it.published).getTime()) / 86400000;
   if (!Number.isNaN(age)) s -= Math.min(age, 14) * 0.25;
   return s;
@@ -253,6 +260,8 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
       const [en] = await enrichItems([it]);
       if (!en.text || en.text.length < 800) { console.log(`[news] 本文不足: ${it.title.slice(0, 40)}`); continue; }
       if (seen.has(en.link)) continue;
+      if (isEnglish(en.title) && !TRUSTED_EN.test(hostOf(en.link))) { console.log(`[news] 英語の無名媒体は使わない: ${hostOf(en.link)}`); continue; }
+      if (BLOCK.test(en.text.slice(0, 1500))) { console.log(`[news] 本文に扱わない話題: ${it.title.slice(0, 40)}`); continue; }
       const slug = slugFor(en.link);
       state.keywords.push({
         slug, keyword: `ニュースの見方: ${en.title.slice(0, 40)}`,
@@ -282,8 +291,10 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
     if (isPR(it) && prCount >= 1) continue; // プレスリリース由来は1本まで（宣伝ばかりにしない）
     const [en] = await enrichItems([it]);
     if (!en.text) { console.log(`[news] 本文なし: ${it.title.slice(0, 40)}`); continue; }
-    const host = (() => { try { return new URL(en.link).host; } catch { return en.source; } })();
+    const host = hostOf(en.link) || en.source;
     if (hosts.has(host)) continue;
+    if (isEnglish(en.title) && !TRUSTED_EN.test(host)) { console.log(`[news] 英語の無名媒体は使わない: ${host}`); continue; }
+    if (BLOCK.test(en.text.slice(0, 1500))) continue;
     hosts.add(host);
     if (isPR(it)) prCount++;
     picked.push({ ...en, rssLink: it.link, published: fmtDate(en.published) });

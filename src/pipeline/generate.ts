@@ -217,6 +217,21 @@ export function repairTables(md: string): string {
   return out.join("\n");
 }
 
+/** 自サイトへのリンクの後始末（全記事共通） */
+export function fixInternalLinks(body: string): string {
+  // 自サイトへのリンクを絶対URLで書いてくる（https://example.com/kyufukin/ など。本番で4記事が
+  // example.com へ飛んでいた、2026-09-11 実測）。自サイト・example.com の絶対URLは相対パスに直す。
+  body = body.replace(/\]\(https?:\/\/(?:www\.)?(?:example\.com|codeschoolnavi\.com)(\/[^)\s]*)?\)/g, (_m, path) => `](${path || "/"})`);
+  // 「/kyufukin/」とパスを地の文に書くだけでリンクにしないことがある（実測: ryokin-runteq、news-hot 1本目）。
+  // Markdown リンクの中は触らず、裸のパスだけリンクに置き換える。
+  body = body.replace(/「?(?<!\]\()(?<![\w/])(\/kyufukin\/)」?/g, (m, path, off, str) => {
+    const before = str.slice(Math.max(0, off - 2), off);
+    return /\]\($/.test(before) || /\($/.test(before) ? m : "[給付金の使い方](/kyufukin/)";
+  });
+  body = body.replace(/(?<!\]\()(?<![\w/])\/shindan\/(?![\w/])/g, "[6問診断](/shindan/)");
+  return body;
+}
+
 export function dedupeSections(md: string): string {
   const lines = md.split("\n");
   const heads: { title: string; start: number }[] = [];
@@ -454,7 +469,7 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
     if (!n.text || n.text.length < 800) throw new Error("ニュースの本文が800字未満のため書かない");
     const newsSystem = `${persona("editor")}\nあなたは日本語ネイティブの編集者です。プログラミングやAIを学ぼうとしている社会人・学生に向けて、業界ニュース1本を取り上げ、自分の言葉で見解を書きます。宣伝口調は使いません。${DATA_RULES.replace("下の「データ」", "下の「材料」")}\n\n${STYLE}`;
     const r = await chat(
-      `次のニュース1本について、見解記事を書く（全体で1,600〜2,200字）。\n出力形式（この順で。この形式以外は書かない）:\nTITLE: 記事タイトル（45字以内。検索で探される固有名詞（社名・製品名・制度名。例: OpenAI、Claude、教育訓練給付金）を必ず前半に入れ、後半で編集部の見方を言い切る。ニュースの見出しの写しは禁止。例「OpenAI の新モデル発表で、未経験がいま学ぶべきなのはプロンプトではなく設計だ」「AI研修のROIを3分で出せる、は半分正しい」）\nDESCRIPTION: 80字以内の説明\nLEAD: 冒頭の1段落（120字以内。何が起きたかを1文、編集部の見方を1文）\n## （何が起きたかを言い切る見出し）\n材料の本文から、自分の言葉で4〜6文。固有名詞・数字・日付は本文にあるものだけ。15字を超えて写さない。\n## （なぜ今この動きなのかを言い切る見出し）\n背景を3〜5文。材料に書かれていない事実は書かず、「〜と読める」「〜の流れの中にある」の形で推測と事実を分ける。\n## この動きを歓迎する見方\n賛成する立場の論拠を3〜4文。誰にとって何が良いか。\n## 慎重に見る見方\n反対・懸念の立場の論拠を3〜4文。誰が損をしうるか、見落とされている条件は何か。\n## 編集部の結論：学ぶ人はどう動くか\n賛否を踏まえた編集部の判断を言い切り、「◯◯な人は今月中に△△、そうでない人は様子見」のように行動まで落とす。5〜7文。自サイトの記事へ内部リンク（/kyufukin/ や /shindan/ や /blog/osusume-hikaku-ai/ など）を1つだけ入れてよいが、関係が薄ければ入れない。\n\n【禁止】材料にない固有名詞・数字・発言・調査。「当サイトの調査によると」「平均◯万円」。箇条書き。スクール名の宣伝。\n${isEnglish(n.title) ? "【海外ニュース】材料は英語。本文は日本語で書く。社名・製品名は原語のまま（初出でカタカナや短い説明を添える）。「日本の学ぶ人・転職市場にとっての意味」を結論の節で必ず1〜2文書く。\n" : ""}\n【材料】\n見出し: ${n.title}\n媒体: ${n.source}\n公開日: ${n.published}\nURL: ${n.link}\n本文:\n${n.text.slice(0, 4000)}`,
+      `次のニュース1本について、見解記事を書く（全体で1,600〜2,200字）。\n出力形式（この順で。この形式以外は書かない）:\nTITLE: 記事タイトル（45字以内。検索で探される固有名詞（社名・製品名・制度名。例: OpenAI、Claude、教育訓練給付金）を必ず前半に入れ、後半で編集部の見方を言い切る。ニュースの見出しの写しは禁止。例「OpenAI の新モデル発表で、未経験がいま学ぶべきなのはプロンプトではなく設計だ」「AI研修のROIを3分で出せる、は半分正しい」）\nDESCRIPTION: 80字以内の説明\nLEAD: 冒頭の1段落（120字以内。何が起きたかを1文、編集部の見方を1文）\n## （何が起きたかを言い切る見出し）\n材料の本文から、自分の言葉で4〜6文。固有名詞・数字・日付は本文にあるものだけ。15字を超えて写さない。\n## （なぜ今この動きなのかを言い切る見出し）\n背景を3〜5文。材料に書かれていない事実は書かず、「〜と読める」「〜の流れの中にある」の形で推測と事実を分ける。\n## この動きを歓迎する見方\n賛成する立場の論拠を3〜4文。誰にとって何が良いか。\n## 慎重に見る見方\n反対・懸念の立場の論拠を3〜4文。誰が損をしうるか、見落とされている条件は何か。\n## 編集部の結論：学ぶ人はどう動くか\n賛否を踏まえた編集部の判断を言い切り、「◯◯な人は今月中に△△、そうでない人は様子見」のように行動まで落とす。5〜7文。自サイトの記事へ内部リンクを1つだけ入れてよい（必ず Markdown リンクの形: [給付金の使い方](/kyufukin/)、[6問診断](/shindan/)、[AIスクールの比較](/blog/osusume-hikaku-ai/)）。関係が薄ければ入れない。\n\n【禁止】材料にない固有名詞・数字・発言・調査。「当サイトの調査によると」「平均◯万円」。箇条書き。スクール名の宣伝。\n${isEnglish(n.title) ? "【海外ニュース】材料は英語。本文は日本語で書く。社名・製品名は原語のまま（初出でカタカナや短い説明を添える）。「日本の学ぶ人・転職市場にとっての意味」を結論の節で必ず1〜2文書く。\n" : ""}\n【材料】\n見出し: ${n.title}\n媒体: ${n.source}\n公開日: ${n.published}\nURL: ${n.link}\n本文:\n${n.text.slice(0, 4000)}`,
       { system: newsSystem, maxTokens: 3500, temperature: 0.7 });
     const ht = takeTitle(r.trim());
     const hd = takeDescription(ht.body);
@@ -462,7 +477,7 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
     const lead = lm ? lm[1].trim() : "";
     const hotBody = (lm ? hd.body.slice(lm[0].length) : hd.body).trim().replace(/[ \t]+$/gm, "");
     let body3 = [lead, `出典：[${n.source}](${n.link})（${n.published}）`, hotBody, `## 出典\n\n- [${n.title}](${n.link})（${n.source}、${n.published}）`].filter(Boolean).join("\n\n");
-    body3 = dedupeSections(normalizeHeadings(body3));
+    body3 = fixInternalLinks(dedupeSections(normalizeHeadings(body3)));
     body3 = dedupeSections(await depersonalizeAi(body3, newsSystem));
     return { body: body3, description: hd.description, title: ht.title, tools: [] };
   } else {
@@ -482,15 +497,7 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
     .replace(/^(#{2,3})\s*\d{1,2}[\.．、)）]\s*/gm, "$1 ")
     .replace(/^(#{2,3})\s*(冒頭|前半|中盤|後半)[:：]\s*/gm, "$1 ");
 
-  // 自サイトへのリンクを絶対URLで書いてくる（https://example.com/kyufukin/ など。本番で4記事が
-  // example.com へ飛んでいた、2026-09-11 実測）。自サイト・example.com の絶対URLは相対パスに直す。
-  body = body.replace(/\]\(https?:\/\/(?:www\.)?(?:example\.com|codeschoolnavi\.com)(\/[^)\s]*)?\)/g, (_m, path) => `](${path || "/"})`);
-  // 「/kyufukin/」とパスを地の文に書くだけでリンクにしないことがある（実測: ryokin-runteq）。
-  // Markdown リンクの中は触らず、裸のパスだけリンクに置き換える。
-  body = body.replace(/「?(?<!\]\()(?<![\w/])(\/kyufukin\/)」?/g, (m, path, off, str) => {
-    const before = str.slice(Math.max(0, off - 2), off);
-    return /\]\($/.test(before) || /\($/.test(before) ? m : "[給付金の使い方](/kyufukin/)";
-  });
+  body = fixInternalLinks(body);
   if (plan.factBoxFor) body = insertAfterIntro(body, factBox(plan.factBoxFor, subsidyIds.includes(plan.factBoxFor.id)));
   if (plan.needTable && !body.includes("|") && tools.length) body += `\n\n## 比較一覧\n\n${comparisonTable(tools)}\n`;
 
