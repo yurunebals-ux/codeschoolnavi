@@ -1479,10 +1479,31 @@
       },
       "structure": 2,
       "publishedAt": "2026-09-11T09:42:11.264Z"
+    },
+    {
+      "slug": "news-20260914-19olj",
+      "keyword": "Claudeが関与したミサイル開発、試験失敗で示すAI援用の限界",
+      "template": "news:hot",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 96,
+      "status": "published",
+      "createdAt": "2026-09-14T09:23:45.987Z",
+      "news": {
+        "title": "Claude Aided Missile Software, but the Rocket Test Failed",
+        "link": "https://quasa.io/insights/claude-helped-build-missile-software-but-the-test-rocket-still-failed",
+        "source": "quasa.io",
+        "published": "2026年9月14日",
+        "snippet": "Claude Aided Missile Software, but the Rocket Test Failed&nbsp;&nbsp;quasa.io",
+        "text": "In its September 10, 2026 threat report, Anthropic disclosed that a cell in northern Yemen had used Claude Code for guidance-software work across three weapons programs. The projects included a guided rocket, a multistage ballistic missile with a stated range goal above 2,000 kilometers and a proposed missile family containing a hypersonic-glide variant.\nThe guided rocket progressed beyond code and simulation to a live field test. Anthropic assessed that the test appeared to fail and found no evidence that the cell had fielded an operational device. The disclosure therefore establishes sustained AI-assisted weapons engineering—not a working missile or a successful guidance system.\nFor the guided rocket, Claude Code helped develop guidance, navigation and control software—the systems intended to steer and stabilize a vehicle. The work covered control and position-estimation code, integration of an open-source autopilot with a commodity phone-class flight computer, configuration tuning, firmware builds and flight simulation.\nThe cell operated several Claude instances concurrently, assigning separate coding, research and code-review roles. Requests were divided among sessions, while the intended application was sometimes concealed. Many requests were blocked by safeguards, but others passed through, allowing the model to remain part of an iterative development process.\nThis is stronger evidence than isolated technical questioning. Code was written and revised, firmware was built, simulations were run and software was integrated with computing hardware. It still does not establish that the resulting control system was reliable under flight conditions.\nThe clearest way to read the case is as a sequence of increasingly demanding engineering stages:\nThe Associated Press account confirms that the identified accounts were blocked, that the guided-rocket test failed and that Anthropic had no evidence of an operational device. AP also notes that Anthropic did not publicly identify the users; describing them specifically as Houthis would therefore go beyond the company’s attribution, even though northern Yemen is under Houthi control.\nThe offline toolkit matters because it could run without Claude or an engineering environment such as MATLAB. Blocking the accounts ended their access through the identified operation, but it could not retract software already packaged to operate elsewhere.\nAnthropic’s confidence varies across the evidence. Its visibility was strongest for activity conducted through its service: the coding sessions, division of work among Claude instances, simulation tasks and attempts to evade safeguards. It also described having evidence for the offline toolkit and live test.\nThe result of the launch carries more qualified language. The Washington Post’s account recounts that the users returned to Claude within hours of the test to diagnose why it had failed, the sequence underlying the assessment that the launch apparently failed.\nNo public telemetry, independently inspected hardware or test footage establishes which component malfunctioned. The available record cannot determine whether the failure involved guidance software, hardware integration, launch conditions or another part of the vehicle. It also does not support a claim that Claude caused the failure.\nThe other two programs remained further from public proof of a physical weapon. The long-range figure was a stated development goal rather than a measured flight result. References to hypersonic-glide and other variants describe intended designs and simulation work, not completed vehicles.\nThat distinction is central to the case. AI assistance may reduce the effort required for coding, modeling and troubleshooting, but each later stage—reliable hardware integration, controlled flight and operational deployment—requires evidence that the disclosure does not provide.\nAs of September 12, the documented story ends with an apparently unsuccessful guided-rocket test and s"
+      },
+      "structure": 2,
+      "publishedAt": "2026-09-14T09:24:04.495Z"
     }
   ],
-  "publishedCount": 56,
-  "estimatedMrrUsd": 16800,
+  "publishedCount": 57,
+  "estimatedMrrUsd": 17100,
   "history": [
     {
       "date": "2026-07-24",
@@ -1741,9 +1762,9 @@
     },
     {
       "date": "2026-09-14",
-      "published": 56,
-      "estimatedMrrUsd": 16800
+      "published": 57,
+      "estimatedMrrUsd": 17100
     }
   ],
-  "lastRun": "2026-09-14T07:47:04.054Z"
+  "lastRun": "2026-09-14T09:24:04.702Z"
 }
