@@ -9,6 +9,10 @@ on:
         default: "hot"
         type: choice
         options: [hot, weekly]
+      dry:
+        description: "true なら候補と反応を調べるだけで記事は書かない（動作確認）"
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -44,7 +48,7 @@ jobs:
       - name: Pick news, write, check, publish
         run: |
           set -o pipefail
-          npx tsx src/pipeline/news.ts --force --${{ inputs.mode || 'hot' }} | tee news.log
+          npx tsx src/pipeline/news.ts --force --${{ inputs.mode || 'hot' }} ${{ inputs.dry && '--dry' || '' }} | tee news.log
           # ニュースが拾えなかった日は何も書かない（generate は次のキュー＝比較記事を書いてしまうため）
           grep -q "キュー投入" news.log || { echo "ニュース無し。終了"; exit 0; }
           npx tsx src/pipeline/generate.ts 1
