@@ -618,3 +618,7 @@ LLMは後に来た具体的な指示に従うので、対象外でも計算し�
 - **`https://example.com/kyufukin/` へのリンクが本番4記事にあった**（LLMが自サイトを絶対URLで書く）→ generate で相対パスに書き換え、quality で example.com / googleusercontent.com はデッドリンクとして却下。4記事は手で修正
 - **表の区切り行が抜けた原稿を `repairTables()` で自動修復**（AVILEN 記事が却下されて1日分が空振りした）
 - 手動サイクル #57: 新記事は AVILEN が却下（表崩れ）、regen 2本採用、内部リンク45本張り替え
+
+### 実測（2026-09-14 news-hot 1本目）
+- Google News 英語検索が quasa.io（無名媒体）の「Claude がミサイル開発に使われた」記事を拾い、「AI支援兵器開発を評価する理由」という節を書いた。学習サイトに載せる話題ではない → `draft: true` で非公開にし、(1) 軍事・兵器・政治・性的話題を BLOCK（見出し・抜粋・本文冒頭）(2) 英語は TRUSTED_EN の媒体だけ (3) 英語は「学ぶ人・働く人」に関わる語（developer/jobs/learn…）が無ければ減点、を入れた
+- 本文に裸の「/kyufukin/」が残った → `fixInternalLinks()` を全記事共通にして news:hot にも適用
