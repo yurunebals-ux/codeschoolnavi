@@ -132,7 +132,7 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 
 ## あわせて読みたい
 
-- [Claudeが関与したミサイル開発、試験失敗で示すAI援用の限界](/blog/news-20260914-19olj/)
+- [Gartner調査で判明、2026年AIコーディング予算超過の実態と対策](/blog/news-20260914-vc3xv/)
 - [Aidemyは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-aidemy/)
 - [Aidemyの料金は高い？他社と比較](/blog/ryokin-aidemy/)
 - [AI活用力の育成と投資効果、未経験採用のリアルを見極める時代](/blog/news-20260911-16rq8/)

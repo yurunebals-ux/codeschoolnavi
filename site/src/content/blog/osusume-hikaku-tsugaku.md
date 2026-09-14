@@ -252,5 +252,5 @@ ITパスポートや基本情報技術者などの国家資格取得を目指す
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Winスクールの評判・口コミは？特徴を解説](/blog/hyoban-winschool/)
-- [Claudeが関与したミサイル開発、試験失敗で示すAI援用の限界](/blog/news-20260914-19olj/)
+- [Gartner調査で判明、2026年AIコーディング予算超過の実態と対策](/blog/news-20260914-vc3xv/)
 - [Aidemyは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-aidemy/)
