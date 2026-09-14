@@ -54,6 +54,16 @@
       "date": "2026-09-13",
       "version": 2,
       "ok": true
+    },
+    "hyoban-samurai": {
+      "date": "2026-09-14",
+      "version": 2,
+      "ok": true
+    },
+    "hyoban-aidemy": {
+      "date": "2026-09-14",
+      "version": 2,
+      "ok": true
     }
   }
 }

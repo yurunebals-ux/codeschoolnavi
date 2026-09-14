@@ -200,5 +200,5 @@ Winスクールには返金保証制度がありません。契約後のキャ�
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [通学・オンラインのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-tsugaku/)
+- [Aidemyは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-aidemy/)
 - [Aidemyの料金は高い？他社と比較](/blog/ryokin-aidemy/)
-- [AI活用力の育成と投資効果、未経験採用のリアルを見極める時代](/blog/news-20260911-16rq8/)

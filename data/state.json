@@ -577,7 +577,8 @@
       "score": 91,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-07-26T05:38:52.892Z"
+      "publishedAt": "2026-07-26T05:38:52.892Z",
+      "structure": 2
     },
     {
       "slug": "hyoban-aidemy",
@@ -591,7 +592,8 @@
       "score": 91,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-07-27T05:58:09.278Z"
+      "publishedAt": "2026-07-27T05:58:09.278Z",
+      "structure": 2
     },
     {
       "slug": "hyoban-kikagaku",
@@ -845,7 +847,7 @@
     },
     {
       "slug": "yametoke-aidemy",
-      "keyword": "Aidemyはやめとけ？評判と後悔しない判断基準",
+      "keyword": "Aidemyは自分に合う？向いていない人の条件と後悔しない判断基準",
       "template": "money:doubt",
       "tools": [
         "aidemy"
@@ -853,8 +855,10 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "structure": 2,
+      "publishedAt": "2026-09-14T07:47:03.778Z"
     },
     {
       "slug": "ryokin-kikagaku",
@@ -1477,8 +1481,8 @@
       "publishedAt": "2026-09-11T09:42:11.264Z"
     }
   ],
-  "publishedCount": 55,
-  "estimatedMrrUsd": 16500,
+  "publishedCount": 56,
+  "estimatedMrrUsd": 16800,
   "history": [
     {
       "date": "2026-07-24",
@@ -1734,7 +1738,12 @@
       "date": "2026-09-13",
       "published": 55,
       "estimatedMrrUsd": 16500
+    },
+    {
+      "date": "2026-09-14",
+      "published": 56,
+      "estimatedMrrUsd": 16800
     }
   ],
-  "lastRun": "2026-09-13T07:22:00.411Z"
+  "lastRun": "2026-09-14T07:47:04.054Z"
 }
