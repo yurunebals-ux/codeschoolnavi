@@ -189,4 +189,4 @@ Zoomなどのビデオ通話を使った個別指導です。学習管理ツー�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [ウズウズカレッジの料金は高い？他社と比較](/blog/ryokin-uzuzcollege/)
 - [ウズウズカレッジの評判・口コミは？特徴を解説](/blog/hyoban-uzuzcollege/)
-- [Gartner調査で判明、2026年AIコーディング予算超過の実態と対策](/blog/news-20260914-vc3xv/)
+- [OpenAIのChatGPT Work新機能「Data agent」登場、非エンジニアの分析作業を大幅削減](/blog/news-20260914-4bs6l/)

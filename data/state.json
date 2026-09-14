@@ -1521,10 +1521,31 @@
       },
       "structure": 2,
       "publishedAt": "2026-09-14T09:27:57.096Z"
+    },
+    {
+      "slug": "news-20260914-4bs6l",
+      "keyword": "OpenAIのChatGPT Work新機能「Data agent」登場、非エンジニアの分析作業を大幅削減",
+      "template": "news:hot",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 96,
+      "status": "published",
+      "createdAt": "2026-09-14T09:35:31.999Z",
+      "news": {
+        "title": "ChatGPT Work、質問するだけで社内データ分析・グラフやダッシュボードも作る「Data agent」",
+        "link": "https://www.itmedia.co.jp/aiplus/article/2609/11/2000001391/",
+        "source": "ITmedia AI＋",
+        "published": "2026年9月10日",
+        "snippet": "",
+        "text": "米OpenAIは9月10日（現地時間）、ChatGPT Work向け新機能「Data agent」を発表した。社内データに接続し、チャットのやりとりだけで分析の指示や調整が可能。インタラクティブなダッシュボードを構築する。クエリを書いたり、新しい分析ツールを覚えたりする必要がない。\n接続できるデータソースは、Amazon Redshift、Datadog、Google BigQuery、ClickHouse、Databricks、MongoDB、Snowflakeなど。Google DriveとSharePointにあるファイルや文書を分析に取り込むこともできる。\nデータを解釈するために、その企業のビジネス用語や指標の定義、独自の計算式、データ同士の関係を使う。定義や関係は、dbtやSnowflake Horizon、Databricks Genie Ontology、BIダッシュボードなどから読み込む。\nダッシュボードは、Omni、Oracle BI、Power BI、Sigma、Tableau、ThoughtSpotの中にも作成できる。\n次に取るべき手順や、関わるべき人物も提案。分析結果はSlackやメールで共有し、ユーザーが承認した作業は、つないだツールを通じて実行する。\nChatGPT Workのプラグインとして提供する。導入可否や、データソース側のプラグインを有効にするかは、管理者が決める。\nOpenAI社内でも活用が進んでいる他、αプログラムではNTTデータなどが活用。非エンジニアが自然言語でダッシュボードを作成・更新しているという。\nCopyright &copy; ITmedia, Inc. All Rights Reserved.\nITmedia AI＋に関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。\n国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。\nトランプ政権のサックス氏、AI「ペース調整」論に苦言 「規制がなければできないふりをやめろ」\n「AIコーディングより人を雇う方が安い」時代が来る？ 生成AIの予算超過を防ぐトークン浪費対策の全て\n好業績なのに“上場廃止” なぜネットワンはSCSKとの「攻めの統合」に賭けたのか\nNEC「全員AIの部署」の衝撃 「1on1」「ストレスチェック」で分かった“AI社員が感じていたストレス”とは？\nAI技術を“無料で公開”、なぜ？ 米IT業界の文化「オープン化」の裏にしたたかな戦略、日本は追随できるか\n“最強エージェント”は、まさかのポンコツだった 業務の30％をAIに任せるIT運用部門が明かす「つまずきポイント」\n日立、熟練者の知見をAIで形式知化 3D CADの設計ルール違反も自動検出\n業務の30％をAIエージェントがこなすIT運用部門、なぜ「パワポ文書」を禁止したのか？\n「AIが人間をダメにする説」に新たな裏付け？ “AI依存”で失われる可能性のある「3つの能力」\n「Gemini Notebook」になって何が変わった？ NotebookLMからの変更点をおさらい"
+      },
+      "structure": 2,
+      "publishedAt": "2026-09-14T09:35:48.493Z"
     }
   ],
-  "publishedCount": 58,
-  "estimatedMrrUsd": 17400,
+  "publishedCount": 59,
+  "estimatedMrrUsd": 17700,
   "history": [
     {
       "date": "2026-07-24",
@@ -1783,9 +1804,9 @@
     },
     {
       "date": "2026-09-14",
-      "published": 58,
-      "estimatedMrrUsd": 17400
+      "published": 59,
+      "estimatedMrrUsd": 17700
     }
   ],
-  "lastRun": "2026-09-14T09:27:57.406Z"
+  "lastRun": "2026-09-14T09:35:48.830Z"
 }

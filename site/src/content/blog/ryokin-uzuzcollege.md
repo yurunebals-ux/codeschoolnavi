@@ -156,4 +156,4 @@ CCNAやAWS認定はIT初心者にとって難易度は中程度から高めで�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [ウズウズカレッジは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-uzuzcollege/)
 - [ウズウズカレッジの評判・口コミは？特徴を解説](/blog/hyoban-uzuzcollege/)
-- [Gartner調査で判明、2026年AIコーディング予算超過の実態と対策](/blog/news-20260914-vc3xv/)
+- [OpenAIのChatGPT Work新機能「Data agent」登場、非エンジニアの分析作業を大幅削減](/blog/news-20260914-4bs6l/)
