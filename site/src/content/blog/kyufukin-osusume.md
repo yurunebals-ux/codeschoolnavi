@@ -132,7 +132,7 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 
 ## あわせて読みたい
 
+- [Qiita記事7万件分析で見る生成AI後の技術文章の変化と編集部の見解](/blog/news-20260915-bs70u/)
 - [未経験からAIエンジニアになるには？学ぶ順番と現実的な期間](/blog/topic-ai-engineer-mikeiken/)
 - [DeepSeek v4.1 Flash、FP4非対応A100で公式API超速化の技術革新](/blog/news-20260914-qamet/)
 - [OpenAIのChatGPT Work新機能「Data agent」登場、非エンジニアの分析作業を大幅削減](/blog/news-20260914-4bs6l/)
-- [Gartner調査で判明、2026年AIコーディング予算超過の実態と対策](/blog/news-20260914-vc3xv/)
