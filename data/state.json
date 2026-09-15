@@ -607,7 +607,8 @@
       "score": 91,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-07-28T05:23:02.503Z"
+      "publishedAt": "2026-07-28T05:23:02.503Z",
+      "structure": 2
     },
     {
       "slug": "hyoban-programmercollege",
@@ -621,7 +622,8 @@
       "score": 91,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-07-29T05:30:50.199Z"
+      "publishedAt": "2026-07-29T05:30:50.199Z",
+      "structure": 2
     },
     {
       "slug": "hyoban-techis",
@@ -1726,10 +1728,684 @@
       },
       "structure": 2,
       "rejectReason": "score=115; データにない金額・調査の言及: 3,000円"
+    },
+    {
+      "slug": "osusume-online-yondai",
+      "keyword": "40代におすすめのオンライン学習プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "techacademy",
+        "codecamp",
+        "ninjacode",
+        "fjord",
+        "techmeets"
+      ],
+      "audience": "yondai",
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-online-josei",
+      "keyword": "女性におすすめのオンライン学習プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "techacademy",
+        "codecamp",
+        "ninjacode",
+        "fjord",
+        "techmeets"
+      ],
+      "audience": "josei",
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-hosho-mikeiken",
+      "keyword": "未経験者におすすめの転職保証付きプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp"
+      ],
+      "audience": "mikeiken",
+      "kind": "money",
+      "cluster": "転職保証付き",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-hosho-shakaijin",
+      "keyword": "社会人におすすめの転職保証付きプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp"
+      ],
+      "audience": "shakaijin",
+      "kind": "money",
+      "cluster": "転職保証付き",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-hosho-daigakusei",
+      "keyword": "大学生におすすめの転職保証付きプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp"
+      ],
+      "audience": "daigakusei",
+      "kind": "money",
+      "cluster": "転職保証付き",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-hosho-tenshoku",
+      "keyword": "転職希望者におすすめの転職保証付きプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp"
+      ],
+      "audience": "tenshoku",
+      "kind": "money",
+      "cluster": "転職保証付き",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-hosho-fukugyo",
+      "keyword": "副業したい人におすすめの転職保証付きプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp"
+      ],
+      "audience": "fukugyo",
+      "kind": "money",
+      "cluster": "転職保証付き",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-hosho-yondai",
+      "keyword": "40代におすすめの転職保証付きプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp"
+      ],
+      "audience": "yondai",
+      "kind": "money",
+      "cluster": "転職保証付き",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-hosho-josei",
+      "keyword": "女性におすすめの転職保証付きプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp"
+      ],
+      "audience": "josei",
+      "kind": "money",
+      "cluster": "転職保証付き",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-tenshoku-mikeiken",
+      "keyword": "未経験者におすすめの資格・就職支援プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "runteq",
+        "potepan",
+        "coachtech",
+        "uzuzcollege"
+      ],
+      "audience": "mikeiken",
+      "kind": "money",
+      "cluster": "資格・就職支援",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-tenshoku-shakaijin",
+      "keyword": "社会人におすすめの資格・就職支援プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "runteq",
+        "potepan",
+        "coachtech",
+        "uzuzcollege"
+      ],
+      "audience": "shakaijin",
+      "kind": "money",
+      "cluster": "資格・就職支援",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-tenshoku-daigakusei",
+      "keyword": "大学生におすすめの資格・就職支援プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "runteq",
+        "potepan",
+        "coachtech",
+        "uzuzcollege"
+      ],
+      "audience": "daigakusei",
+      "kind": "money",
+      "cluster": "資格・就職支援",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-tenshoku-tenshoku",
+      "keyword": "転職希望者におすすめの資格・就職支援プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "runteq",
+        "potepan",
+        "coachtech",
+        "uzuzcollege"
+      ],
+      "audience": "tenshoku",
+      "kind": "money",
+      "cluster": "資格・就職支援",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-tenshoku-fukugyo",
+      "keyword": "副業したい人におすすめの資格・就職支援プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "runteq",
+        "potepan",
+        "coachtech",
+        "uzuzcollege"
+      ],
+      "audience": "fukugyo",
+      "kind": "money",
+      "cluster": "資格・就職支援",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-tenshoku-yondai",
+      "keyword": "40代におすすめの資格・就職支援プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "runteq",
+        "potepan",
+        "coachtech",
+        "uzuzcollege"
+      ],
+      "audience": "yondai",
+      "kind": "money",
+      "cluster": "資格・就職支援",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-tenshoku-josei",
+      "keyword": "女性におすすめの資格・就職支援プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "runteq",
+        "potepan",
+        "coachtech",
+        "uzuzcollege"
+      ],
+      "audience": "josei",
+      "kind": "money",
+      "cluster": "資格・就職支援",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-mtm-mikeiken",
+      "keyword": "未経験者におすすめのマンツーマン指導プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "samurai",
+        "techis",
+        "cryptech"
+      ],
+      "audience": "mikeiken",
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-mtm-shakaijin",
+      "keyword": "社会人におすすめのマンツーマン指導プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "samurai",
+        "techis",
+        "cryptech"
+      ],
+      "audience": "shakaijin",
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-mtm-daigakusei",
+      "keyword": "大学生におすすめのマンツーマン指導プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "samurai",
+        "techis",
+        "cryptech"
+      ],
+      "audience": "daigakusei",
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-mtm-tenshoku",
+      "keyword": "転職希望者におすすめのマンツーマン指導プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "samurai",
+        "techis",
+        "cryptech"
+      ],
+      "audience": "tenshoku",
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-mtm-fukugyo",
+      "keyword": "副業したい人におすすめのマンツーマン指導プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "samurai",
+        "techis",
+        "cryptech"
+      ],
+      "audience": "fukugyo",
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-mtm-yondai",
+      "keyword": "40代におすすめのマンツーマン指導プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "samurai",
+        "techis",
+        "cryptech"
+      ],
+      "audience": "yondai",
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-mtm-josei",
+      "keyword": "女性におすすめのマンツーマン指導プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "samurai",
+        "techis",
+        "cryptech"
+      ],
+      "audience": "josei",
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-ai-mikeiken",
+      "keyword": "未経験者におすすめのAI・データ分析プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "aidemy",
+        "kikagaku",
+        "dmmaicamp",
+        "skillupai",
+        "aijobcolle",
+        "avilen"
+      ],
+      "audience": "mikeiken",
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-ai-shakaijin",
+      "keyword": "社会人におすすめのAI・データ分析プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "aidemy",
+        "kikagaku",
+        "dmmaicamp",
+        "skillupai",
+        "aijobcolle",
+        "avilen"
+      ],
+      "audience": "shakaijin",
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-ai-daigakusei",
+      "keyword": "大学生におすすめのAI・データ分析プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "aidemy",
+        "kikagaku",
+        "dmmaicamp",
+        "skillupai",
+        "aijobcolle",
+        "avilen"
+      ],
+      "audience": "daigakusei",
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-ai-tenshoku",
+      "keyword": "転職希望者におすすめのAI・データ分析プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "aidemy",
+        "kikagaku",
+        "dmmaicamp",
+        "skillupai",
+        "aijobcolle",
+        "avilen"
+      ],
+      "audience": "tenshoku",
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-ai-fukugyo",
+      "keyword": "副業したい人におすすめのAI・データ分析プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "aidemy",
+        "kikagaku",
+        "dmmaicamp",
+        "skillupai",
+        "aijobcolle",
+        "avilen"
+      ],
+      "audience": "fukugyo",
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-ai-yondai",
+      "keyword": "40代におすすめのAI・データ分析プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "aidemy",
+        "kikagaku",
+        "dmmaicamp",
+        "skillupai",
+        "aijobcolle",
+        "avilen"
+      ],
+      "audience": "yondai",
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-ai-josei",
+      "keyword": "女性におすすめのAI・データ分析プログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "aidemy",
+        "kikagaku",
+        "dmmaicamp",
+        "skillupai",
+        "aijobcolle",
+        "avilen"
+      ],
+      "audience": "josei",
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-free-mikeiken",
+      "keyword": "未経験者におすすめの無料スクールプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "programmercollege"
+      ],
+      "audience": "mikeiken",
+      "kind": "money",
+      "cluster": "無料スクール",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-free-shakaijin",
+      "keyword": "社会人におすすめの無料スクールプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "programmercollege"
+      ],
+      "audience": "shakaijin",
+      "kind": "money",
+      "cluster": "無料スクール",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-free-daigakusei",
+      "keyword": "大学生におすすめの無料スクールプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "programmercollege"
+      ],
+      "audience": "daigakusei",
+      "kind": "money",
+      "cluster": "無料スクール",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-free-tenshoku",
+      "keyword": "転職希望者におすすめの無料スクールプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "programmercollege"
+      ],
+      "audience": "tenshoku",
+      "kind": "money",
+      "cluster": "無料スクール",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "osusume-free-fukugyo",
+      "keyword": "副業したい人におすすめの無料スクールプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "programmercollege"
+      ],
+      "audience": "fukugyo",
+      "kind": "money",
+      "cluster": "無料スクール",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z"
+    },
+    {
+      "slug": "topic-ai-engineer-mikeiken",
+      "keyword": "未経験からAIエンジニアになるには？学ぶ順番と現実的な期間",
+      "template": "topic:guide",
+      "tools": [
+        "kikagaku",
+        "skillupai",
+        "aidemy"
+      ],
+      "kind": "topic",
+      "cluster": "AI・データ分析",
+      "score": 60,
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "brief": "Python→数学の最低限（線形代数・確率の基礎）→機械学習の定番手法→深層学習→ポートフォリオ（Kaggleや自作アプリ）の順。未経験が最初に深層学習から入ると挫折しやすい。実務ではデータ前処理とSQLの比重が大きい。転職では『何を作ったか』が学歴より見られる。専門実践教育訓練の対象講座なら受講費用の50%（年間上限40万円）が戻る。",
+      "hubs": [
+        "/blog/osusume-hikaku-ai/",
+        "/kyufukin/"
+      ],
+      "structure": 2,
+      "publishedAt": "2026-09-15T07:31:39.243Z"
+    },
+    {
+      "slug": "topic-python-dokugaku-kikan",
+      "keyword": "Pythonの独学は何ヶ月かかる？挫折しない学習計画の立て方",
+      "template": "topic:guide",
+      "tools": [
+        "skillhacks",
+        "techacademy"
+      ],
+      "kind": "topic",
+      "cluster": "独学・買い切り",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "brief": "1日1〜2時間なら基礎文法に1ヶ月、小さな自作ツールに2ヶ月目、以降は目的（Web/データ/自動化）で分岐。挫折の主因は『教材を最後まで読む』学習法で、写経→改造→自作の順に切り替えると続く。詰まったときに質問できる相手がいるかが独学とスクールの分かれ目。",
+      "hubs": [
+        "/blog/osusume-hikaku-dokugaku/",
+        "/shindan/"
+      ]
+    },
+    {
+      "slug": "topic-seisei-ai-jidai-programming",
+      "keyword": "生成AI時代にプログラミングを学ぶ意味はあるのか",
+      "template": "topic:guide",
+      "tools": [
+        "dmmaicamp",
+        "runteq"
+      ],
+      "kind": "topic",
+      "cluster": "選び方",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "brief": "コードを書く作業はAIが肩代わりするが、要件を分解し・AIの出力を検証し・システムとして組み立てる力は残る。学ぶ内容の重心が『文法暗記』から『設計と検証』に移る。初学者ほどAIに書かせすぎると基礎が抜ける。学ぶ価値は『AIを使って何を作れるか』で決まる。",
+      "hubs": [
+        "/blog/imiaru-erabikata/",
+        "/blog/osusume-hikaku-ai/"
+      ]
+    },
+    {
+      "slug": "topic-chatgpt-programming-gakushu",
+      "keyword": "ChatGPTでプログラミングを学ぶやり方と、頼りすぎて伸びない人の共通点",
+      "template": "topic:guide",
+      "tools": [
+        "skillhacks",
+        "fjord"
+      ],
+      "kind": "topic",
+      "cluster": "独学・買い切り",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "brief": "使い方の型: エラー文を貼って原因を説明させる／自分のコードを添削させる／概念を例え話で説明させる。伸びない型: 課題を丸投げして答えをコピーする。対策は『まず自分で書いてからAIに直させる』順番の固定。スクールのメンターとの違いは、間違いに気づく側の責任が誰にあるか。",
+      "hubs": [
+        "/blog/osusume-hikaku-dokugaku/",
+        "/shindan/"
+      ]
+    },
+    {
+      "slug": "topic-engineer-tenshoku-nenrei",
+      "keyword": "エンジニア転職に年齢制限はある？20代・30代・40代で変わる現実",
+      "template": "topic:guide",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp",
+        "uzuzcollege"
+      ],
+      "kind": "topic",
+      "cluster": "転職特化",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "brief": "法律上の年齢制限はないが、転職保証の適用条件に年齢上限を置くスクールがある（条件は各校の公式で確認）。20代はポテンシャル採用、30代は前職経験との掛け算、40代は業務知識×ITで狙う領域を絞る。年齢が上がるほど『何を作ったか』の証拠が必要になる。",
+      "hubs": [
+        "/blog/osusume-hikaku-tenshoku/",
+        "/kyufukin/"
+      ]
     }
   ],
-  "publishedCount": 60,
-  "estimatedMrrUsd": 18000,
+  "publishedCount": 61,
+  "estimatedMrrUsd": 18300,
   "history": [
     {
       "date": "2026-07-24",
@@ -1993,9 +2669,9 @@
     },
     {
       "date": "2026-09-15",
-      "published": 60,
-      "estimatedMrrUsd": 18000
+      "published": 61,
+      "estimatedMrrUsd": 18300
     }
   ],
-  "lastRun": "2026-09-15T00:12:04.047Z"
+  "lastRun": "2026-09-15T07:31:39.560Z"
 }

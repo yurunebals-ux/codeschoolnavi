@@ -64,6 +64,16 @@
       "date": "2026-09-14",
       "version": 2,
       "ok": true
+    },
+    "hyoban-kikagaku": {
+      "date": "2026-09-15",
+      "version": 2,
+      "ok": true
+    },
+    "hyoban-programmercollege": {
+      "date": "2026-09-15",
+      "version": 2,
+      "ok": true
     }
   }
 }

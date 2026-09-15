@@ -252,5 +252,5 @@ ITパスポートや基本情報技術者などの国家資格取得を目指す
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Winスクールの評判・口コミは？特徴を解説](/blog/hyoban-winschool/)
+- [未経験からAIエンジニアになるには？学ぶ順番と現実的な期間](/blog/topic-ai-engineer-mikeiken/)
 - [DeepSeek v4.1 Flash、FP4非対応A100で公式API超速化の技術革新](/blog/news-20260914-qamet/)
-- [OpenAIのChatGPT Work新機能「Data agent」登場、非エンジニアの分析作業を大幅削減](/blog/news-20260914-4bs6l/)
