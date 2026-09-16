@@ -637,7 +637,8 @@
       "score": 91,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-07-30T05:16:51.605Z"
+      "publishedAt": "2026-07-30T05:16:51.605Z",
+      "structure": 2
     },
     {
       "slug": "hyoban-ninjacode",
@@ -2562,6 +2563,90 @@
       },
       "structure": 2,
       "rejectReason": "score=115; データにない金額・調査の言及: 当サイトの調査によると"
+    },
+    {
+      "slug": "news-20260916-19sye",
+      "keyword": "ChatGPT共同開発者のTypeSafe AIが「Jev」発表、高速かつ低コストAIの実現を狙う",
+      "template": "news:hot",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 96,
+      "status": "rejected",
+      "createdAt": "2026-09-16T07:29:27.121Z",
+      "news": {
+        "title": "ChatGPT共同開発者がLLMとは異なる方法で処理するAIモデル「Jev」を開発、GPT",
+        "link": "https://gigazine.net/news/20260916-system-one-jev/",
+        "source": "gigazine.net",
+        "published": "2026年9月16日",
+        "snippet": "AI企業のTypeSafe AIが大規模言語モデル(LLM)とは異なるアプローチでタスクを解決するAI「System One Models」と、System One Modelsの第1弾モデルである「Jev」を現地時間の2026年9月15日に発表しました。TypeSafe AIはChatGPTの開発に携わったAI研究者であるディオゴ・アルメイダ氏がCEOを務める企業で、LLMとは根本的...",
+        "text": "親愛なる読者の皆さまへ。ご存じの通り価格高騰などの悪影響でサーバー運営がとても苦しい状態です。回線や台数を整理し見直せる部分は全て見直しましたが、やはりまだ危険水域です。このままだと1ページを10分割ぐらいして無理矢理PVを増やさざるを得なくなってしまいます。そこで、GIGAZINEの物理的なサーバーたちを、たった1円でも良いので親愛なる読者の皆さまに支援してもらえればとっても助かります！今すぐ寄付は上のボタンから！ ・これまでGIGAZINEを支援してくれたメンバーのリスト\nAI企業のTypeSafe AIが大規模言語モデル(LLM)とは異なるアプローチでタスクを解決するAI「System One Models」と、System One Modelsの第1弾モデルである「Jev」を現地時間の2026年9月15日に発表しました。TypeSafe AIはChatGPTの開発に携わったAI研究者であるディオゴ・アルメイダ氏がCEOを務める企業で、LLMとは根本的に異なる手法を用いることで高速かつ低コストなAIを実現したとアピールされています。 Introducing System One Models & Jev - TypeSafe AI Blog https://typesafe.ai/blog/introducing-system-one-models-and-jev\nAfter co-inventing ChatGPT, I kept asking myself: why have superhuman chat models not led to AGI?I’ve spent the last 2 years in stealth building a new way to train models (RLCD), and a new type of frontier AI model that we are releasing today: Jev• 20-200x faster• 40-400x… pic.twitter.com/JSybNG2BKJ\nOpenAIやAnthropicの最先端モデルはコーディングやモデリングなど多種多様な操作に対応可能です。しかし、最先端モデルの実態は「テキストの続きを生成し続ける」という仕組みであり、この仕組み自体が効率や速度のボトルネックとなっています。そこで、TypeSafe AIはLLMとは異なるアプローチのAIモデルとして「System One Models」を開発し、その初代モデルとして「Jev」を発表しました。 アルメイダ氏の以下の投稿に含まれる動画を再生するとJev(左)と一般的なLLM(右)の動作の違いが一発で分かります。一般的なLLMはテキストを左から右へ順番に生成し、そのテキストが最終的に「小説」「コード」「仕様書」といった成果物となります。一方で、Jevはそもそもテキストの生成を目的としておらず、事前に定義された構造に従って成果物を一度に出力します。また、処理が非常に高速なのも特徴です。\nThe gains aren’t free: Jev can't generate textComparing Jev vs LLMs side-by-side makes the trade-off clearFun fact: replacing sequential computation with parallel is the same way Transformers leapfrogged RNNs pic.twitter.com/ockGnenCPP\nJevはコスト効率の高さも特徴です。入力100万トークン当たりの料金は0.042ドル(約6.5円)で、出力は「0ドル」「料金が安すぎるため測定不能」とされています。 以下のグラフは横軸がタスクごとのコスト、縦軸がタスクの達成精度を示しています。JevはGPT-5.6 Terraと同等の品質でタスクを実行しつつ、コストは100分の1程度に抑えられています。\nJevの出力と構造は事前に定義されており、エラーが一切発生しないとのこと。また、すべての出力に信頼度スコアが付属します。以下のグラフは各モデルにおけるツール呼び出しのエラー発生率を示したもので、Jevのエラー発生率は0％となっています。\nJevと他社製モデルで「Wikipediaのリンクをたどって目的のページにたどり着く」というタスクの実行速度を比べた結果が以下。すべてのモデルは高速な非推論モードで実行されていますが、それでもJevの方が高速です。\nGame: race from one Wikipedia page to another using only linksChallenge: choosing between hundreds to thousands of linksShows not just intelligence-per-second, but also the compounding benefits of not hallucinating with high-cardinality choices pic.twitter.com/QfMKWhOlVB\nJevでDOOMをプレイする動画も公開されています。1時間のゲームプレイにかかったコストは7ドル(約1090円)でした。\nWe love how this doomo doomonstrates real-time intelligence and what can be doone with code + AI!~10 calls/sec = ~$7/hour pic.twitter.com/nlffKxGzCB\nTypeSafe AIはJevの発表と同時にアーリーアクセスプログラムの参加受付を開始しています。また、System One Modelsのドキュメントが以下のリンク先で公開されています。 Introduction - TypeSafe AI https://docs.typesafe.ai/introduction\n・関連記事 文章を「拡散」で高速生成するAIモデル「Mercury 2.5」登場、毎秒1107トークンの高速生成＆GPT-5.6 Luna級の性能を100万出力トークン当たり約120円で提供 - GIGAZINE 富士通がAI効率を475倍にするTransformer代替アーキテクチャ「PHOTON」を開発 - GIGAZINE 高速かつ高精度な視覚言語モデル「Zamba2-VL」が登場、Transformerより高速なアーキテクチャで開発 - GIGAZINE\n2026年09月16日 11時42分00秒 in AI, Posted by log1o_hf\nYou can read the machine translated English article ChatGPT co-developers have created 'Jev,….\nお邪魔して申し訳ないです。読者のための記事を掲載し続けるため、どうかサーバー代として300円をご寄付いただけないでしょうか。",
+        "reactions": {
+          "threads": [
+            {
+              "platform": "はてなブックマーク",
+              "url": "https://b.hatena.ne.jp/entry/s/gigazine.net/news/20260916-system-one-jev/",
+              "count": 64
+            }
+          ],
+          "comments": [
+            {
+              "platform": "はてなブックマーク",
+              "text": "言語生成すら捨てた判断特化型AIか。自動運転やロボットの制御に向いてそう。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "動画みたら拡散言語モデルとはぜんぜん違ってた。その後でChat GPTに尋ねたら、これまでと異なる方法はざっくり理解。技術の詳細はまだ公開されてない、とか。（出力を鵜呑みにしています）"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "拡散モデルとは違うのか"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "超賢いswitch文って説明を見たし、文章生成じゃなくてクラスタリング用なのかな。分類をどう定義するんだろ"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "またdoomしてる…"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "全然わからんけど凄そう"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "羊に名前つけると虹色になりそう"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "たしかに最近のAIはLLMに全振りしてる感あるけどそれが正解かはわからんよな"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "こっちの記事の方が正確そう。そもそも文章生成するAIじゃない"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "確かにトークンを一つずつ出力するよりもまとめて出すアーキテクチャの方が並列化で高速化しやすそうだよね"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "電力消費量も圧倒的に少ないということだろうから、これならある程度は環境負荷を気にせず使う気になれるな。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "テキスト生成放棄して並列出力に振り切るの賢いし速度とコストがヤバいな"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "よく分からんが、凄く凄そう"
+            }
+          ]
+        }
+      },
+      "structure": 2,
+      "rejectReason": "score=115; データにない金額・調査の言及: 6.5円"
     }
   ],
   "publishedCount": 62,
@@ -2831,7 +2916,12 @@
       "date": "2026-09-15",
       "published": 62,
       "estimatedMrrUsd": 18600
+    },
+    {
+      "date": "2026-09-16",
+      "published": 62,
+      "estimatedMrrUsd": 18600
     }
   ],
-  "lastRun": "2026-09-15T23:56:11.650Z"
+  "lastRun": "2026-09-16T07:30:44.295Z"
 }
