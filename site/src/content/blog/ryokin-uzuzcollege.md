@@ -156,4 +156,4 @@ CCNAやAWS認定はIT初心者にとって難易度は中程度から高めで�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [ウズウズカレッジは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-uzuzcollege/)
 - [ウズウズカレッジの評判・口コミは？特徴を解説](/blog/hyoban-uzuzcollege/)
-- [Qiita記事7万件分析で見る生成AI後の技術文章の変化と編集部の見解](/blog/news-20260915-bs70u/)
+- [Google Gemini 3.8 Liveが音声コーディングを実現、社会人学習者はどう動くか](/blog/news-20260916-wtbbc/)

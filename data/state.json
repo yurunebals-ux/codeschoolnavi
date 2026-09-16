@@ -2647,10 +2647,46 @@
       },
       "structure": 2,
       "rejectReason": "score=115; データにない金額・調査の言及: 6.5円"
+    },
+    {
+      "slug": "news-20260916-wtbbc",
+      "keyword": "Google Gemini 3.8 Liveが音声コーディングを実現、社会人学習者はどう動くか",
+      "template": "news:hot",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 96,
+      "status": "published",
+      "createdAt": "2026-09-16T13:12:23.850Z",
+      "news": {
+        "title": "Googleが音声会話AI「Gemini 3.8 Live」と「Gemini 3.8 Live Extended Thinking」をリリース、リアルタイムで会話しながらコーディング可能",
+        "link": "https://gigazine.net/news/20260916-gemini-3-8-live/",
+        "source": "gigazine.net",
+        "published": "2026年9月16日",
+        "snippet": "Googleがリアルタイムで会話できるAIモデル「Gemini 3.8 Live」と「Gemini 3.8 Live Extended Thinking」をリリースしました。Gemini 3.8 Live Extended ThinkingはベンチマークテストでOpenAIやSpaceXAIのライバルモデルを上回るスコアを記録しています。 Gemini 3.8 Live & Gemini 3.8 Live Extended Thinking https:/...",
+        "text": "親愛なる読者の皆さまへ。ご存じの通り価格高騰などの悪影響でサーバー運営がとても苦しい状態です。回線や台数を整理し見直せる部分は全て見直しましたが、やはりまだ危険水域です。このままだと1ページを10分割ぐらいして無理矢理PVを増やさざるを得なくなってしまいます。そこで、GIGAZINEの物理的なサーバーたちを、たった1円でも良いので親愛なる読者の皆さまに支援してもらえればとっても助かります！今すぐ寄付は上のボタンから！ ・これまでGIGAZINEを支援してくれたメンバーのリスト\nGoogleがリアルタイムで会話できるAIモデル「Gemini 3.8 Live」と「Gemini 3.8 Live Extended Thinking」をリリースしました。Gemini 3.8 Live Extended ThinkingはベンチマークテストでOpenAIやSpaceXAIのライバルモデルを上回るスコアを記録しています。 Gemini 3.8 Live & Gemini 3.8 Live Extended Thinking https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/ New Gemini Audio models for developers https://blog.google/innovation-and-ai/technology/developers-tools/build-real-time-voice-applications-gemini-audio/ Gemini 3.8 Liveはコスト効率を重視して設計されたモデルで、Gemini 3.8 Live Extended Thinkingは高度な知能と多段階推論能力を備えたモデルです。どちらのモデルも日本語を含む97の言語に対応しており、リアルタイムで会話できます。 Googleが公開したデモ動画では「Geminiと呼んだときだけ応答して」という音声指示に従いつつ、文脈に沿ってリアルタイムで応答している様子を確認できます。 What's new in the Gemini Live API - YouTube\nGemini 3.8 Live Extended Thinkingと会話しながらコーディングするデモ動画も公開されています。\nWatch how we used 3.8 Live Extended Thinking to act as a programming tutor.Both models feature:🔵 Upgraded reasoning🔵 Near real-time visual understanding🔵 Automatic detection for 97 languages🔵 Background tool calling without disrupting your chatFor your most difficult… pic.twitter.com/WHrNvqtHhl\n以下のグラフは横軸がタスク達成率、縦軸が会話品質を示しています。Gemini 3.8 LiveとGemini 3.8 Live Extended Thinkingは会話品質とタスク実行精度を両立できています。\n第三者機関のArtificial Analysisが実施したテストでは、Gemini 3.8 Live Extended ThinkingがOpenAIのGPT-Live-1-AstraやSpaceXAIのGrok Voice Think Fast 2.0を上回りました。\nまた、AIの名前を伏せた状態で人間に品質を評価させるSpeech Agent Arenaでは、Gemini 3.8 Liveが全体2位の性能と評価されています。なお、1位はGemini 3.1 Flash Live Minimalです。\nGemini 3.8 LiveとGemini 3.8 Live Extended ThinkingはAPI経由で使用可能。APIのドキュメントは以下のリンク先で確認できます。 Live API 機能ガイド | Gemini API | Google AI for Developers https://ai.google.dev/gemini-api/docs/live-api/capabilities?hl=ja#supported-languages\n・関連記事 OpenAIが音声会話AI「GPT-Live-1」のAPIをリリース - GIGAZINE 「Grok Voice Think Fast 2.0」が登場、文字起こしと音声対話の両方に対応 - GIGAZINE Microsoftが文字起こしAI「MAI-Transcribe-2」をリリース、Gemini 3.5 Transcribeより5倍高速＆GPT-Transcribeより10倍高速 - GIGAZINE Metaがリアルタイム文字起こしAI「Muse Voice Transcribe」をリリース - GIGAZINE 「あー」「えー」などを自動削除しつつリアルタイムで文字起こししできる音声認識モデル「Gemini 3.5 Transcribe」をGoogleが発表 - GIGAZINE\n2026年09月16日 13時22分00秒 in AI, 動画, Posted by log1o_hf\nYou can read the machine translated English article Google has released Gemini 3.8 Live and ….\nお邪魔して申し訳ないです。読者のための記事を掲載し続けるため、どうかサーバー代として300円をご寄付いただけないでしょうか。",
+        "reactions": {
+          "threads": [
+            {
+              "platform": "はてなブックマーク",
+              "url": "https://b.hatena.ne.jp/entry/s/gigazine.net/news/20260916-gemini-3-8-live/",
+              "count": 7
+            }
+          ],
+          "comments": [
+            {
+              "platform": "はてなブックマーク",
+              "text": "喋りながらコード組む時代か。レスポンス速度と精度のバランスが気になる"
+            }
+          ]
+        }
+      },
+      "structure": 2,
+      "publishedAt": "2026-09-16T13:12:44.105Z"
     }
   ],
-  "publishedCount": 62,
-  "estimatedMrrUsd": 18600,
+  "publishedCount": 63,
+  "estimatedMrrUsd": 18900,
   "history": [
     {
       "date": "2026-07-24",
@@ -2919,9 +2955,9 @@
     },
     {
       "date": "2026-09-16",
-      "published": 62,
-      "estimatedMrrUsd": 18600
+      "published": 63,
+      "estimatedMrrUsd": 18900
     }
   ],
-  "lastRun": "2026-09-16T07:30:44.295Z"
+  "lastRun": "2026-09-16T13:12:44.437Z"
 }
