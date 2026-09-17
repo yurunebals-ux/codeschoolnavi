@@ -116,8 +116,12 @@ export function evaluateDraft(md: string, item: KeywordItem, aff: AffMeta, prior
       if (t.price_from_yen) known.add(t.price_from_yen);
       for (const m of (t.price_note ?? "").matchAll(/([\d,]+)(万)?円/g)) known.add(Number(m[1].replace(/,/g, "")) * (m[2] ? 10000 : 1));
     }
-    for (const m of md.matchAll(/([\d,]+(?:\.\d+)?)(万)?円/g)) {
-      const v = Number(m[1].replace(/,/g, "")) * (m[2] ? 10000 : 1);
+    // ニュースは材料（媒体の本文・抜粋）にある金額も正当（9/15-16 に「3,000円」「6.5円」で3本却下された）
+    const material = [item.news?.text, item.news?.snippet, ...(item.news?.items ?? []).flatMap((i) => [i.text, i.snippet])].filter(Boolean).join("\n");
+    for (const m of material.matchAll(/([\d,]+(?:\.\d+)?)(万|億)?(円|ドル|USD|\$)/g)) known.add(Number(m[1].replace(/,/g, "")) * (m[2] === "万" ? 10000 : m[2] === "億" ? 100000000 : 1));
+    for (const m of material.matchAll(/\$\s?([\d,]+(?:\.\d+)?)/g)) known.add(Number(m[1].replace(/,/g, "")));
+    for (const m of md.matchAll(/([\d,]+(?:\.\d+)?)(万|億)?(円|ドル)/g)) {
+      const v = Number(m[1].replace(/,/g, "")) * (m[2] === "万" ? 10000 : m[2] === "億" ? 100000000 : 1);
       if (!known.has(v)) { inventedMoney = m[0]; break; }
     }
     if (/当サイトの調査|独自調査|平均\d/.test(md)) inventedMoney = inventedMoney ?? "当サイトの調査によると";

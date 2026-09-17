@@ -25,19 +25,61 @@ function isDraftFile(slug: string): boolean {
   return existsSync(p) && /^draft:\s*true/m.test(readFileSync(p, "utf8").slice(0, 600));
 }
 
+// 「同じ校の記事（評判／料金／向き不向き）」→ 給付金ハブ → 同クラスタ → 新着の順で最大6本。
+// 2026-09-14: 検索順位のため内部リンクを厚くする。同じ校の記事同士を必ず結ぶ（クラスタの束を作る）
+const RELATED_MAX = 6;
 function relatedFor(item: KeywordItem, published: KeywordItem[]): KeywordItem[] {
   const peers = published.filter((k) => k.slug !== item.slug && !isDraftFile(k.slug));
   const rel: KeywordItem[] = [];
+  const school = item.tools?.length === 1 ? item.tools[0] : null;
+  if (school) for (const k of peers) if (k.tools?.length === 1 && k.tools[0] === school && !rel.includes(k)) rel.push(k);
   for (const hs of HUB_SLUGS) {
     const hub = peers.find((k) => k.slug === hs);
-    if (hub) rel.push(hub);
+    if (hub && !rel.includes(hub)) rel.push(hub);
   }
   for (const k of peers) {
     if (k.cluster === item.cluster && !rel.includes(k)) rel.push(k);
   }
   const latest = [...peers].sort((a, b) => (b.publishedAt ?? "").localeCompare(a.publishedAt ?? ""));
   for (const k of latest) if (!rel.includes(k)) rel.push(k);
-  return rel.slice(0, 4);
+  return rel.slice(0, RELATED_MAX);
+}
+
+// 本文中に出てくる他校の名前を、その校の評判記事へリンクする（1記事あたり最大3校、各1回）。
+// 見出し・表・引用・既存リンクの中は触らない。ニュース記事は対象外（スクールに結びつけない方針）。
+function autoLinkSchools(md: string, item: KeywordItem, published: KeywordItem[], tools: { id: string; name: string }[]): string {
+  if (item.template.startsWith("news:")) return md;
+  const own = new Set(item.tools ?? []);
+  const targets = tools
+    .filter((t) => !own.has(t.id) && t.name.length >= 3)
+    .map((t) => ({ ...t, slug: published.find((k) => k.slug === `hyoban-${t.id}`)?.slug }))
+    .filter((t): t is { id: string; name: string; slug: string } => !!t.slug && !isDraftFile(t.slug!))
+    .sort((a, b) => b.name.length - a.name.length); // 長い名前から（「DMM WEBCAMP」と「DMM 生成AI CAMP」の取り違え防止）
+  const lines = md.split("\n");
+  let linked = 0;
+  const done = new Set<string>();
+  const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  let inCode = false, inFront = false;
+  for (let i = 0; i < lines.length && linked < 3; i++) {
+    const l = lines[i];
+    if (i === 0 && l === "---") { inFront = true; continue; }
+    if (inFront) { if (l === "---") inFront = false; continue; }
+    if (/^```/.test(l)) { inCode = !inCode; continue; }
+    if (inCode || /^\s*(#|\||>|-|\d+\.|出典|反応の出典)/.test(l) || !l.trim()) continue;
+    for (const t of targets) {
+      if (done.has(t.id) || linked >= 3) continue;
+      if (md.includes(`](/blog/${t.slug}/)`)) { done.add(t.id); continue; } // 既にどこかでリンク済み
+      const re = new RegExp(`(?<![\\[\\w/])${esc(t.name)}(?![\\w\\]\\(])`);
+      const m = re.exec(lines[i]);
+      if (!m) continue;
+      // 既存の Markdown リンク [..](..) の内側なら触らない
+      const before = lines[i].slice(0, m.index);
+      if ((before.match(/\[/g) ?? []).length > (before.match(/\]/g) ?? []).length) continue;
+      lines[i] = lines[i].slice(0, m.index) + `[${t.name}](/blog/${t.slug}/)` + lines[i].slice(m.index + t.name.length);
+      done.add(t.id); linked++;
+    }
+  }
+  return lines.join("\n");
 }
 
 function upsertRelatedLinks(md: string, rel: KeywordItem[]): string {
@@ -87,12 +129,13 @@ export function reconcilePublished(): number {
 export function refreshInternalLinks(): number {
   const state = loadState();
   const published = state.keywords.filter((k) => k.status === "published");
+  const tools = (JSON.parse(readFileSync(paths.affiliates, "utf8")) as { tools: { id: string; name: string }[] }).tools;
   let changed = 0;
   for (const k of published) {
     const p = resolve(paths.blog, `${k.slug}.md`);
     if (!existsSync(p)) continue;
     const md = readFileSync(p, "utf8");
-    const out = upsertRelatedLinks(md, relatedFor(k, published));
+    const out = upsertRelatedLinks(autoLinkSchools(md, k, published, tools), relatedFor(k, published));
     if (out !== md) { writeFileSync(p, out); changed++; }
   }
   if (changed) console.log(`[ops] 内部リンクを更新: ${changed}本`);

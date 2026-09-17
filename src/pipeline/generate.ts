@@ -270,6 +270,32 @@ function takeDescription(md: string): { body: string; description: string | null
   if (!m) return { body: md, description: null };
   return { body: md.slice(m[0].length), description: m[1].replace(/^["「]|["」]$/g, "").trim() };
 }
+// ニュース記事のタイトル規則。オーナー（2026-09-17）「硬すぎる。引きのあるタイトルを」。
+// 検索用の固有名詞は残しつつ、報告調（〜を解説／〜の実態と対策／〜が実現／〜登場）を禁止し、
+// 読者の損得・意外性・問い・対比のどれかで引く。
+const TITLE_RULES = `28〜42字。検索で探される固有名詞（社名・製品名・制度名）を1つ入れる。ニュースの見出しの写しと報告調は禁止（「〜を解説」「〜の実態と対策」「〜の見解」「〜が実現」「〜登場」「〜発表」「〜について」で終わらない）。次のどれかで引く: (a)読者の損得を言い切る (b)常識と逆のことを言う (c)問いで終える (d)「AではなくB」の対比 (e)具体的な数字を前に出す。記号は「」と読点のみ（！？は1つまで、！！や絵文字は禁止）。例:「Gemini 3.8 Liveで"しゃべって書く"時代へ。キーボードより先に覚えるべきこと」「SmartHRが開発を1か月縮めたのは、Claude Codeの腕ではなく設計の順番だった」「『AIより人を雇う方が安い』は本当か。Gartnerが出した85%予算超過の中身」「Qiita7万記事が示した、AI以後に読まれる技術文章の3条件」`;
+const STIFF_TITLE = /(を解説|の実態と対策|の見解|が実現|登場|発表|について|の動向|の現状|まとめ)$/;
+
+/** 報告調のタイトルなら、本文を見せて引きのある候補を3つ出させ、規則に合う最初の1つを採る */
+async function catchyTitle(title: string, body: string, system: string, entity?: string): Promise<string> {
+  if (isOffline()) return title;
+  const stiff = STIFF_TITLE.test(title) || title.length > 45 || !/[。？?、「」"]/.test(title);
+  if (!stiff) return title;
+  const r = await chat(
+    `次の記事に、引きのあるタイトルを3案出す。規則: ${TITLE_RULES}\n${entity ? `必ず入れる固有名詞: ${entity}\n` : ""}出力は1行1案、番号や記号なし、案だけ。\n\n【現在のタイトル（硬い）】${title}\n【本文（冒頭）】\n${body.slice(0, 1800)}`,
+    { system, maxTokens: 300, temperature: 0.9 });
+  const cands = r.split("\n").map((l) => l.replace(/^\s*[\d０-９]+[.．、)）:：]\s*|^[-・*]\s*/, "").replace(/^["「]|["」]$/g, "").trim()).filter((l) => l.length >= 20 && l.length <= 45);
+  const pick = cands.find((c) => !STIFF_TITLE.test(c) && (!entity || c.includes(entity))) ?? cands.find((c) => !STIFF_TITLE.test(c));
+  if (pick) console.log(`[editor] タイトル差し替え: 「${title}」→「${pick}」`);
+  return pick ?? title;
+}
+
+/** 見出しから検索用の固有名詞を1つ拾う（英字の製品名・社名を優先） */
+function entityOf(title: string): string | undefined {
+  const m = title.match(/[A-Z][A-Za-z0-9.+-]*(?:\s[A-Z][A-Za-z0-9.+-]*){0,2}/);
+  return m?.[0];
+}
+
 function takeTitle(md: string): { body: string; title: string | null } {
   const m = md.match(/^\s*TITLE[:：]\s*(.+)\s*\n/);
   if (!m) return { body: md, title: null };
@@ -446,6 +472,7 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
       `今週のニュース${usable.length}本の要約を読んで、コラムを書く。\n出力形式（この順で。この形式以外は書かない）:\nTITLE: 記事タイトル（40字以内。${usable.length}本に共通する論点を、読者の損得が伝わる言い方で言い切る。例「『AIの使い方』を教える講座は、もう選ぶ理由がない」「求人は増えたのに未経験の入口は狭い、その理由」。「〜の現状」「〜の動向」「今週のニュース」のような定型は禁止）\nDESCRIPTION: 80字以内の説明\nLEAD: 冒頭の1段落（120字以内。${usable.length}本が指している「ひとつの変化」を1文目で言い切る）\n## （論点を言い切る見出し）\n本文600字以上: ${usable.length}本を貫く論点をひとつ立て、賛成する立場と反対する立場の両方を書いたうえで、編集部の結論を書く。一般論で逃げず、「◯◯な人は今年中に△△、そうでない人は様子見」のように行動まで落とす。ニュースにない固有名詞・数字は出さない。\n## 今週の読者への宿題\n具体的な行動を3つ、文章で（各行動に「なぜ今か」を1文添える）。スクール名や商品名は出さない。\n\n【要約】\n${summaries.join("\n")}`,
       { system: newsSystem, maxTokens: 2500, temperature: 0.7 });
     const ct = takeTitle(col.trim());
+    if (ct.title) ct.title = await catchyTitle(ct.title, ct.body, newsSystem);
     const cd = takeDescription(ct.body);
     const lm = cd.body.match(/^\s*LEAD[:：]\s*(.+)\n/);
     const lead = lm ? lm[1].trim() : "";
@@ -469,9 +496,10 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
     if (!n.text || n.text.length < 800) throw new Error("ニュースの本文が800字未満のため書かない");
     const newsSystem = `${persona("editor")}\nあなたは日本語ネイティブの編集者です。プログラミングやAIを学ぼうとしている社会人・学生に向けて、業界ニュース1本を取り上げ、自分の言葉で見解を書きます。宣伝口調は使いません。${DATA_RULES.replace("下の「データ」", "下の「材料」")}\n\n${STYLE}`;
     const r = await chat(
-      `次のニュース1本について、見解記事を書く（全体で1,600〜2,200字）。\n出力形式（この順で。この形式以外は書かない）:\nTITLE: 記事タイトル（45字以内。検索で探される固有名詞（社名・製品名・制度名。例: OpenAI、Claude、教育訓練給付金）を必ず前半に入れ、後半で編集部の見方を言い切る。ニュースの見出しの写しは禁止。例「OpenAI の新モデル発表で、未経験がいま学ぶべきなのはプロンプトではなく設計だ」「AI研修のROIを3分で出せる、は半分正しい」）\nDESCRIPTION: 80字以内の説明\nLEAD: 冒頭の1段落（120字以内。何が起きたかを1文、編集部の見方を1文）\n## （何が起きたかを言い切る見出し）\n材料の本文から、自分の言葉で4〜6文。固有名詞・数字・日付は本文にあるものだけ。15字を超えて写さない。\n## （なぜ今この動きなのかを言い切る見出し）\n背景を3〜5文。材料に書かれていない事実は書かず、「〜と読める」「〜の流れの中にある」の形で推測と事実を分ける。\n## この動きを歓迎する見方\n賛成する立場の論拠を3〜4文。誰にとって何が良いか。\n## 慎重に見る見方\n反対・懸念の立場の論拠を3〜4文。誰が損をしうるか、見落とされている条件は何か。\n## 編集部の結論：学ぶ人はどう動くか\n賛否${item.news?.reactions?.comments?.length ? "（ネットの反応の傾向も踏まえる）" : ""}を踏まえた編集部の判断を言い切り、「◯◯な人は今月中に△△、そうでない人は様子見」のように行動まで落とす。5〜7文。自サイトの記事へ内部リンクを1つだけ入れてよい（必ず Markdown リンクの形: [給付金の使い方](/kyufukin/)、[6問診断](/shindan/)、[AIスクールの比較](/blog/osusume-hikaku-ai/)）。関係が薄ければ入れない。\n\n【禁止】材料にない固有名詞・数字・発言・調査。「当サイトの調査によると」「平均◯万円」。箇条書き。スクール名の宣伝。\n${isEnglish((n.text ?? "").slice(0, 300)) ? "【海外ニュース】材料は英語。本文は日本語で書く。社名・製品名は原語のまま（初出でカタカナや短い説明を添える）。「日本の学ぶ人・転職市場にとっての意味」を結論の節で必ず1〜2文書く。\n" : ""}\n【材料】\n見出し: ${n.title}\n媒体: ${n.source}\n公開日: ${n.published}\nURL: ${n.link}\n本文:\n${n.text.slice(0, 4000)}${item.news?.reactions?.comments?.length ? `\n\n【ネットの反応の傾向（参考。本文に引用しない）】\n${item.news.reactions.comments.slice(0, 10).map((c) => `- ${c.text.slice(0, 80)}`).join("\n")}` : ""}`,
+      `次のニュース1本について、見解記事を書く（全体で1,600〜2,200字）。\n出力形式（この順で。この形式以外は書かない）:\nTITLE: 記事タイトル（${TITLE_RULES}）\nDESCRIPTION: 80字以内の説明\nLEAD: 冒頭の1段落（120字以内。何が起きたかを1文、編集部の見方を1文）\n## （何が起きたかを言い切る見出し）\n材料の本文から、自分の言葉で4〜6文。固有名詞・数字・日付は本文にあるものだけ。15字を超えて写さない。\n## （なぜ今この動きなのかを言い切る見出し）\n背景を3〜5文。材料に書かれていない事実は書かず、「〜と読める」「〜の流れの中にある」の形で推測と事実を分ける。\n## この動きを歓迎する見方\n賛成する立場の論拠を3〜4文。誰にとって何が良いか。\n## 慎重に見る見方\n反対・懸念の立場の論拠を3〜4文。誰が損をしうるか、見落とされている条件は何か。\n## 編集部の結論：学ぶ人はどう動くか\n賛否${item.news?.reactions?.comments?.length ? "（ネットの反応の傾向も踏まえる）" : ""}を踏まえた編集部の判断を言い切り、「◯◯な人は今月中に△△、そうでない人は様子見」のように行動まで落とす。5〜7文。自サイトの記事へ内部リンクを1つだけ入れてよい（必ず Markdown リンクの形: [給付金の使い方](/kyufukin/)、[6問診断](/shindan/)、[AIスクールの比較](/blog/osusume-hikaku-ai/)）。関係が薄ければ入れない。\n\n【禁止】材料にない固有名詞・数字・発言・調査。「当サイトの調査によると」「平均◯万円」。箇条書き。スクール名の宣伝。\n${isEnglish((n.text ?? "").slice(0, 300)) ? "【海外ニュース】材料は英語。本文は日本語で書く。社名・製品名は原語のまま（初出でカタカナや短い説明を添える）。「日本の学ぶ人・転職市場にとっての意味」を結論の節で必ず1〜2文書く。\n" : ""}\n【材料】\n見出し: ${n.title}\n媒体: ${n.source}\n公開日: ${n.published}\nURL: ${n.link}\n本文:\n${n.text.slice(0, 4000)}${item.news?.reactions?.comments?.length ? `\n\n【ネットの反応の傾向（参考。本文に引用しない）】\n${item.news.reactions.comments.slice(0, 10).map((c) => `- ${c.text.slice(0, 80)}`).join("\n")}` : ""}`,
       { system: newsSystem, maxTokens: 3500, temperature: 0.7 });
     const ht = takeTitle(r.trim());
+    if (ht.title) ht.title = await catchyTitle(ht.title, ht.body, newsSystem, entityOf(n.title));
     const hd = takeDescription(ht.body);
     const lm = hd.body.match(/^\s*LEAD[:：]\s*(.+)\n/);
     const lead = lm ? lm[1].trim() : "";
