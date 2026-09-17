@@ -21,7 +21,9 @@ async function cycle() {
   const queued = state.keywords.filter((k) => k.status === "queued").length;
   const queuedTopics = state.keywords.filter((k) => k.status === "queued" && k.template.startsWith("topic:")).length;
   // トピック記事は比較記事のキューが尽きるまで追加されず、9/11〜9/13 は一度も出なかった。トピックが切れたら補充する
-  if (queued < config.pipeline.perCycle || queuedTopics === 0) buildKeywords(40);
+  // 2026-09-17: 新しい記事の型（給付金ページ）を足してもキューに入らなかったので、毎回回す（既存 slug は追加されない）
+  buildKeywords(40);
+  void queued; void queuedTopics;
 
   // 独自データ：公式サイト表示料金の定点観測（失敗してもサイクルは止めない）
   await priceWatchRun().catch((e) => console.log("[pricewatch] skip:", (e as Error).message));
