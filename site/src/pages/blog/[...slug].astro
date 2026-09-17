@@ -103,6 +103,45 @@ const ctaAfter = figMapAfter + 1;
       {ctaId && !d.news && <div class="figslot" data-after={ctaAfter}><Cta id={ctaId} /></div>}
     </div>
     <script is:inline>
+      // 「編集部の井戸端会議」を吹き出しの会話に、「3行で言うと」を要約カードに、「スレの流れ」をまとめサイト風のレスにする。
+      (function () {
+        var art = document.currentScript.closest("article");
+        if (!art) return;
+        var wrap = function (h2, cls) {
+          var box = document.createElement("div"); box.className = cls;
+          h2.parentNode.insertBefore(box, h2);
+          var el = h2;
+          while (el && !(el !== h2 && /^H2$/.test(el.tagName))) { var next = el.nextElementSibling; box.appendChild(el); el = next; }
+          return box;
+        };
+        Array.prototype.slice.call(art.querySelectorAll("h2")).forEach(function (h) {
+          var t = h.textContent;
+          if (/井戸端会議/.test(t)) {
+            var box = wrap(h, "kaigi");
+            Array.prototype.slice.call(box.querySelectorAll("p")).forEach(function (p) {
+              var st = p.querySelector("strong");
+              if (!st || st !== p.firstChild) return;
+              var who = st.textContent.trim();
+              p.className = "say say-" + ({ "佐倉": "sakura", "ミナ": "mina", "タケシ": "takeshi" }[who] || "x");
+              var text = p.textContent.slice(who.length).replace(/^「|」$/g, "");
+              p.innerHTML = '<span class="av">' + who.slice(0, 1) + '</span><span class="bub"><b>' + who + '</b>' + text.replace(/</g, "&lt;") + '</span>';
+            });
+          } else if (/3行で言うと/.test(t)) {
+            wrap(h, "tldr");
+          }
+        });
+        Array.prototype.slice.call(art.querySelectorAll("h3")).forEach(function (h) {
+          if (!/スレの流れ/.test(h.textContent)) return;
+          var ol = h.nextElementSibling; if (!ol || ol.tagName !== "OL") return;
+          ol.className = "thread";
+          Array.prototype.slice.call(ol.children).forEach(function (li, i) {
+            var txt = li.textContent.replace(/^名無しさん/, "").replace(/^「|」$/g, "");
+            li.innerHTML = '<span class="no">' + (i + 1) + '</span><span class="nm">名無しさん</span><span class="tx">' + txt.replace(/</g, "&lt;") + '</span>';
+          });
+        });
+      })();
+    </script>
+    <script is:inline>
       // ニュース記事の「ネットの反応」節をまとめサイト風の箱にする（見出しから次の ## まで）。
       (function () {
         var art = document.currentScript.closest("article");
@@ -122,7 +161,10 @@ const ctaAfter = figMapAfter + 1;
         if (!art) return;
         var bank = art.querySelector("#figbank");
         if (!bank) return;
-        var h2s = Array.prototype.slice.call(art.querySelectorAll("h2"));
+        // 図解の差し込み先は「本文の節」だけ。要約・データ表・会話・反応・FAQ・出典の節は数えない（2026-09-17）
+        var h2s = Array.prototype.slice.call(art.querySelectorAll("h2")).filter(function (h) {
+          return !/3行で言うと|基本データ|井戸端会議|ネットの反応|よくある質問|^出典|あわせて読みたい|比較一覧/.test(h.textContent);
+        });
         var slots = Array.prototype.slice.call(bank.querySelectorAll(".figslot"));
         slots.forEach(function (slot) {
           var n = parseInt(slot.getAttribute("data-after"), 10);
@@ -170,6 +212,30 @@ const ctaAfter = figMapAfter + 1;
     }
   </script>
   <style is:global>
+    /* 3行で言うと（要約カード） */
+    .tldr{background:#eef2ff;border:1px solid #c7d2fe;border-radius:16px;padding:6px 22px 14px;margin:22px 0}
+    .tldr h2{border-left-color:#4f46e5 !important;margin-top:14px;font-size:17px}
+    .tldr blockquote{margin:10px 0 0;padding:0;border:0;background:transparent}
+    .tldr blockquote p{margin:6px 0;padding:8px 12px 8px 36px;background:#fff;border-radius:10px;position:relative;font-size:15px;font-weight:600;color:#1e1b4b}
+    .tldr blockquote p::before{content:"✓";position:absolute;left:12px;color:#4f46e5;font-weight:800}
+    /* 編集部の井戸端会議（吹き出し） */
+    .kaigi{background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:6px 18px 16px;margin:26px 0}
+    .kaigi h2{margin-top:14px}
+    .kaigi em{display:block;font-size:12px;color:var(--mut);font-style:normal;margin:0 0 10px}
+    .kaigi .say{display:flex;gap:10px;align-items:flex-start;margin:10px 0}
+    .kaigi .av{flex:none;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:15px}
+    .kaigi .bub{background:#fff;border:1px solid #e2e8f0;border-radius:4px 14px 14px 14px;padding:8px 12px;font-size:14.5px;line-height:1.7;max-width:640px}
+    .kaigi .bub b{display:block;font-size:11.5px;margin-bottom:2px}
+    .kaigi .say-sakura .av{background:#0f766e}.kaigi .say-sakura b{color:#0f766e}
+    .kaigi .say-mina .av{background:#db2777}.kaigi .say-mina b{color:#db2777}
+    .kaigi .say-takeshi .av{background:#2563eb}.kaigi .say-takeshi b{color:#2563eb}
+    .kaigi .say-sakura{flex-direction:row-reverse}.kaigi .say-sakura .bub{border-radius:14px 4px 14px 14px;background:#ecfeff}
+    /* スレの流れ（まとめサイト風のレス） */
+    ol.thread{list-style:none;padding:0;margin:8px 0 0;font-size:14px}
+    ol.thread li{display:grid;grid-template-columns:auto auto 1fr;gap:8px;align-items:baseline;padding:7px 0;border-top:1px dashed #fed7aa}
+    ol.thread li .no{color:#ea580c;font-weight:800}
+    ol.thread li .nm{color:#16a34a;font-weight:700;font-size:12.5px}
+    ol.thread li .tx{color:#1f2937}
     /* ネットの反応（まとめサイト風の箱。JSで包むので is:global） */
     .reactions{background:linear-gradient(180deg,#fff7ed,#fff);border:1px solid #fed7aa;border-radius:16px;padding:4px 22px 16px;margin:26px 0}
     .reactions h2{border-left-color:#f97316 !important;margin-top:16px}
