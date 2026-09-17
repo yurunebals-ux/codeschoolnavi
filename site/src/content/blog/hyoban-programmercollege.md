@@ -133,6 +133,6 @@ draft: false
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [SmartHRのClaude Code活用術、開発期間1か月短縮の設計手法を解説](/blog/news-20260917-1g4j2/)
 - [Google Gemini 3.8 Liveが音声コーディングを実現、社会人学習者はどう動くか](/blog/news-20260916-wtbbc/)
 - [Qiita記事7万件分析で見る生成AI後の技術文章の変化と編集部の見解](/blog/news-20260915-bs70u/)
-- [未経験からAIエンジニアになるには？学ぶ順番と現実的な期間](/blog/topic-ai-engineer-mikeiken/)
