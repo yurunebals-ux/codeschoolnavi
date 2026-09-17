@@ -1,6 +1,6 @@
 ---
-title: "TechAcademyは自分に合う？向いていない人の条件と後悔しない判断基準"
-description: "TechAcademyが向いていない人の条件を、料金・期間・保証・転職支援の事実から検証。後悔しない判断基準と代替校を示します。"
+title: "TechAcademyは自分に合う？申込前に潰す3つの不安"
+description: "TechAcademyに申し込む前に不安になる点（受講料185,900円〜・返金なし・転職支援あり）を公式の事実で検証。向いていない人の条件と、代わりに見る学校を示します。"
 author: "編集部"
 pubDate: 2026-08-27
 updatedDate: 2026-08-27

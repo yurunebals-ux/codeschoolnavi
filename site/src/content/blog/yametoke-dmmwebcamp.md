@@ -1,6 +1,6 @@
 ---
-title: "SHIFT TERAS CAMPUSは自分に合う？向いていない人の条件と後悔しない判断基準"
-description: "SHIFT TERAS CAMPUSが向いていない人の条件を、料金・期間・保証・転職支援の事実から検証。後悔しない判断基準と代替校を示します。"
+title: "SHIFT TERAS CAMPUSは自分に合う？申込前に潰す3つの不安"
+description: "SHIFT TERAS CAMPUSに申し込む前に不安になる点（受講料169,800円〜・返金あり(条件付)・転職支援あり）を公式の事実で検証。向いていない人の条件と、代わりに見る学校を示します。"
 author: "編集部"
 pubDate: 2026-08-23
 updatedDate: 2026-08-23

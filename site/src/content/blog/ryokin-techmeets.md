@@ -1,6 +1,6 @@
 ---
-title: "techmeetsの料金は高い？他社と比較"
-description: "techmeetsの料金は高い？他社と比較。料金・評判・特徴を比較して、あなたに合うスクールを解説します。"
+title: "techmeetsの料金は高い？月あたりで他校と比べた結果"
+description: "techmeetsの受講料165,000円〜（プランにより異なる）は高いのか。同カテゴリの他校と月あたりで比較し、給付金対象講座あり・返金保証「なし」まで整理します。"
 author: "編集部"
 pubDate: 2026-08-24
 updatedDate: 2026-08-24
