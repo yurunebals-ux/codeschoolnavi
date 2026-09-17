@@ -41,10 +41,13 @@ export async function regenRun(opts: { count?: number; slugs?: string[]; force?:
     targets = published.filter((k) => opts.slugs!.includes(k.slug));
   } else {
     // 古い順（読者に長く見られている記事から直す）。すでに新しい型のものは除く。
+    // data/priority.json（Search Console で表示が出ている記事）を先に、残りは古い順
+    const prio: string[] = (() => { try { return JSON.parse(readFileSync(resolve(paths.data, "priority.json"), "utf8")).slugs ?? []; } catch { return []; } })();
+    const rank = (k: KeywordItem) => { const i = prio.indexOf(k.slug); return i < 0 ? 999 : i; };
     targets = published
       .filter((k) => (k.structure ?? 1) < STRUCTURE_VERSION)
       .filter((k) => opts.force || !log.done[k.slug] || log.done[k.slug].version < STRUCTURE_VERSION)
-      .sort((a, b) => (a.publishedAt ?? "").localeCompare(b.publishedAt ?? ""))
+      .sort((a, b) => rank(a) - rank(b) || (a.publishedAt ?? "").localeCompare(b.publishedAt ?? ""))
       .slice(0, opts.count ?? 3);
   }
   if (!targets.length) { console.log("[regen] 対象なし（全記事が新しい型）"); return 0; }

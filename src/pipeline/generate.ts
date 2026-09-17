@@ -44,6 +44,7 @@ export function minWordsFor(item: KeywordItem): number {
   if (item.template.startsWith("news:")) return 900;
   if (item.template.startsWith("topic:")) return Math.round(base * 0.7);
   if (/^money:(review|pricing|doubt)$|^info:what$/.test(item.template)) return Math.round(base * 0.75);
+  if (item.template === "money:subsidy") return Math.round(base * 0.6);
   return base;
 }
 
@@ -369,6 +370,17 @@ function planFor(item: KeywordItem, tools: Tool[], all: Tool[], subsidyIds: stri
       b: `5. ## 合わない条件と、その場合に見るべき学校: 条件を3つ、それぞれ参考校（${peers}）のどれが代わりになるかを数字つきで。\n6. ## ${kyufuHead}: ${subsidy}\n7. ## 申し込む前に潰しておく不安: 無料カウンセリングでそのまま口に出せる質問を5つ、「」で書く。それぞれ何を確かめる質問かを1文添える。\n8. ${faq}\n9. 最後の節（見出しは「まとめ」以外の具体的なもの）: 判断の分かれ目を1つだけ書き、その先の行動を2通り示す。要約は禁止。`,
     };
   }
+  if (item.template === "money:subsidy" && t) {
+    const el = eligible(t);
+    const peers = peersFor(t, all).filter((p) => eligible(p)).map((p) => p.name).join("・");
+    return {
+      factBoxFor: t, needTable: false,
+      a: el
+        ? `1. 冒頭（見出しなし・150字以内）: 1文目で「対象コースがある」と言い切り、区分（一般／特定一般／専門実践）と対象コース名を書く。\n2. ## 対象になるコースと区分: 但し書きにある対象コースだけを表（| コース | 区分 | 受講料(税込) | 給付率と上限 |）で。対象外のコースがあれば「対象外」の行で明示する。\n3. ## いくら戻るか：受講料から計算する: 対象コースの受講料で「受講料 − 給付額 ＝ 実質負担額」を区分の率と上限に従って計算し、区分名を添えて示す。専門実践は「受講中50%」「就職で+20%」「賃上げで+10%」を分けて書く。対象コースの受講料がデータに無ければ計算せず「公式サイトで受講料を確認してから計算する」と書く。\n4. ## 申請の順番と、落ちる人の共通点: 受講開始日の2週間前までのハローワーク手続き、雇用保険の加入期間、講座番号の確認、修了要件を、時系列で。`
+        : `1. 冒頭（見出しなし・150字以内）: 1文目で「教育訓練給付金の対象講座はない」と言い切る（但し書きの理由があれば添える）。\n2. ## 教育訓練給付金が使えない理由と、公式サイトの「◯◯%還元」の正体: 但し書きにある制度（経産省リスキリング事業など）と教育訓練給付金の違いを、申請先・条件・併用可否で説明する。データに無い制度は書かない。給付額の計算は一切しない。\n3. ## 同じ目的で給付金が使える学校: 参考校（${peers || "対象校"}）のうち対象講座がある学校を、対象コース名・区分つきで挙げる。数字はデータにあるものだけ。\n4. ## それでも${t.name}を選ぶ人の条件: 給付金なしでも合理的な場合を、料金・期間・保証の数字で3つ。`,
+      b: `5. ## 申し込む前に確認する質問（無料カウンセリングで）: 「」で5つ。給付金・講座番号・修了要件・支払い・返金に関するもの。\n6. ${faq}\n7. ${last}\n【必読】${subsidy}`,
+    };
+  }
   if (item.template === "money:vs" && tools.length >= 2) {
     const [x, y] = tools;
     return {
@@ -636,7 +648,8 @@ export function pickNext(state: ReturnType<typeof loadState>): KeywordItem | und
     .sort((a, b) => (b.publishedAt ?? "").localeCompare(a.publishedAt ?? ""))[0];
   const topic = queued.find((k) => k.template.startsWith("topic:"));
   if (topic && lastNonNews && !lastNonNews.template.startsWith("topic:")) return topic;
-  return queued.find((k) => !k.template.startsWith("topic:")) ?? queued[0];
+  // キューは score の高い順（給付金ページ=intent 10 が先）。同点は配列順
+  return [...queued].filter((k) => !k.template.startsWith("topic:")).sort((a, b) => (b.score ?? 0) - (a.score ?? 0))[0] ?? queued[0];
 }
 
 export function frontmatter(item: KeywordItem, tools: Tool[], description: string | null, dates: { pub: string; upd: string }, title?: string | null): string {
