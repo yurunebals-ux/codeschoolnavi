@@ -111,7 +111,8 @@ const ctaAfter = figMapAfter + 1;
           var box = document.createElement("div"); box.className = cls;
           h2.parentNode.insertBefore(box, h2);
           var el = h2;
-          while (el && !(el !== h2 && /^H2$/.test(el.tagName))) { var next = el.nextElementSibling; box.appendChild(el); el = next; }
+          // 次の ## か、先に包んだ箱（kaigi / tldr / reactions）に当たるまで
+          while (el && !(el !== h2 && (/^H2$/.test(el.tagName) || /\b(kaigi|tldr|reactions)\b/.test(el.className || "")))) { var next = el.nextElementSibling; box.appendChild(el); el = next; }
           return box;
         };
         Array.prototype.slice.call(art.querySelectorAll("h2")).forEach(function (h) {
@@ -130,13 +131,19 @@ const ctaAfter = figMapAfter + 1;
             wrap(h, "tldr");
           }
         });
-        Array.prototype.slice.call(art.querySelectorAll("h3")).forEach(function (h) {
+        // スレの流れ（h2 = まとめ風のニュース記事、h3 = 旧形式）。1がニュースデスク、以降は実際のコメント
+        Array.prototype.slice.call(art.querySelectorAll("h2, h3")).forEach(function (h) {
           if (!/スレの流れ/.test(h.textContent)) return;
-          var ol = h.nextElementSibling; if (!ol || ol.tagName !== "OL") return;
+          var box = h.tagName === "H2" ? wrap(h, "reactions thread-box") : null;
+          var ol = (box || h.parentNode).querySelector("ol"); if (!ol) return;
           ol.className = "thread";
           Array.prototype.slice.call(ol.children).forEach(function (li, i) {
-            var txt = li.textContent.replace(/^名無しさん/, "").replace(/^「|」$/g, "");
-            li.innerHTML = '<span class="no">' + (i + 1) + '</span><span class="nm">名無しさん</span><span class="tx">' + txt.replace(/</g, "&lt;") + '</span>';
+            var raw = li.textContent.trim();
+            var m = raw.match(/^(ニュースデスク|名無しさん（海外）|名無しさん)\s*「?([\s\S]*?)」?$/);
+            var who = m ? m[1] : "名無しさん", txt = m ? m[2] : raw;
+            var cls = who === "ニュースデスク" ? "desk" : /海外/.test(who) ? "abroad" : "";
+            li.className = cls;
+            li.innerHTML = '<span class="no">' + (i + 1) + '</span><span class="nm">' + who + '</span><span class="tx">' + txt.replace(/</g, "&lt;") + '</span>';
           });
         });
       })();
@@ -236,6 +243,11 @@ const ctaAfter = figMapAfter + 1;
     ol.thread li .no{color:#ea580c;font-weight:800}
     ol.thread li .nm{color:#16a34a;font-weight:700;font-size:12.5px}
     ol.thread li .tx{color:#1f2937}
+    ol.thread li.desk{background:#fff;border:1px solid #fed7aa;border-radius:10px;padding:10px 12px;margin-bottom:6px}
+    ol.thread li.desk .nm{color:#1d4ed8}
+    ol.thread li.desk .tx{font-weight:600;color:#0f172a}
+    ol.thread li.abroad .nm{color:#7c3aed}
+    .thread-box h2{border-left-color:#f97316 !important}
     /* ネットの反応（まとめサイト風の箱。JSで包むので is:global） */
     .reactions{background:linear-gradient(180deg,#fff7ed,#fff);border:1px solid #fed7aa;border-radius:16px;padding:4px 22px 16px;margin:26px 0}
     .reactions h2{border-left-color:#f97316 !important;margin-top:16px}
