@@ -525,8 +525,11 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
       const rxText = await chat(
         `次のニュースに対するネット上のコメント（${rx.comments.length}件）を読み、「ネットの反応」の節を書く。\n出力形式（この形式以外は書かない。見出し「## ネットの反応」から始める）:\n## ネットの反応\n導入1文（どの立場の声が多いか）。\n### 歓迎・期待の声\n要約2〜3文＋短い引用を1つ（原文から40字以内をそのまま「」で。英語なら日本語に訳して「」）。\n### 懸念・批判の声\n同じ形。\n### 別の視点\n同じ形（該当する声が無ければこの小見出しは書かない）。\n【禁止】コメントにない意見の創作。ユーザー名・ハンドル名。40字を超える引用。個人や企業への中傷の引用。\n\n【ニュースの見出し】${n.title}\n【コメント】\n${list}`,
         { system: newsSystem, maxTokens: 1500, temperature: 0.5 });
-      const rxSection = rxText.trim().replace(/[ \t]+$/gm, "");
+      let rxSection = rxText.trim().replace(/[ \t]+$/gm, "");
       if (/^## ネットの反応/m.test(rxSection)) {
+        // まとめサイト風の「スレの流れ」: 実際のコメント（日本語・70字以内）をそのまま番号付きで最大8件。名前は出さない
+        const posts = rx.comments.filter((c) => !isEnglish(c.text)).map((c) => c.text.replace(/\s+/g, " ").trim()).filter((t) => t.length >= 10 && t.length <= 70).filter((t, i, a) => a.indexOf(t) === i).slice(0, 8);
+        if (posts.length >= 4) rxSection += `\n\n### スレの流れ\n\n${posts.map((t, i) => `${i + 1}. 名無しさん「${t}」`).join("\n")}`;
         const srcLine = `反応の出典：${rx.threads.map((t) => `[${t.platform}](${t.url})（${t.count}件）`).join("・")}`;
         // 2つ目の ## 見出し（なぜ今か）の直後の段落末に挿入。見出しが2つ未満なら末尾へ
         const heads = [...hotBody.matchAll(/^## .+$/gm)];
@@ -572,7 +575,54 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
   body = await depersonalizeAi(body, system);
   // 書き直しの後にも重複除去を掛ける（2026-09-09 の事故: 書き直しで節が二重化して公開された）
   body = dedupeSections(body);
+  // 軽く読める層（3行で言うと／編集部の井戸端会議）。文体の書き直しの後に足す（会話体を"直され"ないため）
+  body = await lightLayer(body, item, system);
   return { body, description: d1.description, title: t1.title, tools };
+}
+
+// ── 軽く読める層 ─────────────────────────────────────────────
+// オーナー（2026-09-17）「完成度が高い分、気軽に読めない。2ちゃんねるまとめのようなコメントで補完できないか」。
+// 実在の受講生の声は捏造できない（ステマ規制・景表法）ので、**編集部スタッフ3人の会話**として明示して入れる。
+// 会話は記事本文の事実の言い換えだけ。本文に無い金額・期間・％が出た行は機械で落とす。
+const STAFF = [
+  { name: "佐倉", role: "編集長。冷静。最後に結論を一言で言う。敬語は使わない" },
+  { name: "ミナ", role: "新人ライター。読者と同じ目線で「え、高くない？」「それって結局どういうこと？」と素直に聞く。口語" },
+  { name: "タケシ", role: "データ担当。数字と条件で返す。「公式にはこう書いてある」と根拠を言う。少し理屈っぽい" },
+];
+const KAIGI_NOTE = "※編集部スタッフ（佐倉・ミナ・タケシ）による会話形式のまとめです。実在の受講生の声ではありません。";
+
+function numbersIn(s: string): string[] {
+  return (s.match(/[\d,]+(?:\.\d+)?(?:万)?円|\d+(?:\.\d+)?[%％]|\d+(?:ヶ月|か月|週間|日間|時間|回|校|社|年)/g) ?? []).map((n) => n.replace(/,/g, ""));
+}
+
+async function lightLayer(body: string, item: KeywordItem, system: string): Promise<string> {
+  if (isOffline() || item.template.startsWith("news:")) return body;
+  const bodyNums = new Set(numbersIn(body));
+  const okLine = (l: string) => numbersIn(l).every((n) => bodyNums.has(n)) && !/という声|との口コミ|口コミ(が|も)多い|口コミでは|と評判|受講生の声|受講生は|卒業生は/.test(l);
+  const r = await chat(
+    `以下の記事に「軽く読める層」を足す。出力はこの形式だけ（見出し・番号・記号を増やさない）:\nTLDR:\n（記事の結論を3行。各行40字以内。読者の損得が分かる言い方。記事にある数字だけ使う）\nKAIGI:\n（編集部スタッフ3人の会話を10〜12行。1行=「名前: 発言」。発言は各60字以内、口語、掛け合い。順番は ミナが疑問→タケシが数字で返す→佐倉が判断、を2〜3周。記事に書いてある事実だけを言い換える。記事に無い数字・固有名詞・体験談は禁止。「〜という声」「口コミ」「受講生」という語は使わない。最後は佐倉が結論を一言）\n登場人物: ${STAFF.map((s) => `${s.name}=${s.role}`).join("／")}\n\n【記事】\n${body.slice(0, 7000)}`,
+    { system, maxTokens: 1400, temperature: 0.8 });
+  const tl = r.match(/TLDR:\s*([\s\S]*?)\nKAIGI:/);
+  const kg = r.match(/KAIGI:\s*([\s\S]*)$/);
+  const tldr = (tl?.[1] ?? "").split("\n").map((l) => l.replace(/^\s*[-・*\d.．)）]+\s*/, "").trim()).filter((l) => l.length >= 8 && l.length <= 60 && okLine(l)).slice(0, 3);
+  const names = STAFF.map((s) => s.name);
+  const lines = (kg?.[1] ?? "").split("\n").map((l) => l.trim()).map((l) => {
+    const m = l.match(/^[-・*\d.．)）\s]*(佐倉|ミナ|タケシ)\s*[:：]\s*「?(.+?)」?$/);
+    return m && names.includes(m[1]) ? { who: m[1], text: m[2].trim() } : null;
+  }).filter((x): x is { who: string; text: string } => !!x && x.text.length >= 4 && x.text.length <= 90 && okLine(x.text));
+  let out = body;
+  if (tldr.length === 3) {
+    const block = `## 3行で言うと\n\n${tldr.map((l) => `> ${l}`).join("\n>\n")}`; // 空の > で段落を分ける（連続すると1段落に潰れる）
+    out = insertAfterIntro(out, block);
+  }
+  if (lines.length >= 6) {
+    const kaigi = `## 編集部の井戸端会議\n\n*${KAIGI_NOTE}*\n\n${lines.slice(0, 12).map((x) => `**${x.who}**「${x.text}」`).join("\n\n")}`;
+    const faqAt = out.search(/^## よくある質問/m);
+    if (faqAt >= 0) out = `${out.slice(0, faqAt).trimEnd()}\n\n${kaigi}\n\n${out.slice(faqAt)}`;
+    else out = `${out.trimEnd()}\n\n${kaigi}\n`;
+    console.log(`[editor] 井戸端会議 ${lines.length}行、3行まとめ ${tldr.length}行`);
+  } else console.log(`[editor] 井戸端会議は不採用（使える行 ${lines.length}）`);
+  return out;
 }
 
 // ── 推敲パス ──────────────────────────────────────────────────
