@@ -1,6 +1,6 @@
 ---
-title: "RUNTEQの評判・口コミは？特徴を解説"
-description: "RUNTEQは約9ヶ月でRuby on Railsを学ぶ転職特化型スクール。料金や転職支援の特徴を他校と比較し解説。"
+title: "RUNTEQの評判・口コミは？不満の声の真相と向いている人"
+description: "RUNTEQの評判・口コミを、受講料550,000円〜・期間約9ヶ月・給付金対象講座ありの事実と不満の声から検証。向いている人・合わない人を編集部が判定します。"
 author: "編集部"
 pubDate: 2026-07-24
 updatedDate: 2026-09-12

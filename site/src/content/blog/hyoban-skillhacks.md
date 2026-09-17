@@ -1,6 +1,6 @@
 ---
-title: "SkillHacksの評判・口コミは？特徴を解説"
-description: "SkillHacksの評判・口コミは？特徴を解説。料金・評判・特徴を比較して、あなたに合うスクールを解説します。"
+title: "SkillHacksの評判・口コミは？不満の声の真相と向いている人"
+description: "SkillHacksの評判・口コミを、受講料69,800円〜・期間無期限(買い切り)・給付金対象外の事実と不満の声から検証。向いている人・合わない人を編集部が判定します。"
 author: "編集部"
 pubDate: 2026-08-03
 updatedDate: 2026-08-03

@@ -1,6 +1,6 @@
 ---
-title: "DMM 生成AI CAMPの評判・口コミは？特徴を解説"
-description: "DMM 生成AI CAMPの料金や学べる内容、転職支援の有無を基に利用すべき人を具体的に検証。Aidemy・キカガクとの違いも示す。"
+title: "DMM 生成AI CAMPの評判・口コミは？不満の声の真相と向いている人"
+description: "DMM 生成AI CAMPの評判・口コミを、受講料16,280円〜・期間月額制・給付金対象外の事実と不満の声から検証。向いている人・合わない人を編集部が判定します。"
 author: "編集部"
 pubDate: 2026-08-01
 updatedDate: 2026-09-17

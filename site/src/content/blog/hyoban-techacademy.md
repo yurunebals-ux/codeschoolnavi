@@ -1,6 +1,6 @@
 ---
-title: "TechAcademyの評判・口コミは？特徴を解説"
-description: "TechAcademyの4週間から16週間の料金とサポート体制を中心に、他校と比較し特徴を解説。"
+title: "TechAcademyの評判・口コミは？不満の声の真相と向いている人"
+description: "TechAcademyの評判・口コミを、受講料185,900円〜・期間4〜16週間・給付金対象外の事実と不満の声から検証。向いている人・合わない人を編集部が判定します。"
 author: "編集部"
 pubDate: 2026-07-24
 updatedDate: 2026-09-11

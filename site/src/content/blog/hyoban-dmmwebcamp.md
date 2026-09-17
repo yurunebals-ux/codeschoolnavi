@@ -1,6 +1,6 @@
 ---
-title: "DMM WEBCAMPの評判・口コミは？特徴を解説"
-description: "SHIFT TERAS CAMPUSの料金や転職保証、サポート内容をテックキャンプと比較しながら解説します。"
+title: "SHIFT TERAS CAMPUSの評判・口コミは？不満の声の真相と向いている人"
+description: "SHIFT TERAS CAMPUSの評判・口コミを、受講料169,800円〜・期間3〜4ヶ月・給付金対象講座ありの事実と不満の声から検証。向いている人・合わない人を編集部が判定します。"
 author: "編集部"
 pubDate: 2026-07-24
 updatedDate: 2026-09-11
