@@ -652,10 +652,30 @@ export function pickNext(state: ReturnType<typeof loadState>): KeywordItem | und
   return [...queued].filter((k) => !k.template.startsWith("topic:")).sort((a, b) => (b.score ?? 0) - (a.score ?? 0))[0] ?? queued[0];
 }
 
+/** 検索結果の説明文。1校記事はデータ（受講料・期間・給付金・返金）入りの定型にする（LLM の説明文は平板で CTR 0.4%。2026-09-17） */
+function seoDescription(item: KeywordItem, t: Tool, subsidyIds: string[]): string | null {
+  const price = yen(t);
+  const period = t.period && t.period !== "―" ? t.period : "";
+  const refund = t.refund && t.refund !== "―" ? t.refund : "";
+  const job = t.job_support && t.job_support !== "―" ? t.job_support : "";
+  const kyu = subsidyIds.includes(t.id) ? "給付金対象講座あり" : "給付金対象外";
+  switch (item.template) {
+    case "money:review": return `${t.name}の評判・口コミを、受講料${price}〜${period ? "・期間" + period : ""}・${kyu}の事実と不満の声から検証。向いている人・合わない人を編集部が判定します。`;
+    case "money:pricing": return `${t.name}の受講料${price}〜${period ? "（" + period + "）" : ""}は高いのか。同カテゴリの他校と月あたりで比較し、${kyu}・返金保証${refund ? "「" + refund + "」" : "の有無"}まで整理します。`;
+    case "money:doubt": return `${t.name}に申し込む前に不安になる点（受講料${price}〜${refund ? "・返金" + refund : ""}${job ? "・転職支援" + job : ""}）を公式の事実で検証。向いていない人の条件と、代わりに見る学校を示します。`;
+    case "money:subsidy": return subsidyIds.includes(t.id)
+      ? `${t.name}は教育訓練給付金の対象講座あり。対象コースと区分、受講料${price}〜から実際に戻る金額、受講2週間前までの申請の順番を整理します。`
+      : `${t.name}に教育訓練給付金の対象講座はありません。公式の「還元」表記の正体（別制度）、同じ目的で給付金が使える学校、それでも選ぶ人の条件を示します。`;
+    default: return null;
+  }
+}
+
 export function frontmatter(item: KeywordItem, tools: Tool[], description: string | null, dates: { pub: string; upd: string }, title?: string | null): string {
-  const desc = description && description.length >= 20
+  const subsidyIds: string[] = (() => { try { return (JSON.parse(readFileSync(paths.affiliates, "utf8")) as Affiliates).subsidy_ids ?? []; } catch { return []; } })();
+  const seo = tools.length === 1 ? seoDescription(item, tools[0], subsidyIds) : null;
+  const desc = seo ?? (description && description.length >= 20
     ? description
-    : `${item.keyword}。料金・条件・向き不向きを公式情報と編集部の基準で整理します。`;
+    : `${item.keyword}。料金・条件・向き不向きを公式情報と編集部の基準で整理します。`);
   return [
     "---",
     `title: ${JSON.stringify(title ?? item.keyword)}`,

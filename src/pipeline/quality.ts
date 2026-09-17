@@ -100,6 +100,9 @@ export function evaluateDraft(md: string, item: KeywordItem, aff: AffMeta, prior
   const hasDeadLink = /REPLACE-WITH-YOUR|PENDING-A8-APPROVAL|example\.com|googleusercontent\.com/.test(md);
   if (hasDeadLink) reasons.push("提携未承認のプレースホルダURLが本文に残っている");
   const hype = /絶対|必ず稼げる|確実に稼|日本一|100%|No\.?1|誰でも稼/i.test(md);
+  // 架空の比較対象（「スクールA」「B校」）。2026-09-17 の ryokin-samurai 作り直しで、参考校を渡しているのに表に架空校と架空料金を並べた
+  const fakeSchool = /スクール[A-DＡ-Ｄ](?![a-zA-Z])|[A-DＡ-Ｄ]校(?![a-zA-Z])|某スクール|架空の/.test(md);
+  if (fakeSchool) reasons.push("架空のスクール名（スクールA など）");
   if (hype) reasons.push("誇大・断定表現");
 
   // 口コミの捏造（出典を示せない「声」）。データ規約で禁じているが、出たら止める。
@@ -142,7 +145,7 @@ export function evaluateDraft(md: string, item: KeywordItem, aff: AffMeta, prior
   else reasons.push(`AI文体(score ${ai.score}: ${[...ai.top(4), ...ai.structure, ...ai.rhythm].join("、")})`);
 
   const hardBlock =
-    !hasAd || hasDeadLink || /OFFLINE PLACEHOLDER/.test(md) || hype ||
+    !hasAd || hasDeadLink || /OFFLINE PLACEHOLDER/.test(md) || hype || fakeSchool ||
     maxSim > 0.72 || badSubsidyMath || subsidyDenied || fakeVoice || structure.length > 0 || !!inventedMoney ||
     ai.score > config.pipeline.aieseMax;
 
