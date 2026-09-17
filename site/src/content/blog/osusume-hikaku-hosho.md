@@ -219,5 +219,5 @@ SHIFT TERAS CAMPUSとテックキャンプの転職保証は、指定期間内�
 - [DMM WEBCAMPの料金は高い？他社と比較](/blog/ryokin-dmmwebcamp/)
 - [SHIFT TERAS CAMPUSは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-dmmwebcamp/)
 - [テックキャンプの料金は高い？他社と比較](/blog/ryokin-techcamp/)
-- [DMM WEBCAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmwebcamp/)
+- [SHIFT TERAS CAMPUSの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-dmmwebcamp/)
 - [テックキャンプの評判・口コミは？特徴を解説](/blog/hyoban-techcamp/)

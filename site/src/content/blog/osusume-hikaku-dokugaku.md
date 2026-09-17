@@ -198,5 +198,5 @@ SkillHacksには返金保証がない。購入前に公式サイトのカリキ�
 - [SkillHacksは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-skillhacks/)
 - [SkillHacksの評判・口コミは？特徴を解説](/blog/hyoban-skillhacks/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Claude Codeを「使うほど育つ」AI秘書に変える3つの具体策](/blog/news-20260917-1lp96/)
 - [TypeSafe AIのJevは70ms応答で高速判断、LLMとどう使い分けるべきか](/blog/news-20260917-1ege7/)
-- [キカガクの料金は高い？他社と比較](/blog/ryokin-kikagaku/)

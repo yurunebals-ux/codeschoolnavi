@@ -2809,10 +2809,78 @@
       },
       "structure": 2,
       "publishedAt": "2026-09-17T13:06:06.489Z"
+    },
+    {
+      "slug": "news-20260917-1lp96",
+      "keyword": "Claude Codeを「使うほど育つ」AI秘書に変える3つの具体策",
+      "template": "news:hot",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 96,
+      "status": "published",
+      "createdAt": "2026-09-17T22:06:18.183Z",
+      "news": {
+        "title": "Claude Codeを「使うほど育つ」AI秘書にするノウハウ",
+        "link": "https://speakerdeck.com/minorun365/claude-code-o-tsukau-hodo-sodatsu-ai-hisho-ni-suru-nouhau",
+        "source": "speakerdeck.com",
+        "published": "2026年9月17日",
+        "snippet": "［みのるん式］ビジネスパーソンのためのClaude Code仕事術 https://www.amazon.co.jp/dp/4297159392",
+        "text": "Claude Codeを「使うほど育つ」AI秘書にするノウハウ - Speaker Deck Upgrade to Pro &mdash; share decks privately, control downloads, hide ads and more &hellip; Claude Codeを「使うほど育つ」AI秘書にするノウハウ みのるん PRO September 17, 2026 Technology 9.4k 14 Share Embed '>Copy iframe code Copy JS code Copy link Start on current slide Claude Codeを「使うほど育つ」AI秘書にするノウハウ ［みのるん式］ビジネスパーソンのためのClaude Code仕事術 https://www.amazon.co.jp/dp/4297159392 みのるん PRO September 17, 2026 More Decks by みのるん See All by みのるん The Agent Builder Loop from Daily Work to OSS minorun365 PRO 3 180 Claude Codeで開発以外の業務も爆速化しよう！ minorun365 PRO 12 10k Mastraエージェント、どのクラウドにデプロイする？ minorun365 PRO 3 280 「勝手に広まる」人気 AI エージェントを爆速で作ろう！（AWS Summit Japan 2026講演資料） minorun365 PRO 12 3.6k やさしいA2A入門 minorun365 PRO 12 2.9k もりもり新機能を一挙紹介！ AgentCoreに入門して、AWS上にAIエージェントを構築しよう minorun365 PRO 6 1.8k Claude Codeですべての日常業務を爆速化しよう！ minorun365 PRO 19 19k 2026年春のAgentCoreアプデ 細かいやつ全部まとめ minorun365 PRO 5 390 「責任あるAIエージェント」こそ自社で開発しよう！ minorun365 PRO 10 4k Other Decks in Technology See All in Technology AIエージェントの自己改善をどう設計するか / How to Design Self-Improvement for AI Agents 22mi 23 14k Claude Code本って、 読む必要あるの？ oikon48 2 450 2026/09/10 Spring Bootから Jakarta EE/MicroProfileへの移行 megascus 0 360 GoCon2026 - Open Source, Open World sanposhiho 4 4.2k 空間オーディオで過去の 自分（ゴースト）と競うランニング 〜HealthKitのルートを足音に変える実装〜 nao_randd 0 170 30座EKS, 180次升級淬煉的EKS Upgrade Skill 的歷程 eric8230 0 130 SQL文一行も書けない人事がCortexもろもろを使って人事業務を楽にしてみる ponponmikankan 1 240 range over func 2年間の軌跡 Issue #56413 はGoのエコシステムをどう変えたか ryujicre8ive 0 170 データ_AIの事業の勝敗をわけるもの nek0128 0 270 2026-09-11 【Snowflake World Tour Tokyo 2026】Snowflakeを起点に、AI Agentが自律稼働し続ける未来へ / Driving AI Agents with Snowflake civitaspo 0 390 日経電子版を支えていく Kasane Design System/fec_fukuoka nikkei_engineer_recruiting 0 1.4k Reactの設計論 uhyo 22 12k Featured See All Featured The Illustrated Guide to Node.js - THAT Conference 2024 reverentgeek 1 480 Claude Code どこまでも/ Claude Code Everywhere nwiizo 67 58k Abbi's Birthday coloredviolet 3 10k Lessons Learnt from Crawling 1000+ Websites charlesmeaden PRO 1 1.6k What’s in a name? Adding method to the madness productmarketing PRO 24 4.2k Making Projects Easy brettharned 120 6.8k Side Projects sachag 456 43k Product Roadmaps are Hard iamctodd 55 13k Believing is Seeing oripsolob 1 220 Why Your Marketing Sucks and What You Can Do About It - Sophie Logan marketingsoph 0 410 No one is an island. Learnings from fostering a developers community. thoeni 21 3.8k The browser strikes back jonoalderson 0 1.7k Transcript エンジニアの日常業務を効率化！ Claude Codeを「使うほど育つ」 AI秘書にするノウハウ みのるん @minorun365 御田 稔（みのるん） KDDIアジャイル開発センター株式会社 テックエバンジェリスト AWS AI Hero / AWS Samurai Qiita 2025 Top Contributor デブサミ2026 ベストスピーカー 2 みなさん、Claude Code使ってますか？ 「私、コード書く仕事じゃないから 関係ないわ」 「自分はSEだから、 調整や報告業務の方が多いし…」 私がClaudeとやってる仕事 日常雑務（経費精算、勤怠申請、出張手配） 案件対応（アジェンダ作成、議事整理、技術調査、資料作成） 社外講演（依頼整理、スライド作成、謝礼処理） しかもどれも一部の工程だけじゃなくて、 最初から最後まで通しでやってもらっています。 5 直近3か月のログを数えてみました 対象は仕事用のパソコン1台だけです。 Claudeとの会話（セッション）は 800本超 やり取りは 約3,500回 そのうち 約4割 は、裏で別の作業を させてる最中のもの 体感としては、自分が4人になった感じです。 6 「私はルーチンワークなんてしておらず、 高度な知能労働しかしないので AIなんて使い物にならないんだよね」 残念ながら、そういう方の9割は うまく使えてないだけです。 会議に出てる間も、裏では3つ同時進行 ⼈間は会議に集中 同時進⾏ AIへは要所だけ指⽰・承認 8 実際の画面はこんな感じです 3つの会話を並べて、 確認だけ回している 9 それ、RPAとかの自動化ツールと 何が違うの？ 渡すのは手順書じゃなくて、仕事そのもの プログラミング マクロ・RPA 仕組みづくり 決まった⼿順の反復 AIチャット 考える作業の相談 AIエージェント 3つの得意分野をいいとこ取り ＋⾃然⾔語の対話・柔軟な⾃律⾏動 決まった手順の反復はRPA、仕組みづくりはプログラミング。 AIエージェントは3つのいいとこ取り＋自分で段取りを考える 11 「優秀な部下」だと思った方が早い 総コン出身の優秀な中途社員が3人ぐらい、 フルリモートで自分の部屋に専属アサインされた感じです。 ただし入社初日なので、 あなたの会社のことは何も知りません 12 まずはオンボーディングから 中途入社のメンバーを迎えた初日と、やることは同じです。 自分の名前と役割、チームのミッション 担当している業務の一覧 業務ごとの目的、資料のありか、関係者 どんなに地頭が良くても、何も知らされずに 期待どおりの成果を出せる人はいません。 13 みのるん式は、Claude Code以外でもOK 提供元 Anthropic OpenAI コーディングエージェント Claude Code（今日の主役） Codex 日常業務向けエージェント Claude Cowork ChatGPT Work Cursorをはじめ、他社の製品でも同じ考え方で実践できます。 私自身、Claude CodeとCodexを毎日併用しています。 14 まず何を用意すればいいの？ 「Claude Desktop」アプリで始めるのがおすすめ 月20ドルのProプラン からお試し可能 この欄に日本語で 頼むだけ 16 準備は3ステップ 1. 日常業務モノレポを作る 2. 音声入力で自己紹介しまくる 仕事で使ってるツールのURLや、関連資料のパスなど 全て渡して、フォルダ整備を丸投げしよう 3. あとはやりたいことを頼むだけ！ 17 指示は日",
+        "reactions": {
+          "threads": [
+            {
+              "platform": "はてなブックマーク",
+              "url": "https://b.hatena.ne.jp/entry/s/speakerdeck.com/minorun365/claude-code-o-tsukau-hodo-sodatsu-ai-hisho-ni-suru-nouhau",
+              "count": 324
+            }
+          ],
+          "comments": [
+            {
+              "platform": "はてなブックマーク",
+              "text": "普通にM365 CopilotでJTCの社員がやっていることをあたかも特殊技能であるかのように見せているだけ。Why Claude Codeもなく、著者が本当にこれが自分だけの特別なスキルだと思い込んでいるのだとしたらそれは間違っているぞ。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "こんな内容で評価されてるっぽいのは納得いかない。時代遅れすぎない？"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "ボクを育てるより簡単そうにゃ？でもボクのほうが可愛いから浮気はダメにゃ！"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "ビジュアルや言いたいことは的を得ているよいスライド。最前線からは一歩引くとこれで説明は事足りるとは思う"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "腕組んでる写真が許されるのはラーメン屋だけやぞ/cowork入れてもメモリ8GBじゃクソ重くて使えねえんだよ"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "LLMは1番大変な他人を説得することができない...経費精算とかは物理の紙を処理しなきゃいけないし、ほとんど使えない。高度な提案書もかけないし。コード書かせても過剰なテストコード入れるだけ。早く仕事奪ってくれ"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "まず予算を用意して下さい"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "一年前の記事かと思った。今やAIエージェントで事足りる"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "非エンジニアでもClaude Codeを日常業務に組み込む運用の具体例が多くて参考になる。結局は言語化能力と設計力だが"
+            }
+          ]
+        }
+      },
+      "structure": 2,
+      "publishedAt": "2026-09-17T22:12:06.968Z"
     }
   ],
-  "publishedCount": 66,
-  "estimatedMrrUsd": 19800,
+  "publishedCount": 67,
+  "estimatedMrrUsd": 20100,
   "history": [
     {
       "date": "2026-07-24",
@@ -3086,9 +3154,9 @@
     },
     {
       "date": "2026-09-17",
-      "published": 66,
-      "estimatedMrrUsd": 19800
+      "published": 67,
+      "estimatedMrrUsd": 20100
     }
   ],
-  "lastRun": "2026-09-17T13:06:06.996Z"
+  "lastRun": "2026-09-17T22:12:07.487Z"
 }

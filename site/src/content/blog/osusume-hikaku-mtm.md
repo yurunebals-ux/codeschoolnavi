@@ -205,4 +205,4 @@ draft: false
 - [侍エンジニアは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-samurai/)
 - [侍エンジニアの評判・口コミは？特徴を解説](/blog/hyoban-samurai/)
 - [テックアイエスの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-techis/)
-- [TypeSafe AIのJevは70ms応答で高速判断、LLMとどう使い分けるべきか](/blog/news-20260917-1ege7/)
+- [Claude Codeを「使うほど育つ」AI秘書に変える3つの具体策](/blog/news-20260917-1lp96/)
