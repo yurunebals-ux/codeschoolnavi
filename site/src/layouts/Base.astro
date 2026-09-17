@@ -15,7 +15,8 @@ if (Astro.url.pathname !== "/") crumbs.push({ name: title, url: canonical.toStri
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} | {site}</title>
+    {/* 記事ページはサイト名を付けない（検索結果は約30字で切れる。サイト名は別枠で表示される） */}
+    <title>{article ? title : `${title} | ${site}`}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />
@@ -29,6 +30,10 @@ if (Astro.url.pathname !== "/") crumbs.push({ name: title, url: canonical.toStri
     <meta name="twitter:image" content={og} />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="alternate" type="application/rss+xml" title={site} href={new URL("/rss.xml", Astro.site)} />
+    {/* ファビコン。無いと検索結果（特にモバイル）で地球儀の既定アイコンになり、クリックされにくい（2026-09-17 まで未設定だった） */}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
