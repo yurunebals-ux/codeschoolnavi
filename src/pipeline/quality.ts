@@ -107,7 +107,9 @@ export function evaluateDraft(md: string, item: KeywordItem, aff: AffMeta, prior
 
   // 口コミの捏造（出典を示せない「声」）。データ規約で禁じているが、出たら止める。
   // ニュース・トピックの「反対意見では…という声もある」は論評の型なので対象外。スクール記事だけ厳しく見る
-  const fakeVoice = (isNews || isTopic) ? /との口コミ|口コミ(が|も)多い|口コミでは|受講生の声/.test(md) : /という声(が|も)|との口コミ|口コミ(が|も)多い|口コミでは|と評判です|受講生の声/.test(md);
+  // 井戸端会議の但し書き（「…ではありません」）は検査対象から外す
+  const mdV = md.replace(/^\*※編集部スタッフ.*$/gm, "");
+  const fakeVoice = (isNews || isTopic) ? /との口コミ|口コミ(が|も)多い|口コミでは|受講生の声/.test(mdV) : /という声(が|も)|との口コミ|口コミ(が|も)多い|口コミでは|と評判です|受講生の声/.test(mdV);
   if (fakeVoice) reasons.push("出典のない口コミ・評判の記述");
 
   // 【ニュース・トピック】金額はデータにあるものだけ。「当サイトの調査によると平均30万円台」
