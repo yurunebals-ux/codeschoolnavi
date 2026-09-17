@@ -46,7 +46,7 @@
       "ok": true
     },
     "hyoban-potepan": {
-      "date": "2026-09-13",
+      "date": "2026-09-17",
       "version": 2,
       "ok": true
     },
@@ -76,7 +76,7 @@
       "ok": true
     },
     "hyoban-techis": {
-      "date": "2026-09-16",
+      "date": "2026-09-17",
       "version": 2,
       "ok": true
     },
@@ -86,6 +86,22 @@
       "ok": true
     },
     "hyoban-dmmaicamp": {
+      "date": "2026-09-17",
+      "version": 2,
+      "ok": true
+    },
+    "yametoke-uzuzcollege": {
+      "date": "2026-09-17",
+      "version": 2,
+      "ok": true
+    },
+    "ryokin-samurai": {
+      "date": "2026-09-17",
+      "version": 2,
+      "ok": false,
+      "reason": "score=115; 構造: 表崩れ(区切り行がない: | 165,000円〜 |)"
+    },
+    "hyoban-fjord": {
       "date": "2026-09-17",
       "version": 2,
       "ok": true

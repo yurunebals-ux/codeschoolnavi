@@ -16,7 +16,7 @@
     },
     {
       "slug": "yametoke-uzuzcollege",
-      "keyword": "ウズウズカレッジは自分に合う？向いていない人の条件と後悔しない判断基準",
+      "keyword": "ウズウズカレッジは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "uzuzcollege"
@@ -26,7 +26,8 @@
       "score": 82,
       "status": "published",
       "createdAt": "2026-08-08T04:00:00.000Z",
-      "publishedAt": "2026-08-13T04:17:42.119Z"
+      "publishedAt": "2026-08-13T04:17:42.119Z",
+      "structure": 2
     },
     {
       "slug": "ryokin-skillhacks",
@@ -428,7 +429,7 @@
     },
     {
       "slug": "hyoban-fjord",
-      "keyword": "フィヨルドブートキャンプの評判・口コミは？特徴を解説",
+      "keyword": "フィヨルドブートキャンプの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "fjord"
@@ -438,7 +439,8 @@
       "score": 95,
       "status": "published",
       "createdAt": "2026-08-07T03:00:00.000Z",
-      "publishedAt": "2026-08-10T04:02:39.926Z"
+      "publishedAt": "2026-08-10T04:02:39.926Z",
+      "structure": 2
     },
     {
       "slug": "kyufukin-osusume",
@@ -537,7 +539,7 @@
     },
     {
       "slug": "hyoban-potepan",
-      "keyword": "ポテパンキャンプの評判・口コミは？特徴を解説",
+      "keyword": "ポテパンキャンプの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "potepan"
@@ -627,7 +629,7 @@
     },
     {
       "slug": "hyoban-techis",
-      "keyword": "テックアイエスの評判・口コミは？特徴を解説",
+      "keyword": "テックアイエスの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "techis"
