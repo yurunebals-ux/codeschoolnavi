@@ -53,7 +53,8 @@ export function buildKeywords(limit = 40): number {
   //   否定的見出しとして提携を断る理由になる（2026-09-11 オーナー判断で撤去。slug は不変）
   // 「◯◯ 給付金」は Search Console で既に表示が出ている（テックアイエス 給付金 21位、ポテパン 給付金 22位。2026-09-17）のに
   // 専用ページが無い。対象校は戻る金額、対象外校は「対象外」と代替制度を正直に書く。intent 10 でキューの先頭に来る
-  for (const t of aff.tools) {
+  const first = ["techis", "potepan", "uzuzcollege", "fjord", "samurai", "dmmwebcamp", "techcamp", "coachtech"]; // GSC で「◯◯ 給付金」「評判」の表示が出ている順
+  for (const t of [...aff.tools].sort((a, b) => (first.indexOf(a.id) + 1 || 99) - (first.indexOf(b.id) + 1 || 99))) {
     const eligible = (aff.subsidy_ids ?? []).includes(t.id);
     add(`kyufukin-${t.id}`, eligible ? `${t.name}は教育訓練給付金の対象？戻る金額・対象コース・申請の順番` : `${t.name}に教育訓練給付金は使える？対象外の場合に使える制度と実質負担`, "money:subsidy", [t.id], 10, "money", t.category);
   }
