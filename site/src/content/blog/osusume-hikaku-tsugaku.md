@@ -252,5 +252,5 @@ ITパスポートや基本情報技術者などの国家資格取得を目指す
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Winスクールの評判・口コミは？特徴を解説](/blog/hyoban-winschool/)
+- [キカガクの料金は高い？他社と比較](/blog/ryokin-kikagaku/)
 - [SmartHRのClaude Code活用術、開発期間1か月短縮の設計手法を解説](/blog/news-20260917-1g4j2/)
-- [Google Gemini 3.8 Liveが音声コーディングを実現、社会人学習者はどう動くか](/blog/news-20260916-wtbbc/)
