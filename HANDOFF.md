@@ -633,3 +633,22 @@ LLMは後に来た具体的な指示に従うので、対象外でも計算し�
 - `news-column` ワークフローの `dry` 入力: 候補と反応を調べるだけで書かない（ログの `[news]   はてブ: N件` などで確認）
 - 今日公開したニュース記事: Gartner（ITmedia）／ChatGPT Work Data agent（ITmedia）／DeepSeek×A100（note、反応つき）。兵器ネタ1本は非公開
 - **Netlify**: codeschoolnavi プロジェクトの Build status を Stopped に（オーナー承認済み）。本番は GitHub Pages なので影響なし。今日のコミット連打で Netlify のクレジットを使い切っていた
+
+## §21 検索上位とクリック（2026-09-17）
+
+### Search Console 実測（28日）
+表示735／クリック3／CTR 0.4%／平均46位。詳細はプロジェクト文書「検索上位への打ち手_2026-09-17」。要点: キーワードの狙いは当たっている（◯◯ 評判／料金／給付金で表示が出る）が、2〜3ページ目で止まりクリックが出ない。
+
+### 入れたもの
+- `money:subsidy`（`kyufukin-<id>`）: 校別の給付金ページ。対象校は対象コース表→実質負担（対象コースの受講料でのみ計算）→申請の順番。対象外校は計算しない。GSCで需要のある校からキュー先頭
+- `data/priority.json`: GSCで20〜35位の記事。regen が先に作り直す。月1回入れ替える
+- 内部リンク: 同じ校の記事を最優先で最大6本＋本文中の他校名を評判記事へ自動リンク（`publish.ts`）
+- `<title>`: 評判・料金記事に「【YYYY年M月】」（ビルド時の月。料金の毎日照合が根拠）。記事ページはサイト名を付けない（約30字で切れる）
+- タイトルと説明文の型（46記事を手で書き換え＋テンプレート変更）: 「◯◯の評判・口コミは？不満の声の真相と向いている人」「◯◯の料金は高い？月あたりで他校と比べた結果」「◯◯は自分に合う？申込前に潰す3つの不安」。説明文は受講料・期間・給付金・返金の数字入り
+- ファビコン（`favicon.svg` / `favicon-96.png` / `apple-touch-icon.png`）。それまで無かった
+- ニュースのタイトル: `TITLE_RULES` と `catchyTitle()`（報告調なら3案出し直し）。材料にある金額は却下しない
+- `index.ts`: 毎サイクル `buildKeywords` を回す（新しい記事の型がキューに入らなかった）
+
+### まだ
+- GSC上位候補5本の作り直し（regen-articles、slugs: hyoban-techis,yametoke-uzuzcollege,hyoban-fjord,hyoban-potepan,ryokin-samurai）は Chrome 切断で未実行
+- 被リンクはオーナー作業（note／はてな／Qiita／X）。これが無いと「評判」の1ページ目は難しい
