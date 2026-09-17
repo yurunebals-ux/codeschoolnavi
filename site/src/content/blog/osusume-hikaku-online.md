@@ -184,3 +184,5 @@ CodeCampは受講期間が2〜6ヶ月と幅があり、スケジュール調整�
 - [フィヨルドブートキャンプの料金は高い？他社と比較](/blog/ryokin-fjord/)
 - [フィヨルドブートキャンプは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-fjord/)
 - [techmeetsの料金は高い？他社と比較](/blog/ryokin-techmeets/)
+- [techmeetsは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-techmeets/)
+- [TechAcademyの料金は高い？他社と比較](/blog/ryokin-techacademy/)

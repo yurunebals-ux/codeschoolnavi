@@ -40,3 +40,5 @@ Gemini 3.8 Liveは学習者や開発者にとって新しい作業形態を提�
 - [AI活用力の育成と投資効果、未経験採用のリアルを見極める時代](/blog/news-20260911-16rq8/)
 - [Gartner調査で判明、2026年AIコーディング予算超過の実態と対策](/blog/news-20260914-vc3xv/)
 - [OpenAIのChatGPT Work新機能「Data agent」登場、非エンジニアの分析作業を大幅削減](/blog/news-20260914-4bs6l/)
+- [DeepSeek v4.1 Flash、FP4非対応A100で公式API超速化の技術革新](/blog/news-20260914-qamet/)
+- [Qiita記事7万件分析で見る生成AI後の技術文章の変化と編集部の見解](/blog/news-20260915-bs70u/)

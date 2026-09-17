@@ -51,3 +51,5 @@ FP4非対応GPUでの動作は特殊な実装依存が強く、誰でも簡単�
 - [AI活用力の育成と投資効果、未経験採用のリアルを見極める時代](/blog/news-20260911-16rq8/)
 - [Gartner調査で判明、2026年AIコーディング予算超過の実態と対策](/blog/news-20260914-vc3xv/)
 - [OpenAIのChatGPT Work新機能「Data agent」登場、非エンジニアの分析作業を大幅削減](/blog/news-20260914-4bs6l/)
+- [Qiita記事7万件分析で見る生成AI後の技術文章の変化と編集部の見解](/blog/news-20260915-bs70u/)
+- [Google Gemini 3.8 Liveが音声コーディングを実現、社会人学習者はどう動くか](/blog/news-20260916-wtbbc/)

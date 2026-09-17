@@ -50,7 +50,7 @@ draft: false
 3. 「転職支援あり・返金保証あり(条件付)」  
 転職支援は公式サイトに詳細は書かれていませんが、成功に向けたサポート体制があるようです。返金保証は条件付きで明記されています。読者は返金条件の詳細を公式で確認して、リスクを把握する必要があります。
 
-なお、SHIFT TERAS CAMPUSは169,800円からで3〜4ヶ月の期間、TechAcademyはオンライン完結で幅広い言語を4〜16週間学べる点で異なります。これらと比較し、テックキャンプは短期集中と転職支援に重きを置いている点が特徴です。
+なお、[SHIFT TERAS CAMPUS](/blog/hyoban-dmmwebcamp/)は169,800円からで3〜4ヶ月の期間、[TechAcademy](/blog/hyoban-techacademy/)はオンライン完結で幅広い言語を4〜16週間学べる点で異なります。これらと比較し、テックキャンプは短期集中と転職支援に重きを置いている点が特徴です。
 
 ## 向いていない人と、その人に合う代替校
 
@@ -138,7 +138,9 @@ SHIFT TERAS CAMPUS、TechAcademyは給付金対象外です。
 
 ## あわせて読みたい
 
+- [テックキャンプの料金は高い？他社と比較](/blog/ryokin-techcamp/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [DMM WEBCAMPの料金は高い？他社と比較](/blog/ryokin-dmmwebcamp/)
 - [SHIFT TERAS CAMPUSは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-dmmwebcamp/)
-- [テックキャンプの料金は高い？他社と比較](/blog/ryokin-techcamp/)
+- [DMM WEBCAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmwebcamp/)
+- [転職保証付きのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-hosho/)

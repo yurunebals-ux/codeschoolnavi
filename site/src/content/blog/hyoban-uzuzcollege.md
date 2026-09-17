@@ -242,7 +242,9 @@ CCNAやAWSなどのIT資格に集中したい場合、ウズウズカレッジ�
 
 ## あわせて読みたい
 
-- [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [ウズウズカレッジの料金は高い？他社と比較](/blog/ryokin-uzuzcollege/)
-- [ウズウズカレッジは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-uzuzcollege/)
+- [ウズウズカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-uzuzcollege/)
+- [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [TypeSafe AIのJevは70ms応答で高速判断、LLMとどう使い分けるべきか](/blog/news-20260917-1ege7/)
 - [キカガクの料金は高い？他社と比較](/blog/ryokin-kikagaku/)
+- [SmartHRのClaude Code活用術、開発期間1か月短縮の設計手法を解説](/blog/news-20260917-1g4j2/)

@@ -130,7 +130,9 @@ Aidemyの学習期間は3〜9ヶ月と幅があります。これは学習ペー
 
 ## あわせて読みたい
 
-- [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Aidemyの評判・口コミは？特徴を解説](/blog/hyoban-aidemy/)
+- [Aidemyの料金は高い？他社と比較](/blog/ryokin-aidemy/)
+- [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [キカガクの評判・口コミは？特徴を解説](/blog/hyoban-kikagaku/)
 - [DMM 生成AI CAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmaicamp/)
+- [AI・データ分析のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-ai/)

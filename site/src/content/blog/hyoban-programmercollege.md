@@ -28,7 +28,7 @@ draft: false
 ## 編集部の判定：「短期で無料で学びたい20代には合う、長期間じっくり学びたい社会人には合わない」
 
 1. **受講料が無料であること**  
-プログラマカレッジは受講料が0円。TechAcademyやCodeCampは18万円台が最低価格です。費用負担を避けたい20代に適しています。
+プログラマカレッジは受講料が0円。[TechAcademy](/blog/hyoban-techacademy/)や[CodeCamp](/blog/hyoban-codecamp/)は18万円台が最低価格です。費用負担を避けたい20代に適しています。
 
 2. **受講期間が1〜3ヶ月と短いこと**  
 期間が最長でも3ヶ月。TechAcademyは4〜16週間（約1〜4ヶ月）、CodeCampは2〜6ヶ月です。短期間で集中して学びたい人向けですが、じっくり学びたい人には物足りない可能性があります。
@@ -133,6 +133,8 @@ draft: false
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [TypeSafe AIのJevは70ms応答で高速判断、LLMとどう使い分けるべきか](/blog/news-20260917-1ege7/)
 - [キカガクの料金は高い？他社と比較](/blog/ryokin-kikagaku/)
 - [SmartHRのClaude Code活用術、開発期間1か月短縮の設計手法を解説](/blog/news-20260917-1g4j2/)
 - [Google Gemini 3.8 Liveが音声コーディングを実現、社会人学習者はどう動くか](/blog/news-20260916-wtbbc/)
+- [Qiita記事7万件分析で見る生成AI後の技術文章の変化と編集部の見解](/blog/news-20260915-bs70u/)

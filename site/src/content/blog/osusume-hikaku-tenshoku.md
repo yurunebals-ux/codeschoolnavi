@@ -271,3 +271,5 @@ Web系自社開発企業への転職を目指し、約9ヶ月の学習に取り�
 - [ポテパンキャンプの料金は高い？他社と比較](/blog/ryokin-potepan/)
 - [ポテパンキャンプは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-potepan/)
 - [COACHTECHの料金は高い？他社と比較](/blog/ryokin-coachtech/)
+- [COACHTECHは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-coachtech/)
+- [RUNTEQの料金は高い？他社と比較](/blog/ryokin-runteq/)

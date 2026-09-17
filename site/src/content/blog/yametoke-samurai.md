@@ -198,7 +198,9 @@ Zoomなどのビデオ通話を使い、専属講師が1対1で進捗管理と�
 
 ## あわせて読みたい
 
-- [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [侍エンジニアの料金は高い？他社と比較](/blog/ryokin-samurai/)
 - [侍エンジニアの評判・口コミは？特徴を解説](/blog/hyoban-samurai/)
-- [テックアイエスの評判・口コミは？特徴を解説](/blog/hyoban-techis/)
+- [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [テックアイエスの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-techis/)
+- [マンツーマン指導のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-mtm/)
+- [TypeSafe AIのJevは70ms応答で高速判断、LLMとどう使い分けるべきか](/blog/news-20260917-1ege7/)

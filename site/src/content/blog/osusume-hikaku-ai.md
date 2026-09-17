@@ -214,3 +214,5 @@ Aidemyは3〜9ヶ月の柔軟な期間設定で、自分のペースで進めら
 - [Aidemyの評判・口コミは？特徴を解説](/blog/hyoban-aidemy/)
 - [キカガクの評判・口コミは？特徴を解説](/blog/hyoban-kikagaku/)
 - [DMM 生成AI CAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmaicamp/)
+- [スキルアップAIの評判・口コミは？特徴を解説](/blog/hyoban-skillupai/)
+- [Aidemyの料金は高い？他社と比較](/blog/ryokin-aidemy/)

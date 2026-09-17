@@ -127,3 +127,5 @@ AidemyやキカガクはPythonや機械学習の基礎から学べ、ポート�
 - [Aidemyの評判・口コミは？特徴を解説](/blog/hyoban-aidemy/)
 - [キカガクの評判・口コミは？特徴を解説](/blog/hyoban-kikagaku/)
 - [AI・データ分析のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-ai/)
+- [スキルアップAIの評判・口コミは？特徴を解説](/blog/hyoban-skillupai/)
+- [Aidemyの料金は高い？他社と比較](/blog/ryokin-aidemy/)

@@ -119,3 +119,5 @@ Aidemyやキカガクは給付金対象外です。給付金利用を検討す�
 - [Aidemyの評判・口コミは？特徴を解説](/blog/hyoban-aidemy/)
 - [キカガクの評判・口コミは？特徴を解説](/blog/hyoban-kikagaku/)
 - [DMM 生成AI CAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmaicamp/)
+- [AI・データ分析のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-ai/)
+- [Aidemyの料金は高い？他社と比較](/blog/ryokin-aidemy/)

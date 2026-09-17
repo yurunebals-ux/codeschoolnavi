@@ -235,7 +235,9 @@ U29コースは無料ながら質が高いため、初学者にとって金銭�
 
 ## あわせて読みたい
 
-- [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [ポテパンキャンプの料金は高い？他社と比較](/blog/ryokin-potepan/)
+- [ポテパンキャンプの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-potepan/)
+- [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [COACHTECHの料金は高い？他社と比較](/blog/ryokin-coachtech/)
 - [COACHTECHは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-coachtech/)
+- [RUNTEQの料金は高い？他社と比較](/blog/ryokin-runteq/)

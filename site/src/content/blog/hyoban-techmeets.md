@@ -188,7 +188,9 @@ techmeetsは転職支援サービスを提供していません。転職を目�
 
 ## あわせて読みたい
 
+- [techmeetsの料金は高い？他社と比較](/blog/ryokin-techmeets/)
+- [techmeetsは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-techmeets/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [フィヨルドブートキャンプの料金は高い？他社と比較](/blog/ryokin-fjord/)
 - [フィヨルドブートキャンプは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-fjord/)
-- [techmeetsの料金は高い？他社と比較](/blog/ryokin-techmeets/)
+- [TechAcademyの料金は高い？他社と比較](/blog/ryokin-techacademy/)

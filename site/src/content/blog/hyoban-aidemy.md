@@ -127,6 +127,8 @@ Aidemyはオンライン自習形式で、3ヶ月で修了するには平日夜2
 
 ## あわせて読みたい
 
+- [Aidemyの料金は高い？他社と比較](/blog/ryokin-aidemy/)
+- [Aidemyは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-aidemy/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [キカガクの評判・口コミは？特徴を解説](/blog/hyoban-kikagaku/)
 - [DMM 生成AI CAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmaicamp/)

@@ -222,7 +222,9 @@ IT業界全体の傾向として、未経験で転職した場合の初年度年
 
 ## あわせて読みたい
 
-- [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [侍エンジニアは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-samurai/)
 - [侍エンジニアの評判・口コミは？特徴を解説](/blog/hyoban-samurai/)
-- [テックアイエスの評判・口コミは？特徴を解説](/blog/hyoban-techis/)
+- [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [テックアイエスの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-techis/)
+- [マンツーマン指導のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-mtm/)
+- [TypeSafe AIのJevは70ms応答で高速判断、LLMとどう使い分けるべきか](/blog/news-20260917-1ege7/)

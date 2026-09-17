@@ -2741,10 +2741,78 @@
       },
       "structure": 2,
       "publishedAt": "2026-09-17T00:02:24.674Z"
+    },
+    {
+      "slug": "news-20260917-1ege7",
+      "keyword": "TypeSafe AIのJevは70ms応答で高速判断、LLMとどう使い分けるべきか",
+      "template": "news:hot",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 96,
+      "status": "published",
+      "createdAt": "2026-09-17T13:05:45.836Z",
+      "news": {
+        "title": "高速な判断に特化したAI",
+        "link": "https://note.com/npaka/n/n6f8dd30a5fa4",
+        "source": "note.com",
+        "published": "2026年9月16日",
+        "snippet": "高速な判断に特化したAI「Jev」と「System One Model」についてまとめました。 1. はじめに2026年9月15日、TypeSafe AIが新しいAIモデル「Jev」を発表しました。 Jevの特徴は、ChatGPTのように文章を生成するのではなく、 入力された状況から、型付きの判断とその確率を高速に返す ことに特化している点です。 応答時間...",
+        "text": "高速な判断に特化したAI「Jev」と「System One Model」についてまとめました。\n2026年9月15日、TypeSafe AIが新しいAIモデル「Jev」を発表しました。Jevの特徴は、ChatGPTのように文章を生成するのではなく、\n応答時間はTypeSafeの公表値で70〜500ms。DOOMを約10回/秒で操作するリアルタイムデモも公開されています。\nJev plays doom in realtime and it looks like an actual player.their numbers: 20 to 200x faster, 40 to 400x cheaper, output tokens free.Two things we might see now:- the opponent we're up against in a game might be a realtime AI.- a TA, or anything else we'd hire a real… https://t.co/7lGVwjdh3k\n今回は、Jevとは何なのか、なぜ高速なのか、そしてLLMとはどのように使い分けるのかを見ていきます。\n「Jev」は、TypeSafe AIが開発した「System One Model」と呼ばれる新しい種類のAIモデルです。\n入力 ↓トークンを1つずつ生成 ↓文章 / JSON / コード\nState（現在の状況） +Questions（判断してほしいこと） ↓Jev ↓型付きの判断 + 確率\nたとえば「商品が壊れていたので返金してほしい」という問い合わせに対して、\nTypeSafeはこれを「非構造化された状態を入力し、型付きの確率的な判断を出力する」(unstructured state in, typed probabilistic decisions out) と表現しています。自然言語などを含む状態を入力し、プログラムから直接利用できる型付きの確率的判断を出力します。\n「System One」という名前は、Daniel Kahnemanの『Thinking, Fast and Slow』で知られる「System 1 / System 2」の考え方に由来します。System 1は高速で直感的な判断、System 2は時間をかけた熟考を表します。\nTypeSafeが公表しているJevのエンドツーエンドの応答時間は70〜500msです。System One型のクエリでは、同程度の知能レベルとして比較したLLMより40〜200倍高速になる場合があるとしています。\nまた、TypeSafeのWorkflow Evalsでは、特定のワークフローで最大193.6倍高速、444.6倍低コストという結果も報告されています。\nただし、これはJevが常にLLMより193.6倍高速という意味ではありません。TypeSafe自身も、実際のユースケースでは改善幅の上限に近い結果だろうと説明しています。\n一方、JevはTypeSafeが「parallel sampler」と呼ぶ仕組みを採用しています。\n現在の状態 ↓・敵がいる？ → 0.96・攻撃する？ → 0.84・左へ行く？ → 0.13・右へ行く？ → 0.81\n複数の判断を文章として順番に生成するのではなく、並列に出力します。文字列をトークン単位で順番に生成せず、複数の判断を並列に出力する設計が、Jevの高速性につながっています。TypeSafeは、このために新しいモデルアーキテクチャ、parallel sampler、RLCDと呼ばれる学習手法を採用しています。\nJevの特徴が分かりやすいのが、TypeSafeが公開している「DOOM」のデモです。\nこのデモでは、Jevへの問い合わせを1秒間に約10回（10 Hz）行っています。つまり、平均して約100msに1回のペースでJevへ問い合わせ、\nゲーム状態 ↓Jev ↓判断 ↓ゲーム操作 ↓新しいゲーム状態 ↓...\nTypeSafeによると、このDOOMデモを毎秒10クエリで動かした場合のコストは約7ドル/時です。ただし、JevがDOOMの画面を直接見ているわけではありません。現在のデモでは、ゲーム状態を構造化されたデータとテキストとしてJevへ渡しています。\nこの速度なら、ゲーム以外にもリアルタイムに近いAI判断へ応用できます。\n100ms前後では、モーターを直接動かす高速なサーボ制御には向きません。一方、対象物の選択、行動の切り替え、異常検出、タスク判断など、数Hz〜10Hz程度の上位レベルの判断には利用できる可能性があります。\nなお、70msという速度はTypeSafeのサービス拠点に近い米国西海岸などから測定した値です。日本からクラウドAPIを利用する場合はネットワーク遅延も加わります。\n現在のLLMにも、JSON Schemaなどで出力形式を固定する「Structured Outputs」があります。そのため、Jevの特徴は単に「JSONを壊さない」ことではありません。\n判断 ↓Choice / Score / Yes-Noなど ↓確率付きでプログラムへ\nLLMが構造化データをトークン列として生成するのに対し、Jevは最初からソフトウェアが利用する型付きの判断と確率を出力することに特化しています。\nTypeSafeはJevについて「ハルシネーションしない」(can't hallucinate) とも説明しています。ただし、「Jevは判断を間違えない」という意味ではありません。\nTypeSafeは、自由な文字列を生成せず、事前に定義された型や選択肢以外を出力しないことを「ハルシネーションしない」と表現しています。ただし、これは一般的な意味での事実誤認がなくなることを保証するものではありません。型や形式が正しくても、誤った選択肢を選ぶ可能性はあります。\nJevはLLMを置き換えるというより、組み合わせる使い方が考えられます。\nユーザー ↓ Agent → Jev (高速な分類・判断) → LLM (推論・文章・コード生成)\nたとえば「このメールは重要か」「次のツールを実行するべきか」「結果に問題がないか」といった小さな判断はJevに任せ、複雑な推論や文章生成が必要なときだけLLMを呼び出します。\nTypeSafeはこうした用途を「スマートなif文」(smart if-statements) とも表現しています。JevをAI版のif文として、アプリケーションのさまざまな場所に配置するイメージです。\nJevは、文章生成ではなく高速で型安全な確率的判断に特化したAIモデルです。70〜500msの応答時間と、DOOMを約10Hzで操作するデモは、AIをゲームやアプリケーションの処理ループに組み込む可能性を示しています。\n現在はEarly Accessで、性能値の多くはTypeSafeによる評価ですが、\n「高性能なAIを1回呼ぶ」のではなく、「小さなAI判断を大量かつ高速に呼ぶ」\nという考え方は、AIエージェントやゲーム、ロボットにおけるリアルタイムAIの新しいアプローチとして注目されます。\ngot @typesafeai’s new model Jev to play Super Mario Bros.fast inference + structured outputs makes it surprisingly good for real time use cases.I'm excited to see what can be done with these new models! pic.twitter.com/wXXW2SsSXG\nTypesafe AIのJev、選択をやるモデルってことで一旦オセロさせてみた(白: Jav、黒: ランダム)盤面の状態を与えて確率が一番高いマスに手を打っている赤ヒートマップがJavの予想、青がαβ剪定付きネガマックス探索による予想 https://t.co/t5cPQC3Ngx pic.twitter.com/fr44PhOQZf",
+        "reactions": {
+          "threads": [
+            {
+              "platform": "はてなブックマーク",
+              "url": "https://b.hatena.ne.jp/entry/s/note.com/npaka/n/n6f8dd30a5fa4",
+              "count": 91
+            }
+          ],
+          "comments": [
+            {
+              "platform": "はてなブックマーク",
+              "text": "sakana.aiみたいなオーケストレーションの中に組み込まれると良さそうだよな"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "どうやって学習させるの？"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "TypeSafe「Jev」は文章生成ではなく型付きの判断＋確率に特化。応答70〜500ms、複数判断を並列出力。DOOMを約10Hzで操作し、LLMと組み合わせる「スマートなif文」を狙う。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "すごい structured outputみたいな感じかしら"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "ついに一緒にゲームできるAIか！？"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "音楽の「生成」じゃなくて、「演奏」をできるかもしんないですね。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "面白いなあ。System1/2という考え方も面白いし、何よりフィジカルAIに滅茶苦茶相性が良さそう… でも考えてみたら自動運転のAIって既にこういうので動いてるのかな？"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "スマートなif文として使う発想は普通に筋が良さそうだな"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "これをオンチップで処理できたらいよいよ人類は終わりやな"
+            }
+          ]
+        }
+      },
+      "structure": 2,
+      "publishedAt": "2026-09-17T13:06:06.489Z"
     }
   ],
-  "publishedCount": 65,
-  "estimatedMrrUsd": 19500,
+  "publishedCount": 66,
+  "estimatedMrrUsd": 19800,
   "history": [
     {
       "date": "2026-07-24",
@@ -3018,9 +3086,9 @@
     },
     {
       "date": "2026-09-17",
-      "published": 65,
-      "estimatedMrrUsd": 19500
+      "published": 66,
+      "estimatedMrrUsd": 19800
     }
   ],
-  "lastRun": "2026-09-17T07:27:03.020Z"
+  "lastRun": "2026-09-17T13:06:06.996Z"
 }

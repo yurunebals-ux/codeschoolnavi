@@ -92,3 +92,5 @@ Aidemyは3〜9ヶ月、スキルアップAIは6〜18ヶ月と学習期間の幅�
 - [Aidemyの評判・口コミは？特徴を解説](/blog/hyoban-aidemy/)
 - [キカガクの評判・口コミは？特徴を解説](/blog/hyoban-kikagaku/)
 - [DMM 生成AI CAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmaicamp/)
+- [AI・データ分析のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-ai/)
+- [スキルアップAIの評判・口コミは？特徴を解説](/blog/hyoban-skillupai/)

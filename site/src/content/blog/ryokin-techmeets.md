@@ -203,7 +203,9 @@ techmeetsの卒業生のキャリアや年収に関する公的なデータは�
 
 ## あわせて読みたい
 
+- [techmeetsは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-techmeets/)
+- [techmeetsの評判・口コミは？特徴を解説](/blog/hyoban-techmeets/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [フィヨルドブートキャンプの料金は高い？他社と比較](/blog/ryokin-fjord/)
 - [フィヨルドブートキャンプは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-fjord/)
-- [techmeetsは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-techmeets/)
+- [TechAcademyの料金は高い？他社と比較](/blog/ryokin-techacademy/)
