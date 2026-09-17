@@ -50,7 +50,7 @@ export function evaluateDraft(md: string, item: KeywordItem, aff: AffMeta, prior
 
   // 深度基準: 長編はセクション数も伴う。ニュースは短いので緩める。
   const hc = headingCount(md);
-  const hNeed = item.template === "news:weekly" ? 5 : item.template === "news:hot" ? 4 : isNews ? 2 : isTopic ? 5 : item.template === "money:subsidy" ? 5 : 6;
+  const hNeed = item.template === "news:weekly" ? 5 : item.template === "news:hot" ? 2 : isNews ? 2 : isTopic ? 5 : item.template === "money:subsidy" ? 5 : 6;
   if (hc >= hNeed + 2) pts += 20; else if (hc >= hNeed) { pts += 10; reasons.push(`見出しやや不足: ${hc}`); } else reasons.push(`見出し不足: ${hc}`);
 
   if (isNews) pts += 10; else if (/よくある質問|FAQ/i.test(md)) pts += 10; else reasons.push("FAQなし");
@@ -108,7 +108,8 @@ export function evaluateDraft(md: string, item: KeywordItem, aff: AffMeta, prior
   // 口コミの捏造（出典を示せない「声」）。データ規約で禁じているが、出たら止める。
   // ニュース・トピックの「反対意見では…という声もある」は論評の型なので対象外。スクール記事だけ厳しく見る
   // 井戸端会議の但し書き（「…ではありません」）は検査対象から外す
-  const mdV = md.replace(/^\*※編集部スタッフ.*$/gm, "");
+  // スレの流れ（実際のコメントの引用）も検査対象から外す（「口コミでは」と書いた本物のコメントで落とさない）
+  const mdV = md.replace(/^\*※編集部スタッフ.*$/gm, "").replace(/^\d+\. 名無しさん.*$/gm, "");
   const fakeVoice = (isNews || isTopic) ? /との口コミ|口コミ(が|も)多い|口コミでは|受講生の声/.test(mdV) : /という声(が|も)|との口コミ|口コミ(が|も)多い|口コミでは|と評判です|受講生の声/.test(mdV);
   if (fakeVoice) reasons.push("出典のない口コミ・評判の記述");
 
@@ -122,7 +123,7 @@ export function evaluateDraft(md: string, item: KeywordItem, aff: AffMeta, prior
       for (const m of (t.price_note ?? "").matchAll(/([\d,]+)(万)?円/g)) known.add(Number(m[1].replace(/,/g, "")) * (m[2] ? 10000 : 1));
     }
     // ニュースは材料（媒体の本文・抜粋）にある金額も正当（9/15-16 に「3,000円」「6.5円」で3本却下された）
-    const material = [item.news?.text, item.news?.snippet, ...(item.news?.items ?? []).flatMap((i) => [i.text, i.snippet])].filter(Boolean).join("\n");
+    const material = [item.news?.text, item.news?.snippet, ...(item.news?.items ?? []).flatMap((i) => [i.text, i.snippet]), ...(item.news?.reactions?.comments ?? []).map((c) => c.text)].filter(Boolean).join("\n");
     for (const m of material.matchAll(/([\d,]+(?:\.\d+)?)(万|億)?(円|ドル|USD|\$)/g)) known.add(Number(m[1].replace(/,/g, "")) * (m[2] === "万" ? 10000 : m[2] === "億" ? 100000000 : 1));
     for (const m of material.matchAll(/\$\s?([\d,]+(?:\.\d+)?)/g)) known.add(Number(m[1].replace(/,/g, "")));
     for (const m of md.matchAll(/([\d,]+(?:\.\d+)?)(万|億)?(円|ドル)/g)) {

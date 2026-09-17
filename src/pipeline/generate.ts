@@ -40,7 +40,7 @@ export interface Affiliates { disclosure: string; tools: Tool[]; review_axes?: s
 export function minWordsFor(item: KeywordItem): number {
   const base = config.pipeline.minWords; // ワークフローの MIN_WORDS（4200）
   if (item.template === "news:weekly") return 1800;
-  if (item.template === "news:hot") return 1400;
+  if (item.template === "news:hot") return 1000; // まとめ風（デスク要約＋コメント＋会話）
   if (item.template.startsWith("news:")) return 900;
   if (item.template.startsWith("topic:")) return Math.round(base * 0.7);
   if (/^money:(review|pricing|doubt)$|^info:what$/.test(item.template)) return Math.round(base * 0.75);
@@ -497,51 +497,67 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
     return { body: body2, description: cd.description, title: ct.title, tools: [] };
   }
   if (item.template.startsWith("news:")) {
-    // 1本のニュースへの見解（news:hot。旧 news:commentary も同じ型で書く）。
-    // 【設計】材料＝媒体の本文（800字以上ないと書かない）。事実→背景→歓迎する見方→慎重な見方→編集部の結論、
-    // の順で賛否を必ず両方書く（オーナー方針: 評価には賛否の両方）。出典は機械で入れる。スクールのデータは渡さない。
+    // 1本のニュースを「まとめサイト風」に（news:hot。オーナー 2026-09-17「ニュース記事はまとめ風に」）。
+    // 構成: リード → 出典 → ## スレの流れ（1がニュースデスクの要約、2以降は実際のコメント）→ ## 編集部の井戸端会議（3人の会話で賛否と結論）→ ## 出典。
+    // コメントは はてブ／HN の実物（英語は日本語に訳して「海外の反応」）。反応が5件未満のニュースは news.ts 側で選ばれない。
     if (item.news?.link && !item.news.text) {
       const [en] = await enrichItems([item.news as NewsItem]).catch(() => [item.news as NewsItem]);
       item.news = { ...item.news, ...en };
     }
     const n = (item.news ?? {}) as NewsItem;
     if (!n.text || n.text.length < 800) throw new Error("ニュースの本文が800字未満のため書かない");
-    const newsSystem = `${persona("editor")}\nあなたは日本語ネイティブの編集者です。プログラミングやAIを学ぼうとしている社会人・学生に向けて、業界ニュース1本を取り上げ、自分の言葉で見解を書きます。宣伝口調は使いません。${DATA_RULES.replace("下の「データ」", "下の「材料」")}\n\n${STYLE}`;
+    const rx = item.news?.reactions ?? { threads: [], comments: [] };
+    const enMat = isEnglish((n.text ?? "").slice(0, 300));
+    const newsSystem = `${persona("editor")}\nあなたは日本語ネイティブの編集者です。プログラミングやAIを学ぼうとしている社会人・学生に向けて、業界ニュースを自分の言葉で解説します。宣伝口調は使いません。${DATA_RULES.replace("下の「データ」", "下の「材料」")}\n\n${STYLE}`;
+
+    // (1) タイトル・説明・リード・デスクの要約
     const r = await chat(
-      `次のニュース1本について、見解記事を書く（全体で1,600〜2,200字）。\n出力形式（この順で。この形式以外は書かない）:\nTITLE: 記事タイトル（${TITLE_RULES}）\nDESCRIPTION: 80字以内の説明\nLEAD: 冒頭の1段落（120字以内。何が起きたかを1文、編集部の見方を1文）\n## （何が起きたかを言い切る見出し）\n材料の本文から、自分の言葉で4〜6文。固有名詞・数字・日付は本文にあるものだけ。15字を超えて写さない。\n## （なぜ今この動きなのかを言い切る見出し）\n背景を3〜5文。材料に書かれていない事実は書かず、「〜と読める」「〜の流れの中にある」の形で推測と事実を分ける。\n## この動きを歓迎する見方\n賛成する立場の論拠を3〜4文。誰にとって何が良いか。\n## 慎重に見る見方\n反対・懸念の立場の論拠を3〜4文。誰が損をしうるか、見落とされている条件は何か。\n## 編集部の結論：学ぶ人はどう動くか\n賛否${item.news?.reactions?.comments?.length ? "（ネットの反応の傾向も踏まえる）" : ""}を踏まえた編集部の判断を言い切り、「◯◯な人は今月中に△△、そうでない人は様子見」のように行動まで落とす。5〜7文。自サイトの記事へ内部リンクを1つだけ入れてよい（必ず Markdown リンクの形: [給付金の使い方](/kyufukin/)、[6問診断](/shindan/)、[AIスクールの比較](/blog/osusume-hikaku-ai/)）。関係が薄ければ入れない。\n\n【禁止】材料にない固有名詞・数字・発言・調査。「当サイトの調査によると」「平均◯万円」。箇条書き。スクール名の宣伝。\n${isEnglish((n.text ?? "").slice(0, 300)) ? "【海外ニュース】材料は英語。本文は日本語で書く。社名・製品名は原語のまま（初出でカタカナや短い説明を添える）。「日本の学ぶ人・転職市場にとっての意味」を結論の節で必ず1〜2文書く。\n" : ""}\n【材料】\n見出し: ${n.title}\n媒体: ${n.source}\n公開日: ${n.published}\nURL: ${n.link}\n本文:\n${n.text.slice(0, 4000)}${item.news?.reactions?.comments?.length ? `\n\n【ネットの反応の傾向（参考。本文に引用しない）】\n${item.news.reactions.comments.slice(0, 10).map((c) => `- ${c.text.slice(0, 80)}`).join("\n")}` : ""}`,
-      { system: newsSystem, maxTokens: 3500, temperature: 0.7 });
+      `次のニュース1本について、まとめ記事の冒頭を書く。\n出力形式（この順で。この形式以外は書かない）:\nTITLE: 記事タイトル（${TITLE_RULES}）\nDESCRIPTION: 80字以内の説明\nLEAD: 冒頭の1段落（100字以内。何が起きたかを1文、編集部の見方を1文）\nDESK: ニュースの要約を4〜6文・250〜400字。材料の本文から自分の言葉で。固有名詞・数字・日付は本文にあるものだけ。15字を超えて写さない。${enMat ? "材料は英語だが日本語で書く。社名・製品名は原語のまま。" : ""}\n\n【禁止】材料にない固有名詞・数字・発言。「当サイトの調査によると」。\n\n【材料】\n見出し: ${n.title}\n媒体: ${n.source}\n公開日: ${n.published}\n本文:\n${n.text.slice(0, 4000)}`,
+      { system: newsSystem, maxTokens: 1200, temperature: 0.6 });
     const ht = takeTitle(r.trim());
     if (ht.title) ht.title = await catchyTitle(ht.title, ht.body, newsSystem, entityOf(n.title));
     const hd = takeDescription(ht.body);
-    const lm = hd.body.match(/^\s*LEAD[:：]\s*(.+)\n/);
-    const lead = lm ? lm[1].trim() : "";
-    let hotBody = (lm ? hd.body.slice(lm[0].length) : hd.body).trim().replace(/[ \t]+$/gm, "");
+    const lead = (hd.body.match(/^\s*LEAD[:：]\s*(.+)$/m)?.[1] ?? "").trim();
+    const desk = (hd.body.match(/DESK[:：]\s*([\s\S]+)$/)?.[1] ?? "").replace(/\s+/g, " ").trim();
+    if (desk.length < 120) throw new Error("ニュースの要約が短すぎる");
 
-    // ネットの反応（まとめサイト風）。反応が5件以上あるときだけ「なぜ今か」の節の後に挟む。
-    // 掲載は要約＋40字以内の短い引用（出所は節末に機械で明示）。ユーザー名は出さない。
-    const rx = item.news?.reactions;
-    if (rx && rx.comments.length >= 5) {
-      const list = rx.comments.slice(0, 30).map((c, i) => `${i + 1}. [${c.platform}${c.likes ? ` ♥${c.likes}` : ""}] ${c.text}`).join("\n");
-      const rxText = await chat(
-        `次のニュースに対するネット上のコメント（${rx.comments.length}件）を読み、「ネットの反応」の節を書く。\n出力形式（この形式以外は書かない。見出し「## ネットの反応」から始める）:\n## ネットの反応\n導入1文（どの立場の声が多いか）。\n### 歓迎・期待の声\n要約2〜3文＋短い引用を1つ（原文から40字以内をそのまま「」で。英語なら日本語に訳して「」）。\n### 懸念・批判の声\n同じ形。\n### 別の視点\n同じ形（該当する声が無ければこの小見出しは書かない）。\n【禁止】コメントにない意見の創作。ユーザー名・ハンドル名。40字を超える引用。個人や企業への中傷の引用。\n\n【ニュースの見出し】${n.title}\n【コメント】\n${list}`,
-        { system: newsSystem, maxTokens: 1500, temperature: 0.5 });
-      let rxSection = rxText.trim().replace(/[ \t]+$/gm, "");
-      if (/^## ネットの反応/m.test(rxSection)) {
-        // まとめサイト風の「スレの流れ」: 実際のコメント（日本語・70字以内）をそのまま番号付きで最大8件。名前は出さない
-        const posts = rx.comments.filter((c) => !isEnglish(c.text)).map((c) => c.text.replace(/\s+/g, " ").trim()).filter((t) => t.length >= 10 && t.length <= 70).filter((t, i, a) => a.indexOf(t) === i).slice(0, 8);
-        if (posts.length >= 4) rxSection += `\n\n### スレの流れ\n\n${posts.map((t, i) => `${i + 1}. 名無しさん「${t}」`).join("\n")}`;
-        const srcLine = `反応の出典：${rx.threads.map((t) => `[${t.platform}](${t.url})（${t.count}件）`).join("・")}`;
-        // 2つ目の ## 見出し（なぜ今か）の直後の段落末に挿入。見出しが2つ未満なら末尾へ
-        const heads = [...hotBody.matchAll(/^## .+$/gm)];
-        const at = heads[2]?.index;
-        hotBody = at != null
-          ? `${hotBody.slice(0, at).trimEnd()}\n\n${rxSection}\n\n${srcLine}\n\n${hotBody.slice(at)}`
-          : `${hotBody}\n\n${rxSection}\n\n${srcLine}`;
-      }
+    // (2) 実際のコメント。日本語はそのまま、英語は日本語に訳して「海外の反応」
+    const clean = (t: string) => t.replace(/\s+/g, " ").trim();
+    const jp = rx.comments.filter((c) => !isEnglish(c.text)).map((c) => clean(c.text)).filter((t) => t.length >= 10 && t.length <= 90);
+    const enRaw = rx.comments.filter((c) => isEnglish(c.text)).map((c) => clean(c.text)).filter((t) => t.length >= 20).slice(0, 10);
+    let enJp: string[] = [];
+    if (enRaw.length >= 2) {
+      const tr = await chat(
+        `次の英語のコメントを、日本語のネット掲示板の書き込み風（口語・各60字以内・意味は変えない・1行1件・番号なし）に訳す。訳せないものは行ごと省く。\n\n${enRaw.map((t, i) => `${i + 1}. ${t.slice(0, 220)}`).join("\n")}`,
+        { system: newsSystem, maxTokens: 900, temperature: 0.4 });
+      enJp = tr.split("\n").map((l) => l.replace(/^\s*[\d０-９]+[.．、)）:：]\s*|^[-・*]\s*/, "").replace(/^「|」$/g, "").trim()).filter((l) => l.length >= 8 && l.length <= 80 && !isEnglish(l));
     }
-    let body3 = [lead, `出典：[${n.source}](${n.link})（${n.published}）`, hotBody, `## 出典\n\n- [${n.title}](${n.link})（${n.source}、${n.published}）`].filter(Boolean).join("\n\n");
-    body3 = fixInternalLinks(dedupeSections(normalizeHeadings(body3)));
-    body3 = dedupeSections(await depersonalizeAi(body3, newsSystem));
+    const posts = [...jp.map((t) => ({ who: "名無しさん", t })), ...enJp.map((t) => ({ who: "名無しさん（海外）", t }))]
+      .filter((x, i, a) => a.findIndex((y) => y.t === x.t) === i).slice(0, 15);
+    const thread = [`1. ニュースデスク「${desk}」`, ...posts.map((x, i) => `${i + 2}. ${x.who}「${x.t}」`)].join("\n");
+    const srcLine = rx.threads.length ? `反応の出典：${rx.threads.map((t) => `[${t.platform}](${t.url})（${t.count}件）`).join("・")}` : "";
+
+    // (3) 編集部の井戸端会議: 3人の会話で「なぜ今か → 歓迎する見方 → 慎重な見方 → 学ぶ人はどう動くか」
+    const matNums = new Set(numbersIn(`${n.text}\n${desk}\n${posts.map((x) => x.t).join("\n")}`));
+    const okLine = (l: string) => numbersIn(l).every((x) => matNums.has(x)) && !/という声|との口コミ|口コミ(が|も)多い|口コミでは|と評判|受講生の声|最大\s*\d+\s*万円|最大\s*\d+\s*[%％]/.test(l);
+    const kg = await chat(
+      `次のニュースについて、編集部スタッフ3人の会話を12〜16行で書く。1行=「名前: 発言」、発言は各70字以内、口語、掛け合い。\n順番: (a) ミナが「これ何がすごいの？／怖くない？」と聞き、タケシが材料の事実で答える（なぜ今か） (b) 歓迎する見方（誰にとって何が良いか）を2〜3往復 (c) 慎重に見る見方（誰が損をしうるか、見落とされている条件）を2〜3往復。スレのコメントの傾向にも触れてよいが、特定のコメントを引用しない (d) 佐倉が「プログラミングやAIを学ぶ人は今どう動くか」を言い切って締める（「◯◯な人は今月中に△△、そうでない人は様子見」の形）。\n登場人物: ${STAFF.map((x) => `${x.name}=${x.role}`).join("／")}\n【禁止】材料にない固有名詞・数字・発言。「〜という声」「口コミ」「受講生」という語。スクール名の宣伝。${enMat ? "日本の学ぶ人・転職市場にとっての意味を必ず1往復入れる。" : ""}\n\n【ニュースの要約】\n${desk}\n\n【材料の本文（抜粋）】\n${n.text.slice(0, 2500)}\n\n【スレのコメントの傾向（参考）】\n${posts.slice(0, 10).map((x) => `- ${x.t.slice(0, 60)}`).join("\n") || "なし"}`,
+      { system: newsSystem, maxTokens: 1600, temperature: 0.8 });
+    const names = STAFF.map((x) => x.name);
+    const lines = kg.split("\n").map((l) => l.trim()).map((l) => {
+      const m = l.match(/^[-・*\d.．)）\s]*(佐倉|ミナ|タケシ)\s*[:：]\s*「?(.+?)」?$/);
+      return m && names.includes(m[1]) ? { who: m[1], text: m[2].trim() } : null;
+    }).filter((x): x is { who: string; text: string } => !!x && x.text.length >= 4 && x.text.length <= 100 && okLine(x.text));
+    if (lines.length < 8) throw new Error(`編集部の会話が短すぎる（${lines.length}行）`);
+    const kaigi = `## 編集部の井戸端会議\n\n*${KAIGI_NOTE}*\n\n${lines.slice(0, 16).map((x) => `**${x.who}**「${x.text}」`).join("\n\n")}`;
+
+    let body3 = [
+      lead, `出典：[${n.source}](${n.link})（${n.published}）`,
+      `## スレの流れ\n\n${thread}${srcLine ? `\n\n${srcLine}` : ""}`,
+      kaigi,
+      `## 出典\n\n- [${n.title}](${n.link})（${n.source}、${n.published}）`,
+    ].filter(Boolean).join("\n\n");
+    body3 = fixInternalLinks(dedupeSections(body3));
     return { body: body3, description: hd.description, title: ht.title, tools: [] };
   } else {
     p1 = await chat(
@@ -598,7 +614,8 @@ function numbersIn(s: string): string[] {
 async function lightLayer(body: string, item: KeywordItem, system: string): Promise<string> {
   if (isOffline() || item.template.startsWith("news:")) return body;
   const bodyNums = new Set(numbersIn(body));
-  const okLine = (l: string) => numbersIn(l).every((n) => bodyNums.has(n)) && !/という声|との口コミ|口コミ(が|も)多い|口コミでは|と評判|受講生の声|受講生は|卒業生は/.test(l);
+  // 「最大64万円」「最大80%」のような区分上限の丸め表現は、17万円の講座でも64万円戻るように読める（景表法の誤認リスク。2026-09-17 実測）ので落とす
+  const okLine = (l: string) => numbersIn(l).every((n) => bodyNums.has(n)) && !/という声|との口コミ|口コミ(が|も)多い|口コミでは|と評判|受講生の声|受講生は|卒業生は|最大\s*\d+\s*万円|最大\s*\d+\s*[%％]/.test(l);
   const r = await chat(
     `以下の記事に「軽く読める層」を足す。出力はこの形式だけ（見出し・番号・記号を増やさない）:\nTLDR:\n（記事の結論を3行。各行40字以内。読者の損得が分かる言い方。記事にある数字だけ使う）\nKAIGI:\n（編集部スタッフ3人の会話を10〜12行。1行=「名前: 発言」。発言は各60字以内、口語、掛け合い。順番は ミナが疑問→タケシが数字で返す→佐倉が判断、を2〜3周。記事に書いてある事実だけを言い換える。記事に無い数字・固有名詞・体験談は禁止。「〜という声」「口コミ」「受講生」という語は使わない。最後は佐倉が結論を一言）\n登場人物: ${STAFF.map((s) => `${s.name}=${s.role}`).join("／")}\n\n【記事】\n${body.slice(0, 7000)}`,
     { system, maxTokens: 1400, temperature: 0.8 });

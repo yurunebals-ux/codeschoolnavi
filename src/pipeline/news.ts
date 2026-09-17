@@ -381,9 +381,10 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
       console.log(`[news] 候補: 「${it.title.slice(0, 36)}」 反応${rx.comments.length}件（${rx.threads.map((t) => `${t.platform}${t.count}`).join("・") || "なし"}）`);
       cands.push({ it, en, rx, rank: cands.length });
     }
-    // 反応が5件以上ある候補があればその中で最多、無ければ関連度順の先頭
+    // まとめ風の記事にするので、反応が5件以上ある候補だけ（最多のもの）。無ければ今日は書かない（オーナー 2026-09-17）
     const withRx = cands.filter((c) => c.rx.comments.length >= 5).sort((a, b) => b.rx.comments.length - a.rx.comments.length || a.rank - b.rank);
-    const best = withRx[0] ?? cands[0];
+    const best = withRx[0];
+    if (!best && cands.length) console.log(`[news] 反応が5件以上あるニュースが無い（候補${cands.length}本）。今日は書かない`);
     if (opts.dry) { console.log(`[news] --dry: 候補${cands.length}本を評価しただけで終了（キューに入れない）`); return null; }
     if (best) {
       const { it, en, rx } = best;
