@@ -63,7 +63,9 @@ const watchOffer = watchId ? (offersFile as any).offers?.[watchId] ?? null : nul
 const figMapAfter = isKyufu ? 4 : 3;
 const ctaAfter = figMapAfter + 1;
 ---
-<Base title={d.title} description={d.description} article={d} ogImage={eyeShots[0]?.og}>
+{/* 検索結果の <title> だけに「【2026年9月】」を付ける（H1 は変えない）。料金は毎日自動照合しているので月の表示は事実。
+    Search Console（2026-09-17）で 20〜30位の評判・料金クエリの CTR が 0% だった対策。ニュース・トピックは付けない */}
+<Base title={d.news || d.topic ? d.title : `${d.title}【${new Date().getFullYear()}年${new Date().getMonth() + 1}月】`} description={d.description} article={d} ogImage={eyeShots[0]?.og}>
   <article>
     <h1>{d.title}</h1>
     <div class="meta">
