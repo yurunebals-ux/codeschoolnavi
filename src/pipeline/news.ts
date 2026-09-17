@@ -189,7 +189,7 @@ async function getJson(url: string, ms = 12000, ua = UA): Promise<any | null> {
 }
 const cleanComment = (t: string) => decode(t).replace(/https?:\/\/\S+/g, "").replace(/\s+/g, " ").trim().slice(0, 220);
 // 中傷・罵倒を含むコメントは材料に入れない（1本目で「何やってんだこいつ」が引用された。2026-09-14）
-const ABUSE = /こいつ|バカ|馬鹿|アホ|クズ|死ね|キモ|気持ち悪|頭悪|無能|ゴミ|カス|老害|情弱|信者|工作員|idiot|stupid|moron|dumb|scam|garbage|trash/i;
+const ABUSE = /こいつ|バカ|馬鹿|アホ|クズ|クソ|糞|死ね|キモ|気持ち悪|頭悪|無能|ゴミ|カス|老害|情弱|信者|工作員|写真|顔|容姿|見た目|太っ|ハゲ|ブス|ブサ|idiot|stupid|moron|dumb|scam|garbage|trash|ugly/i; // 容姿・写真への言及も外す（2026-09-17 に登壇者の写真を揶揄するコメントが載った）
 const okComment = (t: string) => t.length >= 8 && !ABUSE.test(t);
 
 export async function fetchReactions(link: string, title: string): Promise<Reactions> {
