@@ -679,7 +679,9 @@ export async function generateNext(): Promise<KeywordItem | null> {
 
   // キューに残っている旧型タイトル（「◯◯はやめとけ？…」）を新しい型に揃える。
   // state.json は手でコミットしないので、ここで直すのが確実。
-  if (item.template === "money:doubt") item.keyword = item.keyword.replace(/はやめとけ？評判と後悔しない判断基準$/, "は自分に合う？向いていない人の条件と後悔しない判断基準");
+  if (item.template === "money:doubt") item.keyword = item.keyword.replace(/(はやめとけ？評判と後悔しない判断基準|は自分に合う？向いていない人の条件と後悔しない判断基準)$/, "は自分に合う？申込前に潰す3つの不安");
+  if (item.template === "money:review") item.keyword = item.keyword.replace(/の評判・口コミは？特徴を解説$/, "の評判・口コミは？不満の声の真相と向いている人");
+  if (item.template === "money:pricing") item.keyword = item.keyword.replace(/の料金は高い？他社と比較$/, "の料金は高い？月あたりで他校と比べた結果");
   const { body, description, title, tools } = await writeArticle(item, aff);
   if (title) item.keyword = title;
 

@@ -59,9 +59,10 @@ export function buildKeywords(limit = 40): number {
     add(`kyufukin-${t.id}`, eligible ? `${t.name}は教育訓練給付金の対象？戻る金額・対象コース・申請の順番` : `${t.name}に教育訓練給付金は使える？対象外の場合に使える制度と実質負担`, "money:subsidy", [t.id], 10, "money", t.category);
   }
   for (const t of aff.tools) {
-    add(`hyoban-${t.id}`, `${t.name}の評判・口コミは？特徴を解説`, "money:review", [t.id], 9, "money", t.category);
-    add(`ryokin-${t.id}`, `${t.name}の料金は高い？他社と比較`, "money:pricing", [t.id], 8, "money", t.category);
-    add(`yametoke-${t.id}`, `${t.name}は自分に合う？向いていない人の条件と後悔しない判断基準`, "money:doubt", [t.id], 8, "money", t.category);
+    // タイトルは検索結果でクリックされる形（2026-09-17: CTR 0.4% の対策。キーワードを前半に、後半で「何が分かるか」を具体的に）
+    add(`hyoban-${t.id}`, `${t.name}の評判・口コミは？不満の声の真相と向いている人`, "money:review", [t.id], 9, "money", t.category);
+    add(`ryokin-${t.id}`, `${t.name}の料金は高い？月あたりで他校と比べた結果`, "money:pricing", [t.id], 8, "money", t.category);
+    add(`yametoke-${t.id}`, `${t.name}は自分に合う？申込前に潰す3つの不安`, "money:doubt", [t.id], 8, "money", t.category);
   }
   for (const [a, b] of aff.comparison_pairs) {
     const ta = byId.get(a), tb = byId.get(b);
