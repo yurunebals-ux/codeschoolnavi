@@ -1,5 +1,5 @@
 ---
-title: "Google Gemini 3.8 Liveが音声コーディングを実現、社会人学習者はどう動くか"
+title: "Gemini 3.8 Liveで\"しゃべって書く\"時代へ。キーボードより先に覚えるべきこと"
 description: "Googleの新音声会話AIがリアルタイムコーディングを可能に。学習者の対応策を解説。"
 author: "編集部"
 pubDate: 2026-09-16

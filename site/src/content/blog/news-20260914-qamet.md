@@ -1,5 +1,5 @@
 ---
-title: "DeepSeek v4.1 Flash、FP4非対応A100で公式API超速化の技術革新"
+title: "古いGPUで公式APIより速く。DeepSeek v4.1 Flashの\"裏技\"が学ぶ人に示すこと"
 description: "DeepSeek v4.1 Flashを古いA100 GPUで高速化し、公式APIを上回る性能を達成した事例を解説する。"
 author: "編集部"
 pubDate: 2026-09-14
