@@ -1,6 +1,6 @@
 ---
-title: "RUNTEQの料金は高い？他社と比較"
-description: "RUNTEQとポテパンキャンプ、COACHTECHの料金を期間と支援内容で比較し、受講料の実態を詳述する。"
+title: "RUNTEQの料金は高い？月あたりで他校と比べた結果"
+description: "RUNTEQの受講料550,000円〜（約9ヶ月）は高いのか。同カテゴリの他校と月あたりで比較し、給付金対象講座あり・返金保証「なし」まで整理します。"
 author: "編集部"
 pubDate: 2026-09-07
 updatedDate: 2026-09-11
