@@ -173,4 +173,4 @@ SkillHacksは返金保証に対応していません。購入前に教材内容�
 - [独学・買い切りのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-dokugaku/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Pythonの独学は何ヶ月かかる？挫折しない学習計画の立て方](/blog/topic-python-dokugaku-kikan/)
-- [AI活用で月10時間節約しても給料が増えない理由は何か](/blog/news-20260918-fxn3v/)
+- [Jev」AIは文字を書かず判断だけ高速処理。ChatGPTと何が違う？](/blog/news-20260918-xwttv/)

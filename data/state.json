@@ -3536,10 +3536,74 @@
       },
       "structure": 2,
       "publishedAt": "2026-09-18T10:30:44.147Z"
+    },
+    {
+      "slug": "news-20260918-xwttv",
+      "keyword": "Jev」AIは文字を書かず判断だけ高速処理。ChatGPTと何が違う？",
+      "template": "news:hot",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 96,
+      "status": "published",
+      "createdAt": "2026-09-18T23:50:04.323Z",
+      "news": {
+        "title": "今話題のAI「Jev」って何？ 宇宙最速で学ぶ会",
+        "link": "https://speakerdeck.com/minorun365/konwadai-no-ai-jev-tte-nani-uchuu-saisoku-de-manabu-kai",
+        "source": "speakerdeck.com",
+        "published": "2026年9月18日",
+        "snippet": "今話題のAI「Jev」って何？ 宇宙最速で学ぶ会 - connpass https://minorun365.connpass.com/event/407308/",
+        "text": "今話題のAI「Jev」って何？ 宇宙最速で学ぶ会 - Speaker Deck Upgrade to Pro &mdash; share decks privately, control downloads, hide ads and more &hellip; 今話題のAI「Jev」って何？ 宇宙最速で学ぶ会 みのるん PRO September 17, 2026 Technology 12k 21 Share Embed '>Copy iframe code Copy JS code Copy link Start on current slide 今話題のAI「Jev」って何？ 宇宙最速で学ぶ会 今話題のAI「Jev」って何？ 宇宙最速で学ぶ会 - connpass https://minorun365.connpass.com/event/407308/ みのるん PRO September 17, 2026 More Decks by みのるん See All by みのるん Claude Codeを「使うほど育つ」AI秘書にするノウハウ minorun365 PRO 27 21k The Agent Builder Loop from Daily Work to OSS minorun365 PRO 3 200 Claude Codeで開発以外の業務も爆速化しよう！ minorun365 PRO 12 10k Mastraエージェント、どのクラウドにデプロイする？ minorun365 PRO 3 280 「勝手に広まる」人気 AI エージェントを爆速で作ろう！（AWS Summit Japan 2026講演資料） minorun365 PRO 12 3.6k やさしいA2A入門 minorun365 PRO 12 2.9k もりもり新機能を一挙紹介！ AgentCoreに入門して、AWS上にAIエージェントを構築しよう minorun365 PRO 6 1.8k Claude Codeですべての日常業務を爆速化しよう！ minorun365 PRO 19 19k 2026年春のAgentCoreアプデ 細かいやつ全部まとめ minorun365 PRO 5 400 Other Decks in Technology See All in Technology AIによるクリエイティブ生成を行う上での試行錯誤 plaidtech PRO 0 150 映像変換サーバーなしで端末内でHLSを生成してライブ配信 hikarusato 0 110 AIエージェントの自己改善をどう設計するか / How to Design Self-Improvement for AI Agents 22mi 23 15k 研究開発部の紹介 / Sansan R&D Profile sansan33 PRO 5 25k HRC_Frontend_Conference_Fukuoka_2026.pdf ts020 0 730 What the customer really needed kawaguti PRO 2 170 負債のメタファと2026年 / Debt Metaphor in Agentic Engineering Age 202609 Edition twada PRO 5 2.4k 2026_devsumi_ozono.pdf o3 3 500 データ_AIの事業の勝敗をわけるもの nek0128 0 360 Slack上でインフラをトラブルシュートする！ Agentic Platform Engineeringの第一歩 teru0x1 4 1.7k DEFCON34-Write-up_HYCu-MYCu daikiokazaki 0 160 DEFCON_CHV_CTF_Write-up.pdf bata_24 0 150 Featured See All Featured The browser strikes back jonoalderson 0 1.7k JavaScript: Past, Present, and Future - NDC Porto 2020 reverentgeek 52 6.1k No one is an island. Learnings from fostering a developers community. thoeni 21 3.8k Agile that works and the tools we love rasmusluckow 331 22k Heart Work Chapter 1 - Part 1 lfama PRO 10 36k Data-driven link building: lessons from a $708K investment (BrightonSEO talk) szymonslowik 1 1.3k エンジニアに許された特別な時間の終わり watany 109 250k Winning Ecommerce Organic Search in an AI Era - #searchnstuff2025 aleyda 2 2.1k Are puppies a ranking factor? jonoalderson 2 3.9k How Fast Is Fast Enough? [PerfNow 2025] tammyeverts 3 880 Leading Effective Engineering Teams in the AI Era addyosmani 9 2.6k The Hidden Cost of Media on the Web [PixelPalooza 2025] tammyeverts 2 500 Transcript 今話題のAI「Jev」って何？ 宇宙最速で学ぶ会 みのるん @minorun365 御田 稔（みのるん） KDDIアジャイル開発センター株式会社 テックエバンジェリスト AWS AI Hero / AWS Samurai Qiita 2025 Top Contributor デブサミ2026 ベストスピーカー 2 LLM の返事を待つ時間、ありますよね？ Claude Code に「このテスト直して」と頼み、 考えているのを眺める数十秒 ChatGPT に長文を貼って、 少しずつ出てくるのを待つ 自作エージェントをデプロイしたら、 1リクエスト数十秒でタイムアウト 3 欲しいのは文章ではなく「判断」だけ、という場面 請求の話 → 経理へ 問い合わせが届いた 「請求が⼆重です」 if（判断） どの話？ 不具合の話 → 開発へ それ以外 → 営業へ Claude Code が打つコマンド、危ない？（はい／いいえ） 届いた問い合わせの担当は？（請求・技術・営業） でも LLM に聞くと、毎回ていねいな文章が返ってくる 4 そこに今週、こんな発表が 元 OpenAI の研究者が、新会社から発表！ 9/15（火）、TypeSafe AI が初のモデル「Jev」を発表 創業者の1人 Diogo Almeida さんは、 ChatGPT の土台になった InstructGPT 論文の共著者 6 発表の日に、どれだけ騒がれたか 技術者の掲示板 Hacker News で 1,800 ポイント超え。 1,000 超えの投稿は、全期間で約2,700件しかない 同じ日に 4,000万ドル（約60億円）を調達。 DCVC 主導のシードで、この額 7 「チャットはずっと超人的なのに、 自動化はどこにあるんだろう？」 発表ブログの1行目。創業者が4年間、抱えていた問い 今のAIは「馬なし馬車」だと言う 会社のマニフェストに、初期の自動車の写真が出てきます。 初期の自動車は、馬車の座席とバネを残して 馬をモーターに替えたもの 今の AI も、人が相手の「親切な助手」として作られている だから人を横に置く必要があり、 裏で黙って動く自動化にならない 9 馬車の形を捨てて作ったのが、Jev 人に話しかける助手ではなく、 プログラムの中で「判断」だけを担う部品。 状況と質問を渡すと、選択肢から答えと確率が返る。 文字は1文字も書かない 分類名は System One Model。Jev が第1号 脚注では「smart if-statements」と自称 10 ところで、なんで 「システム1」で「Jev」なの？ 名前の由来①『ファスト＆スロー』 心理学者カーネマンは、人の思考を2つのモードで説明しました システム1 システム2 速くて直感的。 遅くて論理的。 危ないと感じて避ける、機嫌を読む 計算する、じっくり比べる 本ではシステム1は「早とちり」する側。TypeSafe は、 それでもほかのやり方より信頼できるものにできると言います 12 名前の由来② ジェヴォンズのパラドックス Jev は経済学者ウィリアム・スタンレー・ジェヴォンズから。 1865年の著書『石炭問題』で、こう指摘しました 蒸気機関の効率が上がったら、 石炭の消費は減らずに増えた 安くなると、割に合わなかった使い方が増える TypeSafe は、知能も同じ道をたどると見ている 13 何が嬉しいの？ 発表ブログの比較表から 学習のさせ方 返ってくるもの 生成のしかた 速さ 料金 自信 これまでの LLM 人の好みに合わせる（RLHF） 文字列。パースが要る 1トークンずつ順番に 3〜329秒 入力",
+        "reactions": {
+          "threads": [
+            {
+              "platform": "はてなブックマーク",
+              "url": "https://b.hatena.ne.jp/entry/s/speakerdeck.com/minorun365/konwadai-no-ai-jev-tte-nani-uchuu-saisoku-de-manabu-kai",
+              "count": 184
+            }
+          ],
+          "comments": [
+            {
+              "platform": "はてなブックマーク",
+              "text": "つかいどころが難しそう。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "「問い合わせフォームを打っている途中で判定」という例が説明も含めて全く理解できない。挙げられている例の説明がAIポン出しの臭みのある文章で読み解くのが難しい。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "クラス分類モデルなのね。埋め込みの距離を取れば既存のモデルでも似たようなことは出来そうだから、強いのは埋め込みの生成方法かね"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "ソフトバンク（vodafone）のjavaの音声認識ライブラリもこんな使い方だった。こちらから選択肢を渡すと、音声にどれだけ近いか分かる。一番スコアが高い物を採用。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "質問とセットで選択肢も与える必要がある。だから選択肢以外の回答はしない。賢いIFとはそういう意味。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "最初は\"思い出/想いで/重いでぇ\"のどれ？選択みたいな「候補判断の次の候補判断の次の候補判断」式が「次の文字の次の文字の～」より速い！って意味だと思ってた。用途から限定的だと宣言されてるのね。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "数値の評価は人間側、今のAIの精度だとケースは選びそう"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "smart if-statement的な判断特化型AIはこれからの実装でかなり実用的になりそう"
+            }
+          ]
+        }
+      },
+      "structure": 2,
+      "publishedAt": "2026-09-18T23:50:13.467Z"
     }
   ],
-  "publishedCount": 69,
-  "estimatedMrrUsd": 20700,
+  "publishedCount": 70,
+  "estimatedMrrUsd": 21000,
   "history": [
     {
       "date": "2026-07-24",
@@ -3818,9 +3882,9 @@
     },
     {
       "date": "2026-09-18",
-      "published": 69,
-      "estimatedMrrUsd": 20700
+      "published": 70,
+      "estimatedMrrUsd": 21000
     }
   ],
-  "lastRun": "2026-09-18T10:30:44.687Z"
+  "lastRun": "2026-09-18T23:50:14.024Z"
 }
