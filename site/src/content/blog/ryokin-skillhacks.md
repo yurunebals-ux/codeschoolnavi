@@ -206,9 +206,9 @@ SkillHacksに転職支援はありません。転職支援が必要な場合は�
 
 ## あわせて読みたい
 
-- [SkillHacksは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-skillhacks/)
+- [SkillHacksは自分に合う？申込前に潰す3つの不安](/blog/yametoke-skillhacks/)
 - [独学・買い切りのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-dokugaku/)
-- [SkillHacksの評判・口コミは？特徴を解説](/blog/hyoban-skillhacks/)
+- [SkillHacksの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-skillhacks/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Pythonの独学は何ヶ月かかる？挫折しない学習計画の立て方](/blog/topic-python-dokugaku-kikan/)
 - [Claude Codeを「使うほど育つ」AI秘書に変える3つの具体策](/blog/news-20260917-1lp96/)
-- [TypeSafe AIのJevは70ms応答で高速判断、LLMとどう使い分けるべきか](/blog/news-20260917-1ege7/)

@@ -250,9 +250,9 @@ ITパスポートや基本情報技術者などの国家資格取得を目指す
 
 ## あわせて読みたい
 
-- [Winスクールの評判・口コミは？特徴を解説](/blog/hyoban-winschool/)
+- [Winスクールの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Pythonの独学は何ヶ月かかる？挫折しない学習計画の立て方](/blog/topic-python-dokugaku-kikan/)
 - [Claude Codeを「使うほど育つ」AI秘書に変える3つの具体策](/blog/news-20260917-1lp96/)
 - [TypeSafe AIのJevは70ms応答で高速判断、LLMとどう使い分けるべきか](/blog/news-20260917-1ege7/)
-- [キカガクの料金は高い？他社と比較](/blog/ryokin-kikagaku/)
-- [SmartHRのClaude Code活用術、開発期間1か月短縮の設計手法を解説](/blog/news-20260917-1g4j2/)
+- [キカガクの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-kikagaku/)

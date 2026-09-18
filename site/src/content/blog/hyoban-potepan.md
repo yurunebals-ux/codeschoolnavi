@@ -110,9 +110,9 @@ Ruby on Railsに特化しているため、自分の目指す技術がこの範�
 
 ## あわせて読みたい
 
-- [ポテパンキャンプの料金は高い？他社と比較](/blog/ryokin-potepan/)
-- [ポテパンキャンプは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-potepan/)
+- [ポテパンキャンプの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-potepan/)
+- [ポテパンキャンプは自分に合う？申込前に潰す3つの不安](/blog/yametoke-potepan/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [COACHTECHの料金は高い？他社と比較](/blog/ryokin-coachtech/)
-- [COACHTECHは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-coachtech/)
-- [RUNTEQの料金は高い？他社と比較](/blog/ryokin-runteq/)
+- [COACHTECHの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-coachtech/)
+- [COACHTECHは自分に合う？申込前に潰す3つの不安](/blog/yametoke-coachtech/)
+- [RUNTEQの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-runteq/)

@@ -222,9 +222,9 @@ IT業界全体の傾向として、未経験で転職した場合の初年度年
 
 ## あわせて読みたい
 
-- [侍エンジニアは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-samurai/)
-- [侍エンジニアの評判・口コミは？特徴を解説](/blog/hyoban-samurai/)
+- [侍エンジニアは自分に合う？申込前に潰す3つの不安](/blog/yametoke-samurai/)
+- [侍エンジニアの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-samurai/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [テックアイエスの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-techis/)
 - [マンツーマン指導のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-mtm/)
-- [Claude Codeを「使うほど育つ」AI秘書に変える3つの具体策](/blog/news-20260917-1lp96/)
+- [Pythonの独学は何ヶ月かかる？挫折しない学習計画の立て方](/blog/topic-python-dokugaku-kikan/)

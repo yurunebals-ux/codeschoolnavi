@@ -132,9 +132,9 @@ Aidemyと比較すると、Aidemyは返金保証や転職成功率の公表が�
 
 ## あわせて読みたい
 
-- [キカガクの料金は高い？他社と比較](/blog/ryokin-kikagaku/)
+- [キカガクの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-kikagaku/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [Aidemyの評判・口コミは？特徴を解説](/blog/hyoban-aidemy/)
-- [DMM 生成AI CAMPの評判・口コミは？特徴を解説](/blog/hyoban-dmmaicamp/)
+- [Aidemyの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-aidemy/)
+- [DMM 生成AI CAMPの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-dmmaicamp/)
 - [AI・データ分析のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-ai/)
-- [スキルアップAIの評判・口コミは？特徴を解説](/blog/hyoban-skillupai/)
+- [スキルアップAIの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-skillupai/)

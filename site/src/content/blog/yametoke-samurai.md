@@ -198,9 +198,9 @@ Zoomなどのビデオ通話を使い、専属講師が1対1で進捗管理と�
 
 ## あわせて読みたい
 
-- [侍エンジニアの料金は高い？他社と比較](/blog/ryokin-samurai/)
-- [侍エンジニアの評判・口コミは？特徴を解説](/blog/hyoban-samurai/)
+- [侍エンジニアの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-samurai/)
+- [侍エンジニアの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-samurai/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [テックアイエスの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-techis/)
 - [マンツーマン指導のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-mtm/)
-- [Claude Codeを「使うほど育つ」AI秘書に変える3つの具体策](/blog/news-20260917-1lp96/)
+- [Pythonの独学は何ヶ月かかる？挫折しない学習計画の立て方](/blog/topic-python-dokugaku-kikan/)

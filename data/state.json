@@ -2,7 +2,7 @@
   "keywords": [
     {
       "slug": "ryokin-uzuzcollege",
-      "keyword": "ウズウズカレッジの料金は高い？他社と比較",
+      "keyword": "ウズウズカレッジの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "uzuzcollege"
@@ -31,7 +31,7 @@
     },
     {
       "slug": "ryokin-skillhacks",
-      "keyword": "SkillHacksの料金は高い？他社と比較",
+      "keyword": "SkillHacksの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "skillhacks"
@@ -45,7 +45,7 @@
     },
     {
       "slug": "yametoke-skillhacks",
-      "keyword": "SkillHacksは自分に合う？向いていない人の条件と後悔しない判断基準",
+      "keyword": "SkillHacksは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "skillhacks"
@@ -59,7 +59,7 @@
     },
     {
       "slug": "ryokin-samurai",
-      "keyword": "侍エンジニアの料金は高い？他社と比較",
+      "keyword": "侍エンジニアの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "samurai"
@@ -73,7 +73,7 @@
     },
     {
       "slug": "yametoke-samurai",
-      "keyword": "侍エンジニアは自分に合う？向いていない人の条件と後悔しない判断基準",
+      "keyword": "侍エンジニアは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "samurai"
@@ -87,7 +87,7 @@
     },
     {
       "slug": "ryokin-fjord",
-      "keyword": "フィヨルドブートキャンプの料金は高い？他社と比較",
+      "keyword": "フィヨルドブートキャンプの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "fjord"
@@ -101,7 +101,7 @@
     },
     {
       "slug": "yametoke-fjord",
-      "keyword": "フィヨルドブートキャンプは自分に合う？向いていない人の条件と後悔しない判断基準",
+      "keyword": "フィヨルドブートキャンプは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "fjord"
@@ -148,7 +148,7 @@
     },
     {
       "slug": "ryokin-dmmwebcamp",
-      "keyword": "DMM WEBCAMPの料金は高い？他社と比較",
+      "keyword": "SHIFT TERAS CAMPUSの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "dmmwebcamp"
@@ -162,7 +162,7 @@
     },
     {
       "slug": "yametoke-dmmwebcamp",
-      "keyword": "SHIFT TERAS CAMPUSは自分に合う？向いていない人の条件と後悔しない判断基準",
+      "keyword": "SHIFT TERAS CAMPUSは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "dmmwebcamp"
@@ -176,7 +176,7 @@
     },
     {
       "slug": "ryokin-techmeets",
-      "keyword": "techmeetsの料金は高い？他社と比較",
+      "keyword": "techmeetsの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "techmeets"
@@ -190,7 +190,7 @@
     },
     {
       "slug": "yametoke-techmeets",
-      "keyword": "techmeetsは自分に合う？向いていない人の条件と後悔しない判断基準",
+      "keyword": "techmeetsは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "techmeets"
@@ -204,7 +204,7 @@
     },
     {
       "slug": "ryokin-techacademy",
-      "keyword": "TechAcademyの料金は高い？他社と比較",
+      "keyword": "TechAcademyの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "techacademy"
@@ -218,7 +218,7 @@
     },
     {
       "slug": "yametoke-techacademy",
-      "keyword": "TechAcademyは自分に合う？向いていない人の条件と後悔しない判断基準",
+      "keyword": "TechAcademyは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "techacademy"
@@ -232,7 +232,7 @@
     },
     {
       "slug": "ryokin-codecamp",
-      "keyword": "CodeCampの料金は高い？他社と比較",
+      "keyword": "CodeCampの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "codecamp"
@@ -246,7 +246,7 @@
     },
     {
       "slug": "yametoke-codecamp",
-      "keyword": "CodeCampは自分に合う？向いていない人の条件と後悔しない判断基準",
+      "keyword": "CodeCampは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "codecamp"
@@ -260,7 +260,7 @@
     },
     {
       "slug": "ryokin-techcamp",
-      "keyword": "テックキャンプの料金は高い？他社と比較",
+      "keyword": "テックキャンプの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "techcamp"
@@ -288,7 +288,7 @@
     },
     {
       "slug": "ryokin-potepan",
-      "keyword": "ポテパンキャンプの料金は高い？他社と比較",
+      "keyword": "ポテパンキャンプの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "potepan"
@@ -302,7 +302,7 @@
     },
     {
       "slug": "yametoke-potepan",
-      "keyword": "ポテパンキャンプは自分に合う？向いていない人の条件と後悔しない判断基準",
+      "keyword": "ポテパンキャンプは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "potepan"
@@ -316,7 +316,7 @@
     },
     {
       "slug": "ryokin-coachtech",
-      "keyword": "COACHTECHの料金は高い？他社と比較",
+      "keyword": "COACHTECHの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "coachtech"
@@ -330,7 +330,7 @@
     },
     {
       "slug": "yametoke-coachtech",
-      "keyword": "COACHTECHは自分に合う？向いていない人の条件と後悔しない判断基準",
+      "keyword": "COACHTECHは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "coachtech"
@@ -372,7 +372,7 @@
     },
     {
       "slug": "ryokin-runteq",
-      "keyword": "RUNTEQの料金は高い？他社と比較",
+      "keyword": "RUNTEQの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "runteq"
@@ -387,7 +387,7 @@
     },
     {
       "slug": "yametoke-runteq",
-      "keyword": "RUNTEQは自分に合う？向いていない人の条件と後悔しない判断基準",
+      "keyword": "RUNTEQは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "runteq"
@@ -401,7 +401,7 @@
     },
     {
       "slug": "hyoban-uzuzcollege",
-      "keyword": "ウズウズカレッジの評判・口コミは？特徴を解説",
+      "keyword": "ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "uzuzcollege"
@@ -415,7 +415,7 @@
     },
     {
       "slug": "hyoban-techmeets",
-      "keyword": "techmeetsの評判・口コミは？特徴を解説",
+      "keyword": "techmeetsの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "techmeets"
@@ -464,7 +464,7 @@
     },
     {
       "slug": "hyoban-techacademy",
-      "keyword": "TechAcademyの評判・口コミは？特徴を解説",
+      "keyword": "TechAcademyの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "techacademy"
@@ -479,7 +479,7 @@
     },
     {
       "slug": "hyoban-codecamp",
-      "keyword": "CodeCampの評判・口コミは？特徴を解説",
+      "keyword": "CodeCampの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "codecamp"
@@ -509,7 +509,7 @@
     },
     {
       "slug": "hyoban-techcamp",
-      "keyword": "テックキャンプの評判・口コミは？特徴を解説",
+      "keyword": "テックキャンプの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "techcamp"
@@ -524,7 +524,7 @@
     },
     {
       "slug": "hyoban-runteq",
-      "keyword": "RUNTEQの評判・口コミは？特徴を解説",
+      "keyword": "RUNTEQの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "runteq"
@@ -554,7 +554,7 @@
     },
     {
       "slug": "hyoban-coachtech",
-      "keyword": "COACHTECHの評判・口コミは？特徴を解説",
+      "keyword": "COACHTECHの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "coachtech"
@@ -569,7 +569,7 @@
     },
     {
       "slug": "hyoban-samurai",
-      "keyword": "侍エンジニアの評判・口コミは？特徴を解説",
+      "keyword": "侍エンジニアの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "samurai"
@@ -584,7 +584,7 @@
     },
     {
       "slug": "hyoban-aidemy",
-      "keyword": "Aidemyの評判・口コミは？特徴を解説",
+      "keyword": "Aidemyの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "aidemy"
@@ -599,7 +599,7 @@
     },
     {
       "slug": "hyoban-kikagaku",
-      "keyword": "キカガクの評判・口コミは？特徴を解説",
+      "keyword": "キカガクの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "kikagaku"
@@ -614,7 +614,7 @@
     },
     {
       "slug": "hyoban-programmercollege",
-      "keyword": "プログラマカレッジの評判・口コミは？特徴を解説",
+      "keyword": "プログラマカレッジの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "programmercollege"
@@ -644,7 +644,7 @@
     },
     {
       "slug": "hyoban-ninjacode",
-      "keyword": "忍者CODEの評判・口コミは？特徴を解説",
+      "keyword": "忍者CODEの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "ninjacode"
@@ -659,7 +659,7 @@
     },
     {
       "slug": "hyoban-dmmaicamp",
-      "keyword": "DMM 生成AI CAMPの評判・口コミは？特徴を解説",
+      "keyword": "DMM 生成AI CAMPの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "dmmaicamp"
@@ -674,7 +674,7 @@
     },
     {
       "slug": "hyoban-winschool",
-      "keyword": "Winスクールの評判・口コミは？特徴を解説",
+      "keyword": "Winスクールの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "winschool"
@@ -684,11 +684,12 @@
       "score": 91,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-08-02T05:34:02.734Z"
+      "publishedAt": "2026-08-02T05:34:02.734Z",
+      "structure": 2
     },
     {
       "slug": "hyoban-skillhacks",
-      "keyword": "SkillHacksの評判・口コミは？特徴を解説",
+      "keyword": "SkillHacksの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "skillhacks"
@@ -780,7 +781,7 @@
     },
     {
       "slug": "hyoban-skillupai",
-      "keyword": "スキルアップAIの評判・口コミは？特徴を解説",
+      "keyword": "スキルアップAIの評判・口コミは？不満の声の真相と向いている人",
       "template": "money:review",
       "tools": [
         "skillupai"
@@ -839,7 +840,7 @@
     },
     {
       "slug": "ryokin-aidemy",
-      "keyword": "Aidemyの料金は高い？他社と比較",
+      "keyword": "Aidemyの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "aidemy"
@@ -854,7 +855,7 @@
     },
     {
       "slug": "yametoke-aidemy",
-      "keyword": "Aidemyは自分に合う？向いていない人の条件と後悔しない判断基準",
+      "keyword": "Aidemyは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "aidemy"
@@ -869,7 +870,7 @@
     },
     {
       "slug": "ryokin-kikagaku",
-      "keyword": "キカガクの料金は高い？他社と比較",
+      "keyword": "キカガクの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "kikagaku"
@@ -1450,7 +1451,7 @@
     },
     {
       "slug": "news-20260911-16rq8",
-      "keyword": "AI活用力の育成と投資効果、未経験採用のリアルを見極める時代",
+      "keyword": "AI研修に払った分は戻るのか。ROI試算と未経験採用の現実から読む3つの動き",
       "template": "news:weekly",
       "tools": [],
       "kind": "news",
@@ -1512,7 +1513,7 @@
     },
     {
       "slug": "news-20260914-vc3xv",
-      "keyword": "Gartner調査で判明、2026年AIコーディング予算超過の実態と対策",
+      "keyword": "「AIより人を雇う方が安い」は本当か。Gartnerが警告した85%予算超過の中身",
       "template": "news:hot",
       "tools": [],
       "kind": "news",
@@ -1533,7 +1534,7 @@
     },
     {
       "slug": "news-20260914-4bs6l",
-      "keyword": "OpenAIのChatGPT Work新機能「Data agent」登場、非エンジニアの分析作業を大幅削減",
+      "keyword": "SQLを覚える前に分析が終わる？ChatGPT Work「Data agent」の使いどころ",
       "template": "news:hot",
       "tools": [],
       "kind": "news",
@@ -1554,7 +1555,7 @@
     },
     {
       "slug": "news-20260914-qamet",
-      "keyword": "DeepSeek v4.1 Flash、FP4非対応A100で公式API超速化の技術革新",
+      "keyword": "古いGPUで公式APIより速く。DeepSeek v4.1 Flashの\\\"裏技\\\"が学ぶ人に示すこと",
       "template": "news:hot",
       "tools": [],
       "kind": "news",
@@ -2344,13 +2345,15 @@
       "kind": "topic",
       "cluster": "独学・買い切り",
       "score": 60,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-09-15T07:29:08.617Z",
       "brief": "1日1〜2時間なら基礎文法に1ヶ月、小さな自作ツールに2ヶ月目、以降は目的（Web/データ/自動化）で分岐。挫折の主因は『教材を最後まで読む』学習法で、写経→改造→自作の順に切り替えると続く。詰まったときに質問できる相手がいるかが独学とスクールの分かれ目。",
       "hubs": [
         "/blog/osusume-hikaku-dokugaku/",
         "/shindan/"
-      ]
+      ],
+      "structure": 2,
+      "publishedAt": "2026-09-18T07:16:22.732Z"
     },
     {
       "slug": "topic-seisei-ai-jidai-programming",
@@ -2412,7 +2415,7 @@
     },
     {
       "slug": "news-20260915-bs70u",
-      "keyword": "Qiita記事7万件分析で見る生成AI後の技術文章の変化と編集部の見解",
+      "keyword": "Qiita7万記事が示した、AI以後に\\\"読まれる技術文章\\\"の条件",
       "template": "news:hot",
       "tools": [],
       "kind": "news",
@@ -2656,7 +2659,7 @@
     },
     {
       "slug": "news-20260916-wtbbc",
-      "keyword": "Google Gemini 3.8 Liveが音声コーディングを実現、社会人学習者はどう動くか",
+      "keyword": "Gemini 3.8 Liveで\\\"しゃべって書く\\\"時代へ。キーボードより先に覚えるべきこと",
       "template": "news:hot",
       "tools": [],
       "kind": "news",
@@ -2692,7 +2695,7 @@
     },
     {
       "slug": "news-20260917-1g4j2",
-      "keyword": "SmartHRのClaude Code活用術、開発期間1か月短縮の設計手法を解説",
+      "keyword": "SmartHRが開発を1か月に縮めたのは、Claude Codeの腕ではなく「区切り方」だった",
       "template": "news:hot",
       "tools": [],
       "kind": "news",
@@ -2877,10 +2880,574 @@
       },
       "structure": 2,
       "publishedAt": "2026-09-17T22:12:06.968Z"
+    },
+    {
+      "slug": "kyufukin-techis",
+      "keyword": "テックアイエスは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "template": "money:subsidy",
+      "tools": [
+        "techis"
+      ],
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-potepan",
+      "keyword": "ポテパンキャンプに教育訓練給付金は使える？対象外の場合に使える制度と実質負担",
+      "template": "money:subsidy",
+      "tools": [
+        "potepan"
+      ],
+      "kind": "money",
+      "cluster": "転職特化",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-uzuzcollege",
+      "keyword": "ウズウズカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担",
+      "template": "money:subsidy",
+      "tools": [
+        "uzuzcollege"
+      ],
+      "kind": "money",
+      "cluster": "資格・就職支援",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-fjord",
+      "keyword": "フィヨルドブートキャンプは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "template": "money:subsidy",
+      "tools": [
+        "fjord"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-samurai",
+      "keyword": "侍エンジニアは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "template": "money:subsidy",
+      "tools": [
+        "samurai"
+      ],
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-dmmwebcamp",
+      "keyword": "SHIFT TERAS CAMPUSは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "template": "money:subsidy",
+      "tools": [
+        "dmmwebcamp"
+      ],
+      "kind": "money",
+      "cluster": "転職保証付き",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-techcamp",
+      "keyword": "テックキャンプは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "template": "money:subsidy",
+      "tools": [
+        "techcamp"
+      ],
+      "kind": "money",
+      "cluster": "転職保証付き",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-coachtech",
+      "keyword": "COACHTECHは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "template": "money:subsidy",
+      "tools": [
+        "coachtech"
+      ],
+      "kind": "money",
+      "cluster": "転職特化",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-techacademy",
+      "keyword": "TechAcademyに教育訓練給付金は使える？対象外の場合に使える制度と実質負担",
+      "template": "money:subsidy",
+      "tools": [
+        "techacademy"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-codecamp",
+      "keyword": "CodeCampは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "template": "money:subsidy",
+      "tools": [
+        "codecamp"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-runteq",
+      "keyword": "RUNTEQは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "template": "money:subsidy",
+      "tools": [
+        "runteq"
+      ],
+      "kind": "money",
+      "cluster": "転職特化",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-aidemy",
+      "keyword": "Aidemyは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "template": "money:subsidy",
+      "tools": [
+        "aidemy"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-kikagaku",
+      "keyword": "キカガクは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "template": "money:subsidy",
+      "tools": [
+        "kikagaku"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-programmercollege",
+      "keyword": "プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担",
+      "template": "money:subsidy",
+      "tools": [
+        "programmercollege"
+      ],
+      "kind": "money",
+      "cluster": "無料スクール",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-ninjacode",
+      "keyword": "忍者CODEに教育訓練給付金は使える？対象外の場合に使える制度と実質負担",
+      "template": "money:subsidy",
+      "tools": [
+        "ninjacode"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-dmmaicamp",
+      "keyword": "DMM 生成AI CAMPに教育訓練給付金は使える？対象外の場合に使える制度と実質負担",
+      "template": "money:subsidy",
+      "tools": [
+        "dmmaicamp"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-winschool",
+      "keyword": "Winスクールは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "template": "money:subsidy",
+      "tools": [
+        "winschool"
+      ],
+      "kind": "money",
+      "cluster": "通学・オンライン",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-skillhacks",
+      "keyword": "SkillHacksに教育訓練給付金は使える？対象外の場合に使える制度と実質負担",
+      "template": "money:subsidy",
+      "tools": [
+        "skillhacks"
+      ],
+      "kind": "money",
+      "cluster": "独学・買い切り",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-techmeets",
+      "keyword": "techmeetsは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "template": "money:subsidy",
+      "tools": [
+        "techmeets"
+      ],
+      "kind": "money",
+      "cluster": "オンライン学習",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-skillupai",
+      "keyword": "スキルアップAIは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "template": "money:subsidy",
+      "tools": [
+        "skillupai"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-aijobcolle",
+      "keyword": "AIジョブカレは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "template": "money:subsidy",
+      "tools": [
+        "aijobcolle"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-avilen",
+      "keyword": "AVILENに教育訓練給付金は使える？対象外の場合に使える制度と実質負担",
+      "template": "money:subsidy",
+      "tools": [
+        "avilen"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "kyufukin-cryptech",
+      "keyword": "クリプテックアカデミアに教育訓練給付金は使える？対象外の場合に使える制度と実質負担",
+      "template": "money:subsidy",
+      "tools": [
+        "cryptech"
+      ],
+      "kind": "money",
+      "cluster": "マンツーマン指導",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "osusume-free-yondai",
+      "keyword": "40代におすすめの無料スクールプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "programmercollege"
+      ],
+      "audience": "yondai",
+      "kind": "money",
+      "cluster": "無料スクール",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "osusume-free-josei",
+      "keyword": "女性におすすめの無料スクールプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "programmercollege"
+      ],
+      "audience": "josei",
+      "kind": "money",
+      "cluster": "無料スクール",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "osusume-tsugaku-mikeiken",
+      "keyword": "未経験者におすすめの通学・オンラインプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "winschool"
+      ],
+      "audience": "mikeiken",
+      "kind": "money",
+      "cluster": "通学・オンライン",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "osusume-tsugaku-shakaijin",
+      "keyword": "社会人におすすめの通学・オンラインプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "winschool"
+      ],
+      "audience": "shakaijin",
+      "kind": "money",
+      "cluster": "通学・オンライン",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "osusume-tsugaku-daigakusei",
+      "keyword": "大学生におすすめの通学・オンラインプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "winschool"
+      ],
+      "audience": "daigakusei",
+      "kind": "money",
+      "cluster": "通学・オンライン",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "osusume-tsugaku-tenshoku",
+      "keyword": "転職希望者におすすめの通学・オンラインプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "winschool"
+      ],
+      "audience": "tenshoku",
+      "kind": "money",
+      "cluster": "通学・オンライン",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "osusume-tsugaku-fukugyo",
+      "keyword": "副業したい人におすすめの通学・オンラインプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "winschool"
+      ],
+      "audience": "fukugyo",
+      "kind": "money",
+      "cluster": "通学・オンライン",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "osusume-tsugaku-yondai",
+      "keyword": "40代におすすめの通学・オンラインプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "winschool"
+      ],
+      "audience": "yondai",
+      "kind": "money",
+      "cluster": "通学・オンライン",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "osusume-tsugaku-josei",
+      "keyword": "女性におすすめの通学・オンラインプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "winschool"
+      ],
+      "audience": "josei",
+      "kind": "money",
+      "cluster": "通学・オンライン",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "osusume-dokugaku-mikeiken",
+      "keyword": "未経験者におすすめの独学・買い切りプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "skillhacks"
+      ],
+      "audience": "mikeiken",
+      "kind": "money",
+      "cluster": "独学・買い切り",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "osusume-dokugaku-shakaijin",
+      "keyword": "社会人におすすめの独学・買い切りプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "skillhacks"
+      ],
+      "audience": "shakaijin",
+      "kind": "money",
+      "cluster": "独学・買い切り",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "osusume-dokugaku-daigakusei",
+      "keyword": "大学生におすすめの独学・買い切りプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "skillhacks"
+      ],
+      "audience": "daigakusei",
+      "kind": "money",
+      "cluster": "独学・買い切り",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z"
+    },
+    {
+      "slug": "topic-portfolio-mikeiken",
+      "keyword": "未経験のポートフォリオは何を作ればいい？評価される作品と落とされる作品",
+      "template": "topic:guide",
+      "tools": [
+        "runteq",
+        "fjord",
+        "potepan"
+      ],
+      "kind": "topic",
+      "cluster": "転職特化",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "brief": "評価されるのは『誰の何の困りごとを解いたか』が説明できる作品。落とされるのはチュートリアルの写しとTodoアプリ単体。README・テスト・デプロイ済みURL・Git履歴の4点で完成度が伝わる。スクールの課題作品はそのまま出さず、独自機能を1つ足す。",
+      "hubs": [
+        "/blog/osusume-hikaku-tenshoku/",
+        "/shindan/"
+      ]
+    },
+    {
+      "slug": "topic-e-shikaku-kachi",
+      "keyword": "E資格は取る価値がある？費用・難易度・転職での見られ方",
+      "template": "topic:guide",
+      "tools": [
+        "aijobcolle",
+        "avilen",
+        "kikagaku"
+      ],
+      "kind": "topic",
+      "cluster": "AI・データ分析",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "brief": "E資格はJDLA認定プログラムの修了が受験条件で、講座費用が実質の受験コスト。資格そのものより『認定講座で実装まで学んだ』ことの証明として機能する。転職では未経験者の熱量の証拠、経験者には効果が薄い。給付金対象の認定講座を選べば費用は下がる（対象講座は各校の指定を確認）。",
+      "hubs": [
+        "/blog/osusume-hikaku-ai/",
+        "/kyufukin/"
+      ]
+    },
+    {
+      "slug": "topic-g-kentei-tenshoku",
+      "keyword": "G検定は転職に役立つ？取ってから分かる使いどころ",
+      "template": "topic:guide",
+      "tools": [
+        "kikagaku",
+        "aidemy"
+      ],
+      "kind": "topic",
+      "cluster": "AI・データ分析",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "brief": "G検定は実装ではなく『AIを事業でどう使うか』の知識試験。エンジニア転職の武器にはなりにくいが、企画・営業・管理職がAI案件を扱う入口には向く。E資格との違いは実装の有無。学習は公式テキスト＋過去問中心で独学可能。",
+      "hubs": [
+        "/blog/osusume-hikaku-ai/"
+      ]
+    },
+    {
+      "slug": "topic-web-vs-ai-engineer",
+      "keyword": "WebエンジニアとAIエンジニア、未経験はどっちを目指すべきか",
+      "template": "topic:guide",
+      "tools": [
+        "dmmwebcamp",
+        "kikagaku"
+      ],
+      "kind": "topic",
+      "cluster": "選び方",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "brief": "求人の入口の広さはWeb、専門性と数学の前提はAI。未経験からの最短はWeb→実務でデータを触る→AIへ寄せる順が多い。AIスクールは受講料が高め（当サイトのデータでは数十万円〜）で、給付金対象講座の有無が費用差を左右する。",
+      "hubs": [
+        "/blog/osusume-hikaku-tenshoku/",
+        "/blog/osusume-hikaku-ai/",
+        "/shindan/"
+      ]
+    },
+    {
+      "slug": "topic-saisho-no-gengo",
+      "keyword": "最初に学ぶプログラミング言語はどれ？目的別の決め方",
+      "template": "topic:guide",
+      "tools": [
+        "techacademy",
+        "codecamp"
+      ],
+      "kind": "topic",
+      "cluster": "選び方",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "brief": "Web制作ならHTML/CSS→JavaScript、Web開発ならRubyかPHPかJavaScript、データ・AIならPython、業務自動化ならPython。言語選びより『何を作るか』を先に決めるほうが挫折しない。スクールは言語ではなくコースの到達物（何を作って修了するか）で選ぶ。",
+      "hubs": [
+        "/blog/osusume-hikaku-online/",
+        "/shindan/"
+      ]
     }
   ],
-  "publishedCount": 67,
-  "estimatedMrrUsd": 20100,
+  "publishedCount": 68,
+  "estimatedMrrUsd": 20400,
   "history": [
     {
       "date": "2026-07-24",
@@ -3156,7 +3723,12 @@
       "date": "2026-09-17",
       "published": 67,
       "estimatedMrrUsd": 20100
+    },
+    {
+      "date": "2026-09-18",
+      "published": 68,
+      "estimatedMrrUsd": 20400
     }
   ],
-  "lastRun": "2026-09-17T22:12:07.487Z"
+  "lastRun": "2026-09-18T07:16:23.248Z"
 }

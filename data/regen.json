@@ -105,6 +105,17 @@
       "date": "2026-09-17",
       "version": 2,
       "ok": true
+    },
+    "yametoke-potepan": {
+      "date": "2026-09-18",
+      "version": 2,
+      "ok": false,
+      "reason": "score=110; 構造: 表崩れ(区切り行がない: |)"
+    },
+    "hyoban-winschool": {
+      "date": "2026-09-18",
+      "version": 2,
+      "ok": true
     }
   }
 }

@@ -129,9 +129,9 @@ Ruby on Rails未経験者向けの基礎から教える内容です。ただし�
 
 ## あわせて読みたい
 
-- [フィヨルドブートキャンプの料金は高い？他社と比較](/blog/ryokin-fjord/)
-- [フィヨルドブートキャンプは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-fjord/)
+- [フィヨルドブートキャンプの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-fjord/)
+- [フィヨルドブートキャンプは自分に合う？申込前に潰す3つの不安](/blog/yametoke-fjord/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [techmeetsの料金は高い？他社と比較](/blog/ryokin-techmeets/)
-- [techmeetsは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-techmeets/)
-- [TechAcademyの料金は高い？他社と比較](/blog/ryokin-techacademy/)
+- [techmeetsの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-techmeets/)
+- [techmeetsは自分に合う？申込前に潰す3つの不安](/blog/yametoke-techmeets/)
+- [TechAcademyの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-techacademy/)

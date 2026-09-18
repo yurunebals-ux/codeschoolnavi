@@ -193,9 +193,9 @@ RUNTEQは未経験者でも受講可能ですが、基礎知識があると学�
 
 ## あわせて読みたい
 
-- [RUNTEQの料金は高い？他社と比較](/blog/ryokin-runteq/)
-- [RUNTEQの評判・口コミは？特徴を解説](/blog/hyoban-runteq/)
+- [RUNTEQの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-runteq/)
+- [RUNTEQの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-runteq/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [ポテパンキャンプの料金は高い？他社と比較](/blog/ryokin-potepan/)
-- [ポテパンキャンプは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-potepan/)
-- [COACHTECHの料金は高い？他社と比較](/blog/ryokin-coachtech/)
+- [ポテパンキャンプの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-potepan/)
+- [ポテパンキャンプは自分に合う？申込前に潰す3つの不安](/blog/yametoke-potepan/)
+- [COACHTECHの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-coachtech/)

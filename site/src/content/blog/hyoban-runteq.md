@@ -136,9 +136,9 @@ RUNTEQは公式サイトに返金保証がないと明記されています。�
 
 ## あわせて読みたい
 
-- [RUNTEQの料金は高い？他社と比較](/blog/ryokin-runteq/)
-- [RUNTEQは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-runteq/)
+- [RUNTEQの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-runteq/)
+- [RUNTEQは自分に合う？申込前に潰す3つの不安](/blog/yametoke-runteq/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [ポテパンキャンプの料金は高い？他社と比較](/blog/ryokin-potepan/)
-- [ポテパンキャンプは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-potepan/)
-- [COACHTECHの料金は高い？他社と比較](/blog/ryokin-coachtech/)
+- [ポテパンキャンプの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-potepan/)
+- [ポテパンキャンプは自分に合う？申込前に潰す3つの不安](/blog/yametoke-potepan/)
+- [COACHTECHの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-coachtech/)

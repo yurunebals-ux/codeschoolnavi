@@ -228,9 +228,9 @@ SHIFT TERAS CAMPUSの保証は一定期間内に条件を満たせなかった�
 
 ## あわせて読みたい
 
-- [SHIFT TERAS CAMPUSは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-dmmwebcamp/)
+- [SHIFT TERAS CAMPUSは自分に合う？申込前に潰す3つの不安](/blog/yametoke-dmmwebcamp/)
 - [SHIFT TERAS CAMPUSの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-dmmwebcamp/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [テックキャンプの料金は高い？他社と比較](/blog/ryokin-techcamp/)
-- [テックキャンプの評判・口コミは？特徴を解説](/blog/hyoban-techcamp/)
+- [テックキャンプの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-techcamp/)
+- [テックキャンプの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-techcamp/)
 - [転職保証付きのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-hosho/)

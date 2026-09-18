@@ -162,9 +162,9 @@ SHIFT TERAS CAMPUSは返金保証を「条件付きで提供」としていま�
 
 ## あわせて読みたい
 
-- [DMM WEBCAMPの料金は高い？他社と比較](/blog/ryokin-dmmwebcamp/)
-- [SHIFT TERAS CAMPUSは自分に合う？向いていない人の条件と後悔しない判断基準](/blog/yametoke-dmmwebcamp/)
+- [SHIFT TERAS CAMPUSの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-dmmwebcamp/)
+- [SHIFT TERAS CAMPUSは自分に合う？申込前に潰す3つの不安](/blog/yametoke-dmmwebcamp/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [テックキャンプの料金は高い？他社と比較](/blog/ryokin-techcamp/)
-- [テックキャンプの評判・口コミは？特徴を解説](/blog/hyoban-techcamp/)
+- [テックキャンプの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-techcamp/)
+- [テックキャンプの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-techcamp/)
 - [転職保証付きのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-hosho/)
