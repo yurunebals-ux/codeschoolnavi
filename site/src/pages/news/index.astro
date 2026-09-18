@@ -8,6 +8,8 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft && data.new
   .sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate));
 const [first, ...rest] = posts;
 const isWeekly = (p: any) => (p.body ?? "").includes("今週の読者への宿題");
+const isNew = (d: string) => Date.now() - +new Date(d) < 2 * 86400000;
+const rxLabel = (n?: number) => (n ? `反応${n.toLocaleString()}件` : "");
 ---
 <Base title="AIニュースの見方" description="国内外のAI・プログラミング学習・エンジニア採用のニュースを、学ぶ人の立場で解説。歓迎する見方と慎重な見方の両方を書いたうえで、編集部の結論と今やることを示します。毎日更新。">
   <h1>AIニュースの見方 <small class="cnt">全{posts.length}本 ・ 毎日更新</small></h1>
@@ -16,7 +18,7 @@ const isWeekly = (p: any) => (p.body ?? "").includes("今週の読者への宿�
   {first && (
     <a class="feat reveal" data-cat="ニュース" href={`/blog/${first.slug}/`}>
       <span class="feat-body">
-        <span class="feat-tags"><span class="chip">{isWeekly(first) ? "週間コラム" : "ニュースの見方"}</span><span class="feat-new">最新</span></span>
+        <span class="feat-tags"><span class="chip">{isWeekly(first) ? "週間コラム" : "ニュースまとめ"}</span>{isNew(first.data.pubDate) && <span class="feat-new">NEW</span>}{rxLabel(first.data.reactions) && <span class="chip">{rxLabel(first.data.reactions)}</span>}</span>
         <span class="feat-t">{first.data.title}</span>
         <span class="feat-d">{first.data.description}</span>
         <span class="d">{first.data.pubDate}</span>
@@ -28,9 +30,9 @@ const isWeekly = (p: any) => (p.body ?? "").includes("今週の読者への宿�
       <li class="reveal" style={`--i:${i % 2}`}>
         <a class="card row" data-cat="ニュース" href={`/blog/${p.slug}/`}>
           <span class="cbody">
-            <span class="chip">{isWeekly(p) ? "週間コラム" : "ニュースの見方"}</span>
+            <span class="chip">{isWeekly(p) ? "週間コラム" : "ニュースまとめ"}</span>
             <span class="t">{p.data.title}</span>
-            <span class="d">{p.data.pubDate}</span>
+            <span class="d">{p.data.pubDate}{rxLabel(p.data.reactions) ? ` ・ ${rxLabel(p.data.reactions)}` : ""}</span>
           </span>
         </a>
       </li>
