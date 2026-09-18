@@ -541,12 +541,13 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
     const matNums = new Set(numbersIn(`${n.text}\n${desk}\n${posts.map((x) => x.t).join("\n")}`));
     const okLine = (l: string) => numbersIn(l).every((x) => matNums.has(x)) && !/という声|との口コミ|口コミ(が|も)多い|口コミでは|と評判|受講生の声|最大\s*\d+\s*万円|最大\s*\d+\s*[%％]/.test(l);
     const kg = await chat(
-      `次のニュースについて、編集部スタッフ3人の会話を12〜16行で書く。1行=「名前: 発言」、発言は各70字以内、口語、掛け合い。\n順番: (a) ミナが「これ何がすごいの？／怖くない？」と聞き、タケシが材料の事実で答える（なぜ今か） (b) 歓迎する見方（誰にとって何が良いか）を2〜3往復 (c) 慎重に見る見方（誰が損をしうるか、見落とされている条件）を2〜3往復。スレのコメントの傾向にも触れてよいが、特定のコメントを引用しない (d) 佐倉が「プログラミングやAIを学ぶ人は今どう動くか」を言い切って締める（「◯◯な人は今月中に△△、そうでない人は様子見」の形）。\n登場人物: ${STAFF.map((x) => `${x.name}=${x.role}`).join("／")}\n【禁止】材料にない固有名詞・数字・発言。「〜という声」「口コミ」「受講生」という語。スクール名の宣伝。${enMat ? "日本の学ぶ人・転職市場にとっての意味を必ず1往復入れる。" : ""}\n\n【ニュースの要約】\n${desk}\n\n【材料の本文（抜粋）】\n${n.text.slice(0, 2500)}\n\n【スレのコメントの傾向（参考）】\n${posts.slice(0, 10).map((x) => `- ${x.t.slice(0, 60)}`).join("\n") || "なし"}`,
+      `次のニュースについて、編集部スタッフ3人の会話を12〜16行で書く。1行=「名前: 発言」、発言は各70字以内、口語、掛け合い。\n順番: (a) ミナが「これ何がすごいの？／怖くない？」と聞き、タケシが材料の事実で答える（なぜ今か） (b) 歓迎する見方（誰にとって何が良いか）を2〜3往復 (c) 慎重に見る見方（誰が損をしうるか、見落とされている条件）を2〜3往復。スレのコメントの傾向にも触れてよいが、特定のコメントを引用しない (d) 佐倉が「プログラミングやAIを学ぶ人は今どう動くか」を言い切って締める（「◯◯な人は今月中に△△、そうでない人は様子見」の形）。\n登場人物: ${STAFF.map((x) => `${x.name}=${x.role}`).join("／")}\n【禁止】材料にない固有名詞・数字・発言。「〜という声」「口コミ」「受講生」「公式サイト」という語（ニュース記事を指すときは「記事によると」）。一人の事例を「珍しくない」「多い」と一般化すること。スクール名の宣伝。${enMat ? "日本の学ぶ人・転職市場にとっての意味を必ず1往復入れる。" : ""}\n\n【ニュースの要約】\n${desk}\n\n【材料の本文（抜粋）】\n${n.text.slice(0, 2500)}\n\n【スレのコメントの傾向（参考）】\n${posts.slice(0, 10).map((x) => `- ${x.t.slice(0, 60)}`).join("\n") || "なし"}`,
       { system: newsSystem, maxTokens: 1600, temperature: 0.8 });
     const names = STAFF.map((x) => x.name);
     const lines = kg.split("\n").map((l) => l.trim()).map((l) => {
       const m = l.match(/^[-・*\d.．)）\s]*(佐倉|ミナ|タケシ)\s*[:：]\s*「?(.+?)」?$/);
-      return m && names.includes(m[1]) ? { who: m[1], text: m[2].trim() } : null;
+      // ニュースなのに「公式サイトによると」「口コミ欄」と言う癖がある（2026-09-18 実測）ので言い換える
+      return m && names.includes(m[1]) ? { who: m[1], text: m[2].trim().replace(/公式サイト(によると|では|には|の)/g, "記事$1").replace(/公式(には|では|発表では)/g, "記事では").replace(/口コミ欄/g, "スレのコメント") } : null;
     }).filter((x): x is { who: string; text: string } => !!x && x.text.length >= 4 && x.text.length <= 100 && okLine(x.text));
     if (lines.length < 8) throw new Error(`編集部の会話が短すぎる（${lines.length}行）`);
     const kaigi = `## 編集部の井戸端会議\n\n*${KAIGI_NOTE}*\n\n${lines.slice(0, 16).map((x) => `**${x.who}**「${x.text}」`).join("\n\n")}`;
