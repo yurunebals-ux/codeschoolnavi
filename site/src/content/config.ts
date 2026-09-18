@@ -13,6 +13,8 @@ const blog = defineCollection({
     // ニュース解説／トピック記事のフラグ（src/pipeline/generate.ts が付ける）
     news: z.boolean().default(false),
     topic: z.boolean().default(false),
+    // ニュース記事: ネットの反応の件数（はてブ等の合計）。トップ・一覧で「反応◯件」と出す
+    reactions: z.number().optional(),
   }),
 });
 
