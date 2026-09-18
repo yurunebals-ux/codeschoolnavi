@@ -9,7 +9,7 @@ import { shotsFor } from "../../lib/school";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate));
-const order: Cat[] = ["評判・口コミ", "料金", "注意点", "比較", "給付金", "学習・キャリア", "ニュース", "解説"];
+const order: Cat[] = ["ニュース", "評判・口コミ", "料金", "注意点", "比較", "給付金", "学習・キャリア", "解説"]; // ニュースを先頭に（2026-09-18）
 const groups = order
   .map((c) => ({ cat: c, items: posts.filter((p) => catOf(p.data.title, p.data) === c) }))
   .filter((g) => g.items.length);
