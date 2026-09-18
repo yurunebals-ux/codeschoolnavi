@@ -17,6 +17,7 @@ import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { paths } from "../lib/config.js";
 import { loadState, saveState } from "../lib/store.js";
+import { chat, isOffline } from "../lib/llm.js";
 
 const LOG = resolve(paths.data, "news.json");
 const UA = "Mozilla/5.0 (compatible; codeschoolnavi-newsdesk/1.0; +https://codeschoolnavi.com/about/)";
@@ -30,6 +31,10 @@ const FEEDS = [
   "https://prtimes.jp/index.rdf",
   // はてなブックマークの人気エントリー（IT）。ブックマークが多い＝反応（コメント）が取れる記事が並ぶ（まとめサイト向き）
   "https://b.hatena.ne.jp/hotentry/it.rss",
+  // 一般向け（オーナー 2026-09-18「専門的すぎる。もっとライトな内容を」）: 総合の人気エントリー、Yahoo!ニュースIT、ITmedia NEWS
+  "https://b.hatena.ne.jp/hotentry.rss",
+  "https://news.yahoo.co.jp/rss/categories/it.xml",
+  "https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml",
   "https://b.hatena.ne.jp/q/%E7%94%9F%E6%88%90AI?mode=rss&sort=recent",
   "https://b.hatena.ne.jp/q/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%82%B9%E3%82%AF%E3%83%BC%E3%83%AB?mode=rss&sort=recent",
   // 海外（英語）。AIの一次ニュースは海外発が多く、日本語で「学ぶ人にとっての意味」を書く記事は少ない（2026-09-14 オーナー方針）
@@ -37,11 +42,13 @@ const FEEDS = [
   "https://techcrunch.com/category/artificial-intelligence/feed/",
   "https://www.technologyreview.com/topic/artificial-intelligence/feed",
 ];
-const GOOGLE_QUERIES = ["プログラミングスクール", "リスキリング 教育訓練給付", "生成AI 人材育成", "エンジニア 未経験 転職", "生成AI 発表", "AIエージェント 開発者"];
+const GOOGLE_QUERIES = ["プログラミングスクール", "リスキリング 教育訓練給付", "生成AI 人材育成", "エンジニア 未経験 転職", "ChatGPT 使い方 仕事", "AI 仕事 なくなる", "AI 副業", "AI 資格", "生成AI 新入社員", "AI 学校 授業"];
 const GOOGLE_QUERIES_EN = ["OpenAI", "Anthropic Claude", "AI coding agents developers", "Google Gemini AI"];
 
 // 見出しにこの語が含まれるものを優先（読者との関連が強い順に重み）
 const BOOST: [RegExp, number][] = [
+  // 一般の社会人・学生に近い話題を最優先（2026-09-18）
+  [/仕事|働き方|転職|採用|求人|給料|年収|副業|学び直し|勉強|資格|教育|学生|新卒|授業|使い方|値上げ|料金|無料|規制|法律|禁止|話題|人気|初心者|未経験|できる人|できない人/, 4],
   [/プログラミングスクール|プログラミング教育|コーディング/, 4],
   [/リスキリング|教育訓練給付|学び直し|給付金/, 4],
   [/未経験|転職|求人|採用|人材育成|エンジニア不足/, 3],
@@ -55,7 +62,7 @@ const BOOST: [RegExp, number][] = [
 ];
 const BLOCK = /株価|決算|逮捕|訴訟|炎上|芸能|選挙|セール|クーポン|割引キャンペーン|IPO|earnings|stock|lawsuit|shares|valuation|軍事|兵器|ミサイル|戦争|武装|テロ|missile|weapon|military|warfare|terror|drone strike|deepfake|porn|sexual|suicide|self-harm|election|政治|政党/i;
 // 読者（これから学ぶ人）から遠い、深い技術ネタは減点（はてブ人気エントリーは GPU 自作や量子化の話が多い。2026-09-14 に DeepSeek×A100 の記事を書いた）
-const TOO_DEEP = /GPU|CUDA|FP\d|tok\/s|カーネル|量子化|VRAM|自作PC|ベンチマーク|Rust|C\+\+|Kubernetes|k8s|アーキテクチャ|コンパイラ|推論サーバ|Linux|メモリ帯域|TFLOPS/i;
+const TOO_DEEP = /GPU|CUDA|FP\d|tok\/s|\d+ms|カーネル|量子化|VRAM|自作PC|ベンチマーク|Rust|C\+\+|Kubernetes|k8s|アーキテクチャ|コンパイラ|推論サーバ|Linux|メモリ帯域|TFLOPS|API|SDK|MCP|CLI|ターミナル|ライブラリ|フレームワーク|プロトコル|トークン|レイテンシ|型付け|TypeScript|リポジトリ|OSS|プルリク|ハーネス|エージェント設計|RAG|ファインチューニング|LLMの|モデル評価/i;
 // 英語ニュースは媒体を絞る（Google News 英語検索は無名サイトも拾う。2026-09-14 に quasa.io の兵器ネタが混入）
 const TRUSTED_EN = /(^|\.)(techcrunch\.com|openai\.com|anthropic\.com|technologyreview\.com|theverge\.com|arstechnica\.com|wired\.com|reuters\.com|bloomberg\.com|nytimes\.com|ft\.com|venturebeat\.com|zdnet\.com|github\.blog|blog\.google|deepmind\.google|microsoft\.com|theinformation\.com|axios\.com|cnbc\.com|bbc\.com|theguardian\.com|stackoverflow\.blog|infoq\.com|thenewstack\.io)$/i;
 // 英語ニュースは「学ぶ人・働く人」に関係する語が無ければ扱わない（モデル発表だけの記事は多すぎる）
@@ -251,6 +258,22 @@ export async function fetchReactions(link: string, title: string): Promise<React
   return out;
 }
 
+/** 見出しを「プログラミングを学ぼうか迷っている一般の社会人・学生が読んで、内容が想像でき、自分に関係あると思えるか」で採点し、7点以上だけ残す */
+async function keepLight(items: NewsItem[]): Promise<NewsItem[]> {
+  if (isOffline() || items.length < 3) return items;
+  try {
+    const r = await chat(
+      `次のニュース見出しを、「プログラミングやAIを学ぼうか迷っている一般の社会人・学生」が読んで (a) 何の話か想像できる (b) 自分の仕事・学び・お金に関係あると感じる、の2点で10点満点で採点する。専門用語（API、ハーネス、量子化、ベンチマーク、GPU等）が中心の見出し、開発者だけに向いた見出しは3点以下。出力は「番号: 点数」を1行ずつ、他は書かない。\n\n${items.map((it, i) => `${i + 1}: ${it.title.slice(0, 80)}`).join("\n")}`,
+      { maxTokens: 400, temperature: 0 });
+    const score = new Map<number, number>();
+    for (const m of r.matchAll(/(\d+)\s*[:：]\s*(\d+(?:\.\d+)?)/g)) score.set(Number(m[1]) - 1, Number(m[2]));
+    const kept = items.filter((_, i) => (score.get(i) ?? 0) >= 7);
+    console.log(`[news] ライト判定: ${kept.length}/${items.length} 本が一般向け（7点以上）`);
+    for (const [i, sc] of [...score.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8)) console.log(`[news]   ${sc}点 「${items[i]?.title.slice(0, 40)}」`);
+    return kept.length ? kept : items.slice(0, 5);
+  } catch (e) { console.log("[news] ライト判定に失敗。全候補を使う:", (e as Error).message); return items; }
+}
+
 const hostOf = (u: string) => { try { return new URL(u).host.replace(/^www\./, ""); } catch { return ""; } };
 
 function relevance(it: NewsItem): number {
@@ -260,7 +283,9 @@ function relevance(it: NewsItem): number {
   if (BLOCK.test(it.title) || BLOCK.test(it.snippet.slice(0, 200))) s -= 10;
   if (isEnglish(it.title) && !EN_RELEVANT.test(hay)) s -= 10;
   if (it.bookmarks) s += Math.min(it.bookmarks / 25, 4); // 反応が多い記事を優先（100ブクマで+4）
-  if (TOO_DEEP.test(it.title)) s -= 4;
+  if (TOO_DEEP.test(it.title)) s -= 6; // 専門的すぎる話題は強く下げる（2026-09-18）
+  // 総合の人気エントリーや Yahoo!ニュースを入れたので、AI・IT・学びの軸が無い話題（転職一般、社会ニュース）は落とす
+  if (!/AI|人工知能|生成|ChatGPT|Claude|Gemini|Copilot|プログラミング|エンジニア|コード|IT|デジタル|DX|スクール|リスキリング|データ|ロボット|自動化/i.test(hay)) s -= 10;
   const age = (Date.now() - new Date(it.published).getTime()) / 86400000;
   if (!Number.isNaN(age)) s -= Math.min(age, 14) * 0.25;
   return s;
@@ -365,7 +390,9 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
 
   if (mode === "hot") {
     // 1本に見解を書く。プレスリリースやSEO記事は避け、本文が800字以上取れた最上位のニュースを使う
-    const order = [...fresh.filter((it) => !isPR(it) && !isSeo(it)), ...fresh.filter((it) => isPR(it) && !isSeo(it))].slice(0, 30);
+    let order = [...fresh.filter((it) => !isPR(it) && !isSeo(it)), ...fresh.filter((it) => isPR(it) && !isSeo(it))].slice(0, 30);
+    // 見出しの「一般の社会人が読んで分かるか」をLLMに採点させ、専門的すぎるものを落とす（オーナー 2026-09-18）
+    order = await keepLight(order);
     // 本文が取れた候補を最大5本まで集め、ネットの反応が多いものを優先する（「まとめサイトのように」）。
     const cands: { it: NewsItem; en: NewsItem; rx: Reactions; rank: number }[] = [];
     for (const it of order) {
