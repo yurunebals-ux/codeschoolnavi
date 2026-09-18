@@ -1,11 +1,10 @@
 name: news-hot
 
-# 速報: 1日3回（07:00 / 13:00 / 19:00 JST）反応の多いAIニュースを最大2本、まとめ風に書く。前回から5時間未満なら休む。
+# 速報: 1日2回（07:00 / 17:00 JST）反応の多いAIニュースを最大2本、まとめ風に書く。前回から8時間未満なら休む。（3回に増やしたがオーナー判断で2回に戻した 2026-09-18）
 on:
   schedule:
     - cron: "0 22 * * *"
-    - cron: "0 4 * * *"
-    - cron: "0 10 * * *"
+    - cron: "0 8 * * *"
   workflow_dispatch: {}
 
 permissions:
@@ -42,7 +41,7 @@ jobs:
       - name: Pick news, write, check, publish
         run: |
           set -o pipefail
-          npx tsx src/pipeline/news.ts --hot --min-hours=5 --max=2 | tee news.log
+          npx tsx src/pipeline/news.ts --hot --min-hours=8 --max=2 | tee news.log
           # ニュースが拾えなかった日は何も書かない（generate は次のキュー＝比較記事を書いてしまうため）
           N=$(grep -c "キュー投入" news.log || true)
           [ "$N" -gt 0 ] || { echo "ニュース無し。終了"; exit 0; }
