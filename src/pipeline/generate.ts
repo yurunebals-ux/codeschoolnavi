@@ -752,6 +752,7 @@ export function frontmatter(item: KeywordItem, tools: Tool[], description: strin
     `updatedDate: ${dates.upd}`,
     `tools: [${tools.map((t) => JSON.stringify(t.name)).join(", ")}]`,
     ...(item.template.startsWith("news:") ? [`news: true`] : []),
+    ...(item.news?.reactions?.threads?.length ? [`reactions: ${item.news.reactions.threads.reduce((n, t) => n + (t.count || 0), 0)}`] : []),
     ...(item.template.startsWith("topic:") ? [`topic: true`] : []),
     `draft: false`,
     "---",
