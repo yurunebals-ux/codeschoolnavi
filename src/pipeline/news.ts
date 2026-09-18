@@ -259,6 +259,8 @@ export async function fetchReactions(link: string, title: string): Promise<React
 }
 
 /** 見出しを「プログラミングを学ぼうか迷っている一般の社会人・学生が読んで、内容が想像でき、自分に関係あると思えるか」で採点し、7点以上だけ残す */
+const HOT_BOOKMARKS = 150; // これ以上ブクマされた話題は専門的でも候補に残す
+
 async function keepLight(items: NewsItem[]): Promise<NewsItem[]> {
   if (isOffline() || items.length < 3) return items;
   try {
@@ -268,8 +270,12 @@ async function keepLight(items: NewsItem[]): Promise<NewsItem[]> {
     const score = new Map<number, number>();
     for (const m of r.matchAll(/(\d+)\s*[:：]\s*(\d+(?:\.\d+)?)/g)) score.set(Number(m[1]) - 1, Number(m[2]));
     // 7点以上を残し、点が高い順（同点は元の関連度順）に並べ替える。0反応のPR記事で候補枠を使い切らないため
-    const kept = items.map((it, i) => ({ it, i, sc: score.get(i) ?? 0 })).filter((x) => x.sc >= 7).sort((a, b) => b.sc - a.sc || a.i - b.i).map((x) => x.it);
-    console.log(`[news] ライト判定: ${kept.length}/${items.length} 本が一般向け（7点以上）`);
+    // 専門的でも「かなりホット」（はてブ HOT_BOOKMARKS 以上）なら残す（オーナー 2026-09-18「専門的なもののかなりホットなニュースも残しても良い」）
+    const rows = items.map((it, i) => ({ it, i, sc: score.get(i) ?? 0, hot: (it.bookmarks ?? 0) >= HOT_BOOKMARKS }));
+    const kept = rows.filter((x) => x.sc >= 7 || x.hot).sort((a, b) => (b.sc + (b.hot ? 3 : 0)) - (a.sc + (a.hot ? 3 : 0)) || a.i - b.i).map((x) => x.it);
+    const hotOnly = rows.filter((x) => x.sc < 7 && x.hot);
+    console.log(`[news] ライト判定: ${kept.length}/${items.length} 本が候補（7点以上 ${rows.filter((x) => x.sc >= 7).length}本＋ホット枠 ${hotOnly.length}本）`);
+    for (const x of hotOnly) console.log(`[news]   ホット枠 ☆${x.it.bookmarks} ${x.sc}点 「${x.it.title.slice(0, 40)}」`);
     for (const [i, sc] of [...score.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8)) console.log(`[news]   ${sc}点 「${items[i]?.title.slice(0, 40)}」`);
     return kept.length ? kept : items.slice(0, 5);
   } catch (e) { console.log("[news] ライト判定に失敗。全候補を使う:", (e as Error).message); return items; }
@@ -320,7 +326,7 @@ export async function enrichItems(items: NewsItem[]): Promise<NewsItem[]> {
  *   材料（本文の取れた記事）が無い日は自然に減る。
  * 【種類】前回の週間コラムから5日以上あいていれば週間コラム（3本束ね）、それ以外は news:hot（1本に見解）。
  */
-export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; minHours?: number; dry?: boolean } = {}): Promise<string | null> {
+export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; minHours?: number; dry?: boolean; max?: number } = {}): Promise<string | null> {
   const log = loadLog();
   const state = loadState();
   if (opts.force) console.log("[news] --force: 割合と間隔のチェックを飛ばす");
@@ -336,12 +342,14 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
       console.log(`[news] 前回の見解記事から${opts.minHours}時間未満。スキップ`);
       return null;
     }
-  } else if (!opts.force && published.length >= 2 && published.slice(0, 2).every((k) => k.template.startsWith("news:"))) {
-    console.log("[news] 直近2本がニュース記事。今日は比較・トピック記事に譲る");
-    return null;
   }
   const lastWeekly = state.keywords.filter((k) => k.template === "news:weekly" && k.publishedAt).map((k) => k.publishedAt!).sort().pop();
   const weeklyDue = !lastWeekly || Date.now() - new Date(lastWeekly).getTime() >= 5 * 86400000;
+  // 速報が1日3回になったので「直近2本がニュース」はほぼ常に真になる。週間コラムが期限なら、この門は通す
+  if (!opts.minHours && !opts.force && !weeklyDue && published.length >= 2 && published.slice(0, 2).every((k) => k.template.startsWith("news:"))) {
+    console.log("[news] 直近2本がニュース記事。今日は比較・トピック記事に譲る");
+    return null;
+  }
   const mode: "weekly" | "hot" = opts.mode ?? (weeklyDue ? "weekly" : "hot");
   console.log(`[news] 種類: ${mode}${lastWeekly ? `（前回の週間コラム ${lastWeekly.slice(0, 10)}）` : ""}`);
 
@@ -411,23 +419,33 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
     }
     // まとめ風の記事にするので、反応が5件以上ある候補だけ（最多のもの）。無ければ今日は書かない（オーナー 2026-09-17）
     const withRx = cands.filter((c) => c.rx.comments.length >= 5).sort((a, b) => b.rx.comments.length - a.rx.comments.length || a.rank - b.rank);
-    const best = withRx[0];
-    if (!best && cands.length) console.log(`[news] 反応が5件以上あるニュースが無い（候補${cands.length}本）。今日は書かない`);
+    if (!withRx.length && cands.length) console.log(`[news] 反応が5件以上あるニュースが無い（候補${cands.length}本）。今日は書かない`);
     if (opts.dry) { console.log(`[news] --dry: 候補${cands.length}本を評価しただけで終了（キューに入れない）`); return null; }
-    if (best) {
-      const { it, en, rx } = best;
+    // --max=N: 反応の多い順に、話題が重ならない範囲で最大N本をキューに入れる（オーナー 2026-09-18「こんな感じのニュースがボリューム多い方が良い」）
+    const maxN = Math.max(1, opts.max ?? 1);
+    const chosen: typeof withRx = [];
+    for (const c of withRx) {
+      if (chosen.length >= maxN) break;
+      if (chosen.some((d) => similar(d.en.title, c.en.title) > 0.35 || d.en.link === c.en.link)) continue;
+      chosen.push(c);
+    }
+    let firstSlug: string | null = null;
+    for (const { it, en, rx } of chosen) {
       const slug = slugFor(en.link);
       state.keywords.push({
         slug, keyword: `ニュースの見方: ${en.title.slice(0, 40)}`,
         template: "news:hot", tools: [], kind: "news", cluster: "ニュース", score: 96, status: "queued", createdAt: new Date().toISOString(),
         news: { title: en.title, link: en.link, source: en.source, published: fmtDate(en.published), snippet: en.snippet, text: en.text, reactions: rx.comments.length ? rx : undefined },
       });
-      saveState(state);
       log.used.push({ link: en.link, slug, date }); if (it.link !== en.link) log.used.push({ link: it.link, slug, date });
+      console.log(`[news] キュー投入(hot): 「${en.title.slice(0, 40)}」(${en.source}) 本文${en.text?.length ?? 0}字 反応${rx.comments.length}件`);
+      firstSlug ??= slug;
+    }
+    if (chosen.length) {
+      saveState(state);
       log.lastRun = date;
       writeFileSync(LOG, JSON.stringify(log, null, 2) + "\n");
-      console.log(`[news] キュー投入(hot): 「${en.title.slice(0, 40)}」(${en.source}) 本文${en.text?.length ?? 0}字 反応${rx.comments.length}件`);
-      return slug;
+      return firstSlug;
     }
     console.log("[news] 見解を書けるニュース（本文800字以上）が無い。今日は書かない");
     return null;
@@ -473,5 +491,6 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const m = process.argv.find((a) => a === "--hot" || a === "--weekly");
   const mh = process.argv.find((a) => a.startsWith("--min-hours="));
-  newsRun({ force: process.argv.includes("--force"), mode: m === "--hot" ? "hot" : m === "--weekly" ? "weekly" : undefined, minHours: mh ? Number(mh.split("=")[1]) : undefined, dry: process.argv.includes("--dry") });
+  const mx = process.argv.find((a) => a.startsWith("--max="));
+  newsRun({ force: process.argv.includes("--force"), mode: m === "--hot" ? "hot" : m === "--weekly" ? "weekly" : undefined, minHours: mh ? Number(mh.split("=")[1]) : undefined, dry: process.argv.includes("--dry"), max: mx ? Number(mx.split("=")[1]) : undefined });
 }
