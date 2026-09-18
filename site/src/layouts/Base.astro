@@ -1,5 +1,8 @@
 ---
 const { title, description, article, home = false, ogImage } = Astro.props;
+import { getCollection as _gc } from "astro:content";
+// ナビ「AIニュース」に、直近2日のニュース本数を赤い数字で出す（2026-09-18 オーナー「ニュースがもっと目立つように」）
+const freshNews = (await _gc("blog", ({ data }) => !data.draft && data.news && Date.now() - +new Date(data.pubDate) < 2 * 86400000)).length;
 const site = import.meta.env.SITE_TITLE || "コードスクールナビ";
 const canonical = new URL(Astro.url.pathname, Astro.site);
 // SNS・Discover 用の画像。記事は主題スクールのスクショ、それ以外はサイト共通の1枚（site/public/og-default.png）。
@@ -354,6 +357,37 @@ if (Astro.url.pathname !== "/") crumbs.push({ name: title, url: canonical.toStri
       .card.row .chip{font-size:11px;padding:1px 9px}
       .card.row .d{font-size:11.5px}
       /* トップと /news/ のニュース3列（サムネ無し・題名で読ませる） */
+      .nav-news{position:relative}
+      .nbadge{position:absolute;top:-6px;right:-14px;background:#dc2626;color:#fff;font-style:normal;font-size:10.5px;font-weight:800;border-radius:999px;min-width:17px;height:17px;line-height:17px;text-align:center;padding:0 4px}
+      /* ヒーローの「今日のまとめ」ティッカー */
+      .hero .ticker{display:inline-flex;align-items:center;gap:10px;max-width:100%;margin:14px 0 4px;padding:8px 14px 8px 8px;background:#fff;border:1px solid #fed7aa;border-radius:999px;text-decoration:none;color:var(--fg);box-shadow:var(--shadow);font-size:13.5px}
+      .hero .ticker b{flex:none;background:#ea580c;color:#fff;border-radius:999px;padding:3px 10px;font-size:12px}
+      .hero .ticker span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}
+      .hero .ticker em{flex:none;font-style:normal;color:#ea580c;font-weight:700;font-size:12px}
+      /* ニュースデスク（トップ最上段） */
+      .newsdesk .nd-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:18px;align-items:start}
+      @media (max-width:860px){ .newsdesk .nd-grid{grid-template-columns:1fr} }
+      .nd-top{display:block;background:#fff;border:1px solid #fed7aa;border-left:5px solid #ea580c;border-radius:16px;overflow:hidden;text-decoration:none;color:var(--fg);box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s}
+      .nd-top:hover{transform:translateY(-3px);box-shadow:var(--shadow-hi)}
+      .nd-thumb{display:block;aspect-ratio:16/7;overflow:hidden}
+      .nd-thumb svg{width:100%;height:100%;display:block}
+      .nd-body{display:flex;flex-direction:column;gap:8px;padding:16px 18px 18px}
+      .nd-body .d{font-size:12px;color:var(--mut);font-weight:600}
+      .nd-body .chip{display:inline-block;background:#ffedd5;color:#9a3412;border-radius:999px;padding:2px 11px;font-size:12px;font-weight:700}
+      .nd-t{font-size:20px;font-weight:800;line-height:1.45;color:#0f2744}
+      .nd-d{font-size:13.5px;color:#475569;line-height:1.7}
+      .nd-cta{color:#ea580c;font-weight:800;font-size:13.5px}
+      .nd-list{list-style:none;margin:0;padding:6px 14px;background:#fff;border:1px solid #fed7aa;border-radius:16px;box-shadow:var(--shadow)}
+      .nd-list li{border-top:1px dashed #fed7aa}
+      .nd-list li:first-child{border-top:0}
+      .nd-list li a{display:flex;gap:10px;align-items:flex-start;padding:11px 4px;text-decoration:none;color:var(--fg)}
+      .nd-list li a:hover .t{color:#ea580c}
+      .nd-list .no{flex:none;color:#ea580c;font-weight:800;font-size:15px;width:20px;text-align:center}
+      .nd-list .tx{display:flex;flex-direction:column;gap:3px;min-width:0}
+      .nd-list .t{font-weight:700;font-size:14.5px;line-height:1.5}
+      .nd-list .m{font-size:12px;color:var(--mut)}
+      .nd-list .m .new{display:inline-block;background:#dc2626;color:#fff;font-size:10px;font-weight:800;border-radius:999px;padding:1px 7px;margin-right:6px}
+      .nd-list li.more a{justify-content:flex-end;color:#ea580c;font-weight:800;font-size:13.5px}
       .news3{grid-template-columns:repeat(3,1fr)}
       @media (max-width:900px){ .news3{grid-template-columns:1fr} }
       .news3 .card.row .t{font-size:15px;font-weight:700}
@@ -397,7 +431,7 @@ if (Astro.url.pathname !== "/") crumbs.push({ name: title, url: canonical.toStri
   <body>
     <header class="site"><div class="wrap nav">
       <a class="brand" href="/"><span class="logo">&lt;/&gt;</span>{site}</a>
-      <a class="item keep" href="/news/">AIニュース</a>
+      <a class="item keep nav-news" href="/news/">AIニュース{freshNews > 0 && <i class="nbadge">{freshNews}</i>}</a>
       <a class="item keep" href="/kyufukin/">給付金ガイド</a>
       <a class="item" href="/about/">運営者情報</a>
       <a class="item" href="/disclosure/">広告について</a>
