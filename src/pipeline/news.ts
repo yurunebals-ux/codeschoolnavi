@@ -263,11 +263,12 @@ async function keepLight(items: NewsItem[]): Promise<NewsItem[]> {
   if (isOffline() || items.length < 3) return items;
   try {
     const r = await chat(
-      `次のニュース見出しを、「プログラミングやAIを学ぼうか迷っている一般の社会人・学生」が読んで (a) 何の話か想像できる (b) 自分の仕事・学び・お金に関係あると感じる、の2点で10点満点で採点する。専門用語（API、ハーネス、量子化、ベンチマーク、GPU等）が中心の見出し、開発者だけに向いた見出しは3点以下。出力は「番号: 点数」を1行ずつ、他は書かない。\n\n${items.map((it, i) => `${i + 1}: ${it.title.slice(0, 80)}`).join("\n")}`,
+      `次のニュース見出しを、「プログラミングやAIを学ぼうか迷っている一般の社会人・学生」が読んで (a) 何の話かすぐ想像できる (b) 自分の仕事・学び・お金・暮らしに関係あると感じて人に話したくなる、の2点で10点満点で採点する。「AIを使ってみたらこうなった」という体験談、職場や学校でのAIの出来事、AIで仕事や給料がどう変わるかの話は高得点。専門用語（API、ハーネス、量子化、ベンチマーク、GPU等）が中心の見出し、開発者だけに向いた見出し、製品の機能一覧やハウツー記事は3点以下。出力は「番号: 点数」を1行ずつ、他は書かない。\n\n${items.map((it, i) => `${i + 1}: ${it.title.slice(0, 80)}`).join("\n")}`,
       { maxTokens: 400, temperature: 0 });
     const score = new Map<number, number>();
     for (const m of r.matchAll(/(\d+)\s*[:：]\s*(\d+(?:\.\d+)?)/g)) score.set(Number(m[1]) - 1, Number(m[2]));
-    const kept = items.filter((_, i) => (score.get(i) ?? 0) >= 7);
+    // 7点以上を残し、点が高い順（同点は元の関連度順）に並べ替える。0反応のPR記事で候補枠を使い切らないため
+    const kept = items.map((it, i) => ({ it, i, sc: score.get(i) ?? 0 })).filter((x) => x.sc >= 7).sort((a, b) => b.sc - a.sc || a.i - b.i).map((x) => x.it);
     console.log(`[news] ライト判定: ${kept.length}/${items.length} 本が一般向け（7点以上）`);
     for (const [i, sc] of [...score.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8)) console.log(`[news]   ${sc}点 「${items[i]?.title.slice(0, 40)}」`);
     return kept.length ? kept : items.slice(0, 5);
@@ -393,10 +394,10 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
     let order = [...fresh.filter((it) => !isPR(it) && !isSeo(it)), ...fresh.filter((it) => isPR(it) && !isSeo(it))].slice(0, 30);
     // 見出しの「一般の社会人が読んで分かるか」をLLMに採点させ、専門的すぎるものを落とす（オーナー 2026-09-18）
     order = await keepLight(order);
-    // 本文が取れた候補を最大5本まで集め、ネットの反応が多いものを優先する（「まとめサイトのように」）。
+    // 本文が取れた候補を最大8本まで集め、ネットの反応が多いものを優先する（「まとめサイトのように」）。
     const cands: { it: NewsItem; en: NewsItem; rx: Reactions; rank: number }[] = [];
     for (const it of order) {
-      if (cands.length >= 5) break;
+      if (cands.length >= 8) break;
       const [en] = await enrichItems([it]);
       if (usedTitles.some((t) => similar(t, it.title) > 0.35)) { console.log(`[news] 既出の話題: ${it.title.slice(0, 40)}`); continue; }
       if (!en.text || en.text.length < 800) { console.log(`[news] 本文不足(${en.text?.length ?? 0}字 ${hostOf(en.link)}${lastErr ? " " + lastErr : ""}): ${it.title.slice(0, 40)}`); continue; }
