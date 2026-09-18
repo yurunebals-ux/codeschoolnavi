@@ -203,8 +203,8 @@ TechAcademyやCodeCampは現役エンジニアによるメンタリングやマ�
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [AI活用で月10時間節約しても給料が増えない理由は何か](/blog/news-20260918-fxn3v/)
 - [Pythonの独学は何ヶ月かかる？挫折しない学習計画の立て方](/blog/topic-python-dokugaku-kikan/)
 - [Claude Codeを「使うほど育つ」AI秘書に変える3つの具体策](/blog/news-20260917-1lp96/)
 - [TypeSafe AIのJevは70ms応答で高速判断、LLMとどう使い分けるべきか](/blog/news-20260917-1ege7/)
 - [キカガクの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-kikagaku/)
-- [SmartHRが開発を1か月に縮めたのは、Claude Codeの腕ではなく「区切り方」だった](/blog/news-20260917-1g4j2/)

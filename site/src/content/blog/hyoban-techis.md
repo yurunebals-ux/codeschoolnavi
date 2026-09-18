@@ -121,4 +121,4 @@ draft: false
 - [侍エンジニアは自分に合う？申込前に潰す3つの不安](/blog/yametoke-samurai/)
 - [侍エンジニアの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-samurai/)
 - [マンツーマン指導のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-mtm/)
-- [Pythonの独学は何ヶ月かかる？挫折しない学習計画の立て方](/blog/topic-python-dokugaku-kikan/)
+- [AI活用で月10時間節約しても給料が増えない理由は何か](/blog/news-20260918-fxn3v/)
