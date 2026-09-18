@@ -24,7 +24,10 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft))
 const chip = (p: any) => catOf(p.data.title, p.data);
 const latest = posts[0]?.data.pubDate ?? "";
 // AIニュースへの見解（毎日）。読みに来るだけの理由を作る（オーナー方針 2026-09-14）
-const newsPosts = posts.filter((p) => p.data.news).slice(0, 3);
+const newsPosts = posts.filter((p) => p.data.news).slice(0, 7);
+const [newsTop, ...newsRest] = newsPosts;
+const isNew = (d: string) => Date.now() - +new Date(d) < 2 * 86400000;
+const rxLabel = (n?: number) => (n ? `反応${n.toLocaleString()}件` : "編集部コラム");
 
 // 案C: ヒーローに料金監視の稼働実績を出す。「毎日実際に動いているサイト」であることを一次情報で示す。
 // 価格そのものは断定せず、監視校数・最終確認日・表示変化の検知件数だけを主張する（景表法・自動監視の性質上）。
@@ -61,6 +64,9 @@ const heroShots = [
       <a class="primary" href="/shindan/">6問で合う3校を診断する</a>
       <a class="ghost" href="/blog/kyufukin-osusume/">給付金で安くする方法を見る</a>
     </div>
+    {newsTop && (
+      <a class="ticker" href={`/blog/${newsTop.slug}/`}><b>今日のまとめ</b><span>{newsTop.data.title}</span><em>{rxLabel(newsTop.data.reactions)}</em></a>
+    )}
     <ul class="points">
       <li>掲載{schools.table.length}校を同じ軸で比較</li>
       <li>評判記事{posts.length}本・毎日更新（最終更新 {latest}）</li>
@@ -80,6 +86,35 @@ const heroShots = [
 
   {/* 編集長の紹介はトップに出さない（オーナー判断 2026-09-11）。運営者情報と記事ページには残る */}
 
+  {/* ニュースデスク: トップの最上段（オーナー 2026-09-18「ニュースがもっと目立つように」）。最新1本を大きく、残りをレス風の一覧で */}
+  {newsTop && (
+    <section class="sec band-warm newsdesk" style="--sec-c:#ea580c" id="news">
+      <div class="sec-head reveal"><h2>今日のAIニュースまとめ</h2><span class="en">NEWS DESK</span><span class="note">国内外のニュースに、ネットの反応と編集部3人の見方を添えて毎日更新</span></div>
+      <div class="nd-grid">
+        <a class="nd-top reveal" data-cat="ニュース" href={`/blog/${newsTop.slug}/`}>
+          <span class="nd-thumb"><Thumb title={newsTop.data.title} cat="ニュース" shots={[]} eager={true} /></span>
+          <span class="nd-body">
+            <span class="feat-tags">{isNew(newsTop.data.pubDate) && <span class="feat-new">NEW</span>}<span class="chip">{rxLabel(newsTop.data.reactions)}</span><span class="d">{newsTop.data.pubDate}</span></span>
+            <span class="nd-t">{newsTop.data.title}</span>
+            <span class="nd-d">{newsTop.data.description}</span>
+            <span class="nd-cta">スレの流れと編集部の見方を読む →</span>
+          </span>
+        </a>
+        <ol class="nd-list reveal">
+          {newsRest.map((p, i) => (
+            <li>
+              <a href={`/blog/${p.slug}/`}>
+                <span class="no">{i + 2}</span>
+                <span class="tx"><span class="t">{p.data.title}</span><span class="m">{isNew(p.data.pubDate) && <b class="new">NEW</b>}{rxLabel(p.data.reactions)} ・ {p.data.pubDate}</span></span>
+              </a>
+            </li>
+          ))}
+          <li class="more"><a href="/news/">ニュースまとめをすべて見る（{posts.filter((p) => p.data.news).length}本）→</a></li>
+        </ol>
+      </div>
+    </section>
+  )}
+
   <section class="sec">
     <div class="sec-head reveal"><h2>目的から探す</h2><span class="en">PURPOSE</span></div>
     <div class="nav4">
@@ -90,25 +125,6 @@ const heroShots = [
     </div>
   </section>
 
-  {newsPosts.length > 0 && (
-    <section class="sec band-warm" style="--sec-c:#ea580c" id="news">
-      <div class="sec-head reveal"><h2>AIニュースの見方</h2><span class="en">NEWS DESK</span><span class="note">国内外のAI・エンジニア採用のニュースに、学ぶ人の立場で賛否と結論を書いています</span></div>
-      <ul class="cards news3">
-        {newsPosts.map((p, i) => (
-          <li class="reveal" style={`--i:${i}`}>
-            <a class="card row" data-cat="ニュース" href={`/blog/${p.slug}/`}>
-              <span class="cbody">
-                <span class="chip">{i === 0 ? "最新の見解" : "編集部コラム"}</span>
-                <span class="t">{p.data.title}</span>
-                <span class="d">{p.data.pubDate}</span>
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
-      <a class="more-link reveal" href="/news/">ニュースの見解をすべて読む →</a>
-    </section>
-  )}
 
   <section class="sec band-blue">
     <div class="sec-head reveal"><h2>編集部ピックアップ</h2><span class="en">EDITOR'S PICK</span><span class="note">目的別・公開情報に基づく編集部の見解です</span></div>
