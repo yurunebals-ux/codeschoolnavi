@@ -699,7 +699,8 @@
       "score": 91,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-08-03T05:49:35.821Z"
+      "publishedAt": "2026-08-03T05:49:35.821Z",
+      "structure": 2
     },
     {
       "slug": "osusume-hikaku-online",
@@ -3600,10 +3601,624 @@
       },
       "structure": 2,
       "publishedAt": "2026-09-18T23:50:13.467Z"
+    },
+    {
+      "slug": "osusume-dokugaku-tenshoku",
+      "keyword": "転職希望者におすすめの独学・買い切りプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "skillhacks"
+      ],
+      "audience": "tenshoku",
+      "kind": "money",
+      "cluster": "独学・買い切り",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "osusume-dokugaku-fukugyo",
+      "keyword": "副業したい人におすすめの独学・買い切りプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "skillhacks"
+      ],
+      "audience": "fukugyo",
+      "kind": "money",
+      "cluster": "独学・買い切り",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "osusume-dokugaku-yondai",
+      "keyword": "40代におすすめの独学・買い切りプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "skillhacks"
+      ],
+      "audience": "yondai",
+      "kind": "money",
+      "cluster": "独学・買い切り",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "osusume-dokugaku-josei",
+      "keyword": "女性におすすめの独学・買い切りプログラミングスクール",
+      "template": "money:best-for",
+      "tools": [
+        "skillhacks"
+      ],
+      "audience": "josei",
+      "kind": "money",
+      "cluster": "独学・買い切り",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "erabikata-online",
+      "keyword": "オンライン学習のプログラミングスクールの選び方",
+      "template": "info:choose",
+      "tools": [
+        "techacademy",
+        "codecamp",
+        "ninjacode",
+        "fjord",
+        "techmeets"
+      ],
+      "kind": "info",
+      "cluster": "オンライン学習",
+      "score": 54,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "erabikata-hosho",
+      "keyword": "転職保証付きのプログラミングスクールの選び方",
+      "template": "info:choose",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp"
+      ],
+      "kind": "info",
+      "cluster": "転職保証付き",
+      "score": 54,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "erabikata-tenshoku",
+      "keyword": "資格・就職支援のプログラミングスクールの選び方",
+      "template": "info:choose",
+      "tools": [
+        "runteq",
+        "potepan",
+        "coachtech",
+        "uzuzcollege"
+      ],
+      "kind": "info",
+      "cluster": "資格・就職支援",
+      "score": 54,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "erabikata-mtm",
+      "keyword": "マンツーマン指導のプログラミングスクールの選び方",
+      "template": "info:choose",
+      "tools": [
+        "samurai",
+        "techis",
+        "cryptech"
+      ],
+      "kind": "info",
+      "cluster": "マンツーマン指導",
+      "score": 54,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "erabikata-ai",
+      "keyword": "AI・データ分析のプログラミングスクールの選び方",
+      "template": "info:choose",
+      "tools": [
+        "aidemy",
+        "kikagaku",
+        "dmmaicamp",
+        "skillupai",
+        "aijobcolle",
+        "avilen"
+      ],
+      "kind": "info",
+      "cluster": "AI・データ分析",
+      "score": 54,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "erabikata-free",
+      "keyword": "無料スクールのプログラミングスクールの選び方",
+      "template": "info:choose",
+      "tools": [
+        "programmercollege"
+      ],
+      "kind": "info",
+      "cluster": "無料スクール",
+      "score": 54,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "erabikata-tsugaku",
+      "keyword": "通学・オンラインのプログラミングスクールの選び方",
+      "template": "info:choose",
+      "tools": [
+        "winschool"
+      ],
+      "kind": "info",
+      "cluster": "通学・オンライン",
+      "score": 54,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "erabikata-dokugaku",
+      "keyword": "独学・買い切りのプログラミングスクールの選び方",
+      "template": "info:choose",
+      "tools": [
+        "skillhacks"
+      ],
+      "kind": "info",
+      "cluster": "独学・買い切り",
+      "score": 54,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-techacademy",
+      "keyword": "TechAcademyとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "techacademy"
+      ],
+      "kind": "info",
+      "cluster": "オンライン学習",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-codecamp",
+      "keyword": "CodeCampとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "codecamp"
+      ],
+      "kind": "info",
+      "cluster": "オンライン学習",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-dmmwebcamp",
+      "keyword": "SHIFT TERAS CAMPUSとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "dmmwebcamp"
+      ],
+      "kind": "info",
+      "cluster": "転職保証付き",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-techcamp",
+      "keyword": "テックキャンプとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "techcamp"
+      ],
+      "kind": "info",
+      "cluster": "転職保証付き",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-runteq",
+      "keyword": "RUNTEQとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "runteq"
+      ],
+      "kind": "info",
+      "cluster": "転職特化",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-potepan",
+      "keyword": "ポテパンキャンプとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "potepan"
+      ],
+      "kind": "info",
+      "cluster": "転職特化",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-coachtech",
+      "keyword": "COACHTECHとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "coachtech"
+      ],
+      "kind": "info",
+      "cluster": "転職特化",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-samurai",
+      "keyword": "侍エンジニアとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "samurai"
+      ],
+      "kind": "info",
+      "cluster": "マンツーマン指導",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-aidemy",
+      "keyword": "Aidemyとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "aidemy"
+      ],
+      "kind": "info",
+      "cluster": "AI・データ分析",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-kikagaku",
+      "keyword": "キカガクとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "kikagaku"
+      ],
+      "kind": "info",
+      "cluster": "AI・データ分析",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-programmercollege",
+      "keyword": "プログラマカレッジとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "programmercollege"
+      ],
+      "kind": "info",
+      "cluster": "無料スクール",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-techis",
+      "keyword": "テックアイエスとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "techis"
+      ],
+      "kind": "info",
+      "cluster": "マンツーマン指導",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-ninjacode",
+      "keyword": "忍者CODEとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "ninjacode"
+      ],
+      "kind": "info",
+      "cluster": "オンライン学習",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-dmmaicamp",
+      "keyword": "DMM 生成AI CAMPとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "dmmaicamp"
+      ],
+      "kind": "info",
+      "cluster": "AI・データ分析",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-winschool",
+      "keyword": "Winスクールとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "winschool"
+      ],
+      "kind": "info",
+      "cluster": "通学・オンライン",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-skillhacks",
+      "keyword": "SkillHacksとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "skillhacks"
+      ],
+      "kind": "info",
+      "cluster": "独学・買い切り",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-fjord",
+      "keyword": "フィヨルドブートキャンプとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "fjord"
+      ],
+      "kind": "info",
+      "cluster": "オンライン学習",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-techmeets",
+      "keyword": "techmeetsとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "techmeets"
+      ],
+      "kind": "info",
+      "cluster": "オンライン学習",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-uzuzcollege",
+      "keyword": "ウズウズカレッジとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "uzuzcollege"
+      ],
+      "kind": "info",
+      "cluster": "資格・就職支援",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-skillupai",
+      "keyword": "スキルアップAIとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "skillupai"
+      ],
+      "kind": "info",
+      "cluster": "AI・データ分析",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-aijobcolle",
+      "keyword": "AIジョブカレとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "aijobcolle"
+      ],
+      "kind": "info",
+      "cluster": "AI・データ分析",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-avilen",
+      "keyword": "AVILENとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "avilen"
+      ],
+      "kind": "info",
+      "cluster": "AI・データ分析",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "towa-cryptech",
+      "keyword": "クリプテックアカデミアとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "cryptech"
+      ],
+      "kind": "info",
+      "cluster": "マンツーマン指導",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z"
+    },
+    {
+      "slug": "topic-dokugaku-vs-school",
+      "keyword": "独学とプログラミングスクール、費用と期間で比べるとどこが分かれ目か",
+      "template": "topic:guide",
+      "tools": [
+        "skillhacks",
+        "techacademy",
+        "dmmwebcamp"
+      ],
+      "kind": "topic",
+      "cluster": "選び方",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z",
+      "brief": "独学は教材費が数千円〜数万円、スクールは数万円〜数十万円。差額で買っているのは『質問できる相手』『期限』『転職支援』の3つ。独学で3ヶ月続いた人はスクールでも伸びる。続かなかった人が期限と伴走を買うのは合理的。給付金対象なら差額は縮む。",
+      "hubs": [
+        "/blog/imiaru-erabikata/",
+        "/blog/osusume-hikaku-dokugaku/",
+        "/kyufukin/"
+      ]
+    },
+    {
+      "slug": "topic-kyufukin-shinsei-otoshiana",
+      "keyword": "教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味",
+      "template": "topic:guide",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp"
+      ],
+      "kind": "topic",
+      "cluster": "給付金対象",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z",
+      "brief": "特定一般と専門実践は受講開始日の2週間前までにハローワークで手続きが必要で、遅れると対象外。雇用保険の加入期間の条件、離職後の期限、指定講座かどうかの講座番号確認、修了要件（出席率・成績）で給付が止まる例。スクールの『給付金対象』表記は講座単位なので、自分が申し込むコースが対象かを確認する。",
+      "hubs": [
+        "/kyufukin/",
+        "/blog/kyufukin-osusume/"
+      ]
+    },
+    {
+      "slug": "topic-reskilling-vs-kyufukin",
+      "keyword": "リスキリング補助と教育訓練給付金は別物。混同すると損をする理由",
+      "template": "topic:guide",
+      "tools": [
+        "techacademy",
+        "dmmwebcamp"
+      ],
+      "kind": "topic",
+      "cluster": "給付金対象",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z",
+      "brief": "経済産業省の『リスキリングを通じたキャリアアップ支援事業』は事業者経由の補助で、転職要件と併用条件がある。厚生労働省の教育訓練給付金は個人がハローワークで申請する制度。スクールの『最大70%』表記はどちらの制度かを見ないと、期待した額が戻らない。両制度の併用可否は各校の案内で確認。",
+      "hubs": [
+        "/kyufukin/",
+        "/blog/kyufukin-osusume/"
+      ]
+    },
+    {
+      "slug": "topic-fukugyo-programming-genjitsu",
+      "keyword": "プログラミング副業の現実。最初の案件を取るまでに必要なもの",
+      "template": "topic:guide",
+      "tools": [
+        "skillhacks",
+        "codecamp"
+      ],
+      "kind": "topic",
+      "cluster": "選び方",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z",
+      "brief": "最初の案件は知人の紹介かクラウドソーシングの低単価から。Web制作（LP・WordPress）が入口になりやすい。必要なのは制作実績3つ・納期を守った履歴・見積もりの出し方。スクールの『副業サポート』は案件紹介の有無と条件で中身が違う。",
+      "hubs": [
+        "/blog/osusume-hikaku-online/",
+        "/shindan/"
+      ]
+    },
+    {
+      "slug": "topic-ai-ni-shigoto",
+      "keyword": "AIにエンジニアの仕事は奪われる？これから学ぶ人が押さえる分かれ目",
+      "template": "topic:guide",
+      "tools": [
+        "dmmaicamp",
+        "runteq"
+      ],
+      "kind": "topic",
+      "cluster": "選び方",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-19T07:11:41.729Z",
+      "brief": "減るのは『仕様が固まったコードを書く』作業、残るのは要件定義・設計・レビュー・運用・AIの出力の検証。学習の重心を『動くものを作る→なぜ動くかを説明できる』に置く。AIツールを使いこなす側に回るかどうかが分かれ目。",
+      "hubs": [
+        "/blog/osusume-hikaku-ai/",
+        "/blog/imiaru-erabikata/"
+      ]
+    },
+    {
+      "slug": "news-20260919-1h9je",
+      "keyword": "AI技術の普及で「仕事のあり方」が劇的に変わる現実",
+      "template": "news:weekly",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 95,
+      "status": "published",
+      "createdAt": "2026-09-19T07:12:26.050Z",
+      "news": {
+        "items": [
+          {
+            "title": "Codexを使うなら、config.tomlとAGENTS.mdを押さえておきたい",
+            "link": "https://syu-m-5151.hatenablog.com/entry/2026/09/19/112330",
+            "source": "syu-m-5151.hatenablog.com",
+            "published": "2026年9月19日",
+            "snippet": "はじめに Claude Codeでは、settings.jsonとCLAUDE.mdを分けて設定する話を書きました。Codexにも、実行する環境を設定するファイルと、仕事の進め方を伝えるファイルがあります。config.toml と AGENTS.md です。 さらにClaude Codeの公式リポジトリにも、AGENTS.mdを読み込むagents-md modが追加されました。CodexとCl...",
+            "bookmarks": 13,
+            "text": "Codexで設定を残す場所は、主に2つあります。config.tomlは実行環境を、AGENTS.mdは仕事の進め方を決めます。\nconfig.tomlにはモデルや推論の強さなど、実行時の条件を書きます。AGENTS.mdには検証方法や作業上の制約を書きます。役割は分かれていますが、ファイルを置いただけで意図どおりに効くわけではありません。\n設定の優先順位、起動場所、読み込まれる指示を確認して初めて、同じ条件でCodexを使えます。この記事では、まず2つの役割を分け、次に設定の読み込み順とAGENTS.mdの探索範囲を確認します。\nこのシリーズでは、Claude Codeのsettings.jsonとCLAUDE.mdを分けて設定する方法を紹介してきました。Codexにも似た役割のファイルがありますが、読み込まれ方まで同じとは限りません。\nClaude Code公式リポジトリには、AGENTS.mdを読み込むagents-md modもあります。共通の指示ファイルを使える場面が増えた一方、どのファイルをどの条件で読むかは、ツールごとに確かめます。\nCLIやモデルを更新した直後は、同じ設定ファイルが残っていても、読み込まれた値と指示の適用を小さな依頼で確かめます。\nこのブログが良ければ読者になったり、nwiizoのXやGithubをフォローしてくれると嬉しいです。\n「レビューだけ頼みたい」という依頼を考えます。変更の根拠を先に示してほしいなら、文章の指示です。ファイルを書き換えられない環境で実行したいなら、権限の設定です。どちらもレビューに関係しますが、効く場所が違います。\n公式のベストプラクティスも、設定の置き場所を用途で分けるよう案内しています。 個人用の既定値は~/.codex/config.toml、リポジトリ固有の動作は.codex/config.toml、CLIの上書きは単発の作業に使います。 設定を1つのファイルへ集めるより、どの範囲で続けたい値なのかを先に決める方が、後から見直しやすくなります。\nAGENTS.mdへ「勝手に変更しない」と書くことには意味があります。しかし、それによってサンドボックスの書き込み権限が消えるわけではありません。反対に、読み取り専用で起動しただけでは、どんな観点でレビューしてほしいかは伝わりません。\n初めて使うときは、承認とサンドボックスを厳しい既定値のままにします。必要性が分かってから、信頼できるリポジトリや決まった作業だけへ権限を広げます。確認を省く設定を先に選ぶと、指示の問題と実行権限の問題を切り分けにくくなります。\nまず、Codexにどう判断してほしいのかと、コマンドに何を許すのかを別々に説明できる状態にします。この区別がつくと、動かなかったときに直す場所も見つけやすくなります。\n個人の基本設定は ~/.codex/config.toml です。プロジェクトには .codex/config.toml を置けます。CLIとIDE拡張は、同じ設定の階層を利用します。\nたとえば、個人設定で検索をキャッシュ利用にしていても、プロジェクト側が別の値を持っていれば、そちらが優先されます。「昨日と同じ設定ファイルを使っている」は、同じ条件で起動した証拠にはなりません。作業ディレクトリも設定の一部です。\nなお、組織による強制的な制限は、この表の「既定値」とは別です。requirements.toml などで禁止されている設定を、CLIのフラグで自由に解除できるという意味ではありません。\nプロジェクトの設定は、そのプロジェクトを信頼している場合だけ読み込まれます。未信頼のプロジェクトでは、その場所のconfig、Hooks、Rulesを含む .codex/ の設定がスキップされます。個人設定が読まれることと、プロジェクト設定が読まれることを分けて確認します。\n個人設定の例として、Web検索の方式だけを明示してみます。既存のファイルへ加える際は、同じキーがすでにないか確かめます。\ncached は検索用のキャッシュを利用する指定です。最新の情報が必要な調査では live、検索を使わない仕事では disabled も選べます。これは、シェルで動かす curl などの通信設定とは別です。\n一度だけ現在の情報を検索したいなら、ファイルを何度も書き換える代わりに、起動時の指定を使えます。\nこの例の値はTOMLとして解釈されます。シェルが引用符や空白を処理するため、複雑な値ほど引用の仕方も確認したいです。エラー表示の有無だけで判断せず、意図した型と値で読まれたかまで確かめます。\nモデル名は、手元で使える候補から選べます。設定の読み込み方を確かめる段階で、モデルの提供条件まで一緒に変えると、問題を切り分けにくくなります。\n調査のときだけ検索を変える、レビューのときだけ推論を強める。こうした用途には、設定プロファイルがあります。たとえば $CODEX_HOME/review.config.toml（通常は~/.codex/review.config.toml）に、基本設定から変えたい項目だけを書きます。\n起動は次のとおりです。推論の指定は、選択したモデルが対応していることが前提です。\nここは古い設定例と違います。Codex 0.134.0以降では、config.toml 内の [profiles.review] を --profile が読む方式ではありません。review.config.toml のような別ファイルへ移します。トップレベルの profile = \"review\" による選択も、現行の方式ではありません。\nプロファイルは、基本設定をすべて置き換えるファイルではありません。基本設定の上へ重ねるため、省略した項目はほかの階層から来ます。プロジェクト設定とCLI指定の方が優先される点も残ります。\nまた、これは「設定プロファイル」です。ファイルや通信先をまとめる「権限プロファイル」とは別の機能です。どちらもprofileと呼ばれるため、エラーを調べるときには、どちらの名前を選んだのかまで確認します。\nAGENTS.mdでは、継続して守ってほしい仕事の進め方を書きます。個人の共通指示は ~/.codex/AGENTS.md、チームの指示はリポジトリ側へ置きます。\nまだAGENTS.mdがなければ、CLIの/initで現在のディレクトリに初期版を作れます。生成された内容は出発点として読み、実際のビルド、テスト、レビュー、公開の手順へ書き換えます。\nたとえば、Rustとフロントエンドが同居するリポジトリなら、次の構造を考えられます。\n起動時の探索では、プロジェクトのルートから現在の作業ディレクトリまでをたどります。backend/ から起動すれば、ルートとbackendの指示を組み合わせられます。ルートで起動しただけで、全サブディレクトリのAGENTS.mdを最初から読み込む仕組みではありません。\n公式資料は、指示を起動時に組み立てると説明しています。どこから作業を始めるかが重要です。対象のディレクトリを変えるなら、適用したい指示の場所も確認します。\n各ディレクトリでは、まず AGENTS.override.md、次に AGENTS.md、その後に設定した代替名を探します。その階層で読むのは最大1ファイルです。overrideは、同じ場所のAGENTS.mdへ追記するファイルではありません。\n「一時的な注意だけoverrideへ書いたら、元の検証手順が出なくなった」という時は、この選び方を疑えます。別ファイルの内容が全部足されると思い込むと、間違いやすいところです。\n公式のベストプラクティスでは、AGENTS.mdへリポジトリの構成、実行方法、ビルド・テスト・lint、開発規約、制約、完了の定義と検証方法を書く例が挙げられています。この項目で、作業を始める人が迷う判断を短く残せます。\nClaude Code公式のagents-md modは、AGENTS.mdを常に無条件で追加する機能ではありません。既定のclaude-md-or-agents-mdでは、プロジェクト固有のCLAUDE.mdがないときにAGENTS.mdを読みます。両方を読みたい時はclaude-md-and-agents-md、従来どおりCLAUDE.mdだけならclaude-mdを選びます。管理された指示だけを残すmanaged-onlyもあります。\n設定画面の/configにある「Project instructions」から選べます。設定ファイルへ書く時は、ユーザー設定のpluginConfigsに指定します。プロジェクトの.claude/settings.jsonではなく、~/.claude/settings.json、--settings、管理設定のいずれかへ置く点に注意します。\nこれはClaude CodeのCLAUDE.mdが持つ読み込み動作を、Codexと同じ設定階層へ置き換える説明ではありません。agents-md modがどのモードで動いているかを確認し、CLAUDE.mdとAGENTS.mdの両方へ同じ指示を重ねるのか、共有する指示をAGENTS.mdへ寄せるのかを決めます。\nClaude Codeを使っていると、似た名前のファイルや機能も同じように動くと思いがちです。ここを曖昧にしたまま設定を移すと、指示が読まれない理由を文章の弱さだと考えてしまいます。まず、次の違いを確認します。\nたとえば、Claude Codeのpaths:付きRul"
+          },
+          {
+            "title": "未経験から生まれた“個性爆発”Webサービスが集結！プログラミングスクール「RUNTEQ」、Webアプリ開発バトル「BATTLE OF RUNTEQ vol.7」を9月26日に開催",
+            "link": "https://prtimes.jp/main/html/rd/p/000000108.000057664.html",
+            "source": "PR TIMES",
+            "published": "2026年9月17日",
+            "snippet": "未経験から生まれた“個性爆発”Webサービスが集結！プログラミングスクール「RUNTEQ」、Webアプリ開発バトル「BATTLE OF RUNTEQ vol.7」を9月26日に開催&nbsp;&nbsp;PR TIMES",
+            "text": "Webエンジニア養成プログラミングスクール「RUNTEQ（ランテック）」を運営する株式会社RUNTEQ（本社：東京都千代田区、代表取締役：菊本 久寿）は、RUNTEQ受講生・卒業生が個人開発したWebサービスを発表し競い合うWebアプリバトルイベント「BATTLE OF RUNTEQ vol.7」を、2026年9月26日（土）15:00よりオンライン（YouTube Live）にて開催いたします。\n今回は、「Mission！個性を爆発させよ！」をテーマに、58件のエントリーから予選を勝ち抜いた6名のファイナリストが登壇します。\nそれぞれの課題意識やアイデアをもとに開発したWebアプリについて、企画背景やサービスの特徴、技術面での工夫などをプレゼンテーションします。\n「BATTLE OF RUNTEQ（通称：バトラン）」は、RUNTEQ受講生・卒業生が、自ら企画・開発したWebアプリを発表し競い合うイベントです。\nRUNTEQでは、プログラミングスキルを身につけるだけでなく、自ら課題を見つけ、サービスを企画し、実際にユーザーが利用できる形まで開発することを重視しています。\nBATTLE OF RUNTEQでは、事前予選を勝ち抜いたファイナリストが、サービス概要や企画背景、開発でこだわったポイントなどをプレゼンテーションします。\n過去大会でも、日常生活の小さな困りごとを解決するサービスから、自身の経験や趣味を起点に生まれたサービスまで、受講生一人ひとりの個性が表れたさまざまなWebアプリケーションが発表されてきました。\n過去大会の様子はこちら：https://www.youtube.com/live/cGEZTyx1hGM?si=E0dpvHDFuOWjDdcf\n生成AIやAIコーディングツールの普及によって、Webサービスを「つくる」こと自体のハードルは大きく下がりつつあります。\n一方で、RUNTEQが大切にしているのは、単にコードを書けることだけではありません。\n自ら課題を見つけ、「誰に、どのような価値を届けたいのか」を考え、必要な技術を選び、実際にプロダクトとして形にする。そうした一連の意思決定ができる「つくれる人」を育てることを、RUNTEQは目指しています。\nそこでBATTLE OF RUNTEQ vol.7では、「Mission⚡️個性を爆発させよ！」をテーマに掲げました。\n完成したサービスだけではなく、「なぜこのサービスをつくるのか」「誰のどんな課題を解決したいのか」「自分だからこそ生み出せる価値は何か」といった、その裏側にある開発者自身の原体験や課題意識、サービスに込めた想いにもスポットを当てます。\nBATTLE OF RUNTEQ vol.7（通称：バトラン）\nBATTLE OF RUNTEQ公式サイトよりRUNTEQ公式LINEを友だち追加いただくと、イベント前日・当日にYouTube Liveの視聴URLをお送りします。\n一般観戦者の皆様も、ファイナリストのプレゼンテーションを観戦するだけでなく、オーディエンス投票を通じてイベントにご参加いただけます。\n個性あふれる6つのWebアプリの中から、どの作品が栄冠を手にするのか。ぜひリアルタイムでご覧ください。\n58件のエントリーから予選を勝ち抜いた、6作品をご紹介します。\nセキュリティ対策が身につくターン制RPG。敵の正体である「サイバー攻撃」を見抜き、適切な防御対策で弱点を突くことで、ゲームを楽しみながらセキュリティ知識を学べるWebアプリです。\nフリーマーケットの開催情報を地図上から探せるサービス。開催場所をマーカーで確認し、イベント名・住所・開催日などの詳細情報を確認できます。\n高齢者の水分摂取習慣をサポートするWebアプリ。メール通知やワンタップでの記録、カレンダーによる振り返りを通じて、日々の水分摂取の習慣化を支援します。\nプログラミング中に遭遇したエラー文を入力すると、AIが「五・七・五・七・七」の短歌へ変換。エンジニアが感じるエラーへの悲鳴や挫折を、笑いや共感へと変えるユーモアWebアプリです。\n看護師の勤務シフト作成を支援するWebアプリ。さまざまな条件をもとにシフトを自動生成し、シフト作成にかかる時間の短縮や、より合理的でバランスの取れた勤務表作成を支援します。\nデスクワークによる肩こりや腰痛などに悩みながらも、ストレッチをなかなか継続できない方に向けた習慣化支援アプリ。1分間のストレッチを行うことでモザイクアートのピースを集め、楽しみながら継続できる仕組みを提供します。\n今回の審査員には、RUNTEQ卒業後にエンジニアとしてプロダクト開発に携わる卒業生2名と、RUNTEQ 代表取締役／CTOの菊本 久寿が参加します。\n審査員による「最優秀賞」「課題解決力賞」「技術力賞」「UXデザイン賞」のほか、視聴者による投票で決定する「オーディエンス賞」も予定しています。\n技術力だけでなく、どのような課題に着目し、それをどのような体験・サービスとして形にしたのか。それぞれの作品をさまざまな角度から審査します。\n例年、BATTLE OF RUNTEQをご視聴いただいた企業様より、ファイナリスト及びRUNTEQ生の採用について数多くお問い合わせを頂いております。RUNTEQでは、Webエンジニアとして必要な技術力だけでなく、自ら課題を発見し、考え、プロダクトとして形にする力を身につけるための実践的な学習環境を提供しています。\nRUNTEQ卒業生の採用についてご関心のある企業様は、下記お問い合わせフォームよりお気軽にご連絡ください。\n[お問い合わせフォーム]：https://share.hsforms.com/15k1FWV6mSx2z74llMMztug4oe25\nClaude Codeコース：https://runteq.jp/claude-code/\nWeb開発スタンダードコース/Python×AIコース：https://runteq.jp/r/d1wbZAFM\n「RUNTEQ」は、開発会社基準の高レベルなカリキュラムと長期間の学習を通じて、実務に直結するスキルを習得できる超実践型プログラミングスクールです。\n豊富なシステム開発実績を持つ当社が、現場の声を反映し、Webエンジニアに必要な「コードを読み解く力」や「自分で実装方法を考えコード化する力」を実践的に学べる環境を提供しています。\nまた、転職・就職支援においては、スキル面だけでなく 企業文化とのマッチングを重視したキャリアトレーニング にも力を入れています。★サービスサイトはこちら：https://runteq.jp/r/d1wbZAFM\nWebエンジニア転職やプログラミング学習に関する無料カウンセリングも実施中です。学習やキャリアのお悩みもお気軽にご相談ください。\n【公式SNS】・YouTube「エンジニア転職チャンネル」：https://www.youtube.com/@_runteq_/videos・RUNTEQブログ：https://runteq.jp/blog/\n・X（旧Twitter）：https://x.com/_runteq_\n・note：https://note.com/runteq_official\nRUNTEQの『Web開発スタンダードコース』は、専門実践教育訓練給付制度の対象講座に認定されています。給付条件を満たすことで、受講料の最大80%(最大給付額525,600円)が給付金として支給されます。\n・『Web開発スタンダードコース』のご受講を開始される方が当制度の対象となります。\n・当給付金を受給するための受給対象条件等は、ご自身で最寄りのハローワークにてご確認していただく必要がございます。また、当制度をご利用いただくためには、受講開始の原則2週間前までにハローワークにおける「支給申請手続き」が必要となります。\n・弊社では当制度のご利用及び給付金の受給に関して一切責任を負いかねますので、ご不明点等は最寄りのハローワークにお問い合わせいただき、ご自身の責任において手続きの実施をお願いいたします。\n・支給申請手続で申請した学習期間（修了期間）でコースを修了することが受給条件となります。\n所在地：東京都千代田区霞が関1-4-2 大同生命霞が関ビル8F\n1. 実践型 DX教育を行う RUNTEQ（ランテック）事業\nメディアユーザー登録を行うと、企業担当者の連絡先や、イベント・記者会見の情報など様々な特記情報を閲覧できます。※内容はプレスリリースにより異なります。\nこのプレスリリース内で使われている画像ファイルがダウンロードできます"
+          },
+          {
+            "title": "世界37カ国のうち日本を含むほとんどの国で「AIは雇用増加ではなく雇用喪失を引き起こす」と予想されていることが判明",
+            "link": "https://gigazine.net/news/20260918-more-people-expect-ai-job-loss/",
+            "source": "gigazine.net",
+            "published": "2026年9月18日",
+            "snippet": "生成AIはこれまで人間の労働者が担っていたさまざまなタスクを代替することが可能で、AIの導入によって雇用が減少するのではないかとの懸念が高まっています。中には「AIは産業革命のように、一部の仕事を消し去る代わりに新たな仕事も生み出す」という意見もありますが、アメリカのピュー研究所が世界37カ国を対象に行...",
+            "bookmarks": 85,
+            "text": "親愛なる読者の皆さまへ。ご存じの通り価格高騰などの悪影響でサーバー運営がとても苦しい状態です。回線や台数を整理し見直せる部分は全て見直しましたが、やはりまだ危険水域です。このままだと1ページを10分割ぐらいして無理矢理PVを増やさざるを得なくなってしまいます。そこで、GIGAZINEの物理的なサーバーたちを、たった1円でも良いので親愛なる読者の皆さまに支援してもらえればとっても助かります！今すぐ寄付は上のボタンから！ ・これまでGIGAZINEを支援してくれたメンバーのリスト\n生成AIはこれまで人間の労働者が担っていたさまざまなタスクを代替することが可能で、AIの導入によって雇用が減少するのではないかとの懸念が高まっています。中には「AIは産業革命のように、一部の仕事を消し去る代わりに新たな仕事も生み出す」という意見もありますが、アメリカのピュー研究所が世界37カ国を対象に行った調査では、日本を含むほとんどの国で「AIは雇用喪失を引き起こす」と予想されていることが判明しました。 Globally, More People Expect AI to Cause Job Loss Than Growth | Pew Research Center https://www.pewresearch.org/global/2026/09/17/globally-more-people-expect-ai-to-cause-job-loss-than-growth/ ピュー研究所が2026年初頭に世界37カ国を対象にした調査を行い、人々がAIについてどのような考えを抱いているのかを分析しました。2026年9月17日のレポートで報告された主な内容は以下の通り。 ◆雇用に対する懸念 ピュー研究所は回答者に対し、「AIが次の20年間で自身の国の雇用にどのような影響を引き起こすと思うのか」を尋ねました。その結果、日本を含むほとんどの国で「AIは雇用喪失を引き起こす」と回答した人の割合が「AIは雇用増加を引き起こす」と回答した人を上回りました。 以下のグラフは青色が「AIは雇用喪失を引き起こす」、薄いクリーム色が「雇用に大した影響はない」、黄土色が「AIは雇用増加を引き起こす」、灰色が「よくわからない」と回答した人の割合を示したもの。特にオーストラリア・韓国・アメリカでは70％以上がAIが雇用喪失を引き起こすと回答し、日本でも49％が同じように回答しました。一方、AIが雇用増加を引き起こすと回答した人の割合は圧倒的に少数で、AIが雇用喪失を引き起こすと回答した割合を上回ったのはナイジェリアのみで、その差もわずか1パーセントポイント(ポイント)でした。\nピュー研究所は、全体的には「AIは雇用喪失を引き起こす」と考える人が多かった一方で、成人の5分の1以上はAIが雇用にもたらす影響について確信が持てていないと指摘。特にケニア・タイ・フィリピン・コロンビア・マレーシア・スリランカ・インド・メキシコといった中所得国家では「よくわからない」と回答した人が35％を超えています。 以下のグラフは縦軸が「AIは雇用喪失を引き起こす」と答えた人の割合、横軸が1人あたりのGDPを表したものです。全体的に1人あたりGDPが高い国の方がAIによる雇用喪失の懸念が高いことがわかります。\n多くの国において、AIによる雇用喪失の懸念は50歳以上の高齢層よりも18～34歳の若年層で一般的でした。以下のグラフは横軸がAIによる雇用喪失を懸念する人の割合を表しており、青色が50歳以上、灰色が34～49歳、黄土色が18～34歳の回答割合を示したもの。カナダ・フランス・シンガポール・スウェーデンといった高所得国だけでなく、インド・インドネシア・マレーシアといった中所得国でも、若年層の方がAIによる雇用喪失を懸念する傾向がみられます。\n今回の調査では他にも、「主に高所得国では男性よりも女性の方がAIによる雇用喪失を懸念する割合が高い」「中所得国では世帯収入や教育水準が高い人ほどAIによる雇用喪失を懸念する割合が高く、世帯収入や教育水準が低い人はAIへの影響がわからないと回答する割合が高い」などの傾向が確認されました。 ◆不平等に対する懸念 「AIは貧富の差を拡大させると思うのか」を尋ねたところ、全体的に人々はAIが貧富の差を拡大し、不平等を悪化させると回答する傾向がみられました。しかし、この質問についてはAIによる雇用への影響と比較して、「わからない」と回答する人の割合が高くなりました。 以下のグラフは青色が「AIは貧富の差を拡大させる」、薄いクリーム色が「貧富の差に大した影響はない」、黄土色が「AIは貧富の差を縮小させる」、灰色が「よくわからない」と回答した人の割合を示したもの。比較的裕福な国ほどAIが貧富の差を拡大させると考える傾向が強く、特に韓国・オーストラリア・アメリカ・ギリシャ・カナダでは4割以上の人々が、AIは貧富の差を拡大させると考えていました。逆にAIは貧富の差を縮小させると考える人はほとんどおらず、37カ国中29カ国ではその割合が1桁にとどまっています。\nAIが貧富の差にもたらす影響についての見解は、政治的なイデオロギーが強く関連しています。ピュー研究所が回答者のイデオロギーを調べた28カ国のうちアメリカ・スペイン・オーストラリア・フランス・ギリシャ・イタリア・イギリス・アルゼンチンの8カ国で、右派よりも左派の方がAIは貧富の差を拡大すると考える傾向が強いことがわかりました。以下のグラフは、横軸がAIは貧富の差を拡大すると考える人の割合を、黄土色が右派、灰色が中道派、青色が差はを示しています。中でもアメリカでは右派と左派の差が31ポイントとなっており、イデオロギーによる隔たりが非常に大きいことがわかります。\n年齢ごとに見ていくと、アメリカでは「AIは貧富の差を拡大する」と考える割合は50歳以上の高齢層が38％なのに対し、18～34歳の若年層では56％とはるかに高くなりました。オーストラリア・カナダ・ポーランド・シンガポールといった高所得国でも、若い世代ほどAIによる格差拡大を懸念する傾向がみられました。一方、アルゼンチン・チリ・ハンガリー・イタリア・ペルーでは状況が逆転し、高齢層の方がAIは貧富の差を拡大すると考える傾向が強まったとのことです。 ◆日常生活におけるAIの利用拡大 ピュー研究所は雇用や経済格差といったトピックとは別に、日常生活におけるAIの利用拡大をどう思うかについても尋ねています。その結果、全体では約37％がAIの利用拡大について懸念している一方、41％は不安と期待が同程度だと回答しました。 以下のグラフは日常生活におけるAIの利用拡大についての見解を尋ねたもので、青色が「懸念している」、薄いクリーム色が「期待と不安を同程度持っている」、黄土色が「ワクワクしている」と回答した人の割合を示したもの。全体的に懸念していると回答した人が多いものの、期待と不安が同程度の人も多く、ガーナ・ナイジェリア・イスラエル・韓国・バングラデシュではワクワクしている人の方が多い結果となりました。中でも韓国は、AIによる雇用喪失や格差拡大を懸念する人が多い一方で、日常面ではAIにワクワクする人が多い傾向がみられます。\n回答者の傾向を細かく見ると、多くの国ではAIテクノロジーに関する情報や記事に多く触れている人ほど、日常面ではAIに対してより楽観的な見方をする傾向がありました。また、15カ国では50歳以上の高齢層の方が18～34歳の若年層より日常的なAI使用について懸念する割合が高くなりました。 しかし、一部の国では日常的なAI使用に対する懸念を持つ若年層の割合が増加しています。以下のグラフは縦軸が日常的なAI使用に懸念を抱く人の割合を、横軸が年を表したもので、青色が50歳以上の高齢層、灰色が35～49歳の中年層、黄土色が18～34歳の若年層です。アメリカでは長らく、若年層が最もAIについての懸念が低い年齢層でしたが、2026年には最も懸念が多い年齢層になりました。スウェーデン・ポーランド・ブラジル・日本・オーストラリアといった国々でも、2025年より2026年の方がAIについて懸念する若年層が増えているのがわかります。\nまた、ピュー研究所はアメリカにおいて、リベラルな民主党員と保守的な共和党員の間で、AIへの考えにどのような違いがあるのかも調査しています。 Democrats now more worried than Republicans about AI, its impact on jobs | Pew Research Center https://www.pewresearch.org/short-reads/2026/09/16/democrats-are-now-more-worried-than-republicans-about-ai-and-its-impact-on-jobs/ 2026年6月に行われた調査の結果、日常生活におけるAIの利用拡大を懸念する層は民主党支持者で56％に達した一方、共和党支持者では49％にとどまりました。以下のグラフは日常生活におけるAIの利用拡大についての考えを支持する党別にまとめたもので、赤色が共和党支持、青色が民主党支持、灰色が無党派層です。AIの利用拡大を懸念する人を示したグラフ(左)を見ると、共和党支持者では年々割合が減っているのに対し、民主党支持者では懸念する人の割合が増えていることがわかります。また、AIの利用拡大に期待と不安の両方を抱く"
+          }
+        ]
+      },
+      "structure": 2,
+      "publishedAt": "2026-09-19T07:13:38.755Z"
     }
   ],
-  "publishedCount": 70,
-  "estimatedMrrUsd": 21000,
+  "publishedCount": 71,
+  "estimatedMrrUsd": 21300,
   "history": [
     {
       "date": "2026-07-24",
@@ -3884,7 +4499,12 @@
       "date": "2026-09-18",
       "published": 70,
       "estimatedMrrUsd": 21000
+    },
+    {
+      "date": "2026-09-19",
+      "published": 71,
+      "estimatedMrrUsd": 21300
     }
   ],
-  "lastRun": "2026-09-18T23:50:14.024Z"
+  "lastRun": "2026-09-19T07:13:39.215Z"
 }

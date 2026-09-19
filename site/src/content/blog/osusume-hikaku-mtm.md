@@ -205,4 +205,4 @@ draft: false
 - [侍エンジニアは自分に合う？申込前に潰す3つの不安](/blog/yametoke-samurai/)
 - [侍エンジニアの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-samurai/)
 - [テックアイエスの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-techis/)
-- [Jev」AIは文字を書かず判断だけ高速処理。ChatGPTと何が違う？](/blog/news-20260918-xwttv/)
+- [AI技術の普及で「仕事のあり方」が劇的に変わる現実](/blog/news-20260919-1h9je/)

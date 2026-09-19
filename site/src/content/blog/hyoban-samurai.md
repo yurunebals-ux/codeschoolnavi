@@ -124,4 +124,4 @@ draft: false
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [テックアイエスの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-techis/)
 - [マンツーマン指導のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-mtm/)
-- [Jev」AIは文字を書かず判断だけ高速処理。ChatGPTと何が違う？](/blog/news-20260918-xwttv/)
+- [AI技術の普及で「仕事のあり方」が劇的に変わる現実](/blog/news-20260919-1h9je/)
