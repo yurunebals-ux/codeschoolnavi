@@ -278,6 +278,13 @@ const TITLE_RULES = `28〜42字。検索で探される固有名詞（社名・�
 const STIFF_TITLE = /(を解説|の実態と対策|の見解|が実現|登場|発表|について|の動向|の現状|まとめ)$/;
 
 /** 報告調のタイトルなら、本文を見せて引きのある候補を3つ出させ、規則に合う最初の1つを採る */
+/** 全体が「」や""で括られている時だけ外す（「Jev」AIは… の先頭の「だけ剥がして Jev」AIは… にしていた 2026-09-19 実測） */
+function unwrapQuotes(t: string): string {
+  const s = t.trim();
+  if (/^「[^「」]*」$/.test(s) || /^"[^"]*"$/.test(s)) return s.slice(1, -1).trim();
+  return s;
+}
+
 async function catchyTitle(title: string, body: string, system: string, entity?: string): Promise<string> {
   if (isOffline()) return title;
   const stiff = STIFF_TITLE.test(title) || title.length > 45 || !/[。？?、「」"]/.test(title);
@@ -285,7 +292,7 @@ async function catchyTitle(title: string, body: string, system: string, entity?:
   const r = await chat(
     `次の記事に、引きのあるタイトルを3案出す。規則: ${TITLE_RULES}\n${entity ? `必ず入れる固有名詞: ${entity}\n` : ""}出力は1行1案、番号や記号なし、案だけ。\n\n【現在のタイトル（硬い）】${title}\n【本文（冒頭）】\n${body.slice(0, 1800)}`,
     { system, maxTokens: 300, temperature: 0.9 });
-  const cands = r.split("\n").map((l) => l.replace(/^\s*[\d０-９]+[.．、)）:：]\s*|^[-・*]\s*/, "").replace(/^["「]|["」]$/g, "").trim()).filter((l) => l.length >= 20 && l.length <= 45);
+  const cands = r.split("\n").map((l) => l.replace(/^\s*[\d０-９]+[.．、)）:：]\s*|^[-・*]\s*/, "")).map(unwrapQuotes).filter((l) => l.length >= 20 && l.length <= 45);
   const pick = cands.find((c) => !STIFF_TITLE.test(c) && (!entity || c.includes(entity))) ?? cands.find((c) => !STIFF_TITLE.test(c));
   if (pick) console.log(`[editor] タイトル差し替え: 「${title}」→「${pick}」`);
   return pick ?? title;
@@ -300,7 +307,7 @@ function entityOf(title: string): string | undefined {
 function takeTitle(md: string): { body: string; title: string | null } {
   const m = md.match(/^\s*TITLE[:：]\s*(.+)\s*\n/);
   if (!m) return { body: md, title: null };
-  return { body: md.slice(m[0].length), title: m[1].replace(/^["「]|["」]$/g, "").trim() };
+  return { body: md.slice(m[0].length), title: unwrapQuotes(m[1]) };
 }
 
 function subsidyLineFor(tools: Tool[], subsidyIds: string[]): string {

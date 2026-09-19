@@ -455,7 +455,10 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
   const picked: (NewsItem & { rssLink: string })[] = [];
   const hosts = new Set<string>();
   let prCount = 0;
-  for (const it of fresh.slice(0, 20)) {
+  // 週間コラムも一般向けの見出しを先に（9/19 のコラムが Codex の config.toml から始まっていた）。足りなければ残りで補う
+  const light = await keepLight(fresh.slice(0, 30));
+  const weeklyOrder = [...light, ...fresh.filter((x) => !light.includes(x))].slice(0, 30);
+  for (const it of weeklyOrder) {
     if (picked.length >= 3) break;
     // 同じ話題（同じプレスリリースを複数媒体が載せる）は1本だけ
     if (picked.some((p) => similar(p.title, it.title) > 0.35)) { console.log(`[news] 同じ話題: ${it.title.slice(0, 40)}`); continue; }
