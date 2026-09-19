@@ -1,5 +1,5 @@
 ---
-title: "Jev」AIは文字を書かず判断だけ高速処理。ChatGPTと何が違う？"
+title: "文字を書かないAI「Jev」は判断だけを高速処理。ChatGPTと何が違う？"
 description: "元OpenAI研究者の新AI「Jev」は文章生成せず判断を迅速に返す。処理速度や料金も比較。"
 author: "編集部"
 pubDate: 2026-09-18

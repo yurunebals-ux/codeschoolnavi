@@ -143,5 +143,5 @@ draft: false
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [AI技術の普及で「仕事のあり方」が劇的に変わる現実](/blog/news-20260919-1h9je/)
-- [Jev」AIは文字を書かず判断だけ高速処理。ChatGPTと何が違う？](/blog/news-20260918-xwttv/)
+- [文字を書かないAI「Jev」は判断だけを高速処理。ChatGPTと何が違う？](/blog/news-20260918-xwttv/)
 - [AI活用で月10時間節約しても給料が増えない理由は何か](/blog/news-20260918-fxn3v/)
