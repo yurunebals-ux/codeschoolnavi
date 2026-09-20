@@ -716,7 +716,8 @@
       "score": 89,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-08-04T05:21:06.171Z"
+      "publishedAt": "2026-08-04T05:21:06.171Z",
+      "structure": 2
     },
     {
       "slug": "osusume-hikaku-hosho",
@@ -731,7 +732,8 @@
       "score": 89,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-08-05T05:21:03.585Z"
+      "publishedAt": "2026-08-05T05:21:03.585Z",
+      "structure": 2
     },
     {
       "slug": "osusume-hikaku-tenshoku",
@@ -2892,8 +2894,10 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 100,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "structure": 2,
+      "publishedAt": "2026-09-20T07:38:29.103Z"
     },
     {
       "slug": "kyufukin-potepan",
@@ -3540,7 +3544,7 @@
     },
     {
       "slug": "news-20260918-xwttv",
-      "keyword": "Jev」AIは文字を書かず判断だけ高速処理。ChatGPTと何が違う？",
+      "keyword": "文字を書かないAI「Jev」は判断だけを高速処理。ChatGPTと何が違う？",
       "template": "news:hot",
       "tools": [],
       "kind": "news",
@@ -4215,10 +4219,105 @@
       },
       "structure": 2,
       "publishedAt": "2026-09-19T07:13:38.755Z"
+    },
+    {
+      "slug": "topic-data-scientist-vs-ai-engineer",
+      "keyword": "データサイエンティストとAIエンジニアの違い。学ぶ内容と向く人",
+      "template": "topic:guide",
+      "tools": [
+        "kikagaku",
+        "aidemy",
+        "skillupai"
+      ],
+      "kind": "topic",
+      "cluster": "AI・データ分析",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-20T07:36:42.420Z",
+      "brief": "データサイエンティストは分析と意思決定支援（統計・SQL・可視化）、AIエンジニアはモデルの実装と運用（Python・深層学習・クラウド）。文系・企画職からはデータ分析側が入りやすい。スクールのコース名は似ていても到達物が違うので、修了時に何が作れるかで見分ける。",
+      "hubs": [
+        "/blog/osusume-hikaku-ai/"
+      ]
+    },
+    {
+      "slug": "topic-sql-dokugaku",
+      "keyword": "SQLは独学できる？1ヶ月で実務レベルに近づく練習の順番",
+      "template": "topic:guide",
+      "tools": [
+        "skillhacks",
+        "aidemy"
+      ],
+      "kind": "topic",
+      "cluster": "独学・買い切り",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-20T07:36:42.420Z",
+      "brief": "SELECT→WHERE→JOIN→GROUP BY→サブクエリ→ウィンドウ関数の順。無料の練習環境で毎日15分の問題演習が効く。実務で困るのはSQLの文法ではなく『テーブルの意味を読むこと』。データ分析系スクールではSQLが前半の必修になっている。",
+      "hubs": [
+        "/blog/osusume-hikaku-dokugaku/"
+      ]
+    },
+    {
+      "slug": "topic-git-github-mikeiken",
+      "keyword": "未経験がGitとGitHubを使えるようになる順番。最初の1週間でやること",
+      "template": "topic:guide",
+      "tools": [
+        "fjord",
+        "runteq"
+      ],
+      "kind": "topic",
+      "cluster": "独学・買い切り",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-20T07:36:42.420Z",
+      "brief": "init→add→commit→push→branch→pull request の順で、最初はGUIでもよい。ポートフォリオの評価はコミット履歴でも見られる。スクールの課題提出がGitHub経由の学校は、卒業時点で自然に慣れている。",
+      "hubs": [
+        "/blog/osusume-hikaku-tenshoku/"
+      ]
+    },
+    {
+      "slug": "topic-gakushu-jikan-1nichi",
+      "keyword": "プログラミング学習は1日何時間必要？働きながら続ける現実的な配分",
+      "template": "topic:guide",
+      "tools": [
+        "techacademy",
+        "codecamp",
+        "dmmwebcamp"
+      ],
+      "kind": "topic",
+      "cluster": "選び方",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-20T07:36:42.420Z",
+      "brief": "平日1〜2時間＋休日3〜4時間で週10〜15時間が続く上限。転職目的なら合計300〜600時間が目安として語られるが、個人差が大きい。スクールの『◯週間』は週の想定学習時間とセットで読む。短期集中型は休職や離職が前提のことがある。",
+      "hubs": [
+        "/blog/osusume-hikaku-online/",
+        "/shindan/"
+      ]
+    },
+    {
+      "slug": "topic-counseling-shitsumon",
+      "keyword": "スクールの無料カウンセリングで聞くべき質問リスト。営業トークを見抜く",
+      "template": "topic:guide",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp",
+        "codecamp"
+      ],
+      "kind": "topic",
+      "cluster": "選び方",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-20T07:36:42.420Z",
+      "brief": "聞くべき質問: 転職保証の適用条件と返金条件／質問への返答時間／講師は現役か／途中解約の費用／給付金対象の講座番号／修了要件。営業トークの兆候: 『今日申し込めば割引』『満足度◯%』の根拠を示さない。その場で契約しない。",
+      "hubs": [
+        "/blog/imiaru-erabikata/",
+        "/shindan/"
+      ]
     }
   ],
-  "publishedCount": 71,
-  "estimatedMrrUsd": 21300,
+  "publishedCount": 72,
+  "estimatedMrrUsd": 21600,
   "history": [
     {
       "date": "2026-07-24",
@@ -4504,7 +4603,12 @@
       "date": "2026-09-19",
       "published": 71,
       "estimatedMrrUsd": 21300
+    },
+    {
+      "date": "2026-09-20",
+      "published": 72,
+      "estimatedMrrUsd": 21600
     }
   ],
-  "lastRun": "2026-09-19T07:13:39.215Z"
+  "lastRun": "2026-09-20T07:38:29.664Z"
 }

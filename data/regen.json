@@ -121,6 +121,16 @@
       "date": "2026-09-19",
       "version": 2,
       "ok": true
+    },
+    "osusume-hikaku-online": {
+      "date": "2026-09-20",
+      "version": 2,
+      "ok": true
+    },
+    "osusume-hikaku-hosho": {
+      "date": "2026-09-20",
+      "version": 2,
+      "ok": true
     }
   }
 }

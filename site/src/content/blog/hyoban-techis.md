@@ -116,9 +116,9 @@ draft: false
 
 ## あわせて読みたい
 
+- [テックアイエスは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-techis/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [侍エンジニアの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-samurai/)
 - [侍エンジニアは自分に合う？申込前に潰す3つの不安](/blog/yametoke-samurai/)
 - [侍エンジニアの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-samurai/)
 - [マンツーマン指導のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-mtm/)
-- [AI技術の普及で「仕事のあり方」が劇的に変わる現実](/blog/news-20260919-1h9je/)
