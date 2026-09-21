@@ -139,4 +139,4 @@ SkillHacksは買い切り型のオンライン教材で、購入後は無期限�
 - [SkillHacksは自分に合う？申込前に潰す3つの不安](/blog/yametoke-skillhacks/)
 - [独学・買い切りのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-dokugaku/)
 - [SkillHacksの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-skillhacks/)
-- [テックアイエスは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-techis/)
+- [Google AI Pro月額2,900円でYouTube動画広告を無料にできる理由](/blog/news-20260921-1v2r9/)

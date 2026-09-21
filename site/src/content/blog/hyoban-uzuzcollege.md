@@ -245,6 +245,6 @@ CCNAやAWSなどのIT資格に集中したい場合、ウズウズカレッジ�
 - [ウズウズカレッジの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-uzuzcollege/)
 - [ウズウズカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Google AI Pro月額2,900円でYouTube動画広告を無料にできる理由](/blog/news-20260921-1v2r9/)
 - [テックアイエスは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-techis/)
 - [AI技術の普及で「仕事のあり方」が劇的に変わる現実](/blog/news-20260919-1h9je/)
-- [文字を書かないAI「Jev」は判断だけを高速処理。ChatGPTと何が違う？](/blog/news-20260918-xwttv/)

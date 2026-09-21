@@ -131,6 +131,16 @@
       "date": "2026-09-20",
       "version": 2,
       "ok": true
+    },
+    "osusume-hikaku-tenshoku": {
+      "date": "2026-09-21",
+      "version": 2,
+      "ok": true
+    },
+    "osusume-hikaku-mtm": {
+      "date": "2026-09-21",
+      "version": 2,
+      "ok": true
     }
   }
 }
