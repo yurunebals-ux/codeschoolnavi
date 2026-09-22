@@ -142,6 +142,6 @@ draft: false
 - [ウズウズカレッジの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-uzuzcollege/)
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [日本の古書50トンが米国へ大量輸出、AI学習用か](/blog/news-20260922-yflps/)
 - [Google AI Pro月額2,900円でYouTube動画広告を無料にできる理由](/blog/news-20260921-1v2r9/)
 - [テックアイエスは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-techis/)
-- [AI技術の普及で「仕事のあり方」が劇的に変わる現実](/blog/news-20260919-1h9je/)

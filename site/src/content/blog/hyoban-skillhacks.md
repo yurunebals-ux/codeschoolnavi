@@ -164,4 +164,4 @@ SkillHacksは公式サイトにポートフォリオ制作の支援がないた�
 - [独学・買い切りのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-dokugaku/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Pythonの独学は何ヶ月かかる？挫折しない学習計画の立て方](/blog/topic-python-dokugaku-kikan/)
-- [Google AI Pro月額2,900円でYouTube動画広告を無料にできる理由](/blog/news-20260921-1v2r9/)
+- [日本の古書50トンが米国へ大量輸出、AI学習用か](/blog/news-20260922-yflps/)

@@ -141,6 +141,16 @@
       "date": "2026-09-21",
       "version": 2,
       "ok": true
+    },
+    "hyoban-uzuzcollege": {
+      "date": "2026-09-22",
+      "version": 2,
+      "ok": true
+    },
+    "hyoban-techmeets": {
+      "date": "2026-09-22",
+      "version": 2,
+      "ok": true
     }
   }
 }
