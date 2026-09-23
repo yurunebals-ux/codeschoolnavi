@@ -91,7 +91,9 @@ export function evaluateDraft(md: string, item: KeywordItem, aff: AffMeta, prior
   }
 
   // コンプライアンス：ステマ規制の広告表記が必須。
-  const hasAd = /【?広告】?|プロモーション|ＰＲ|PR|アフィリエイト/.test(md);
+  // ニュース・コラムはアフィリエイトリンクを置かないので表記は不要。ASPのリンクが混ざったときだけ必須にする（2026-09-23）
+  const hasAsp = /a8\.net|moshimo\.com/.test(md);
+  const hasAd = /【?広告】?|プロモーション|ＰＲ|PR|アフィリエイト/.test(md) || (isNews && !hasAsp);
   if (hasAd) pts += 15; else reasons.push("広告表記なし（ステマ規制ブロック）");
 
   // 内部リンク（回遊）。

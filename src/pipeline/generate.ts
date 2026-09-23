@@ -794,8 +794,9 @@ export async function generateNext(): Promise<KeywordItem | null> {
   const fm = frontmatter(item, tools, description, { pub: today, upd: today }, title);
 
   // ステマ規制対応：本文冒頭に明瞭な広告表記。
-  const disclosure = `> 【広告】${aff.disclosure}`;
-  const md = `${fm}\n\n${disclosure}\n\n${body.trim()}\n`;
+  // ニュース・コラムはアフィリエイトリンクを置かない「人を呼ぶ面」なので表記も付けない（オーナー方針 2026-09-23）
+  const disclosure = item.template.startsWith("news:") ? "" : `> 【広告】${aff.disclosure}\n\n`;
+  const md = `${fm}\n\n${disclosure}${body.trim()}\n`;
 
   mkdirSync(paths.drafts, { recursive: true });
   writeFileSync(resolve(paths.drafts, `${item.slug}.md`), md);

@@ -79,7 +79,7 @@ export async function polishRun(): Promise<string | null> {
     const problems: string[] = [];
     if (charCount(cand) < charCount(body) * 0.9) problems.push(`本文が短くなった(${charCount(cand)}字 vs ${charCount(body)}字)`);
     if (h2After < h2Before - 1) problems.push(`見出しが減った(${h2After} vs ${h2Before})`);
-    if (!/【広告】/.test(cand)) problems.push("広告表記が消えた");
+    if (/【広告】/.test(body) && !/【広告】/.test(cand)) problems.push("広告表記が消えた");
     if (/以下省略|（省略）|\.\.\.$/.test(cand)) problems.push("出力が途中で切れた");
     const after = scanAiese(fm + cand).score;
     if (after >= scanAiese(fm + body).score) problems.push(`文体が改善せず(${after})`);
