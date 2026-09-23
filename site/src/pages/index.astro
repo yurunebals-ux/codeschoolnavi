@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Thumb from "../components/Thumb.astro";
-import Cta from "../components/Cta.astro";
 import HeroArt from "../components/HeroArt.astro";
 import Shot from "../components/Shot.astro";
 import shotsFile from "../data/shots.json";
@@ -11,13 +10,8 @@ import { catOf } from "../lib/cat";
 import { shotsFor } from "../lib/school";
 import schools from "../data/schools.json";
 import pricewatch from "../data/pricewatch.json";
-import offersFile from "../data/offers.json";
 
-// 比較表の「公式」列。CTAと同じ offers.json から引くので、提携が承認されれば
-// ここも自動でアフィリンクに変わる。出せるURLが無い行はリンクを出さない。
-const offers = (offersFile as any).offers ?? {};
-const hasSponsored = schools.table.some((s: any) => offers[s.id]?.sponsored)
-  || schools.picks.some((s: any) => offers[s.id]?.sponsored);
+// 比較表・ピックアップの申込導線（offers.json）は 2026-09-23 に外した。申込は各校記事の末尾だけ
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate));
@@ -141,8 +135,8 @@ const heroShots = [
           </dl>
           <ul class="tags">{s.tags.map((tg) => <li>{tg}</li>)}</ul>
           <p class="fit">✓ {s.fit}</p>
+          {/* トップは「人を呼ぶ面」。申込ボタンは置かず、評判記事へ送る（オーナー方針 2026-09-23） */}
           <a class="more" href={s.review}>評判・注意点をくわしく見る</a>
-          <Cta id={s.id} variant="slim" />
         </article>
       ))}
     </div>
@@ -155,20 +149,15 @@ const heroShots = [
       <tbody>
         {schools.table.map((s) => (
           <tr>
-            {/* 公式リンクは独立した列にすると、表が横スクロールする幅のときに
-                画面外へ追い出されて誰にも押されない（実際そうなった）。
-                横スクロールしても残る1列目に入れる。 */}
-            <td class="tname"><b>{s.name}</b>{offers[s.id] && (
-              <><br /><a class="t-official" href={offers[s.id].href} target="_blank" rel={offers[s.id].sponsored ? "sponsored nofollow noopener" : "nofollow noopener"}>公式サイト ↗{offers[s.id].sponsored && <span class="cta-pr">PR</span>}</a></>
-            )}</td>
+            {/* トップの比較表には外部（公式・アフィリエイト）リンクを置かない。申込導線は各校の記事の末尾だけ（2026-09-23） */}
+            <td class="tname"><b>{s.name}</b></td>
             <td>{s.form}</td><td>{s.period}</td><td>{s.price}</td><td>{s.point}</td>
             <td><a href={s.review}>評判を見る</a></td>
           </tr>
         ))}
       </tbody>
     </table>
-    <p class="tnote">※料金・内容は各記事の更新日時点の公式情報に基づきます。最新条件は必ず公式サイトでご確認ください。
-      {hasSponsored && <span> 「PR」の付いたリンクは広告（アフィリエイト）リンクです。報酬の有無は掲載順・評価に影響しません。</span>}</p>
+    <p class="tnote">※料金・内容は各記事の更新日時点の公式情報に基づきます。最新条件は必ず公式サイトでご確認ください。</p>
   </section>
 
   <section class="sec band-green" style="--sec-c:#059669">
