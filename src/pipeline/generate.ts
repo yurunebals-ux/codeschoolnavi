@@ -722,8 +722,10 @@ export function pickNext(state: ReturnType<typeof loadState>): KeywordItem | und
   // オーナー方針（2026-09-11）「全ての記事をアフィリエイトに結びつけなくてもよい。読みに来るだけでも面白いサイトに」。
   // ニュースは間に挟まるので、「直近のニュース以外の1本」を見て交互にする（2026-09-14: 直近1本だけ見ていたので
   // ニュースの翌日は必ず比較記事になり、トピックがほぼ出なかった）。
-  const lastNonNews = [...state.keywords.filter((k) => k.status === "published" && !k.template.startsWith("news:"))]
-    .sort((a, b) => (b.publishedAt ?? "").localeCompare(a.publishedAt ?? ""))[0];
+  // 同じサイクルで書いた下書き（drafted/approved）も含めて見る。1サイクル3本にしたら、公開前の下書きが見えず3本とも比較記事になった（2026-09-23）
+  const when = (k: KeywordItem) => k.publishedAt ?? (k as any).draftedAt ?? "";
+  const lastNonNews = [...state.keywords.filter((k) => ["published", "drafted", "approved"].includes(k.status) && !k.template.startsWith("news:"))]
+    .sort((a, b) => when(b).localeCompare(when(a)))[0];
   const topic = queued.find((k) => k.template.startsWith("topic:"));
   if (topic && lastNonNews && !lastNonNews.template.startsWith("topic:")) return topic;
   // キューは score の高い順（給付金ページ=intent 10 が先）。同点は配列順
@@ -732,7 +734,8 @@ export function pickNext(state: ReturnType<typeof loadState>): KeywordItem | und
 
 /** 検索結果の説明文。1校記事はデータ（受講料・期間・給付金・返金）入りの定型にする（LLM の説明文は平板で CTR 0.4%。2026-09-17） */
 function seoDescription(item: KeywordItem, t: Tool, subsidyIds: string[]): string | null {
-  const price = yen(t);
+  // yen() は「69,800円〜」を返すので、後ろに「〜」を足す定型で「〜〜」になっていた（2026-09-23）
+  const price = yen(t).replace(/〜$/, "");
   const period = t.period && t.period !== "―" ? t.period : "";
   const refund = t.refund && t.refund !== "―" ? t.refund : "";
   const job = t.job_support && t.job_support !== "―" ? t.job_support : "";
@@ -803,6 +806,7 @@ export async function generateNext(): Promise<KeywordItem | null> {
   mkdirSync(paths.drafts, { recursive: true });
   writeFileSync(resolve(paths.drafts, `${item.slug}.md`), md);
   item.status = "drafted";
+  (item as any).draftedAt = new Date().toISOString();
   item.structure = STRUCTURE_VERSION;
   saveState(state);
   console.log(`[writer/editor] 下書き生成 "${item.keyword}" ${isOffline() ? "(オフライン)" : ""}`);
