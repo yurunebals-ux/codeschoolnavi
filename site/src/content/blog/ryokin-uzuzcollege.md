@@ -149,6 +149,6 @@ A4: 個別指導型で資格取得と並行して転職支援を行うが、具�
 - [ウズウズカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-uzuzcollege/)
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Claude Opus 5.5が40%安い理由は性能維持ではなく設計の転換か](/blog/news-20260923-setjj/)
+- [50歳超からゲーム開発者を目指す現実と成功例、年齢は障壁か挑戦か](/blog/news-20260923-161my/)
 - [生成AI時代にプログラミングを学ぶ意味はあるのか](/blog/topic-seisei-ai-jidai-programming/)
-- [日本の古書50トンが米国へ大量輸出、AI学習用か](/blog/news-20260922-yflps/)
-- [Google AI Pro月額2,900円でYouTube動画広告を無料にできる理由](/blog/news-20260921-1v2r9/)

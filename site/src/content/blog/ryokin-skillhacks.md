@@ -211,4 +211,4 @@ SkillHacksに転職支援はありません。転職支援が必要な場合は�
 - [SkillHacksの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-skillhacks/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Pythonの独学は何ヶ月かかる？挫折しない学習計画の立て方](/blog/topic-python-dokugaku-kikan/)
-- [生成AI時代にプログラミングを学ぶ意味はあるのか](/blog/topic-seisei-ai-jidai-programming/)
+- [Claude Opus 5.5が40%安い理由は性能維持ではなく設計の転換か](/blog/news-20260923-setjj/)
