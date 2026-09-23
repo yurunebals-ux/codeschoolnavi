@@ -90,7 +90,7 @@ const ctaAfter = figMapAfter + 1;
           <b>最終確認日: {watch.lastChecked}</b>
           {changeDates.length > 0 && <span> ／ 表示の変化を検出した日: {changeDates.join("、")}</span>}
         </p>
-        <p class="pl-note">※価格そのものは必ず<a class="pl-official" href={watchOffer?.href ?? watch.url} target="_blank" rel={watchOffer?.sponsored ? "sponsored nofollow noopener" : "nofollow noopener"}>公式サイト{watchOffer?.sponsored && <span class="cta-pr">PR</span>}</a>でご確認ください。本ログは記事の料金情報が古くなっていないかを確認するための当サイト独自の仕組みです。</p>
+        <p class="pl-note">※価格そのものは必ず<a class="pl-official" href={watch.url} target="_blank" rel="nofollow noopener">公式サイト</a>でご確認ください。本ログは記事の料金情報が古くなっていないかを確認するための当サイト独自の仕組みです。</p>
       </aside>
     )}
     <Content />
@@ -100,7 +100,7 @@ const ctaAfter = figMapAfter + 1;
       {!d.news && <div class="figslot" data-after="1"><FigPrice highlight={school} /></div>}
       {isKyufu && <div class="figslot" data-after="2"><FigKyufu /></div>}
       {!d.news && <div class="figslot" data-after={figMapAfter}><FigMap highlight={school} /></div>}
-      {ctaId && !d.news && <div class="figslot" data-after={ctaAfter}><Cta id={ctaId} /></div>}
+      {/* 記事途中の申込ボックスは外した。申込ボタンは記事末の1つだけ（オーナー方針 2026-09-23「アフィリエイトは前面に出さない」） */}
     </div>
     <script is:inline>
       // 「編集部の井戸端会議」を吹き出しの会話に、「3行で言うと」を要約カードに、「スレの流れ」をまとめサイト風のレスにする。
