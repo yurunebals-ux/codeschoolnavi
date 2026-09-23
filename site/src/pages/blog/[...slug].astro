@@ -220,47 +220,47 @@ const ctaAfter = figMapAfter + 1;
   </script>
   <style is:global>
     /* 3行で言うと（要約カード） */
-    .tldr{background:#eef2ff;border:1px solid #c7d2fe;border-radius:16px;padding:6px 22px 14px;margin:22px 0}
-    .tldr h2{border-left-color:#4f46e5 !important;margin-top:14px;font-size:17px}
+    .tldr{background:#f5feff;border:1px solid #a5f3fc;border-radius:4px;padding:6px 22px 14px;margin:22px 0}
+    .tldr h2{margin-top:14px;font-size:17px}
     .tldr blockquote{margin:10px 0 0;padding:0;border:0;background:transparent}
-    .tldr blockquote p{margin:6px 0;padding:8px 12px 8px 36px;background:#fff;border-radius:10px;position:relative;font-size:15px;font-weight:600;color:#1e1b4b}
-    .tldr blockquote p::before{content:"✓";position:absolute;left:12px;color:#4f46e5;font-weight:800}
+    .tldr blockquote p{margin:6px 0;padding:8px 12px 8px 36px;background:#fff;border-radius:2px;border:1px solid #e0f2fe;position:relative;font-size:15px;font-weight:600;color:#0f172a}
+    .tldr blockquote p::before{content:">";position:absolute;left:14px;color:#0891b2;font-weight:800;font-family:var(--mono)}
     /* 編集部の井戸端会議（吹き出し） */
-    .kaigi{background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:6px 18px 16px;margin:26px 0}
+    .kaigi{background:#fafcff;border:1px solid #dbe7ef;border-radius:4px;padding:6px 18px 16px;margin:26px 0}
     .kaigi h2{margin-top:14px}
     .kaigi em{display:block;font-size:12px;color:var(--mut);font-style:normal;margin:0 0 10px}
     .kaigi .say{display:flex;gap:10px;align-items:flex-start;margin:10px 0}
     .kaigi .av{flex:none;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:15px}
     .kaigi .bub{background:#fff;border:1px solid #e2e8f0;border-radius:4px 14px 14px 14px;padding:8px 12px;font-size:14.5px;line-height:1.7;max-width:640px}
     .kaigi .bub b{display:block;font-size:11.5px;margin-bottom:2px}
-    .kaigi .say-sakura .av{background:#0f766e}.kaigi .say-sakura b{color:#0f766e}
-    .kaigi .say-mina .av{background:#db2777}.kaigi .say-mina b{color:#db2777}
-    .kaigi .say-takeshi .av{background:#2563eb}.kaigi .say-takeshi b{color:#2563eb}
+    .kaigi .say-sakura .av{background:#0e7490}.kaigi .say-sakura b{color:#0e7490}
+    .kaigi .say-mina .av{background:#c026d3}.kaigi .say-mina b{color:#a21caf}
+    .kaigi .say-takeshi .av{background:#7c3aed}.kaigi .say-takeshi b{color:#6d28d9}
     .kaigi .say-sakura{flex-direction:row-reverse}.kaigi .say-sakura .bub{border-radius:14px 4px 14px 14px;background:#ecfeff}
     /* スレの流れ（まとめサイト風のレス） */
     ol.thread{list-style:none;padding:0;margin:8px 0 0;font-size:14px}
-    ol.thread li{display:grid;grid-template-columns:auto auto 1fr;gap:8px;align-items:baseline;padding:7px 0;border-top:1px dashed #fed7aa}
-    ol.thread li .no{color:#ea580c;font-weight:800}
+    ol.thread li{display:grid;grid-template-columns:auto auto 1fr;gap:8px;align-items:baseline;padding:7px 0;border-top:1px dashed #f0abfc}
+    ol.thread li .no{color:#a21caf;font-weight:800;font-family:var(--mono)}
     ol.thread li .nm{color:#16a34a;font-weight:700;font-size:12.5px}
     ol.thread li .tx{color:#1f2937}
-    ol.thread li.desk{background:#fff;border:1px solid #fed7aa;border-radius:10px;padding:10px 12px;margin-bottom:6px}
-    ol.thread li.desk .nm{color:#1d4ed8}
+    ol.thread li.desk{background:#fff;border:1px solid #a5f3fc;border-radius:2px;padding:10px 12px;margin-bottom:6px}
+    ol.thread li.desk .nm{color:#0e7490}
     ol.thread li.desk .tx{font-weight:600;color:#0f172a}
     ol.thread li.abroad .nm{color:#7c3aed}
-    .thread-box h2{border-left-color:#f97316 !important}
+    .thread-box h2{}
     /* ネットの反応（まとめサイト風の箱。JSで包むので is:global） */
-    .reactions{background:linear-gradient(180deg,#fff7ed,#fff);border:1px solid #fed7aa;border-radius:16px;padding:4px 22px 16px;margin:26px 0}
-    .reactions h2{border-left-color:#f97316 !important;margin-top:16px}
-    .reactions h3{font-size:15px;margin:18px 0 6px;padding-left:10px;border-left:3px solid #fdba74}
+    .reactions{background:linear-gradient(180deg,#fdf4ff,#fff);border:1px solid #f5d0fe;border-radius:4px;padding:4px 22px 16px;margin:26px 0}
+    .reactions h2{margin-top:16px}
+    .reactions h3{font-size:15px;margin:18px 0 6px}
     .reactions p{font-size:15px}
     .reactions p:last-child{font-size:12.5px;color:var(--mut)}
   </style>
   <style>
-    .pricelog{background:#f0f9ff;border:1px solid #bae6fd;border-radius:12px;padding:14px 18px;margin:0 0 24px}
+    .pricelog{background:#f5feff;border:1px solid #a5f3fc;border-radius:4px;padding:14px 18px;margin:0 0 24px}
     .pricelog .pl-title{font-weight:800;color:#0c4a6e;font-size:13.5px;margin-bottom:6px}
     .pricelog .pl-body{font-size:13px;color:#0f172a;margin:0 0 6px}
     .pricelog .pl-note{font-size:11.5px;color:#64748b;margin:0}
-    .authorbox{display:flex;gap:14px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px 18px;margin:34px 0 0}
+    .authorbox{display:flex;gap:14px;background:#fff;border:1px solid #dbe7ef;border-radius:4px;padding:16px 18px;margin:34px 0 0}
     .authorbox .ab-av{flex:none;line-height:0}
     .authorbox b{color:#0f2744;font-size:14px}
     .authorbox p{font-size:12.5px;color:#475569;line-height:1.8;margin:4px 0 0}
