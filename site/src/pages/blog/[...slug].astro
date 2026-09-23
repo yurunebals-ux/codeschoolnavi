@@ -247,6 +247,12 @@ const ctaAfter = figMapAfter + 1;
     ol.thread li.desk .nm{color:#0e7490}
     ol.thread li.desk .tx{font-weight:600;color:#0f172a}
     ol.thread li.abroad .nm{color:#7c3aed}
+    /* スマホで本文が右の細い列に押し込まれていた（2026-09-23 iPhone 実測）。狭い画面では番号・名前を1行目、本文を2行目の全幅に */
+    @media (max-width:600px){
+      ol.thread li{grid-template-columns:auto 1fr;row-gap:2px}
+      ol.thread li .tx{grid-column:1 / -1}
+      .reactions,.kaigi,.tldr{padding-left:12px;padding-right:12px}
+    }
     .thread-box h2{}
     /* ネットの反応（まとめサイト風の箱。JSで包むので is:global） */
     .reactions{background:linear-gradient(180deg,#fdf4ff,#fff);border:1px solid #f5d0fe;border-radius:4px;padding:4px 22px 16px;margin:26px 0}
