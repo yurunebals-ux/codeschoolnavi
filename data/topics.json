@@ -1,32 +1,600 @@
 {
   "_note": "スクール比較以外の「学習・キャリア・AI」のトピック記事。src/pipeline/keyword.ts が topic:guide としてキューに入れ、generate.ts が brief を要点として渡す。統計値は書かせない（出典を示せないため）。hubs は本文から内部リンクさせる自サイトのページ。",
   "topics": [
-    { "slug": "topic-ai-engineer-mikeiken", "keyword": "未経験からAIエンジニアになるには？学ぶ順番と現実的な期間", "cluster": "AI・データ分析", "tools": ["kikagaku", "skillupai", "aidemy"], "hubs": ["/blog/osusume-hikaku-ai/", "/kyufukin/"], "brief": "Python→数学の最低限（線形代数・確率の基礎）→機械学習の定番手法→深層学習→ポートフォリオ（Kaggleや自作アプリ）の順。未経験が最初に深層学習から入ると挫折しやすい。実務ではデータ前処理とSQLの比重が大きい。転職では『何を作ったか』が学歴より見られる。専門実践教育訓練の対象講座なら受講費用の50%（年間上限40万円）が戻る。" },
-    { "slug": "topic-python-dokugaku-kikan", "keyword": "Pythonの独学は何ヶ月かかる？挫折しない学習計画の立て方", "cluster": "独学・買い切り", "tools": ["skillhacks", "techacademy"], "hubs": ["/blog/osusume-hikaku-dokugaku/", "/shindan/"], "brief": "1日1〜2時間なら基礎文法に1ヶ月、小さな自作ツールに2ヶ月目、以降は目的（Web/データ/自動化）で分岐。挫折の主因は『教材を最後まで読む』学習法で、写経→改造→自作の順に切り替えると続く。詰まったときに質問できる相手がいるかが独学とスクールの分かれ目。" },
-    { "slug": "topic-seisei-ai-jidai-programming", "keyword": "生成AI時代にプログラミングを学ぶ意味はあるのか", "cluster": "選び方", "tools": ["dmmaicamp", "runteq"], "hubs": ["/blog/imiaru-erabikata/", "/blog/osusume-hikaku-ai/"], "brief": "コードを書く作業はAIが肩代わりするが、要件を分解し・AIの出力を検証し・システムとして組み立てる力は残る。学ぶ内容の重心が『文法暗記』から『設計と検証』に移る。初学者ほどAIに書かせすぎると基礎が抜ける。学ぶ価値は『AIを使って何を作れるか』で決まる。" },
-    { "slug": "topic-chatgpt-programming-gakushu", "keyword": "ChatGPTでプログラミングを学ぶやり方と、頼りすぎて伸びない人の共通点", "cluster": "独学・買い切り", "tools": ["skillhacks", "fjord"], "hubs": ["/blog/osusume-hikaku-dokugaku/", "/shindan/"], "brief": "使い方の型: エラー文を貼って原因を説明させる／自分のコードを添削させる／概念を例え話で説明させる。伸びない型: 課題を丸投げして答えをコピーする。対策は『まず自分で書いてからAIに直させる』順番の固定。スクールのメンターとの違いは、間違いに気づく側の責任が誰にあるか。" },
-    { "slug": "topic-engineer-tenshoku-nenrei", "keyword": "エンジニア転職に年齢制限はある？20代・30代・40代で変わる現実", "cluster": "転職特化", "tools": ["dmmwebcamp", "techcamp", "uzuzcollege"], "hubs": ["/blog/osusume-hikaku-tenshoku/", "/kyufukin/"], "brief": "法律上の年齢制限はないが、転職保証の適用条件に年齢上限を置くスクールがある（条件は各校の公式で確認）。20代はポテンシャル採用、30代は前職経験との掛け算、40代は業務知識×ITで狙う領域を絞る。年齢が上がるほど『何を作ったか』の証拠が必要になる。" },
-    { "slug": "topic-portfolio-mikeiken", "keyword": "未経験のポートフォリオは何を作ればいい？評価される作品と落とされる作品", "cluster": "転職特化", "tools": ["runteq", "fjord", "potepan"], "hubs": ["/blog/osusume-hikaku-tenshoku/", "/shindan/"], "brief": "評価されるのは『誰の何の困りごとを解いたか』が説明できる作品。落とされるのはチュートリアルの写しとTodoアプリ単体。README・テスト・デプロイ済みURL・Git履歴の4点で完成度が伝わる。スクールの課題作品はそのまま出さず、独自機能を1つ足す。" },
-    { "slug": "topic-e-shikaku-kachi", "keyword": "E資格は取る価値がある？費用・難易度・転職での見られ方", "cluster": "AI・データ分析", "tools": ["aijobcolle", "avilen", "kikagaku"], "hubs": ["/blog/osusume-hikaku-ai/", "/kyufukin/"], "brief": "E資格はJDLA認定プログラムの修了が受験条件で、講座費用が実質の受験コスト。資格そのものより『認定講座で実装まで学んだ』ことの証明として機能する。転職では未経験者の熱量の証拠、経験者には効果が薄い。給付金対象の認定講座を選べば費用は下がる（対象講座は各校の指定を確認）。" },
-    { "slug": "topic-g-kentei-tenshoku", "keyword": "G検定は転職に役立つ？取ってから分かる使いどころ", "cluster": "AI・データ分析", "tools": ["kikagaku", "aidemy"], "hubs": ["/blog/osusume-hikaku-ai/"], "brief": "G検定は実装ではなく『AIを事業でどう使うか』の知識試験。エンジニア転職の武器にはなりにくいが、企画・営業・管理職がAI案件を扱う入口には向く。E資格との違いは実装の有無。学習は公式テキスト＋過去問中心で独学可能。" },
-    { "slug": "topic-web-vs-ai-engineer", "keyword": "WebエンジニアとAIエンジニア、未経験はどっちを目指すべきか", "cluster": "選び方", "tools": ["dmmwebcamp", "kikagaku"], "hubs": ["/blog/osusume-hikaku-tenshoku/", "/blog/osusume-hikaku-ai/", "/shindan/"], "brief": "求人の入口の広さはWeb、専門性と数学の前提はAI。未経験からの最短はWeb→実務でデータを触る→AIへ寄せる順が多い。AIスクールは受講料が高め（当サイトのデータでは数十万円〜）で、給付金対象講座の有無が費用差を左右する。" },
-    { "slug": "topic-saisho-no-gengo", "keyword": "最初に学ぶプログラミング言語はどれ？目的別の決め方", "cluster": "選び方", "tools": ["techacademy", "codecamp"], "hubs": ["/blog/osusume-hikaku-online/", "/shindan/"], "brief": "Web制作ならHTML/CSS→JavaScript、Web開発ならRubyかPHPかJavaScript、データ・AIならPython、業務自動化ならPython。言語選びより『何を作るか』を先に決めるほうが挫折しない。スクールは言語ではなくコースの到達物（何を作って修了するか）で選ぶ。" },
-    { "slug": "topic-dokugaku-vs-school", "keyword": "独学とプログラミングスクール、費用と期間で比べるとどこが分かれ目か", "cluster": "選び方", "tools": ["skillhacks", "techacademy", "dmmwebcamp"], "hubs": ["/blog/imiaru-erabikata/", "/blog/osusume-hikaku-dokugaku/", "/kyufukin/"], "brief": "独学は教材費が数千円〜数万円、スクールは数万円〜数十万円。差額で買っているのは『質問できる相手』『期限』『転職支援』の3つ。独学で3ヶ月続いた人はスクールでも伸びる。続かなかった人が期限と伴走を買うのは合理的。給付金対象なら差額は縮む。" },
-    { "slug": "topic-kyufukin-shinsei-otoshiana", "keyword": "教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味", "cluster": "給付金対象", "tools": ["dmmwebcamp", "techcamp"], "hubs": ["/kyufukin/", "/blog/kyufukin-osusume/"], "brief": "特定一般と専門実践は受講開始日の2週間前までにハローワークで手続きが必要で、遅れると対象外。雇用保険の加入期間の条件、離職後の期限、指定講座かどうかの講座番号確認、修了要件（出席率・成績）で給付が止まる例。スクールの『給付金対象』表記は講座単位なので、自分が申し込むコースが対象かを確認する。" },
-    { "slug": "topic-reskilling-vs-kyufukin", "keyword": "リスキリング補助と教育訓練給付金は別物。混同すると損をする理由", "cluster": "給付金対象", "tools": ["techacademy", "dmmwebcamp"], "hubs": ["/kyufukin/", "/blog/kyufukin-osusume/"], "brief": "経済産業省の『リスキリングを通じたキャリアアップ支援事業』は事業者経由の補助で、転職要件と併用条件がある。厚生労働省の教育訓練給付金は個人がハローワークで申請する制度。スクールの『最大70%』表記はどちらの制度かを見ないと、期待した額が戻らない。両制度の併用可否は各校の案内で確認。" },
-    { "slug": "topic-fukugyo-programming-genjitsu", "keyword": "プログラミング副業の現実。最初の案件を取るまでに必要なもの", "cluster": "選び方", "tools": ["skillhacks", "codecamp"], "hubs": ["/blog/osusume-hikaku-online/", "/shindan/"], "brief": "最初の案件は知人の紹介かクラウドソーシングの低単価から。Web制作（LP・WordPress）が入口になりやすい。必要なのは制作実績3つ・納期を守った履歴・見積もりの出し方。スクールの『副業サポート』は案件紹介の有無と条件で中身が違う。" },
-    { "slug": "topic-ai-ni-shigoto", "keyword": "AIにエンジニアの仕事は奪われる？これから学ぶ人が押さえる分かれ目", "cluster": "選び方", "tools": ["dmmaicamp", "runteq"], "hubs": ["/blog/osusume-hikaku-ai/", "/blog/imiaru-erabikata/"], "brief": "減るのは『仕様が固まったコードを書く』作業、残るのは要件定義・設計・レビュー・運用・AIの出力の検証。学習の重心を『動くものを作る→なぜ動くかを説明できる』に置く。AIツールを使いこなす側に回るかどうかが分かれ目。" },
-    { "slug": "topic-data-scientist-vs-ai-engineer", "keyword": "データサイエンティストとAIエンジニアの違い。学ぶ内容と向く人", "cluster": "AI・データ分析", "tools": ["kikagaku", "aidemy", "skillupai"], "hubs": ["/blog/osusume-hikaku-ai/"], "brief": "データサイエンティストは分析と意思決定支援（統計・SQL・可視化）、AIエンジニアはモデルの実装と運用（Python・深層学習・クラウド）。文系・企画職からはデータ分析側が入りやすい。スクールのコース名は似ていても到達物が違うので、修了時に何が作れるかで見分ける。" },
-    { "slug": "topic-sql-dokugaku", "keyword": "SQLは独学できる？1ヶ月で実務レベルに近づく練習の順番", "cluster": "独学・買い切り", "tools": ["skillhacks", "aidemy"], "hubs": ["/blog/osusume-hikaku-dokugaku/"], "brief": "SELECT→WHERE→JOIN→GROUP BY→サブクエリ→ウィンドウ関数の順。無料の練習環境で毎日15分の問題演習が効く。実務で困るのはSQLの文法ではなく『テーブルの意味を読むこと』。データ分析系スクールではSQLが前半の必修になっている。" },
-    { "slug": "topic-git-github-mikeiken", "keyword": "未経験がGitとGitHubを使えるようになる順番。最初の1週間でやること", "cluster": "独学・買い切り", "tools": ["fjord", "runteq"], "hubs": ["/blog/osusume-hikaku-tenshoku/"], "brief": "init→add→commit→push→branch→pull request の順で、最初はGUIでもよい。ポートフォリオの評価はコミット履歴でも見られる。スクールの課題提出がGitHub経由の学校は、卒業時点で自然に慣れている。" },
-    { "slug": "topic-gakushu-jikan-1nichi", "keyword": "プログラミング学習は1日何時間必要？働きながら続ける現実的な配分", "cluster": "選び方", "tools": ["techacademy", "codecamp", "dmmwebcamp"], "hubs": ["/blog/osusume-hikaku-online/", "/shindan/"], "brief": "平日1〜2時間＋休日3〜4時間で週10〜15時間が続く上限。転職目的なら合計300〜600時間が目安として語られるが、個人差が大きい。スクールの『◯週間』は週の想定学習時間とセットで読む。短期集中型は休職や離職が前提のことがある。" },
-    { "slug": "topic-counseling-shitsumon", "keyword": "スクールの無料カウンセリングで聞くべき質問リスト。営業トークを見抜く", "cluster": "選び方", "tools": ["dmmwebcamp", "techcamp", "codecamp"], "hubs": ["/blog/imiaru-erabikata/", "/shindan/"], "brief": "聞くべき質問: 転職保証の適用条件と返金条件／質問への返答時間／講師は現役か／途中解約の費用／給付金対象の講座番号／修了要件。営業トークの兆候: 『今日申し込めば割引』『満足度◯%』の根拠を示さない。その場で契約しない。" },
-    { "slug": "topic-tenshoku-hosho-karakuri", "keyword": "転職保証のからくり。返金される条件とされない条件の読み方", "cluster": "転職特化", "tools": ["dmmwebcamp", "techcamp", "potepan"], "hubs": ["/blog/osusume-hikaku-tenshoku/"], "brief": "保証は『条件を満たして転職できなければ返金』で、条件には年齢・居住地・応募社数・出席率・紹介企業への応募義務などがある。『転職成功』の定義（正社員か、SESを含むか）で中身が変わる。保証の有無より条件文を読む。" },
-    { "slug": "topic-bootcamp-vs-daigaku", "keyword": "短期集中スクールと専門学校・大学、費用と得られるもので比べる", "cluster": "選び方", "tools": ["techcamp", "winschool"], "hubs": ["/blog/osusume-hikaku-tsugaku/", "/kyufukin/"], "brief": "短期集中は数ヶ月・数十万円で転職直結、専門学校は2年・数百万円で学位や新卒枠、大学は理論と時間。社会人の学び直しは短期集中か通信制。給付金の対象は講座単位。" },
-    { "slug": "topic-llm-app-hajimekata", "keyword": "LLMアプリ開発の始め方。Python初心者が最初に作る3つ", "cluster": "AI・データ分析", "tools": ["dmmaicamp", "kikagaku"], "hubs": ["/blog/osusume-hikaku-ai/"], "brief": "APIを呼ぶチャット→自分の文書に答えるRAG→定型業務を自動化するエージェントの順。必要なのは深層学習の理論より、API・プロンプト設計・評価の仕組み。生成AI特化コースはここを扱う。費用対比で見るなら、まず無料枠で1つ作ってからスクールを検討する。" },
-    { "slug": "topic-prompt-engineer-shokugyo", "keyword": "プロンプトエンジニアは職業として成立する？求められる中身", "cluster": "AI・データ分析", "tools": ["skillupai", "dmmaicamp"], "hubs": ["/blog/osusume-hikaku-ai/"], "brief": "単独職種というより、既存職種（企画・開発・マーケ）にAI活用の設計力が足された形で募集されることが多い。評価されるのはプロンプトの言い回しより、業務を分解してAIに任せる範囲を決める力と、出力の評価設計。講座名に『プロンプトエンジニア』とあるコースは中身の到達物で判断。" },
-    { "slug": "topic-aws-shikaku-mikeiken", "keyword": "AWS資格は未経験転職に効く？取る順番と、資格だけでは足りない理由", "cluster": "転職特化", "tools": ["runteq", "dmmwebcamp"], "hubs": ["/blog/osusume-hikaku-tenshoku/"], "brief": "クラウドプラクティショナー→ソリューションアーキテクトアソシエイトの順が定番。未経験ではインフラ系の入口で有利に働くが、Web開発職では『作ったもの』のほうが見られる。スクールのカリキュラムにデプロイ（AWSやHeroku等）が入っているかで実務感が変わる。" },
-    { "slug": "topic-40dai-programming", "keyword": "40代からプログラミングを学ぶ人の現実。転職・副業・社内活用で分かれる道", "cluster": "選び方", "tools": ["winschool", "techacademy"], "hubs": ["/blog/osusume-hikaku-tsugaku/", "/kyufukin/"], "brief": "転職は前職の業務知識×ITで狙う領域を絞る。副業は制作系が入りやすい。社内活用（業務自動化・データ集計）は最も再現性が高い。転職保証の年齢条件は40代で外れる学校が多いので条件を先に確認。学び直しは給付金の対象講座なら費用が下がる。" },
-    { "slug": "topic-ai-coding-tools-gakushu", "keyword": "AIコーディング支援ツールは学習に使うべき？初心者が伸びる使い方", "cluster": "独学・買い切り", "tools": ["fjord", "runteq"], "hubs": ["/blog/osusume-hikaku-dokugaku/"], "brief": "補完型（Copilot等）は初学者が使うと『読めないコードが増える』。最初の1〜2ヶ月は切って書き、その後は『生成→自分で説明できるか→説明できない行は消す』の運用に。スクールによってはAIツールの使用ルールがあるので確認。" }
+    {
+      "slug": "topic-ai-engineer-mikeiken",
+      "keyword": "未経験からAIエンジニアになるには？学ぶ順番と現実的な期間",
+      "cluster": "AI・データ分析",
+      "tools": [
+        "kikagaku",
+        "skillupai",
+        "aidemy"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-ai/",
+        "/kyufukin/"
+      ],
+      "brief": "Python→数学の最低限（線形代数・確率の基礎）→機械学習の定番手法→深層学習→ポートフォリオ（Kaggleや自作アプリ）の順。未経験が最初に深層学習から入ると挫折しやすい。実務ではデータ前処理とSQLの比重が大きい。転職では『何を作ったか』が学歴より見られる。専門実践教育訓練の対象講座なら受講費用の50%（年間上限40万円）が戻る。"
+    },
+    {
+      "slug": "topic-python-dokugaku-kikan",
+      "keyword": "Pythonの独学は何ヶ月かかる？挫折しない学習計画の立て方",
+      "cluster": "独学・買い切り",
+      "tools": [
+        "skillhacks",
+        "techacademy"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-dokugaku/",
+        "/shindan/"
+      ],
+      "brief": "1日1〜2時間なら基礎文法に1ヶ月、小さな自作ツールに2ヶ月目、以降は目的（Web/データ/自動化）で分岐。挫折の主因は『教材を最後まで読む』学習法で、写経→改造→自作の順に切り替えると続く。詰まったときに質問できる相手がいるかが独学とスクールの分かれ目。"
+    },
+    {
+      "slug": "topic-seisei-ai-jidai-programming",
+      "keyword": "生成AI時代にプログラミングを学ぶ意味はあるのか",
+      "cluster": "選び方",
+      "tools": [
+        "dmmaicamp",
+        "runteq"
+      ],
+      "hubs": [
+        "/blog/imiaru-erabikata/",
+        "/blog/osusume-hikaku-ai/"
+      ],
+      "brief": "コードを書く作業はAIが肩代わりするが、要件を分解し・AIの出力を検証し・システムとして組み立てる力は残る。学ぶ内容の重心が『文法暗記』から『設計と検証』に移る。初学者ほどAIに書かせすぎると基礎が抜ける。学ぶ価値は『AIを使って何を作れるか』で決まる。"
+    },
+    {
+      "slug": "topic-chatgpt-programming-gakushu",
+      "keyword": "ChatGPTでプログラミングを学ぶやり方と、頼りすぎて伸びない人の共通点",
+      "cluster": "独学・買い切り",
+      "tools": [
+        "skillhacks",
+        "fjord"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-dokugaku/",
+        "/shindan/"
+      ],
+      "brief": "使い方の型: エラー文を貼って原因を説明させる／自分のコードを添削させる／概念を例え話で説明させる。伸びない型: 課題を丸投げして答えをコピーする。対策は『まず自分で書いてからAIに直させる』順番の固定。スクールのメンターとの違いは、間違いに気づく側の責任が誰にあるか。"
+    },
+    {
+      "slug": "topic-engineer-tenshoku-nenrei",
+      "keyword": "エンジニア転職に年齢制限はある？20代・30代・40代で変わる現実",
+      "cluster": "転職特化",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp",
+        "uzuzcollege"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-tenshoku/",
+        "/kyufukin/"
+      ],
+      "brief": "法律上の年齢制限はないが、転職保証の適用条件に年齢上限を置くスクールがある（条件は各校の公式で確認）。20代はポテンシャル採用、30代は前職経験との掛け算、40代は業務知識×ITで狙う領域を絞る。年齢が上がるほど『何を作ったか』の証拠が必要になる。"
+    },
+    {
+      "slug": "topic-portfolio-mikeiken",
+      "keyword": "未経験のポートフォリオは何を作ればいい？評価される作品と落とされる作品",
+      "cluster": "転職特化",
+      "tools": [
+        "runteq",
+        "fjord",
+        "potepan"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-tenshoku/",
+        "/shindan/"
+      ],
+      "brief": "評価されるのは『誰の何の困りごとを解いたか』が説明できる作品。落とされるのはチュートリアルの写しとTodoアプリ単体。README・テスト・デプロイ済みURL・Git履歴の4点で完成度が伝わる。スクールの課題作品はそのまま出さず、独自機能を1つ足す。"
+    },
+    {
+      "slug": "topic-e-shikaku-kachi",
+      "keyword": "E資格は取る価値がある？費用・難易度・転職での見られ方",
+      "cluster": "AI・データ分析",
+      "tools": [
+        "aijobcolle",
+        "avilen",
+        "kikagaku"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-ai/",
+        "/kyufukin/"
+      ],
+      "brief": "E資格はJDLA認定プログラムの修了が受験条件で、講座費用が実質の受験コスト。資格そのものより『認定講座で実装まで学んだ』ことの証明として機能する。転職では未経験者の熱量の証拠、経験者には効果が薄い。給付金対象の認定講座を選べば費用は下がる（対象講座は各校の指定を確認）。"
+    },
+    {
+      "slug": "topic-g-kentei-tenshoku",
+      "keyword": "G検定は転職に役立つ？取ってから分かる使いどころ",
+      "cluster": "AI・データ分析",
+      "tools": [
+        "kikagaku",
+        "aidemy"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-ai/"
+      ],
+      "brief": "G検定は実装ではなく『AIを事業でどう使うか』の知識試験。エンジニア転職の武器にはなりにくいが、企画・営業・管理職がAI案件を扱う入口には向く。E資格との違いは実装の有無。学習は公式テキスト＋過去問中心で独学可能。"
+    },
+    {
+      "slug": "topic-web-vs-ai-engineer",
+      "keyword": "WebエンジニアとAIエンジニア、未経験はどっちを目指すべきか",
+      "cluster": "選び方",
+      "tools": [
+        "dmmwebcamp",
+        "kikagaku"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-tenshoku/",
+        "/blog/osusume-hikaku-ai/",
+        "/shindan/"
+      ],
+      "brief": "求人の入口の広さはWeb、専門性と数学の前提はAI。未経験からの最短はWeb→実務でデータを触る→AIへ寄せる順が多い。AIスクールは受講料が高め（当サイトのデータでは数十万円〜）で、給付金対象講座の有無が費用差を左右する。"
+    },
+    {
+      "slug": "topic-saisho-no-gengo",
+      "keyword": "最初に学ぶプログラミング言語はどれ？目的別の決め方",
+      "cluster": "選び方",
+      "tools": [
+        "techacademy",
+        "codecamp"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-online/",
+        "/shindan/"
+      ],
+      "brief": "Web制作ならHTML/CSS→JavaScript、Web開発ならRubyかPHPかJavaScript、データ・AIならPython、業務自動化ならPython。言語選びより『何を作るか』を先に決めるほうが挫折しない。スクールは言語ではなくコースの到達物（何を作って修了するか）で選ぶ。"
+    },
+    {
+      "slug": "topic-dokugaku-vs-school",
+      "keyword": "独学とプログラミングスクール、費用と期間で比べるとどこが分かれ目か",
+      "cluster": "選び方",
+      "tools": [
+        "skillhacks",
+        "techacademy",
+        "dmmwebcamp"
+      ],
+      "hubs": [
+        "/blog/imiaru-erabikata/",
+        "/blog/osusume-hikaku-dokugaku/",
+        "/kyufukin/"
+      ],
+      "brief": "独学は教材費が数千円〜数万円、スクールは数万円〜数十万円。差額で買っているのは『質問できる相手』『期限』『転職支援』の3つ。独学で3ヶ月続いた人はスクールでも伸びる。続かなかった人が期限と伴走を買うのは合理的。給付金対象なら差額は縮む。"
+    },
+    {
+      "slug": "topic-kyufukin-shinsei-otoshiana",
+      "keyword": "教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味",
+      "cluster": "給付金対象",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp"
+      ],
+      "hubs": [
+        "/kyufukin/",
+        "/blog/kyufukin-osusume/"
+      ],
+      "brief": "特定一般と専門実践は受講開始日の2週間前までにハローワークで手続きが必要で、遅れると対象外。雇用保険の加入期間の条件、離職後の期限、指定講座かどうかの講座番号確認、修了要件（出席率・成績）で給付が止まる例。スクールの『給付金対象』表記は講座単位なので、自分が申し込むコースが対象かを確認する。"
+    },
+    {
+      "slug": "topic-reskilling-vs-kyufukin",
+      "keyword": "リスキリング補助と教育訓練給付金は別物。混同すると損をする理由",
+      "cluster": "給付金対象",
+      "tools": [
+        "techacademy",
+        "dmmwebcamp"
+      ],
+      "hubs": [
+        "/kyufukin/",
+        "/blog/kyufukin-osusume/"
+      ],
+      "brief": "経済産業省の『リスキリングを通じたキャリアアップ支援事業』は事業者経由の補助で、転職要件と併用条件がある。厚生労働省の教育訓練給付金は個人がハローワークで申請する制度。スクールの『最大70%』表記はどちらの制度かを見ないと、期待した額が戻らない。両制度の併用可否は各校の案内で確認。"
+    },
+    {
+      "slug": "topic-fukugyo-programming-genjitsu",
+      "keyword": "プログラミング副業の現実。最初の案件を取るまでに必要なもの",
+      "cluster": "選び方",
+      "tools": [
+        "skillhacks",
+        "codecamp"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-online/",
+        "/shindan/"
+      ],
+      "brief": "最初の案件は知人の紹介かクラウドソーシングの低単価から。Web制作（LP・WordPress）が入口になりやすい。必要なのは制作実績3つ・納期を守った履歴・見積もりの出し方。スクールの『副業サポート』は案件紹介の有無と条件で中身が違う。"
+    },
+    {
+      "slug": "topic-ai-ni-shigoto",
+      "keyword": "AIにエンジニアの仕事は奪われる？これから学ぶ人が押さえる分かれ目",
+      "cluster": "選び方",
+      "tools": [
+        "dmmaicamp",
+        "runteq"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-ai/",
+        "/blog/imiaru-erabikata/"
+      ],
+      "brief": "減るのは『仕様が固まったコードを書く』作業、残るのは要件定義・設計・レビュー・運用・AIの出力の検証。学習の重心を『動くものを作る→なぜ動くかを説明できる』に置く。AIツールを使いこなす側に回るかどうかが分かれ目。"
+    },
+    {
+      "slug": "topic-data-scientist-vs-ai-engineer",
+      "keyword": "データサイエンティストとAIエンジニアの違い。学ぶ内容と向く人",
+      "cluster": "AI・データ分析",
+      "tools": [
+        "kikagaku",
+        "aidemy",
+        "skillupai"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-ai/"
+      ],
+      "brief": "データサイエンティストは分析と意思決定支援（統計・SQL・可視化）、AIエンジニアはモデルの実装と運用（Python・深層学習・クラウド）。文系・企画職からはデータ分析側が入りやすい。スクールのコース名は似ていても到達物が違うので、修了時に何が作れるかで見分ける。"
+    },
+    {
+      "slug": "topic-sql-dokugaku",
+      "keyword": "SQLは独学できる？1ヶ月で実務レベルに近づく練習の順番",
+      "cluster": "独学・買い切り",
+      "tools": [
+        "skillhacks",
+        "aidemy"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-dokugaku/"
+      ],
+      "brief": "SELECT→WHERE→JOIN→GROUP BY→サブクエリ→ウィンドウ関数の順。無料の練習環境で毎日15分の問題演習が効く。実務で困るのはSQLの文法ではなく『テーブルの意味を読むこと』。データ分析系スクールではSQLが前半の必修になっている。"
+    },
+    {
+      "slug": "topic-git-github-mikeiken",
+      "keyword": "未経験がGitとGitHubを使えるようになる順番。最初の1週間でやること",
+      "cluster": "独学・買い切り",
+      "tools": [
+        "fjord",
+        "runteq"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-tenshoku/"
+      ],
+      "brief": "init→add→commit→push→branch→pull request の順で、最初はGUIでもよい。ポートフォリオの評価はコミット履歴でも見られる。スクールの課題提出がGitHub経由の学校は、卒業時点で自然に慣れている。"
+    },
+    {
+      "slug": "topic-gakushu-jikan-1nichi",
+      "keyword": "プログラミング学習は1日何時間必要？働きながら続ける現実的な配分",
+      "cluster": "選び方",
+      "tools": [
+        "techacademy",
+        "codecamp",
+        "dmmwebcamp"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-online/",
+        "/shindan/"
+      ],
+      "brief": "平日1〜2時間＋休日3〜4時間で週10〜15時間が続く上限。転職目的なら合計300〜600時間が目安として語られるが、個人差が大きい。スクールの『◯週間』は週の想定学習時間とセットで読む。短期集中型は休職や離職が前提のことがある。"
+    },
+    {
+      "slug": "topic-counseling-shitsumon",
+      "keyword": "スクールの無料カウンセリングで聞くべき質問リスト。営業トークを見抜く",
+      "cluster": "選び方",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp",
+        "codecamp"
+      ],
+      "hubs": [
+        "/blog/imiaru-erabikata/",
+        "/shindan/"
+      ],
+      "brief": "聞くべき質問: 転職保証の適用条件と返金条件／質問への返答時間／講師は現役か／途中解約の費用／給付金対象の講座番号／修了要件。営業トークの兆候: 『今日申し込めば割引』『満足度◯%』の根拠を示さない。その場で契約しない。"
+    },
+    {
+      "slug": "topic-tenshoku-hosho-karakuri",
+      "keyword": "転職保証のからくり。返金される条件とされない条件の読み方",
+      "cluster": "転職特化",
+      "tools": [
+        "dmmwebcamp",
+        "techcamp",
+        "potepan"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-tenshoku/"
+      ],
+      "brief": "保証は『条件を満たして転職できなければ返金』で、条件には年齢・居住地・応募社数・出席率・紹介企業への応募義務などがある。『転職成功』の定義（正社員か、SESを含むか）で中身が変わる。保証の有無より条件文を読む。"
+    },
+    {
+      "slug": "topic-bootcamp-vs-daigaku",
+      "keyword": "短期集中スクールと専門学校・大学、費用と得られるもので比べる",
+      "cluster": "選び方",
+      "tools": [
+        "techcamp",
+        "winschool"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-tsugaku/",
+        "/kyufukin/"
+      ],
+      "brief": "短期集中は数ヶ月・数十万円で転職直結、専門学校は2年・数百万円で学位や新卒枠、大学は理論と時間。社会人の学び直しは短期集中か通信制。給付金の対象は講座単位。"
+    },
+    {
+      "slug": "topic-llm-app-hajimekata",
+      "keyword": "LLMアプリ開発の始め方。Python初心者が最初に作る3つ",
+      "cluster": "AI・データ分析",
+      "tools": [
+        "dmmaicamp",
+        "kikagaku"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-ai/"
+      ],
+      "brief": "APIを呼ぶチャット→自分の文書に答えるRAG→定型業務を自動化するエージェントの順。必要なのは深層学習の理論より、API・プロンプト設計・評価の仕組み。生成AI特化コースはここを扱う。費用対比で見るなら、まず無料枠で1つ作ってからスクールを検討する。"
+    },
+    {
+      "slug": "topic-prompt-engineer-shokugyo",
+      "keyword": "プロンプトエンジニアは職業として成立する？求められる中身",
+      "cluster": "AI・データ分析",
+      "tools": [
+        "skillupai",
+        "dmmaicamp"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-ai/"
+      ],
+      "brief": "単独職種というより、既存職種（企画・開発・マーケ）にAI活用の設計力が足された形で募集されることが多い。評価されるのはプロンプトの言い回しより、業務を分解してAIに任せる範囲を決める力と、出力の評価設計。講座名に『プロンプトエンジニア』とあるコースは中身の到達物で判断。"
+    },
+    {
+      "slug": "topic-aws-shikaku-mikeiken",
+      "keyword": "AWS資格は未経験転職に効く？取る順番と、資格だけでは足りない理由",
+      "cluster": "転職特化",
+      "tools": [
+        "runteq",
+        "dmmwebcamp"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-tenshoku/"
+      ],
+      "brief": "クラウドプラクティショナー→ソリューションアーキテクトアソシエイトの順が定番。未経験ではインフラ系の入口で有利に働くが、Web開発職では『作ったもの』のほうが見られる。スクールのカリキュラムにデプロイ（AWSやHeroku等）が入っているかで実務感が変わる。"
+    },
+    {
+      "slug": "topic-40dai-programming",
+      "keyword": "40代からプログラミングを学ぶ人の現実。転職・副業・社内活用で分かれる道",
+      "cluster": "選び方",
+      "tools": [
+        "winschool",
+        "techacademy"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-tsugaku/",
+        "/kyufukin/"
+      ],
+      "brief": "転職は前職の業務知識×ITで狙う領域を絞る。副業は制作系が入りやすい。社内活用（業務自動化・データ集計）は最も再現性が高い。転職保証の年齢条件は40代で外れる学校が多いので条件を先に確認。学び直しは給付金の対象講座なら費用が下がる。"
+    },
+    {
+      "slug": "topic-ai-coding-tools-gakushu",
+      "keyword": "AIコーディング支援ツールは学習に使うべき？初心者が伸びる使い方",
+      "cluster": "独学・買い切り",
+      "tools": [
+        "fjord",
+        "runteq"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-dokugaku/"
+      ],
+      "brief": "補完型（Copilot等）は初学者が使うと『読めないコードが増える』。最初の1〜2ヶ月は切って書き、その後は『生成→自分で説明できるか→説明できない行は消す』の運用に。スクールによってはAIツールの使用ルールがあるので確認。"
+    },
+    {
+      "slug": "topic-chatgpt-shigoto-tsukaikata",
+      "keyword": "ChatGPTを仕事で使うコツ。事務・営業・企画で今日から試せる使い方",
+      "cluster": "選び方",
+      "tools": [
+        "dmmaicamp",
+        "skillupai"
+      ],
+      "hubs": [
+        "/news/",
+        "/blog/osusume-hikaku-ai/"
+      ],
+      "brief": "議事録の要約、メールの下書き、企画のたたき台、表計算の関数の相談など、答えを丸写しせず『下書き→人が直す』の使い方が基本。社外秘や個人情報を入力しないルールを先に決める。指示は目的・前提・出力形式を書くと安定する。間違い（もっともらしい誤り）を前提に、数字や固有名詞は必ず元資料で確かめる。会社の利用規程があれば従う。料金プランや機能は変わるので公式で確認するよう書く。"
+    },
+    {
+      "slug": "topic-chatgpt-muryou-yuuryou",
+      "keyword": "ChatGPTは無料版で足りる？有料版にする前に確かめること",
+      "cluster": "選び方",
+      "tools": [
+        "dmmaicamp"
+      ],
+      "hubs": [
+        "/news/",
+        "/blog/osusume-hikaku-ai/"
+      ],
+      "brief": "判断軸は使う頻度・扱う資料の量・業務で使うかどうか。無料版でまず自分の用途を1〜2週間試し、制限に当たる場面が多いかで決める。会社で使うなら個人契約より組織向けプランや社内規程が優先。料金や使える機能は頻繁に変わるので、金額は書かず『公式の料金ページで最新を確認』と案内する。"
+    },
+    {
+      "slug": "topic-seisei-ai-shikaku",
+      "keyword": "生成AIの資格は取るべき？G検定・生成AIパスポートなどの選び方",
+      "cluster": "AI・データ分析",
+      "tools": [
+        "kikagaku",
+        "skillupai",
+        "dmmaicamp"
+      ],
+      "hubs": [
+        "/blog/topic-g-kentei-tenshoku/",
+        "/blog/osusume-hikaku-ai/"
+      ],
+      "brief": "資格は『知識があることの証明』で、実務で使えることの証明ではない。社内での評価・転職での見られ方・学習の区切りとして使う。IT未経験なら体系的に学ぶきっかけとして有効。受験料・日程・出題範囲は各主催団体の公式で確認するよう書く（数字は書かない）。資格より、業務でAIを使った具体例を話せるほうが評価されやすい。"
+    },
+    {
+      "slug": "topic-ai-fukugyo-hajimekata",
+      "keyword": "AI副業は本当に稼げる？始める前に知っておく現実と、最初の一歩",
+      "cluster": "選び方",
+      "tools": [
+        "skillhacks",
+        "dmmaicamp"
+      ],
+      "hubs": [
+        "/blog/topic-fukugyo-programming-genjitsu/",
+        "/news/"
+      ],
+      "brief": "『AIで誰でも月◯万円』系の情報商材や高額塾に注意。実際に仕事になりやすいのは、AIを使って速く正確にできる既存の仕事（文章作成・画像補正・データ整理・簡単な自動化）。未経験は小さな実績づくりから。副業規定・確定申告（20万円ルール等は国税庁で確認）に触れる。収入額の断定はしない。"
+    },
+    {
+      "slug": "topic-programming-nanikara",
+      "keyword": "プログラミングは何から始める？目的別の最初の1ヶ月",
+      "cluster": "独学・買い切り",
+      "tools": [
+        "skillhacks",
+        "techacademy"
+      ],
+      "hubs": [
+        "/blog/topic-saisho-no-gengo/",
+        "/shindan/"
+      ],
+      "brief": "先に目的（Web制作・アプリ・業務自動化・AI）を決め、言語はそれに合わせる。最初の1ヶ月は無料教材で基礎→小さなものを1つ完成させる。環境構築でつまずきやすいのでブラウザで動く環境から。毎日少しずつ・分からないことを質問できる場所を持つ。独学が続かない人の共通点と、スクールを検討するタイミング。"
+    },
+    {
+      "slug": "topic-python-nanigadekiru",
+      "keyword": "Pythonで何ができる？仕事で役立つ具体例と、向いていない用途",
+      "cluster": "独学・買い切り",
+      "tools": [
+        "skillhacks",
+        "kikagaku",
+        "aidemy"
+      ],
+      "hubs": [
+        "/blog/topic-python-dokugaku-kikan/",
+        "/blog/osusume-hikaku-ai/"
+      ],
+      "brief": "業務自動化（Excel・ファイル整理・定型メール）、データ分析、Webスクレイピング（規約順守）、機械学習・生成AIアプリ、Webアプリのサーバー側。スマホアプリやゲームの見た目部分は別の選択肢が主流。初心者が最初に作るなら身近な作業の自動化。"
+    },
+    {
+      "slug": "topic-mikeiken-engineer-30dai",
+      "keyword": "30代未経験からエンジニアは厳しい？採用側が見ているポイント",
+      "cluster": "転職特化",
+      "tools": [
+        "dmmwebcamp",
+        "uzuzcollege",
+        "techcamp"
+      ],
+      "hubs": [
+        "/blog/topic-engineer-tenshoku-nenrei/",
+        "/blog/osusume-hikaku-tenshoku/"
+      ],
+      "brief": "20代よりハードルは上がるが、前職の業界知識・顧客対応・マネジメント経験を掛け合わせると評価されやすい。自作のポートフォリオと学習の継続記録が重要。年収は一時的に下がる可能性を前提に計画する。SES・受託・自社開発の違い。求人倍率や年収の数字は書かない。"
+    },
+    {
+      "slug": "topic-bunkei-engineer",
+      "keyword": "文系からエンジニアになれる？つまずきやすい所と乗り越え方",
+      "cluster": "転職特化",
+      "tools": [
+        "dmmwebcamp",
+        "runteq",
+        "fjord"
+      ],
+      "hubs": [
+        "/blog/topic-engineer-tenshoku-nenrei/",
+        "/shindan/"
+      ],
+      "brief": "Web開発では高度な数学はほぼ不要で、論理的に分解する力と調べる力が大事。つまずきやすいのは環境構築・エラー文の読解・英語のドキュメント。文系の強み（要件のヒアリング・文章化・調整）。AI・データ分析は数学の比重が上がる点も正直に書く。"
+    },
+    {
+      "slug": "topic-kihon-jouhou-benkyou",
+      "keyword": "基本情報技術者試験は未経験に意味がある？勉強の順番と実務とのつながり",
+      "cluster": "転職特化",
+      "tools": [
+        "techacademy",
+        "dmmwebcamp"
+      ],
+      "hubs": [
+        "/blog/topic-aws-shikaku-mikeiken/",
+        "/blog/osusume-hikaku-tenshoku/"
+      ],
+      "brief": "ITの基礎知識を体系的に学べ、未経験の転職では学習意欲の証明になる。一方で資格だけでは開発はできない。出題形式や受験方式は変わることがあるのでIPA公式で確認と書く（数字は書かない）。科目ごとの勉強の順番、アルゴリズム・プログラミングの対策。"
+    },
+    {
+      "slug": "topic-it-passport-imi",
+      "keyword": "ITパスポートは意味ない？取って役立つ人と、別の勉強をしたほうがいい人",
+      "cluster": "選び方",
+      "tools": [
+        "techacademy"
+      ],
+      "hubs": [
+        "/blog/topic-kihon-jouhou-benkyou/",
+        "/shindan/"
+      ],
+      "brief": "非IT職のITリテラシー証明としては有効（社内DX・事務職）。エンジニア転職を目指すなら基本情報や実際の開発のほうが評価に直結。短期間で取れるので学習の入口として使える。受験料・合格基準はIPA公式で確認と案内。"
+    },
+    {
+      "slug": "topic-copilot-chatgpt-chigai",
+      "keyword": "Copilot・ChatGPT・Gemini・Claudeの違い。仕事で選ぶときの見方",
+      "cluster": "選び方",
+      "tools": [
+        "dmmaicamp",
+        "skillupai"
+      ],
+      "hubs": [
+        "/news/",
+        "/blog/topic-chatgpt-shigoto-tsukaikata/"
+      ],
+      "brief": "違いは性能の優劣より『どこで使えるか（Office・Google Workspace・ブラウザ・開発環境）』『会社が契約しているか』『データの扱い』。まず会社で使えるものを使い、個人ではいくつか無料で試して用途で使い分ける。機能や料金は頻繁に変わるので断定せず公式確認を促す。"
+    },
+    {
+      "slug": "topic-excel-ai-katsuyou",
+      "keyword": "ExcelをAIで楽にする方法。関数・マクロ・集計を任せるときの注意点",
+      "cluster": "選び方",
+      "tools": [
+        "skillhacks",
+        "dmmaicamp"
+      ],
+      "hubs": [
+        "/blog/topic-chatgpt-shigoto-tsukaikata/",
+        "/blog/topic-python-nanigadekiru/"
+      ],
+      "brief": "関数の作成・エラーの原因探し・VBAマクロの下書き・データ整形の手順をAIに相談できる。実データ（顧客情報など）を貼らず、列の構造だけ伝える。出てきた式はサンプルで検算。繰り返し作業が多いならPythonでの自動化も選択肢。"
+    },
+    {
+      "slug": "topic-joshi-mikeiken-engineer",
+      "keyword": "女性が未経験からエンジニアを目指すとき、働き方と職場選びで見るべきこと",
+      "cluster": "転職特化",
+      "tools": [
+        "dmmwebcamp",
+        "techacademy",
+        "coachtech"
+      ],
+      "hubs": [
+        "/blog/osusume-hikaku-tenshoku/",
+        "/shindan/"
+      ],
+      "brief": "リモート・フレックスなど働き方の選択肢、育児との両立、職場の雰囲気を面接でどう確かめるか。性別で向き不向きを決めつけない。女性限定コースや支援制度があるスクールもあるが条件は公式で確認。統計数字は書かない。"
+    },
+    {
+      "slug": "topic-html-css-dokugaku",
+      "keyword": "HTML・CSSの独学はどれくらいかかる？Web制作で稼げるまでの道のり",
+      "cluster": "独学・買い切り",
+      "tools": [
+        "skillhacks",
+        "codecamp",
+        "techacademy"
+      ],
+      "hubs": [
+        "/blog/topic-fukugyo-programming-genjitsu/",
+        "/blog/osusume-hikaku-dokugaku/"
+      ],
+      "brief": "基礎は短期間で触れるが、仕事になるのはレスポンシブ対応・デザインカンプの再現・WordPressやJavaScriptまで。模写→自分のサイト→知人の案件の順で実績を作る。ノーコードツールの普及で単純なコーディング案件は減っている点も正直に。期間の断定はせず目安の幅で。"
+    },
+    {
+      "slug": "topic-reskilling-kojin-hojo",
+      "keyword": "社会人の学び直しで使える国の支援制度まとめ。給付金・補助の違いと順番",
+      "cluster": "給付金対象",
+      "tools": [
+        "dmmwebcamp",
+        "techacademy",
+        "kikagaku"
+      ],
+      "hubs": [
+        "/kyufukin/",
+        "/blog/topic-reskilling-vs-kyufukin/"
+      ],
+      "brief": "教育訓練給付（一般・特定一般・専門実践）、経産省のリスキリング関連事業（スクール経由で還元される形）、自治体の独自支援、会社の研修補助。重複して使えない組み合わせがあること、申請のタイミング（受講前の手続き）が大事。割合・上限は厚労省など公式の最新で確認と書き、断定的な金額は給付金ページに合わせる。"
+    }
   ]
 }
