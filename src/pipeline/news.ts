@@ -272,7 +272,10 @@ async function keepLight(items: NewsItem[]): Promise<NewsItem[]> {
     // 7点以上を残し、点が高い順（同点は元の関連度順）に並べ替える。0反応のPR記事で候補枠を使い切らないため
     // 専門的でも「かなりホット」（はてブ HOT_BOOKMARKS 以上）なら残す（オーナー 2026-09-18「専門的なもののかなりホットなニュースも残しても良い」）
     const rows = items.map((it, i) => ({ it, i, sc: score.get(i) ?? 0, hot: (it.bookmarks ?? 0) >= HOT_BOOKMARKS }));
-    const kept = rows.filter((x) => x.sc >= 7 || x.hot).sort((a, b) => (b.sc + (b.hot ? 3 : 0)) - (a.sc + (a.hot ? 3 : 0)) || a.i - b.i).map((x) => x.it);
+    // 並べ順: ライト点＋はてブの勢い（50件で+1、最大+4）＋ホット枠+3。
+    // ライト点だけで並べると、反応0件のハウツー記事が候補枠を使い切り、はてブ200件超の話題まで届かなかった（9/19〜23 の速報が全部「書かない」だった）
+    const rank = (x: { sc: number; hot: boolean; it: NewsItem }) => x.sc + Math.min((x.it.bookmarks ?? 0) / 50, 4) + (x.hot ? 3 : 0);
+    const kept = rows.filter((x) => x.sc >= 7 || x.hot).sort((a, b) => rank(b) - rank(a) || a.i - b.i).map((x) => x.it);
     const hotOnly = rows.filter((x) => x.sc < 7 && x.hot);
     console.log(`[news] ライト判定: ${kept.length}/${items.length} 本が候補（7点以上 ${rows.filter((x) => x.sc >= 7).length}本＋ホット枠 ${hotOnly.length}本）`);
     for (const x of hotOnly) console.log(`[news]   ホット枠 ☆${x.it.bookmarks} ${x.sc}点 「${x.it.title.slice(0, 40)}」`);
@@ -405,7 +408,7 @@ export async function newsRun(opts: { force?: boolean; mode?: "weekly" | "hot"; 
     // 本文が取れた候補を最大8本まで集め、ネットの反応が多いものを優先する（「まとめサイトのように」）。
     const cands: { it: NewsItem; en: NewsItem; rx: Reactions; rank: number }[] = [];
     for (const it of order) {
-      if (cands.length >= 8) break;
+      if (cands.length >= 10) break;
       const [en] = await enrichItems([it]);
       if (usedTitles.some((t) => similar(t, it.title) > 0.35)) { console.log(`[news] 既出の話題: ${it.title.slice(0, 40)}`); continue; }
       if (!en.text || en.text.length < 800) { console.log(`[news] 本文不足(${en.text?.length ?? 0}字 ${hostOf(en.link)}${lastErr ? " " + lastErr : ""}): ${it.title.slice(0, 40)}`); continue; }
