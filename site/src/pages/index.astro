@@ -38,13 +38,23 @@ const now = new Date(Date.now() + 9 * 3600000);
 const wd = ["日", "月", "火", "水", "木", "金", "土"][now.getUTCDay()];
 const today = `${now.getUTCFullYear()}年${now.getUTCMonth() + 1}月${now.getUTCDate()}日（${wd}）`;
 const todayCount = news.filter((p) => isNew(p.data.pubDate)).length;
+const stamp = `${now.getUTCFullYear()}.${String(now.getUTCMonth() + 1).padStart(2, "0")}.${String(now.getUTCDate()).padStart(2, "0")} ${["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"][now.getUTCDay()]}`;
+const weekRx = news.filter((p) => Date.now() - +new Date(p.data.pubDate) < 7 * 86400000).reduce((n, p) => n + (p.data.reactions ?? 0), 0);
+const pad2 = (n: number) => String(n).padStart(2, "0");
 ---
 <Base home={true} title="AIと学びのニュースまとめ・スクール比較" description="AI・プログラミング・働き方のニュースを、ネットの反応と編集部3人の見方つきで毎日まとめ。プログラミングスクールの評判・料金・給付金の比較も。">
   <section class="masthead" slot="hero">
+    <div class="mh-bg" aria-hidden="true"></div>
     <div class="wrap">
-      <p class="mh-date"><span>{today}</span>{todayCount > 0 && <b>新着 {todayCount}本</b>}</p>
-      <h1 class="mh-title">AIと学びのニュースを、<br class="sp" />ネットの反応つきで。</h1>
+      <p class="mh-prompt" aria-hidden="true"><span class="u">csn@newsdesk</span>:<span class="d">~</span>$ <b>today --ai --reactions</b><i class="cur"></i></p>
+      <p class="mh-date"><span>[ {stamp} ]</span><span class="live"><i></i>LIVE</span>{todayCount > 0 && <b>新着 {todayCount}本</b>}</p>
+      <h1 class="mh-title">AIと学びのニュースを、<br /><span class="hl">ネットの反応つきで。</span></h1>
       <p class="mh-lead">国内外のAI・プログラミング・働き方のニュースを毎日まとめています。スレの流れと、編集部3人の「で、学ぶ人はどうする？」を添えて。</p>
+      <dl class="mh-hud">
+        <div><dt>NEWS</dt><dd>{news.length}<small>本</small></dd></div>
+        <div><dt>REACTIONS/7D</dt><dd>{weekRx.toLocaleString()}<small>件</small></dd></div>
+        <div><dt>UPDATE</dt><dd>07·17<small>時</small></dd></div>
+      </dl>
       {lead && (
         <ul class="mh-ticker">
           {[lead, ...restMatome.slice(0, 3)].map((p) => (
@@ -53,10 +63,15 @@ const todayCount = news.filter((p) => isNew(p.data.pubDate)).length;
         </ul>
       )}
     </div>
+    {lead && (
+      <div class="mh-marquee" aria-hidden="true"><div class="mq">
+        {[0, 1].map(() => matome.slice(0, 8).map((p) => <span>▸ {p.data.title}{p.data.reactions ? ` [${p.data.reactions}]` : ""}</span>))}
+      </div></div>
+    )}
   </section>
 
   {lead && (
-    <section class="sec nx-top" id="news" style="--sec-c:#ea580c">
+    <section class="sec nx-top" id="news" style="--sec-c:#22d3ee">
       <div class="sec-head"><h2>トップニュース</h2><span class="en">TOP STORIES</span><a class="note" href="/news/">ニュース一覧（{news.length}本）→</a></div>
       <div class="nx-grid">
         <a class="nx-lead" href={`/blog/${lead.slug}/`}>
@@ -78,7 +93,7 @@ const todayCount = news.filter((p) => isNew(p.data.pubDate)).length;
     </section>
   )}
 
-  <section class="sec nx-two" style="--sec-c:#ea580c">
+  <section class="sec nx-two" style="--sec-c:#22d3ee">
     <div class="nx-col">
       <div class="sec-head"><h2>新着ニュース</h2><span class="en">LATEST</span></div>
       <ul class="nx-list">
@@ -97,7 +112,7 @@ const todayCount = news.filter((p) => isNew(p.data.pubDate)).length;
       <ol>
         {hot.map((p, i) => (
           <li><a href={`/blog/${p.slug}/`}>
-            <span class="no">{i + 1}</span>
+            <span class="no">{pad2(i + 1)}</span>
             <span class="tx"><span class="t">{p.data.title}</span><span class="m">💬 反応{(p.data.reactions ?? 0).toLocaleString()}件 ・ {md(p.data.pubDate)}</span></span>
           </a></li>
         ))}
@@ -107,7 +122,7 @@ const todayCount = news.filter((p) => isNew(p.data.pubDate)).length;
   </section>
 
   {weekly.length > 0 && (
-    <section class="sec band-warm nx-weekly" style="--sec-c:#ea580c">
+    <section class="sec band-warm nx-weekly" style="--sec-c:#e879f9">
       <div class="sec-head"><h2>週間コラム</h2><span class="en">WEEKLY</span><span class="note">1週間のニュースを3本束ねて、学ぶ人への宿題つきで</span></div>
       <div class="nx-wk">
         {weekly.map((p) => (
@@ -122,7 +137,7 @@ const todayCount = news.filter((p) => isNew(p.data.pubDate)).length;
   )}
 
   {reads.length > 0 && (
-    <section class="sec nx-reads" style="--sec-c:#0d9488">
+    <section class="sec nx-reads" style="--sec-c:#a3e635">
       <div class="sec-head"><h2>学び・キャリアの読み物</h2><span class="en">FEATURES</span></div>
       <ul class="cards">
         {reads.map((p) => (
@@ -135,7 +150,7 @@ const todayCount = news.filter((p) => isNew(p.data.pubDate)).length;
     </section>
   )}
 
-  <section class="sec band-blue nx-school">
+  <section class="sec band-blue nx-school" style="--sec-c:#a78bfa">
     <div class="sec-head"><h2>スクール選びの資料室</h2><span class="en">SCHOOL GUIDE</span><span class="note">評判・料金・給付金を公式情報から整理</span></div>
     <div class="nav4">
       <a class="navcard" href="/shindan/"><NavIcon kind="shindan" /><b>6問で診断</b><small>合う3校と注意点を出す</small></a>
@@ -165,74 +180,171 @@ const todayCount = news.filter((p) => isNew(p.data.pubDate)).length;
     <a class="nx-more" href="/blog/">スクールの記事をすべて見る →</a>
   </section>
 
-  <section class="sec policy">
+  <section class="sec policy" style="--sec-c:#64748b">
     <div class="sec-head"><h2>編集方針</h2><span class="en">EDITORIAL POLICY</span></div>
     <p>ニュースは出典を必ず明記し、「スレの流れ」には元記事についた実際のコメントだけを載せます（中傷や容姿への言及は除外）。「編集部の井戸端会議」は編集部スタッフによる会話形式のまとめで、実在の受講者の発言ではありません。スクールの記事は<b>公式サイト・料金表・給付金の指定講座情報</b>をもとに、良い点だけでなく<b>注意点・向かない人</b>も書きます。誤りを見つけた場合は<a href="/about/">運営者情報</a>からご連絡ください。</p>
   </section>
 </Base>
 
 <style is:global>
-  .masthead{background:#0f172a;color:#e2e8f0;padding:26px 0 22px;border-bottom:4px solid #ea580c}
-  .masthead .mh-date{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#94a3b8;margin:0 0 8px;letter-spacing:.04em}
-  .masthead .mh-date b{background:#ea580c;color:#fff;border-radius:999px;padding:2px 10px;font-size:11.5px}
-  .masthead .mh-title{color:#fff;font-size:clamp(22px,4.6vw,32px);line-height:1.35;margin:0 0 8px}
-  .masthead .mh-lead{color:#cbd5e1;font-size:14px;margin:0 0 14px;max-width:680px}
-  .masthead .mh-ticker{list-style:none;margin:0;padding:10px 0 0;border-top:1px solid #334155;display:grid;gap:6px}
-  .masthead .mh-ticker li{margin:0}
-  .masthead .mh-ticker a{color:#e2e8f0;text-decoration:none;font-size:13.5px;display:flex;gap:10px;line-height:1.5}
-  .masthead .mh-ticker a:hover{color:#fdba74}
-  .masthead .mh-ticker em{font-style:normal;color:#fb923c;font-weight:800;flex:none;min-width:38px}
-  .masthead br.sp{display:none}
-  @media (max-width:560px){.masthead br.sp{display:inline}.masthead .mh-ticker li:nth-child(n+3){display:none}}
+  /* ===== サイバー調テーマ（トップページだけ。オーナー「もっとサイバーな感じのトップページで」2026-09-23） =====
+     ベースの色トークンをトップだけ暗色に差し替える。他のページ（記事・一覧）は従来の明るい配色のまま。 */
+  body:has(main.home){
+    --bg:#05070d;--fg:#c9d6ea;--mut:#8394b3;--bd:#1b2842;--card:#0a1020;
+    --navy:#e8f3ff;--acc:#22d3ee;--acc-dark:#67e8f9;--cta:#d946ef;
+    --chip:#0b2a38;--chip-fg:#67e8f9;
+    --tint-blue:rgba(34,211,238,.035);--tint-green:rgba(163,230,53,.03);--tint-warm:rgba(217,70,239,.04);--tint-violet:rgba(139,92,246,.04);
+    --shadow:none;--shadow-hi:0 0 0 1px rgba(34,211,238,.45),0 0 24px rgba(34,211,238,.18);
+    --neon:#22d3ee;--neon2:#e879f9;--neon3:#a3e635;
+    --mono:ui-monospace,"SFMono-Regular","JetBrains Mono",Menlo,Consolas,monospace;
+    background:
+      radial-gradient(1200px 500px at 85% -10%,rgba(217,70,239,.10),transparent 60%),
+      radial-gradient(900px 500px at -10% 20%,rgba(34,211,238,.08),transparent 60%),
+      var(--bg);
+  }
+  /* 背景の方眼 */
+  body:has(main.home)::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background-image:linear-gradient(rgba(34,211,238,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,.05) 1px,transparent 1px);
+    background-size:44px 44px;mask-image:linear-gradient(#000,transparent 85%)}
+  body:has(main.home) header.site{background:rgba(5,7,13,.82);border-bottom:1px solid rgba(34,211,238,.25)}
+  body:has(main.home) .brand{color:#e8f3ff}
+  body:has(main.home) .nav a.item{color:#a9b8d3}
+  body:has(main.home) .nav a.item:hover{background:rgba(34,211,238,.1);color:#67e8f9}
+  body:has(main.home) .nav a.cta{box-shadow:0 0 14px rgba(217,70,239,.55)}
+  body:has(main.home) footer.site{background:#03050a;border-top:1px solid rgba(34,211,238,.25)}
+  body:has(main.home) footer.site .fbrand{color:#e8f3ff}
+  body:has(main.home) footer.site a{color:#67e8f9}
 
-  .nx-meta{display:flex;gap:8px;align-items:center;font-size:12px;color:#64748b;flex-wrap:wrap}
-  .nx-new{background:#dc2626;color:#fff;font-size:10.5px;font-weight:800;border-radius:4px;padding:1px 6px;margin-left:6px}
+  /* 見出し: 等幅の英字ラベルとネオンのバー */
+  .home .sec-head h2{color:#e8f3ff;letter-spacing:.02em}
+  .home .sec-head h2::before{background:var(--sec-c,var(--neon));box-shadow:0 0 12px var(--sec-c,var(--neon));width:4px;border-radius:1px}
+  .home .sec-head .en{font-family:var(--mono);color:var(--sec-c,var(--neon));opacity:.9;letter-spacing:.12em;font-size:11px}
+  .home .sec-head .en::before{content:"// "}
+  .home .sec-head .note{color:var(--mut);font-family:var(--mono);font-size:11.5px}
+  .home .sec-head a.note{color:var(--neon);text-decoration:none}
+  .home .sec.band-blue::before,.home .sec.band-warm::before{border-top:1px solid rgba(34,211,238,.12);border-bottom:1px solid rgba(34,211,238,.12)}
+
+  /* ===== 題字（ターミナル風） ===== */
+  .masthead{position:relative;overflow:hidden;background:#04060b;color:#c9d6ea;padding:26px 0 0;border-bottom:1px solid rgba(34,211,238,.35)}
+  .masthead .mh-bg{position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      linear-gradient(transparent 0 50%,rgba(255,255,255,.025) 50% 100%) 0 0/100% 3px,
+      linear-gradient(rgba(34,211,238,.09) 1px,transparent 1px) 0 0/100% 32px,
+      linear-gradient(90deg,rgba(34,211,238,.09) 1px,transparent 1px) 0 0/32px 100%,
+      radial-gradient(700px 300px at 80% 0%,rgba(217,70,239,.22),transparent 70%),
+      radial-gradient(600px 280px at 0% 100%,rgba(34,211,238,.18),transparent 70%)}
+  .masthead .wrap{position:relative;z-index:1}
+  .mh-prompt{font-family:var(--mono);font-size:12.5px;color:#8394b3;margin:0 0 10px}
+  .mh-prompt .u{color:var(--neon3)}
+  .mh-prompt .d{color:var(--neon)}
+  .mh-prompt b{color:#e8f3ff;font-weight:600}
+  .mh-prompt .cur{display:inline-block;width:8px;height:15px;background:var(--neon);margin-left:4px;vertical-align:-2px;animation:csnBlink 1s steps(1) infinite;box-shadow:0 0 8px var(--neon)}
+  @keyframes csnBlink{50%{opacity:0}}
+  .masthead .mh-date{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:#8394b3;margin:0 0 10px;letter-spacing:.06em}
+  .masthead .mh-date .live{display:inline-flex;align-items:center;gap:6px;color:#fda4af;font-weight:700}
+  .masthead .mh-date .live i{width:8px;height:8px;border-radius:50%;background:#f43f5e;box-shadow:0 0 10px #f43f5e;animation:csnPulse 1.6s ease-in-out infinite}
+  @keyframes csnPulse{50%{opacity:.35}}
+  .masthead .mh-date b{border:1px solid var(--neon2);color:#f5d0fe;border-radius:3px;padding:1px 8px;font-size:11px;box-shadow:0 0 10px rgba(232,121,249,.35) inset}
+  .masthead .mh-title{position:relative;color:#f1f7ff;font-size:clamp(24px,5vw,38px);line-height:1.3;margin:0 0 10px;letter-spacing:.01em;text-shadow:0 0 18px rgba(34,211,238,.35)}
+  .masthead .mh-title .hl{background:linear-gradient(90deg,#22d3ee,#a78bfa 50%,#e879f9);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 0 10px rgba(167,139,250,.45))}
+  .masthead .mh-lead{color:#a9b8d3;font-size:14px;margin:0 0 16px;max-width:680px}
+  .mh-hud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:560px;margin:0 0 16px}
+  .mh-hud div{position:relative;border:1px solid rgba(34,211,238,.35);background:rgba(8,20,34,.6);padding:8px 12px;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+  .mh-hud dt{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--neon)}
+  .mh-hud dd{margin:2px 0 0;font-family:var(--mono);font-size:20px;font-weight:700;color:#f1f7ff;font-variant-numeric:tabular-nums}
+  .mh-hud small{font-size:11px;color:#8394b3;font-weight:400}
+  .masthead .mh-ticker{list-style:none;margin:0;padding:10px 0 14px;border-top:1px dashed rgba(34,211,238,.3);display:grid;gap:6px}
+  .masthead .mh-ticker li{margin:0}
+  .masthead .mh-ticker a{color:#dbe7f7;text-decoration:none;font-size:13.5px;display:flex;gap:10px;line-height:1.5}
+  .masthead .mh-ticker a:hover{color:#67e8f9;text-shadow:0 0 8px rgba(34,211,238,.6)}
+  .masthead .mh-ticker em{font-style:normal;font-family:var(--mono);color:var(--neon2);font-weight:700;flex:none;min-width:40px}
+  .mh-marquee{position:relative;z-index:1;border-top:1px solid rgba(34,211,238,.35);background:rgba(34,211,238,.06);overflow:hidden;white-space:nowrap;font-family:var(--mono);font-size:12px;color:#67e8f9;padding:7px 0}
+  .mh-marquee .mq{display:inline-block;animation:csnMarquee 60s linear infinite}
+  .mh-marquee span{margin-right:36px}
+  @keyframes csnMarquee{to{transform:translateX(-50%)}}
+  .masthead br.sp{display:none}
+  @media (max-width:560px){.masthead br.sp{display:inline}.masthead .mh-ticker li:nth-child(n+3){display:none}.mh-hud dd{font-size:16px}.mh-hud div{padding:7px 9px}}
+
+  /* ===== カード共通: 細いネオン枠と角のブラケット ===== */
+  .nx-meta{display:flex;gap:8px;align-items:center;font-size:11.5px;color:var(--mut);flex-wrap:wrap;font-family:var(--mono)}
+  .nx-new{background:transparent;border:1px solid #f43f5e;color:#fda4af;font-size:10px;font-weight:800;border-radius:2px;padding:0 5px;margin-left:6px;font-family:var(--mono);letter-spacing:.08em;box-shadow:0 0 8px rgba(244,63,94,.45)}
   .nx-meta .nx-new{margin-left:0}
-  .nx-rx{color:#ea580c;font-weight:700}
+  .nx-rx{color:var(--neon2);font-weight:700}
   .nx-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:18px}
-  .nx-lead,.nx-sub,.nx-wcard{display:flex;flex-direction:column;gap:8px;text-decoration:none;color:var(--navy)}
-  .nx-thumb{display:block;border-radius:12px;overflow:hidden;line-height:0}
-  .nx-lead .nx-t{font-size:clamp(19px,3.2vw,24px);font-weight:800;line-height:1.4}
-  .nx-lead .nx-d,.nx-wcard .nx-d{font-size:13.5px;color:#475569;line-height:1.7}
+  .nx-lead,.nx-sub,.nx-wcard{position:relative;display:flex;flex-direction:column;gap:8px;text-decoration:none;color:#e8f3ff;background:rgba(10,16,32,.75);border:1px solid var(--bd);padding:10px 10px 14px;transition:border-color .2s,box-shadow .2s}
+  .nx-lead::before,.nx-sub::before,.nx-wcard::before{content:"";position:absolute;top:-1px;left:-1px;width:14px;height:14px;border-top:2px solid var(--neon);border-left:2px solid var(--neon)}
+  .nx-lead::after,.nx-sub::after,.nx-wcard::after{content:"";position:absolute;bottom:-1px;right:-1px;width:14px;height:14px;border-bottom:2px solid var(--neon2);border-right:2px solid var(--neon2)}
+  .nx-lead:hover,.nx-sub:hover,.nx-wcard:hover{border-color:rgba(34,211,238,.6);box-shadow:0 0 22px rgba(34,211,238,.15)}
+  .nx-thumb{display:block;overflow:hidden;line-height:0;border:1px solid rgba(34,211,238,.2)}
+  .nx-lead .nx-t{font-size:clamp(19px,3.2vw,24px);font-weight:800;line-height:1.4;padding:0 4px}
+  .nx-lead .nx-meta,.nx-sub .nx-meta,.nx-lead .nx-d{padding:0 4px}
+  .nx-lead .nx-d,.nx-wcard .nx-d{font-size:13.5px;color:#a9b8d3;line-height:1.7}
   .nx-subs{display:grid;gap:16px;align-content:start}
-  .nx-sub .nx-t{font-size:15px;font-weight:800;line-height:1.45}
-  .nx-lead:hover .nx-t,.nx-sub:hover .nx-t,.nx-wcard:hover .nx-t{color:#ea580c}
+  .nx-sub .nx-t{font-size:15px;font-weight:800;line-height:1.45;padding:0 4px}
+  .nx-lead:hover .nx-t,.nx-sub:hover .nx-t,.nx-wcard:hover .nx-t{color:#67e8f9}
 
   .nx-two{display:grid;grid-template-columns:1.5fr 1fr;gap:28px}
   .nx-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--bd)}
   .nx-list li{margin:0;border-bottom:1px solid var(--bd)}
-  .nx-list a{display:flex;gap:12px;align-items:baseline;padding:11px 2px;text-decoration:none;color:var(--navy)}
-  .nx-list time{flex:none;color:#ea580c;font-weight:800;font-size:12.5px;min-width:36px}
+  .nx-list a{display:flex;gap:12px;align-items:baseline;padding:11px 4px;text-decoration:none;color:#e8f3ff;transition:background .15s}
+  .nx-list a:hover{background:rgba(34,211,238,.06)}
+  .nx-list time{flex:none;color:var(--neon);font-weight:700;font-size:12px;min-width:38px;font-family:var(--mono)}
   .nx-list .t{flex:1;font-size:14.5px;font-weight:700;line-height:1.5}
-  .nx-list .r{flex:none;font-size:12px;color:#64748b}
-  .nx-list a:hover .t{color:#ea580c}
-  .nx-more{display:inline-block;margin-top:12px;font-weight:800;font-size:13.5px;color:#ea580c;text-decoration:none}
-  .nx-rank{background:#fff7ed;border:1px solid #fed7aa;border-radius:14px;padding:16px 16px 12px;align-self:start}
+  .nx-list .r{flex:none;font-size:11.5px;color:var(--neon2);font-family:var(--mono)}
+  .nx-list a:hover .t{color:#67e8f9}
+  .nx-more{display:inline-block;margin-top:12px;font-weight:700;font-size:13px;color:var(--neon);text-decoration:none;font-family:var(--mono)}
+  .nx-more:hover{text-shadow:0 0 8px rgba(34,211,238,.7)}
+  .nx-rank{position:relative;background:rgba(20,8,32,.55);border:1px solid rgba(232,121,249,.35);padding:16px 16px 12px;align-self:start;box-shadow:0 0 28px rgba(217,70,239,.08) inset}
+  .nx-rank .sec-head{--sec-c:#e879f9}
   .nx-rank ol{list-style:none;margin:0;padding:0}
-  .nx-rank li{margin:0 0 10px}
-  .nx-rank a{display:flex;gap:10px;text-decoration:none;color:var(--navy)}
-  .nx-rank .no{flex:none;width:26px;height:26px;border-radius:6px;background:#ea580c;color:#fff;font-weight:800;display:grid;place-items:center;font-size:13px}
-  .nx-rank li:nth-child(n+4) .no{background:#94a3b8}
+  .nx-rank li{margin:0 0 12px}
+  .nx-rank a{display:flex;gap:10px;text-decoration:none;color:#e8f3ff}
+  .nx-rank .no{flex:none;width:30px;height:26px;border:1px solid var(--neon2);color:#f5d0fe;font-weight:700;display:grid;place-items:center;font-size:12px;font-family:var(--mono);box-shadow:0 0 10px rgba(232,121,249,.45)}
+  .nx-rank li:nth-child(n+4) .no{border-color:#475569;color:#94a3b8;box-shadow:none}
   .nx-rank .t{display:block;font-size:13.5px;font-weight:700;line-height:1.5}
-  .nx-rank .m{display:block;font-size:11.5px;color:#9a3412;margin-top:2px}
-  .nx-rank a:hover .t{color:#ea580c}
-  .nx-note{font-size:11px;color:#94a3b8;margin:6px 0 0}
+  .nx-rank .m{display:block;font-size:11px;color:#f0abfc;margin-top:2px;font-family:var(--mono)}
+  .nx-rank a:hover .t{color:#f0abfc}
+  .nx-note{font-size:10.5px;color:#64748b;margin:6px 0 0}
 
   .nx-wk{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-  .nx-wcard{background:#fff;border:1px solid #fed7aa;border-left:5px solid #ea580c;border-radius:12px;padding:14px 16px}
+  .nx-wcard{padding:14px 16px}
   .nx-wcard .nx-t{font-size:16px;font-weight:800;line-height:1.45}
 
+  /* 既存部品（カード・入口・表・折りたたみ）の暗色化 */
+  .home .card{background:rgba(10,16,32,.8);border-color:var(--bd)}
+  .home .card:hover{border-color:rgba(34,211,238,.55);box-shadow:0 0 22px rgba(34,211,238,.14)}
+  .home .card .t{color:#e8f3ff}
+  .home [data-cat] .chip,.home .chip{background:rgba(34,211,238,.1);color:#67e8f9;border:1px solid rgba(34,211,238,.3)}
+  .home .navcard{background:rgba(10,16,32,.8);border-color:var(--bd);border-top:2px solid var(--nc)}
+  .home .navcard:hover{box-shadow:0 0 22px rgba(34,211,238,.14);border-color:rgba(34,211,238,.5)}
+  .home .navcard:nth-child(1){--nc:#22d3ee}.home .navcard:nth-child(2){--nc:#a3e635}.home .navcard:nth-child(3){--nc:#a78bfa}.home .navcard:nth-child(4){--nc:#e879f9}
+  .home .navcard b{color:#e8f3ff}
   .nx-slist{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px 18px}
   .nx-slist li{margin:0}
-  .nx-slist a{display:flex;gap:8px;align-items:baseline;text-decoration:none;color:var(--navy);font-size:14px;font-weight:700;line-height:1.5;padding:6px 0;border-bottom:1px dashed var(--bd)}
-  .nx-slist .chip{flex:none}
-  .nx-slist a:hover .t{color:var(--acc)}
+  .nx-slist a{display:flex;gap:8px;align-items:baseline;text-decoration:none;color:#dbe7f7;font-size:14px;font-weight:700;line-height:1.5;padding:7px 0;border-bottom:1px dashed var(--bd)}
+  .nx-slist .chip{flex:none;font-size:11px;border-radius:2px;padding:0 6px}
+  .nx-slist a:hover .t{color:#67e8f9}
+  .home details{background:rgba(10,16,32,.8);border:1px solid var(--bd);border-radius:0}
+  .home summary{color:#e8f3ff;font-family:var(--mono);font-size:13px}
+  .home summary::after{color:var(--neon)}
   .nx-table{margin-top:16px}
   .nx-table .tw{padding:0 12px 12px;overflow-x:auto}
+  .home table{background:transparent}
+  .home thead th{background:#0b2233;color:#67e8f9;font-family:var(--mono);font-size:12px;letter-spacing:.06em}
+  .home td{border-color:var(--bd);color:#c9d6ea}
+  .home tbody tr:nth-child(even) td{background:rgba(34,211,238,.03)}
+  .home td a{color:#67e8f9}
+  .home .tnote{color:var(--mut)}
+  .home .policy p{background:rgba(10,16,32,.8);border:1px solid var(--bd);border-left:3px solid var(--neon);border-radius:0;color:#a9b8d3}
+  .home .policy b{color:#e8f3ff}
+  .home .policy a{color:#67e8f9}
 
   @media (max-width:760px){
     .nx-grid,.nx-two{grid-template-columns:1fr}
     .nx-subs{grid-template-columns:1fr 1fr;gap:12px}
     .nx-sub .nx-t{font-size:14px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .mh-prompt .cur,.masthead .mh-date .live i,.mh-marquee .mq{animation:none}
   }
 </style>
