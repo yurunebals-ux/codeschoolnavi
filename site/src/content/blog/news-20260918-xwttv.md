@@ -10,8 +10,6 @@ reactions: 184
 draft: false
 ---
 
-> 【広告】本記事にはプロモーション（広告）が含まれます。当サイトは広告収益で運営しており、紹介するサービスの申込により報酬を受け取る場合がありますが、評価・順位に影響を与えません。
-
 9月15日、元OpenAI研究者が開発したAI「Jev」が公開された。文章生成ではなく判断だけを高速処理し、AI活用の新たな方向性を示す。
 
 出典：[speakerdeck.com](https://speakerdeck.com/minorun365/konwadai-no-ai-jev-tte-nani-uchuu-saisoku-de-manabu-kai)（2026年9月18日）

@@ -10,8 +10,6 @@ reactions: 7
 draft: false
 ---
 
-> 【広告】本記事にはプロモーション（広告）が含まれます。当サイトは広告収益で運営しており、紹介するサービスの申込により報酬を受け取る場合がありますが、評価・順位に影響を与えません。
-
 Googleがリアルタイム音声会話AI「Gemini 3.8 Live」と「Gemini 3.8 Live Extended Thinking」を公開した。編集部は、プログラミング学習や開発の現場で活用価値が高まると見る。
 
 出典：[gigazine.net](https://gigazine.net/news/20260916-gemini-3-8-live/)（2026年9月16日）

@@ -10,8 +10,6 @@ reactions: 148
 draft: false
 ---
 
-> 【広告】本記事にはプロモーション（広告）が含まれます。当サイトは広告収益で運営しており、紹介するサービスの申込により報酬を受け取る場合がありますが、評価・順位に影響を与えません。
-
 Anthropicは9月22日、AIモデル「Claude Opus 5.5」の提供を開始した。Fable 5.1と同等の性能を持ちつつ、Opus 5より40%安価だ。編集部はコスト削減と性能向上の両立が注目点と見る。
 
 出典：[watch.impress.co.jp](https://www.watch.impress.co.jp/docs/news/2142619.html)（2026年9月22日）
