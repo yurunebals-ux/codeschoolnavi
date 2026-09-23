@@ -63,9 +63,9 @@ if (Astro.url.pathname !== "/") crumbs.push({ name: title, url: canonical.toStri
          (4) スクロールで現れる・数字が増える・触ると持ち上がる動き（減光設定では止める）。 */
       :root{
         --fg:#1e293b;--mut:#64748b;--bd:#e9eef5;
-        --acc:#2563eb;--acc-dark:#1e40af;--navy:#0f2744;
-        --cta:#f97316;--bg:#ffffff;--card:#ffffff;
-        --chip:#eff6ff;--chip-fg:#1d4ed8;--notice:#fffbeb;--notice-bd:#fde68a;
+        --acc:#0891b2;--acc-dark:#0e7490;--navy:#0f2744;
+        --cta:#d946ef;--bg:#ffffff;--card:#ffffff;
+        --chip:#ecfeff;--chip-fg:#0e7490;--notice:#fffbeb;--notice-bd:#fde68a;
         --tint-blue:#f3f7ff;--tint-green:#f3faf6;--tint-warm:#fff7ee;--tint-violet:#f7f4ff;
         --c-hikaku:#2563eb;--c-hyoban:#7c3aed;--c-kyufu:#059669;--c-yame:#e11d48;--c-kaisetsu:#ea580c;--c-gakushu:#0d9488;--c-news:#0e7490;
         --shadow:0 2px 10px rgba(15,39,68,.06);--shadow-hi:0 12px 28px rgba(15,39,68,.12);
@@ -428,6 +428,42 @@ if (Astro.url.pathname !== "/") crumbs.push({ name: title, url: canonical.toStri
         .hero::before,.hero::after,.hero-shots .hs,.hero .pw-head .dot{animation:none}
         *{transition-duration:.01ms !important}
       }
+      /* ===== サイト全体の統一テーマ: 白ベースのサイバー調（2026-09-23 オーナー「他の部分もデザインに統一感を」）=====
+         白地に、うすい方眼・シアン→紫→マゼンタの細線・角のブラケット・等幅の英字ラベル。トップと記事・一覧で同じ部品を使う */
+      :root{--neon:#06b6d4;--neon-ink:#0e7490;--neon2:#d946ef;--neon2-ink:#a21caf;--neon3:#65a30d;
+        --mono:ui-monospace,"SFMono-Regular","JetBrains Mono",Menlo,Consolas,monospace;
+        --grad:linear-gradient(90deg,#06b6d4,#8b5cf6 55%,#d946ef)}
+      body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+        background-image:linear-gradient(rgba(6,182,212,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(6,182,212,.07) 1px,transparent 1px);
+        background-size:44px 44px;mask-image:linear-gradient(#000,transparent 70%);-webkit-mask-image:linear-gradient(#000,transparent 70%)}
+      header.site{border-bottom:1px solid rgba(6,182,212,.35);box-shadow:0 1px 0 rgba(217,70,239,.15)}
+      .nav a.cta{box-shadow:0 0 14px rgba(217,70,239,.4)}
+      .nav a.item:hover{background:#ecfeff;color:var(--neon-ink)}
+      .logo{background:#0f172a !important;color:#67e8f9 !important;border-radius:3px !important}
+      footer.site{position:relative;background:#0b1220}
+      footer.site::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--grad)}
+      footer.site a{color:#67e8f9}
+      /* 記事の見出し: 等幅の「//」とシアンの破線 */
+      main article h2{border-left:0;padding-left:0;border-bottom:1px dashed rgba(6,182,212,.5)}
+      main article h2::before{content:"//";font-family:var(--mono);color:var(--neon);font-size:.78em;margin-right:10px;font-weight:700}
+      main article h3{padding-left:10px;border-left:3px solid;border-image:linear-gradient(#06b6d4,#d946ef) 1}
+      .meta .badge{background:#fff;color:var(--neon-ink);border:1px solid rgba(6,182,212,.5);border-radius:2px;font-family:var(--mono);font-size:11.5px}
+      .meta{font-family:var(--mono);font-size:12px}
+      .toc{position:relative;border-radius:4px;border-color:#cfe7ef}
+      .toc::before,.eyecatch::before{content:"";position:absolute;left:-1px;top:-1px;width:14px;height:14px;border-top:2px solid var(--neon);border-left:2px solid var(--neon);z-index:2}
+      .toc::after,.eyecatch::after{content:"";position:absolute;right:-1px;bottom:-1px;width:14px;height:14px;border-bottom:2px solid var(--neon2);border-right:2px solid var(--neon2);z-index:2}
+      .toc .toc-title{font-family:var(--mono);letter-spacing:.04em}
+      .eyecatch{position:relative;border-radius:4px;overflow:visible;box-shadow:none;border:1px solid #dbe7ef}
+      .eyecatch > *{border-radius:3px;overflow:hidden}
+      .card{border-radius:6px}
+      .card:hover{border-color:rgba(6,182,212,.55)}
+      .feat{border-radius:6px}
+      .chip,.card .chip,.feat .chip{border-radius:3px !important}
+      .sec-head h2::before{width:4px;border-radius:1px;box-shadow:0 0 10px color-mix(in srgb,var(--sec-c,#06b6d4) 60%,transparent)}
+      .sec-head .en{font-family:var(--mono);letter-spacing:.12em;opacity:1}
+      .sec-head .en::before{content:"// "}
+      table thead th{background:#0b1220;color:#67e8f9;font-family:var(--mono);font-size:12.5px;letter-spacing:.04em}
+      details,summary{border-radius:4px}
     </style>
     <script is:inline>document.documentElement.classList.add("js")</script>
   </head>
