@@ -42,7 +42,8 @@
       "score": 82,
       "status": "published",
       "createdAt": "2026-08-08T04:00:00.000Z",
-      "publishedAt": "2026-08-14T04:13:54.906Z"
+      "publishedAt": "2026-08-14T04:13:54.906Z",
+      "structure": 2
     },
     {
       "slug": "yametoke-skillhacks",
@@ -56,7 +57,8 @@
       "score": 82,
       "status": "published",
       "createdAt": "2026-08-08T04:00:00.000Z",
-      "publishedAt": "2026-08-15T02:56:55.112Z"
+      "publishedAt": "2026-08-15T02:56:55.112Z",
+      "structure": 2
     },
     {
       "slug": "ryokin-samurai",
@@ -2917,8 +2919,10 @@
       "kind": "money",
       "cluster": "転職特化",
       "score": 100,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "structure": 2,
+      "publishedAt": "2026-09-23T10:23:20.775Z"
     },
     {
       "slug": "kyufukin-uzuzcollege",
@@ -2930,8 +2934,10 @@
       "kind": "money",
       "cluster": "資格・就職支援",
       "score": 100,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "structure": 2,
+      "publishedAt": "2026-09-23T10:23:20.775Z"
     },
     {
       "slug": "kyufukin-fjord",
@@ -2943,8 +2949,10 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 100,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "structure": 2,
+      "publishedAt": "2026-09-23T10:23:20.775Z"
     },
     {
       "slug": "kyufukin-samurai",
@@ -4819,10 +4827,105 @@
       },
       "structure": 2,
       "publishedAt": "2026-09-23T09:14:52.728Z"
+    },
+    {
+      "slug": "topic-chatgpt-shigoto-tsukaikata",
+      "keyword": "ChatGPTを仕事で使うコツ。事務・営業・企画で今日から試せる使い方",
+      "template": "topic:guide",
+      "tools": [
+        "dmmaicamp",
+        "skillupai"
+      ],
+      "kind": "topic",
+      "cluster": "選び方",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-23T10:20:02.885Z",
+      "brief": "議事録の要約、メールの下書き、企画のたたき台、表計算の関数の相談など、答えを丸写しせず『下書き→人が直す』の使い方が基本。社外秘や個人情報を入力しないルールを先に決める。指示は目的・前提・出力形式を書くと安定する。間違い（もっともらしい誤り）を前提に、数字や固有名詞は必ず元資料で確かめる。会社の利用規程があれば従う。料金プランや機能は変わるので公式で確認するよう書く。",
+      "hubs": [
+        "/news/",
+        "/blog/osusume-hikaku-ai/"
+      ]
+    },
+    {
+      "slug": "topic-chatgpt-muryou-yuuryou",
+      "keyword": "ChatGPTは無料版で足りる？有料版にする前に確かめること",
+      "template": "topic:guide",
+      "tools": [
+        "dmmaicamp"
+      ],
+      "kind": "topic",
+      "cluster": "選び方",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-23T10:20:02.885Z",
+      "brief": "判断軸は使う頻度・扱う資料の量・業務で使うかどうか。無料版でまず自分の用途を1〜2週間試し、制限に当たる場面が多いかで決める。会社で使うなら個人契約より組織向けプランや社内規程が優先。料金や使える機能は頻繁に変わるので、金額は書かず『公式の料金ページで最新を確認』と案内する。",
+      "hubs": [
+        "/news/",
+        "/blog/osusume-hikaku-ai/"
+      ]
+    },
+    {
+      "slug": "topic-seisei-ai-shikaku",
+      "keyword": "生成AIの資格は取るべき？G検定・生成AIパスポートなどの選び方",
+      "template": "topic:guide",
+      "tools": [
+        "kikagaku",
+        "skillupai",
+        "dmmaicamp"
+      ],
+      "kind": "topic",
+      "cluster": "AI・データ分析",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-23T10:20:02.885Z",
+      "brief": "資格は『知識があることの証明』で、実務で使えることの証明ではない。社内での評価・転職での見られ方・学習の区切りとして使う。IT未経験なら体系的に学ぶきっかけとして有効。受験料・日程・出題範囲は各主催団体の公式で確認するよう書く（数字は書かない）。資格より、業務でAIを使った具体例を話せるほうが評価されやすい。",
+      "hubs": [
+        "/blog/topic-g-kentei-tenshoku/",
+        "/blog/osusume-hikaku-ai/"
+      ]
+    },
+    {
+      "slug": "topic-ai-fukugyo-hajimekata",
+      "keyword": "AI副業は本当に稼げる？始める前に知っておく現実と、最初の一歩",
+      "template": "topic:guide",
+      "tools": [
+        "skillhacks",
+        "dmmaicamp"
+      ],
+      "kind": "topic",
+      "cluster": "選び方",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-23T10:20:02.885Z",
+      "brief": "『AIで誰でも月◯万円』系の情報商材や高額塾に注意。実際に仕事になりやすいのは、AIを使って速く正確にできる既存の仕事（文章作成・画像補正・データ整理・簡単な自動化）。未経験は小さな実績づくりから。副業規定・確定申告（20万円ルール等は国税庁で確認）に触れる。収入額の断定はしない。",
+      "hubs": [
+        "/blog/topic-fukugyo-programming-genjitsu/",
+        "/news/"
+      ]
+    },
+    {
+      "slug": "topic-programming-nanikara",
+      "keyword": "プログラミングは何から始める？目的別の最初の1ヶ月",
+      "template": "topic:guide",
+      "tools": [
+        "skillhacks",
+        "techacademy"
+      ],
+      "kind": "topic",
+      "cluster": "独学・買い切り",
+      "score": 60,
+      "status": "queued",
+      "createdAt": "2026-09-23T10:20:02.885Z",
+      "brief": "先に目的（Web制作・アプリ・業務自動化・AI）を決め、言語はそれに合わせる。最初の1ヶ月は無料教材で基礎→小さなものを1つ完成させる。環境構築でつまずきやすいのでブラウザで動く環境から。毎日少しずつ・分からないことを質問できる場所を持つ。独学が続かない人の共通点と、スクールを検討するタイミング。",
+      "hubs": [
+        "/blog/topic-saisho-no-gengo/",
+        "/shindan/"
+      ]
     }
   ],
-  "publishedCount": 77,
-  "estimatedMrrUsd": 23100,
+  "publishedCount": 80,
+  "estimatedMrrUsd": 24000,
   "history": [
     {
       "date": "2026-07-24",
@@ -5126,9 +5229,9 @@
     },
     {
       "date": "2026-09-23",
-      "published": 77,
-      "estimatedMrrUsd": 23100
+      "published": 80,
+      "estimatedMrrUsd": 24000
     }
   ],
-  "lastRun": "2026-09-23T09:14:53.313Z"
+  "lastRun": "2026-09-23T10:23:21.401Z"
 }

@@ -139,4 +139,4 @@ SkillHacksは買い切り型のオンライン教材で、購入後は無期限�
 - [SkillHacksは自分に合う？申込前に潰す3つの不安](/blog/yametoke-skillhacks/)
 - [独学・買い切りのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-dokugaku/)
 - [SkillHacksの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-skillhacks/)
-- [Claude Opus 5.5が40%安い理由は性能維持ではなく設計の転換か](/blog/news-20260923-setjj/)
+- [ポテパンキャンプに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-potepan/)

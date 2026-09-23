@@ -141,7 +141,7 @@ draft: false
 
 - [ウズウズカレッジの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-uzuzcollege/)
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
+- [ウズウズカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [Claude Opus 5.5が40%安い理由は性能維持ではなく設計の転換か](/blog/news-20260923-setjj/)
-- [50歳超からゲーム開発者を目指す現実と成功例、年齢は障壁か挑戦か](/blog/news-20260923-161my/)
-- [生成AI時代にプログラミングを学ぶ意味はあるのか](/blog/topic-seisei-ai-jidai-programming/)
+- [ポテパンキャンプに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-potepan/)
+- [フィヨルドブートキャンプは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-fjord/)
