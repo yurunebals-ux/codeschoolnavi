@@ -13,7 +13,7 @@
 //   4. 同カテゴリの参考校を渡し、数字で位置づけさせる
 //   5. 口コミの捏造を禁止し、「公式の主張→編集部の読み」の形で書かせる
 //   6. 3回生成→2回生成。重複除去と構造検査は書き直しの「後」にも掛ける
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { config, paths } from "../lib/config.js";
 import { loadState, saveState, STRUCTURE_VERSION, type KeywordItem } from "../lib/store.js";
@@ -230,6 +230,8 @@ export function fixInternalLinks(body: string): string {
     return /\]\($/.test(before) || /\($/.test(before) ? m : "[給付金の使い方](/kyufukin/)";
   });
   body = body.replace(/(?<!\]\()(?<![\w/])\/shindan\/(?![\w/])/g, "[6問診断](/shindan/)");
+  // まだ公開していない記事への内部リンクは 404 になるので、文字だけ残してリンクを外す（トピックの hubs に未公開記事を書くため 2026-09-23）
+  body = body.replace(/\[([^\]]+)\]\(\/blog\/([a-z0-9-]+)\/?\)/g, (m, text, slug) => existsSync(resolve(paths.blog, `${slug}.md`)) ? m : text);
   return body;
 }
 
