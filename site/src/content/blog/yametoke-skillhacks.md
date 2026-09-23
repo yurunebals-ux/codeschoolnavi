@@ -197,4 +197,4 @@ SkillHacksは給付金対象講座ではありません。該当する講座番�
 - [SkillHacksの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-skillhacks/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Pythonの独学は何ヶ月かかる？挫折しない学習計画の立て方](/blog/topic-python-dokugaku-kikan/)
-- [日本の古書50トンが米国へ大量輸出、AI学習用か](/blog/news-20260922-yflps/)
+- [生成AI時代にプログラミングを学ぶ意味はあるのか](/blog/topic-seisei-ai-jidai-programming/)

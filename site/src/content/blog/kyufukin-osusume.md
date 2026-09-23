@@ -132,9 +132,9 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 
 ## あわせて読みたい
 
+- [生成AI時代にプログラミングを学ぶ意味はあるのか](/blog/topic-seisei-ai-jidai-programming/)
 - [日本の古書50トンが米国へ大量輸出、AI学習用か](/blog/news-20260922-yflps/)
 - [Google AI Pro月額2,900円でYouTube動画広告を無料にできる理由](/blog/news-20260921-1v2r9/)
 - [テックアイエスは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-techis/)
 - [AI技術の普及で「仕事のあり方」が劇的に変わる現実](/blog/news-20260919-1h9je/)
 - [文字を書かないAI「Jev」は判断だけを高速処理。ChatGPTと何が違う？](/blog/news-20260918-xwttv/)
-- [AI活用で月10時間節約しても給料が増えない理由は何か](/blog/news-20260918-fxn3v/)

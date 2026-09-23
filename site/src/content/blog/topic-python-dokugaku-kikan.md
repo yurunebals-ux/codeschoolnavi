@@ -139,4 +139,4 @@ SkillHacksは買い切り型のオンライン教材で、購入後は無期限�
 - [SkillHacksは自分に合う？申込前に潰す3つの不安](/blog/yametoke-skillhacks/)
 - [独学・買い切りのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-dokugaku/)
 - [SkillHacksの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-skillhacks/)
-- [日本の古書50トンが米国へ大量輸出、AI学習用か](/blog/news-20260922-yflps/)
+- [生成AI時代にプログラミングを学ぶ意味はあるのか](/blog/topic-seisei-ai-jidai-programming/)
