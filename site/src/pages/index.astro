@@ -1,218 +1,238 @@
 ---
+// トップページ（2026-09-23 ニュースサイト寄りに作り直し）
+// オーナー方針: 「まずはアクセス数を増やすサイトを構築する。アフィリエイトは全面に出さない」「トップページもニュースサイトよりに」
+// 構成: 日付入りの題字 → トップニュース（大1＋中2）→ 新着ニュース一覧 → 話題のスレ（反応順）→ 週間コラム → 学び・キャリアの読み物 → スクール選びの資料室（折りたたみ比較表つき）
+// トップにはアフィリエイト・申込ボタンを置かない。スクールの申込導線は各校記事の末尾だけ。
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Thumb from "../components/Thumb.astro";
-import HeroArt from "../components/HeroArt.astro";
-import Shot from "../components/Shot.astro";
-import shotsFile from "../data/shots.json";
 import NavIcon from "../components/NavIcon.astro";
 import { catOf } from "../lib/cat";
 import { shotsFor } from "../lib/school";
 import schools from "../data/schools.json";
-import pricewatch from "../data/pricewatch.json";
-
-// 比較表・ピックアップの申込導線（offers.json）は 2026-09-23 に外した。申込は各校記事の末尾だけ
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
-  .sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate));
+  .sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate) || (b.data.reactions ?? 0) - (a.data.reactions ?? 0));
 const chip = (p: any) => catOf(p.data.title, p.data);
-const latest = posts[0]?.data.pubDate ?? "";
-// AIニュースへの見解（毎日）。読みに来るだけの理由を作る（オーナー方針 2026-09-14）
-const newsPosts = posts.filter((p) => p.data.news).slice(0, 7);
-const [newsTop, ...newsRest] = newsPosts;
+const isWeekly = (p: any) => (p.body ?? "").includes("今週の読者への宿題");
 const isNew = (d: string) => Date.now() - +new Date(d) < 2 * 86400000;
-const rxLabel = (n?: number) => (n ? `反応${n.toLocaleString()}件` : "編集部コラム");
+const md = (d: string) => `${Number(d.slice(5, 7))}/${Number(d.slice(8, 10))}`;
+const rx = (n?: number) => (n ? `反応${n.toLocaleString()}` : "");
 
-// 案C: ヒーローに料金監視の稼働実績を出す。「毎日実際に動いているサイト」であることを一次情報で示す。
-// 価格そのものは断定せず、監視校数・最終確認日・表示変化の検知件数だけを主張する（景表法・自動監視の性質上）。
-const watched = Object.values((pricewatch as any).schools ?? {}) as any[];
-const pwCount = watched.length;
-const pwLast = watched.map((s) => s.lastChecked).filter(Boolean).sort().pop() ?? "";
-const pwChanges = watched.reduce((n, s) => n + (s.observations?.length ?? 0), 0);
-const pwLastMd = pwLast ? `${Number(pwLast.slice(5, 7))}/${Number(pwLast.slice(8, 10))}` : "—";
+const news = posts.filter((p) => p.data.news);
+const matome = news.filter((p) => !isWeekly(p));
+const weekly = news.filter((p) => isWeekly(p)).slice(0, 2);
+const [lead, ...restMatome] = matome;
+const subs = restMatome.slice(0, 2);
+const latestList = restMatome.slice(2, 12);
+// 話題のスレ: 直近14日の反応数の多い順
+const hot = news
+  .filter((p) => (p.data.reactions ?? 0) > 0 && Date.now() - +new Date(p.data.pubDate) < 14 * 86400000)
+  .sort((a, b) => (b.data.reactions ?? 0) - (a.data.reactions ?? 0))
+  .slice(0, 5);
+const reads = posts.filter((p) => p.data.topic).slice(0, 4);
+const schoolPosts = posts.filter((p) => !p.data.news && !p.data.topic).slice(0, 6);
 
-// ヒーロー右側に敷く「公式サイトの画面」の扇。競合分析（2026-09-11）で上位サイトのヒーローに
-// 人物写真は無く、代わりに「実物の画面」が信頼感を作っていた。スクショがある校のうち
-// 比較表に載っている校を優先し、最大3枚。無ければ従来のSVGだけで描く（何も壊れない）。
-const shotIds = Object.keys((shotsFile as any).shots ?? {});
-const heroShots = [
-  ...schools.table.map((s: any) => s.id),
-  ...schools.picks.map((s: any) => s.id),
-].filter((id, i, a) => a.indexOf(id) === i && shotIds.includes(id)).slice(0, 3)
- .map((id) => ({ id, name: (schools.table.find((s: any) => s.id === id) ?? schools.picks.find((s: any) => s.id === id))?.name ?? id }));
+// 題字の日付（ビルド時点。日本時間）
+const now = new Date(Date.now() + 9 * 3600000);
+const wd = ["日", "月", "火", "水", "木", "金", "土"][now.getUTCDay()];
+const today = `${now.getUTCFullYear()}年${now.getUTCMonth() + 1}月${now.getUTCDate()}日（${wd}）`;
+const todayCount = news.filter((p) => isNew(p.data.pubDate)).length;
 ---
-<Base home={true} title="プログラミングスクールの比較・評判" description="主要プログラミングスクールの受講料・期間・給付金・転職支援を横並びで比較。評判記事は毎日更新、デメリットも正直に記載します。">
-  <section class="hero" slot="hero"><HeroArt />
-    {heroShots.length > 0 && (
-      <div class="hero-shots" aria-hidden="true">
-        {heroShots.map((h, i) => (
-          <div class={`hs hs-${i}`}><Shot id={h.id} name={h.name} variant="plain" eager={true} /></div>
-        ))}
-      </div>
-    )}
+<Base home={true} title="AIと学びのニュースまとめ・スクール比較" description="AI・プログラミング・働き方のニュースを、ネットの反応と編集部3人の見方つきで毎日まとめ。プログラミングスクールの評判・料金・給付金の比較も。">
+  <section class="masthead" slot="hero">
     <div class="wrap">
-    <p class="kicker">スクール選びで後悔したくない人のための比較サイト</p>
-    <h1>受講料・給付金・転職支援。<br />答えは<mark>「横並びの比較」</mark>で出す。</h1>
-    <p>主要スクールの受講料・期間・保証内容を公式情報から整理し、ひとつの表で比べられるようにしました。給付金で受講料の20〜80%が戻る仕組みも、区分ごとの条件つきで解説。デメリットも隠さず書きます。</p>
-    <div class="actions">
-      <a class="primary" href="/shindan/">6問で合う3校を診断する</a>
-      <a class="ghost" href="/blog/kyufukin-osusume/">給付金で安くする方法を見る</a>
-    </div>
-    {newsTop && (
-      <a class="ticker" href={`/blog/${newsTop.slug}/`}><b>今日のまとめ</b><span>{newsTop.data.title}</span><em>{rxLabel(newsTop.data.reactions)}</em></a>
-    )}
-    <ul class="points">
-      <li>掲載{schools.table.length}校を同じ軸で比較</li>
-      <li>評判記事{posts.length}本・毎日更新（最終更新 {latest}）</li>
-      <li>広告の有無は評価に影響しません</li>
-    </ul>
-
-    <a class="pw" href="/about/">
-      <span class="pw-head"><i class="dot"></i>料金監視 稼働中<em>当サイト独自</em></span>
-      <span class="pw-stats">
-        <span class="pw-cell"><b data-count={pwCount}>{pwCount}<small>校</small></b><small>掲載＋候補校の公式料金</small></span>
-        <span class="pw-cell"><b>{pwLastMd}</b><small>最終確認日</small></span>
-        <span class="pw-cell"><b data-count={pwChanges}>{pwChanges}<small>件</small></b><small>表示変化を検知</small></span>
-      </span>
-      <span class="pw-note">記事の料金が古くならないよう自動観測しています。価格は必ず公式サイトでご確認ください →</span>
-    </a>
-  </div></section>
-
-  {/* 編集長の紹介はトップに出さない（オーナー判断 2026-09-11）。運営者情報と記事ページには残る */}
-
-  {/* ニュースデスク: トップの最上段（オーナー 2026-09-18「ニュースがもっと目立つように」）。最新1本を大きく、残りをレス風の一覧で */}
-  {newsTop && (
-    <section class="sec band-warm newsdesk" style="--sec-c:#ea580c" id="news">
-      <div class="sec-head reveal"><h2>今日のAIニュースまとめ</h2><span class="en">NEWS DESK</span><span class="note">国内外のニュースに、ネットの反応と編集部3人の見方を添えて毎日更新</span></div>
-      <div class="nd-grid">
-        <a class="nd-top reveal" data-cat="ニュース" href={`/blog/${newsTop.slug}/`}>
-          <span class="nd-thumb"><Thumb title={newsTop.data.title} cat="ニュース" shots={[]} eager={true} /></span>
-          <span class="nd-body">
-            <span class="feat-tags">{isNew(newsTop.data.pubDate) && <span class="feat-new">NEW</span>}<span class="chip">{rxLabel(newsTop.data.reactions)}</span><span class="d">{newsTop.data.pubDate}</span></span>
-            <span class="nd-t">{newsTop.data.title}</span>
-            <span class="nd-d">{newsTop.data.description}</span>
-            <span class="nd-cta">スレの流れと編集部の見方を読む →</span>
-          </span>
-        </a>
-        <ol class="nd-list reveal">
-          {newsRest.map((p, i) => (
-            <li>
-              <a href={`/blog/${p.slug}/`}>
-                <span class="no">{i + 2}</span>
-                <span class="tx"><span class="t">{p.data.title}</span><span class="m">{isNew(p.data.pubDate) && <b class="new">NEW</b>}{rxLabel(p.data.reactions)} ・ {p.data.pubDate}</span></span>
-              </a>
-            </li>
+      <p class="mh-date"><span>{today}</span>{todayCount > 0 && <b>新着 {todayCount}本</b>}</p>
+      <h1 class="mh-title">AIと学びのニュースを、<br class="sp" />ネットの反応つきで。</h1>
+      <p class="mh-lead">国内外のAI・プログラミング・働き方のニュースを毎日まとめています。スレの流れと、編集部3人の「で、学ぶ人はどうする？」を添えて。</p>
+      {lead && (
+        <ul class="mh-ticker">
+          {[lead, ...restMatome.slice(0, 3)].map((p) => (
+            <li><a href={`/blog/${p.slug}/`}><em>{md(p.data.pubDate)}</em>{p.data.title}</a></li>
           ))}
-          <li class="more"><a href="/news/">ニュースまとめをすべて見る（{posts.filter((p) => p.data.news).length}本）→</a></li>
-        </ol>
+        </ul>
+      )}
+    </div>
+  </section>
+
+  {lead && (
+    <section class="sec nx-top" id="news" style="--sec-c:#ea580c">
+      <div class="sec-head"><h2>トップニュース</h2><span class="en">TOP STORIES</span><a class="note" href="/news/">ニュース一覧（{news.length}本）→</a></div>
+      <div class="nx-grid">
+        <a class="nx-lead" href={`/blog/${lead.slug}/`}>
+          <span class="nx-thumb"><Thumb title={lead.data.title} cat="ニュース" shots={[]} eager={true} /></span>
+          <span class="nx-meta">{isNew(lead.data.pubDate) && <b class="nx-new">NEW</b>}<span>{lead.data.pubDate}</span>{rx(lead.data.reactions) && <span class="nx-rx">💬 {rx(lead.data.reactions)}</span>}</span>
+          <span class="nx-t">{lead.data.title}</span>
+          <span class="nx-d">{lead.data.description}</span>
+        </a>
+        <div class="nx-subs">
+          {subs.map((p) => (
+            <a class="nx-sub" href={`/blog/${p.slug}/`}>
+              <span class="nx-thumb"><Thumb title={p.data.title} cat="ニュース" shots={[]} /></span>
+              <span class="nx-meta">{isNew(p.data.pubDate) && <b class="nx-new">NEW</b>}<span>{p.data.pubDate}</span>{rx(p.data.reactions) && <span class="nx-rx">💬 {rx(p.data.reactions)}</span>}</span>
+              <span class="nx-t">{p.data.title}</span>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   )}
 
-  <section class="sec">
-    <div class="sec-head reveal"><h2>目的から探す</h2><span class="en">PURPOSE</span></div>
-    <div class="nav4">
-      <a class="navcard reveal" style="--i:0" href="/blog/hyoban-dmmwebcamp/"><NavIcon kind="tenshoku" /><b>転職を目指す</b><small>転職保証つきスクールの実力は</small></a>
-      <a class="navcard reveal" style="--i:1" href="/blog/kyufukin-osusume/"><NavIcon kind="kyufu" /><b>給付金で安く</b><small>区分別の還元率と対象校</small></a>
-      <a class="navcard reveal" style="--i:2" href="/blog/hyoban-techacademy/"><NavIcon kind="online" /><b>オンライン完結</b><small>働きながら自宅で学びたい</small></a>
-      <a class="navcard reveal" style="--i:3" href="/shindan/"><NavIcon kind="shindan" /><b>迷ったら診断</b><small>6問で合う3校と注意点を出す</small></a>
-    </div>
-  </section>
-
-
-  <section class="sec band-blue">
-    <div class="sec-head reveal"><h2>編集部ピックアップ</h2><span class="en">EDITOR'S PICK</span><span class="note">目的別・公開情報に基づく編集部の見解です</span></div>
-    <div class="picks">
-      {schools.picks.map((s, i) => (
-        <article class="pick reveal" style={`--i:${i}`}>
-          <Shot id={s.id} name={s.name} variant="card" />
-          <div class="ribbon">{s.purpose}</div>
-          <h3>{s.name}<small>{s.sub}</small></h3>
-          <dl class="specs">
-            <div><dt>料金</dt><dd><b>{s.price}</b></dd></div>
-            <div><dt>期間</dt><dd>{s.period}</dd></div>
-            <div><dt>形式</dt><dd>{s.form}</dd></div>
-          </dl>
-          <ul class="tags">{s.tags.map((tg) => <li>{tg}</li>)}</ul>
-          <p class="fit">✓ {s.fit}</p>
-          {/* トップは「人を呼ぶ面」。申込ボタンは置かず、評判記事へ送る（オーナー方針 2026-09-23） */}
-          <a class="more" href={s.review}>評判・注意点をくわしく見る</a>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="sec">
-    <div class="sec-head reveal"><h2>掲載{schools.table.length}校をざっくり比較</h2><span class="en">COMPARISON</span></div>
-    <table>
-      <thead><tr><th>スクール</th><th>形式</th><th>期間</th><th>料金（税込）</th><th>ここが特徴</th><th>詳細</th></tr></thead>
-      <tbody>
-        {schools.table.map((s) => (
-          <tr>
-            {/* トップの比較表には外部（公式・アフィリエイト）リンクを置かない。申込導線は各校の記事の末尾だけ（2026-09-23） */}
-            <td class="tname"><b>{s.name}</b></td>
-            <td>{s.form}</td><td>{s.period}</td><td>{s.price}</td><td>{s.point}</td>
-            <td><a href={s.review}>評判を見る</a></td>
-          </tr>
+  <section class="sec nx-two" style="--sec-c:#ea580c">
+    <div class="nx-col">
+      <div class="sec-head"><h2>新着ニュース</h2><span class="en">LATEST</span></div>
+      <ul class="nx-list">
+        {latestList.map((p) => (
+          <li><a href={`/blog/${p.slug}/`}>
+            <time>{md(p.data.pubDate)}</time>
+            <span class="t">{p.data.title}{isNew(p.data.pubDate) && <b class="nx-new">NEW</b>}</span>
+            {rx(p.data.reactions) && <span class="r">💬 {p.data.reactions}</span>}
+          </a></li>
         ))}
-      </tbody>
-    </table>
-    <p class="tnote">※料金・内容は各記事の更新日時点の公式情報に基づきます。最新条件は必ず公式サイトでご確認ください。</p>
+      </ul>
+      <a class="nx-more" href="/news/">ニュースをもっと見る →</a>
+    </div>
+    <aside class="nx-col nx-rank">
+      <div class="sec-head"><h2>話題のスレ</h2><span class="en">RANKING</span></div>
+      <ol>
+        {hot.map((p, i) => (
+          <li><a href={`/blog/${p.slug}/`}>
+            <span class="no">{i + 1}</span>
+            <span class="tx"><span class="t">{p.data.title}</span><span class="m">💬 反応{(p.data.reactions ?? 0).toLocaleString()}件 ・ {md(p.data.pubDate)}</span></span>
+          </a></li>
+        ))}
+      </ol>
+      <p class="nx-note">反応数は、元記事についた はてなブックマーク等の件数です。</p>
+    </aside>
   </section>
 
-  <section class="sec band-green" style="--sec-c:#059669">
-    <div class="sec-head reveal"><h2>新着の評判・比較記事</h2><span class="en">ARTICLES</span><span class="note">全{posts.length}本 ・ 毎日更新</span></div>
-    {/* 全部を同じ大きさのサムネで並べると、10枚のグラデーションが延々と続いて
-        「量産テンプレ」に見える（実測: この一覧だけでページの33%＝1,842pxあった）。
-        最新1本だけ大きく見せ、残りは横組みの小カードにして、リズムと情報密度を上げる。 */}
-    {posts[0] && (
-      <a class="feat reveal" data-cat={chip(posts[0])} href={`/blog/${posts[0].slug}/`}>
-        <span class="feat-thumb"><Thumb title={posts[0].data.title} cat={chip(posts[0])} shots={shotsFor(posts[0].slug)} eager={true} /></span>
-        <span class="feat-body">
-          <span class="feat-tags"><span class="chip">{chip(posts[0])}</span><span class="feat-new">最新</span></span>
-          <span class="feat-t">{posts[0].data.title}</span>
-          <span class="feat-d">{posts[0].data.description}</span>
-          <span class="d">{posts[0].data.pubDate} 更新 ・ {posts[0].data.author}</span>
-        </span>
-      </a>
-    )}
-    {/* 一覧は10本で止めて /blog/ に送る。52本を縦に並べるとページの半分が同じ形のカードになり、
-        オーナー評「味気ない」の主因になっていた。 */}
-    <ul class="cards">
-      {posts.slice(1, 11).map((p, i) => (
-        <li class="reveal" style={`--i:${i % 2}`}>
-          <a class="card row" data-cat={chip(p)} href={`/blog/${p.slug}/`}>
-            <span class="cthumb"><Thumb title={p.data.title} cat={chip(p)} shots={shotsFor(p.slug)} compact /></span>
-            <span class="cbody">
-              <span class="chip">{chip(p)}</span>
-              <span class="t">{p.data.title}</span>
-              <span class="d">{p.data.pubDate} 更新</span>
-            </span>
+  {weekly.length > 0 && (
+    <section class="sec band-warm nx-weekly" style="--sec-c:#ea580c">
+      <div class="sec-head"><h2>週間コラム</h2><span class="en">WEEKLY</span><span class="note">1週間のニュースを3本束ねて、学ぶ人への宿題つきで</span></div>
+      <div class="nx-wk">
+        {weekly.map((p) => (
+          <a class="nx-wcard" href={`/blog/${p.slug}/`}>
+            <span class="nx-meta"><span>{p.data.pubDate}</span></span>
+            <span class="nx-t">{p.data.title}</span>
+            <span class="nx-d">{p.data.description}</span>
           </a>
-        </li>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {reads.length > 0 && (
+    <section class="sec nx-reads" style="--sec-c:#0d9488">
+      <div class="sec-head"><h2>学び・キャリアの読み物</h2><span class="en">FEATURES</span></div>
+      <ul class="cards">
+        {reads.map((p) => (
+          <li><a class="card row" data-cat={chip(p)} href={`/blog/${p.slug}/`}>
+            <span class="cthumb"><Thumb title={p.data.title} cat={chip(p)} shots={[]} compact /></span>
+            <span class="cbody"><span class="chip">{chip(p)}</span><span class="t">{p.data.title}</span><span class="d">{p.data.pubDate}</span></span>
+          </a></li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section class="sec band-blue nx-school">
+    <div class="sec-head"><h2>スクール選びの資料室</h2><span class="en">SCHOOL GUIDE</span><span class="note">評判・料金・給付金を公式情報から整理</span></div>
+    <div class="nav4">
+      <a class="navcard" href="/shindan/"><NavIcon kind="shindan" /><b>6問で診断</b><small>合う3校と注意点を出す</small></a>
+      <a class="navcard" href="/kyufukin/"><NavIcon kind="kyufu" /><b>給付金で安く</b><small>区分別の還元率と対象校</small></a>
+      <a class="navcard" href="/blog/hyoban-dmmwebcamp/"><NavIcon kind="tenshoku" /><b>転職を目指す</b><small>転職支援つきスクールの実力</small></a>
+      <a class="navcard" href="/blog/hyoban-techacademy/"><NavIcon kind="online" /><b>オンライン完結</b><small>働きながら自宅で学ぶ</small></a>
+    </div>
+    <ul class="nx-slist">
+      {schoolPosts.map((p) => (
+        <li><a href={`/blog/${p.slug}/`}><span class="chip">{chip(p)}</span><span class="t">{p.data.title}</span></a></li>
       ))}
     </ul>
-    <a class="more-link reveal" href="/blog/">すべての記事を見る（全{posts.length}本）→</a>
-  </section>
-
-  <section class="sec" style="--sec-c:#7c3aed">
-    <div class="sec-head reveal"><h2>失敗しない選び方 3ステップ</h2><span class="en">HOW TO CHOOSE</span></div>
-    <ol class="steps">
-      <li class="reveal" style="--i:0"><b>目的を決める</b><span>転職が最優先なら保証つき、スキル習得だけならオンライン完結型も選択肢。</span></li>
-      <li class="reveal" style="--i:1"><b>給付金の対象か調べる</b><span>対象コースなら受講料の20〜80%が戻ります。割合は講座の指定区分と雇用保険の加入期間で変わるので、申込前に確認を。</span></li>
-      <li class="reveal" style="--i:2"><b>負担額で比べる</b><span>定価ではなく「給付金適用後の自己負担」で比較すると順位が入れ替わることがあります。</span></li>
-    </ol>
-  </section>
-
-  <section class="sec band-warm" style="--sec-c:#ea580c">
-    <div class="sec-head reveal"><h2>よくある質問</h2><span class="en">FAQ</span></div>
-    <details><summary>「プログラミングスクールは意味がない」と聞きますが本当ですか？</summary><p>独学で十分な人がいる一方、保証や伴走が必要な人もいます。費用が高く感じられる背景と、向き不向きの整理は<a href="/blog/kyufukin-osusume/">こちらの記事</a>で中立的に解説しています。</p></details>
-    <details><summary>給付金はいくら戻りますか？</summary><p>講座の指定区分で変わります。一般教育訓練は20%（上限10万円）、特定一般は40%（上限20万円）、専門実践は受講中50%（年間上限40万円）で、修了後に就職すると20%・賃金が上がるとさらに10%が上乗せされ最大80%（年間上限64万円）です。専門実践と特定一般は<b>受講開始日の2週間前まで</b>にハローワークでの手続きが必要です。対象校と申請手順は<a href="/kyufukin/">給付金の使い方</a>と<a href="/blog/kyufukin-osusume/">給付金対象スクールまとめ</a>をご覧ください。</p></details>
-    <details><summary>このサイトの評価は広告に影響されますか？</summary><p>されません。当サイトはアフィリエイト広告を利用していますが、記事の評価・掲載順は編集部の検証ルール（教育の質・サポート・実績の3軸）のみで決めています。詳細は<a href="/disclosure/">広告について</a>へ。</p></details>
+    <details class="nx-table">
+      <summary>掲載{schools.table.length}校の料金・期間をざっくり比較する</summary>
+      <div class="tw">
+        <table>
+          <thead><tr><th>スクール</th><th>形式</th><th>期間</th><th>料金（税込）</th><th>詳細</th></tr></thead>
+          <tbody>
+            {schools.table.map((s) => (
+              <tr><td class="tname"><b>{s.name}</b></td><td>{s.form}</td><td>{s.period}</td><td>{s.price}</td><td><a href={s.review}>評判を見る</a></td></tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="tnote">※料金・内容は各記事の更新日時点の公式情報に基づきます。最新条件は必ず公式サイトでご確認ください。</p>
+      </div>
+    </details>
+    <a class="nx-more" href="/blog/">スクールの記事をすべて見る →</a>
   </section>
 
   <section class="sec policy">
-    <div class="sec-head reveal"><h2>編集方針</h2><span class="en">EDITORIAL POLICY</span></div>
-    <p>コードスクールナビ編集部は、各スクールの<b>公式サイト・料金表・給付金の指定講座情報</b>を定期的に確認し、「教育の質」「サポート」「実績」の3軸で整理しています。良い点だけでなく<b>注意点・向かない人</b>を必ず記載し、記事には更新日を明示します。内容の誤りを見つけた場合は<a href="/about/">運営者情報</a>のページからご連絡ください。</p>
+    <div class="sec-head"><h2>編集方針</h2><span class="en">EDITORIAL POLICY</span></div>
+    <p>ニュースは出典を必ず明記し、「スレの流れ」には元記事についた実際のコメントだけを載せます（中傷や容姿への言及は除外）。「編集部の井戸端会議」は編集部スタッフによる会話形式のまとめで、実在の受講者の発言ではありません。スクールの記事は<b>公式サイト・料金表・給付金の指定講座情報</b>をもとに、良い点だけでなく<b>注意点・向かない人</b>も書きます。誤りを見つけた場合は<a href="/about/">運営者情報</a>からご連絡ください。</p>
   </section>
 </Base>
+
+<style is:global>
+  .masthead{background:#0f172a;color:#e2e8f0;padding:26px 0 22px;border-bottom:4px solid #ea580c}
+  .masthead .mh-date{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#94a3b8;margin:0 0 8px;letter-spacing:.04em}
+  .masthead .mh-date b{background:#ea580c;color:#fff;border-radius:999px;padding:2px 10px;font-size:11.5px}
+  .masthead .mh-title{color:#fff;font-size:clamp(22px,4.6vw,32px);line-height:1.35;margin:0 0 8px}
+  .masthead .mh-lead{color:#cbd5e1;font-size:14px;margin:0 0 14px;max-width:680px}
+  .masthead .mh-ticker{list-style:none;margin:0;padding:10px 0 0;border-top:1px solid #334155;display:grid;gap:6px}
+  .masthead .mh-ticker li{margin:0}
+  .masthead .mh-ticker a{color:#e2e8f0;text-decoration:none;font-size:13.5px;display:flex;gap:10px;line-height:1.5}
+  .masthead .mh-ticker a:hover{color:#fdba74}
+  .masthead .mh-ticker em{font-style:normal;color:#fb923c;font-weight:800;flex:none;min-width:38px}
+  .masthead br.sp{display:none}
+  @media (max-width:560px){.masthead br.sp{display:inline}.masthead .mh-ticker li:nth-child(n+3){display:none}}
+
+  .nx-meta{display:flex;gap:8px;align-items:center;font-size:12px;color:#64748b;flex-wrap:wrap}
+  .nx-new{background:#dc2626;color:#fff;font-size:10.5px;font-weight:800;border-radius:4px;padding:1px 6px;margin-left:6px}
+  .nx-meta .nx-new{margin-left:0}
+  .nx-rx{color:#ea580c;font-weight:700}
+  .nx-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:18px}
+  .nx-lead,.nx-sub,.nx-wcard{display:flex;flex-direction:column;gap:8px;text-decoration:none;color:var(--navy)}
+  .nx-thumb{display:block;border-radius:12px;overflow:hidden;line-height:0}
+  .nx-lead .nx-t{font-size:clamp(19px,3.2vw,24px);font-weight:800;line-height:1.4}
+  .nx-lead .nx-d,.nx-wcard .nx-d{font-size:13.5px;color:#475569;line-height:1.7}
+  .nx-subs{display:grid;gap:16px;align-content:start}
+  .nx-sub .nx-t{font-size:15px;font-weight:800;line-height:1.45}
+  .nx-lead:hover .nx-t,.nx-sub:hover .nx-t,.nx-wcard:hover .nx-t{color:#ea580c}
+
+  .nx-two{display:grid;grid-template-columns:1.5fr 1fr;gap:28px}
+  .nx-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--bd)}
+  .nx-list li{margin:0;border-bottom:1px solid var(--bd)}
+  .nx-list a{display:flex;gap:12px;align-items:baseline;padding:11px 2px;text-decoration:none;color:var(--navy)}
+  .nx-list time{flex:none;color:#ea580c;font-weight:800;font-size:12.5px;min-width:36px}
+  .nx-list .t{flex:1;font-size:14.5px;font-weight:700;line-height:1.5}
+  .nx-list .r{flex:none;font-size:12px;color:#64748b}
+  .nx-list a:hover .t{color:#ea580c}
+  .nx-more{display:inline-block;margin-top:12px;font-weight:800;font-size:13.5px;color:#ea580c;text-decoration:none}
+  .nx-rank{background:#fff7ed;border:1px solid #fed7aa;border-radius:14px;padding:16px 16px 12px;align-self:start}
+  .nx-rank ol{list-style:none;margin:0;padding:0}
+  .nx-rank li{margin:0 0 10px}
+  .nx-rank a{display:flex;gap:10px;text-decoration:none;color:var(--navy)}
+  .nx-rank .no{flex:none;width:26px;height:26px;border-radius:6px;background:#ea580c;color:#fff;font-weight:800;display:grid;place-items:center;font-size:13px}
+  .nx-rank li:nth-child(n+4) .no{background:#94a3b8}
+  .nx-rank .t{display:block;font-size:13.5px;font-weight:700;line-height:1.5}
+  .nx-rank .m{display:block;font-size:11.5px;color:#9a3412;margin-top:2px}
+  .nx-rank a:hover .t{color:#ea580c}
+  .nx-note{font-size:11px;color:#94a3b8;margin:6px 0 0}
+
+  .nx-wk{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .nx-wcard{background:#fff;border:1px solid #fed7aa;border-left:5px solid #ea580c;border-radius:12px;padding:14px 16px}
+  .nx-wcard .nx-t{font-size:16px;font-weight:800;line-height:1.45}
+
+  .nx-slist{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px 18px}
+  .nx-slist li{margin:0}
+  .nx-slist a{display:flex;gap:8px;align-items:baseline;text-decoration:none;color:var(--navy);font-size:14px;font-weight:700;line-height:1.5;padding:6px 0;border-bottom:1px dashed var(--bd)}
+  .nx-slist .chip{flex:none}
+  .nx-slist a:hover .t{color:var(--acc)}
+  .nx-table{margin-top:16px}
+  .nx-table .tw{padding:0 12px 12px;overflow-x:auto}
+
+  @media (max-width:760px){
+    .nx-grid,.nx-two{grid-template-columns:1fr}
+    .nx-subs{grid-template-columns:1fr 1fr;gap:12px}
+    .nx-sub .nx-t{font-size:14px}
+  }
+</style>
