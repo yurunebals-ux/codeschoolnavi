@@ -136,5 +136,5 @@ RUNTEQの一部コースが対象です。詳細は各校の公式情報で確�
 - [ウズウズカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-uzuzcollege/)
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [「Geta.Team」でAI従業員にメール・電話対応を任せる時代が来た](/blog/news-20260924-14436/)
-- [ポテパンキャンプに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-potepan/)
+- [ChatGPTでプログラミングを学ぶやり方と、頼りすぎて伸びない人の共通点](/blog/topic-chatgpt-programming-gakushu/)
+- [生成AIで未経験から月130万円稼ぐ副業、その分岐点は専門AIの使い分け](/blog/news-20260924-nd41c/)

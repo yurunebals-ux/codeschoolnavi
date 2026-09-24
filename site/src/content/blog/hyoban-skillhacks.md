@@ -164,4 +164,4 @@ SkillHacksは公式サイトにポートフォリオ制作の支援がないた�
 - [独学・買い切りのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-dokugaku/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Pythonの独学は何ヶ月かかる？挫折しない学習計画の立て方](/blog/topic-python-dokugaku-kikan/)
-- [「Geta.Team」でAI従業員にメール・電話対応を任せる時代が来た](/blog/news-20260924-14436/)
+- [ChatGPTでプログラミングを学ぶやり方と、頼りすぎて伸びない人の共通点](/blog/topic-chatgpt-programming-gakushu/)
