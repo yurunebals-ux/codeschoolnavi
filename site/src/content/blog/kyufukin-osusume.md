@@ -132,9 +132,9 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 
 ## あわせて読みたい
 
+- [とび職倒産が過去最多ペース、若者の価値観とのズレが影響か](/blog/news-20260925-12u2e/)
 - [ChatGPTでプログラミングを学ぶやり方と、頼りすぎて伸びない人の共通点](/blog/topic-chatgpt-programming-gakushu/)
 - [生成AIで未経験から月130万円稼ぐ副業、その分岐点は専門AIの使い分け](/blog/news-20260924-nd41c/)
 - [「Geta.Team」でAI従業員にメール・電話対応を任せる時代が来た](/blog/news-20260924-14436/)
 - [ポテパンキャンプに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-potepan/)
 - [ウズウズカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-uzuzcollege/)
-- [フィヨルドブートキャンプは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-fjord/)
