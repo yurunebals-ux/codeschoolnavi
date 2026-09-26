@@ -15,6 +15,8 @@ const blog = defineCollection({
     topic: z.boolean().default(false),
     // ニュース記事: ネットの反応の件数（はてブ等の合計）。トップ・一覧で「反応◯件」と出す
     reactions: z.number().optional(),
+    // ニュース記事の投票（任意）。無ければ「歓迎派／慎重派」の既定の問い（components/Poll.astro）
+    poll: z.object({ q: z.string(), a: z.string(), b: z.string() }).optional(),
   }),
 });
 
