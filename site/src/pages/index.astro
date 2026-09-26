@@ -3,6 +3,7 @@
 // オーナー方針: 「まずはアクセス数を増やすサイトを構築する。アフィリエイトは全面に出さない」「トップページもニュースサイトよりに」
 // 構成: 日付入りの題字 → トップニュース（大1＋中2）→ 新着ニュース一覧 → 話題のスレ（反応順）→ 週間コラム → 学び・キャリアの読み物 → スクール選びの資料室（折りたたみ比較表つき）
 // トップにはアフィリエイト・申込ボタンを置かない。スクールの申込導線は各校記事の末尾だけ。
+import CommentCount from "../components/CommentCount.astro";
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Thumb from "../components/Thumb.astro";
@@ -194,6 +195,7 @@ const pad2 = (n: number) => String(n).padStart(2, "0");
     <div class="sec-head"><h2>編集方針</h2><span class="en">EDITORIAL POLICY</span></div>
     <p>ニュースは出典を必ず明記し、「スレの流れ」には元記事についた実際のコメントだけを載せます（中傷や容姿への言及は除外）。「編集部の井戸端会議」は編集部スタッフによる会話形式のまとめで、実在の受講者の発言ではありません。スクールの記事は<b>公式サイト・料金表・給付金の指定講座情報</b>をもとに、良い点だけでなく<b>注意点・向かない人</b>も書きます。誤りを見つけた場合は<a href="/about/">運営者情報</a>からご連絡ください。</p>
   </section>
+  <CommentCount />
 </Base>
 
 {cfgC.api && (
