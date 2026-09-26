@@ -1,5 +1,7 @@
 ---
 const { title, description, article, home = false, ogImage } = Astro.props;
+import cfgBbs from "../data/comments.json";
+const bbsOn = Boolean((cfgBbs as any).api); // 掲示板 API が有効になるまでナビに出さない
 import { getCollection as _gc } from "astro:content";
 // ナビ「AIニュース」に、直近2日のニュース本数を赤い数字で出す（2026-09-18 オーナー「ニュースがもっと目立つように」）
 const freshNews = (await _gc("blog", ({ data }) => !data.draft && data.news && Date.now() - +new Date(data.pubDate) < 2 * 86400000)).length;
@@ -478,6 +480,7 @@ if (Astro.url.pathname !== "/") crumbs.push({ name: title, url: canonical.toStri
     <header class="site"><div class="wrap nav">
       <a class="brand" href="/"><span class="logo">&lt;/&gt;</span>{site}</a>
       <a class="item keep nav-news" href="/news/">AIニュース{freshNews > 0 && <i class="nbadge">{freshNews}</i>}</a>
+      {bbsOn && <a class="item" href="/bbs/">掲示板</a>}
       <a class="item keep" href="/kyufukin/">給付金ガイド</a>
       <a class="item" href="/about/">運営者情報</a>
       <a class="item" href="/disclosure/">広告について</a>
@@ -491,6 +494,7 @@ if (Astro.url.pathname !== "/") crumbs.push({ name: title, url: canonical.toStri
       <p>【広告】当サイトはアフィリエイト広告（プロモーション）を利用していますが、評価や順位には影響しません。詳しくは<a href="/disclosure/">広告について</a>をご覧ください。</p>
       <div class="links">
         <a href="/news/">AIニュースの見方</a>
+        {bbsOn && <a href="/bbs/">掲示板</a>}
         <a href="/shindan/">スクール診断</a>
         <a href="/kyufukin/">給付金ガイド</a>
         <a href="/about/">運営者情報</a>
