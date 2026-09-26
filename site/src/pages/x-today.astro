@@ -4,6 +4,8 @@
 // ?list を付けて開くと移動せず、候補（直近の記事）から選べる。
 // 検索には出さない（noindex・サイトマップ除外）。ビルドのたびに選び直すので、その日の新着が入る。
 import { getCollection } from "astro:content";
+// 投稿に添える1〜2行のひとこと（site/scripts/xcomment.mjs が作る。無い記事は説明文で代用）
+import xc from "../data/x-comments.json";
 const SITE = (import.meta.env.SITE || "https://codeschoolnavi.com").replace(/\/$/, "");
 const jst = (t: number) => new Date(t + 9 * 3600000).toISOString().slice(0, 10);
 const today = jst(Date.now());
@@ -20,10 +22,13 @@ const items = cands.map((p) => {
   const tags = p.data.news ? ["AIニュース", "生成AI"] : ["プログラミング学習", "リスキリング"];
   // X は日本語を2文字として数える（上限280）。見出し＋説明を約110字に収め、URL（23）とハッシュタグの余裕を残す
   const head = `${label}${p.data.title}`;
-  const text = `${head}\n\n${cut(p.data.description, Math.max(0, 105 - [...head].length))}`.trim();
+  const comment = (xc as any)[p.slug]?.comment as string | undefined;
+  const text = comment
+    ? `${comment}\n\n${head}`
+    : `${head}\n\n${cut(p.data.description, Math.max(0, 105 - [...head].length))}`.trim();
   const url = `${SITE}/blog/${p.slug}/`;
   const intent = `https://x.com/intent/post?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&hashtags=${encodeURIComponent(tags.join(","))}`;
-  return { slug: p.slug, date: p.data.pubDate, title: p.data.title, label, text, url, tags, intent };
+  return { slug: p.slug, date: p.data.pubDate, title: p.data.title, label, text, url, tags, intent, hasComment: !!comment };
 });
 const first = items[0];
 ---
@@ -65,7 +70,7 @@ const first = items[0];
     )}
     {items.map((it, i) => (
       <div class={i === 0 ? "card top" : "card"}>
-        <div class="meta">{i === 0 ? "今日のおすすめ ・ " : ""}{it.date} ・ {it.slug}</div>
+        <div class="meta">{i === 0 ? "今日のおすすめ ・ " : ""}{it.date} ・ {it.slug}{it.hasComment ? "" : " ・ ひとこと準備中"}</div>
         <div class="txt">{it.text}</div>
         <div class="u">{it.url}</div>
         <div class="h">{it.tags.map((t) => `#${t}`).join(" ")}</div>
