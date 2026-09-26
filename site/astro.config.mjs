@@ -5,7 +5,8 @@ import rehypeExternalLinks from "rehype-external-links";
 // Set `site` to your real domain before deploying (used for sitemap & canonical URLs).
 export default defineConfig({
   site: process.env.SITE_URL || "https://example.com",
-  integrations: [sitemap()],
+  // /x-today/（X のワンタップ投稿用・noindex）はサイトマップに載せない
+  integrations: [sitemap({ filter: (page) => !page.includes("/x-today/") })],
   build: { format: "directory" },
   markdown: {
     rehypePlugins: [
