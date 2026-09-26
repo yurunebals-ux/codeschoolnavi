@@ -3,10 +3,9 @@ name: x-comment
 # X のワンタップ投稿（/x-today/）に添える「1〜2行のひとこと」を作る（2026-09-26 オーナー依頼）。
 # 記事が公開されたあと（各コンテンツ系ワークフローの完了後）に動き、公開3日以内でひとことが無い記事だけ作る。
 # 結果は site/src/data/x-comments.json にコミットし、deploy-pages（workflow_run で x-comment を拾う）でサイトに出る。
+# 2026-09-26 オーナー案で、投稿のひとことは記事の「編集部の井戸端会議」からの引用に変更（x-today.astro がビルド時に選ぶ）。
+# AI のひとことは井戸端会議が無い記事の予備なので、自動実行は止めて手動実行だけにした。
 on:
-  workflow_run:
-    workflows: ["daily-content-cycle", "news-hot", "news-column", "regen-articles"]
-    types: [completed]
   workflow_dispatch: {}
 
 permissions:
