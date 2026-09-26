@@ -1,6 +1,7 @@
 ---
 // AIニュースの見方（ニュースデスク）。国内外のAI・エンジニア採用ニュースへの見解記事だけを新しい順に。
 // 「読みに来るだけでも面白いサイト」（オーナー方針 2026-09-11 / 09-14）の入口。Google ニュース申請時のセクションURLにもする。
+import CommentCount from "../../components/CommentCount.astro";
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 
@@ -43,6 +44,7 @@ const rxLabel = (n?: number) => (n ? `反応${n.toLocaleString()}件` : "");
     <h2>このコーナーの決まり</h2>
     <p>出典は必ず本文中と末尾に示し、引用は15字まで。材料の記事に書かれていない数字や発言は書きません。ニュースの評価では歓迎する見方と慎重な見方の両方を書き、そのうえで編集部の結論を出します。スクールの紹介は関係がある場合だけで、ニュース記事に広告リンクは置きません。</p>
   </section>
+  <CommentCount />
 </Base>
 
 <style is:global>
