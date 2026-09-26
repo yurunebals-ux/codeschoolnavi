@@ -3,9 +3,11 @@ name: x-post
 # 新着記事を X に自動投稿（2026-09-26 オーナー決定: リンク付きを1日1本、月31本まで。当初3本→同日1本に変更）。
 # 1回の実行で最大1本。投稿した記事は data/x-posted.json に記録してコミットする（重複防止と月の上限の数え方）。
 # 必要な GitHub Secrets: X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_SECRET（未登録なら何もしない）
+# 2026-09-26 オーナー判断「一旦これで」: X は API（有料）ではなく、/x-today/ のワンタップ投稿（手動・無料）で運用する。
+# そのため定期実行は止めてある。API で自動化に戻すときは、下の schedule の行のコメントを外し、Secrets を登録する。
 on:
-  schedule:
-    - cron: "15 11 * * *"   # 20:15 JST（Xの利用が多い夜。朝・夕の速報も含めてその日の1本を選ぶ）
+  # schedule:
+  #   - cron: "15 11 * * *"   # 20:15 JST
   workflow_dispatch:
     inputs:
       dry:
