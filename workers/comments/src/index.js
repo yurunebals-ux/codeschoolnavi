@@ -5,6 +5,7 @@
 //   GET  /counts?pages=a,b,c          ページごとの件数
 //   POST /comments  {page,name,body,website,t}   書き込み
 //   POST /report    {id}              通報（3件で自動非表示）
+//   GET  /stats                       日次点検用の件数（本文なし）
 // 管理（非表示・削除）は GitHub Actions の comments-admin から D1 を直接操作する。管理用のAPIは持たない。
 
 const ORIGINS = ["https://codeschoolnavi.com", "https://www.codeschoolnavi.com"];
@@ -56,6 +57,21 @@ export default {
         if (!pages.length) return json({ counts: {} });
         const { results } = await env.DB.prepare(`SELECT page, COUNT(*) AS n FROM comments WHERE status = 'visible' AND page IN (${pages.map(() => "?").join(",")}) GROUP BY page`).bind(...pages).all();
         return json({ counts: Object.fromEntries(results.map((r) => [r.page, r.n])) });
+      }
+
+      // 日次点検用の集計（2026-09-26）。本文・IP は返さない。件数と、通報を受けて表示中の書き込みの位置だけ
+      if (req.method === "GET" && url.pathname === "/stats") {
+        const since24 = new Date(Date.now() - 86400000).toISOString();
+        const s = await env.DB.prepare("SELECT SUM(status = 'visible') AS visible, SUM(status = 'visible' AND created_at > ?) AS visible24h, SUM(status = 'hidden') AS hidden, SUM(status = 'hidden' AND created_at > ?) AS hidden24h, SUM(created_at > ?) AS posts24h FROM comments").bind(since24, since24, since24).first();
+        const rep = await env.DB.prepare("SELECT id, page, no, reports, created_at FROM comments WHERE status = 'visible' AND reports > 0 ORDER BY reports DESC, id DESC LIMIT 20").all();
+        const pages = await env.DB.prepare("SELECT page, COUNT(*) AS n FROM comments WHERE status = 'visible' AND created_at > ? GROUP BY page ORDER BY n DESC LIMIT 10").bind(since24).all();
+        const n = (v) => Number(v || 0);
+        return new Response(JSON.stringify({
+          generated_at: new Date().toISOString(),
+          visible: n(s?.visible), hidden: n(s?.hidden),
+          last24h: { posts: n(s?.posts24h), visible: n(s?.visible24h), hidden: n(s?.hidden24h) },
+          reported_visible: rep.results, top_pages_24h: pages.results,
+        }), { headers: { "Content-Type": "application/json; charset=utf-8", "Access-Control-Allow-Origin": "*", "Cache-Control": "no-store" } });
       }
 
       if (req.method === "POST") {
