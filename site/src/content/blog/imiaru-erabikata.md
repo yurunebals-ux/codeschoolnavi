@@ -163,7 +163,7 @@ SHIFT TERAS CAMPUSとテックキャンプにある返金保証は「条件付�
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [生成AI時代にプログラミングを学ぶ意味はあるのか](/blog/topic-seisei-ai-jidai-programming/)
+- [Google Geminiの電話代行、月10回以下でも損をする理由とは](/blog/news-20260926-1nwuu/)
 - [エンジニア転職に年齢制限はある？20代・30代・40代で変わる現実](/blog/topic-engineer-tenshoku-nenrei/)
 - [Claude Codeの登場で「コードを書くエンジニア」は終わったのか](/blog/news-20260925-d45hp/)
 - [とび職倒産が過去最多ペース、若者の価値観とのズレが影響か](/blog/news-20260925-12u2e/)
-- [ChatGPTでプログラミングを学ぶやり方と、頼りすぎて伸びない人の共通点](/blog/topic-chatgpt-programming-gakushu/)
