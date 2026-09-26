@@ -6,6 +6,8 @@
 //   POST /comments  {page,name,body,website,t}   書き込み
 //   POST /report    {id}              通報（3件で自動非表示）
 //   GET  /stats                       日次点検用の件数（本文なし）
+//   GET  /votes?page=<slug>           投票数（a=歓迎派, b=慎重派）と自分の票
+//   POST /vote     {page,choice}      投票（1人1ページ1票、選び直しは上書き。1日100票まで）
 // 管理（非表示・削除）は GitHub Actions の comments-admin から D1 を直接操作する。管理用のAPIは持たない。
 
 const ORIGINS = ["https://codeschoolnavi.com", "https://www.codeschoolnavi.com"];
@@ -30,6 +32,13 @@ const json = (data, status = 200, origin = "*") => new Response(JSON.stringify(d
 async function sha(s) {
   const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
   return btoa(String.fromCharCode(...new Uint8Array(b))).replace(/[^A-Za-z0-9]/g, "");
+}
+// 投票の集計と自分の票（本人以外の票は件数だけ）。キャッシュしない
+async function voteResult(env, page, ipHash, allow) {
+  const c = await env.DB.prepare("SELECT SUM(choice = 'a') AS a, SUM(choice = 'b') AS b, MAX(CASE WHEN ip_hash = ? THEN choice END) AS mine FROM votes WHERE page = ?").bind(ipHash, page).first();
+  return new Response(JSON.stringify({ ok: true, a: Number(c?.a || 0), b: Number(c?.b || 0), mine: c?.mine || null }), {
+    headers: { "Content-Type": "application/json; charset=utf-8", "Access-Control-Allow-Origin": allow, "Access-Control-Allow-Headers": "Content-Type", "Cache-Control": "no-store", Vary: "Origin" },
+  });
 }
 const jstDate = () => new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
 
@@ -65,13 +74,22 @@ export default {
         const s = await env.DB.prepare("SELECT SUM(status = 'visible') AS visible, SUM(status = 'visible' AND created_at > ?) AS visible24h, SUM(status = 'hidden') AS hidden, SUM(status = 'hidden' AND created_at > ?) AS hidden24h, SUM(created_at > ?) AS posts24h FROM comments").bind(since24, since24, since24).first();
         const rep = await env.DB.prepare("SELECT id, page, no, reports, created_at FROM comments WHERE status = 'visible' AND reports > 0 ORDER BY reports DESC, id DESC LIMIT 20").all();
         const pages = await env.DB.prepare("SELECT page, COUNT(*) AS n FROM comments WHERE status = 'visible' AND created_at > ? GROUP BY page ORDER BY n DESC LIMIT 10").bind(since24).all();
+        const v = await env.DB.prepare("SELECT COUNT(*) AS total, SUM(created_at > ?) AS d FROM votes").bind(since24).first();
         const n = (v) => Number(v || 0);
         return new Response(JSON.stringify({
           generated_at: new Date().toISOString(),
           visible: n(s?.visible), hidden: n(s?.hidden),
           last24h: { posts: n(s?.posts24h), visible: n(s?.visible24h), hidden: n(s?.hidden24h) },
+          votes: { total: n(v?.total), last24h: n(v?.d) },
           reported_visible: rep.results, top_pages_24h: pages.results,
         }), { headers: { "Content-Type": "application/json; charset=utf-8", "Access-Control-Allow-Origin": "*", "Cache-Control": "no-store" } });
+      }
+
+      if (req.method === "GET" && url.pathname === "/votes") {
+        const page = url.searchParams.get("page") || "";
+        if (!PAGE_RE.test(page)) return json({ error: "page" }, 400);
+        const ipHash = await sha(`${req.headers.get("CF-Connecting-IP") || "0.0.0.0"}|${env.IP_SALT || "csn"}`);
+        return voteResult(env, page, ipHash, allow);
       }
 
       if (req.method === "POST") {
@@ -92,6 +110,16 @@ export default {
             await env.DB.prepare("UPDATE comments SET reports = reports + 1, status = CASE WHEN reports + 1 >= 3 THEN 'hidden' ELSE status END WHERE id = ?").bind(id).run();
           }
           return json({ ok: true }, 200, allow);
+        }
+
+        if (url.pathname === "/vote") {
+          const page = String(body.page || "");
+          const choice = body.choice === "a" || body.choice === "b" ? body.choice : "";
+          if (!PAGE_RE.test(page) || !choice) return json({ error: "投票内容が正しくありません" }, 400, allow);
+          const lim = await env.DB.prepare("SELECT COUNT(*) AS d FROM votes WHERE ip_hash = ? AND created_at > ?").bind(ipHash, new Date(Date.now() - 86400000).toISOString()).first();
+          if (lim && lim.d >= 100) return json({ error: "今日の投票上限に達しました" }, 429, allow);
+          await env.DB.prepare("INSERT INTO votes (page, ip_hash, choice, created_at) VALUES (?, ?, ?, ?) ON CONFLICT(page, ip_hash) DO UPDATE SET choice = excluded.choice").bind(page, ipHash, choice, now).run();
+          return voteResult(env, page, ipHash, allow);
         }
 
         if (url.pathname === "/comments") {
