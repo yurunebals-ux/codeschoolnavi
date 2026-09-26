@@ -1,0 +1,111 @@
+---
+// みんなのコメント（匿名掲示板、2026-09-26）。記事の下と /bbs/ のスレで使う。
+// データは Cloudflare Workers + D1（workers/comments）。API の URL は site/src/data/comments.json。
+// API が未設定のあいだは何も描画しない（サーバー未準備でもページは壊れない）。
+import cfg from "../data/comments.json";
+interface Props { page: string; heading?: string; placeholder?: string }
+const { page, heading = "みんなのコメント", placeholder = "この記事について思ったこと・疑問など（500文字まで）" } = Astro.props;
+const api = (cfg as any).api as string;
+---
+{api && (
+  <section class="bbs" id="comments" data-page={page} data-api={api}>
+    <h2>{heading}</h2>
+    <p class="bbs-note">登録なし・匿名で書き込めます（名前を空欄にすると「名無しさん」）。中傷・個人情報・宣伝・URLは書き込めません。<a href="/bbs/rules/">書き込みのルール</a></p>
+    <ol class="bbs-list" aria-live="polite"></ol>
+    <p class="bbs-empty" hidden>まだコメントはありません。最初の1件をどうぞ。</p>
+    <p class="bbs-loading">コメントを読み込み中…</p>
+    <form class="bbs-form" novalidate>
+      <div class="bbs-row">
+        <label>名前<input name="name" maxlength="20" placeholder="名無しさん" autocomplete="off" /></label>
+      </div>
+      <label class="bbs-body">本文<textarea name="body" maxlength="500" rows="4" required placeholder={placeholder}></textarea></label>
+      {/* ボット対策の見えない入力欄。人は入力しない */}
+      <input class="bbs-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <div class="bbs-actions"><span class="bbs-cnt">0 / 500</span><button type="submit">書き込む</button></div>
+      <p class="bbs-msg" role="status"></p>
+    </form>
+  </section>
+)}
+{api && (
+<script is:inline>
+(function () {
+  var box = document.getElementById("comments"); if (!box) return;
+  var api = box.dataset.api, page = box.dataset.page;
+  var list = box.querySelector(".bbs-list"), empty = box.querySelector(".bbs-empty"), loading = box.querySelector(".bbs-loading");
+  var form = box.querySelector(".bbs-form"), ta = form.querySelector("textarea"), cnt = form.querySelector(".bbs-cnt"), msg = form.querySelector(".bbs-msg");
+  var opened = Date.now();
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  var wd = ["日", "月", "火", "水", "木", "金", "土"];
+  var fmt = function (iso) { var d = new Date(new Date(iso).getTime() + 9 * 3600000); var p = function (n) { return String(n).padStart(2, "0"); };
+    return d.getUTCFullYear() + "/" + p(d.getUTCMonth() + 1) + "/" + p(d.getUTCDate()) + "(" + wd[d.getUTCDay()] + ") " + p(d.getUTCHours()) + ":" + p(d.getUTCMinutes()); };
+  var render = function (c) {
+    var li = document.createElement("li"); li.id = "c-" + c.no;
+    var body = esc(c.body).replace(/&gt;&gt;(\d{1,4})/g, '<a class="anc" href="#c-$1">&gt;&gt;$1</a>').replace(/\n/g, "<br>");
+    li.innerHTML = '<div class="h"><button type="button" class="no" title="このコメントに返信">' + c.no + '</button><span class="nm">' + esc(c.name) + '</span><span class="dt">' + fmt(c.created_at) + '</span><span class="uid">ID:' + esc(c.uid) + '</span>' +
+      (c.id ? '<button type="button" class="rp" data-id="' + c.id + '">通報</button>' : "") + '</div><div class="b">' + body + "</div>";
+    list.appendChild(li);
+  };
+  fetch(api + "/comments?page=" + encodeURIComponent(page)).then(function (r) { return r.json(); }).then(function (d) {
+    loading.hidden = true; (d.items || []).forEach(render); empty.hidden = (d.items || []).length > 0;
+    if (location.hash && /^#c-\d+$/.test(location.hash)) { var t = document.querySelector(location.hash); if (t) t.scrollIntoView(); }
+  }).catch(function () { loading.textContent = "コメントを読み込めませんでした。時間をおいて再読み込みしてください。"; });
+  ta.addEventListener("input", function () { cnt.textContent = [...ta.value].length + " / 500"; });
+  list.addEventListener("click", function (e) {
+    var t = e.target;
+    if (t.classList.contains("no")) { ta.value = (ta.value ? ta.value + "\n" : "") + ">>" + t.textContent + "\n"; ta.focus(); ta.dispatchEvent(new Event("input")); }
+    if (t.classList.contains("rp")) {
+      if (!confirm("このコメントを通報しますか？（通報が3件集まると自動で非表示になります）")) return;
+      fetch(api + "/report", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: Number(t.dataset.id) }) })
+        .then(function () { t.textContent = "通報済み"; t.disabled = true; });
+    }
+  });
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var btn = form.querySelector("button[type=submit]"); btn.disabled = true; msg.className = "bbs-msg"; msg.textContent = "送信中…";
+    fetch(api + "/comments", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ page: page, name: form.querySelector("input[name=name]").value, body: ta.value, website: form.querySelector(".bbs-hp").value, t: opened }) })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d.ok && d.item) { render(d.item); empty.hidden = true; ta.value = ""; cnt.textContent = "0 / 500"; msg.className = "bbs-msg ok"; msg.textContent = "書き込みました（" + d.item.no + "番）";
+          document.getElementById("c-" + d.item.no).scrollIntoView({ block: "center" }); if (window.gtag) gtag("event", "comment_post", { page: page }); }
+        else if (d.ok) { msg.textContent = ""; }
+        else { msg.className = "bbs-msg ng"; msg.textContent = d.error || "書き込めませんでした"; }
+      })
+      .catch(function () { msg.className = "bbs-msg ng"; msg.textContent = "送信できませんでした。通信状況を確認してください"; })
+      .finally(function () { btn.disabled = false; });
+  });
+})();
+</script>
+)}
+
+<style is:global>
+  .bbs{margin:40px 0 0;padding:6px 18px 18px;border:1px solid #dbe7ef;border-radius:4px;background:#fcfeff;position:relative}
+  .bbs::before{content:"";position:absolute;left:-1px;top:-1px;width:14px;height:14px;border-top:2px solid var(--neon,#06b6d4);border-left:2px solid var(--neon,#06b6d4)}
+  .bbs h2{margin-top:14px}
+  .bbs-note{font-size:12.5px;color:#64748b;margin:0 0 12px}
+  .bbs-note a{color:var(--neon-ink,#0e7490)}
+  .bbs-list{list-style:none;margin:0;padding:0}
+  .bbs-list li{padding:10px 0;border-top:1px dashed #e2e8f0}
+  .bbs-list li:target{background:#ecfeff}
+  .bbs-list .h{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;font-size:12px;color:#64748b;font-family:var(--mono,monospace)}
+  .bbs-list .no{border:0;background:none;padding:0;font:inherit;font-weight:800;color:var(--neon2-ink,#a21caf);cursor:pointer}
+  .bbs-list .nm{color:#15803d;font-weight:700;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif}
+  .bbs-list .rp{margin-left:auto;border:0;background:none;color:#94a3b8;font-size:11px;cursor:pointer;padding:0}
+  .bbs-list .rp:hover{color:#e11d48}
+  .bbs-list .b{margin:4px 0 0;font-size:14.5px;line-height:1.75;color:#0f172a;word-break:break-word}
+  .bbs-list .anc{color:var(--neon-ink,#0e7490);font-family:var(--mono,monospace)}
+  .bbs-empty,.bbs-loading{font-size:13px;color:#94a3b8;margin:8px 0}
+  .bbs-form{margin-top:14px;padding-top:14px;border-top:1px solid #dbe7ef;display:grid;gap:8px}
+  .bbs-form label{display:grid;gap:4px;font-size:12px;color:#475569;font-weight:700}
+  .bbs-form input,.bbs-form textarea{font:inherit;font-size:15px;font-weight:400;color:#0f172a;border:1px solid #cbd5e1;border-radius:3px;padding:8px 10px;background:#fff;width:100%;box-sizing:border-box}
+  .bbs-form input:focus,.bbs-form textarea:focus{outline:2px solid rgba(6,182,212,.35);border-color:#06b6d4}
+  .bbs-row{max-width:260px}
+  .bbs-hp{position:absolute !important;left:-9999px !important;width:1px;height:1px;opacity:0}
+  .bbs-actions{display:flex;align-items:center;justify-content:space-between}
+  .bbs-cnt{font-size:12px;color:#94a3b8;font-family:var(--mono,monospace)}
+  .bbs-actions button{border:0;border-radius:999px;background:var(--cta,#d946ef);color:#fff;font-weight:800;padding:9px 20px;cursor:pointer;box-shadow:0 0 12px rgba(217,70,239,.35)}
+  .bbs-actions button:disabled{opacity:.5;cursor:wait}
+  .bbs-msg{font-size:13px;margin:0;min-height:1em}
+  .bbs-msg.ok{color:#15803d}.bbs-msg.ng{color:#e11d48}
+  @media (max-width:600px){ .bbs{padding:4px 12px 14px} .bbs-row{max-width:none} }
+</style>
