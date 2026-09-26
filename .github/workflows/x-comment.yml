@@ -1,0 +1,39 @@
+name: x-comment
+
+# X のワンタップ投稿（/x-today/）に添える「1〜2行のひとこと」を作る（2026-09-26 オーナー依頼）。
+# 記事が公開されたあと（各コンテンツ系ワークフローの完了後）に動き、公開3日以内でひとことが無い記事だけ作る。
+# 結果は site/src/data/x-comments.json にコミットし、deploy-pages（workflow_run で x-comment を拾う）でサイトに出る。
+on:
+  workflow_run:
+    workflows: ["daily-content-cycle", "news-hot", "news-column", "regen-articles"]
+    types: [completed]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: x-comment
+  cancel-in-progress: false
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    env:
+      LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+      LLM_MODEL: "gpt-4.1-mini"
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - name: ひとことを作る
+        run: node site/scripts/xcomment.mjs
+      - name: コミット
+        run: |
+          git diff --quiet site/src/data/x-comments.json && { echo "変更なし"; exit 0; }
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/src/data/x-comments.json
+          git commit -m "x: 投稿のひとことを追加"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done
