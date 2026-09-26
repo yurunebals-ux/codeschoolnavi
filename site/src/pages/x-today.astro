@@ -34,6 +34,8 @@ const first = items[0];
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
   <title>今日のX投稿｜コードスクールナビ</title>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="X投稿" />
   <style>
     body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;background:#fff;color:#0f172a;background-image:linear-gradient(rgba(8,145,178,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(8,145,178,.06) 1px,transparent 1px);background-size:32px 32px}
     main{max-width:640px;margin:0 auto;padding:24px 16px 48px}
@@ -73,9 +75,13 @@ const first = items[0];
   </main>
   {first && (
     <script is:inline define:vars={{ intent: first.intent }}>
-      // ?list が付いていなければ、今日のおすすめの投稿画面へすぐ移る
-      if (!/[?&]list\b/.test(location.search)) { setTimeout(function () { location.href = intent; }, 400); }
-      else { var g = document.getElementById("go"); if (g) g.textContent = "候補から選んでください。"; }
+      // パソコン: ?list が付いていなければ、今日のおすすめの投稿画面へすぐ移る
+      // iPhone・Android: 自動では移らない。ボタンを押したときだけ X アプリが開く（ページが勝手に移るとアプリではなくブラウザ版の X が開き、ログインを求められるため）
+      var g = document.getElementById("go");
+      var mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      if (/[?&]list\b/.test(location.search)) { if (g) g.textContent = "候補から選んでください。"; }
+      else if (mobile) { if (g) g.textContent = "ピンクのボタンを押すと、投稿文が入った X アプリが開きます。"; }
+      else { setTimeout(function () { location.href = intent; }, 400); }
     </script>
   )}
 </body>
