@@ -4,9 +4,26 @@
 // ?list を付けて開くと移動せず、候補（直近の記事）から選べる。
 // 検索には出さない（noindex・サイトマップ除外）。ビルドのたびに選び直すので、その日の新着が入る。
 import { getCollection } from "astro:content";
-// 投稿に添える1〜2行のひとこと（2026-09-26 オーナー案）: 記事の「編集部の井戸端会議」から1文を引用する。
-// 井戸端会議が無い記事は AI が作ったひとこと（site/src/data/x-comments.json、任意）→ 説明文の順で代用
+// 投稿に添える1〜2行のひとこと（2026-09-26 オーナー指定）:
+//   1) ニュース記事は「スレの流れ」の2番目（最初の名無しさん。はてなブックマーク等の実際の反応）を 名無しさん「…」 として引用
+//   2) スレが無い記事（読み物など）は「編集部の井戸端会議」から1文を 編集部「…」 として引用
+//   3) どちらも無ければ AI が作ったひとこと（site/src/data/x-comments.json、任意）→ 説明文
 import xc from "../data/x-comments.json";
+
+// スレの流れの最初の名無しさん（番号2）。中傷・下品な語・URL・「後で読む」系は飛ばして次を使う。長ければ文の区切りで60字以内に
+const NG = /死ね|殺|キチガイ|ガイジ|池沼|クズ|バカ|馬鹿|アホ|キモ|ゴミ|カス|糞|クソ|ブス|デブ|ハゲ|まんこ|ちんこ|セックス|レイプ|後で読|あとで読|http|www\.|\[|\]/;
+function pickThread(body: string): string | null {
+  const sec = body.split(/\n## スレの流れ\s*\n/)[1];
+  if (!sec) return null;
+  const part = sec.split(/\n## /)[0];
+  const items = [...part.matchAll(/^\s*(\d+)\.\s*名無しさん「([\s\S]*?)」\s*$/gm)].map((m) => m[2].replace(/\s+/g, " ").trim());
+  const t = items.find((x) => [...x].length >= 8 && !NG.test(x));
+  if (!t) return null;
+  if ([...t].length <= 60) return t;
+  let out = "";
+  for (const seg of t.split(/(?<=[。！？!?])/)) { if ([...(out + seg)].length > 60) break; out += seg; }
+  return out || [...t].slice(0, 59).join("") + "…";
+}
 
 // 井戸端会議のタケシ（解説役）・佐倉（まとめ役）の発言から、単独で読んで意味が通り、要点になっている1文を選ぶ
 function pickQuote(body: string): string | null {
@@ -52,14 +69,15 @@ const items = cands.map((p) => {
   const tags = p.data.news ? ["AIニュース", "生成AI"] : ["プログラミング学習", "リスキリング"];
   // X は日本語を2文字として数える（上限280）。見出し＋説明を約110字に収め、URL（23）とハッシュタグの余裕を残す
   const head = `${label}${p.data.title}`;
-  const quote = pickQuote(p.body || "");
-  const comment = quote ? `編集部「${quote}」` : ((xc as any)[p.slug]?.comment as string | undefined);
+  const thread = pickThread(p.body || "");
+  const quote = thread ? null : pickQuote(p.body || "");
+  const comment = thread ? `名無しさん「${thread}」` : quote ? `編集部「${quote}」` : ((xc as any)[p.slug]?.comment as string | undefined);
   const text = comment
     ? `${comment}\n\n${head}`
     : `${head}\n\n${cut(p.data.description, Math.max(0, 105 - [...head].length))}`.trim();
   const url = `${SITE}/blog/${p.slug}/`;
   const intent = `https://x.com/intent/post?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&hashtags=${encodeURIComponent(tags.join(","))}`;
-  return { slug: p.slug, date: p.data.pubDate, title: p.data.title, label, text, url, tags, intent, hasComment: !!comment, fromQuote: !!quote };
+  return { slug: p.slug, date: p.data.pubDate, title: p.data.title, label, text, url, tags, intent, hasComment: !!comment, fromQuote: !!quote, fromThread: !!thread };
 });
 const first = items[0];
 ---
@@ -101,7 +119,7 @@ const first = items[0];
     )}
     {items.map((it, i) => (
       <div class={i === 0 ? "card top" : "card"}>
-        <div class="meta">{i === 0 ? "今日のおすすめ ・ " : ""}{it.date} ・ {it.slug}{it.fromQuote ? " ・ 井戸端会議から引用" : it.hasComment ? " ・ AIのひとこと" : " ・ ひとことなし"}</div>
+        <div class="meta">{i === 0 ? "今日のおすすめ ・ " : ""}{it.date} ・ {it.slug}{it.fromThread ? " ・ スレの2番目から引用" : it.fromQuote ? " ・ 井戸端会議から引用" : it.hasComment ? " ・ AIのひとこと" : " ・ ひとことなし"}</div>
         <div class="txt">{it.text}</div>
         <div class="u">{it.url}</div>
         <div class="h">{it.tags.map((t) => `#${t}`).join(" ")}</div>
