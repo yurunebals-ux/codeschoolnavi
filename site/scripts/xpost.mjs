@@ -1,7 +1,7 @@
-// 新着記事を X に自動投稿する（2026-09-26 オーナー決定: リンク付きを1日3本）
+// 新着記事を X に自動投稿する（2026-09-26 オーナー決定: リンク付きを1日1本）
 // X API は 2026年2月から従量課金。リンク付きの投稿は1件約0.20ドル。費用を抑えるため:
-//   - 1回の実行で最大1本（x-post.yml が1日3回動く → 1日最大3本）
-//   - 月の上限（X_MONTHLY_MAX、既定90本）を data/x-posted.json の記録で数えて超えない
+//   - 1回の実行で最大1本（x-post.yml は1日1回 20:15 JST）
+//   - 月の上限（X_MONTHLY_MAX、既定31本）を data/x-posted.json の記録で数えて超えない
 //   - 自分のタイムラインは読まない（読み取りも課金されるため）。重複防止は data/x-posted.json で行う
 // 選ぶ記事: 公開2日以内・未投稿のうち、読み物（topic）→ 反応の多いニュース → 新しい順。広告記事（スクール比較）は後回し
 // 必要な環境変数: X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_SECRET（GitHub Secrets）。無ければ何もしない
@@ -13,7 +13,7 @@ import crypto from "node:crypto";
 const K = process.env.X_API_KEY, KS = process.env.X_API_SECRET, T = process.env.X_ACCESS_TOKEN, TS = process.env.X_ACCESS_SECRET;
 const SITE = (process.env.SITE_URL || "https://codeschoolnavi.com").replace(/\/$/, "");
 const DAYS = Number(process.env.X_DAYS || 2);
-const MONTHLY_MAX = Number(process.env.X_MONTHLY_MAX || 90);
+const MONTHLY_MAX = Number(process.env.X_MONTHLY_MAX || 31);
 const DRY = process.argv.includes("--dry");
 const root = new URL("../../", import.meta.url).pathname;
 const blogDir = join(root, "site/src/content/blog");
