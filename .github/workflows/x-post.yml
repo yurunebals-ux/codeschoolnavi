@@ -1,0 +1,49 @@
+name: x-post
+
+# 新着記事を X に自動投稿（2026-09-26 オーナー決定: リンク付きを1日3本、月90本まで）。
+# 1回の実行で最大1本。投稿した記事は data/x-posted.json に記録してコミットする（重複防止と月の上限の数え方）。
+# 必要な GitHub Secrets: X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_SECRET（未登録なら何もしない）
+on:
+  schedule:
+    - cron: "15 23 * * *"   # 08:15 JST（朝の速報のあと）
+    - cron: "15 3 * * *"    # 12:15 JST（昼休み）
+    - cron: "15 11 * * *"   # 20:15 JST（夜）
+  workflow_dispatch:
+    inputs:
+      dry:
+        description: "投稿せずに本文だけ確認する"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: x-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    env:
+      X_API_KEY: ${{ secrets.X_API_KEY }}
+      X_API_SECRET: ${{ secrets.X_API_SECRET }}
+      X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+      X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+      SITE_URL: "https://codeschoolnavi.com"
+      X_MONTHLY_MAX: "90"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - name: 投稿
+        run: node site/scripts/xpost.mjs ${{ inputs.dry && '--dry' || '' }}
+      - name: 記録をコミット
+        if: ${{ !inputs.dry }}
+        run: |
+          git diff --quiet data/x-posted.json && { echo "記録の変更なし"; exit 0; }
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/x-posted.json
+          git commit -m "x: 投稿を記録"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done
