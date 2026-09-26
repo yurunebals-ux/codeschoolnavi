@@ -191,6 +191,16 @@
       "date": "2026-09-25",
       "version": 2,
       "ok": true
+    },
+    "osusume-hikaku-dokugaku": {
+      "date": "2026-09-26",
+      "version": 2,
+      "ok": true
+    },
+    "ryokin-dmmwebcamp": {
+      "date": "2026-09-26",
+      "version": 2,
+      "ok": true
     }
   }
 }

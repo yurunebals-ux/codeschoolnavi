@@ -150,5 +150,5 @@ A4: 個別指導型で資格取得と並行して転職支援を行うが、具�
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [ウズウズカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Claude Codeで作業が止まらない理由とクラウドセッションの使い方](/blog/news-20260926-n0h69/)
 - [Google Geminiの電話代行、月10回以下でも損をする理由とは](/blog/news-20260926-1nwuu/)
-- [エンジニア転職に年齢制限はある？20代・30代・40代で変わる現実](/blog/topic-engineer-tenshoku-nenrei/)
