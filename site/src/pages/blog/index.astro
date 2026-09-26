@@ -1,6 +1,7 @@
 ---
 // 記事一覧（アーカイブ）。トップページは10本で止めて、残りはここで探す。
 // カテゴリごとにまとめ、上のチップで飛べるようにする（JSなしで動く）。
+import CommentCount from "../../components/CommentCount.astro";
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import Thumb from "../../components/Thumb.astro";
@@ -50,6 +51,7 @@ const blurb: Record<string, string> = {
       </ul>
     </section>
   ))}
+  <CommentCount />
 </Base>
 
 <style is:global>
