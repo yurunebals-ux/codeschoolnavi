@@ -1,0 +1,9 @@
+name = "csn-comments"
+main = "src/index.js"
+compatibility_date = "2024-09-01"
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "csn-comments"
+database_id = "__DB_ID__"
