@@ -1,13 +1,11 @@
 name: x-post
 
-# 新着記事を X に自動投稿（2026-09-26 オーナー決定: リンク付きを1日3本、月90本まで）。
+# 新着記事を X に自動投稿（2026-09-26 オーナー決定: リンク付きを1日1本、月31本まで。当初3本→同日1本に変更）。
 # 1回の実行で最大1本。投稿した記事は data/x-posted.json に記録してコミットする（重複防止と月の上限の数え方）。
 # 必要な GitHub Secrets: X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_SECRET（未登録なら何もしない）
 on:
   schedule:
-    - cron: "15 23 * * *"   # 08:15 JST（朝の速報のあと）
-    - cron: "15 3 * * *"    # 12:15 JST（昼休み）
-    - cron: "15 11 * * *"   # 20:15 JST（夜）
+    - cron: "15 11 * * *"   # 20:15 JST（Xの利用が多い夜。朝・夕の速報も含めてその日の1本を選ぶ）
   workflow_dispatch:
     inputs:
       dry:
@@ -31,7 +29,7 @@ jobs:
       X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
       X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
       SITE_URL: "https://codeschoolnavi.com"
-      X_MONTHLY_MAX: "90"
+      X_MONTHLY_MAX: "31"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
