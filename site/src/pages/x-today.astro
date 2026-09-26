@@ -1,0 +1,82 @@
+---
+// X の「ワンタップ投稿」ページ（2026-09-26 オーナー決定。X API の従量課金を使わず、手動で1日1回投稿する）
+// 開くと、その日の1本の投稿文が入った X の投稿画面（intent）へすぐ移る。オーナーは「ポスト」を押すだけ。
+// ?list を付けて開くと移動せず、候補（直近の記事）から選べる。
+// 検索には出さない（noindex・サイトマップ除外）。ビルドのたびに選び直すので、その日の新着が入る。
+import { getCollection } from "astro:content";
+const SITE = (import.meta.env.SITE || "https://codeschoolnavi.com").replace(/\/$/, "");
+const jst = (t: number) => new Date(t + 9 * 3600000).toISOString().slice(0, 10);
+const today = jst(Date.now());
+const yday = jst(Date.now() - 86400000);
+const all = (await getCollection("blog", ({ data }) => !data.draft)).sort((a, b) => b.data.pubDate.localeCompare(a.data.pubDate));
+const recent = all.filter((p) => p.data.pubDate >= yday);
+const pool = (recent.length ? recent : all.slice(0, 5));
+// 選ぶ順: 今日の記事 → 読み物（学び・キャリア）→ 反応の多いニュース → 新しい順。スクール比較（広告記事）は後回し
+const rank = (p: any) => (p.data.pubDate === today ? 10000 : 0) + (p.data.topic ? 3000 : p.data.news ? 2000 : 0) + Math.min(p.data.reactions ?? 0, 999);
+const cands = [...pool].sort((a, b) => rank(b) - rank(a) || b.data.pubDate.localeCompare(a.data.pubDate)).slice(0, 6);
+const cut = (s: string, n: number) => ([...s].length > n ? [...s].slice(0, n - 1).join("") + "…" : s);
+const items = cands.map((p) => {
+  const label = p.data.news ? "【AIニュースまとめ】" : p.data.topic ? "【学び・キャリア】" : "【スクール比較】";
+  const tags = p.data.news ? ["AIニュース", "生成AI"] : ["プログラミング学習", "リスキリング"];
+  // X は日本語を2文字として数える（上限280）。見出し＋説明を約110字に収め、URL（23）とハッシュタグの余裕を残す
+  const head = `${label}${p.data.title}`;
+  const text = `${head}\n\n${cut(p.data.description, Math.max(0, 105 - [...head].length))}`.trim();
+  const url = `${SITE}/blog/${p.slug}/`;
+  const intent = `https://x.com/intent/post?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&hashtags=${encodeURIComponent(tags.join(","))}`;
+  return { slug: p.slug, date: p.data.pubDate, title: p.data.title, label, text, url, tags, intent };
+});
+const first = items[0];
+---
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>今日のX投稿｜コードスクールナビ</title>
+  <style>
+    body{margin:0;font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;background:#fff;color:#0f172a;background-image:linear-gradient(rgba(8,145,178,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(8,145,178,.06) 1px,transparent 1px);background-size:32px 32px}
+    main{max-width:640px;margin:0 auto;padding:24px 16px 48px}
+    .tag{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#0e7490;letter-spacing:.1em}
+    h1{font-size:22px;margin:6px 0 4px}
+    .note{font-size:13px;color:#64748b;margin:0 0 18px}
+    .card{background:#fff;border:1px solid #dbe7ef;border-radius:6px;padding:14px 16px;margin:0 0 12px}
+    .card.top{border:2px solid #06b6d4;box-shadow:0 0 18px rgba(6,182,212,.2)}
+    .meta{font-size:12px;color:#64748b;font-family:ui-monospace,Menlo,monospace}
+    .txt{white-space:pre-wrap;font-size:14.5px;line-height:1.7;margin:6px 0 4px}
+    .u{font-size:12.5px;color:#0891b2;word-break:break-all}
+    .h{font-size:12.5px;color:#a21caf}
+    a.btn{display:inline-block;margin-top:10px;background:#0f172a;color:#fff;text-decoration:none;font-weight:800;padding:10px 20px;border-radius:999px}
+    .card.top a.btn{background:#d946ef;box-shadow:0 0 12px rgba(217,70,239,.4)}
+    .go{font-size:13px;color:#0e7490;margin:0 0 14px}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="tag">// X ONE-TAP POST</div>
+    <h1>今日のX投稿</h1>
+    <p class="note">ボタンを押すと、投稿文が入ったXの投稿画面が開きます。あとは「ポスト」を押すだけです（{today} 時点の候補）。</p>
+    {first ? (
+      <p class="go" id="go">Xの投稿画面を開いています…　開かないときは下のボタンを押してください。</p>
+    ) : (
+      <p class="go">候補の記事がありません。</p>
+    )}
+    {items.map((it, i) => (
+      <div class={i === 0 ? "card top" : "card"}>
+        <div class="meta">{i === 0 ? "今日のおすすめ ・ " : ""}{it.date} ・ {it.slug}</div>
+        <div class="txt">{it.text}</div>
+        <div class="u">{it.url}</div>
+        <div class="h">{it.tags.map((t) => `#${t}`).join(" ")}</div>
+        <a class="btn" href={it.intent} target="_top">{i === 0 ? "この内容でXに投稿する" : "こちらを投稿する"}</a>
+      </div>
+    ))}
+  </main>
+  {first && (
+    <script is:inline define:vars={{ intent: first.intent }}>
+      // ?list が付いていなければ、今日のおすすめの投稿画面へすぐ移る
+      if (!/[?&]list\b/.test(location.search)) { setTimeout(function () { location.href = intent; }, 400); }
+      else { var g = document.getElementById("go"); if (g) g.textContent = "候補から選んでください。"; }
+    </script>
+  )}
+</body>
+</html>
