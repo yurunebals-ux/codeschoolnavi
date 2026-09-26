@@ -10,6 +10,7 @@ import NavIcon from "../components/NavIcon.astro";
 import { catOf } from "../lib/cat";
 import { shotsFor } from "../lib/school";
 import schools from "../data/schools.json";
+import cfgC from "../data/comments.json";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate) || (b.data.reactions ?? 0) - (a.data.reactions ?? 0));
@@ -120,6 +121,13 @@ const pad2 = (n: number) => String(n).padStart(2, "0");
         ))}
       </ol>
       <p class="nx-note">反応数は、元記事についた はてなブックマーク等の件数です。</p>
+      {cfgC.api && (
+        <div class="nx-bbs" data-api={cfgC.api}>
+          <div class="sec-head"><h2>最新の書き込み</h2><span class="en">BBS</span></div>
+          <ol class="nx-bbs-list"><li class="m">読み込み中…</li></ol>
+          <a class="nx-more" href="/bbs/">掲示板へ →</a>
+        </div>
+      )}
     </aside>
   </section>
 
@@ -188,6 +196,21 @@ const pad2 = (n: number) => String(n).padStart(2, "0");
   </section>
 </Base>
 
+{cfgC.api && (
+<script is:inline>
+(function () {
+  var box = document.querySelector(".nx-bbs"); if (!box) return;
+  var ol = box.querySelector("ol"), api = box.dataset.api;
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  fetch(api + "/recent?limit=5").then(function (r) { return r.json(); }).then(function (d) {
+    ol.innerHTML = (d.items || []).map(function (c) {
+      var href = /^bbs-/.test(c.page) ? "/bbs/" + c.page.replace(/^bbs-/, "") + "/#c-" + c.no : "/blog/" + c.page + "/#c-" + c.no;
+      return '<li><a href="' + href + '">' + esc(c.body.replace(/\n/g, " ")) + "</a></li>";
+    }).join("") || '<li class="m">まだ書き込みはありません。最初の1件をどうぞ。</li>';
+  }).catch(function () { box.hidden = true; });
+})();
+</script>
+)}
 <style is:global>
   /* ===== サイバー調テーマ・白ベース（トップだけ）=====
      オーナー「もっとサイバーな感じのトップページで」→「白はベースで」（2026-09-23）
@@ -288,6 +311,13 @@ const pad2 = (n: number) => String(n).padStart(2, "0");
   .nx-rank .t{display:block;font-size:13.5px;font-weight:700;line-height:1.5}
   .nx-rank .m{display:block;font-size:11px;color:var(--neon2-ink);margin-top:2px;font-family:var(--mono)}
   .nx-rank a:hover .t{color:var(--neon2-ink)}
+  .nx-bbs{margin-top:18px;padding-top:14px;border-top:1px dashed rgba(217,70,239,.35)}
+  .nx-bbs .sec-head{margin-bottom:8px}
+  .nx-bbs-list{margin:0;padding-left:1.1em;font-size:13px;line-height:1.6}
+  .nx-bbs-list li{margin:0 0 6px}
+  .nx-bbs-list a{color:var(--navy);text-decoration:none}
+  .nx-bbs-list a:hover{color:var(--neon2-ink)}
+  .nx-bbs-list .m{list-style:none;margin-left:-1.1em;color:#94a3b8}
   .nx-note{font-size:10.5px;color:#94a3b8;margin:6px 0 0}
 
   .nx-wk{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
