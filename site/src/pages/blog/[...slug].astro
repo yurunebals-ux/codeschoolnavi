@@ -7,6 +7,7 @@ import FigPrice from "../../components/FigPrice.astro";
 import FigMap from "../../components/FigMap.astro";
 import FigKyufu from "../../components/FigKyufu.astro";
 import Cta from "../../components/Cta.astro";
+import Comments from "../../components/Comments.astro";
 import Shot from "../../components/Shot.astro";
 import pricewatch from "../../data/pricewatch.json";
 import { catOf } from "../../lib/cat";
@@ -191,6 +192,9 @@ const ctaAfter = figMapAfter + 1;
     </script>
 
     <Cta id={ctaId} heading="この記事を読んで、次に動くなら" />
+
+    {/* 匿名コメント欄（2026-09-26 オーナー「コメントを残せる掲示板のような機能」） */}
+    <Comments page={post.slug} placeholder={d.news ? "このニュースへの感想・反論・現場の話など（500文字まで）" : "この記事への感想・疑問・受講した人の体験など（500文字まで）"} />
 
     <section class="authorbox">
       <span class="ab-av"><Avatar size={52} /></span>
