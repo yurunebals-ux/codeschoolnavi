@@ -1,0 +1,19 @@
+---
+// 掲示板の各スレ（2026-09-26）
+import Base from "../../layouts/Base.astro";
+import Comments from "../../components/Comments.astro";
+import bbs from "../../data/bbs.json";
+import cfg from "../../data/comments.json";
+export function getStaticPaths() {
+  return bbs.threads.map((t) => ({ params: { id: t.id.replace(/^bbs-/, "") }, props: { t } }));
+}
+const { t } = Astro.props as any;
+---
+<Base title={`${t.title}｜掲示板`} description={`${t.lead} 登録なし・匿名で書き込めるコードスクールナビの掲示板です。`}>
+  <p class="crumb"><a href="/bbs/">掲示板</a> ＞ {t.title}</p>
+  <h1>{t.title}</h1>
+  <p class="lead">{t.lead}</p>
+  {!(cfg as any).api && <p class="lead">掲示板は準備中です。まもなく書き込めるようになります。</p>}
+  <Comments page={t.id} heading="書き込み" placeholder={t.placeholder} />
+  <style is:global>.crumb{font-size:12.5px;color:#64748b;font-family:var(--mono)} .crumb a{color:var(--neon-ink)}</style>
+</Base>

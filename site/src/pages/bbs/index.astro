@@ -1,0 +1,52 @@
+---
+// 掲示板トップ（2026-09-26）。スレ一覧と、サイト全体の最新書き込み（API から読み込む）
+import Base from "../../layouts/Base.astro";
+import bbs from "../../data/bbs.json";
+import cfg from "../../data/comments.json";
+const api = (cfg as any).api as string;
+---
+<Base title="掲示板" description="コードスクールナビの匿名掲示板。AI・プログラミング学習・転職の雑談や相談、ニュースの感想、スクールの体験談を登録なしで書き込めます。">
+  <h1>掲示板</h1>
+  <p class="lead">登録なし・匿名で書き込めます。書き込む前に<a href="/bbs/rules/">書き込みのルール</a>をご確認ください。記事ごとのコメント欄もあります。</p>
+  {!api && <p class="lead">掲示板は準備中です。まもなく書き込めるようになります。</p>}
+  <ul class="bbs-threads" data-api={api}>
+    {bbs.threads.map((t) => (
+      <li><a href={`/bbs/${t.id.replace(/^bbs-/, "")}/`}><b>{t.title}</b><span>{t.lead}</span><em class="n" data-page={t.id}></em></a></li>
+    ))}
+  </ul>
+  {api && (
+    <>
+      <h2>最新の書き込み</h2>
+      <ol class="bbs-recent" data-api={api}><li class="muted">読み込み中…</li></ol>
+      <script is:inline>
+      (function () {
+        var ul = document.querySelector(".bbs-threads"), api = ul.dataset.api;
+        var pages = [].map.call(ul.querySelectorAll(".n"), function (e) { return e.dataset.page; });
+        fetch(api + "/counts?pages=" + pages.join(",")).then(function (r) { return r.json(); }).then(function (d) {
+          [].forEach.call(ul.querySelectorAll(".n"), function (e) { var n = (d.counts || {})[e.dataset.page] || 0; e.textContent = n + "件"; });
+        });
+        var ol = document.querySelector(".bbs-recent");
+        var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+        fetch(api + "/recent?limit=15").then(function (r) { return r.json(); }).then(function (d) {
+          ol.innerHTML = (d.items || []).map(function (c) {
+            var href = /^bbs-/.test(c.page) ? "/bbs/" + c.page.replace(/^bbs-/, "") + "/#c-" + c.no : "/blog/" + c.page + "/#c-" + c.no;
+            return '<li><a href="' + href + '">' + esc(c.body.replace(/\n/g, " ")) + "</a></li>";
+          }).join("") || '<li class="muted">まだ書き込みはありません。</li>';
+        }).catch(function () { ol.innerHTML = '<li class="muted">読み込めませんでした。</li>'; });
+      })();
+      </script>
+    </>
+  )}
+  <style is:global>
+    .bbs-threads{list-style:none;padding:0;margin:18px 0 30px;display:grid;gap:10px}
+    .bbs-threads a{position:relative;display:grid;gap:4px;padding:14px 16px;border:1px solid #dbe7ef;border-radius:4px;text-decoration:none;color:var(--navy);background:#fff}
+    .bbs-threads a::before{content:"";position:absolute;left:-1px;top:-1px;width:12px;height:12px;border-top:2px solid var(--neon);border-left:2px solid var(--neon)}
+    .bbs-threads a:hover{border-color:rgba(6,182,212,.6)}
+    .bbs-threads b{font-size:16px}
+    .bbs-threads span{font-size:13px;color:#64748b}
+    .bbs-threads .n{position:absolute;right:14px;top:14px;font-style:normal;font-family:var(--mono);font-size:12px;color:var(--neon2-ink)}
+    .bbs-recent{padding-left:1.2em;font-size:14px}
+    .bbs-recent a{color:var(--navy)}
+    .bbs-recent .muted{color:#94a3b8;list-style:none;margin-left:-1.2em}
+  </style>
+</Base>
