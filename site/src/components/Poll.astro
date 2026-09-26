@@ -1,0 +1,79 @@
+---
+// ニュース記事の「歓迎派／慎重派」ワンタップ投票（2026-09-26 アクセス特化）。
+// ニュース記事は「歓迎する見方 → 慎重に見る見方」で書いているので、読者にもどちらかを選んでもらう。
+// 文章を書かずに参加でき、結果（何％が慎重派か）を見に再訪する理由になる。投票後はコメント欄へ誘導する。
+// データは掲示板と同じ Cloudflare Worker（/votes, /vote）。API 未設定なら何も描画しない。
+import cfg from "../data/comments.json";
+interface Props { page: string; q?: string; a?: string; b?: string }
+const { page, q = "このニュース、あなたは歓迎派？慎重派？", a = "歓迎派", b = "慎重派" } = Astro.props;
+const api = (cfg as any).api as string;
+---
+{api && (
+  <section class="poll" id="poll" data-page={page} data-api={api} data-a={a} data-b={b}>
+    <p class="poll-h"><span class="poll-tag">// POLL</span>{q}</p>
+    <div class="poll-btns">
+      <button type="button" class="pa" data-c="a"><span class="lb">{a}</span><span class="bar"></span><span class="pc"></span></button>
+      <button type="button" class="pb" data-c="b"><span class="lb">{b}</span><span class="bar"></span><span class="pc"></span></button>
+    </div>
+    <p class="poll-f"><span class="poll-n"></span><a class="poll-go" href="#comments" hidden>理由をコメント欄に書く →</a></p>
+  </section>
+)}
+{api && (
+<script is:inline>
+(function () {
+  var box = document.getElementById("poll"); if (!box) return;
+  var api = box.dataset.api, page = box.dataset.page, busy = false;
+  var btns = box.querySelectorAll("button"), n = box.querySelector(".poll-n"), go = box.querySelector(".poll-go");
+  var show = function (d) {
+    var t = d.a + d.b;
+    box.classList.toggle("done", !!d.mine);
+    btns.forEach(function (b) {
+      var c = b.dataset.c, v = d[c], p = t ? Math.round(v * 100 / t) : 0;
+      b.classList.toggle("mine", d.mine === c);
+      b.querySelector(".bar").style.width = d.mine ? p + "%" : "0";
+      b.querySelector(".pc").textContent = d.mine ? p + "%（" + v + "票）" : "";
+    });
+    n.textContent = d.mine ? "あなたは" + box.dataset[d.mine] + "に投票しました（選び直せます）・合計" + t + "票" : (t ? t + "人が投票中。押すと結果が見られます" : "押すと結果が見られます");
+    go.hidden = !d.mine || !document.getElementById("comments");
+  };
+  fetch(api + "/votes?page=" + encodeURIComponent(page)).then(function (r) { return r.json(); }).then(show).catch(function () {});
+  btns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      if (busy) return; busy = true;
+      fetch(api + "/vote", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ page: page, choice: b.dataset.c }) })
+        .then(function (r) { return r.json(); })
+        .then(function (d) { if (d.ok) { show(d); if (window.gtag) gtag("event", "poll_vote", { page: page, choice: b.dataset.c }); } else { n.textContent = d.error || "投票できませんでした"; } })
+        .catch(function () { n.textContent = "投票できませんでした。通信状況を確認してください"; })
+        .finally(function () { busy = false; });
+    });
+  });
+  // コメント欄へ: 本文が空なら「【歓迎派】」のように立場を入れておく
+  go.addEventListener("click", function () {
+    var ta = document.querySelector("#comments textarea"), m = box.querySelector("button.mine");
+    if (ta && m && !ta.value) { ta.value = "【" + m.querySelector(".lb").textContent + "】"; ta.dispatchEvent(new Event("input")); }
+    setTimeout(function () { if (ta) ta.focus(); }, 400);
+  });
+})();
+</script>
+)}
+
+<style is:global>
+  .poll{margin:36px 0 0;padding:14px 18px 12px;border:1px solid #dbe7ef;border-radius:4px;background:#fff;position:relative}
+  .poll::after{content:"";position:absolute;right:-1px;bottom:-1px;width:14px;height:14px;border-right:2px solid var(--neon2,#d946ef);border-bottom:2px solid var(--neon2,#d946ef)}
+  .poll-h{margin:0 0 10px;font-weight:800;font-size:16px;color:#0f172a;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+  .poll-tag{font-family:var(--mono,monospace);font-size:11px;color:var(--neon-ink,#0e7490);letter-spacing:.08em}
+  .poll-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .poll-btns button{position:relative;overflow:hidden;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 14px;border:1.5px solid;border-radius:4px;background:#fff;font:inherit;font-weight:800;font-size:15px;cursor:pointer;text-align:left;min-height:48px}
+  .poll-btns .pa{border-color:#06b6d4;color:#0e7490}
+  .poll-btns .pb{border-color:#d946ef;color:#a21caf}
+  .poll-btns .pa:hover{background:#ecfeff}.poll-btns .pb:hover{background:#fdf4ff}
+  .poll-btns .bar{position:absolute;left:0;top:0;bottom:0;width:0;transition:width .6s ease;z-index:0}
+  .poll-btns .pa .bar{background:rgba(6,182,212,.14)}.poll-btns .pb .bar{background:rgba(217,70,239,.12)}
+  .poll-btns .lb,.poll-btns .pc{position:relative;z-index:1}
+  .poll-btns .pc{font-family:var(--mono,monospace);font-size:13px}
+  .poll-btns .mine{box-shadow:0 0 0 2px currentColor inset}
+  .poll-btns .mine .lb::before{content:"✓ "}
+  .poll-f{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;margin:8px 0 0;font-size:12.5px;color:#64748b}
+  .poll-go{color:var(--neon2-ink,#a21caf);font-weight:700}
+  @media (max-width:600px){ .poll{padding:12px 12px 10px} .poll-btns{grid-template-columns:1fr} }
+</style>

@@ -1,0 +1,34 @@
+---
+// 記事一覧・トップの各記事に「コメント N」を付ける（2026-09-26 アクセス特化）。
+// 盛り上がっている記事を一目で分かるようにする。0件の記事には何も付けない（空っぽに見せない）。
+// ページ内の <main> にある /blog/<slug>/ へのリンクを集め、掲示板 API の /counts でまとめて件数を取る。
+// 流れる見出し（.mh-marquee）は1行表示なので対象外。API 未設定なら何もしない。
+import cfg from "../data/comments.json";
+const api = (cfg as any).api as string;
+---
+{api && (
+<script is:inline define:vars={{ api }}>
+(function () {
+  var links = [].slice.call(document.querySelectorAll('main a[href^="/blog/"]')).filter(function (a) { return !a.closest(".mh-marquee, article .prose, .bbs"); });
+  var slugOf = function (a) { var m = a.getAttribute("href").match(/^\/blog\/([a-z0-9-]{3,80})\/?(#.*)?$/); return m && !m[2] ? m[1] : null; };
+  var slugs = []; links.forEach(function (a) { var s = slugOf(a); if (s && slugs.indexOf(s) < 0) slugs.push(s); });
+  if (!slugs.length) return;
+  var put = function (counts) {
+    links.forEach(function (a) {
+      var s = slugOf(a), n = s && counts[s];
+      if (!n || a.querySelector(".ccnt")) return;
+      var b = document.createElement("b"); b.className = "ccnt"; b.textContent = "コメント " + n; b.title = "掲示板の書き込み " + n + " 件";
+      var at = a.querySelector(".nx-meta, .d, .m, .feat-tags");
+      // 置き場所: 日付などのメタ行があればそこ、無ければ見出しの末尾（グリッドの列を増やさないよう見出しの中に入れる）
+      (at || a.querySelector(".t, .nx-t, .feat-t") || a).appendChild(b);
+    });
+  };
+  for (var i = 0; i < slugs.length; i += 60) {
+    fetch(api + "/counts?pages=" + slugs.slice(i, i + 60).join(",")).then(function (r) { return r.json(); }).then(function (d) { put(d.counts || {}); }).catch(function () {});
+  }
+})();
+</script>
+)}
+<style is:global>
+  .ccnt{display:inline-block;margin-left:6px;padding:0 6px;border:1px solid rgba(217,70,239,.55);border-radius:3px;color:#a21caf;background:#fdf4ff;font-family:var(--mono,monospace);font-size:11px;font-weight:700;line-height:1.6;white-space:nowrap;vertical-align:middle}
+</style>
