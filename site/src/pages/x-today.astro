@@ -4,8 +4,38 @@
 // ?list を付けて開くと移動せず、候補（直近の記事）から選べる。
 // 検索には出さない（noindex・サイトマップ除外）。ビルドのたびに選び直すので、その日の新着が入る。
 import { getCollection } from "astro:content";
-// 投稿に添える1〜2行のひとこと（site/scripts/xcomment.mjs が作る。無い記事は説明文で代用）
+// 投稿に添える1〜2行のひとこと（2026-09-26 オーナー案）: 記事の「編集部の井戸端会議」から1文を引用する。
+// 井戸端会議が無い記事は AI が作ったひとこと（site/src/data/x-comments.json、任意）→ 説明文の順で代用
 import xc from "../data/x-comments.json";
+
+// 井戸端会議のタケシ（解説役）・佐倉（まとめ役）の発言から、単独で読んで意味が通り、要点になっている1文を選ぶ
+function pickQuote(body: string): string | null {
+  const sec = body.split(/\n## 編集部の井戸端会議\s*\n/)[1];
+  if (!sec) return null;
+  const part = sec.split(/\n## /)[0];
+  const lines = [...part.matchAll(/\*\*(佐倉|タケシ|ミナ)\*\*「([\s\S]*?)」\s*$/gm)].map((m, i) => ({ who: m[1], text: m[2].trim(), i }));
+  const n = lines.length;
+  let best: { s: string; sc: number } | null = null;
+  for (const l of lines) {
+    if (l.who === "ミナ") continue; // 聞き役（質問）は引用しない
+    for (let s of l.text.split(/(?<=。)/).map((x) => x.trim()).filter(Boolean)) {
+      s = s.replace(/^(それに|逆に|ただし|でも|だから|なので|まあ|うん|あと|実際)、?/, "");
+      const len = [...s].length;
+      if (len < 14 || len > 58) continue;
+      if (/^(つまり|そうだね|そう|うん|そういう見方|こうした|こういう|この|その|それ|これ|あれ|そこ|ここ)/.test(s)) continue; // 前の発言がないと意味が通らない
+      if (/学ぶ人は|今月中に|今週中に|そうでない人は/.test(s)) continue; // 佐倉の定型の締め
+      if (/[「」『』]|http/.test(s)) continue;
+      let sc = 0;
+      if (/リスク|可能性|限らない|万能|注意|鍵|ポイント|見落と|本質|むしろ|だけでは|ではない|が大事|重要|差が|分かれ/.test(s)) sc += 3;
+      if (/が、|けど|ただ|一方/.test(s)) sc += 1;
+      sc += (l.i / n) * 2; // 後半ほど結論に近い
+      if ((s.match(/\d/g) || []).length >= 3) sc -= 2;
+      if (l.who === "佐倉") sc += 0.5;
+      if (!best || sc > best.sc) best = { s, sc };
+    }
+  }
+  return best ? best.s : null;
+}
 const SITE = (import.meta.env.SITE || "https://codeschoolnavi.com").replace(/\/$/, "");
 const jst = (t: number) => new Date(t + 9 * 3600000).toISOString().slice(0, 10);
 const today = jst(Date.now());
@@ -22,13 +52,14 @@ const items = cands.map((p) => {
   const tags = p.data.news ? ["AIニュース", "生成AI"] : ["プログラミング学習", "リスキリング"];
   // X は日本語を2文字として数える（上限280）。見出し＋説明を約110字に収め、URL（23）とハッシュタグの余裕を残す
   const head = `${label}${p.data.title}`;
-  const comment = (xc as any)[p.slug]?.comment as string | undefined;
+  const quote = pickQuote(p.body || "");
+  const comment = quote ? `編集部「${quote}」` : ((xc as any)[p.slug]?.comment as string | undefined);
   const text = comment
     ? `${comment}\n\n${head}`
     : `${head}\n\n${cut(p.data.description, Math.max(0, 105 - [...head].length))}`.trim();
   const url = `${SITE}/blog/${p.slug}/`;
   const intent = `https://x.com/intent/post?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&hashtags=${encodeURIComponent(tags.join(","))}`;
-  return { slug: p.slug, date: p.data.pubDate, title: p.data.title, label, text, url, tags, intent, hasComment: !!comment };
+  return { slug: p.slug, date: p.data.pubDate, title: p.data.title, label, text, url, tags, intent, hasComment: !!comment, fromQuote: !!quote };
 });
 const first = items[0];
 ---
@@ -70,7 +101,7 @@ const first = items[0];
     )}
     {items.map((it, i) => (
       <div class={i === 0 ? "card top" : "card"}>
-        <div class="meta">{i === 0 ? "今日のおすすめ ・ " : ""}{it.date} ・ {it.slug}{it.hasComment ? "" : " ・ ひとこと準備中"}</div>
+        <div class="meta">{i === 0 ? "今日のおすすめ ・ " : ""}{it.date} ・ {it.slug}{it.fromQuote ? " ・ 井戸端会議から引用" : it.hasComment ? " ・ AIのひとこと" : " ・ ひとことなし"}</div>
         <div class="txt">{it.text}</div>
         <div class="u">{it.url}</div>
         <div class="h">{it.tags.map((t) => `#${t}`).join(" ")}</div>
