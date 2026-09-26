@@ -1,0 +1,93 @@
+name: comments-worker
+
+# 匿名掲示板（コメント欄）の API を Cloudflare Workers + D1 に出す（2026-09-26）。
+# 必要な GitHub Secrets: CLOUDFLARE_API_TOKEN（Workers Scripts:Edit と D1:Edit）, CLOUDFLARE_ACCOUNT_ID
+# 未登録のあいだは何もせず成功で終わる（サイト側も API が空なのでコメント欄を出さない）。
+# 初回は workers.dev サブドメインと D1 を作り、テーブルを作り、IP_SALT（ランダム）を登録し、
+# 出来た URL を site/src/data/comments.json に書いてコミット → deploy-pages を起動する。
+on:
+  push:
+    branches: [main]
+    paths:
+      - "workers/comments/**"
+      - ".github/workflows/comments-worker.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: comments-worker
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Secrets の確認
+        id: chk
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::notice::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID が未登録のため、掲示板のデプロイをスキップしました"
+            echo "ready=0" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=1" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v4
+        if: steps.chk.outputs.ready == '1'
+      - uses: actions/setup-node@v4
+        if: steps.chk.outputs.ready == '1'
+        with: { node-version: "20" }
+      - name: サブドメイン・D1・wrangler.toml を用意
+        id: prep
+        if: steps.chk.outputs.ready == '1'
+        run: bash workers/comments/prepare.sh
+      - name: テーブル作成（既にあれば何もしない）
+        if: steps.chk.outputs.ready == '1'
+        working-directory: workers/comments
+        run: npx -y wrangler@3 d1 execute csn-comments --remote --file=schema.sql
+      - name: Worker をデプロイ
+        if: steps.chk.outputs.ready == '1'
+        working-directory: workers/comments
+        run: npx -y wrangler@3 deploy
+      - name: IP_SALT を登録（初回だけ。値はランダムで誰も知らない）
+        if: steps.chk.outputs.ready == '1'
+        working-directory: workers/comments
+        run: |
+          if npx -y wrangler@3 secret list --format json 2>/dev/null | grep -q '"IP_SALT"'; then
+            echo "IP_SALT は登録済み"
+          else
+            openssl rand -hex 32 | npx -y wrangler@3 secret put IP_SALT
+          fi
+      - name: 動作確認
+        id: url
+        if: steps.chk.outputs.ready == '1'
+        run: |
+          URL="https://csn-comments.${{ steps.prep.outputs.subdomain }}.workers.dev"
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          for i in $(seq 1 18); do
+            CODE=$(curl -s -o /tmp/r.json -w '%{http_code}' "$URL/recent?limit=1" || true)
+            if [ "$CODE" = "200" ]; then echo "OK $URL"; cat /tmp/r.json; echo; exit 0; fi
+            echo "待機中 ($CODE)"; sleep 10
+          done
+          echo "::warning::$URL がまだ応答しません（新しいサブドメインは反映に数分かかることがあります）。URL の書き込みは続けます"
+      - name: サイトに API の URL を書いてデプロイ
+        if: steps.chk.outputs.ready == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          URL="${{ steps.url.outputs.url }}"
+          F=site/src/data/comments.json
+          if grep -q "\"$URL\"" "$F"; then echo "comments.json は最新"; exit 0; fi
+          printf '{ "api": "%s" }\n' "$URL" > "$F"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$F"
+          git commit -m "掲示板 API の URL を設定（comments-worker）"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done
+          gh workflow run pages.yml --ref main
+          echo "::notice::掲示板を有効化しました: $URL"

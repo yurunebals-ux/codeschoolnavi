@@ -1,0 +1,62 @@
+name: comments-admin
+
+# 掲示板の管理（2026-09-26）。Actions の画面から手で実行する。
+#   list   : 最新50件（非表示も含む）を一覧。結果は実行ページの Summary に表で出る
+#   hide   : 指定 ID を非表示（削除依頼・荒らし対応）
+#   show   : 指定 ID を再表示（誤通報の取り消し。通報数も0に戻す）
+#   delete : 指定 ID を完全に削除（元に戻せない）
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "操作"
+        type: choice
+        options: [list, hide, show, delete]
+        default: list
+      ids:
+        description: "対象の ID（list の表の「ID」列。カンマ区切りで複数可）"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  admin:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      ACTION: ${{ inputs.action }}
+      IDS: ${{ inputs.ids }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - run: bash workers/comments/prepare.sh
+      - name: 実行
+        working-directory: workers/comments
+        run: |
+          IDS=$(echo "$IDS" | tr -d ' ')
+          if [ "$ACTION" != "list" ]; then
+            echo "$IDS" | grep -Eq '^[0-9]+(,[0-9]+)*$' || { echo "::error::ids は数字のカンマ区切りで指定してください"; exit 1; }
+            case "$ACTION" in
+              hide)   SQL="UPDATE comments SET status='hidden' WHERE id IN ($IDS)";;
+              show)   SQL="UPDATE comments SET status='visible', reports=0 WHERE id IN ($IDS); DELETE FROM reports WHERE comment_id IN ($IDS)";;
+              delete) SQL="DELETE FROM reports WHERE comment_id IN ($IDS); DELETE FROM comments WHERE id IN ($IDS)";;
+            esac
+            npx -y wrangler@3 d1 execute csn-comments --remote --command "$SQL"
+            echo "$ACTION: $IDS を処理しました" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          npx -y wrangler@3 d1 execute csn-comments --remote --json \
+            --command "SELECT id, page, no, name, body, uid, created_at, status, reports FROM comments ORDER BY id DESC LIMIT 50" > /tmp/out.json
+          node -e '
+            const raw = require("fs").readFileSync("/tmp/out.json", "utf8");
+            const rows = (JSON.parse(raw.slice(raw.indexOf("[")))[0] || {}).results || [];
+            const cell = (s) => String(s ?? "").replace(/\|/g, "｜").replace(/\n/g, " ").slice(0, 60);
+            const jst = (s) => new Date(new Date(s).getTime() + 9 * 3600000).toISOString().slice(5, 16).replace("T", " ");
+            const out = ["### 最新の書き込み（" + rows.length + "件）", "", "| ID | 状態 | 通報 | ページ | 番号 | 名前 | 本文 | 日時(JST) | 書込ID |", "|---|---|---|---|---|---|---|---|---|",
+              ...rows.map((r) => `| ${r.id} | ${r.status === "visible" ? "表示" : "**非表示**"} | ${r.reports} | ${cell(r.page)} | ${r.no} | ${cell(r.name)} | ${cell(r.body)} | ${jst(r.created_at)} | ${r.uid} |`)];
+            require("fs").appendFileSync(process.env.GITHUB_STEP_SUMMARY, out.join("\n") + "\n");
+            console.log(out.join("\n"));
+          '
