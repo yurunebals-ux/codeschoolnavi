@@ -19,3 +19,12 @@ CREATE TABLE IF NOT EXISTS reports (
   created_at TEXT NOT NULL,
   PRIMARY KEY (comment_id, ip_hash)
 );
+-- ニュース記事の「歓迎派／慎重派」ワンタップ投票（2026-09-26）。1人1ページ1票（選び直しは上書き）
+CREATE TABLE IF NOT EXISTS votes (
+  page TEXT NOT NULL,
+  ip_hash TEXT NOT NULL,
+  choice TEXT NOT NULL,        -- a（歓迎派）/ b（慎重派）
+  created_at TEXT NOT NULL,
+  PRIMARY KEY (page, ip_hash)
+);
+CREATE INDEX IF NOT EXISTS idx_votes_ip ON votes(ip_hash, created_at);
