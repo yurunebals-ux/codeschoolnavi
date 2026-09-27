@@ -175,7 +175,7 @@ COACHTECH卒業生のキャリアや年収は個人差が大きい。公式に�
 
 - [COACHTECHの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-coachtech/)
 - [COACHTECHの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-coachtech/)
+- [COACHTECHは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-coachtech/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [ポテパンキャンプの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-potepan/)
 - [ポテパンキャンプは自分に合う？申込前に潰す3つの不安](/blog/yametoke-potepan/)
-- [RUNTEQの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-runteq/)

@@ -181,7 +181,8 @@
       "score": 82,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-08-23T03:08:25.006Z"
+      "publishedAt": "2026-08-23T03:08:25.006Z",
+      "structure": 2
     },
     {
       "slug": "ryokin-techmeets",
@@ -195,7 +196,8 @@
       "score": 82,
       "status": "published",
       "createdAt": "2026-08-08T04:00:00.000Z",
-      "publishedAt": "2026-08-24T03:10:13.648Z"
+      "publishedAt": "2026-08-24T03:10:13.648Z",
+      "structure": 2
     },
     {
       "slug": "yametoke-techmeets",
@@ -3024,8 +3026,11 @@
       "kind": "money",
       "cluster": "転職特化",
       "score": 100,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-09-27T07:53:25.434Z",
+      "structure": 2,
+      "publishedAt": "2026-09-27T07:55:05.035Z"
     },
     {
       "slug": "kyufukin-techacademy",
@@ -3037,8 +3042,11 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 100,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-09-27T07:54:10.432Z",
+      "structure": 2,
+      "publishedAt": "2026-09-27T07:55:05.035Z"
     },
     {
       "slug": "kyufukin-codecamp",
@@ -3425,13 +3433,16 @@
       "kind": "topic",
       "cluster": "AI・データ分析",
       "score": 60,
-      "status": "queued",
+      "status": "rejected",
       "createdAt": "2026-09-18T07:14:27.537Z",
       "brief": "E資格はJDLA認定プログラムの修了が受験条件で、講座費用が実質の受験コスト。資格そのものより『認定講座で実装まで学んだ』ことの証明として機能する。転職では未経験者の熱量の証拠、経験者には効果が薄い。給付金対象の認定講座を選べば費用は下がる（対象講座は各校の指定を確認）。",
       "hubs": [
         "/blog/osusume-hikaku-ai/",
         "/kyufukin/"
-      ]
+      ],
+      "draftedAt": "2026-09-27T07:53:51.622Z",
+      "structure": 2,
+      "rejectReason": "score=115; データにない金額・調査の言及: 5万円"
     },
     {
       "slug": "topic-g-kentei-tenshoku",
@@ -5773,8 +5784,8 @@
       "rejectReason": "score=95; 見出しやや不足: 3; 内部リンクなし; データにない金額・調査の言及: 9000円"
     }
   ],
-  "publishedCount": 88,
-  "estimatedMrrUsd": 26400,
+  "publishedCount": 90,
+  "estimatedMrrUsd": 27000,
   "history": [
     {
       "date": "2026-07-24",
@@ -6098,9 +6109,9 @@
     },
     {
       "date": "2026-09-27",
-      "published": 88,
-      "estimatedMrrUsd": 26400
+      "published": 90,
+      "estimatedMrrUsd": 27000
     }
   ],
-  "lastRun": "2026-09-27T00:08:42.601Z"
+  "lastRun": "2026-09-27T07:55:05.661Z"
 }

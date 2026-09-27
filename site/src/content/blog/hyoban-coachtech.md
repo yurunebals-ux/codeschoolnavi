@@ -138,7 +138,7 @@ RUNTEQは約9ヶ月の固定期間でプログラムが組まれており、ポ�
 
 - [COACHTECHの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-coachtech/)
 - [COACHTECHは自分に合う？申込前に潰す3つの不安](/blog/yametoke-coachtech/)
+- [COACHTECHは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-coachtech/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [ポテパンキャンプの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-potepan/)
 - [ポテパンキャンプは自分に合う？申込前に潰す3つの不安](/blog/yametoke-potepan/)
-- [RUNTEQの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-runteq/)

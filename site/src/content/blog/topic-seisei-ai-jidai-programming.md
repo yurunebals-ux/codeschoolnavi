@@ -132,7 +132,7 @@ DMM 生成AI CAMPは転職支援がないため、生成AIのスキルを得た�
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [プログラミングスクールは意味ない？向いていない人の特徴と後悔しない選び方](/blog/imiaru-erabikata/)
+- [COACHTECHは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-coachtech/)
+- [TechAcademyに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-techacademy/)
 - [Claude Codeで作業が止まらない理由とクラウドセッションの使い方](/blog/news-20260926-n0h69/)
 - [Google Geminiの電話代行、月10回以下でも損をする理由とは](/blog/news-20260926-1nwuu/)
-- [エンジニア転職に年齢制限はある？20代・30代・40代で変わる現実](/blog/topic-engineer-tenshoku-nenrei/)
-- [Claude Codeの登場で「コードを書くエンジニア」は終わったのか](/blog/news-20260925-d45hp/)
