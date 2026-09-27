@@ -252,7 +252,7 @@ ITパスポートや基本情報技術者などの国家資格取得を目指す
 
 - [Winスクールの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Cloudflareで検索コストを1回0.0002ドルに抑えられる理由とは](/blog/news-20260927-1avdy/)
+- [テレワーク廃止でITエンジニアの離職増加、10年で人材争奪戦激化](/blog/news-20260927-1prxo/)
 - [COACHTECHは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-coachtech/)
 - [TechAcademyに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-techacademy/)
-- [Claude Codeで作業が止まらない理由とクラウドセッションの使い方](/blog/news-20260926-n0h69/)
-- [Google Geminiの電話代行、月10回以下でも損をする理由とは](/blog/news-20260926-1nwuu/)
