@@ -9,6 +9,9 @@ import FigKyufu from "../../components/FigKyufu.astro";
 import Cta from "../../components/Cta.astro";
 import Comments from "../../components/Comments.astro";
 import Poll from "../../components/Poll.astro";
+import SchoolCard from "../../components/SchoolCard.astro";
+import CompareBox from "../../components/CompareBox.astro";
+import { idsFromNames } from "../../lib/schoolfacts";
 import Shot from "../../components/Shot.astro";
 import pricewatch from "../../data/pricewatch.json";
 import { catOf } from "../../lib/cat";
@@ -21,6 +24,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const allSlugs = new Set((await getCollection("blog", ({ data }) => !data.draft)).map((p) => p.slug));
 const { Content } = await post.render();
 const d = post.data;
 const cat = catOf(d.title, d);
@@ -191,6 +195,15 @@ const ctaAfter = figMapAfter + 1;
         bank.remove();
       })();
     </script>
+
+    {/* 冒頭の「30秒でわかる結論」（評判・料金・やめとけ記事）と、比較記事の早見表（2026-09-28）。
+        本文の加工スクリプト（3行で言うと等の箱）の後に置き、各コンポーネントのスクリプトで最初の本文見出しの前へ移す */}
+    {watchId && !d.news && !d.topic && /^(hyoban|ryokin|yametoke)-/.test(post.slug) && (
+      <SchoolCard id={watchId} body={post.body} slugs={allSlugs} asOf={d.updatedDate ?? d.pubDate} />
+    )}
+    {/^(osusume-hikaku-.+|kyufukin-osusume)$/.test(post.slug) && d.tools?.length > 0 && (
+      <CompareBox ids={idsFromNames(d.tools)} slugs={allSlugs} asOf={d.updatedDate ?? d.pubDate} />
+    )}
 
     <Cta id={ctaId} heading="この記事を読んで、次に動くなら" />
 
