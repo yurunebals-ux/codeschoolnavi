@@ -1,0 +1,74 @@
+---
+// 比較記事（おすすめ比較・給付金おすすめ）の「比べたスクールの早見表＋公式ボタン」（2026-09-28 オーナー選択）。
+// これまで比較記事には申込ボタンが1つも無く、いちばん申し込みに近い読者の出口が無かった。
+// - 並び順は記事の tools の順のまま（提携の有無で並べ替えない＝順位を報酬で動かさない）
+// - 提携済みの校だけ PR 表示つきのボタン。未提携の校は公式サイトへの控えめなリンク（PR は付けない）
+// 本文の後ろに出力し、スクリプトで最初の本文見出しの直前（「3行で言うと」の後）へ移す。
+import { factsOf } from "../lib/schoolfacts";
+interface Props { ids: string[]; slugs: Set<string>; asOf: string }
+const { ids, slugs, asOf } = Astro.props;
+const rows = ids.map((id) => factsOf(id, slugs)).filter(Boolean) as any[];
+const ym = `${asOf.slice(0, 4)}年${Number(asOf.slice(5, 7))}月`;
+const hasPr = rows.some((r) => r.offer?.sponsored);
+---
+{rows.length > 0 && (
+  <aside class="cmpbox" data-cmpbox>
+    <div class="cb-h"><span class="cb-tag">// 早見表</span><b>この記事で比べた{rows.length}校</b></div>
+    <ol class="cb-list">
+      {rows.map((r) => (
+        <li>
+          <div class="cb-top">
+            <span class="cb-name">{r.name}</span>
+            {r.offer?.sponsored && <span class="cta-pr">PR</span>}
+          </div>
+          <div class="cb-facts">
+            <span><i>料金</i>{r.price}</span>
+            <span><i>期間</i>{r.period}</span>
+            <span><i>転職支援</i>{r.job}</span>
+            <span><i>給付金</i>{r.subsidy === "あり" ? "一部対象" : r.subsidy === "なし" ? "対象外" : "要確認"}</span>
+          </div>
+          <div class="cb-act">
+            {r.review && <a class="cb-read" href={r.review}>評判を読む</a>}
+            {r.offer?.sponsored ? (
+              <a class="cb-go" href={r.offer.href} target="_blank" rel="sponsored nofollow noopener">{r.offer.short ?? "公式サイトを見る"}</a>
+            ) : r.offer ? (
+              <a class="cb-off" href={r.offer.official ?? r.offer.href} target="_blank" rel="nofollow noopener">公式サイト ↗</a>
+            ) : null}
+          </div>
+        </li>
+      ))}
+    </ol>
+    <p class="cb-foot">{ym}時点の編集部調べ。並び順は記事の紹介順で、広告の有無では変えていません。{hasPr && "「PR」は当サイトが提携している広告リンクです。"}料金・条件は申し込み前に公式サイトで確認してください。</p>
+  </aside>
+)}
+<script is:inline>
+  (function () {
+    var c = document.querySelector("[data-cmpbox]"); if (!c) return;
+    var art = c.closest("article"); if (!art) return;
+    var h = Array.prototype.slice.call(art.querySelectorAll("h2")).find(function (x) { return !/3行で言うと/.test(x.textContent) && !x.closest(".cmpbox"); });
+    if (!h) return;
+    var at = h.parentElement && h.parentElement !== art && /\btldr\b/.test(h.parentElement.className) ? h.parentElement : h;
+    at.parentNode.insertBefore(c, at);
+  })();
+</script>
+<style is:global>
+  .cmpbox{position:relative;margin:24px 0 30px;padding:14px 16px 12px;border:1.5px solid #06b6d4;border-radius:6px;background:#fff;box-shadow:0 0 18px rgba(6,182,212,.16)}
+  .cmpbox::after{content:"";position:absolute;right:-1.5px;bottom:-1.5px;width:14px;height:14px;border-right:2px solid var(--neon2,#d946ef);border-bottom:2px solid var(--neon2,#d946ef)}
+  .cb-h{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+  .cb-tag{font-family:var(--mono,monospace);font-size:12px;color:#0e7490;letter-spacing:.08em;font-weight:700}
+  .cb-h b{color:#0f2744;font-size:16px}
+  .cb-list{list-style:none;margin:0;padding:0;counter-reset:cb}
+  .cb-list li{counter-increment:cb;padding:10px 0;border-top:1px dashed #e2e8f0}
+  .cb-list li:first-child{border-top:0}
+  .cb-top{display:flex;align-items:center;gap:8px}
+  .cb-top::before{content:counter(cb);font-family:var(--mono,monospace);font-size:12px;font-weight:800;color:#fff;background:#0f2744;border-radius:3px;padding:0 6px;line-height:1.7}
+  .cb-name{font-weight:800;color:#0f172a;font-size:15px}
+  .cb-facts{display:flex;flex-wrap:wrap;gap:4px 12px;margin:6px 0 8px;font-size:13px;color:#0f172a}
+  .cb-facts i{font-style:normal;font-size:11px;color:#64748b;font-family:var(--mono,monospace);margin-right:4px}
+  .cb-act{display:flex;flex-wrap:wrap;gap:8px}
+  .cb-act a{text-decoration:none;font-size:13px;font-weight:700;border-radius:999px;padding:7px 14px;line-height:1.3}
+  .cb-read{border:1px solid #67e8f9;color:#0e7490;background:#ecfeff}
+  .cb-go{background:var(--cta,#d946ef);color:#fff !important;box-shadow:0 2px 8px rgba(217,70,239,.3)}
+  .cb-off{border:1px solid #cbd5e1;color:#334155}
+  .cb-foot{margin:8px 0 0;font-size:11.5px;color:#64748b;line-height:1.6}
+</style>

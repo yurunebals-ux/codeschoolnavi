@@ -1,0 +1,79 @@
+---
+// 評判・料金記事の冒頭に置く「30秒でわかる結論」カード（2026-09-28 オーナー選択）。
+// 長い記事（スマホで画面11枚分）を読まない人にも、判定・要点の数字・公式への導線が届くようにする。
+// - 合う人／合わない人: 記事の「編集部の判定：「…には合う、…には合わない」」から取る（記事と食い違わない）
+// - 数字: data/affiliates.json（記事を書くときと同じ一次データ）
+// - ボタン: 提携済みなら PR 表示つきの申込リンク、未提携なら公式サイトへの控えめなリンク（PR は付けない）
+// 本文の後ろに出力し、下のスクリプトで最初の本文見出しの直前（【広告】表記と導入文の後）へ移す。
+import { factsOf, verdictOf } from "../lib/schoolfacts";
+interface Props { id: string; body: string; slugs: Set<string>; asOf: string }
+const { id, body, slugs, asOf } = Astro.props;
+const f = factsOf(id, slugs);
+const v = verdictOf(body);
+const o = f?.offer;
+const ym = `${asOf.slice(0, 4)}年${Number(asOf.slice(5, 7))}月`;
+---
+{f && (
+  <aside class="concl" data-concl>
+    <div class="cc-h"><span class="cc-tag">// 30秒でわかる結論</span><span class="cc-name">{f.name}</span></div>
+    {v && (
+      <div class="cc-fit">
+        <p class="ok"><b>合う人</b><span>{v.fit}</span></p>
+        <p class="ng"><b>合わない人</b><span>{v.unfit}</span></p>
+      </div>
+    )}
+    <dl class="cc-facts">
+      <div><dt>料金</dt><dd>{f.price}</dd></div>
+      <div><dt>期間</dt><dd>{f.period}</dd></div>
+      <div><dt>形式</dt><dd>{f.format}</dd></div>
+      <div><dt>転職支援</dt><dd>{f.job}</dd></div>
+      <div><dt>返金保証</dt><dd>{f.refund}</dd></div>
+      <div><dt>給付金</dt><dd>{f.subsidy === "あり" ? "一部コースが対象" : f.subsidy === "なし" ? "対象外" : "要確認"}{f.kyufukin && <a href={f.kyufukin}>詳細</a>}</dd></div>
+    </dl>
+    {o?.sponsored ? (
+      <div class="cc-cta">
+        <a class="cta-btn" href={o.href} target="_blank" rel="sponsored nofollow noopener"><span class="cta-pr">PR</span> {o.label}</a>
+        <p class="cta-note">{o.note}</p>
+      </div>
+    ) : o ? (
+      <p class="cc-off"><a href={o.official ?? o.href} target="_blank" rel="nofollow noopener">{f.name}の公式サイトで最新の料金を見る ↗</a></p>
+    ) : null}
+    <p class="cc-foot">{ym}時点の編集部調べ。料金・条件は変わることがあるため、申し込み前に公式サイトで確認してください。<a href="#toc">{v ? "判定の理由を読む ↓" : "記事の目次を見る ↓"}</a></p>
+  </aside>
+)}
+<script is:inline>
+  // 最初の本文見出し（「3行で言うと」は除く）の直前へ移す
+  (function () {
+    var c = document.querySelector("[data-concl]"); if (!c) return;
+    var art = c.closest("article"); if (!art) return;
+    var h = Array.prototype.slice.call(art.querySelectorAll("h2")).find(function (x) { return !/3行で言うと/.test(x.textContent) && !x.closest(".concl"); });
+    if (!h) return;
+    var at = h.parentElement && h.parentElement !== art && /\btldr\b/.test(h.parentElement.className) ? h.parentElement : h;
+    at.parentNode.insertBefore(c, at);
+  })();
+</script>
+<style is:global>
+  .concl{position:relative;margin:24px 0 30px;padding:14px 16px 12px;border:1.5px solid #06b6d4;border-radius:6px;background:#fff;box-shadow:0 0 18px rgba(6,182,212,.16)}
+  .concl::after{content:"";position:absolute;right:-1.5px;bottom:-1.5px;width:14px;height:14px;border-right:2px solid var(--neon2,#d946ef);border-bottom:2px solid var(--neon2,#d946ef)}
+  .cc-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin-bottom:10px}
+  .cc-tag{font-family:var(--mono,monospace);font-size:12px;color:#0e7490;letter-spacing:.08em;font-weight:700}
+  .cc-name{font-weight:800;color:#0f2744;font-size:16px}
+  .cc-fit{display:grid;gap:6px;margin:0 0 10px}
+  .cc-fit p{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:baseline;font-size:14.5px;line-height:1.6}
+  .cc-fit b{font-size:11.5px;padding:2px 8px;border-radius:3px;white-space:nowrap}
+  .cc-fit .ok b{background:#ecfeff;color:#0e7490;border:1px solid #67e8f9}
+  .cc-fit .ng b{background:#fdf4ff;color:#a21caf;border:1px solid #f0abfc}
+  .cc-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 12px}
+  .cc-facts div{background:#f8fafc;border:1px solid #e2e8f0;border-radius:4px;padding:6px 8px;min-width:0}
+  .cc-facts dt{font-size:11px;color:#64748b;font-family:var(--mono,monospace)}
+  .cc-facts dd{margin:2px 0 0;font-size:13.5px;font-weight:700;color:#0f172a;line-height:1.45;word-break:break-word}
+  .cc-facts dd a{margin-left:6px;font-size:11.5px;font-weight:600;color:#0891b2}
+  .cc-cta .cta-btn{display:flex;align-items:center;justify-content:center;gap:6px}
+  .cc-cta .cta-pr{background:rgba(0,0,0,.25)}
+  .cc-cta .cta-note{margin:6px 0 0}
+  .cc-off{margin:0;text-align:center;font-size:13.5px}
+  .cc-off a{display:inline-block;padding:8px 14px;border:1px solid #cbd5e1;border-radius:999px;color:#0f2744;text-decoration:none}
+  .cc-foot{margin:10px 0 0;font-size:11.5px;color:#64748b;line-height:1.6}
+  .cc-foot a{color:#0891b2;margin-left:4px;white-space:nowrap}
+  @media (max-width:600px){ .cc-facts{grid-template-columns:repeat(2,1fr)} }
+</style>
