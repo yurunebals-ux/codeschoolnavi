@@ -132,9 +132,9 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 
 ## あわせて読みたい
 
+- [休職中の転職で内定後に正直告白、なぜ取り消しになったのか](/blog/news-20260928-15e4u/)
 - [CodeCampは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-codecamp/)
 - [グーグルが1080pのAI動画生成を無料解放、月6本まで利用可能に](/blog/news-20260928-1cexf/)
 - [Cloudflareで検索コストを1回0.0002ドルに抑えられる理由とは](/blog/news-20260927-1avdy/)
 - [テレワーク廃止でITエンジニアの離職増加、10年で人材争奪戦激化](/blog/news-20260927-1prxo/)
 - [COACHTECHは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-coachtech/)
-- [TechAcademyに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-techacademy/)
