@@ -211,7 +211,8 @@
       "score": 82,
       "status": "published",
       "createdAt": "2026-08-08T04:00:00.000Z",
-      "publishedAt": "2026-08-25T03:04:24.888Z"
+      "publishedAt": "2026-08-25T03:04:24.888Z",
+      "structure": 2
     },
     {
       "slug": "ryokin-techacademy",
@@ -225,7 +226,8 @@
       "score": 82,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-08-26T03:11:35.851Z"
+      "publishedAt": "2026-08-26T03:11:35.851Z",
+      "structure": 2
     },
     {
       "slug": "yametoke-techacademy",
@@ -3058,8 +3060,11 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 100,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-09-28T08:30:04.881Z",
+      "structure": 2,
+      "publishedAt": "2026-09-28T08:31:44.644Z"
     },
     {
       "slug": "kyufukin-runteq",
@@ -3455,12 +3460,15 @@
       "kind": "topic",
       "cluster": "AI・データ分析",
       "score": 60,
-      "status": "queued",
+      "status": "rejected",
       "createdAt": "2026-09-18T07:14:27.537Z",
       "brief": "G検定は実装ではなく『AIを事業でどう使うか』の知識試験。エンジニア転職の武器にはなりにくいが、企画・営業・管理職がAI案件を扱う入口には向く。E資格との違いは実装の有無。学習は公式テキスト＋過去問中心で独学可能。",
       "hubs": [
         "/blog/osusume-hikaku-ai/"
-      ]
+      ],
+      "draftedAt": "2026-09-28T08:29:38.718Z",
+      "structure": 2,
+      "rejectReason": "score=115; データにない金額・調査の言及: 8,000円"
     },
     {
       "slug": "topic-web-vs-ai-engineer",
@@ -3473,14 +3481,17 @@
       "kind": "topic",
       "cluster": "選び方",
       "score": 60,
-      "status": "queued",
+      "status": "rejected",
       "createdAt": "2026-09-18T07:14:27.537Z",
       "brief": "求人の入口の広さはWeb、専門性と数学の前提はAI。未経験からの最短はWeb→実務でデータを触る→AIへ寄せる順が多い。AIスクールは受講料が高め（当サイトのデータでは数十万円〜）で、給付金対象講座の有無が費用差を左右する。",
       "hubs": [
         "/blog/osusume-hikaku-tenshoku/",
         "/blog/osusume-hikaku-ai/",
         "/shindan/"
-      ]
+      ],
+      "draftedAt": "2026-09-28T08:30:39.265Z",
+      "structure": 2,
+      "rejectReason": "score=115; データにない金額・調査の言及: 17万円"
     },
     {
       "slug": "topic-saisho-no-gengo",
@@ -6003,8 +6014,8 @@
       "publishedAt": "2026-09-28T00:16:17.666Z"
     }
   ],
-  "publishedCount": 93,
-  "estimatedMrrUsd": 27900,
+  "publishedCount": 94,
+  "estimatedMrrUsd": 28200,
   "history": [
     {
       "date": "2026-07-24",
@@ -6333,9 +6344,9 @@
     },
     {
       "date": "2026-09-28",
-      "published": 93,
-      "estimatedMrrUsd": 27900
+      "published": 94,
+      "estimatedMrrUsd": 28200
     }
   ],
-  "lastRun": "2026-09-28T00:16:18.406Z"
+  "lastRun": "2026-09-28T08:31:45.398Z"
 }

@@ -143,5 +143,5 @@ draft: false
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [ウズウズカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [CodeCampは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-codecamp/)
 - [グーグルが1080pのAI動画生成を無料解放、月6本まで利用可能に](/blog/news-20260928-1cexf/)
-- [Cloudflareで検索コストを1回0.0002ドルに抑えられる理由とは](/blog/news-20260927-1avdy/)
