@@ -114,6 +114,10 @@ if (Astro.url.pathname !== "/") crumbs.push({ name: title, url: canonical.toStri
       table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px;background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(15,39,68,.08);display:block;overflow-x:auto;white-space:nowrap}
       thead th{background:var(--navy);color:#fff;font-weight:700;padding:11px 14px;text-align:left}
       td{border-bottom:1px solid var(--bd);padding:11px 14px}
+      /* 2列の表（基本データなど）は横スクロールさせず折り返す。スマホで料金などが右に切れて読めなかった（2026-09-28） */
+      main article table:not(:has(tr > :nth-child(3))){display:table;white-space:normal;table-layout:fixed}
+      main article table:not(:has(tr > :nth-child(3))) :is(th,td):first-child{width:32%}
+      main article table:not(:has(tr > :nth-child(3))) td{word-break:break-word;vertical-align:top}
       tbody tr:nth-child(even){background:#f8fafc}
       tbody tr:last-child td{border-bottom:0}
 
