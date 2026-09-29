@@ -221,6 +221,16 @@
       "date": "2026-09-28",
       "version": 2,
       "ok": true
+    },
+    "yametoke-techacademy": {
+      "date": "2026-09-29",
+      "version": 2,
+      "ok": true
+    },
+    "ryokin-codecamp": {
+      "date": "2026-09-29",
+      "version": 2,
+      "ok": true
     }
   }
 }

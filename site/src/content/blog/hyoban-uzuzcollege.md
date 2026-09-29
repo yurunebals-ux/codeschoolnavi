@@ -172,5 +172,5 @@ RUNTEQは約9ヶ月の長期コースで受講料が550,000円超。Web開発の
 - [ウズウズカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-uzuzcollege/)
 - [ウズウズカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [休職中の転職で内定後に正直告白、なぜ取り消しになったのか](/blog/news-20260928-15e4u/)
-- [CodeCampは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-codecamp/)
+- [最初に学ぶプログラミング言語はどれ？目的別の決め方](/blog/topic-saisho-no-gengo/)
+- [中小企業のAI導入率は20.4％　ChatGPTだけで仕事は本当に効率化できるか](/blog/news-20260929-c4f4s/)
