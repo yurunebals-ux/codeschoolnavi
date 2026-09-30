@@ -143,5 +143,5 @@ draft: false
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [ウズウズカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [IIJが新人向け研修資料を無料公開、20講義超で生成AIも学べる](/blog/news-20260930-1dzbo/)
 - [最初に学ぶプログラミング言語はどれ？目的別の決め方](/blog/topic-saisho-no-gengo/)
-- [中小企業のAI導入率は20.4％　ChatGPTだけで仕事は本当に効率化できるか](/blog/news-20260929-c4f4s/)
