@@ -164,6 +164,6 @@ SHIFT TERAS CAMPUSとテックキャンプにある返金保証は「条件付�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [生成AI時代にプログラミングを学ぶ意味はあるのか](/blog/topic-seisei-ai-jidai-programming/)
 - [最初に学ぶプログラミング言語はどれ？目的別の決め方](/blog/topic-saisho-no-gengo/)
+- [ChatGPTが実車運転を拒否、名称変更で成功率が3倍に上がった理由](/blog/news-20260930-1fm0n/)
 - [キカガクは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-kikagaku/)
 - [IIJが新人向け研修資料を無料公開、20講義超で生成AIも学べる](/blog/news-20260930-1dzbo/)
-- [中小企業のAI導入率は20.4％　ChatGPTだけで仕事は本当に効率化できるか](/blog/news-20260929-c4f4s/)
