@@ -125,8 +125,8 @@ Aidemyは8日以内なら返金保証があり、短期で合わなければ損�
 ## あわせて読みたい
 
 - [キカガクの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-kikagaku/)
+- [キカガクは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-kikagaku/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Aidemyの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-aidemy/)
 - [DMM 生成AI CAMPの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-dmmaicamp/)
 - [AI・データ分析のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-ai/)
-- [スキルアップAIの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-skillupai/)

@@ -271,7 +271,8 @@
       "score": 82,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-08-29T08:50:02.709Z"
+      "publishedAt": "2026-08-29T08:50:02.709Z",
+      "structure": 2
     },
     {
       "slug": "ryokin-techcamp",
@@ -285,7 +286,8 @@
       "score": 82,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-08-30T08:08:15.196Z"
+      "publishedAt": "2026-08-30T08:08:15.196Z",
+      "structure": 2
     },
     {
       "slug": "yametoke-techcamp",
@@ -3094,8 +3096,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 100,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "rejected",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-09-30T08:15:10.425Z",
+      "structure": 2,
+      "rejectReason": "score=115; 構造: 表崩れ(区切り行がない: | 受講料（税込） | 528,000円〜 |)"
     },
     {
       "slug": "kyufukin-kikagaku",
@@ -3107,8 +3112,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 100,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-09-30T08:16:10.419Z",
+      "structure": 2,
+      "publishedAt": "2026-09-30T08:17:05.754Z"
     },
     {
       "slug": "kyufukin-programmercollege",
@@ -4162,14 +4170,17 @@
       "kind": "topic",
       "cluster": "選び方",
       "score": 60,
-      "status": "queued",
+      "status": "rejected",
       "createdAt": "2026-09-19T07:11:41.729Z",
       "brief": "独学は教材費が数千円〜数万円、スクールは数万円〜数十万円。差額で買っているのは『質問できる相手』『期限』『転職支援』の3つ。独学で3ヶ月続いた人はスクールでも伸びる。続かなかった人が期限と伴走を買うのは合理的。給付金対象なら差額は縮む。",
       "hubs": [
         "/blog/imiaru-erabikata/",
         "/blog/osusume-hikaku-dokugaku/",
         "/kyufukin/"
-      ]
+      ],
+      "draftedAt": "2026-09-30T08:15:41.693Z",
+      "structure": 2,
+      "rejectReason": "score=115; データにない金額・調査の言及: 18万円"
     },
     {
       "slug": "topic-kyufukin-shinsei-otoshiana",
@@ -6327,8 +6338,8 @@
       "publishedAt": "2026-09-30T00:59:17.878Z"
     }
   ],
-  "publishedCount": 99,
-  "estimatedMrrUsd": 29700,
+  "publishedCount": 100,
+  "estimatedMrrUsd": 30000,
   "history": [
     {
       "date": "2026-07-24",
@@ -6667,9 +6678,9 @@
     },
     {
       "date": "2026-09-30",
-      "published": 99,
-      "estimatedMrrUsd": 29700
+      "published": 100,
+      "estimatedMrrUsd": 30000
     }
   ],
-  "lastRun": "2026-09-30T00:59:18.519Z"
+  "lastRun": "2026-09-30T08:17:06.561Z"
 }
