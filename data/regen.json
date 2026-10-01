@@ -241,6 +241,16 @@
       "date": "2026-09-30",
       "version": 2,
       "ok": true
+    },
+    "ryokin-potepan": {
+      "date": "2026-10-01",
+      "version": 2,
+      "ok": true
+    },
+    "ryokin-coachtech": {
+      "date": "2026-10-01",
+      "version": 2,
+      "ok": true
     }
   }
 }

@@ -150,5 +150,5 @@ A4: 個別指導型で資格取得と並行して転職支援を行うが、具�
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [ウズウズカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [ChatGPTが実車運転を拒否、名称変更で成功率が3倍に上がった理由](/blog/news-20260930-1fm0n/)
-- [キカガクは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-kikagaku/)
+- [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
+- [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
