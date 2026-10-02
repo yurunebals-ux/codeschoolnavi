@@ -251,6 +251,16 @@
       "date": "2026-10-01",
       "version": 2,
       "ok": true
+    },
+    "yametoke-coachtech": {
+      "date": "2026-10-02",
+      "version": 2,
+      "ok": true
+    },
+    "osusume-hikaku-tsugaku": {
+      "date": "2026-10-02",
+      "version": 2,
+      "ok": true
     }
   }
 }

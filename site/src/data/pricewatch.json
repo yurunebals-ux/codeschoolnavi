@@ -15,14 +15,14 @@
           "source": "https://techacademy.jp/course"
         }
       ],
-      "lastChecked": "2026-10-01"
+      "lastChecked": "2026-10-02"
     },
     "dmmwebcamp": {
       "name": "SHIFT TERAS CAMPUS（旧DMM WEBCAMP）",
       "url": "https://web-camp.io/",
       "observations": [],
       "lastChecked": "2026-07-24",
-      "lastError": "2026-10-01: 価格表記を検出できず"
+      "lastError": "2026-10-02: 価格表記を検出できず"
     },
     "techcamp": {
       "name": "テックキャンプ",
@@ -61,7 +61,7 @@
           "source": "https://tech-camp.in/"
         }
       ],
-      "lastChecked": "2026-10-01"
+      "lastChecked": "2026-10-02"
     },
     "codecamp": {
       "name": "CodeCamp",
@@ -81,7 +81,7 @@
           "source": "https://codecamp.jp/courses"
         }
       ],
-      "lastChecked": "2026-10-01"
+      "lastChecked": "2026-10-02"
     },
     "runteq": {
       "name": "RUNTEQ",
@@ -114,21 +114,30 @@
           "min": 22600
         }
       ],
-      "lastChecked": "2026-10-01"
+      "lastChecked": "2026-10-02"
     },
     "kikagaku": {
       "name": "キカガク",
       "url": "https://www.kikagaku.ai/",
-      "observations": [],
-      "lastChecked": "2026-07-24",
-      "lastError": "2026-10-01: 価格表記を検出できず"
+      "observations": [
+        {
+          "date": "2026-10-02",
+          "prices": [
+            16500,
+            640000
+          ],
+          "min": 16500,
+          "source": "https://www.kikagaku.ai/campaign/"
+        }
+      ],
+      "lastChecked": "2026-10-02"
     },
     "aidemy": {
       "name": "Aidemy",
       "url": "https://aidemy.net/",
       "observations": [],
       "lastChecked": "2026-07-24",
-      "lastError": "2026-10-01: 価格表記を検出できず"
+      "lastError": "2026-10-02: 価格表記を検出できず"
     },
     "techis": {
       "name": "テックアイエス",
@@ -144,7 +153,7 @@
           "source": "https://techis.jp/"
         }
       ],
-      "lastChecked": "2026-10-01"
+      "lastChecked": "2026-10-02"
     }
   }
 }

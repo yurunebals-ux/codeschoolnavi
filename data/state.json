@@ -359,7 +359,8 @@
       "score": 82,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-09-04T07:14:28.735Z"
+      "publishedAt": "2026-09-04T07:14:28.735Z",
+      "structure": 2
     },
     {
       "slug": "osusume-hikaku-free",
@@ -387,7 +388,8 @@
       "score": 89,
       "status": "published",
       "createdAt": "2026-07-24T10:36:35.550Z",
-      "publishedAt": "2026-09-06T07:01:19.472Z"
+      "publishedAt": "2026-09-06T07:01:19.472Z",
+      "structure": 2
     },
     {
       "slug": "ryokin-runteq",
@@ -3146,8 +3148,11 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 100,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-10-02T08:15:35.891Z",
+      "structure": 2,
+      "publishedAt": "2026-10-02T08:16:53.856Z"
     },
     {
       "slug": "kyufukin-dmmaicamp",
@@ -4220,13 +4225,16 @@
       "kind": "topic",
       "cluster": "給付金対象",
       "score": 60,
-      "status": "queued",
+      "status": "rejected",
       "createdAt": "2026-09-19T07:11:41.729Z",
       "brief": "経済産業省の『リスキリングを通じたキャリアアップ支援事業』は事業者経由の補助で、転職要件と併用条件がある。厚生労働省の教育訓練給付金は個人がハローワークで申請する制度。スクールの『最大70%』表記はどちらの制度かを見ないと、期待した額が戻らない。両制度の併用可否は各校の案内で確認。",
       "hubs": [
         "/kyufukin/",
         "/blog/kyufukin-osusume/"
-      ]
+      ],
+      "draftedAt": "2026-10-02T08:15:06.920Z",
+      "structure": 2,
+      "rejectReason": "score=115; データにない金額・調査の言及: 34,000円"
     },
     {
       "slug": "topic-fukugyo-programming-genjitsu",
@@ -4239,13 +4247,16 @@
       "kind": "topic",
       "cluster": "選び方",
       "score": 60,
-      "status": "queued",
+      "status": "rejected",
       "createdAt": "2026-09-19T07:11:41.729Z",
       "brief": "最初の案件は知人の紹介かクラウドソーシングの低単価から。Web制作（LP・WordPress）が入口になりやすい。必要なのは制作実績3つ・納期を守った履歴・見積もりの出し方。スクールの『副業サポート』は案件紹介の有無と条件で中身が違う。",
       "hubs": [
         "/blog/osusume-hikaku-online/",
         "/shindan/"
-      ]
+      ],
+      "draftedAt": "2026-10-02T08:16:03.144Z",
+      "structure": 2,
+      "rejectReason": "score=110; データにない金額・調査の言及: 5,000円"
     },
     {
       "slug": "topic-ai-ni-shigoto",
@@ -6492,8 +6503,8 @@
       "publishedAt": "2026-10-01T08:40:11.676Z"
     }
   ],
-  "publishedCount": 104,
-  "estimatedMrrUsd": 31200,
+  "publishedCount": 105,
+  "estimatedMrrUsd": 31500,
   "history": [
     {
       "date": "2026-07-24",
@@ -6839,7 +6850,12 @@
       "date": "2026-10-01",
       "published": 104,
       "estimatedMrrUsd": 31200
+    },
+    {
+      "date": "2026-10-02",
+      "published": 105,
+      "estimatedMrrUsd": 31500
     }
   ],
-  "lastRun": "2026-10-01T08:40:12.621Z"
+  "lastRun": "2026-10-02T08:16:54.740Z"
 }

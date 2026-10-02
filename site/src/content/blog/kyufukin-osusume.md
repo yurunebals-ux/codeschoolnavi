@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [忍者CODEに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-ninjacode/)
 - [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
 - [増田とChatGPT連携で投稿が直接可能に。摩擦も増えた理由とは](/blog/news-20261001-18rc1/)
 - [ChatGPTが実車運転を拒否、名称変更で成功率が3倍に上がった理由](/blog/news-20260930-1fm0n/)
 - [キカガクは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-kikagaku/)
-- [IIJが新人向け研修資料を無料公開、20講義超で生成AIも学べる](/blog/news-20260930-1dzbo/)
