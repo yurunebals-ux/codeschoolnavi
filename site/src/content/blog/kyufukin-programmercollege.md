@@ -150,7 +150,7 @@ CodeCampはオンラインマンツーマン指導で、JavaやPHP、Rubyなど�
 
 - [プログラマカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [DMM 生成AI CAMPに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-dmmaicamp/)
+- [Claudeの推敲スキル3種、20分で使い分け方が分かる理由](/blog/news-20261003-9sjiy/)
 - [忍者CODEに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-ninjacode/)
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
-- [増田とChatGPT連携で投稿が直接可能に。摩擦も増えた理由とは](/blog/news-20261001-18rc1/)
-- [ChatGPTが実車運転を拒否、名称変更で成功率が3倍に上がった理由](/blog/news-20260930-1fm0n/)
