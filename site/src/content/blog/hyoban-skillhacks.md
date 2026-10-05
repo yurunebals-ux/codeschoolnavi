@@ -162,6 +162,6 @@ SkillHacksは公式サイトにポートフォリオ制作の支援がないた�
 - [SkillHacksの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-skillhacks/)
 - [SkillHacksは自分に合う？申込前に潰す3つの不安](/blog/yametoke-skillhacks/)
 - [独学・買い切りのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-dokugaku/)
+- [SkillHacksに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-skillhacks/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Pythonの独学は何ヶ月かかる？挫折しない学習計画の立て方](/blog/topic-python-dokugaku-kikan/)
-- [ChatGPTでプログラミングを学ぶやり方と、頼りすぎて伸びない人の共通点](/blog/topic-chatgpt-programming-gakushu/)

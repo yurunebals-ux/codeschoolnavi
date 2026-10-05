@@ -131,6 +131,6 @@ TechAcademyは週2回、現役エンジニアによるメンタリングがあ�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [プログラミングスクールは意味ない？向いていない人の特徴と後悔しない選び方](/blog/imiaru-erabikata/)
 - [生成AI時代にプログラミングを学ぶ意味はあるのか](/blog/topic-seisei-ai-jidai-programming/)
+- [SkillHacksに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-skillhacks/)
 - [Winスクールは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-winschool/)
 - [データサイエンティストとAIエンジニアの違い。学ぶ内容と向く人](/blog/topic-data-scientist-vs-ai-engineer/)
-- [ChatGPT「dots」が作業効率を4倍に変える仕事の未来とは](/blog/news-20261004-s20ul/)
