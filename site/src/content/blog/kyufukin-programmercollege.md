@@ -150,7 +150,7 @@ CodeCampはオンラインマンツーマン指導で、JavaやPHP、Rubyなど�
 
 - [プログラマカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [AIが加速するコード生成と「レビュー解体」で変わる開発現場の実態](/blog/news-20261005-113bg/)
+- [中堅エンジニアが健康を犠牲にして得るものとは何か2026年版](/blog/news-20261005-1nmn0/)
 - [SkillHacksに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-skillhacks/)
 - [Winスクールは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-winschool/)
-- [データサイエンティストとAIエンジニアの違い。学ぶ内容と向く人](/blog/topic-data-scientist-vs-ai-engineer/)
-- [ChatGPT「dots」が作業効率を4倍に変える仕事の未来とは](/blog/news-20261004-s20ul/)

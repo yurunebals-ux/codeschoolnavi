@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [AIが加速するコード生成と「レビュー解体」で変わる開発現場の実態](/blog/news-20261005-113bg/)
+- [中堅エンジニアが健康を犠牲にして得るものとは何か2026年版](/blog/news-20261005-1nmn0/)
 - [SkillHacksに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-skillhacks/)
 - [Winスクールは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-winschool/)
 - [データサイエンティストとAIエンジニアの違い。学ぶ内容と向く人](/blog/topic-data-scientist-vs-ai-engineer/)
-- [ChatGPT「dots」が作業効率を4倍に変える仕事の未来とは](/blog/news-20261004-s20ul/)
-- [DMM 生成AI CAMPに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-dmmaicamp/)

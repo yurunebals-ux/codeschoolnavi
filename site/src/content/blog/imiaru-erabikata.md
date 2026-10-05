@@ -164,6 +164,6 @@ SHIFT TERAS CAMPUSとテックキャンプにある返金保証は「条件付�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [生成AI時代にプログラミングを学ぶ意味はあるのか](/blog/topic-seisei-ai-jidai-programming/)
 - [最初に学ぶプログラミング言語はどれ？目的別の決め方](/blog/topic-saisho-no-gengo/)
+- [AIが加速するコード生成と「レビュー解体」で変わる開発現場の実態](/blog/news-20261005-113bg/)
+- [中堅エンジニアが健康を犠牲にして得るものとは何か2026年版](/blog/news-20261005-1nmn0/)
 - [SkillHacksに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-skillhacks/)
-- [Winスクールは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-winschool/)
-- [データサイエンティストとAIエンジニアの違い。学ぶ内容と向く人](/blog/topic-data-scientist-vs-ai-engineer/)
