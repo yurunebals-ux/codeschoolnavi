@@ -115,8 +115,8 @@ SHIFT TERAS CAMPUSは転職保証付きで169,800円から、テックキャン�
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Codex Cloudで本名がGitHubに自動登録される理由と3つの防止策](/blog/news-20261006-35bhb/)
 - [プログラミング学習は1日何時間必要？働きながら続ける現実的な配分](/blog/topic-gakushu-jikan-1nichi/)
 - [techmeetsは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-techmeets/)
 - [未経験がGitとGitHubを使えるようになる順番。最初の1週間でやること](/blog/topic-git-github-mikeiken/)
 - [AIが加速するコード生成と「レビュー解体」で変わる開発現場の実態](/blog/news-20261005-113bg/)
-- [中堅エンジニアが健康を犠牲にして得るものとは何か2026年版](/blog/news-20261005-1nmn0/)

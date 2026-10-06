@@ -136,5 +136,5 @@ RUNTEQの一部コースが対象です。詳細は各校の公式情報で確�
 - [ウズウズカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-uzuzcollege/)
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Codex Cloudで本名がGitHubに自動登録される理由と3つの防止策](/blog/news-20261006-35bhb/)
 - [プログラミング学習は1日何時間必要？働きながら続ける現実的な配分](/blog/topic-gakushu-jikan-1nichi/)
-- [techmeetsは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-techmeets/)
