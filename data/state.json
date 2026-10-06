@@ -3213,8 +3213,11 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 100,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-10-06T08:47:55.719Z",
+      "structure": 2,
+      "publishedAt": "2026-10-06T08:48:21.399Z"
     },
     {
       "slug": "kyufukin-skillupai",
@@ -4387,12 +4390,15 @@
       "kind": "topic",
       "cluster": "独学・買い切り",
       "score": 60,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-09-20T07:36:42.420Z",
       "brief": "init→add→commit→push→branch→pull request の順で、最初はGUIでもよい。ポートフォリオの評価はコミット履歴でも見られる。スクールの課題提出がGitHub経由の学校は、卒業時点で自然に慣れている。",
       "hubs": [
         "/blog/osusume-hikaku-tenshoku/"
-      ]
+      ],
+      "draftedAt": "2026-10-06T08:47:31.853Z",
+      "structure": 2,
+      "publishedAt": "2026-10-06T08:48:21.399Z"
     },
     {
       "slug": "topic-gakushu-jikan-1nichi",
@@ -4406,13 +4412,16 @@
       "kind": "topic",
       "cluster": "選び方",
       "score": 60,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-09-20T07:36:42.420Z",
       "brief": "平日1〜2時間＋休日3〜4時間で週10〜15時間が続く上限。転職目的なら合計300〜600時間が目安として語られるが、個人差が大きい。スクールの『◯週間』は週の想定学習時間とセットで読む。短期集中型は休職や離職が前提のことがある。",
       "hubs": [
         "/blog/osusume-hikaku-online/",
         "/shindan/"
-      ]
+      ],
+      "draftedAt": "2026-10-06T08:48:21.198Z",
+      "structure": 2,
+      "publishedAt": "2026-10-06T08:48:21.400Z"
     },
     {
       "slug": "topic-counseling-shitsumon",
@@ -6874,8 +6883,8 @@
       "publishedAt": "2026-10-05T16:47:25.042Z"
     }
   ],
-  "publishedCount": 113,
-  "estimatedMrrUsd": 33900,
+  "publishedCount": 116,
+  "estimatedMrrUsd": 34800,
   "history": [
     {
       "date": "2026-07-24",
@@ -7241,7 +7250,12 @@
       "date": "2026-10-05",
       "published": 113,
       "estimatedMrrUsd": 33900
+    },
+    {
+      "date": "2026-10-06",
+      "published": 116,
+      "estimatedMrrUsd": 34800
     }
   ],
-  "lastRun": "2026-10-05T16:47:26.160Z"
+  "lastRun": "2026-10-06T08:48:22.419Z"
 }
