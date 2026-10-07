@@ -165,5 +165,5 @@ SHIFT TERAS CAMPUSとテックキャンプにある返金保証は「条件付�
 - [生成AI時代にプログラミングを学ぶ意味はあるのか](/blog/topic-seisei-ai-jidai-programming/)
 - [最初に学ぶプログラミング言語はどれ？目的別の決め方](/blog/topic-saisho-no-gengo/)
 - [プログラミング学習は1日何時間必要？働きながら続ける現実的な配分](/blog/topic-gakushu-jikan-1nichi/)
-- [Codex Cloudで本名がGitHubに自動登録される理由と3つの防止策](/blog/news-20261006-35bhb/)
-- [techmeetsは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-techmeets/)
+- [スキルアップAIは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-skillupai/)
+- [オープンAIのAIモデルが「指示無視」やデータ捏造を繰り返す実態とは](/blog/news-20261007-1bm08/)

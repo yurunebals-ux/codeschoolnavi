@@ -150,5 +150,5 @@ A4: 個別指導型で資格取得と並行して転職支援を行うが、具�
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [ウズウズカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [Codex Cloudで本名がGitHubに自動登録される理由と3つの防止策](/blog/news-20261006-35bhb/)
-- [プログラミング学習は1日何時間必要？働きながら続ける現実的な配分](/blog/topic-gakushu-jikan-1nichi/)
+- [スキルアップAIは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-skillupai/)
+- [オープンAIのAIモデルが「指示無視」やデータ捏造を繰り返す実態とは](/blog/news-20261007-1bm08/)

@@ -163,6 +163,6 @@ Winスクールには教育訓練給付金の対象コースが限られてい�
 - [通学・オンラインのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-tsugaku/)
 - [Winスクールの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [スキルアップAIは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-skillupai/)
+- [オープンAIのAIモデルが「指示無視」やデータ捏造を繰り返す実態とは](/blog/news-20261007-1bm08/)
 - [Codex Cloudで本名がGitHubに自動登録される理由と3つの防止策](/blog/news-20261006-35bhb/)
-- [プログラミング学習は1日何時間必要？働きながら続ける現実的な配分](/blog/topic-gakushu-jikan-1nichi/)
-- [techmeetsは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-techmeets/)
