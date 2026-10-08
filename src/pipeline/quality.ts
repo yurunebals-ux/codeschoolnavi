@@ -93,7 +93,8 @@ export function evaluateDraft(md: string, item: KeywordItem, aff: AffMeta, prior
   // コンプライアンス：ステマ規制の広告表記が必須。
   // ニュース・コラムはアフィリエイトリンクを置かないので表記は不要。ASPのリンクが混ざったときだけ必須にする（2026-09-23）
   const hasAsp = /a8\.net|moshimo\.com/.test(md);
-  const hasAd = /【?広告】?|プロモーション|ＰＲ|PR|アフィリエイト/.test(md) || (isNews && !hasAsp);
+  // 読み物（topic:）も同じ「人を呼ぶ面」（オーナー方針 2026-09-23）。申込ボタンも ASP リンクも無いので、本文冒頭の【広告】は付けない（2026-09-29）
+  const hasAd = /【?広告】?|プロモーション|ＰＲ|PR|アフィリエイト/.test(md) || ((isNews || isTopic) && !hasAsp);
   if (hasAd) pts += 15; else reasons.push("広告表記なし（ステマ規制ブロック）");
 
   // 内部リンク（回遊）。
@@ -125,12 +126,19 @@ export function evaluateDraft(md: string, item: KeywordItem, aff: AffMeta, prior
       for (const m of (t.price_note ?? "").matchAll(/([\d,]+)(万)?円/g)) known.add(Number(m[1].replace(/,/g, "")) * (m[2] ? 10000 : 1));
     }
     // ニュースは材料（媒体の本文・抜粋）にある金額も正当（9/15-16 に「3,000円」「6.5円」で3本却下された）
-    const material = [item.news?.text, item.news?.snippet, ...(item.news?.items ?? []).flatMap((i) => [i.text, i.snippet]), ...(item.news?.reactions?.comments ?? []).map((c) => c.text)].filter(Boolean).join("\n");
-    for (const m of material.matchAll(/([\d,]+(?:\.\d+)?)(万|億)?(円|ドル|USD|\$)/g)) known.add(Number(m[1].replace(/,/g, "")) * (m[2] === "万" ? 10000 : m[2] === "億" ? 100000000 : 1));
-    for (const m of material.matchAll(/\$\s?([\d,]+(?:\.\d+)?)/g)) known.add(Number(m[1].replace(/,/g, "")));
-    for (const m of md.matchAll(/([\d,]+(?:\.\d+)?)(万|億)?(円|ドル)/g)) {
+    // 「3万2,780円」は1つの金額として読む（9/26 に「2,780円」だけ拾って topic-portfolio-mikeiken を誤って却下した）
+    const normYen = (x: string) => x.replace(/(\d+)万([\d,]{1,5})円/g, (_, man, rest) => `${Number(man) * 10000 + Number(String(rest).replace(/,/g, ""))}円`);
+    const material = normYen([item.news?.text, item.news?.snippet, ...(item.news?.items ?? []).flatMap((i) => [i.text, i.snippet]), ...(item.news?.reactions?.comments ?? []).map((c) => c.text)].filter(Boolean).join("\n"));
+    // 「30オーストラリアドル」「100米ドル」のように国名が挟まる通貨も材料として拾う（9/28 の Dymocks の記事が「30ドル」で誤って却下された）
+    const CUR = "(?:米|豪|オーストラリア|カナダ|香港|シンガポール|台湾|NZ|ニュージーランド|US)?(?:円|ドル|USD|\\$)";
+    for (const m of material.matchAll(new RegExp(`([\\d,]+(?:\\.\\d+)?)(万|億)?${CUR}`, "g"))) known.add(Number(m[1].replace(/,/g, "")) * (m[2] === "万" ? 10000 : m[2] === "億" ? 100000000 : 1));
+    for (const m of material.matchAll(/(?:A|US|NZ|C|HK|S)?\$\s?([\d,]+(?:\.\d+)?)/g)) known.add(Number(m[1].replace(/,/g, "")));
+    for (const m of normYen(md).matchAll(/([\d,]+(?:\.\d+)?)(万|億)?(?:米|豪|オーストラリア|カナダ|香港|シンガポール|台湾|NZ|ニュージーランド|US)?(円|ドル)/g)) {
       const v = Number(m[1].replace(/,/g, "")) * (m[2] === "万" ? 10000 : m[2] === "億" ? 100000000 : 1);
-      if (!known.has(v)) { inventedMoney = m[0]; break; }
+      // 「18万円」（185,900円）「1.6万円」（16,280円）のように、既知の金額を万単位で丸めた表現は通す（±5%以内）。
+      // 9/30・10/3 に読み物2本がこの丸めで却下された。万単位でない半端な金額（例: 2,780円）は従来どおり完全一致だけ
+      const rounded = m[2] === "万" && [...known].some((k) => k > 0 && Math.abs(k - v) / k <= 0.05);
+      if (!known.has(v) && !rounded) { inventedMoney = m[0]; break; }
     }
     if (/当サイトの調査|独自調査|平均\d/.test(md)) inventedMoney = inventedMoney ?? "当サイトの調査によると";
   }

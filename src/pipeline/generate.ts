@@ -20,7 +20,7 @@ import { loadState, saveState, STRUCTURE_VERSION, type KeywordItem } from "../li
 import { chat, isOffline } from "../lib/llm.js";
 import { persona } from "../lib/team.js";
 import { scanAiese, deaiMechanical } from "../lib/aiese.js";
-import { findStructureProblems, headingList } from "../lib/structure.js";
+import { findStructureProblems, headingList, stripSurveyClaims } from "../lib/structure.js";
 import { enrichItems, isEnglish, type NewsItem } from "./news.js";
 
 export interface Tool {
@@ -155,17 +155,39 @@ function toolLine(t: Tool): string {
 }
 
 function firstSentence(s: string): string {
-  return s.split("。")[0].replace(/\d{4}-\d{2}-\d{2}.*$/, "").trim();
+  // 「（2026-08-11 厚労省の講座検索で0件）」のような確認日の括弧は丸ごと外す。
+  // 以前は日付から後ろだけ消していたので「対象講座なし（教育訓練給付金の対象講座なし（」と開き括弧が残った（12本。2026-10-02 点検）
+  return s.split("。")[0]
+    .replace(/[（(][^（）()]*\d{4}-\d{2}-\d{2}[^（）()]*[）)]?/g, "")
+    .replace(/\d{4}-\d{2}-\d{2}.*$/, "")
+    .replace(/[（(]\s*$/, "")
+    .trim();
+}
+
+/** price_note から読者に見せてよい文だけ残す（確認日・※の注記・編集用の指示を外す）。
+ *  ポテパンの price_note にあった「サイト内の『最大70%は古い数字』ルールをここに適用しないこと」が、
+ *  基本データ表にそのまま出ていた（2026-10-08） */
+export function publicPriceNote(note: string): string {
+  return note
+    .replace(/（※[^）]*）/g, "")
+    .replace(/[（(][^（）()]*\d{4}-\d{2}-\d{2}[^（）()]*[）)]/g, "")
+    .split(/(?<=。)/).map((x) => x.trim()).filter(Boolean)
+    .map((x) => x.replace(/※.*$/, "").trim())
+    .filter((x) => x && !/\d{4}-\d{2}-\d{2}|ルール|適用しない|広告リンク|着地|LP/.test(x))
+    .join("").replace(/。$/, "");
 }
 
 /** 機械で入れる基本データ表。LLMに事実を書かせないための安全装置。 */
 function factBox(t: Tool, eligible: boolean): string {
   const now = new Date();
   const cell = (s?: string) => (s && s !== "―" ? s : "公式サイトに記載なし").replace(/\|/g, "／");
-  const price = `${yen(t)}${t.price_note ? `。コース別: ${t.price_note}` : ""}`;
+  const pn = t.price_note ? publicPriceNote(t.price_note) : "";
+  const price = `${yen(t)}${pn ? `。コース別: ${pn}` : ""}`;
+  const fs = t.subsidy_note ? firstSentence(t.subsidy_note) : "";
+  // 但し書きが「教育訓練給付金の対象講座なし」で始まるときは、同じ語を括弧で重ねない
   const subsidy = eligible
-    ? `対象講座あり（${t.subsidy_note ? firstSentence(t.subsidy_note) : "区分は本文参照"}）`
-    : `対象講座なし${t.subsidy_note ? `（${firstSentence(t.subsidy_note)}）` : ""}`;
+    ? `対象講座あり（${fs || "区分は本文参照"}）`
+    : /^教育訓練給付金の対象講座なし/.test(fs) || !fs ? "対象講座なし" : `対象講座なし（${fs}）`;
   return [
     `## 基本データ（${now.getFullYear()}年${now.getMonth() + 1}月時点）`,
     "",
@@ -386,7 +408,7 @@ function planFor(item: KeywordItem, tools: Tool[], all: Tool[], subsidyIds: stri
       factBoxFor: t, needTable: false,
       a: el
         ? `1. 冒頭（見出しなし・150字以内）: 1文目で「対象コースがある」と言い切り、区分（一般／特定一般／専門実践）と対象コース名を書く。\n2. ## 対象になるコースと区分: 但し書きにある対象コースだけを表（| コース | 区分 | 受講料(税込) | 給付率と上限 |）で。対象外のコースがあれば「対象外」の行で明示する。\n3. ## いくら戻るか：受講料から計算する: 対象コースの受講料で「受講料 − 給付額 ＝ 実質負担額」を区分の率と上限に従って計算し、区分名を添えて示す。専門実践は「受講中50%」「就職で+20%」「賃上げで+10%」を分けて書く。対象コースの受講料がデータに無ければ計算せず「公式サイトで受講料を確認してから計算する」と書く。\n4. ## 申請の順番と、落ちる人の共通点: 受講開始日の2週間前までのハローワーク手続き、雇用保険の加入期間、講座番号の確認、修了要件を、時系列で。`
-        : `1. 冒頭（見出しなし・150字以内）: 1文目で「教育訓練給付金の対象講座はない」と言い切る（但し書きの理由があれば添える）。\n2. ## 教育訓練給付金が使えない理由と、公式サイトの「◯◯%還元」の正体: 但し書きにある制度（経産省リスキリング事業など）と教育訓練給付金の違いを、申請先・条件・併用可否で説明する。データに無い制度は書かない。給付額の計算は一切しない。\n3. ## 同じ目的で給付金が使える学校: 参考校（${peers || "対象校"}）のうち対象講座がある学校を、対象コース名・区分つきで挙げる。数字はデータにあるものだけ。\n4. ## それでも${t.name}を選ぶ人の条件: 給付金なしでも合理的な場合を、料金・期間・保証の数字で3つ。`,
+        : `1. 冒頭（見出しなし・150字以内）: 1文目で「教育訓練給付金の対象講座はない」と言い切る（但し書きの理由があれば添える）。\n2. ## 教育訓練給付金が使えない理由と、ほかの制度の見分け方: 但し書きに「還元」「支給」などの表記（経産省リスキリング事業など）がある場合だけ、その表記を但し書きの数字どおりに引用し、教育訓練給付金との違いを申請先・条件・併用可否で説明する。但し書きに無い制度・割合は書かない（「◯◯%」のような伏せ字も書かない）。給付額の計算は一切しない。\n3. ## 同じ目的で給付金が使える学校: 参考校（${peers || "対象校"}）のうち対象講座がある学校を、対象コース名・区分つきで挙げる。数字はデータにあるものだけ。\n4. ## それでも${t.name}を選ぶ人の条件: 給付金なしでも合理的な場合を、料金・期間・保証の数字で3つ。`,
       b: `5. ## 申し込む前に確認する質問（無料カウンセリングで）: 「」で5つ。給付金・講座番号・修了要件・支払い・返金に関するもの。\n6. ${faq}\n7. ${last}\n【必読】${subsidy}`,
     };
   }
@@ -554,11 +576,12 @@ export async function writeArticle(item: KeywordItem, aff: Affiliates): Promise<
       `次のニュースについて、編集部スタッフ3人の会話を12〜16行で書く。1行=「名前: 発言」、発言は各70字以内、口語、掛け合い。\n順番: (a) ミナが「これ何がすごいの？／怖くない？」と聞き、タケシが材料の事実で答える（なぜ今か） (b) 歓迎する見方（誰にとって何が良いか）を2〜3往復 (c) 慎重に見る見方（誰が損をしうるか、見落とされている条件）を2〜3往復。スレのコメントの傾向にも触れてよいが、特定のコメントを引用しない (d) 佐倉が「プログラミングやAIを学ぶ人は今どう動くか」を言い切って締める（「◯◯な人は今月中に△△、そうでない人は様子見」の形）。\n登場人物: ${STAFF.map((x) => `${x.name}=${x.role}`).join("／")}\n【禁止】材料にない固有名詞・数字・発言。「〜という声」「口コミ」「受講生」「公式サイト」という語（ニュース記事を指すときは「記事によると」）。一人の事例を「珍しくない」「多い」と一般化すること。スクール名の宣伝。${enMat ? "日本の学ぶ人・転職市場にとっての意味を必ず1往復入れる。" : ""}\n\n【ニュースの要約】\n${desk}\n\n【材料の本文（抜粋）】\n${n.text.slice(0, 2500)}\n\n【スレのコメントの傾向（参考）】\n${posts.slice(0, 10).map((x) => `- ${x.t.slice(0, 60)}`).join("\n") || "なし"}`,
       { system: newsSystem, maxTokens: 1600, temperature: 0.8 });
     const names = STAFF.map((x) => x.name);
-    const lines = kg.split("\n").map((l) => l.trim()).map((l) => {
+    const parsed = kg.split("\n").map((l) => l.trim()).map((l) => {
       const m = l.match(/^[-・*\d.．)）\s]*(佐倉|ミナ|タケシ)\s*[:：]\s*「?(.+?)」?$/);
       // ニュースなのに「公式サイトによると」「口コミ欄」と言う癖がある（2026-09-18 実測）ので言い換える
       return m && names.includes(m[1]) ? { who: m[1], text: m[2].trim().replace(/公式サイト(によると|では|には|の)/g, "記事$1").replace(/公式(には|では|発表では)/g, "記事では").replace(/口コミ欄/g, "スレのコメント") } : null;
-    }).filter((x): x is { who: string; text: string } => !!x && x.text.length >= 4 && x.text.length <= 100 && okLine(x.text));
+    }).filter((x): x is { who: string; text: string } => !!x);
+    const lines = keepWholeRounds(parsed, (x) => x.text.length >= 4 && x.text.length <= 100 && okLine(x.text), 16);
     if (lines.length < 8) throw new Error(`編集部の会話が短すぎる（${lines.length}行）`);
     const kaigi = `## 編集部の井戸端会議\n\n*${KAIGI_NOTE}*\n\n${lines.slice(0, 16).map((x) => `**${x.who}**「${x.text}」`).join("\n\n")}`;
 
@@ -622,22 +645,47 @@ function numbersIn(s: string): string[] {
   return (s.match(/[\d,]+(?:\.\d+)?(?:万)?円|\d+(?:\.\d+)?[%％]|\d+(?:ヶ月|か月|週間|日間|時間|回|校|社|年)/g) ?? []).map((n) => n.replace(/,/g, ""));
 }
 
+/**
+ * 会話を「ミナの問い→答え→判断」のまとまり（ラウンド）単位で残す。
+ * 検査で1行だけ落とすと、ミナの問いに佐倉が「だから…」と答える噛み合わない会話が残った
+ * （kyufukin-runteq 2026-09-29。タケシの「最大40万円」の行だけが落ちた）。1行でも駄目ならそのラウンドごと落とす。
+ * 最後がミナの問いで終わらないよう、末尾のミナは外す（topic-engineer-tenshoku-nenrei 2026-09-25）。
+ */
+export function keepWholeRounds<T extends { who: string; text: string }>(all: T[], ok: (x: T) => boolean, max: number): T[] {
+  const rounds: T[][] = [];
+  for (const x of all) {
+    if (x.who === "ミナ" || !rounds.length) rounds.push([]);
+    rounds[rounds.length - 1].push(x);
+  }
+  const out: T[] = [];
+  for (const r of rounds.filter((r) => r.every(ok))) {
+    if (out.length + r.length > max) break;
+    out.push(...r);
+  }
+  while (out.length && out[out.length - 1].who === "ミナ") out.pop();
+  return out;
+}
+
 async function lightLayer(body: string, item: KeywordItem, system: string): Promise<string> {
   if (isOffline() || item.template.startsWith("news:")) return body;
   const bodyNums = new Set(numbersIn(body));
   // 「最大64万円」「最大80%」のような区分上限の丸め表現は、17万円の講座でも64万円戻るように読める（景表法の誤認リスク。2026-09-17 実測）ので落とす
-  const okLine = (l: string) => numbersIn(l).every((n) => bodyNums.has(n)) && !/という声|との口コミ|口コミ(が|も)多い|口コミでは|と評判|受講生の声|受講生は|卒業生は|最大\s*\d+\s*万円|最大\s*\d+\s*[%％]/.test(l);
+  const isTopic = item.template.startsWith("topic:");
+  // 読み物の会話に「公式には…とある」「返金保証はない」とスクール記事の定型が入る（topic-saisho-no-gengo 2026-09-29）
+  const okLine = (l: string) => numbersIn(l).every((n) => bodyNums.has(n)) && !/という声|との口コミ|口コミ(が|も)多い|口コミでは|と評判|受講生の声|受講生は|卒業生は|最大\s*\d+\s*万円|最大\s*\d+\s*[%％]/.test(l)
+    && !(isTopic && /公式(サイト)?(に|には|では|によると|で|の)|返金保証/.test(l));
   const r = await chat(
-    `以下の記事に「軽く読める層」を足す。出力はこの形式だけ（見出し・番号・記号を増やさない）:\nTLDR:\n（記事の結論を3行。各行40字以内。読者の損得が分かる言い方。記事にある数字だけ使う）\nKAIGI:\n（編集部スタッフ3人の会話を10〜12行。1行=「名前: 発言」。発言は各60字以内、口語、掛け合い。順番は ミナが疑問→タケシが数字で返す→佐倉が判断、を2〜3周。記事に書いてある事実だけを言い換える。記事に無い数字・固有名詞・体験談は禁止。「〜という声」「口コミ」「受講生」という語は使わない。最後は佐倉が結論を一言）\n登場人物: ${STAFF.map((s) => `${s.name}=${s.role}`).join("／")}\n\n【記事】\n${body.slice(0, 7000)}`,
+    `以下の記事に「軽く読める層」を足す。出力はこの形式だけ（見出し・番号・記号を増やさない）:\nTLDR:\n（記事の結論を3行。各行40字以内。読者の損得が分かる言い方。記事にある数字だけ使う）\nKAIGI:\n（編集部スタッフ3人の会話を10〜12行。1行=「名前: 発言」。発言は各60字以内、口語、掛け合い。順番は ミナが疑問→タケシが数字で返す→佐倉が判断、を2〜3周。記事に書いてある事実だけを言い換える。記事に無い数字・固有名詞・体験談は禁止。「〜という声」「口コミ」「受講生」という語は使わない。${item.template.startsWith("topic:") ? "「公式」「返金保証」という語も使わない（学び方の読み物なので、スクールの売り文句や保証の話はしない）。" : ""}最後は佐倉が結論を一言）\n登場人物: ${STAFF.map((s) => `${s.name}=${s.role}`).join("／")}\n\n【記事】\n${body.slice(0, 7000)}`,
     { system, maxTokens: 1400, temperature: 0.8 });
   const tl = r.match(/TLDR:\s*([\s\S]*?)\nKAIGI:/);
   const kg = r.match(/KAIGI:\s*([\s\S]*)$/);
   const tldr = (tl?.[1] ?? "").split("\n").map((l) => l.replace(/^\s*[-・*\d.．)）]+\s*/, "").trim()).filter((l) => l.length >= 8 && l.length <= 60 && okLine(l)).slice(0, 3);
   const names = STAFF.map((s) => s.name);
-  const lines = (kg?.[1] ?? "").split("\n").map((l) => l.trim()).map((l) => {
+  const parsed = (kg?.[1] ?? "").split("\n").map((l) => l.trim()).map((l) => {
     const m = l.match(/^[-・*\d.．)）\s]*(佐倉|ミナ|タケシ)\s*[:：]\s*「?(.+?)」?$/);
     return m && names.includes(m[1]) ? { who: m[1], text: m[2].trim() } : null;
-  }).filter((x): x is { who: string; text: string } => !!x && x.text.length >= 4 && x.text.length <= 90 && okLine(x.text));
+  }).filter((x): x is { who: string; text: string } => !!x);
+  const lines = keepWholeRounds(parsed, (x) => x.text.length >= 4 && x.text.length <= 90 && okLine(x.text), 12);
   let out = body;
   if (tldr.length === 3) {
     const block = `## 3行で言うと\n\n${tldr.map((l) => `> ${l}`).join("\n>\n")}`; // 空の > で段落を分ける（連続すると1段落に潰れる）
@@ -726,7 +774,8 @@ export function pickNext(state: ReturnType<typeof loadState>): KeywordItem | und
   const when = (k: KeywordItem) => k.publishedAt ?? (k as any).draftedAt ?? "";
   const lastNonNews = [...state.keywords.filter((k) => ["published", "drafted", "approved"].includes(k.status) && !k.template.startsWith("news:"))]
     .sort((a, b) => when(b).localeCompare(when(a)))[0];
-  const topic = queued.find((k) => k.template.startsWith("topic:"));
+  // トピックも score の高い順（同点は配列順）。以前は配列の先頭を取っていたので、score を上げても順番が変わらなかった（2026-09-29）
+  const topic = [...queued].filter((k) => k.template.startsWith("topic:")).sort((a, b) => (b.score ?? 0) - (a.score ?? 0))[0];
   if (topic && lastNonNews && !lastNonNews.template.startsWith("topic:")) return topic;
   // キューは score の高い順（給付金ページ=intent 10 が先）。同点は配列順
   return [...queued].filter((k) => !k.template.startsWith("topic:")).sort((a, b) => (b.score ?? 0) - (a.score ?? 0))[0] ?? queued[0];
@@ -800,8 +849,11 @@ export async function generateNext(): Promise<KeywordItem | null> {
 
   // ステマ規制対応：本文冒頭に明瞭な広告表記。
   // ニュース・コラムはアフィリエイトリンクを置かない「人を呼ぶ面」なので表記も付けない（オーナー方針 2026-09-23）
-  const disclosure = item.template.startsWith("news:") ? "" : `> 【広告】${aff.disclosure}\n\n`;
-  const md = `${fm}\n\n${disclosure}${body.trim()}\n`;
+  // ニュースと読み物（topic:）は「人を呼ぶ面」で、ASPリンクも申込ボタンも置かない（オーナー方針 2026-09-23）。
+  // 読み物にも【広告】を付けていたので、検索結果の冒頭が広告表記になっていた（2026-09-29 に外した）
+  const disclosure = item.template.startsWith("news:") || item.template.startsWith("topic:") ? "" : `> 【広告】${aff.disclosure}\n\n`;
+  // 「当サイトの調査によると」は前置きだけ削る（却下せずに済む。2026-10-08）
+  const md = `${fm}\n\n${disclosure}${stripSurveyClaims(body).trim()}\n`;
 
   mkdirSync(paths.drafts, { recursive: true });
   writeFileSync(resolve(paths.drafts, `${item.slug}.md`), md);

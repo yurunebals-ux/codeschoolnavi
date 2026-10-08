@@ -60,7 +60,8 @@ const BOOST: [RegExp, number][] = [
   [/developer|coding|programmer|engineer|software|jobs|hiring|layoff|junior/i, 2],
   [/agent|model|launch|release|open.?source|benchmark/i, 1],
 ];
-const BLOCK = /株価|決算|逮捕|訴訟|炎上|芸能|選挙|セール|クーポン|割引キャンペーン|IPO|earnings|stock|lawsuit|shares|valuation|軍事|兵器|ミサイル|戦争|武装|テロ|missile|weapon|military|warfare|terror|drone strike|deepfake|porn|sexual|suicide|self-harm|election|政治|政党/i;
+// 個人の私生活（休職・病気・家族）が主題の話は、スレが本人への推測で埋まるので扱わない（2026-09-28 の休職の記事）
+const BLOCK = /休職|療養|闘病|うつ病|適応障害|離婚|不倫|訃報|死去|株価|決算|逮捕|訴訟|炎上|芸能|選挙|セール|クーポン|割引キャンペーン|IPO|earnings|stock|lawsuit|shares|valuation|軍事|兵器|ミサイル|戦争|武装|テロ|missile|weapon|military|warfare|terror|drone strike|deepfake|porn|sexual|suicide|self-harm|election|政治|政党/i;
 // 読者（これから学ぶ人）から遠い、深い技術ネタは減点（はてブ人気エントリーは GPU 自作や量子化の話が多い。2026-09-14 に DeepSeek×A100 の記事を書いた）
 const TOO_DEEP = /GPU|CUDA|FP\d|tok\/s|\d+ms|カーネル|量子化|VRAM|自作PC|ベンチマーク|Rust|C\+\+|Kubernetes|k8s|アーキテクチャ|コンパイラ|推論サーバ|Linux|メモリ帯域|TFLOPS|API|SDK|MCP|CLI|ターミナル|ライブラリ|フレームワーク|プロトコル|トークン|レイテンシ|型付け|TypeScript|リポジトリ|OSS|プルリク|ハーネス|エージェント設計|RAG|ファインチューニング|LLMの|モデル評価/i;
 // 英語ニュースは媒体を絞る（Google News 英語検索は無名サイトも拾う。2026-09-14 に quasa.io の兵器ネタが混入）
@@ -197,7 +198,9 @@ async function getJson(url: string, ms = 12000, ua = UA): Promise<any | null> {
 const cleanComment = (t: string) => decode(t).replace(/https?:\/\/\S+/g, "").replace(/\s+/g, " ").trim().slice(0, 220);
 // 中傷・罵倒を含むコメントは材料に入れない（1本目で「何やってんだこいつ」が引用された。2026-09-14）
 const ABUSE = /こいつ|バカ|馬鹿|アホ|クズ|クソ|糞|死ね|キモ|気持ち悪|頭悪|無能|ゴミ|カス|老害|情弱|信者|工作員|写真|顔|容姿|見た目|太っ|ハゲ|ブス|ブサ|idiot|stupid|moron|dumb|scam|garbage|trash|ugly/i; // 容姿・写真への言及も外す（2026-09-17 に登壇者の写真を揶揄するコメントが載った）
-const okComment = (t: string) => t.length >= 8 && !ABUSE.test(t);
+// 実在の個人の心身の状態や人柄を推し量るコメントも外す（2026-09-29: 休職の話で「bio見て納得」「まだ治ってない」「医者と相談しろ」が載った）
+const SPECULATE = /bio|プロフ(ィール)?見|病んで|治って(ない|な)|病院(行|い)け|医者(に|と)(相談|行)|精神(科|的におかしい)|メンタル(弱|やられ|おかしい)|発達|障害者|テイカー|ウジウジ|クヨクヨ|信用できない人|頭おかしい|先生、息してる/i;
+const okComment = (t: string) => t.length >= 8 && !ABUSE.test(t) && !SPECULATE.test(t);
 
 export async function fetchReactions(link: string, title: string): Promise<Reactions> {
   const out: Reactions = { threads: [], comments: [] };
@@ -295,7 +298,8 @@ function relevance(it: NewsItem): number {
   if (it.bookmarks) s += Math.min(it.bookmarks / 25, 4); // 反応が多い記事を優先（100ブクマで+4）
   if (TOO_DEEP.test(it.title)) s -= 6; // 専門的すぎる話題は強く下げる（2026-09-18）
   // 総合の人気エントリーや Yahoo!ニュースを入れたので、AI・IT・学びの軸が無い話題（転職一般、社会ニュース）は落とす
-  if (!/AI|人工知能|生成|ChatGPT|Claude|Gemini|Copilot|プログラミング|エンジニア|コード|IT|デジタル|DX|スクール|リスキリング|データ|ロボット|自動化/i.test(hay)) s -= 10;
+  // 「IT」は大文字の単語だけ見る（/i だと英字の "it"（Twitter・digital など）に当たり、AI と無関係な話が通っていた。2026-09-29）
+  if (!/AI|人工知能|生成|ChatGPT|Claude|Gemini|Copilot|プログラミング|エンジニア|コード|デジタル|DX|スクール|リスキリング|データ|ロボット|自動化/i.test(hay) && !/(^|[^A-Za-z])IT([^A-Za-z]|$)/.test(hay)) s -= 10;
   const age = (Date.now() - new Date(it.published).getTime()) / 86400000;
   if (!Number.isNaN(age)) s -= Math.min(age, 14) * 0.25;
   return s;

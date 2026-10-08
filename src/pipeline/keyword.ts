@@ -90,10 +90,11 @@ export function buildKeywords(limit = 40): number {
   // pickNext が「比較・評判が2本続いたらトピックを1本」の割合で混ぜる。
   const topicsPath = resolve(paths.data, "topics.json");
   if (existsSync(topicsPath)) {
-    const tp = JSON.parse(readFileSync(topicsPath, "utf8")) as { topics: { slug: string; keyword: string; cluster: string; tools?: string[]; hubs?: string[]; brief: string }[] };
+    const tp = JSON.parse(readFileSync(topicsPath, "utf8")) as { topics: { slug: string; keyword: string; cluster: string; tools?: string[]; hubs?: string[]; brief: string; score?: number }[] };
+    // topics.json の score で順番を指定できる（ニュースの受け皿など、先に出したい読み物。2026-09-29）
     for (const t of tp.topics) {
       if (existing.has(t.slug) || out.some((c) => c.slug === t.slug)) continue;
-      out.push({ slug: t.slug, keyword: t.keyword, template: "topic:guide", tools: (t.tools ?? []).filter((id) => byId.has(id)), kind: "topic", cluster: t.cluster, score: score(0, "topic"), status: "queued", createdAt: now, brief: t.brief, hubs: t.hubs ?? ["/kyufukin/"] });
+      out.push({ slug: t.slug, keyword: t.keyword, template: "topic:guide", tools: (t.tools ?? []).filter((id) => byId.has(id)), kind: "topic", cluster: t.cluster, score: t.score ?? score(0, "topic"), status: "queued", createdAt: now, brief: t.brief, hubs: t.hubs ?? ["/kyufukin/"] });
     }
   }
 

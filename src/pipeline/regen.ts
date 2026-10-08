@@ -17,6 +17,7 @@ import { loadState, saveState, STRUCTURE_VERSION, type KeywordItem } from "../li
 import { isOffline } from "../lib/llm.js";
 import { writeArticle, frontmatter, type Affiliates } from "./generate.js";
 import { evaluateDraft, shingles } from "./quality.js";
+import { stripSurveyClaims } from "../lib/structure.js";
 import { syncOffers } from "./offers.js";
 
 const LOG = resolve(paths.data, "regen.json");
@@ -72,7 +73,9 @@ export async function regenRun(opts: { count?: number; slugs?: string[]; force?:
     console.log(`[regen] 作り直し開始 "${item.keyword}"`);
     try {
       const { body, description, title, tools } = await writeArticle(item, aff);
-      const md = `${frontmatter(item, tools, description, { pub, upd: today }, title ?? curTitle)}\n\n> 【広告】${aff.disclosure}\n\n${body.trim()}\n`;
+      // ニュース・読み物は【広告】を付けない（generate.ts と同じ条件。2026-09-29）
+      const ad = item.template.startsWith("news:") || item.template.startsWith("topic:") ? "" : `> 【広告】${aff.disclosure}\n\n`;
+      const md = `${frontmatter(item, tools, description, { pub, upd: today }, title ?? curTitle)}\n\n${ad}${stripSurveyClaims(body).trim()}\n`;
       const prior = [...bodies.entries()].filter(([s]) => s !== item.slug).map(([, v]) => v);
       const v = evaluateDraft(md, item, aff, prior);
       if (v.hardBlock || v.pts < 70) {
