@@ -122,5 +122,5 @@ TechAcademy、CodeCamp、SHIFT TERAS CAMPUSすべてにポートフォリオ制�
 - [プログラミングスクールは意味ない？向いていない人の特徴と後悔しない選び方](/blog/imiaru-erabikata/)
 - [生成AI時代にプログラミングを学ぶ意味はあるのか](/blog/topic-seisei-ai-jidai-programming/)
 - [最初に学ぶプログラミング言語はどれ？目的別の決め方](/blog/topic-saisho-no-gengo/)
-- [スキルアップAIは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-skillupai/)
-- [オープンAIのAIモデルが「指示無視」やデータ捏造を繰り返す実態とは](/blog/news-20261007-1bm08/)
+- [OpenAI元安全報告統括者が指摘する「壊れた文化」とは何か](/blog/news-20261008-rd8fs/)
+- [AIモデルFableの使い分けでわかった「別次元」の真実](/blog/news-20261008-1syhx/)
