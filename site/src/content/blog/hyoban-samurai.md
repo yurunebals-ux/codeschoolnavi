@@ -122,6 +122,6 @@ draft: false
 - [侍エンジニアの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-samurai/)
 - [侍エンジニアは自分に合う？申込前に潰す3つの不安](/blog/yametoke-samurai/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [テックアイエスの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-techis/)
+- [テックアイエスの評判・口コミは？料金343,200円〜・6ヶ月の実態と向いている人](/blog/hyoban-techis/)
 - [マンツーマン指導のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-mtm/)
-- [テックアイエスは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-techis/)
+- [テックアイエスは教育訓練給付金の対象？対象は2コース・戻る金額と申請の順番](/blog/kyufukin-techis/)

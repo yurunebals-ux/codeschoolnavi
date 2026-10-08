@@ -118,7 +118,7 @@ draft: false
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [ポテパンキャンプの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-potepan/)
-- [ポテパンキャンプは自分に合う？申込前に潰す3つの不安](/blog/yametoke-potepan/)
+- [ポテパンキャンプは自分に合う？評判で気になる3つの不安（年齢・返金・Rails特化）](/blog/yametoke-potepan/)
 - [COACHTECHの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-coachtech/)
 - [COACHTECHは自分に合う？申込前に潰す3つの不安](/blog/yametoke-coachtech/)
 - [RUNTEQの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-runteq/)

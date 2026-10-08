@@ -134,7 +134,7 @@ draft: false
 
 - [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [独学とプログラミングスクール、費用と期間で比べるとどこが分かれ目か](/blog/topic-dokugaku-vs-school/)
+- [AIエージェントとは？ChatGPTとの違いと、学ぶ人が最初に試すこと](/blog/topic-ai-agent-towa/)
 - [OpenAI元安全報告統括者が指摘する「壊れた文化」とは何か](/blog/news-20261008-rd8fs/)
 - [AIモデルFableの使い分けでわかった「別次元」の真実](/blog/news-20261008-1syhx/)
-- [スキルアップAIは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-skillupai/)
-- [オープンAIのAIモデルが「指示無視」やデータ捏造を繰り返す実態とは](/blog/news-20261007-1bm08/)

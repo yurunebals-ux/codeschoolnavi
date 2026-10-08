@@ -166,5 +166,5 @@ SHIFT TERAS CAMPUSは返金保証を「条件付きで提供」としていま�
 - [SHIFT TERAS CAMPUSは自分に合う？申込前に潰す3つの不安](/blog/yametoke-dmmwebcamp/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [テックキャンプの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-techcamp/)
-- [テックキャンプの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-techcamp/)
+- [テックキャンプの評判・口コミは？197,000円〜・最短10週間の実態と向いている人](/blog/hyoban-techcamp/)
 - [転職保証付きのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-hosho/)

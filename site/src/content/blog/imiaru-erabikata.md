@@ -164,6 +164,6 @@ SHIFT TERAS CAMPUSとテックキャンプにある返金保証は「条件付�
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [生成AI時代にプログラミングを学ぶ意味はあるのか](/blog/topic-seisei-ai-jidai-programming/)
 - [最初に学ぶプログラミング言語はどれ？目的別の決め方](/blog/topic-saisho-no-gengo/)
+- [独学とプログラミングスクール、費用と期間で比べるとどこが分かれ目か](/blog/topic-dokugaku-vs-school/)
 - [プログラミング学習は1日何時間必要？働きながら続ける現実的な配分](/blog/topic-gakushu-jikan-1nichi/)
-- [OpenAI元安全報告統括者が指摘する「壊れた文化」とは何か](/blog/news-20261008-rd8fs/)
-- [AIモデルFableの使い分けでわかった「別次元」の真実](/blog/news-20261008-1syhx/)
+- [AIエージェントとは？ChatGPTとの違いと、学ぶ人が最初に試すこと](/blog/topic-ai-agent-towa/)

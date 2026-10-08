@@ -105,7 +105,7 @@ techmeetsは公式サイトに返金保証の記載がありません。返金�
 
 - [techmeetsは自分に合う？申込前に潰す3つの不安](/blog/yametoke-techmeets/)
 - [techmeetsの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-techmeets/)
-- [techmeetsは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-techmeets/)
+- [techmeetsは教育訓練給付金の対象？対象は2プラン・戻る金額と申請の順番](/blog/kyufukin-techmeets/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [フィヨルドブートキャンプの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-fjord/)
 - [フィヨルドブートキャンプは自分に合う？申込前に潰す3つの不安](/blog/yametoke-fjord/)

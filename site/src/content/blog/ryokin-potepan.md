@@ -145,8 +145,8 @@ RUNTEQもRuby on Railsに特化し、自社開発企業への転職に強い実�
 
 ## あわせて読みたい
 
-- [ポテパンキャンプは自分に合う？申込前に潰す3つの不安](/blog/yametoke-potepan/)
-- [ポテパンキャンプの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-potepan/)
+- [ポテパンキャンプは自分に合う？評判で気になる3つの不安（年齢・返金・Rails特化）](/blog/yametoke-potepan/)
+- [ポテパンキャンプの評判・口コミは？29歳以下無料・30歳以上44万円の実態と向いている人](/blog/hyoban-potepan/)
 - [ポテパンキャンプに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-potepan/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [COACHTECHの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-coachtech/)

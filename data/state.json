@@ -320,7 +320,7 @@
     },
     {
       "slug": "yametoke-potepan",
-      "keyword": "ポテパンキャンプは自分に合う？申込前に潰す3つの不安",
+      "keyword": "ポテパンキャンプは自分に合う？評判で気になる3つの不安（年齢・返金・Rails特化）",
       "template": "money:doubt",
       "tools": [
         "potepan"
@@ -533,7 +533,7 @@
     },
     {
       "slug": "hyoban-techcamp",
-      "keyword": "テックキャンプの評判・口コミは？不満の声の真相と向いている人",
+      "keyword": "テックキャンプの評判・口コミは？197,000円〜・最短10週間の実態と向いている人",
       "template": "money:review",
       "tools": [
         "techcamp"
@@ -563,7 +563,7 @@
     },
     {
       "slug": "hyoban-potepan",
-      "keyword": "ポテパンキャンプの評判・口コミは？不満の声の真相と向いている人",
+      "keyword": "ポテパンキャンプの評判・口コミは？29歳以下無料・30歳以上44万円の実態と向いている人",
       "template": "money:review",
       "tools": [
         "potepan"
@@ -653,7 +653,7 @@
     },
     {
       "slug": "hyoban-techis",
-      "keyword": "テックアイエスの評判・口コミは？不満の声の真相と向いている人",
+      "keyword": "テックアイエスの評判・口コミは？料金343,200円〜・6ヶ月の実態と向いている人",
       "template": "money:review",
       "tools": [
         "techis"
@@ -2921,7 +2921,7 @@
     },
     {
       "slug": "kyufukin-techis",
-      "keyword": "テックアイエスは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "keyword": "テックアイエスは教育訓練給付金の対象？対象は2コース・戻る金額と申請の順番",
       "template": "money:subsidy",
       "tools": [
         "techis"
@@ -3205,7 +3205,7 @@
     },
     {
       "slug": "kyufukin-techmeets",
-      "keyword": "techmeetsは教育訓練給付金の対象？戻る金額・対象コース・申請の順番",
+      "keyword": "techmeetsは教育訓練給付金の対象？対象は2プラン・戻る金額と申請の順番",
       "template": "money:subsidy",
       "tools": [
         "techmeets"
@@ -3245,8 +3245,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 100,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "rejected",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-10-08T08:40:20.329Z",
+      "structure": 2,
+      "rejectReason": "score=115; 構造: 段落の重複(4. **無料カウンセリングで聞くべき質問**  \n　・給付), 途中から始まるリスト(4. **無料カウンセリングで聞くべき質問**)"
     },
     {
       "slug": "kyufukin-avilen",
@@ -4196,7 +4199,7 @@
       "kind": "topic",
       "cluster": "選び方",
       "score": 90,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-09-19T07:11:41.729Z",
       "brief": "独学は教材費が数千円〜数万円、スクールは数万円〜数十万円。差額で買っているのは『質問できる相手』『期限』『転職支援』の3つ。独学で3ヶ月続いた人はスクールでも伸びる。続かなかった人が期限と伴走を買うのは合理的。給付金対象なら差額は縮む。",
       "hubs": [
@@ -4204,9 +4207,10 @@
         "/blog/osusume-hikaku-dokugaku/",
         "/kyufukin/"
       ],
-      "draftedAt": "2026-09-30T08:15:41.693Z",
+      "draftedAt": "2026-10-08T08:40:46.948Z",
       "structure": 2,
-      "note": "2026-10-08 金額検査の誤検知（丸め表現・分割した金額）で却下。検査を直して queued に戻した"
+      "note": "2026-10-08 金額検査の誤検知（丸め表現・分割した金額）で却下。検査を直して queued に戻した",
+      "publishedAt": "2026-10-08T08:40:47.170Z"
     },
     {
       "slug": "topic-kyufukin-shinsei-otoshiana",
@@ -7259,10 +7263,29 @@
       "draftedAt": "2026-10-08T01:32:13.648Z",
       "structure": 2,
       "publishedAt": "2026-10-08T01:32:14.638Z"
+    },
+    {
+      "slug": "topic-ai-agent-towa",
+      "keyword": "AIエージェントとは？ChatGPTとの違いと、学ぶ人が最初に試すこと",
+      "template": "topic:guide",
+      "tools": [],
+      "kind": "topic",
+      "cluster": "AI・データ分析",
+      "score": 92,
+      "status": "published",
+      "createdAt": "2026-10-08T08:39:03.002Z",
+      "brief": "生成AI（質問に答える）とAIエージェント（手順を考えて作業を最後まで進める）の違い、無料で試せる範囲の考え方、最初に任せる作業の選び方（1業務に絞る）、任せきりにしない確認の手順。料金・導入率などの数字は書かない（書くならニュース記事にある数字だけ）。スクールの宣伝はしない。",
+      "hubs": [
+        "/blog/news-20260929-c4f4s/",
+        "/blog/topic-chatgpt-programming-gakushu/"
+      ],
+      "draftedAt": "2026-10-08T08:39:53.507Z",
+      "structure": 2,
+      "publishedAt": "2026-10-08T08:40:47.170Z"
     }
   ],
-  "publishedCount": 121,
-  "estimatedMrrUsd": 36300,
+  "publishedCount": 123,
+  "estimatedMrrUsd": 36900,
   "history": [
     {
       "date": "2026-07-24",
@@ -7641,9 +7664,9 @@
     },
     {
       "date": "2026-10-08",
-      "published": 121,
-      "estimatedMrrUsd": 36300
+      "published": 123,
+      "estimatedMrrUsd": 36900
     }
   ],
-  "lastRun": "2026-10-08T01:32:15.595Z"
+  "lastRun": "2026-10-08T08:40:48.314Z"
 }
