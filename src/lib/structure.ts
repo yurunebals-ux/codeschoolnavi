@@ -16,6 +16,18 @@ function normHeading(s: string): string {
   return s.replace(/^\d+[.．、]\s*/, "").replace(/[\s　。．、:：]/g, "").toLowerCase();
 }
 
+/**
+ * 「当サイトの調査によると」「当サイトの独自調査では」を本文から削る（2026-10-08）。
+ * 当サイトは調査をしていないので書けない言い回しだが、生成がこの前置きを付ける癖があり、
+ * 検査で3回（9/15・9/25・10/7）本題の記事が丸ごと却下された。前置きだけ消せば文は成り立つ。
+ * 「平均◯万円」のような中身の数字は残るので、quality.ts の金額検査がそのまま見る。
+ */
+export function stripSurveyClaims(body: string): string {
+  return body
+    .replace(/当サイト(の|が行った|が実施した)?(独自)?(調査|アンケート)(結果)?(によると|によれば|では|で(は)?分かった(のは|ことは)?)[、,]?\s*/g, "")
+    .replace(/(編集部|当編集部)の(独自)?調査(によると|では)[、,]?\s*/g, "");
+}
+
 export function findStructureProblems(md: string): StructureProblem[] {
   const out: StructureProblem[] = [];
   const lines = md.split("\n");
@@ -60,6 +72,44 @@ export function findStructureProblems(md: string): StructureProblem[] {
   // 3. 生成過程の残骸。
   for (const l of lines) {
     if (LEFTOVER.test(l)) { out.push({ kind: "生成の残骸", detail: l.trim().slice(0, 40) }); break; }
+  }
+
+  // 3b. 生成の残骸（別の記事の定型）と壊れたリンク（2026-09-29）。
+  //  - news-20260929-c4f4s: 元記事の「【FAQ】」「【著者】」「【公開日】」「【参考】」をそのまま写した
+  //  - topic-saisho-no-gengo: `[文言]( [6問診断](/shindan/) )` のようにリンクが入れ子になった
+  //  - 9/26 の news: `]( )` のように空のリンク
+  for (const l of lines) {
+    if (/^\s*【(FAQ|著者|公開日|参考|執筆者|監修)】/.test(l)) { out.push({ kind: "生成の残骸", detail: l.trim().slice(0, 30) }); break; }
+    // 伏せ字のまま（kyufukin-uzuzcollege・kyufukin-techacademy の「最大◯◯%還元」。プロンプトの例文がそのまま出た）
+    if (/◯◯|○○|△△|××/.test(l)) { out.push({ kind: "伏せ字", detail: l.trim().slice(0, 30) }); break; }
+  }
+  for (const l of lines) {
+    if (/\]\(\s*\[|\]\(\s*\)|\]\(\.\[/.test(l)) { out.push({ kind: "リンク崩れ", detail: l.trim().slice(0, 40) }); break; }
+  }
+
+  // 3c. 同じ段落の重複（40字以上の段落が2回）。kyufukin-runteq（9/29）は同じ締めの段落が冒頭と末尾に2回入った。
+  //     見出しの重複検査は見出しの無いブロックの重複を拾えない。
+  const paras = new Map<string, number>();
+  for (const para of md.split(/\n\s*\n/)) {
+    const key = para.replace(/[\s　>*#\-]/g, "");
+    if (key.length < 40 || /^\|/.test(para.trim())) continue;
+    const n = (paras.get(key) ?? 0) + 1;
+    paras.set(key, n);
+    if (n === 2) { out.push({ kind: "段落の重複", detail: para.trim().slice(0, 30) }); break; }
+  }
+
+  // 3d. 途中から始まる番号リスト（「3.」から始まる）。書き直しで前半が切れたときの痕跡。
+  //     kyufukin-runteq（9/29）は「保険者期間が3年以上必要です。」という文の途中から始まり、3〜5番だけのリストが残った。
+  //     番号の間に字下げしない段落が挟まる書き方（「1. **見出し**」の次の行が本文）は正常なので、
+  //     「同じ節の中に1つ前の番号が無い」ときだけ止める。
+  const seenNums = new Set<number>();
+  for (const l of lines) {
+    if (/^#{1,6}\s/.test(l)) { seenNums.clear(); continue; }
+    const li = /^\s{0,3}(\d+)[.)．]\s+/.exec(l);
+    if (!li) continue;
+    const n = Number(li[1]);
+    if (n > 1 && !seenNums.has(n - 1)) { out.push({ kind: "途中から始まるリスト", detail: l.trim().slice(0, 30) }); break; }
+    seenNums.add(n);
   }
 
   // 4. 中身のない節（見出しの直後に次の見出し、または40字未満）。
