@@ -2,6 +2,18 @@
   "_note": "スクール比較以外の「学習・キャリア・AI」のトピック記事。src/pipeline/keyword.ts が topic:guide としてキューに入れ、generate.ts が brief を要点として渡す。統計値は書かせない（出典を示せないため）。hubs は本文から内部リンクさせる自サイトのページ。",
   "topics": [
     {
+      "slug": "topic-ai-agent-towa",
+      "keyword": "AIエージェントとは？ChatGPTとの違いと、学ぶ人が最初に試すこと",
+      "cluster": "AI・データ分析",
+      "tools": [],
+      "hubs": [
+        "/blog/news-20260929-c4f4s/",
+        "/blog/topic-chatgpt-programming-gakushu/"
+      ],
+      "brief": "生成AI（質問に答える）とAIエージェント（手順を考えて作業を最後まで進める）の違い、無料で試せる範囲の考え方、最初に任せる作業の選び方（1業務に絞る）、任せきりにしない確認の手順。料金・導入率などの数字は書かない（書くならニュース記事にある数字だけ）。スクールの宣伝はしない。",
+      "score": 92
+    },
+    {
       "slug": "topic-ai-engineer-mikeiken",
       "keyword": "未経験からAIエンジニアになるには？学ぶ順番と現実的な期間",
       "cluster": "AI・データ分析",
