@@ -10,7 +10,9 @@ const shots = (shotsFile as any).shots ?? {};
 /** 記事に関係するスクール id（0〜2件。2校比較は [主題, 相手]） */
 export function schoolsFromSlug(slug: string): string[] {
   const ids = new Set(Object.keys(offers));
-  const m = slug.match(/^(hyoban|ryokin|yametoke|towa)-(.+)$/);
+  // kyufukin-<id>（給付金の個別記事）も主題校を持つ。2026-09-29 まで入っておらず、給付金記事8本の
+  // 申込ボタンが picks.kyufukin（別の学校）になっていた。kyufukin-osusume は id に無いので従来どおり picks に落ちる
+  const m = slug.match(/^(hyoban|ryokin|yametoke|towa|kyufukin)-(.+)$/);
   if (m && ids.has(m[2])) return [m[2]];
   const h = slug.match(/^hikaku-(.+)$/);
   if (h) {
