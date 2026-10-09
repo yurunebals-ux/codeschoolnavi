@@ -123,4 +123,4 @@ TechAcademy、CodeCamp、SHIFT TERAS CAMPUSすべてにポートフォリオ制�
 - [生成AI時代にプログラミングを学ぶ意味はあるのか](/blog/topic-seisei-ai-jidai-programming/)
 - [最初に学ぶプログラミング言語はどれ？目的別の決め方](/blog/topic-saisho-no-gengo/)
 - [独学とプログラミングスクール、費用と期間で比べるとどこが分かれ目か](/blog/topic-dokugaku-vs-school/)
-- [AIエージェントとは？ChatGPTとの違いと、学ぶ人が最初に試すこと](/blog/topic-ai-agent-towa/)
+- [AI活用に月3万円投資しないと10年後に差が100倍になる理由](/blog/news-20261009-1lime/)

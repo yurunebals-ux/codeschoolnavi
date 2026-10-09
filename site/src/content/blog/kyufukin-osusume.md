@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [AI活用に月3万円投資しないと10年後に差が100倍になる理由](/blog/news-20261009-1lime/)
 - [独学とプログラミングスクール、費用と期間で比べるとどこが分かれ目か](/blog/topic-dokugaku-vs-school/)
 - [AIエージェントとは？ChatGPTとの違いと、学ぶ人が最初に試すこと](/blog/topic-ai-agent-towa/)
 - [OpenAI元安全報告統括者が指摘する「壊れた文化」とは何か](/blog/news-20261008-rd8fs/)
 - [AIモデルFableの使い分けでわかった「別次元」の真実](/blog/news-20261008-1syhx/)
-- [スキルアップAIは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-skillupai/)

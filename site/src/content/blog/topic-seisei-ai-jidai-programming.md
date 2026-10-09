@@ -134,4 +134,4 @@ DMM 生成AI CAMPは転職支援がないため、生成AIのスキルを得た�
 - [最初に学ぶプログラミング言語はどれ？目的別の決め方](/blog/topic-saisho-no-gengo/)
 - [独学とプログラミングスクール、費用と期間で比べるとどこが分かれ目か](/blog/topic-dokugaku-vs-school/)
 - [プログラミング学習は1日何時間必要？働きながら続ける現実的な配分](/blog/topic-gakushu-jikan-1nichi/)
-- [AIエージェントとは？ChatGPTとの違いと、学ぶ人が最初に試すこと](/blog/topic-ai-agent-towa/)
+- [AI活用に月3万円投資しないと10年後に差が100倍になる理由](/blog/news-20261009-1lime/)
