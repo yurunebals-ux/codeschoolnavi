@@ -248,8 +248,8 @@
     "tsugaku": true,
     "guarantee": false,
     "mtm": false,
-    "href": "https://www.winschool.jp/",
-    "sponsored": false
+    "href": "https://px.a8.net/svt/ejp?a8mat=4BCLVZ+7CCI56+529E+5YJRM",
+    "sponsored": true
   },
   {
     "id": "skillhacks",
@@ -417,6 +417,48 @@
     "guarantee": false,
     "mtm": true,
     "href": "https://af.moshimo.com/af/c/click?a_id=5735182&p_id=1870&pc_id=3646&pl_id=26001",
+    "sponsored": true
+  },
+  {
+    "id": "bytech",
+    "name": "バイテック生成AI",
+    "category": "AI・データ分析",
+    "categoryId": "ai",
+    "price": 148000,
+    "period": "2〜6ヶ月（教材は無期限）",
+    "months": 6,
+    "format": "オンライン",
+    "job_support": "記載なし",
+    "refund": "記載なし",
+    "langs": "生成AI活用（ChatGPT/Gemini/Claude/Dify等）",
+    "one_liner": "ChatGPT・Gemini・Claudeなど10コースが無期限で学び放題の生成AIスクール。副業・業務効率化向け。",
+    "subsidy": false,
+    "online": true,
+    "tsugaku": false,
+    "guarantee": false,
+    "mtm": false,
+    "href": "https://af.moshimo.com/af/c/click?a_id=5821464&p_id=6298&pc_id=17753&pl_id=81145",
+    "sponsored": true
+  },
+  {
+    "id": "bytechgeek",
+    "name": "バイテックGEEK",
+    "category": "AI・データ分析",
+    "categoryId": "ai",
+    "price": 228000,
+    "period": "2〜6ヶ月",
+    "months": 6,
+    "format": "オンライン",
+    "job_support": "記載なし",
+    "refund": "記載なし",
+    "langs": "Claude Code/AIアプリ開発/業務自動化",
+    "one_liner": "Claude Code特化のAIエンジニア育成スクール。非エンジニアがAIと対話して動くアプリを作る力をつける。",
+    "subsidy": false,
+    "online": true,
+    "tsugaku": false,
+    "guarantee": false,
+    "mtm": false,
+    "href": "https://af.moshimo.com/af/c/click?a_id=5821463&p_id=7629&pc_id=22069&pl_id=95251",
     "sponsored": true
   }
 ]

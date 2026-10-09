@@ -177,11 +177,11 @@
     },
     "winschool": {
       "name": "Winスクール",
-      "href": "https://www.winschool.jp/",
-      "sponsored": false,
-      "label": "公式サイトで最新の料金を見る",
-      "short": "公式サイトを見る",
-      "note": "料金・開講日は変わることがあります。申し込み前に公式サイトでご確認ください。",
+      "href": "https://px.a8.net/svt/ejp?a8mat=4BCLVZ+7CCI56+529E+5YJRM",
+      "sponsored": true,
+      "label": "Winスクールの無料カウンセリングを見る",
+      "short": "無料カウンセリングを見る",
+      "note": "相談は無料。その場で申し込む必要はありません。",
       "official": "https://www.winschool.jp/"
     },
     "skillhacks": {
@@ -255,6 +255,24 @@
       "short": "無料体験を見る",
       "note": "体験は無料。期間内にやめれば料金はかかりません。",
       "official": "https://academia.cryptech.co.jp/"
+    },
+    "bytech": {
+      "name": "バイテック生成AI",
+      "href": "https://af.moshimo.com/af/c/click?a_id=5821464&p_id=6298&pc_id=17753&pl_id=81145",
+      "sponsored": true,
+      "label": "バイテック生成AIの無料カウンセリングを見る",
+      "short": "無料カウンセリングを見る",
+      "note": "相談は無料。その場で申し込む必要はありません。",
+      "official": "https://bytech.jp/"
+    },
+    "bytechgeek": {
+      "name": "バイテックGEEK",
+      "href": "https://af.moshimo.com/af/c/click?a_id=5821463&p_id=7629&pc_id=22069&pl_id=95251",
+      "sponsored": true,
+      "label": "バイテックGEEKの無料カウンセリングを見る",
+      "short": "無料カウンセリングを見る",
+      "note": "相談は無料。その場で申し込む必要はありません。",
+      "official": "https://g1.bytech-ad.com/"
     }
   }
 }
