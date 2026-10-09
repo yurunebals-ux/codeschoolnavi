@@ -118,4 +118,4 @@ SHIFT TERAS CAMPUSは転職保証コースを設け、未経験者の転職実�
 - [生成AI時代にプログラミングを学ぶ意味はあるのか](/blog/topic-seisei-ai-jidai-programming/)
 - [最初に学ぶプログラミング言語はどれ？目的別の決め方](/blog/topic-saisho-no-gengo/)
 - [プログラミング学習は1日何時間必要？働きながら続ける現実的な配分](/blog/topic-gakushu-jikan-1nichi/)
-- [AI活用に月3万円投資しないと10年後に差が100倍になる理由](/blog/news-20261009-1lime/)
+- [AVILENに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-avilen/)
