@@ -790,7 +790,7 @@ function seoDescription(item: KeywordItem, t: Tool, subsidyIds: string[]): strin
   const job = t.job_support && t.job_support !== "―" ? t.job_support : "";
   const kyu = subsidyIds.includes(t.id) ? "給付金対象講座あり" : "給付金対象外";
   switch (item.template) {
-    case "money:review": return `${t.name}の評判・口コミを、受講料${price}〜${period ? "・期間" + period : ""}・${kyu}の事実と不満の声から検証。向いている人・合わない人を編集部が判定します。`;
+    case "money:review": return `${t.name}の評判を、受講料${price}〜${period ? "・期間" + period : ""}${refund ? "・返金保証" + refund : ""}・${kyu}という事実から検証。口コミを読むときに確かめたい点と、向いている人・合わない人を編集部が判定します。`;
     case "money:pricing": return `${t.name}の受講料${price}〜${period ? "（" + period + "）" : ""}は高いのか。同カテゴリの他校と月あたりで比較し、${kyu}・返金保証${refund ? "「" + refund + "」" : "の有無"}まで整理します。`;
     case "money:doubt": return `${t.name}に申し込む前に不安になる点（受講料${price}〜${refund ? "・返金" + refund : ""}${job ? "・転職支援" + job : ""}）を公式の事実で検証。向いていない人の条件と、代わりに見る学校を示します。`;
     case "money:subsidy": return subsidyIds.includes(t.id)
@@ -831,7 +831,13 @@ export async function generateNext(): Promise<KeywordItem | null> {
   // キューに残っている旧型タイトル（「◯◯はやめとけ？…」）を新しい型に揃える。
   // state.json は手でコミットしないので、ここで直すのが確実。
   if (item.template === "money:doubt") item.keyword = item.keyword.replace(/(はやめとけ？評判と後悔しない判断基準|は自分に合う？向いていない人の条件と後悔しない判断基準)$/, "は自分に合う？申込前に潰す3つの不安");
-  if (item.template === "money:review") item.keyword = item.keyword.replace(/の評判・口コミは？特徴を解説$/, "の評判・口コミは？不満の声の真相と向いている人");
+  // 評判記事の題名から「不満の声の真相」を外す（実際の声を集めていないため。2026-10-08 オーナー了承の修正に合わせる）。料金と期間を入れる
+  if (item.template === "money:review") {
+    const t0 = aff.tools.find((t) => t.id === item.tools[0]);
+    const p0 = t0 ? yen(t0).replace(/〜$/, "") : "";
+    const per = t0?.period && t0.period !== "―" ? t0.period : "";
+    item.keyword = item.keyword.replace(/の評判・口コミは？(特徴を解説|不満の声の真相と向いている人)$/, p0 ? `の評判・口コミは？料金${p0}〜${per ? "・" + per : ""}の実態と向いている人` : "の評判・口コミは？料金と期間の実態、向いている人");
+  }
   if (item.template === "money:pricing") item.keyword = item.keyword.replace(/の料金は高い？他社と比較$/, "の料金は高い？月あたりで他校と比べた結果");
   let written: Awaited<ReturnType<typeof writeArticle>>;
   try { written = await writeArticle(item, aff); }
