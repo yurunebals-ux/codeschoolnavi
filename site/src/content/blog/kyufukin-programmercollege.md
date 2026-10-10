@@ -150,7 +150,7 @@ CodeCampはオンラインマンツーマン指導で、JavaやPHP、Rubyなど�
 
 - [プログラマカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [プログラミング副業の現実。最初の案件を取るまでに必要なもの](/blog/topic-fukugyo-programming-genjitsu/)
+- [クリプテックアカデミアに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-cryptech/)
+- [未経験のポートフォリオは何を作ればいい？評価される作品と落とされる作品](/blog/topic-portfolio-mikeiken/)
 - [AVILENに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-avilen/)
-- [AI利用制限と有料化進む中、活用の現実的な道筋とは](/blog/news-20261009-zcsi6/)
-- [AI活用に月3万円投資しないと10年後に差が100倍になる理由](/blog/news-20261009-1lime/)
-- [独学とプログラミングスクール、費用と期間で比べるとどこが分かれ目か](/blog/topic-dokugaku-vs-school/)

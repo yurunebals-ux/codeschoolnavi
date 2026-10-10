@@ -133,5 +133,5 @@ DMM 生成AI CAMPは転職支援がないため、生成AIのスキルを得た�
 - [プログラミングスクールは意味ない？向いていない人の特徴と後悔しない選び方](/blog/imiaru-erabikata/)
 - [最初に学ぶプログラミング言語はどれ？目的別の決め方](/blog/topic-saisho-no-gengo/)
 - [独学とプログラミングスクール、費用と期間で比べるとどこが分かれ目か](/blog/topic-dokugaku-vs-school/)
+- [プログラミング副業の現実。最初の案件を取るまでに必要なもの](/blog/topic-fukugyo-programming-genjitsu/)
 - [プログラミング学習は1日何時間必要？働きながら続ける現実的な配分](/blog/topic-gakushu-jikan-1nichi/)
-- [AVILENに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-avilen/)

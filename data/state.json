@@ -3277,8 +3277,11 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 100,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-10-10T08:18:27.752Z",
+      "structure": 2,
+      "publishedAt": "2026-10-10T08:18:49.838Z"
     },
     {
       "slug": "osusume-free-yondai",
@@ -3460,16 +3463,17 @@
       "kind": "topic",
       "cluster": "転職特化",
       "score": 60,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-09-18T07:14:27.537Z",
       "brief": "評価されるのは『誰の何の困りごとを解いたか』が説明できる作品。落とされるのはチュートリアルの写しとTodoアプリ単体。README・テスト・デプロイ済みURL・Git履歴の4点で完成度が伝わる。スクールの課題作品はそのまま出さず、独自機能を1つ足す。",
       "hubs": [
         "/blog/osusume-hikaku-tenshoku/",
         "/shindan/"
       ],
-      "draftedAt": "2026-09-26T07:22:36.788Z",
+      "draftedAt": "2026-10-10T08:18:02.127Z",
       "structure": 2,
-      "note": "2026-10-08 金額検査の誤検知（丸め表現・分割した金額）で却下。検査を直して queued に戻した"
+      "note": "2026-10-08 金額検査の誤検知（丸め表現・分割した金額）で却下。検査を直して queued に戻した",
+      "publishedAt": "2026-10-10T08:18:49.838Z"
     },
     {
       "slug": "topic-e-shikaku-kachi",
@@ -4270,16 +4274,17 @@
       "kind": "topic",
       "cluster": "選び方",
       "score": 60,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-09-19T07:11:41.729Z",
       "brief": "最初の案件は知人の紹介かクラウドソーシングの低単価から。Web制作（LP・WordPress）が入口になりやすい。必要なのは制作実績3つ・納期を守った履歴・見積もりの出し方。スクールの『副業サポート』は案件紹介の有無と条件で中身が違う。",
       "hubs": [
         "/blog/osusume-hikaku-online/",
         "/shindan/"
       ],
-      "draftedAt": "2026-10-02T08:16:03.144Z",
+      "draftedAt": "2026-10-10T08:18:49.622Z",
       "structure": 2,
-      "note": "2026-10-08 金額検査の誤検知（丸め表現・分割した金額）で却下。検査を直して queued に戻した"
+      "note": "2026-10-08 金額検査の誤検知（丸め表現・分割した金額）で却下。検査を直して queued に戻した",
+      "publishedAt": "2026-10-10T08:18:49.839Z"
     },
     {
       "slug": "topic-ai-ni-shigoto",
@@ -7516,10 +7521,168 @@
       "draftedAt": "2026-10-09T08:45:44.370Z",
       "structure": 2,
       "publishedAt": "2026-10-09T08:46:52.106Z"
+    },
+    {
+      "slug": "kyufukin-bytech",
+      "keyword": "バイテック生成AIに教育訓練給付金は使える？対象外の場合に使える制度と実質負担",
+      "template": "money:subsidy",
+      "tools": [
+        "bytech"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-10-10T08:16:30.850Z"
+    },
+    {
+      "slug": "kyufukin-bytechgeek",
+      "keyword": "バイテックGEEKに教育訓練給付金は使える？対象外の場合に使える制度と実質負担",
+      "template": "money:subsidy",
+      "tools": [
+        "bytechgeek"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 100,
+      "status": "queued",
+      "createdAt": "2026-10-10T08:16:30.850Z"
+    },
+    {
+      "slug": "hyoban-bytech",
+      "keyword": "バイテック生成AIの評判・口コミは？不満の声の真相と向いている人",
+      "template": "money:review",
+      "tools": [
+        "bytech"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 91,
+      "status": "queued",
+      "createdAt": "2026-10-10T08:16:30.850Z"
+    },
+    {
+      "slug": "hyoban-bytechgeek",
+      "keyword": "バイテックGEEKの評判・口コミは？不満の声の真相と向いている人",
+      "template": "money:review",
+      "tools": [
+        "bytechgeek"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 91,
+      "status": "queued",
+      "createdAt": "2026-10-10T08:16:30.850Z"
+    },
+    {
+      "slug": "ryokin-bytech",
+      "keyword": "バイテック生成AIの料金は高い？月あたりで他校と比べた結果",
+      "template": "money:pricing",
+      "tools": [
+        "bytech"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-10-10T08:16:30.850Z"
+    },
+    {
+      "slug": "yametoke-bytech",
+      "keyword": "バイテック生成AIは自分に合う？申込前に潰す3つの不安",
+      "template": "money:doubt",
+      "tools": [
+        "bytech"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-10-10T08:16:30.850Z"
+    },
+    {
+      "slug": "ryokin-bytechgeek",
+      "keyword": "バイテックGEEKの料金は高い？月あたりで他校と比べた結果",
+      "template": "money:pricing",
+      "tools": [
+        "bytechgeek"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-10-10T08:16:30.850Z"
+    },
+    {
+      "slug": "yametoke-bytechgeek",
+      "keyword": "バイテックGEEKは自分に合う？申込前に潰す3つの不安",
+      "template": "money:doubt",
+      "tools": [
+        "bytechgeek"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-10-10T08:16:30.850Z"
+    },
+    {
+      "slug": "hikaku-bytech-dmmaicamp",
+      "keyword": "バイテック生成AIとDMM 生成AI CAMPを徹底比較｜どっちがおすすめ？",
+      "template": "money:vs",
+      "tools": [
+        "bytech",
+        "dmmaicamp"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-10-10T08:16:30.850Z"
+    },
+    {
+      "slug": "hikaku-bytechgeek-ninjacode",
+      "keyword": "バイテックGEEKと忍者CODEを徹底比較｜どっちがおすすめ？",
+      "template": "money:vs",
+      "tools": [
+        "bytechgeek",
+        "ninjacode"
+      ],
+      "kind": "money",
+      "cluster": "AI・データ分析",
+      "score": 82,
+      "status": "queued",
+      "createdAt": "2026-10-10T08:16:30.850Z"
+    },
+    {
+      "slug": "towa-bytech",
+      "keyword": "バイテック生成AIとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "bytech"
+      ],
+      "kind": "info",
+      "cluster": "AI・データ分析",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-10-10T08:16:30.850Z"
+    },
+    {
+      "slug": "towa-bytechgeek",
+      "keyword": "バイテックGEEKとは？特徴・コース・向いている人",
+      "template": "info:what",
+      "tools": [
+        "bytechgeek"
+      ],
+      "kind": "info",
+      "cluster": "AI・データ分析",
+      "score": 45,
+      "status": "queued",
+      "createdAt": "2026-10-10T08:16:30.850Z"
     }
   ],
-  "publishedCount": 126,
-  "estimatedMrrUsd": 37800,
+  "publishedCount": 129,
+  "estimatedMrrUsd": 38700,
   "history": [
     {
       "date": "2026-07-24",
@@ -7905,7 +8068,12 @@
       "date": "2026-10-09",
       "published": 126,
       "estimatedMrrUsd": 37800
+    },
+    {
+      "date": "2026-10-10",
+      "published": 129,
+      "estimatedMrrUsd": 38700
     }
   ],
-  "lastRun": "2026-10-09T08:46:53.281Z"
+  "lastRun": "2026-10-10T08:18:51.049Z"
 }
