@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [バイテック生成AIに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-bytech/)
+- [バイテックGEEKに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-bytechgeek/)
 - [AI時代に見直すトヨタ生産方式、ソフト開発で生産ムダは減るか](/blog/news-20261011-1bw9m/)
 - [プログラミング副業の現実。最初の案件を取るまでに必要なもの](/blog/topic-fukugyo-programming-genjitsu/)
 - [クリプテックアカデミアに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-cryptech/)
-- [未経験のポートフォリオは何を作ればいい？評価される作品と落とされる作品](/blog/topic-portfolio-mikeiken/)
-- [AVILENに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-avilen/)
