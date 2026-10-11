@@ -7679,10 +7679,95 @@
       "score": 45,
       "status": "queued",
       "createdAt": "2026-10-10T08:16:30.850Z"
+    },
+    {
+      "slug": "news-20261011-1bw9m",
+      "keyword": "AI時代に見直すトヨタ生産方式、ソフト開発で生産ムダは減るか",
+      "template": "news:hot",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 96,
+      "status": "published",
+      "createdAt": "2026-10-11T00:38:49.838Z",
+      "news": {
+        "title": "AI駆動開発の時代になったのでトヨタ生産方式から見直す",
+        "link": "https://speakerdeck.com/terurou/ai-kudou-kaihatsu-no-jidai-ni-nata-node-toyota-seisan-houshiki-kara-minaosu",
+        "source": "speakerdeck.com",
+        "published": "2026年10月9日",
+        "snippet": "2026-10-09 AI駆動開発勉強会 名古屋支部#2 の発表資料です。",
+        "text": "AI駆動開発の時代になったのでトヨタ生産方式から見直す - Speaker Deck Upgrade to Pro &mdash; share decks privately, control downloads, hide ads and more &hellip; AI駆動開発の時代になったのでトヨタ生産方式から見直す terurou October 09, 2026 Technology 3.6k 1 Share Embed '>Copy iframe code Copy JS code Copy link Start on current slide AI駆動開発の時代になったのでトヨタ生産方式から見直す 2026-10-09 AI駆動開発勉強会 名古屋支部#2 の発表資料です。 terurou October 09, 2026 More Decks by terurou See All by terurou 帳票Vibe Coding terurou 0 300 PDFのビジュアルリグレッションテスト terurou 0 620 Haxe最新事情 2021年1月版 terurou 0 10k Other Decks in Technology See All in Technology 予測不能な実行エージェントを安全にサクッと試せるサンドボックス環境の話 sansantech PRO 0 130 しろおびから始める！ログ活用の第一歩 shumei_ito 0 270 今こそ知りたいAmplifyGen2 mkdev10 2 150 React Nativeでの OTA Updateって、 どう説明する？ ichiki1023 0 150 ハードウェアコンペでもAI駆動開発が進んでいる話 iotengineer22 0 280 Execution in the Kingdom of Agents: Reflections on Abstraction and Complexity bcantrill 0 870 「Docker Desktop不要の時代」は 来たのか？ ueponx 0 110 freeeらしさをAIとともに作る / Creating the freee Experience with AI ymrl 0 210 実体験から学ぶ分析エージェントの開発と運⽤ recruitengineers PRO 1 380 全人類（ほぼ）AWS Organizations の上でAWSを利用している、その世界を知る話 htan 0 120 無理せず続ける、子育てエンジニアの学び codmoninc PRO 0 250 Lambda MicroVMsが分からなすぎたので使い所を1から考えてみた tsukuboshi 2 420 Featured See All Featured Tips & Tricks on How to Get Your First Job In Tech honzajavorek 1 790 Darren the Foodie - Storyboard khoart PRO 4 4k Easily Structure & Communicate Ideas using Wireframe afnizarnur 194 17k Chrome DevTools: State of the Union 2024 - Debugging React & Beyond addyosmani 10 1.4k Navigating the moral maze — ethical principles for Al-driven product design skipperchong 2 600 The Anti-SEO Checklist Checklist. Pubcon Cyber Week ryanjones 0 260 Rebuilding a faster, lazier Slack samanthasiow 85 9.7k Stop Working from a Prison Cell hatefulcrawdad 274 21k Evolving SEO for Evolving Search Engines ryanjones 0 310 The Illustrated Children's Guide to Kubernetes chrisshort 51 53k The Pragmatic Product Professional lauravandoore 37 7.5k Navigating Algorithm Shifts & AI Overviews - #SMXNext aleyda 1 1.6k Transcript AI駆動開発の時代になったので トヨタ生産方式から見直す デンキヤギ株式会社 terurou 自己紹介 • terurou • デンキヤギ（株） 代表取締役 • 帳票エンジン（yagisan-reports）にAIを絡めて売ってます • 2時間スプリントをたぶん5年ぐらいやってます まずは現状整理から AIの登場によって、 • コードの生産が超高速化、品質十分 • 手でコードを書くことはほぼなくなった 上に行くほど AIの恩恵は小さい コーディング「は」高速化した システム化企画 運用・評価 要件定義 システムテスト 基本設計 結合テスト 詳細設計 単体テスト 実装 超高速化！ プログラマーは中間管理職や ベンダー管理者のような役回りに AI以前 AI以後 リーダー リーダー AI プログラマー プログラマー プログラマー AI プログラマー プログラマー プログラマー AI AI AI AI AI AI AI AI AI AIにコードを書かせて、人間はレビュー ≒ 外注にぶん投げて、納品物を検収 コーディングの性質は、製造業に近くなった • 製造機械のボタンを押したら、製品ができる • プロンプトを入力したら、コードができる 工場制手工業 から 工場制機械工業 への転換 ただし、 工場制機械工業とは違う部分もある 同一品種を量産するのではなく、 単一のコードベースを編集し続ける では、AI時代になって、 アジャイル開発はまだ適用できるのか？ 現在のアジャイル開発は、 • リーンソフトウェア開発の影響が大きい • AI以前に体系立てられたものである コードを生産することが重コストだった時代の 考え方を踏襲したままでいいのか？ だったら、原典を見直してみよう https://www.diamond.co.jp/book/9784478460016.html トヨタ生産方式の目的は 生産性の向上。 もっと言えば、原価の低減。 生産性を上げるには 「徹底したムダの排除」が必要 トヨタ生産方式の2本柱 • ジャスト・イン・タイム • 自働化 ジャスト・イン・タイム 在庫ゼロが理想で、 必要な分だけを生産する 過剰な在庫はムダ • 保管場所だけでなく、運搬と管理も増える • 時間の経過で破損、劣化などが生じる • 不良在庫（売れない・使えない） → 損失 後工程が前工程に、 必要なもの（材料）を、 必要なとき、 必要な分だけ引き取りに行く さらに前の工程 前工程 … 素材・部品の生産 ボディの生産 … 素材・部品の生産 シャーシの生産 … 素材・部品の生産 タイヤの生産 … 素材・部品の生産 エンジンの生産 後工程 最終 組立 最終製品 自動車 必要な分だけを作れば ムダは出ない ただし、大前提として、各工程は １００％良品でなければならない 自働化 前工程に異常が発生したら、 生産ラインが全て自ずと停止する 異常があるのに他の工程が動き続けると、 中間在庫が積みあがってしまう 前工程A 稼働中 前工程B 異常停止 前工程C 稼働中 供給なし 後工程 部品待ち Bがなく組立不可 まだまだ過剰在庫を生む要素はある いわゆる「作りすぎのムダ」 みかけの能率と必要数 • フル稼働すると、月間で１０万個生産でき、 １個当たりの製造原価は下がる • でも需要は月７万個しかなかったら？ 仕事の進みすぎ • 生産能力に余裕がある＝手待ちがでる • 空いているので、次の作業をやってしまう • 手待ちが隠蔽され、ムダな生産も発生 少人化 カイゼンにより生産効率が向上した分は むやみに生産量を増やすのではなく、 少ない人数で済むようにする 余力を生み出す • 効率化で余力が生まれたら、既存人員で 内製化や新しい取り組みを行うことができる • 社員教育に割り当ててもよい 離れ小島をつくるな • 工場にポツンポツンと作業員がいるのはダメ • 一人では人間同士のチームワークが取れない • 一人だけの仕事でも複数集めてチームに チームワーク、助け合い運動 • 後工程が遅れたら、前工程が手伝いに行く • 全員が熟練工ではなく、新入社員もいる ソフトウェア開発に置き換えてみる 目的は原価の低減 AIでコードを生産するスピードは上がったが 作りすぎのムダは生じていないか？ ジャスト・イン・タイム AIによって、もはや コードを生産することは負担ではない 「将来に備えて…」「拡張性を…」 「こういう使い方もするかも…」は 在庫のムダになっていないか？ 将来、そのコードは本当に使えるの？ AIがあるなら、必要になったときに コードを生成しても間にあうでしょ AI以後、 レビューが滞留する話は 本当によく出るようになった 後工程（",
+        "reactions": {
+          "threads": [
+            {
+              "platform": "はてなブックマーク",
+              "url": "https://b.hatena.ne.jp/entry/s/speakerdeck.com/terurou/ai-kudou-kaihatsu-no-jidai-ni-nata-node-toyota-seisan-houshiki-kara-minaosu",
+              "count": 144
+            }
+          ],
+          "comments": [
+            {
+              "platform": "はてなブックマーク",
+              "text": "昔から言われていることだけど、ソフトウェア開発は自動車でいうと設計図を書くところに相当するので、設計が終わった後の話を当てはめようとしても、どうしても無理があるんだよね"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "この人、トヨタのことも工場のことも全然わかってないような気がする。「製造機械のボタンを押したら製品ができる」…? それはコンパイラのことでしかないよ。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "プル式生産になぞらえたらソフトウェア開発各あるべし、というのはトヨタ生産方式読者的には分かる。スライドなんだし文字情報で完結させるか否かは筆者の自由でしょうに。//2時間スプリント気になって仕方ない。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "製造の原価を下げるというわかりやすい指標で整理されてて良かった。過剰な実装の何がどう悪いのか納得感がある。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "1ページあたりの情報少なすぎ。このパワポは間違いなく不良品なので対策するべし"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "100％良品でなければならない、って書いてた時に、これだめじゃんってならなかったのかな。AIが100点出した事例知らないなあ、10回くらい繰り返して及第点はよく見かけるけど。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "在庫を持たないのは車体の組み立て工場だけなんだけど、システム開発だと何に当たるのだろう。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "ちょっと何言ってるかわかんない。これ書いた人は書いたものをLLMに食わせて意味のわからなさを解説してもらったら良いと思うよ"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "生産過剰が問題なんじゃない。「要らないものを作る」のが問題なんだ。AIで面倒を見なければいけないコードが増えるのが問題なんだ。だから極力生成されるコード量が減るように設計しないといけないんだ。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "みんな忘れてるんだ、人手が必要になるのはいつも非常時だってことを…。普段手を動かさない人は、非常時にAIがアシストしても、ろくに動けやしないのよ…/ ソフトウェア開発は製造業じゃないよ。保守があるもの。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "長いからA3でまとめろよ"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "開発工程でのムダもあるけど、データの保持に関するムダもありそうね。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "AIでコード生成が爆速化してもレビューが滞留したら作りすぎのムダになるって指摘めっちゃ刺さる"
+            }
+          ]
+        }
+      },
+      "draftedAt": "2026-10-11T00:38:57.524Z",
+      "structure": 2,
+      "publishedAt": "2026-10-11T00:38:58.820Z"
     }
   ],
-  "publishedCount": 129,
-  "estimatedMrrUsd": 38700,
+  "publishedCount": 130,
+  "estimatedMrrUsd": 39000,
   "history": [
     {
       "date": "2026-07-24",
@@ -8073,7 +8158,12 @@
       "date": "2026-10-10",
       "published": 129,
       "estimatedMrrUsd": 38700
+    },
+    {
+      "date": "2026-10-11",
+      "published": 130,
+      "estimatedMrrUsd": 39000
     }
   ],
-  "lastRun": "2026-10-10T08:18:51.049Z"
+  "lastRun": "2026-10-11T00:39:00.063Z"
 }

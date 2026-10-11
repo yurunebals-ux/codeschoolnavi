@@ -163,6 +163,6 @@ Winスクールには教育訓練給付金の対象コースが限られてい�
 - [通学・オンラインのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-tsugaku/)
 - [Winスクールの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [AI時代に見直すトヨタ生産方式、ソフト開発で生産ムダは減るか](/blog/news-20261011-1bw9m/)
 - [プログラミング副業の現実。最初の案件を取るまでに必要なもの](/blog/topic-fukugyo-programming-genjitsu/)
 - [クリプテックアカデミアに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-cryptech/)
-- [未経験のポートフォリオは何を作ればいい？評価される作品と落とされる作品](/blog/topic-portfolio-mikeiken/)
