@@ -131,6 +131,6 @@ Winスクールの大きな特徴に、教育訓練給付制度の対象講座�
 - [Winスクールの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-winschool/)
 - [Winスクールは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Claude CodeのAIが現地不在でドローン飛行計画を成功させた理由とは](/blog/news-20261012-1481h/)
 - [転職保証のからくり。返金される条件とされない条件の読み方](/blog/topic-tenshoku-hosho-karakuri/)
 - [バイテック生成AIの評判・口コミは？料金148,000円〜・2〜6ヶ月（教材は無期限）の実態と向いている人](/blog/hyoban-bytech/)
-- [バイテック生成AIに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-bytech/)

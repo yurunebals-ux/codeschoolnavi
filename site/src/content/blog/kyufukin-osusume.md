@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [Claude CodeのAIが現地不在でドローン飛行計画を成功させた理由とは](/blog/news-20261012-1481h/)
 - [転職保証のからくり。返金される条件とされない条件の読み方](/blog/topic-tenshoku-hosho-karakuri/)
 - [バイテック生成AIの評判・口コミは？料金148,000円〜・2〜6ヶ月（教材は無期限）の実態と向いている人](/blog/hyoban-bytech/)
 - [バイテック生成AIに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-bytech/)
 - [バイテックGEEKに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-bytechgeek/)
-- [AI時代に見直すトヨタ生産方式、ソフト開発で生産ムダは減るか](/blog/news-20261011-1bw9m/)
