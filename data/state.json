@@ -4475,12 +4475,15 @@
       "kind": "topic",
       "cluster": "転職特化",
       "score": 60,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-09-21T07:48:57.702Z",
       "brief": "保証は『条件を満たして転職できなければ返金』で、条件には年齢・居住地・応募社数・出席率・紹介企業への応募義務などがある。『転職成功』の定義（正社員か、SESを含むか）で中身が変わる。保証の有無より条件文を読む。",
       "hubs": [
         "/blog/osusume-hikaku-tenshoku/"
-      ]
+      ],
+      "draftedAt": "2026-10-12T08:55:06.843Z",
+      "structure": 2,
+      "publishedAt": "2026-10-12T08:56:01.804Z"
     },
     {
       "slug": "topic-bootcamp-vs-daigaku",
@@ -4493,13 +4496,16 @@
       "kind": "topic",
       "cluster": "選び方",
       "score": 60,
-      "status": "queued",
+      "status": "rejected",
       "createdAt": "2026-09-21T07:48:57.702Z",
       "brief": "短期集中は数ヶ月・数十万円で転職直結、専門学校は2年・数百万円で学位や新卒枠、大学は理論と時間。社会人の学び直しは短期集中か通信制。給付金の対象は講座単位。",
       "hubs": [
         "/blog/osusume-hikaku-tsugaku/",
         "/kyufukin/"
-      ]
+      ],
+      "draftedAt": "2026-10-12T08:56:01.595Z",
+      "structure": 2,
+      "rejectReason": "score=115; データにない金額・調査の言及: 2万円"
     },
     {
       "slug": "topic-llm-app-hajimekata",
@@ -7557,7 +7563,7 @@
     },
     {
       "slug": "hyoban-bytech",
-      "keyword": "バイテック生成AIの評判・口コミは？不満の声の真相と向いている人",
+      "keyword": "バイテック生成AIの評判・口コミは？料金148,000円〜・2〜6ヶ月（教材は無期限）の実態と向いている人",
       "template": "money:review",
       "tools": [
         "bytech"
@@ -7565,8 +7571,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-10-10T08:16:30.850Z"
+      "status": "published",
+      "createdAt": "2026-10-10T08:16:30.850Z",
+      "draftedAt": "2026-10-12T08:55:32.769Z",
+      "structure": 2,
+      "publishedAt": "2026-10-12T08:56:01.804Z"
     },
     {
       "slug": "hyoban-bytechgeek",
@@ -7773,8 +7782,8 @@
       "publishedAt": "2026-10-11T00:38:58.820Z"
     }
   ],
-  "publishedCount": 132,
-  "estimatedMrrUsd": 39600,
+  "publishedCount": 134,
+  "estimatedMrrUsd": 40200,
   "history": [
     {
       "date": "2026-07-24",
@@ -8170,7 +8179,12 @@
       "date": "2026-10-11",
       "published": 132,
       "estimatedMrrUsd": 39600
+    },
+    {
+      "date": "2026-10-12",
+      "published": 134,
+      "estimatedMrrUsd": 40200
     }
   ],
-  "lastRun": "2026-10-11T08:35:28.596Z"
+  "lastRun": "2026-10-12T08:56:02.916Z"
 }
