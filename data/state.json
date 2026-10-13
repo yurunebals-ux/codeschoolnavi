@@ -915,7 +915,7 @@
     },
     {
       "slug": "yametoke-kikagaku",
-      "keyword": "キカガクはやめとけ？評判と後悔しない判断基準",
+      "keyword": "キカガクは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "kikagaku"
@@ -923,8 +923,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-13T09:11:12.686Z",
+      "structure": 2,
+      "publishedAt": "2026-10-13T09:11:12.928Z"
     },
     {
       "slug": "ryokin-programmercollege",
@@ -4518,12 +4521,15 @@
       "kind": "topic",
       "cluster": "AI・データ分析",
       "score": 60,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-09-21T07:48:57.702Z",
       "brief": "APIを呼ぶチャット→自分の文書に答えるRAG→定型業務を自動化するエージェントの順。必要なのは深層学習の理論より、API・プロンプト設計・評価の仕組み。生成AI特化コースはここを扱う。費用対比で見るなら、まず無料枠で1つ作ってからスクールを検討する。",
       "hubs": [
         "/blog/osusume-hikaku-ai/"
-      ]
+      ],
+      "draftedAt": "2026-10-13T09:10:49.611Z",
+      "structure": 2,
+      "publishedAt": "2026-10-13T09:11:12.928Z"
     },
     {
       "slug": "topic-prompt-engineer-shokugyo",
@@ -7579,7 +7585,7 @@
     },
     {
       "slug": "hyoban-bytechgeek",
-      "keyword": "バイテックGEEKの評判・口コミは？不満の声の真相と向いている人",
+      "keyword": "バイテックGEEKの評判・口コミは？料金228,000円〜・2〜6ヶ月の実態と向いている人",
       "template": "money:review",
       "tools": [
         "bytechgeek"
@@ -7587,8 +7593,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 91,
-      "status": "queued",
-      "createdAt": "2026-10-10T08:16:30.850Z"
+      "status": "published",
+      "createdAt": "2026-10-10T08:16:30.850Z",
+      "draftedAt": "2026-10-13T09:10:26.188Z",
+      "structure": 2,
+      "publishedAt": "2026-10-13T09:11:12.928Z"
     },
     {
       "slug": "ryokin-bytech",
@@ -7944,8 +7953,8 @@
       "publishedAt": "2026-10-13T02:49:05.613Z"
     }
   ],
-  "publishedCount": 136,
-  "estimatedMrrUsd": 40800,
+  "publishedCount": 139,
+  "estimatedMrrUsd": 41700,
   "history": [
     {
       "date": "2026-07-24",
@@ -8349,9 +8358,9 @@
     },
     {
       "date": "2026-10-13",
-      "published": 136,
-      "estimatedMrrUsd": 40800
+      "published": 139,
+      "estimatedMrrUsd": 41700
     }
   ],
-  "lastRun": "2026-10-13T02:49:06.978Z"
+  "lastRun": "2026-10-13T09:11:14.345Z"
 }

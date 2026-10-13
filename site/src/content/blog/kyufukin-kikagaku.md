@@ -133,7 +133,7 @@ draft: false
 
 - [キカガクの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-kikagaku/)
 - [キカガクの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-kikagaku/)
+- [キカガクは自分に合う？申込前に潰す3つの不安](/blog/yametoke-kikagaku/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Aidemyの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-aidemy/)
 - [DMM 生成AI CAMPの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-dmmaicamp/)
-- [AI・データ分析のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-ai/)
