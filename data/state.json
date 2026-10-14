@@ -931,7 +931,7 @@
     },
     {
       "slug": "ryokin-programmercollege",
-      "keyword": "プログラマカレッジの料金は高い？他社と比較",
+      "keyword": "プログラマカレッジの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "programmercollege"
@@ -939,8 +939,11 @@
       "kind": "money",
       "cluster": "無料スクール",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-14T07:21:04.180Z",
+      "structure": 2,
+      "publishedAt": "2026-10-14T07:21:26.293Z"
     },
     {
       "slug": "yametoke-programmercollege",
@@ -4542,12 +4545,15 @@
       "kind": "topic",
       "cluster": "AI・データ分析",
       "score": 60,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-09-21T07:48:57.702Z",
       "brief": "単独職種というより、既存職種（企画・開発・マーケ）にAI活用の設計力が足された形で募集されることが多い。評価されるのはプロンプトの言い回しより、業務を分解してAIに任せる範囲を決める力と、出力の評価設計。講座名に『プロンプトエンジニア』とあるコースは中身の到達物で判断。",
       "hubs": [
         "/blog/osusume-hikaku-ai/"
-      ]
+      ],
+      "draftedAt": "2026-10-14T07:20:38.895Z",
+      "structure": 2,
+      "publishedAt": "2026-10-14T07:21:26.293Z"
     },
     {
       "slug": "topic-aws-shikaku-mikeiken",
@@ -4560,12 +4566,15 @@
       "kind": "topic",
       "cluster": "転職特化",
       "score": 60,
-      "status": "queued",
+      "status": "rejected",
       "createdAt": "2026-09-21T07:48:57.702Z",
       "brief": "クラウドプラクティショナー→ソリューションアーキテクトアソシエイトの順が定番。未経験ではインフラ系の入口で有利に働くが、Web開発職では『作ったもの』のほうが見られる。スクールのカリキュラムにデプロイ（AWSやHeroku等）が入っているかで実務感が変わる。",
       "hubs": [
         "/blog/osusume-hikaku-tenshoku/"
-      ]
+      ],
+      "draftedAt": "2026-10-14T07:21:26.138Z",
+      "structure": 2,
+      "rejectReason": "score=110; 構造: 途中から始まるリスト(3. 転職支援内容と返金保証の有無を踏まえ、自分の予算と目標)"
     },
     {
       "slug": "news-20260921-1v2r9",
@@ -7953,8 +7962,8 @@
       "publishedAt": "2026-10-13T02:49:05.613Z"
     }
   ],
-  "publishedCount": 139,
-  "estimatedMrrUsd": 41700,
+  "publishedCount": 141,
+  "estimatedMrrUsd": 42300,
   "history": [
     {
       "date": "2026-07-24",
@@ -8360,7 +8369,12 @@
       "date": "2026-10-13",
       "published": 139,
       "estimatedMrrUsd": 41700
+    },
+    {
+      "date": "2026-10-14",
+      "published": 141,
+      "estimatedMrrUsd": 42300
     }
   ],
-  "lastRun": "2026-10-13T09:11:14.345Z"
+  "lastRun": "2026-10-14T07:21:27.262Z"
 }

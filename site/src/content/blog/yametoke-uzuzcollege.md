@@ -143,5 +143,5 @@ draft: false
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [ウズウズカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [キカガクは自分に合う？申込前に潰す3つの不安](/blog/yametoke-kikagaku/)
-- [LLMアプリ開発の始め方。Python初心者が最初に作る3つ](/blog/topic-llm-app-hajimekata/)
+- [プログラマカレッジの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-programmercollege/)
+- [プロンプトエンジニアは職業として成立する？求められる中身](/blog/topic-prompt-engineer-shokugyo/)
