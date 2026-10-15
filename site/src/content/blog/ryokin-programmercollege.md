@@ -149,8 +149,8 @@ TechAcademyとCodeCampは年齢制限の記載が公式にありませんが、�
 ## あわせて読みたい
 
 - [プログラマカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-programmercollege/)
+- [プログラマカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-programmercollege/)
 - [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [IT業界で女子の就職先が減る理由と選ぶべき職種は何か](/blog/news-20261015-1o750/)
-- [プロンプトエンジニアは職業として成立する？求められる中身](/blog/topic-prompt-engineer-shokugyo/)
-- [キカガクは自分に合う？申込前に潰す3つの不安](/blog/yametoke-kikagaku/)
+- [AI活用は急務だが、全員がすぐ飛びつくべきか否か](/blog/news-20261015-1gtea/)
+- [40代からプログラミングを学ぶ人の現実。転職・副業・社内活用で分かれる道](/blog/topic-40dai-programming/)
