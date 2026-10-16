@@ -136,5 +136,5 @@ draft: false
 - [プログラマカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-programmercollege/)
 - [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [AI活用は急務だが、全員がすぐ飛びつくべきか否か](/blog/news-20261015-1gtea/)
-- [40代からプログラミングを学ぶ人の現実。転職・副業・社内活用で分かれる道](/blog/topic-40dai-programming/)
+- [テックアイエスの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-techis/)
+- [AIコーディング支援ツールは学習に使うべき？初心者が伸びる使い方](/blog/topic-ai-coding-tools-gakushu/)

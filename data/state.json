@@ -963,7 +963,7 @@
     },
     {
       "slug": "ryokin-techis",
-      "keyword": "テックアイエスの料金は高い？他社と比較",
+      "keyword": "テックアイエスの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "techis"
@@ -971,8 +971,11 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-16T06:55:47.249Z",
+      "structure": 2,
+      "publishedAt": "2026-10-16T06:55:47.485Z"
     },
     {
       "slug": "yametoke-techis",
@@ -4704,12 +4707,15 @@
       "kind": "topic",
       "cluster": "独学・買い切り",
       "score": 60,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-09-22T07:31:59.330Z",
       "brief": "補完型（Copilot等）は初学者が使うと『読めないコードが増える』。最初の1〜2ヶ月は切って書き、その後は『生成→自分で説明できるか→説明できない行は消す』の運用に。スクールによってはAIツールの使用ルールがあるので確認。",
       "hubs": [
         "/blog/osusume-hikaku-dokugaku/"
-      ]
+      ],
+      "draftedAt": "2026-10-16T06:55:25.396Z",
+      "structure": 2,
+      "publishedAt": "2026-10-16T06:55:47.485Z"
     },
     {
       "slug": "news-20260922-yflps",
@@ -8163,10 +8169,103 @@
       "draftedAt": "2026-10-16T00:02:11.698Z",
       "structure": 2,
       "rejectReason": "score=95; 見出しやや不足: 3; 内部リンクなし; 誇大・断定表現"
+    },
+    {
+      "slug": "news-20261016-e98iy",
+      "keyword": "Linux性能を30％向上させたClaude CodeのAI活用法とは",
+      "template": "news:hot",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 96,
+      "status": "published",
+      "createdAt": "2026-10-16T06:54:54.962Z",
+      "news": {
+        "title": "リーナス・トーバルズがClaude CodeなどのAIをバリバリ活用してLinuxカーネルの改善に取り組み中",
+        "link": "https://gigazine.net/news/20261016-linus-torvalds-claude-code/",
+        "source": "gigazine.net",
+        "published": "2026年10月15日",
+        "snippet": "Linuxカーネルの生みの親であるリーナス・トーバルズ氏がAIコーディングアシスタントのClaude Codeを活用し、Linuxカーネルの大幅な改善に取り組んでいることが明らかになりました。 Linus Torvalds Working On A Hefty Linux Kernel Improvement With Claude Code - Phoronix https://www.phoronix.com/news/Linus-Torv...",
+        "text": "親愛なる読者の皆さまへ。ご存じの通り価格高騰などの悪影響でサーバー運営がとても苦しい状態です。回線や台数を整理し見直せる部分は全て見直しましたが、やはりまだ危険水域です。このままだと1ページを10分割ぐらいして無理矢理PVを増やさざるを得なくなってしまいます。そこで、GIGAZINEの物理的なサーバーたちを、たった1円でも良いので親愛なる読者の皆さまに支援してもらえればとっても助かります！今すぐ寄付は上のボタンから！ ・これまでGIGAZINEを支援してくれたメンバーのリスト\nLinuxカーネルの生みの親であるリーナス・トーバルズ氏がAIコーディングアシスタントのClaude Codeを活用し、Linuxカーネルの大幅な改善に取り組んでいることが明らかになりました。 Linus Torvalds Working On A Hefty Linux Kernel Improvement With Claude Code - Phoronix https://www.phoronix.com/news/Linus-Torvalds-Claude-Code トーバルズ氏は以前からAIをカーネルのデバッグに役立つツールとして認識しており、またカーネルツリー外ではGoogleのAntigravityを用いたバイブコーディングを行っていることが知られています。\n今回明らかになったClaude Codeの活用はトーバルズ氏の所有する「noref-filemap-read-with-llm」という新規カーネルブランチに見られています。「noref-filemap-read-with-llm」ブランチの名称はAI/LLMの支援を受けて開発されている新たなカーネル改善策であることを示唆しており、具体的にはメモリ管理コードについて、folio構造体への参照なしでページキャッシュからデータを読み込むように適応させる作業を行っています。この改善の目的は、多数のスレッドによる単一ファイルへの小規模読み込み時に発生する「folio参照カウントの競合」というLinuxの課題に対処することにあります。\nトーバルズ氏は「noref-filemap-read-with-llm」ブランチの作業において、実装・テストのみならずカバーレターの初稿までトーバルズ氏自身の指示の下でClaude Codeにより行われたことを明言しています。\n「noref-filemap-read-with-llm」ブランチの改善策は「多数のスレッドが単一のファイルから少量ずつ読み込む」状況でのボトルネック解消に大きな影響を与えることが期待されており、次期Linux 7.4のマージウィンドウで取り込まれるかどうかが注目されています。下のグラフはLinuxカーネルの読み取りパフォーマンスを現状(青)と「noref-filemap-read-with-llm」ブランチ(橙)で比較したものであり、1スレッド(左)では明確な差は見られないものの、8スレッド(中央)や4コアの4スレッド(右)では大幅な性能向上を示していることがわかります。\nトーバルズ氏は、AIを活用してコードの可読性を向上させた上で長年潜んでいたバグを発見した、という事例についても述べています。 Linus Torvalds \"Did What I Preach\", Used AI To Make Code Decipherable & Uncovered More Bugs - Phoronix https://www.phoronix.com/news/Linus-Torvalds-Assoc-Array 一方、Linuxカーネル開発コミュニティにおいても、AI/LLMツールの利用を示すためにパッチに付与することが義務付けられていた「Assisted-by:」タグの要件を撤廃する方向で検討が進められています。 Linux Kernel Developers Plan To Remove \"Assisted-By\" Tag Requirement For AI/LLM Usage - Phoronix https://www.phoronix.com/news/Linux-Dropping-Assisted-By-Req トーバルズ氏によるLinuxカーネルに対するAI活用に関しては、概ね好意的に受け止められているようです。\nWe should thank our lucky stars that Linus isn't part of the anti-ai nonsense that's ravaging the old Linux world. I'd hate having to soothe the cognitive dissonance this must produce!\n・関連記事 Linuxカーネルの脆弱性が一挙1313件も報告される、AI普及で「個々の脆弱性を追う対策は限界」との指摘 - GIGAZINE リーナス・トーバルズが「LinuxはアンチAIではない」「気に入らないならフォークすればいい」などLinuxカーネル開発におけるAI利用について意見を述べる - GIGAZINE Linuxカーネルで「AIが生成したコードのすべての行、およびそれに起因するバグやセキュリティ上の欠陥の法的責任」を提出した人間がしっかりと負うことに - GIGAZINE AIバグ発見システム「Sashiko」がGoogle社員によって開発される、日本の「刺し子」に由来する名前でLinuxカーネルの未発見バグを次々に検出 - GIGAZINE リーナス・トーバルズの後任を決める緊急時対応計画をLinuxカーネル開発コミュニティが策定、ファイル名は「コンクラーベ」 - GIGAZINE LinuxカーネルへのRust導入は定着したとの合意、「実験的」タグを外すことが決定 - GIGAZINE リーナス・トーバルズがLinux 6.15-rc1のテストコードを汚物呼ばわりして激怒 - GIGAZINE\n2026年10月16日 06時00分00秒 in AI, ソフトウェア, Posted by log1c_sh\nYou can read the machine translated English article Linus Torvalds is working to improve the….\nお邪魔して申し訳ないです。読者のための記事を掲載し続けるため、どうかサーバー代として300円をご寄付いただけないでしょうか。",
+        "reactions": {
+          "threads": [
+            {
+              "platform": "はてなブックマーク",
+              "url": "https://b.hatena.ne.jp/entry/s/gigazine.net/news/20261016-linus-torvalds-claude-code/",
+              "count": 174
+            }
+          ],
+          "comments": [
+            {
+              "platform": "はてなブックマーク",
+              "text": "仕事を投げる相手ではなく伴走するツールとして使ってる感じで、そういう使い方を自分で模索して構築できる人にとってはそりゃAIは有用"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "世界中の腕利きプログラマーたちを自由に能力を発揮しつつ暴走しないようにコントロールして巨大なプロジェクトを統括していたんだからAIの扱いくらいたやすいはず。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "自分が活用しきれるとは思えないけど、claude.mdやらmemoryやらskillsやら見てみたいな"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "「今回明らかになったClaude Codeの活用はトーバルズ氏の所有する「noref-filemap-read-with-llm」という新規カーネルブランチに見られています」"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "もともとレビューする立場だったんじゃないの？レビュー対象が人かAIかの区別はさほど意味がないように思える。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "これとは直接関係ないかもだけど先日視た動画でなんか言ってたな。AIの話はしてなかった気がするけど、また見返してみる。 2026-08-02 Linus Torvalds Explains What Makes Linux So Fast"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "『L.トーバルズ氏、AI反対派に強硬姿勢--「フォークしろ」』( 2026-07-23)"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "リーナスなら、AIつかってアンチAI兵器つくるくらいやるでしょ。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "“トーバルズ氏は以前からAIをカーネルのデバッグに役立つツールとして認識”"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "「AIは自転車。弱い人でも早く移動できるし、強い人は滅茶苦茶早く移動できる」とずっと説明している。 Linusクラスだと AIが音を上げそう"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "リーナスがどんなハーネス整備してるのかは気になるね"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "これ、リーナスの利用データ・指示をClaudeが全部ではないにしろ学習してるってことでしょ。 学習もっと進んだら、いよいよもう普通のエンジニアは出番なくなんじゃね。今でさえもう凄いのに。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "人権ないからいつもの精神状態で仕事できて良い"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "鬼に金棒。一般人は金棒を渡されると重量で腕を壊す。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "どんなに足の速い陸上選手でも自動車には勝てないよね、という話。"
+            }
+          ]
+        }
+      },
+      "draftedAt": "2026-10-16T06:55:04.684Z",
+      "structure": 2,
+      "publishedAt": "2026-10-16T06:55:47.485Z"
     }
   ],
-  "publishedCount": 145,
-  "estimatedMrrUsd": 43500,
+  "publishedCount": 148,
+  "estimatedMrrUsd": 44400,
   "history": [
     {
       "date": "2026-07-24",
@@ -8585,9 +8684,9 @@
     },
     {
       "date": "2026-10-16",
-      "published": 145,
-      "estimatedMrrUsd": 43500
+      "published": 148,
+      "estimatedMrrUsd": 44400
     }
   ],
-  "lastRun": "2026-10-16T00:02:14.025Z"
+  "lastRun": "2026-10-16T06:55:49.060Z"
 }

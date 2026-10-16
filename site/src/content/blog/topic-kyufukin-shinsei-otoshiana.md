@@ -115,8 +115,8 @@ SHIFT TERAS CAMPUSは転職保証付きで169,800円から、テックキャン�
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [テックアイエスの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-techis/)
+- [AIコーディング支援ツールは学習に使うべき？初心者が伸びる使い方](/blog/topic-ai-coding-tools-gakushu/)
+- [Linux性能を30％向上させたClaude CodeのAI活用法とは](/blog/news-20261016-e98iy/)
 - [AI活用は急務だが、全員がすぐ飛びつくべきか否か](/blog/news-20261015-1gtea/)
 - [プログラマカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-programmercollege/)
-- [40代からプログラミングを学ぶ人の現実。転職・副業・社内活用で分かれる道](/blog/topic-40dai-programming/)
-- [IT業界で女子の就職先が減る理由と選ぶべき職種は何か](/blog/news-20261015-1o750/)
-- [プログラマカレッジの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-programmercollege/)
