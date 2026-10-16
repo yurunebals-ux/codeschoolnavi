@@ -434,7 +434,12 @@
       "link": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE91NzA0b250dUVEaWxFWEZhVGFJQ201bFRSdDAtb3ZxUHBKU0xWVExtREthQm13bTNUb1hScWsydVFqbDIwdkxNMXJR?oc=5",
       "slug": "news-20261015-1gtea",
       "date": "2026-10-15"
+    },
+    {
+      "link": "https://www.itmedia.co.jp/news/article/2610/14/2000002278/",
+      "slug": "news-20261016-112e3",
+      "date": "2026-10-16"
     }
   ],
-  "lastRun": "2026-10-15"
+  "lastRun": "2026-10-16"
 }
