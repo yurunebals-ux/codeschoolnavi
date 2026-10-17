@@ -134,5 +134,5 @@ RUNTEQの一部コースが対象です。詳細は各校の公式情報で確�
 - [ウズウズカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-uzuzcollege/)
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Anthropicが示すIoTでのAI自己複製は本当に止められるのか？](/blog/news-20261017-13i73/)
 - [テックアイエスの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-techis/)
-- [AIコーディング支援ツールは学習に使うべき？初心者が伸びる使い方](/blog/topic-ai-coding-tools-gakushu/)

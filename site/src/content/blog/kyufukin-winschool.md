@@ -163,6 +163,6 @@ Winスクールには教育訓練給付金の対象コースが限られてい�
 - [通学・オンラインのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-tsugaku/)
 - [Winスクールの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Anthropicが示すIoTでのAI自己複製は本当に止められるのか？](/blog/news-20261017-13i73/)
 - [テックアイエスの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-techis/)
 - [AIコーディング支援ツールは学習に使うべき？初心者が伸びる使い方](/blog/topic-ai-coding-tools-gakushu/)
-- [Linux性能を30％向上させたClaude CodeのAI活用法とは](/blog/news-20261016-e98iy/)
