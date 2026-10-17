@@ -979,7 +979,7 @@
     },
     {
       "slug": "yametoke-techis",
-      "keyword": "テックアイエスはやめとけ？評判と後悔しない判断基準",
+      "keyword": "テックアイエスは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "techis"
@@ -987,8 +987,11 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-17T06:47:37.598Z",
+      "structure": 2,
+      "publishedAt": "2026-10-17T06:47:58.416Z"
     },
     {
       "slug": "ryokin-ninjacode",
@@ -5004,13 +5007,16 @@
       "kind": "topic",
       "cluster": "選び方",
       "score": 60,
-      "status": "queued",
+      "status": "rejected",
       "createdAt": "2026-09-23T10:20:02.885Z",
       "brief": "議事録の要約、メールの下書き、企画のたたき台、表計算の関数の相談など、答えを丸写しせず『下書き→人が直す』の使い方が基本。社外秘や個人情報を入力しないルールを先に決める。指示は目的・前提・出力形式を書くと安定する。間違い（もっともらしい誤り）を前提に、数字や固有名詞は必ず元資料で確かめる。会社の利用規程があれば従う。料金プランや機能は変わるので公式で確認するよう書く。",
       "hubs": [
         "/news/",
         "/blog/osusume-hikaku-ai/"
-      ]
+      ],
+      "draftedAt": "2026-10-17T06:47:10.433Z",
+      "structure": 2,
+      "rejectReason": "score=110; 誇大・断定表現"
     },
     {
       "slug": "topic-chatgpt-muryou-yuuryou",
@@ -5022,13 +5028,16 @@
       "kind": "topic",
       "cluster": "選び方",
       "score": 60,
-      "status": "queued",
+      "status": "rejected",
       "createdAt": "2026-09-23T10:20:02.885Z",
       "brief": "判断軸は使う頻度・扱う資料の量・業務で使うかどうか。無料版でまず自分の用途を1〜2週間試し、制限に当たる場面が多いかで決める。会社で使うなら個人契約より組織向けプランや社内規程が優先。料金や使える機能は頻繁に変わるので、金額は書かず『公式の料金ページで最新を確認』と案内する。",
       "hubs": [
         "/news/",
         "/blog/osusume-hikaku-ai/"
-      ]
+      ],
+      "draftedAt": "2026-10-17T06:47:58.149Z",
+      "structure": 2,
+      "rejectReason": "score=115; 構造: 生成の残骸(【著者】信頼されるレビューサイト編集部シニアライター)"
     },
     {
       "slug": "topic-seisei-ai-shikaku",
@@ -8357,8 +8366,8 @@
       "publishedAt": "2026-10-17T00:07:41.758Z"
     }
   ],
-  "publishedCount": 149,
-  "estimatedMrrUsd": 44700,
+  "publishedCount": 150,
+  "estimatedMrrUsd": 45000,
   "history": [
     {
       "date": "2026-07-24",
@@ -8782,9 +8791,9 @@
     },
     {
       "date": "2026-10-17",
-      "published": 149,
-      "estimatedMrrUsd": 44700
+      "published": 150,
+      "estimatedMrrUsd": 45000
     }
   ],
-  "lastRun": "2026-10-17T00:07:43.391Z"
+  "lastRun": "2026-10-17T06:48:00.216Z"
 }

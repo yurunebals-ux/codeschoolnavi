@@ -152,5 +152,5 @@ CodeCampはオンラインマンツーマン指導で、JavaやPHP、Rubyなど�
 - [プログラマカレッジの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-programmercollege/)
 - [プログラマカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [テックアイエスは自分に合う？申込前に潰す3つの不安](/blog/yametoke-techis/)
 - [Anthropicが示すIoTでのAI自己複製は本当に止められるのか？](/blog/news-20261017-13i73/)
-- [テックアイエスの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-techis/)
