@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [AIで声優の声を再現する際の同意と対価の新ルール、故人の声は原則禁止](/blog/news-20261017-lxyzj/)
 - [Claude Modsで開発効率が30％上がる驚きのカスタマイズ術](/blog/news-20261017-1atz1/)
 - [テックアイエスは自分に合う？申込前に潰す3つの不安](/blog/yametoke-techis/)
 - [Anthropicが示すIoTでのAI自己複製は本当に止められるのか？](/blog/news-20261017-13i73/)
 - [テックアイエスの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-techis/)
-- [AIコーディング支援ツールは学習に使うべき？初心者が伸びる使い方](/blog/topic-ai-coding-tools-gakushu/)

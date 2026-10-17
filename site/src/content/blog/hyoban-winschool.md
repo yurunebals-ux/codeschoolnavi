@@ -174,6 +174,6 @@ Winスクールの一般教育訓練給付対象コース23講座で利用可能
 - [通学・オンラインのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-tsugaku/)
 - [Winスクールは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [AIで声優の声を再現する際の同意と対価の新ルール、故人の声は原則禁止](/blog/news-20261017-lxyzj/)
 - [Claude Modsで開発効率が30％上がる驚きのカスタマイズ術](/blog/news-20261017-1atz1/)
 - [テックアイエスは自分に合う？申込前に潰す3つの不安](/blog/yametoke-techis/)
-- [Anthropicが示すIoTでのAI自己複製は本当に止められるのか？](/blog/news-20261017-13i73/)

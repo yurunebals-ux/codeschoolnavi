@@ -152,5 +152,5 @@ TechAcademyとCodeCampは年齢制限の記載が公式にありませんが、�
 - [プログラマカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-programmercollege/)
 - [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [AIで声優の声を再現する際の同意と対価の新ルール、故人の声は原則禁止](/blog/news-20261017-lxyzj/)
 - [Claude Modsで開発効率が30％上がる驚きのカスタマイズ術](/blog/news-20261017-1atz1/)
-- [テックアイエスは自分に合う？申込前に潰す3つの不安](/blog/yametoke-techis/)
