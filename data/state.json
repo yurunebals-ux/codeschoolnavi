@@ -8364,10 +8364,99 @@
       "draftedAt": "2026-10-17T00:07:40.457Z",
       "structure": 2,
       "publishedAt": "2026-10-17T00:07:41.758Z"
+    },
+    {
+      "slug": "news-20261017-1atz1",
+      "keyword": "Claude Modsで開発効率が30％上がる驚きのカスタマイズ術",
+      "template": "news:hot",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 96,
+      "status": "published",
+      "createdAt": "2026-10-17T11:58:06.276Z",
+      "news": {
+        "title": "Claude Mods 入門 @_nogu66",
+        "link": "https://speakerdeck.com/nogu66/claude-code-nyuumon",
+        "source": "speakerdeck.com",
+        "published": "2026年10月15日",
+        "snippet": "The Organizational Zoo: Understanding Human Behavior Agility Through Metaphoric Constructive Conversations (based on the works of Arthur Shelley, Ph.D)",
+        "text": "Claude Code 入門 - Speaker Deck Upgrade to Pro &mdash; share decks privately, control downloads, hide ads and more &hellip; Claude Code 入門 Sponsored &middot; Your Podcast. Everywhere. Effortlessly. Share. Educate. Inspire. Entertain. You do you. We'll handle the rest. &rarr; nogu October 15, 2026 11k 4 Share Embed '>Copy iframe code Copy JS code Copy link Start on current slide Claude Code 入門 nogu October 15, 2026 More Decks by nogu See All by nogu AIエージェント時代のコードレビューを設計する nogu66 6 2.9k iOS開発×AI駆動開発 〜最近使って便利だったスキルの話〜 nogu66 0 170 Claude Codeで AIエージェントを構築する nogu66 5 2.8k 人の役割は変わりつつある ~AIネイティブ開発時代のチームワーク~ nogu66 0 96 まだ間に合う！Claude Code元年をふりかえる nogu66 5 1.2k 個人開発のマーケティングはチャネルが９割 nogu66 0 110 AIを駆使して新しい技術を効率的に理解する方法 nogu66 2 910 TRAEの活用事例 - SOLOモード nogu66 0 99 React NativeとExpoでネイティブモジュールを使う【2025.08.25】 nogu66 0 210 Featured See All Featured Imperfection Machines: The Place of Print at Facebook scottboms 270 14k Neural Spatial Audio Processing for Sound Field Analysis and Control skoyamalab 0 560 Have SEOs Ruined the Internet? - User Awareness of SEO in 2025 akashhashmi 0 520 Evolving SEO for Evolving Search Engines ryanjones 0 320 ラッコキーワード サービス紹介資料 rakko 1 5.3M The Power of CSS Pseudo Elements geoffreycrofte 82 6.6k AI Search: Implications for SEO and How to Move Forward - #ShenzhenSEOConference aleyda 1 1.4k Game over? The fight for quality and originality in the time of robots wayneb77 1 300 Save Time (by Creating Custom Rails Generators) garrettdimon PRO 33 5.2k First, design no harm axbom PRO 2 1.3k Conquering PDFs: document understanding beyond plain text inesmontani PRO 4 3.2k Music & Morning Musume bryan 48 7.4k Transcript CLAUDE CODE Claude Mods 入門 nogu (@_nogu66) 自己紹介 nogu (@_nogu66) 書いた記事 完全版 Claude Mods 入門 Mods で作る価値とは？ Zenn ｜ zenn.dev/nogu66 X ｜ x.com/_nogu66 作った mod md-prompt marp-preview github.com/nogu66/md-prompt github.com/nogu66/marp-preview Claude Mods とは Claude Code の中で動くプラグイン。JS / TS の hooks モジュール1つで、Claude Code を自分仕様にできる    見せる 挙動を変える 操作する ペイン・帯・ ツール呼び出しや 独自の /command や トースト・ステータスライン プロンプトに割り込む ツールを足す CLI（ターミナル）でもデスクトップアプリ（Code タブ）でも動く v2.1.287 以降 できること ① 画面に描く Claude Code の画面の4か所に、自分の UI を足せる claude > ログイン画面のバグを直して D トースト 132 秒かかりました A ペイン • Read(src/login.ts) Tool calls • Bash(npm test) done Read done Bash done Grep runs Edit B 帯 前回のターン: 42秒・ツール 8 回 > C ステータスライン ⎇ main · ツール 12 回 · ✓ テスト成功 ペインと帯はターミナルでもデスクトップアプリでも表示。一部の表示はターミナルのみ できること ② イベントに介入する Claude Code の動きを途中で受け取り、止める・書き換える・反応する    ツール呼び出し プロンプト コマンド 実行の前にブロック・ 送信された 独自の 書き換え・確認 プロンプトに反応 /command を追加  Mod はあなたの権限で動き、サンドボックス化されない。信頼できるものだけ入れる 作り方 ① Claude に頼む 「どこに出すか」と「いつ動くか」を一文に入れると、一発で通りやすい > /plugin-authoring ← mod 作り専用のスキルを読み込む > プロンプトの上に、今の git ブランチを常に表示する mod を作って > ファイルを編集するたびに、横のペインにファイル名を並べて > ターンが終わったら、かかった秒数をトーストで出して ▪ どこに出すか ▪ いつ動くか 1. 頼む 2. 許可する 3. 有効にする 4. 直す スキルを読み込んで一 文で ファイル作成を承認 すぐ画面に反映 「ここを変えて」 作り方 ② 3ファイルで手書き ふつうのプラグインに hooks.json を足すと mod になる フォルダ構成 hooks/hooks.json first-mod/ { ├── .claude-plugin/ │ └── plugin.json \"modules\": [\"./register.js\"] ← 名前など } └── hooks/ ├── hooks.json ← コードの場所 └── register.js ← 本体 modules キーがあると mod として読み込まれる 作って、直すループ 保存するとすぐ再読み込み。90分で何周も回せる Terminal $ claude --plugin-dir ./first-mod 読み込んで起動 $ claude plugin validate ./first-mod 中身をチェック ビルド不要 直すのも Claude に JS / TS をそのまま読む。保存で自動再読み込み 「色を変えて」と頼めば、終わった瞬間に反映 動かないときは 上から順に見れば、だいたい原因がわかる 1 読み込まれているか 2 イベント名は合っているか 3 その画面で出せる表示か /plugin の Installed タブに名前が出ているか見る claude plugin validate で、フックしているイベントの一覧を見る ペインと帯はどこでも出る。一部の表示はターミナルだけ 具体例 ① ② 表示するパターン いつも見たい情報を、画面に出しっぱなしにする 例① プロンプト上の帯 例② ペイン git ブランチ表示 変更ファイル一覧 今いるブランチを、プロンプトの上に常に表示 Claude が編集したファイルを、横のペインに並 べる M src/app.ts ⎇ feature/mods-lt A docs/mods.md 具体例 ③ ④ 介入するパターン Claude の動きに割り込んで、確認や集計をする 例③ ツール呼び出しに介入 例④ コマンドを追加 編集前レビュー ツール呼び出しカウンター 大事なファイルを編集する前に、確認を挟む スピナーの横に回数を出し、/tally で集計 release-settings.json > /tally を編集しますか？ 42 tool calls まとめ Claude Code を自分の道具に作り変えるプラグイン 画面に描けて、動きに割り込める 欲しいものは、Claude に頼めば作ってくれる 迷ったら、/plugin-authoring or 公式ドキュメント 時間の都合で紹介しきれなかった情報は、こちらにまとめています noguchy.me/claude-mods",
+        "reactions": {
+          "threads": [
+            {
+              "platform": "はてなブックマーク",
+              "url": "https://b.hatena.ne.jp/entry/s/speakerdeck.com/nogu66/claude-code-nyuumon",
+              "count": 456
+            }
+          ],
+          "comments": [
+            {
+              "platform": "はてなブックマーク",
+              "text": "とりあえず機関車トーマスと2Bを…"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "自分用に作ったmodsは似たようなのが公式で実装されてた（からポピュラーなものはすぐ公式から出そうである）"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "ボクがコードを打つなら、猫の手も借りたいにゃ！でも猫パンチはしないにゃ！"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "CodeじゃなくてModsか"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "思てたんと違った"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "靴磨きの少年が靴磨きの事務所作るとか機関銃持つぐらいのプロツール、使い方間違えてあれもこれもと入れるとすぐ残量無くなるみたいな痛い目見るので注意、他LLMやgithubとの連携はもう大前提"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "Mods入門だぞ"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "SpeakerDeckのタイトルをミスるの致命的では"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "Claude Mods入門"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "新シバージョンが使いづらすぎるんだがなんとかしてくれ"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "Claude Code 入門ではなくて、おそらくClaude Mods 入門かな"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "仕事ひと段落したら読む"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "チームにClaude Codeを一斉導入しても成果に違いが出て、いったいなぜなんだと思ったら「ちゃんと情報をインプットしてるか」の差だった。AI相手でもコミュニケーション苦手だと成果出ないという苦い現実。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "claude mods"
+            }
+          ]
+        }
+      },
+      "draftedAt": "2026-10-17T11:58:15.666Z",
+      "structure": 2,
+      "publishedAt": "2026-10-17T11:58:16.674Z"
     }
   ],
-  "publishedCount": 150,
-  "estimatedMrrUsd": 45000,
+  "publishedCount": 151,
+  "estimatedMrrUsd": 45300,
   "history": [
     {
       "date": "2026-07-24",
@@ -8791,9 +8880,9 @@
     },
     {
       "date": "2026-10-17",
-      "published": 150,
-      "estimatedMrrUsd": 45000
+      "published": 151,
+      "estimatedMrrUsd": 45300
     }
   ],
-  "lastRun": "2026-10-17T06:48:00.216Z"
+  "lastRun": "2026-10-17T11:58:18.091Z"
 }
