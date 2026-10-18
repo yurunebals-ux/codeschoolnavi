@@ -995,7 +995,7 @@
     },
     {
       "slug": "ryokin-ninjacode",
-      "keyword": "忍者CODEの料金は高い？他社と比較",
+      "keyword": "忍者CODEの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "ninjacode"
@@ -1003,8 +1003,11 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-18T07:07:12.741Z",
+      "structure": 2,
+      "publishedAt": "2026-10-18T07:07:35.012Z"
     },
     {
       "slug": "yametoke-ninjacode",
@@ -5051,13 +5054,16 @@
       "kind": "topic",
       "cluster": "AI・データ分析",
       "score": 60,
-      "status": "queued",
+      "status": "rejected",
       "createdAt": "2026-09-23T10:20:02.885Z",
       "brief": "資格は『知識があることの証明』で、実務で使えることの証明ではない。社内での評価・転職での見られ方・学習の区切りとして使う。IT未経験なら体系的に学ぶきっかけとして有効。受験料・日程・出題範囲は各主催団体の公式で確認するよう書く（数字は書かない）。資格より、業務でAIを使った具体例を話せるほうが評価されやすい。",
       "hubs": [
         "/blog/topic-g-kentei-tenshoku/",
         "/blog/osusume-hikaku-ai/"
-      ]
+      ],
+      "draftedAt": "2026-10-18T07:06:47.099Z",
+      "structure": 2,
+      "rejectReason": "score=105; 内部リンクなし; データにない金額・調査の言及: 738,000円"
     },
     {
       "slug": "topic-ai-fukugyo-hajimekata",
@@ -5070,13 +5076,16 @@
       "kind": "topic",
       "cluster": "選び方",
       "score": 60,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-09-23T10:20:02.885Z",
       "brief": "『AIで誰でも月◯万円』系の情報商材や高額塾に注意。実際に仕事になりやすいのは、AIを使って速く正確にできる既存の仕事（文章作成・画像補正・データ整理・簡単な自動化）。未経験は小さな実績づくりから。副業規定・確定申告（20万円ルール等は国税庁で確認）に触れる。収入額の断定はしない。",
       "hubs": [
         "/blog/topic-fukugyo-programming-genjitsu/",
         "/news/"
-      ]
+      ],
+      "draftedAt": "2026-10-18T07:07:34.851Z",
+      "structure": 2,
+      "publishedAt": "2026-10-18T07:07:35.012Z"
     },
     {
       "slug": "topic-programming-nanikara",
@@ -8548,8 +8557,8 @@
       "publishedAt": "2026-10-17T23:43:30.697Z"
     }
   ],
-  "publishedCount": 152,
-  "estimatedMrrUsd": 45600,
+  "publishedCount": 154,
+  "estimatedMrrUsd": 46200,
   "history": [
     {
       "date": "2026-07-24",
@@ -8975,7 +8984,12 @@
       "date": "2026-10-17",
       "published": 152,
       "estimatedMrrUsd": 45600
+    },
+    {
+      "date": "2026-10-18",
+      "published": 154,
+      "estimatedMrrUsd": 46200
     }
   ],
-  "lastRun": "2026-10-17T23:43:32.371Z"
+  "lastRun": "2026-10-18T07:07:36.118Z"
 }
