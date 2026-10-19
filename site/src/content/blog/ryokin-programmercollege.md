@@ -152,5 +152,5 @@ TechAcademyとCodeCampは年齢制限の記載が公式にありませんが、�
 - [プログラマカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-programmercollege/)
 - [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [忍者CODEの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-ninjacode/)
-- [AI副業は本当に稼げる？始める前に知っておく現実と、最初の一歩](/blog/topic-ai-fukugyo-hajimekata/)
+- [忍者CODEは自分に合う？申込前に潰す3つの不安](/blog/yametoke-ninjacode/)
+- [プログラミングは何から始める？目的別の最初の1ヶ月](/blog/topic-programming-nanikara/)

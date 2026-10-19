@@ -152,7 +152,7 @@ CodeCampの一部コースが特定一般または専門実践教育訓練給付
 
 - [忍者CODEの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-ninjacode/)
 - [忍者CODEの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-ninjacode/)
+- [忍者CODEは自分に合う？申込前に潰す3つの不安](/blog/yametoke-ninjacode/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [フィヨルドブートキャンプの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-fjord/)
 - [フィヨルドブートキャンプは自分に合う？申込前に潰す3つの不安](/blog/yametoke-fjord/)
-- [techmeetsの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-techmeets/)
