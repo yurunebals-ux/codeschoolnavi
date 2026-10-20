@@ -158,8 +158,8 @@ DMM 生成AI CAMPは教育訓練給付金の対象外ですが、公式サイト
 ## あわせて読みたい
 
 - [DMM 生成AI CAMPの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-dmmaicamp/)
+- [DMM 生成AI CAMPの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-dmmaicamp/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
 - [Aidemyの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-aidemy/)
 - [キカガクの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-kikagaku/)
 - [AI・データ分析のプログラミングスクールおすすめ比較](/blog/osusume-hikaku-ai/)
-- [スキルアップAIの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-skillupai/)
