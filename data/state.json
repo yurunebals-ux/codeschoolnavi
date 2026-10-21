@@ -1043,7 +1043,7 @@
     },
     {
       "slug": "yametoke-dmmaicamp",
-      "keyword": "DMM 生成AI CAMPはやめとけ？評判と後悔しない判断基準",
+      "keyword": "DMM 生成AI CAMPは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "dmmaicamp"
@@ -1051,8 +1051,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "rejected",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-21T07:21:12.671Z",
+      "structure": 2,
+      "rejectReason": "score=95; 内部リンクなし; 構造: 段落の重複(料金は月額制で初期費用を抑えられる。期間は自由度が高く、自分)"
     },
     {
       "slug": "ryokin-winschool",
@@ -5215,13 +5218,16 @@
       "kind": "topic",
       "cluster": "転職特化",
       "score": 60,
-      "status": "queued",
+      "status": "rejected",
       "createdAt": "2026-09-24T07:27:13.463Z",
       "brief": "20代よりハードルは上がるが、前職の業界知識・顧客対応・マネジメント経験を掛け合わせると評価されやすい。自作のポートフォリオと学習の継続記録が重要。年収は一時的に下がる可能性を前提に計画する。SES・受託・自社開発の違い。求人倍率や年収の数字は書かない。",
       "hubs": [
         "/blog/topic-engineer-tenshoku-nenrei/",
         "/blog/osusume-hikaku-tenshoku/"
-      ]
+      ],
+      "draftedAt": "2026-10-21T07:20:47.940Z",
+      "structure": 2,
+      "rejectReason": "score=110; 構造: 生成の残骸(【著者】信頼されるレビューサイト・シニアライター)"
     },
     {
       "slug": "topic-bunkei-engineer",
@@ -5235,13 +5241,16 @@
       "kind": "topic",
       "cluster": "転職特化",
       "score": 60,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-09-24T07:27:13.463Z",
       "brief": "Web開発では高度な数学はほぼ不要で、論理的に分解する力と調べる力が大事。つまずきやすいのは環境構築・エラー文の読解・英語のドキュメント。文系の強み（要件のヒアリング・文章化・調整）。AI・データ分析は数学の比重が上がる点も正直に書く。",
       "hubs": [
         "/blog/topic-engineer-tenshoku-nenrei/",
         "/shindan/"
-      ]
+      ],
+      "draftedAt": "2026-10-21T07:21:33.570Z",
+      "structure": 2,
+      "publishedAt": "2026-10-21T07:21:33.837Z"
     },
     {
       "slug": "topic-kihon-jouhou-benkyou",
@@ -9017,8 +9026,8 @@
       "publishedAt": "2026-10-20T13:23:08.493Z"
     }
   ],
-  "publishedCount": 162,
-  "estimatedMrrUsd": 48600,
+  "publishedCount": 163,
+  "estimatedMrrUsd": 48900,
   "history": [
     {
       "date": "2026-07-24",
@@ -9459,7 +9468,12 @@
       "date": "2026-10-20",
       "published": 162,
       "estimatedMrrUsd": 48600
+    },
+    {
+      "date": "2026-10-21",
+      "published": 163,
+      "estimatedMrrUsd": 48900
     }
   ],
-  "lastRun": "2026-10-20T13:23:09.941Z"
+  "lastRun": "2026-10-21T07:21:35.666Z"
 }

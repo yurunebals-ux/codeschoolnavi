@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [文系からエンジニアになれる？つまずきやすい所と乗り越え方](/blog/topic-bunkei-engineer/)
 - [AIがゲームを先行コピー、体験版公開中止の動きが広がる理由](/blog/news-20261020-16x1b/)
 - [AIの性能とキャリア支援、今後の選択が損得を左右する理由](/blog/news-20261020-1exgv/)
 - [DMM 生成AI CAMPの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-dmmaicamp/)
 - [Pythonで何ができる？仕事で役立つ具体例と、向いていない用途](/blog/topic-python-nanigadekiru/)
-- [AnthropicのAIが人間の6倍働く時代、初級技術職はどうなるか](/blog/news-20261019-1tkhk/)
