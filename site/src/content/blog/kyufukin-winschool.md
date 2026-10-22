@@ -162,7 +162,7 @@ Winスクールには教育訓練給付金の対象コースが限られてい�
 
 - [通学・オンラインのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-tsugaku/)
 - [Winスクールの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-winschool/)
+- [Winスクールの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [文系からエンジニアになれる？つまずきやすい所と乗り越え方](/blog/topic-bunkei-engineer/)
-- [AIがゲームを先行コピー、体験版公開中止の動きが広がる理由](/blog/news-20261020-16x1b/)
-- [AIの性能とキャリア支援、今後の選択が損得を左右する理由](/blog/news-20261020-1exgv/)
+- [基本情報技術者試験は未経験に意味がある？勉強の順番と実務とのつながり](/blog/topic-kihon-jouhou-benkyou/)
+- [Claude Codeで45秒、手元Macで動画自動生成は本当に効率的か](/blog/news-20261022-dttlr/)

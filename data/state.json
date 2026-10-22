@@ -1059,7 +1059,7 @@
     },
     {
       "slug": "ryokin-winschool",
-      "keyword": "Winスクールの料金は高い？他社と比較",
+      "keyword": "Winスクールの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "winschool"
@@ -1067,8 +1067,11 @@
       "kind": "money",
       "cluster": "通学・オンライン",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-22T07:27:31.111Z",
+      "structure": 2,
+      "publishedAt": "2026-10-22T07:27:57.070Z"
     },
     {
       "slug": "yametoke-winschool",
@@ -5263,13 +5266,16 @@
       "kind": "topic",
       "cluster": "転職特化",
       "score": 60,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-09-24T07:27:13.463Z",
       "brief": "ITの基礎知識を体系的に学べ、未経験の転職では学習意欲の証明になる。一方で資格だけでは開発はできない。出題形式や受験方式は変わることがあるのでIPA公式で確認と書く（数字は書かない）。科目ごとの勉強の順番、アルゴリズム・プログラミングの対策。",
       "hubs": [
         "/blog/topic-aws-shikaku-mikeiken/",
         "/blog/osusume-hikaku-tenshoku/"
-      ]
+      ],
+      "draftedAt": "2026-10-22T07:27:56.846Z",
+      "structure": 2,
+      "publishedAt": "2026-10-22T07:27:57.070Z"
     },
     {
       "slug": "topic-it-passport-imi",
@@ -9024,10 +9030,75 @@
       "draftedAt": "2026-10-20T13:23:07.515Z",
       "structure": 2,
       "publishedAt": "2026-10-20T13:23:08.493Z"
+    },
+    {
+      "slug": "news-20261022-dttlr",
+      "keyword": "Claude Codeで45秒、手元Macで動画自動生成は本当に効率的か",
+      "template": "news:hot",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 96,
+      "status": "published",
+      "createdAt": "2026-10-22T07:27:01.476Z",
+      "news": {
+        "title": "仕組みを理解する動画を、Claude Codeに作らせると便利すぎる",
+        "link": "https://zenn.dev/explaza/articles/c749042ecbe232",
+        "source": "zenn.dev",
+        "published": "2026年10月21日",
+        "snippet": "最近は動画で説明資料を作っている アプリの仕組みをお客さんに説明するとき、構成図とかHTML・Markdownで、説明するのが一般的かと思いますが 最近はjavascriptを用いて、Claudeで動画を生成しやすくなったので、アプリの操作と、その裏で起きている処理を交互に見せる解説動画を作って説明に使っています。 めちゃくち...",
+        "text": "アプリの仕組みをお客さんに説明するとき、構成図とかHTML・Markdownで、説明するのが一般的かと思いますが\n最近はjavascriptを用いて、Claudeで動画を生成しやすくなったので、アプリの操作と、その裏で起きている処理を交互に見せる解説動画を作って説明に使っています。\nめちゃくちゃ便利なので、Claude Code に作らせる指示テンプレートと、動画の作りを紹介します。\nhttps://github.com/musoukun/skills 上記の 「animated-arch-diagram」スキルです。\nこの記事では、架空の図書館の本探しチャットをダミーで作り、同じ指示で動画を作り直しました。（画面に出てくる本や数字は、すべてこのダミーアプリのものです。）\nスキルは上のリポジトリの animated-arch-diagram フォルダを、~/.claude/skills/ にコピーすれば使えます。\n2.の記録は、送った質問、途中の結果（区切った語、10冊の点数）、返事を JSON にしたものです。動画に出す数字は、全部ここから取ります。\nモック画面は、本物そっくりに作った見本の画面のことです。Screen Studio は、クリックした場所に自動で寄ってくれる画面録画アプリです。\n広がった文が9語に区切られ、名詞の「猫」「小説」だけが強調される。\n操作の合間に、いま通った処理だけを強調した構成図を挟んで説明。\n動画は画面を録画していません。「時刻を渡すと、その瞬間の絵を描く Web ページ」を作って 1コマずつ撮ってつないでいます。 撮るのは Playwright（ブラウザを自動で動かす道具）で、ffmpeg（動画を作る）で撮ったものを動画にしています。 何度書き出しても同じ動画になる点が良いです。\nやっていることは、時間経過で画面を動かすことで、何かしらを描かせて その様子を撮るを繰り返すイメージです。\n※44秒の動画は1314コマあり、だいたい書き出しは手元の Mac で45秒ほどでした。\n場面ごとに「何秒目に何をするか」を並べて書きます。 操作1の場面の例だとこんな感じ。\nClaudeでこういうのがポンと出せるようになって、動画制作がしやすくなっていると思う。すごく進化しているなぁと。\n「プロダクトの力で、豊かな暮らしをつくる」をミッションに、法人向けに生成AIのPoC、コンサルティング〜開発を支援する事業を展開しております。 エンジニア募集しています。カジュアル面談応募はこちらから: herp.careers/careers/companies/explaza",
+        "reactions": {
+          "threads": [
+            {
+              "platform": "はてなブックマーク",
+              "url": "https://b.hatena.ne.jp/entry/s/zenn.dev/explaza/articles/c749042ecbe232",
+              "count": 229
+            }
+          ],
+          "comments": [
+            {
+              "platform": "はてなブックマーク",
+              "text": "「時刻を渡すと、その瞬間の絵を描く Web ページ」を作って1コマずつ撮ってつなぐ。撮るのは Playwright、ffmpegで撮ったものを動画にしている／シンプルでとても良き"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "“アプリの仕組みをお客さんに説明するとき” /理解用ならドキュメントベースで、リソースのかかる動画なんて過剰だろと思ったけど、顧客説明用ならまあありかもなあ"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "動的htmlでも理解が難しいことがあるからいいかもしれない！"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "自分も何度かトライしてるけどちょっと複雑なものだと期待したものが出てこなくて難しい…"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "これは派生の創作魂をくすぐる。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "“アプリの仕組みを客に説明するとき、操作と、その裏で起きる処理を交互に見せる解説動画を使う。 「解説動画を作って。形式は、、」動画は画面録画ではなくWebページを1コマずつ撮ってつないで”"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "あいつショート動画作るのめっちゃ上手いよな。全然トークン食わないしなんぼでも出せる。"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "Playwrightとffmpegで1コマずつ描画して動画化するアプローチがなかなか力技で面白い"
+            }
+          ]
+        }
+      },
+      "draftedAt": "2026-10-22T07:27:09.839Z",
+      "structure": 2,
+      "publishedAt": "2026-10-22T07:27:57.070Z"
     }
   ],
-  "publishedCount": 163,
-  "estimatedMrrUsd": 48900,
+  "publishedCount": 166,
+  "estimatedMrrUsd": 49800,
   "history": [
     {
       "date": "2026-07-24",
@@ -9473,7 +9544,12 @@
       "date": "2026-10-21",
       "published": 163,
       "estimatedMrrUsd": 48900
+    },
+    {
+      "date": "2026-10-22",
+      "published": 166,
+      "estimatedMrrUsd": 49800
     }
   ],
-  "lastRun": "2026-10-21T07:21:35.666Z"
+  "lastRun": "2026-10-22T07:27:58.735Z"
 }
