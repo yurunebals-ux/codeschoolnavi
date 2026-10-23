@@ -1075,7 +1075,7 @@
     },
     {
       "slug": "yametoke-winschool",
-      "keyword": "Winスクールはやめとけ？評判と後悔しない判断基準",
+      "keyword": "Winスクールは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "winschool"
@@ -1083,8 +1083,11 @@
       "kind": "money",
       "cluster": "通学・オンライン",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "rejected",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-23T07:15:49.917Z",
+      "structure": 2,
+      "rejectReason": "score=95; 見出しやや不足: 7; 出典のない口コミ・評判の記述; 構造: 段落の重複(1. Winスクールの無料カウンセリングで具体的な不安点を解)"
     },
     {
       "slug": "ryokin-skillupai",
@@ -5287,13 +5290,16 @@
       "kind": "topic",
       "cluster": "選び方",
       "score": 60,
-      "status": "queued",
+      "status": "rejected",
       "createdAt": "2026-09-24T07:27:13.463Z",
       "brief": "非IT職のITリテラシー証明としては有効（社内DX・事務職）。エンジニア転職を目指すなら基本情報や実際の開発のほうが評価に直結。短期間で取れるので学習の入口として使える。受験料・合格基準はIPA公式で確認と案内。",
       "hubs": [
         "/blog/topic-kihon-jouhou-benkyou/",
         "/shindan/"
-      ]
+      ],
+      "draftedAt": "2026-10-23T07:15:26.266Z",
+      "structure": 2,
+      "rejectReason": "score=115; データにない金額・調査の言及: 5,700円; 構造: リンク崩れ(ITパスポートの取得はIT基礎知識の証明としては価値がありますが、プログラミング)"
     },
     {
       "slug": "news-20260924-nd41c",
@@ -5503,13 +5509,16 @@
       "kind": "topic",
       "cluster": "選び方",
       "score": 60,
-      "status": "queued",
+      "status": "published",
       "createdAt": "2026-09-25T07:25:52.398Z",
       "brief": "違いは性能の優劣より『どこで使えるか（Office・Google Workspace・ブラウザ・開発環境）』『会社が契約しているか』『データの扱い』。まず会社で使えるものを使い、個人ではいくつか無料で試して用途で使い分ける。機能や料金は頻繁に変わるので断定せず公式確認を促す。",
       "hubs": [
         "/news/",
         "/blog/topic-chatgpt-shigoto-tsukaikata/"
-      ]
+      ],
+      "draftedAt": "2026-10-23T07:16:11.114Z",
+      "structure": 2,
+      "publishedAt": "2026-10-23T07:16:11.349Z"
     },
     {
       "slug": "topic-excel-ai-katsuyou",
@@ -9154,8 +9163,8 @@
       "publishedAt": "2026-10-23T00:21:54.291Z"
     }
   ],
-  "publishedCount": 167,
-  "estimatedMrrUsd": 50100,
+  "publishedCount": 168,
+  "estimatedMrrUsd": 50400,
   "history": [
     {
       "date": "2026-07-24",
@@ -9609,9 +9618,9 @@
     },
     {
       "date": "2026-10-23",
-      "published": 167,
-      "estimatedMrrUsd": 50100
+      "published": 168,
+      "estimatedMrrUsd": 50400
     }
   ],
-  "lastRun": "2026-10-23T00:21:56.242Z"
+  "lastRun": "2026-10-23T07:16:13.054Z"
 }

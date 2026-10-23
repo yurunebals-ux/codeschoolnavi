@@ -135,5 +135,5 @@ TechAcademyやCodeCampも同様に返金保証は設けていないため、こ�
 - [Winスクールの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-winschool/)
 - [Winスクールは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Copilot・ChatGPT・Gemini・Claudeの違い。仕事で選ぶときの見方](/blog/topic-copilot-chatgpt-chigai/)
 - [Claude Codeの20項目チェックで防げる意外な重大セキュリティリスク](/blog/news-20261023-1tbni/)
-- [基本情報技術者試験は未経験に意味がある？勉強の順番と実務とのつながり](/blog/topic-kihon-jouhou-benkyou/)
