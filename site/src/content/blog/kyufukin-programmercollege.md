@@ -152,5 +152,5 @@ CodeCampはオンラインマンツーマン指導で、JavaやPHP、Rubyなど�
 - [プログラマカレッジの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-programmercollege/)
 - [プログラマカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Claude Codeの20項目チェックで防げる意外な重大セキュリティリスク](/blog/news-20261023-1tbni/)
 - [Winスクールの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-winschool/)
-- [基本情報技術者試験は未経験に意味がある？勉強の順番と実務とのつながり](/blog/topic-kihon-jouhou-benkyou/)

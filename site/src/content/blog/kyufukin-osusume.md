@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [Claude Codeの20項目チェックで防げる意外な重大セキュリティリスク](/blog/news-20261023-1tbni/)
 - [Winスクールの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-winschool/)
 - [基本情報技術者試験は未経験に意味がある？勉強の順番と実務とのつながり](/blog/topic-kihon-jouhou-benkyou/)
 - [Claude Codeで45秒、手元Macで動画自動生成は本当に効率的か](/blog/news-20261022-dttlr/)
 - [文系からエンジニアになれる？つまずきやすい所と乗り越え方](/blog/topic-bunkei-engineer/)
-- [AIがゲームを先行コピー、体験版公開中止の動きが広がる理由](/blog/news-20261020-16x1b/)

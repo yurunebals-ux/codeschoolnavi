@@ -9095,10 +9095,67 @@
       "draftedAt": "2026-10-22T07:27:09.839Z",
       "structure": 2,
       "publishedAt": "2026-10-22T07:27:57.070Z"
+    },
+    {
+      "slug": "news-20261023-1tbni",
+      "keyword": "Claude Codeの20項目チェックで防げる意外な重大セキュリティリスク",
+      "template": "news:hot",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 96,
+      "status": "published",
+      "createdAt": "2026-10-23T00:21:43.045Z",
+      "news": {
+        "title": "厳選・セキュリティが心配ならClaude Codeにこの問いかけをコピペするべし20",
+        "link": "https://zenn.dev/yuiseki/articles/54b01670841898",
+        "source": "zenn.dev",
+        "published": "2026年10月22日",
+        "snippet": "TL;DR この記事のURLをコーディングAIエージェントに伝えてください。 認証 このリポジトリのサインアップ、ログイン、メール確認、パスワードリセットの実装を調べてください。UI の CAPTCHA や入力チェックを通さず API を直接呼べないか、メール確認前に使える機能がないか確認してください。問題があれば実装箇所と...",
+        "text": "Securitytech TL;DR この記事のURLをコーディングAIエージェントに伝えてください。 認証 このリポジトリのサインアップ、ログイン、メール確認、パスワードリセットの実装を調べてください。UI の CAPTCHA や入力チェックを通さず API を直接呼べないか、メール確認前に使える機能がないか確認してください。問題があれば実装箇所と根拠を示してください。 このリポジトリのセッション、JWT、OAuth/OIDC の検証処理を調べてください。署名、issuer、audience、有効期限を正しく検証しているか、別環境向けのトークンを受理しないか、OAuth の redirect_uri を厳密に確認しているか調べてください。 ユーザー削除、無効化、パスワード変更、権限変更、ログアウトのあと、発行済みのセッション、JWT、API キーが使い続けられないか調べてください。パスワードリセットや招待用トークンが十分ランダムで、期限付き、1回限りかも確認してください。 認可 このリポジトリの IDOR / BOLA を調べてください。ログイン中のユーザーが URL、query、request body の user_id、tenant_id、project_id、file_id などを書き換えるだけで、他人のデータを読んだり変更したりできないか確認してください。入口から DB / Storage 操作までコードを追ってください。 このリポジトリの role、permission、admin 判定がどこから決まるか調べてください。プロフィール属性、メールアドレス、request body、cookie、localStorage、未検証の JWT claim など、ユーザー自身が変更できる値を権限判定に使っていないか確認してください。 このリポジトリの認証なしで呼べる API、RPC、Server Action、GraphQL、WebSocket、Storage を列挙してください。非公開データの取得や管理者操作ができないか確認してください。管理画面やユーザー固有操作を UI で隠しているだけで、サーバ側の認可がない箇所も探してください。 注入 このリポジトリの外部入力が HTML、SQL、NoSQL、検索クエリ、テンプレート、Markdown、メール、HTTP ヘッダ、CSV、ログに流れ込む箇所を調べてください。parameterization、escaping、sanitization が十分か、入力から sink までコードを追ってください。 このリポジトリの exec、spawn、eval、new Function、innerHTML、dangerouslySetInnerHTML、document.write、安全でない deserialize などをリポジトリ全体から探してください。外部入力が届くか、届く場合は安全に処理されているか確認してください。 このリポジトリのユーザー指定 URL、ファイル名、パス、リダイレクト先、アップロードを扱う処理を調べてください。SSRF、path traversal、open redirect、unsafe file upload が成立しないか確認してください。localhost、内部ネットワーク、クラウド metadata endpoint への到達も確認してください。 濫用 このリポジトリのログイン、サインアップ、パスワードリセット、確認コード再送、招待メール、OTP / SMS 送信を何回でも呼べないか調べてください。rate limit がアプリ、CDN / WAF、認証サービス、外部サービスのどこで保証されているか確認してください。 このリポジトリのユーザー操作で大量消費できる共有資源を探してください。メール送信枠、SMS、LLM / 外部 API、決済、重い画像・動画・GIS 処理、DB、Storage、queue などについて、誰が呼べて、どの上限があるか確認してください。 このリポジトリの成功と失敗の違いから情報を推測できないか調べてください。status code、エラーメッセージ、response size、redirect、応答時間から、ユーザーの存在、招待コード、API キー、決済情報などを大量に判定できないか確認してください。 露出 このリポジトリとデプロイ設定から、外部公開されるサービス、ポート、エンドポイントを調べてください。.git、.env、source map、debug / metrics endpoint、admin UI、DB、Redis、Storage、SSH、staging 環境などが意図せず公開されないか確認してください。 このリポジトリの HTTPS、HSTS、CSP、Cookie、CORS を確認してください。また API レスポンス、エラー、ログ、CI、frontend bundle、source map に、secret、token、password hash、個人情報、内部用属性など不要な情報が出ていないか調べてください。 このリポジトリの依存関係、ランタイム、CI/CD、ビルド、デプロイをセキュリティ観点で調べてください。既知の脆弱性や EOL があれば、バージョン一致だけで判断せず、実際に脆弱なコードパスへ外部入力が届くかまで確認してください。 最後にこれも聞く このリポジトリの認証なしで使える入口と、誰でもすぐ作れる一般ユーザーで使える入口をすべて列挙してください。それぞれ UI を通さず直接呼べるか確認してください。 認証、認可、注入、濫用、露出について「問題あり」「防御されている」「該当なし」「未確認」を区別してください。 見つけた問題の深刻度を再確認してください。誰が悪用でき、誰が困り、どこまで影響するかを基準にしてください。High / Critical と判断したものは、なぜ1段階低くないのか説明してください。仕様や誤検知を脆弱性扱いしていないかダブルチェックしてください。 提案した対策そのものが新しい DoS 手段にならないか確認してください。特に global rate limit や quota を、攻撃者が使い切ることで全ユーザーを止められないか検討してください。 本当に修正すべき問題だけ再検証してください。コード上の根拠、再現条件、影響範囲、既存 Issue / PR との重複を確認してください。再現できない推測は Issue にせず、追加調査候補にしてください。 関連記事 https://zenn.dev/yuiseki/articles/4537101d0d4463 Discussion",
+        "reactions": {
+          "threads": [
+            {
+              "platform": "はてなブックマーク",
+              "url": "https://b.hatena.ne.jp/entry/s/zenn.dev/yuiseki/articles/54b01670841898",
+              "count": 154
+            }
+          ],
+          "comments": [
+            {
+              "platform": "はてなブックマーク",
+              "text": "GO_HOME.mdを置いとくだけではダメですか"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "セキュリティとは別にスキル化されそう"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "claude-security プラグインでよくない?"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "この記事に悪意あるコメントつけられると厄介そう"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "Claude Codeに丸投げするだけでセキュパッチ作れそう草"
+            },
+            {
+              "platform": "はてなブックマーク",
+              "text": "敵にも味方にもなり得る存在。"
+            }
+          ]
+        }
+      },
+      "draftedAt": "2026-10-23T00:21:53.003Z",
+      "structure": 2,
+      "publishedAt": "2026-10-23T00:21:54.291Z"
     }
   ],
-  "publishedCount": 166,
-  "estimatedMrrUsd": 49800,
+  "publishedCount": 167,
+  "estimatedMrrUsd": 50100,
   "history": [
     {
       "date": "2026-07-24",
@@ -9549,7 +9606,12 @@
       "date": "2026-10-22",
       "published": 166,
       "estimatedMrrUsd": 49800
+    },
+    {
+      "date": "2026-10-23",
+      "published": 167,
+      "estimatedMrrUsd": 50100
     }
   ],
-  "lastRun": "2026-10-22T07:27:58.735Z"
+  "lastRun": "2026-10-23T00:21:56.242Z"
 }
