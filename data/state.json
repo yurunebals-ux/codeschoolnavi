@@ -1091,7 +1091,7 @@
     },
     {
       "slug": "ryokin-skillupai",
-      "keyword": "スキルアップAIの料金は高い？他社と比較",
+      "keyword": "スキルアップAIの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "skillupai"
@@ -1099,12 +1099,15 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-24T07:04:14.609Z",
+      "structure": 2,
+      "publishedAt": "2026-10-24T07:04:56.829Z"
     },
     {
       "slug": "yametoke-skillupai",
-      "keyword": "スキルアップAIはやめとけ？評判と後悔しない判断基準",
+      "keyword": "スキルアップAIは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "skillupai"
@@ -1112,8 +1115,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-24T07:04:56.534Z",
+      "structure": 2,
+      "publishedAt": "2026-10-24T07:04:56.830Z"
     },
     {
       "slug": "ryokin-aijobcolle",
@@ -5531,13 +5537,16 @@
       "kind": "topic",
       "cluster": "選び方",
       "score": 60,
-      "status": "queued",
+      "status": "rejected",
       "createdAt": "2026-09-25T07:25:52.398Z",
       "brief": "関数の作成・エラーの原因探し・VBAマクロの下書き・データ整形の手順をAIに相談できる。実データ（顧客情報など）を貼らず、列の構造だけ伝える。出てきた式はサンプルで検算。繰り返し作業が多いならPythonでの自動化も選択肢。",
       "hubs": [
         "/blog/topic-chatgpt-shigoto-tsukaikata/",
         "/blog/topic-python-nanigadekiru/"
-      ]
+      ],
+      "draftedAt": "2026-10-24T07:04:38.415Z",
+      "structure": 2,
+      "rejectReason": "score=115; 構造: 生成の残骸(もし関数の繰り返し作業が多いなら、Pythonの自動化も検討できます。Pytho)"
     },
     {
       "slug": "topic-joshi-mikeiken-engineer",
@@ -9163,8 +9172,8 @@
       "publishedAt": "2026-10-23T00:21:54.291Z"
     }
   ],
-  "publishedCount": 168,
-  "estimatedMrrUsd": 50400,
+  "publishedCount": 170,
+  "estimatedMrrUsd": 51000,
   "history": [
     {
       "date": "2026-07-24",
@@ -9620,7 +9629,12 @@
       "date": "2026-10-23",
       "published": 168,
       "estimatedMrrUsd": 50400
+    },
+    {
+      "date": "2026-10-24",
+      "published": 170,
+      "estimatedMrrUsd": 51000
     }
   ],
-  "lastRun": "2026-10-23T07:16:13.054Z"
+  "lastRun": "2026-10-24T07:04:58.882Z"
 }
