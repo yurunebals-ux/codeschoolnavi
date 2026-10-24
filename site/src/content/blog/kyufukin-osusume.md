@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [パナソニック子会社が禁止AIに33万人分個人情報を誤送信、なぜ防げなかったか](/blog/news-20261024-17qnh/)
 - [スキルアップAIは自分に合う？申込前に潰す3つの不安](/blog/yametoke-skillupai/)
 - [スキルアップAIの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-skillupai/)
 - [Copilot・ChatGPT・Gemini・Claudeの違い。仕事で選ぶときの見方](/blog/topic-copilot-chatgpt-chigai/)
 - [Claude Codeの20項目チェックで防げる意外な重大セキュリティリスク](/blog/news-20261023-1tbni/)
-- [Winスクールの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-winschool/)

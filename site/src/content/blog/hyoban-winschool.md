@@ -175,5 +175,5 @@ Winスクールの一般教育訓練給付対象コース23講座で利用可能
 - [Winスクールの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-winschool/)
 - [Winスクールは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [パナソニック子会社が禁止AIに33万人分個人情報を誤送信、なぜ防げなかったか](/blog/news-20261024-17qnh/)
 - [スキルアップAIは自分に合う？申込前に潰す3つの不安](/blog/yametoke-skillupai/)
-- [スキルアップAIの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-skillupai/)
