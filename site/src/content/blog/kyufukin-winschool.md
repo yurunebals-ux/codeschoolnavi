@@ -164,5 +164,5 @@ Winスクールには教育訓練給付金の対象コースが限られてい�
 - [Winスクールの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-winschool/)
 - [Winスクールの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [思いつきが数時間で形になる時代、AIがプログラマーの仕事を変えた理由](/blog/news-20261025-1ah5u/)
 - [AIジョブカレの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-aijobcolle/)
-- [女性が未経験からエンジニアを目指すとき、働き方と職場選びで見るべきこと](/blog/topic-joshi-mikeiken-engineer/)
