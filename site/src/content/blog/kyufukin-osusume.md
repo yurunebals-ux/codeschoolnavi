@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [AIジョブカレは自分に合う？申込前に潰す3つの不安](/blog/yametoke-aijobcolle/)
 - [思いつきが数時間で形になる時代、AIがプログラマーの仕事を変えた理由](/blog/news-20261025-1ah5u/)
 - [AIジョブカレの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-aijobcolle/)
 - [女性が未経験からエンジニアを目指すとき、働き方と職場選びで見るべきこと](/blog/topic-joshi-mikeiken-engineer/)
 - [AI活用で変わる働き方と人間関係、今知るべき変化点](/blog/news-20261025-1ikcn/)
-- [パナソニック子会社が禁止AIに33万人分個人情報を誤送信、なぜ防げなかったか](/blog/news-20261024-17qnh/)
