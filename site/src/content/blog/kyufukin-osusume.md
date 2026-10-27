@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [AVILENの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-avilen/)
+- [AVILENは自分に合う？申込前に潰す3つの不安](/blog/yametoke-avilen/)
 - [宮本茂が文化勲章受章、ゲーム作家性の核心を語る理由とは](/blog/news-20261026-1rix8/)
 - [AIジョブカレは自分に合う？申込前に潰す3つの不安](/blog/yametoke-aijobcolle/)
 - [思いつきが数時間で形になる時代、AIがプログラマーの仕事を変えた理由](/blog/news-20261025-1ah5u/)
-- [AIジョブカレの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-aijobcolle/)
-- [女性が未経験からエンジニアを目指すとき、働き方と職場選びで見るべきこと](/blog/topic-joshi-mikeiken-engineer/)
