@@ -175,5 +175,5 @@ TechAcademyやCodeCampでは、現役エンジニアから週2回のメンタリ
 - [プログラマカレッジの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-programmercollege/)
 - [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [GMOお名前.comの契約トラブル多数。解約困難なダークパターンの実態](/blog/news-20261028-ira1l/)
 - [AVILENの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-avilen/)
-- [AVILENは自分に合う？申込前に潰す3つの不安](/blog/yametoke-avilen/)
