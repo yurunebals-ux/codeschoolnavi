@@ -1187,7 +1187,7 @@
     },
     {
       "slug": "ryokin-cryptech",
-      "keyword": "クリプテックアカデミアの料金は高い？他社と比較",
+      "keyword": "クリプテックアカデミアの料金は高い？月あたりで他校と比べた結果",
       "template": "money:pricing",
       "tools": [
         "cryptech"
@@ -1195,12 +1195,15 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-28T08:07:43.419Z",
+      "structure": 2,
+      "publishedAt": "2026-10-28T08:08:47.593Z"
     },
     {
       "slug": "yametoke-cryptech",
-      "keyword": "クリプテックアカデミアはやめとけ？評判と後悔しない判断基準",
+      "keyword": "クリプテックアカデミアは自分に合う？申込前に潰す3つの不安",
       "template": "money:doubt",
       "tools": [
         "cryptech"
@@ -1208,8 +1211,11 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-28T08:08:11.578Z",
+      "structure": 2,
+      "publishedAt": "2026-10-28T08:08:47.593Z"
     },
     {
       "slug": "hikaku-ninjacode-potepan",
@@ -1222,8 +1228,11 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-28T08:08:47.383Z",
+      "structure": 2,
+      "publishedAt": "2026-10-28T08:08:47.593Z"
     },
     {
       "slug": "hikaku-ninjacode-skillhacks",
@@ -9629,8 +9638,8 @@
       "publishedAt": "2026-10-28T00:55:22.165Z"
     }
   ],
-  "publishedCount": 180,
-  "estimatedMrrUsd": 54000,
+  "publishedCount": 183,
+  "estimatedMrrUsd": 54900,
   "history": [
     {
       "date": "2026-07-24",
@@ -10109,9 +10118,9 @@
     },
     {
       "date": "2026-10-28",
-      "published": 180,
-      "estimatedMrrUsd": 54000
+      "published": 183,
+      "estimatedMrrUsd": 54900
     }
   ],
-  "lastRun": "2026-10-28T00:55:24.106Z"
+  "lastRun": "2026-10-28T08:08:49.091Z"
 }

@@ -164,5 +164,5 @@ Winスクールには教育訓練給付金の対象コースが限られてい�
 - [Winスクールの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-winschool/)
 - [Winスクールの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [GMOお名前.comの契約トラブル多数。解約困難なダークパターンの実態](/blog/news-20261028-ira1l/)
-- [AVILENの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-avilen/)
+- [クリプテックアカデミアの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-cryptech/)
+- [クリプテックアカデミアは自分に合う？申込前に潰す3つの不安](/blog/yametoke-cryptech/)
