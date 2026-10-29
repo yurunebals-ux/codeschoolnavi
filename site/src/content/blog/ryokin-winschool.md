@@ -135,5 +135,5 @@ TechAcademyやCodeCampも同様に返金保証は設けていないため、こ�
 - [Winスクールの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-winschool/)
 - [Winスクールは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [ヨドバシ.comで全国送料無料。家電から食品まで幅広い品揃えを確認](/blog/news-20261029-qa3gc/)
-- [グラフィックデザイナー職は4年で消える？AI時代の生き残り方とは](/blog/news-20261029-s8zhm/)
+- [DMM 生成AI CAMPとAidemyを徹底比較｜どっちがおすすめ？](/blog/hikaku-dmmaicamp-aidemy/)
+- [TechAcademyとCodeCampを徹底比較｜どっちがおすすめ？](/blog/hikaku-techacademy-codecamp/)

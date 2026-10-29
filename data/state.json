@@ -1245,8 +1245,11 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-29T08:16:01.617Z",
+      "structure": 2,
+      "publishedAt": "2026-10-29T08:16:54.305Z"
     },
     {
       "slug": "hikaku-dmmaicamp-aidemy",
@@ -1259,8 +1262,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-29T08:16:27.842Z",
+      "structure": 2,
+      "publishedAt": "2026-10-29T08:16:54.306Z"
     },
     {
       "slug": "hikaku-techacademy-codecamp",
@@ -1273,8 +1279,11 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-10-29T08:16:53.999Z",
+      "structure": 2,
+      "publishedAt": "2026-10-29T08:16:54.306Z"
     },
     {
       "slug": "hikaku-dmmwebcamp-techcamp",
@@ -9824,8 +9833,8 @@
       "publishedAt": "2026-10-29T01:30:23.830Z"
     }
   ],
-  "publishedCount": 185,
-  "estimatedMrrUsd": 55500,
+  "publishedCount": 188,
+  "estimatedMrrUsd": 56400,
   "history": [
     {
       "date": "2026-07-24",
@@ -10309,9 +10318,9 @@
     },
     {
       "date": "2026-10-29",
-      "published": 185,
-      "estimatedMrrUsd": 55500
+      "published": 188,
+      "estimatedMrrUsd": 56400
     }
   ],
-  "lastRun": "2026-10-29T01:30:26.197Z"
+  "lastRun": "2026-10-29T08:16:56.660Z"
 }

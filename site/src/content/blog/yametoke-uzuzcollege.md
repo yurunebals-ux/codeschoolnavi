@@ -143,5 +143,5 @@ draft: false
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [ウズウズカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [ヨドバシ.comで全国送料無料。家電から食品まで幅広い品揃えを確認](/blog/news-20261029-qa3gc/)
-- [グラフィックデザイナー職は4年で消える？AI時代の生き残り方とは](/blog/news-20261029-s8zhm/)
+- [DMM 生成AI CAMPとAidemyを徹底比較｜どっちがおすすめ？](/blog/hikaku-dmmaicamp-aidemy/)
+- [TechAcademyとCodeCampを徹底比較｜どっちがおすすめ？](/blog/hikaku-techacademy-codecamp/)
