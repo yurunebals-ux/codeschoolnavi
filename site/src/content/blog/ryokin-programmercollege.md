@@ -152,5 +152,5 @@ TechAcademyとCodeCampは年齢制限の記載が公式にありませんが、�
 - [プログラマカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-programmercollege/)
 - [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [クリプテックアカデミアの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-cryptech/)
-- [クリプテックアカデミアは自分に合う？申込前に潰す3つの不安](/blog/yametoke-cryptech/)
+- [ヨドバシ.comで全国送料無料。家電から食品まで幅広い品揃えを確認](/blog/news-20261029-qa3gc/)
+- [グラフィックデザイナー職は4年で消える？AI時代の生き残り方とは](/blog/news-20261029-s8zhm/)
