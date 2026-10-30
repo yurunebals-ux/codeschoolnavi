@@ -175,5 +175,5 @@ TechAcademyやCodeCampでは、現役エンジニアから週2回のメンタリ
 - [プログラマカレッジの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-programmercollege/)
 - [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [Cloudflare無料プランが通信費を半減させる仕組みとは何か](/blog/news-20261029-1oemz/)
-- [AIが53万人を動員、犯罪利用のリスクが急増した理由とは](/blog/news-20261029-1u6fy/)
+- [RUNTEQとポテパンキャンプを徹底比較｜どっちがおすすめ？](/blog/hikaku-runteq-potepan/)
+- [AI活用が進む現場で「人の役割」はどう変わるか](/blog/news-20261030-uxk5l/)
