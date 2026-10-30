@@ -134,5 +134,5 @@ RUNTEQの一部コースが対象です。詳細は各校の公式情報で確�
 - [ウズウズカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-uzuzcollege/)
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Figma作業が70%減った理由は生成AIClaude Codeの意外な使い方](/blog/news-20261030-1542a/)
 - [RUNTEQとポテパンキャンプを徹底比較｜どっちがおすすめ？](/blog/hikaku-runteq-potepan/)
-- [AI活用が進む現場で「人の役割」はどう変わるか](/blog/news-20261030-uxk5l/)

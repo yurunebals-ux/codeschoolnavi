@@ -143,5 +143,5 @@ draft: false
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [ウズウズカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Figma作業が70%減った理由は生成AIClaude Codeの意外な使い方](/blog/news-20261030-1542a/)
 - [RUNTEQとポテパンキャンプを徹底比較｜どっちがおすすめ？](/blog/hikaku-runteq-potepan/)
-- [AI活用が進む現場で「人の役割」はどう変わるか](/blog/news-20261030-uxk5l/)
