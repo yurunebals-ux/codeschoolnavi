@@ -134,5 +134,5 @@ RUNTEQの一部コースが対象です。詳細は各校の公式情報で確�
 - [ウズウズカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-uzuzcollege/)
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [LLMで増える「AIっぽさ」文章、具体的な推敲プロンプトで抑制](/blog/news-20261031-3qgu8/)
-- [Figma作業が70%減った理由は生成AIClaude Codeの意外な使い方](/blog/news-20261030-1542a/)
+- [スキルアップAIとAidemyを徹底比較｜どっちがおすすめ？](/blog/hikaku-skillupai-aidemy/)
+- [AVILENとAIジョブカレを徹底比較｜どっちがおすすめ？](/blog/hikaku-avilen-aijobcolle/)
