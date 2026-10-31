@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [LLMで増える「AIっぽさ」文章、具体的な推敲プロンプトで抑制](/blog/news-20261031-3qgu8/)
 - [Figma作業が70%減った理由は生成AIClaude Codeの意外な使い方](/blog/news-20261030-1542a/)
 - [RUNTEQとポテパンキャンプを徹底比較｜どっちがおすすめ？](/blog/hikaku-runteq-potepan/)
 - [AI活用が進む現場で「人の役割」はどう変わるか](/blog/news-20261030-uxk5l/)
 - [SHIFT TERAS CAMPUSとテックキャンプを徹底比較｜どっちがおすすめ？](/blog/hikaku-dmmwebcamp-techcamp/)
-- [Cloudflare無料プランが通信費を半減させる仕組みとは何か](/blog/news-20261029-1oemz/)
