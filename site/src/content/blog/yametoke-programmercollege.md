@@ -175,5 +175,5 @@ TechAcademyやCodeCampでは、現役エンジニアから週2回のメンタリ
 - [プログラマカレッジの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-programmercollege/)
 - [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [小学生の絵が「AIくさい」で公開中止、喜多方市しょうゆコンクールの波紋](/blog/news-20261031-1ap5j/)
 - [スキルアップAIとAidemyを徹底比較｜どっちがおすすめ？](/blog/hikaku-skillupai-aidemy/)
-- [AVILENとAIジョブカレを徹底比較｜どっちがおすすめ？](/blog/hikaku-avilen-aijobcolle/)

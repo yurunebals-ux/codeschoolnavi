@@ -152,5 +152,5 @@ CodeCampはオンラインマンツーマン指導で、JavaやPHP、Rubyなど�
 - [プログラマカレッジの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-programmercollege/)
 - [プログラマカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [小学生の絵が「AIくさい」で公開中止、喜多方市しょうゆコンクールの波紋](/blog/news-20261031-1ap5j/)
 - [スキルアップAIとAidemyを徹底比較｜どっちがおすすめ？](/blog/hikaku-skillupai-aidemy/)
-- [AVILENとAIジョブカレを徹底比較｜どっちがおすすめ？](/blog/hikaku-avilen-aijobcolle/)
