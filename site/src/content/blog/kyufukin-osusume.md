@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [社会人におすすめのオンライン学習プログラミングスクール](/blog/osusume-online-shakaijin/)
+- [AIエージェントの業務手順書「Agent Skills」設計で失敗を防ぐ8つのコツ](/blog/news-20261101-b0gei/)
+- [未経験者におすすめのオンライン学習プログラミングスクール](/blog/osusume-online-mikeiken/)
 - [小学生の絵が「AIくさい」で公開中止、喜多方市しょうゆコンクールの波紋](/blog/news-20261031-1ap5j/)
 - [スキルアップAIとAidemyを徹底比較｜どっちがおすすめ？](/blog/hikaku-skillupai-aidemy/)
-- [AVILENとAIジョブカレを徹底比較｜どっちがおすすめ？](/blog/hikaku-avilen-aijobcolle/)
-- [Aidemyとキカガクを徹底比較｜どっちがおすすめ？](/blog/hikaku-aidemy-kikagaku/)
-- [LLMで増える「AIっぽさ」文章、具体的な推敲プロンプトで抑制](/blog/news-20261031-3qgu8/)
