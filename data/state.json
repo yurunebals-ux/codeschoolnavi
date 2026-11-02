@@ -1427,8 +1427,11 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-11-02T09:08:47.204Z",
+      "structure": 2,
+      "publishedAt": "2026-11-02T09:09:35.985Z"
     },
     {
       "slug": "osusume-online-tenshoku",
@@ -1445,8 +1448,11 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-11-02T09:09:10.621Z",
+      "structure": 2,
+      "publishedAt": "2026-11-02T09:09:35.986Z"
     },
     {
       "slug": "osusume-online-fukugyo",
@@ -1463,8 +1469,11 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-09T07:14:10.533Z"
+      "status": "published",
+      "createdAt": "2026-09-09T07:14:10.533Z",
+      "draftedAt": "2026-11-02T09:09:35.638Z",
+      "structure": 2,
+      "publishedAt": "2026-11-02T09:09:35.986Z"
     },
     {
       "slug": "news-20260911-5mnke",
@@ -10516,8 +10525,8 @@
       "publishedAt": "2026-11-01T08:58:37.380Z"
     }
   ],
-  "publishedCount": 202,
-  "estimatedMrrUsd": 60600,
+  "publishedCount": 205,
+  "estimatedMrrUsd": 61500,
   "history": [
     {
       "date": "2026-07-24",
@@ -11018,7 +11027,12 @@
       "date": "2026-11-01",
       "published": 202,
       "estimatedMrrUsd": 60600
+    },
+    {
+      "date": "2026-11-02",
+      "published": 205,
+      "estimatedMrrUsd": 61500
     }
   ],
-  "lastRun": "2026-11-01T08:58:39.189Z"
+  "lastRun": "2026-11-02T09:09:38.866Z"
 }
