@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [50体AIが『マインクラフト』で作ったのは「怖がり官僚集団」だった](/blog/news-20261102-kf4nm/)
 - [転職希望者におすすめのオンライン学習プログラミングスクール](/blog/osusume-online-tenshoku/)
 - [副業したい人におすすめのオンライン学習プログラミングスクール](/blog/osusume-online-fukugyo/)
 - [大学生におすすめのオンライン学習プログラミングスクール](/blog/osusume-online-daigakusei/)
 - [社会人におすすめのオンライン学習プログラミングスクール](/blog/osusume-online-shakaijin/)
-- [AIエージェントの業務手順書「Agent Skills」設計で失敗を防ぐ8つのコツ](/blog/news-20261101-b0gei/)

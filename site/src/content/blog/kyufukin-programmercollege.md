@@ -152,5 +152,5 @@ CodeCampはオンラインマンツーマン指導で、JavaやPHP、Rubyなど�
 - [プログラマカレッジの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-programmercollege/)
 - [プログラマカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [50体AIが『マインクラフト』で作ったのは「怖がり官僚集団」だった](/blog/news-20261102-kf4nm/)
 - [転職希望者におすすめのオンライン学習プログラミングスクール](/blog/osusume-online-tenshoku/)
-- [副業したい人におすすめのオンライン学習プログラミングスクール](/blog/osusume-online-fukugyo/)

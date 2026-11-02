@@ -175,5 +175,5 @@ Winスクールの一般教育訓練給付対象コース23講座で利用可能
 - [Winスクールの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-winschool/)
 - [Winスクールは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [50体AIが『マインクラフト』で作ったのは「怖がり官僚集団」だった](/blog/news-20261102-kf4nm/)
 - [転職希望者におすすめのオンライン学習プログラミングスクール](/blog/osusume-online-tenshoku/)
-- [副業したい人におすすめのオンライン学習プログラミングスクール](/blog/osusume-online-fukugyo/)
