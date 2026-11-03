@@ -629,7 +629,12 @@
       "link": "https://automaton-media.com/articles/newsjp/20261102-477130/",
       "slug": "news-20261102-kf4nm",
       "date": "2026-11-02"
+    },
+    {
+      "link": "https://zenn.dev/koheiwada/articles/houritsu-japanese-laws-as-git",
+      "slug": "news-20261103-14pxg",
+      "date": "2026-11-03"
     }
   ],
-  "lastRun": "2026-11-02"
+  "lastRun": "2026-11-03"
 }
