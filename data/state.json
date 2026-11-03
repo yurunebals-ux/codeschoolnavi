@@ -1881,8 +1881,11 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-03T09:15:39.602Z",
+      "structure": 2,
+      "publishedAt": "2026-11-03T09:16:34.896Z"
     },
     {
       "slug": "osusume-online-josei",
@@ -1899,8 +1902,11 @@
       "kind": "money",
       "cluster": "オンライン学習",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-03T09:16:11.577Z",
+      "structure": 2,
+      "publishedAt": "2026-11-03T09:16:34.897Z"
     },
     {
       "slug": "osusume-hosho-mikeiken",
@@ -1914,8 +1920,11 @@
       "kind": "money",
       "cluster": "転職保証付き",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-03T09:16:34.660Z",
+      "structure": 2,
+      "publishedAt": "2026-11-03T09:16:34.897Z"
     },
     {
       "slug": "osusume-hosho-shakaijin",
@@ -10711,8 +10720,8 @@
       "rejectReason": "score=95; 見出しやや不足: 3; 内部リンクなし; 構造: 伏せ字(7. 名無しさん「「◯◯に関する法律（平成◯年法律第◯号）第)"
     }
   ],
-  "publishedCount": 206,
-  "estimatedMrrUsd": 61800,
+  "publishedCount": 209,
+  "estimatedMrrUsd": 62700,
   "history": [
     {
       "date": "2026-07-24",
@@ -11221,9 +11230,9 @@
     },
     {
       "date": "2026-11-03",
-      "published": 206,
-      "estimatedMrrUsd": 61800
+      "published": 209,
+      "estimatedMrrUsd": 62700
     }
   ],
-  "lastRun": "2026-11-03T03:18:05.458Z"
+  "lastRun": "2026-11-03T09:16:36.925Z"
 }

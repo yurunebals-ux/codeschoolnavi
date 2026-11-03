@@ -134,5 +134,5 @@ RUNTEQの一部コースが対象です。詳細は各校の公式情報で確�
 - [ウズウズカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-uzuzcollege/)
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [50体AIが『マインクラフト』で作ったのは「怖がり官僚集団」だった](/blog/news-20261102-kf4nm/)
-- [転職希望者におすすめのオンライン学習プログラミングスクール](/blog/osusume-online-tenshoku/)
+- [女性におすすめのオンライン学習プログラミングスクール](/blog/osusume-online-josei/)
+- [未経験者におすすめの転職保証付きプログラミングスクール](/blog/osusume-hosho-mikeiken/)
