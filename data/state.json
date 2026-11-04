@@ -1938,8 +1938,11 @@
       "kind": "money",
       "cluster": "転職保証付き",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-04T08:51:51.558Z",
+      "structure": 2,
+      "publishedAt": "2026-11-04T08:52:18.028Z"
     },
     {
       "slug": "osusume-hosho-daigakusei",
@@ -1953,8 +1956,11 @@
       "kind": "money",
       "cluster": "転職保証付き",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-04T08:52:17.813Z",
+      "structure": 2,
+      "publishedAt": "2026-11-04T08:52:18.028Z"
     },
     {
       "slug": "osusume-hosho-tenshoku",
@@ -10718,10 +10724,54 @@
       "draftedAt": "2026-11-03T03:18:01.270Z",
       "structure": 2,
       "rejectReason": "score=95; 見出しやや不足: 3; 内部リンクなし; 構造: 伏せ字(7. 名無しさん「「◯◯に関する法律（平成◯年法律第◯号）第)"
+    },
+    {
+      "slug": "news-20261104-1n1wl",
+      "keyword": "メルカリがAI活用率100％にした理由と無料イラスト減少の真実",
+      "template": "news:weekly",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 95,
+      "status": "published",
+      "createdAt": "2026-11-04T08:51:04.278Z",
+      "news": {
+        "items": [
+          {
+            "title": "いらすとや、ファンが生息域踏査 AIに押されサイト訪問者は減少",
+            "link": "https://www.nikkei.com/article/DGXZQOUC284ZY0Y6A021C2000000/",
+            "source": "nikkei.com",
+            "published": "2026年11月1日",
+            "snippet": "フリー素材のイラストサイト「いらすとや」が生成AI（人工知能）に押されている。データ分析会社の推計では9月のサイト利用者数が前年同月比で2割減った。今なお街中の活用例を収集するファンや、特徴的な画風を生かした人気IP（知的財産）とのコラボはある。新型コロナウイルス禍で利用が急伸したいらすとや。AI下でも...",
+            "bookmarks": 281,
+            "text": "企業での記事共有や会議資料への転載・複製、注文印刷などをご希望の方は、リンク先をご覧ください。\nフリー素材のイラストサイト「いらすとや」が生成AI（人工知能）に押されている。データ分析会社の推計では9月のサイト利用者数が前年同月比で2割減った。今なお街中の活用例を収集するファンや、特徴的な画風を生かした人気IP（知的財産）とのコラボはある。新型コロナウイルス禍で利用が急伸したいらすとや。AI下でも生き残れるのか。\nいらすとやはイラストレーターのみふねたかしさんが2012年1月から始めたフリ...\nこの記事は会員限定です。登録すると続きをお読みいただけます。\n有料登録すると続きをお読みいただけます。無料登録でも記事消費（一定数限定）をすることで閲覧できます。\nヒット商品の「売れる」理由を徹底リサーチ。売り場戦略から買い手の最新動向まで独自に取材。「日経MJビューアー」ならPC・スマホ・タブレットで読めます。 直近30日分の紙面イメージを閲覧でき、横書きのテキストに切り替えて読むこともできます。初めての方は、まずは1カ月無料体験！\nヒット商品の「売れる」理由を徹底リサーチ。売り場戦略から買い手の最新動向まで独自に取材。「日経MJビューアー」ならPC・スマホ・タブレットで読めます。 直近30日分の紙面イメージを閲覧でき、横書きのテキストに切り替えて読むこともできます。初めての方は、まずは1カ月無料体験！\n企業での記事共有や会議資料への転載・複製、注文印刷などをご希望の方は、リンク先をご覧ください。\nトピックをフォローすると、新着情報のチェックやまとめ読みがしやすくなります。"
+          },
+          {
+            "title": "その日、メルカリは「業務を止めた」――上司と部下が対立も、AI利用率100％をかなえたCAIOの奮闘記",
+            "link": "https://www.itmedia.co.jp/business/articles/2611/02/news032.html",
+            "source": "itmedia.co.jp",
+            "published": "2026年11月2日",
+            "snippet": "エージェント構築に時間を割きたい部下、止めたい上司 メルカリは2025年、働き方を見直し、AIを前提にした組織に変えるというビジョンを掲げた。「ChatGPT」「Claude」などのツールは半年ほどで全社に行き渡ったが、それが事業成果につながっているのか疑問が生まれた。 「ものづくりのスピードだけが上がっても、成果は...",
+            "bookmarks": 4,
+            "text": "�@����AI���Ɩ��Ɏ�������Ƃ������A����I��AI���g���Ј����������Ȃ��Ȃ����B�������A�g���l�������Ă��g�D�S�̂̐��ʂ��オ��Ƃ͌���Ȃ��B���ʂ𐶂ށuAI�̊��p��O��ɂ����g�D�v�́A�ǂ�����΂悢�̂��B\n�@AI���p��S�ЂɍL������Ƃ̈���A�����J�����B���Ђ����J����2026�N�x6�����̌��Z���������ɂ��ƁA�S�]�ƈ���AI�c�[�����p����1�������_��100���ɒB���A�G���W�j�A1�l������̊J���ʂ�AI���O�i2024�N6�����j��7.6�{�ƂȂ����B\n�@���̃����J���ł��AAI��O��ɂ����g�D�ւ̓]���͏����ɐi�񂾂킯�ł͂Ȃ��BAI���p�Ɏ��Ԃ��g�������Ј����~�߂��i�������Ƃ����B���Ђ�CTO�i�ō��Z�p�ӔC�ҁj�Ƃ���AI���p�𐄐i���A���݂͎��s����CHRO�i�ō��l���ӔC�ҁj��CAIO�i�ō�AI�ӔC�ҁj�𖱂߂�ؑ��r�玁���A�I�����C���J���t�@�����X�ł��̎��s�����������B\n�{�L���́ATOKIUM��ẪI�����C���J���t�@�����X�uTOKIUM AX VISION�v�i10��15���J�Áj�ɂ�����Z�b�V�����uAI�O��̑g�D�́A�N���ǂ�����̂��B�����J���̎��H�ƁA���̐�v����ɍ\\���B\n�@�����J����2025�N�A���������������AAI��O��ɂ����g�D�ɕς���Ƃ����r�W�������f�����B�uChatGPT�v�uClaude�v�Ȃǂ̃c�[���͔��N�قǂőS�Ђɍs���n�������A���ꂪ���Ɛ��ʂɂȂ����Ă���̂��^�₪���܂ꂽ�B\n�@�u���̂Â���̃X�s�[�h�������オ���Ă��A���ʂ͂Ȃ��Ȃ������Ȃ��B��悩��J���A�e��`�F�b�N�܂ŁA�㗬���牺����S�ăG�[�W�F���g�����Ȃ���΁A�S�Ђ͕ς��Ȃ��v�i�ؑ����j\n�@�����œ��Ђ́A�e�Ɩ��̈��AI�G�[�W�F���g�����A�����O��ɓ������j��ł��o�����B�Ƃ͂����A�V���ȕ��j����2000�l�̎Ј��ɂ����Z�������킯�ł͂Ȃ��B��������΂悢�̂�������Ȃ��Ј�������΁A�G�[�W�F���g���Ɏ��Ԃ��g�������������~�߂��i�������Ȃ��炢���Ƃ����B\n�@�ؑ�����2�T�Ԃ�1��A�S�Ј����W�܂��Łu�G�[�W�F���g���Ɏg�����Ԃ͖��ʂł͂Ȃ��v�Ɠ`���������B����ł��u���Ԃ��Ȃ��v�Ƃ������͂Ȃ��Ȃ�Ȃ������B\nCopyright &copy; ITmedia, Inc. All Rights Reserved.\n������ǂނɂ́A�R�����g�̗��p�K��ɓ��ӂ��u�A�C�e�B���f�B�AID�v����сuITmedia �r�W�l�X�I�����C���ʐM�v�̓o�^���K�v�ł�\nITmedia �r�W�l�X�I�����C���ҏW�������삷��������[���}�K�W���ł�\nITmedia �r�W�l�X�I�����C���̍ŐV�������͂�\nITmedia�̓A�C�e�B���f�B�A������Ђ̓o�^���W�ł��B\n���f�B�A�ꗗ | ����SNS | �L���ē� | ���₢���킹 | �v���C�o�V�[�|���V�[ | RSS | �^�c��� | �̗p��� | ������"
+          },
+          {
+            "title": "【未経験エンジニア転職】AIコーディングで僕が見ているポイント",
+            "link": "https://youtu.be/ccqFAFJWCV8",
+            "source": "YouTube",
+            "published": "2026年10月29日",
+            "snippet": "【未経験エンジニア転職】AIコーディングで僕が見ているポイント&nbsp;&nbsp;YouTube",
+            "text": "Final URL: https://youtu.be/watch?v=ccqFAFJWCV8\n\nBack \n\nSkip navigation\n\n Search \n\n Search with your voice \n\nSign in\n\nSign in to confirm you’re not a bot\n\nThis helps protect our community\n\nSign inLearn more\n\n# 【未経験エンジニア転職】AIコーディングで僕が見ているポイント\n\nあらきでぶ【未経験エンジニア向けポートフォリオ作り】\n\n あらきでぶ【未経験エンジニア向けポートフォリオ作り】 \n\n5 subscribers\n\nSubscribe\n\nSubscribed\n\n1\n\n Download \n\n7 views 5d ago\n\n 7 views • Oct 29, 2026 \n\n補足として、テストのタイトルだけを読むということもしています。 テストは仕様ですが、これを自然言語で読めるので早いです。 …more \n\nmore \n\nTranscript\n\nFollow along using the transcript.\n\nShow transcript\n\n ### あらきでぶ【未経験エンジニア向けポートフォリオ作り】 5 subscribers\n\nVideosAbout\n\n## Video details\n\nDate\n\nOct 29, 2026\n\nViews\n\n7\n\nLikes\n\n1\n\nShow less \n\n# 【未経験エンジニア転職】AIコーディングで僕が見ているポイント\n\n7 views 7 views\n\nOct 29, 2026\n\n1\n\n Download \n\n## Comments\n\n## Comments\n\nTop Show featured commentsNewest Show recent comments, including potential spam\n\n## In this video\n\nTranscript\n\n## 【未経験エンジニア転職】AIコーディングで僕が見ているポイント\n\nあらきでぶ【未経験エンジニア向けポートフォリオ作り】\n\n あらきでぶ【未経験エンジニア向けポートフォリオ作り】 \n\n1 Likes\n\n7 Views\n\nOct 29 2026\n\n補足として、テストのタイトルだけを読むということもしています。 テストは仕様ですが、これを自然言語で読めるので早いです。 ---------------------------------------------------------------------------------------------- 現役のWebエンジニアです！ 日々の学びやエンジニアの日常を発信しています。 Qiita、X、GitHubもありますので、よければご覧ください。 ・Qiita: https://qiita.com/ArakiDev ・X: https://x.com/arakiDeve ・GitHub: https://github.com/araki-dev-2000…...more \n\n...more Show less \n\nTranscript\n\nFollow along using the transcript.\n\nShow transcript\n\n ### あらきでぶ【未経験エンジニア向けポートフォリオ作り】 5 subscribers\n\nVideosAbout\n\n## Video details\n\nDate\n\nOct 29, 2026\n\nViews\n\n7\n\nLikes\n\n1\n\n## Transcript\n\nNaN / NaN\n\n 57:42\n\n### [[An amazing episode!] The complete beginner's guide to 'Claude Code'! Even beginners can definit...\n\nパソコン博士TAIKI\n\n2.1M 4mo ago\n\nAuto-dubbed\n\n 56:58 New\n\n### Politics Chat, November 3, 2026\n\nHeather Cox Richardson\n\n291K Streamed 8h ago\n\n 30:54\n\n### A video explaining \"API\" to those who are not good with machines\n\nゆるコンピュータ科学ラジオ\n\n946K 9mo ago\n\nAuto-dubbed\n\n 2:26:08\n\n### AI研修(Day1)【MIXI 26新卒技術研修】\n\nMIXI TECH&DESIGN \n\n428K 3mo ago\n\n 1:10:32\n\n### Introduction to Spiking Neural Networks, Neuromorphic Computing and Computational Neuroscience\n\nMarko Velic\n\n27K 2w ago\n\n 13:18\n\n### Get BAND 9 After Using These Listening Tips\n\nIELTS Advantage\n\n1.9M 1y ago\n\n 20:10 New\n\n### Michael Lewis on the Civil Servants Who Stood Up to DOGE | The Daily Show\n\nThe Daily Show\n\n626K 1d ago\n\n 1:52:44 New\n\n### Surah Al-Baqarah Full (سورة البقرة) | Beautiful Quran Recitation for Peace & Protection | Alaa Aqel\n\nSunnah Way Official\n\n326K 1d ago\n\n 45:20\n\n### 【Claude Code完全入門】誰でも使えるツール／実行革命／ChatGPTとの違い／５体のAIエージェントで実演／願望の質＝アウトプットの質／Skills活用法／経営者こそ使うべき／言語化が全て\n\nPIVOT 公式チャンネル\n\n1.8M 8mo ago\n\n 29:21\n\n### [[GPT-6/Dots Compatible] A Complete Guide to ChatGPT Work! What You Can Do with the $20/Month Subs...](https://youtu.be/watch?v=z39-E8ojmCg&pp=0gcJCSkMAYcqIYzv)\n\nAKIYA MOVIE\n\n126K 1mo ago\n\n 42:47\n\n### This is the Key to Prompting AI... An AI Pro Explains How to Create Requirements Documents and Ti...\n\nいまにゅのAIプログラミング塾\n\n24K 4mo ago\n\nAuto-dubbed\n\n 38:00\n\n### How Senior Engineers Actually Think About System Design & Architecture | Full Course\n\nJavaScript Mastery\n\n567K 1mo ago\n\n 29:28\n\n### The gentlest time of year | Piano Playlist\n\nJames Quinn\n\n69K 8d ago\n\n 40:54 New\n\n### The New AI Agent Game: Chien Li-feng on the Five Global Revolutions\n\n經濟日報EDN\n\n170K 4d ago\n\nAuto-dubbed\n\n 17:39\n\n### 【バイブコーディング超入門講座第2回 】 何を学べばいいの？初心者が知っておくべき7つのスキル / LLM・エージェント・IDE・Git・データベース・セキュリティ・デプロイ\n\n安野貴博の自由研究\n\n197K 7mo ago\n\n 29:49\n\n### Andrej Karpathy: From Vibe Coding to Agentic Engineering w/ Stephanie Zhan\n\nSequoia Capital\n\n1.7M 6mo ago\n\n 56:20 New\n\n### [[Viewer Q&A] AI Cyber ​​Attacks and Data Leaks: #Takahiro Yasuno answers concerns and questions r...](https://youtu.be/watch?v=fokaZbSUgcU&pp=ugUHEgVlbi1VUw%3D%3D)\n\n「チームみらい」公式チャンネル\n\n107K 1d ago\n\nAuto-dubbed\n\n 17:17\n\n### mattpocock/skills: A complete AI Coding workflow, end-to-end\n\nMatt Pocock\n\n784K 3mo ago\n\n 41:21\n\n### [[AI Secretary Revolution with dots] New ChatGPT Features! The"
+          }
+        ]
+      },
+      "draftedAt": "2026-11-04T08:51:26.896Z",
+      "structure": 2,
+      "publishedAt": "2026-11-04T08:52:18.028Z"
     }
   ],
-  "publishedCount": 209,
-  "estimatedMrrUsd": 62700,
+  "publishedCount": 212,
+  "estimatedMrrUsd": 63600,
   "history": [
     {
       "date": "2026-07-24",
@@ -11232,7 +11282,12 @@
       "date": "2026-11-03",
       "published": 209,
       "estimatedMrrUsd": 62700
+    },
+    {
+      "date": "2026-11-04",
+      "published": 212,
+      "estimatedMrrUsd": 63600
     }
   ],
-  "lastRun": "2026-11-03T09:16:36.925Z"
+  "lastRun": "2026-11-04T08:52:19.957Z"
 }
