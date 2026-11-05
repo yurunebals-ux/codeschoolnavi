@@ -135,5 +135,5 @@ TechAcademyやCodeCampも同様に返金保証は設けていないため、こ�
 - [Winスクールの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-winschool/)
 - [Winスクールは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [社会人におすすめの転職保証付きプログラミングスクール](/blog/osusume-hosho-shakaijin/)
-- [大学生におすすめの転職保証付きプログラミングスクール](/blog/osusume-hosho-daigakusei/)
+- [Wikipediaをオフラインで使う時代は来たのか、Project NOMADの衝撃](/blog/news-20261105-1fgiq/)
+- [ChatGPT無料版が10月29日から応答を簡潔化、Plus・Proは影響なし](/blog/news-20261105-dmen2/)
