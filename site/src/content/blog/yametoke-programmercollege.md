@@ -175,5 +175,5 @@ TechAcademyやCodeCampでは、現役エンジニアから週2回のメンタリ
 - [プログラマカレッジの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-programmercollege/)
 - [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [OpenAIがrobots.txtでAI学習拒否を統一、Web運営者は何を失うのか](/blog/news-20261106-1p9i8/)
-- [副業したい人におすすめの転職保証付きプログラミングスクール](/blog/osusume-hosho-fukugyo/)
+- [女性におすすめの転職保証付きプログラミングスクール](/blog/osusume-hosho-josei/)
+- [未経験者におすすめの資格・就職支援プログラミングスクール](/blog/osusume-tenshoku-mikeiken/)

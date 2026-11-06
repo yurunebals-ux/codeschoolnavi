@@ -132,5 +132,5 @@ Winスクールの大きな特徴に、教育訓練給付制度の対象講座�
 - [Winスクールの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-winschool/)
 - [Winスクールは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [OpenAIがrobots.txtでAI学習拒否を統一、Web運営者は何を失うのか](/blog/news-20261106-1p9i8/)
-- [副業したい人におすすめの転職保証付きプログラミングスクール](/blog/osusume-hosho-fukugyo/)
+- [女性におすすめの転職保証付きプログラミングスクール](/blog/osusume-hosho-josei/)
+- [未経験者におすすめの資格・就職支援プログラミングスクール](/blog/osusume-tenshoku-mikeiken/)
