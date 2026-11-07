@@ -142,4 +142,4 @@ Railsキャリアコースは期間が長い分、よりじっくりスキルを
 - [ウズウズカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-uzuzcollege/)
 - [ウズウズカレッジの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-uzuzcollege/)
 - [未経験者におすすめの資格・就職支援プログラミングスクール](/blog/osusume-tenshoku-mikeiken/)
-- [ウズウズカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-uzuzcollege/)
+- [大学生におすすめの資格・就職支援プログラミングスクール](/blog/osusume-tenshoku-daigakusei/)
