@@ -136,5 +136,5 @@ draft: false
 - [プログラマカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-programmercollege/)
 - [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [生成AIで変わるエンジニアの役割と「旧時代」の自覚](/blog/news-20261107-ti0wf/)
-- [大学生におすすめの資格・就職支援プログラミングスクール](/blog/osusume-tenshoku-daigakusei/)
+- [40代におすすめの資格・就職支援プログラミングスクール](/blog/osusume-tenshoku-yondai/)
+- [ISUCON2026で注目、8時間無停止自律動作が勝利を分けた理由](/blog/news-20261108-1r99t/)
