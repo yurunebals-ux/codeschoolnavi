@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [未経験者におすすめのマンツーマン指導プログラミングスクール](/blog/osusume-mtm-mikeiken/)
+- [地方企業の人材減少とAI技術進展が示す「若手採用の壁」](/blog/news-20261109-1g7rt/)
+- [女性におすすめの資格・就職支援プログラミングスクール](/blog/osusume-tenshoku-josei/)
 - [ローカルLLMで患者情報を守りつつ50分短縮できる医療現場の秘密](/blog/news-20261109-jremx/)
 - [40代におすすめの資格・就職支援プログラミングスクール](/blog/osusume-tenshoku-yondai/)
-- [ISUCON2026で注目、8時間無停止自律動作が勝利を分けた理由](/blog/news-20261108-1r99t/)
-- [生成AIで変わるエンジニアの役割と「旧時代」の自覚](/blog/news-20261107-ti0wf/)
-- [大学生におすすめの資格・就職支援プログラミングスクール](/blog/osusume-tenshoku-daigakusei/)
