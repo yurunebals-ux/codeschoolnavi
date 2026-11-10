@@ -164,5 +164,5 @@ Winスクールには教育訓練給付金の対象コースが限られてい�
 - [Winスクールの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-winschool/)
 - [Winスクールの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Metaの無料AIエージェントMuseが4コアVMを無償提供、実用性は本物か](/blog/news-20261110-1kwbq/)
 - [大学生におすすめのマンツーマン指導プログラミングスクール](/blog/osusume-mtm-daigakusei/)
-- [転職希望者におすすめのマンツーマン指導プログラミングスクール](/blog/osusume-mtm-tenshoku/)

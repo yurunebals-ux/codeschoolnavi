@@ -136,5 +136,5 @@ draft: false
 - [プログラマカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-programmercollege/)
 - [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Metaの無料AIエージェントMuseが4コアVMを無償提供、実用性は本物か](/blog/news-20261110-1kwbq/)
 - [大学生におすすめのマンツーマン指導プログラミングスクール](/blog/osusume-mtm-daigakusei/)
-- [転職希望者におすすめのマンツーマン指導プログラミングスクール](/blog/osusume-mtm-tenshoku/)
