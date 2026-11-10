@@ -2206,8 +2206,11 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-10T09:31:25.624Z",
+      "structure": 2,
+      "publishedAt": "2026-11-10T09:32:19.190Z"
     },
     {
       "slug": "osusume-mtm-daigakusei",
@@ -2222,8 +2225,11 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-10T09:31:51.783Z",
+      "structure": 2,
+      "publishedAt": "2026-11-10T09:32:19.191Z"
     },
     {
       "slug": "osusume-mtm-tenshoku",
@@ -2238,8 +2244,11 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-10T09:32:18.798Z",
+      "structure": 2,
+      "publishedAt": "2026-11-10T09:32:19.191Z"
     },
     {
       "slug": "osusume-mtm-fukugyo",
@@ -11416,8 +11425,8 @@
       "publishedAt": "2026-11-09T09:29:05.255Z"
     }
   ],
-  "publishedCount": 230,
-  "estimatedMrrUsd": 69000,
+  "publishedCount": 233,
+  "estimatedMrrUsd": 69900,
   "history": [
     {
       "date": "2026-07-24",
@@ -11958,7 +11967,12 @@
       "date": "2026-11-09",
       "published": 230,
       "estimatedMrrUsd": 69000
+    },
+    {
+      "date": "2026-11-10",
+      "published": 233,
+      "estimatedMrrUsd": 69900
     }
   ],
-  "lastRun": "2026-11-09T09:29:08.810Z"
+  "lastRun": "2026-11-10T09:32:22.926Z"
 }
