@@ -152,5 +152,5 @@ CodeCampはオンラインマンツーマン指導で、JavaやPHP、Rubyなど�
 - [プログラマカレッジの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-programmercollege/)
 - [プログラマカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [Metaの無料AIエージェントMuseが4コアVMを無償提供、実用性は本物か](/blog/news-20261110-1kwbq/)
-- [大学生におすすめのマンツーマン指導プログラミングスクール](/blog/osusume-mtm-daigakusei/)
+- [副業したい人におすすめのマンツーマン指導プログラミングスクール](/blog/osusume-mtm-fukugyo/)
+- [40代におすすめのマンツーマン指導プログラミングスクール](/blog/osusume-mtm-yondai/)

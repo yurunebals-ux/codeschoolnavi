@@ -2263,8 +2263,11 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-11T09:04:47.085Z",
+      "structure": 2,
+      "publishedAt": "2026-11-11T09:05:49.513Z"
     },
     {
       "slug": "osusume-mtm-yondai",
@@ -2279,8 +2282,11 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-11T09:05:17.753Z",
+      "structure": 2,
+      "publishedAt": "2026-11-11T09:05:49.513Z"
     },
     {
       "slug": "osusume-mtm-josei",
@@ -2295,8 +2301,11 @@
       "kind": "money",
       "cluster": "マンツーマン指導",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-11T09:05:49.187Z",
+      "structure": 2,
+      "publishedAt": "2026-11-11T09:05:49.513Z"
     },
     {
       "slug": "osusume-ai-mikeiken",
@@ -11490,8 +11499,8 @@
       "publishedAt": "2026-11-10T16:05:15.715Z"
     }
   ],
-  "publishedCount": 234,
-  "estimatedMrrUsd": 70200,
+  "publishedCount": 237,
+  "estimatedMrrUsd": 71100,
   "history": [
     {
       "date": "2026-07-24",
@@ -12037,7 +12046,12 @@
       "date": "2026-11-10",
       "published": 234,
       "estimatedMrrUsd": 70200
+    },
+    {
+      "date": "2026-11-11",
+      "published": 237,
+      "estimatedMrrUsd": 71100
     }
   ],
-  "lastRun": "2026-11-10T16:05:18.789Z"
+  "lastRun": "2026-11-11T09:05:52.785Z"
 }
