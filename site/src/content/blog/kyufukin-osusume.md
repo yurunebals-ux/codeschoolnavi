@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [大学生のAI月2万円課金が生活費を圧迫する現実と学びの格差](/blog/news-20261111-1h9rt/)
 - [副業したい人におすすめのマンツーマン指導プログラミングスクール](/blog/osusume-mtm-fukugyo/)
 - [40代におすすめのマンツーマン指導プログラミングスクール](/blog/osusume-mtm-yondai/)
 - [女性におすすめのマンツーマン指導プログラミングスクール](/blog/osusume-mtm-josei/)
 - [Metaの無料AIエージェントMuseが4コアVMを無償提供、実用性は本物か](/blog/news-20261110-1kwbq/)
-- [大学生におすすめのマンツーマン指導プログラミングスクール](/blog/osusume-mtm-daigakusei/)
