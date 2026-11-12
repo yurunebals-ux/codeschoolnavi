@@ -2323,8 +2323,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "rejected",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-12T09:33:54.382Z",
+      "structure": 2,
+      "rejectReason": "score=75; 薄い: 4093字（基準4200字）; 見出しやや不足: 6; 構造: 表崩れ(区切り行がない:  | 3〜9ヶ月   | あり           | あり)"
     },
     {
       "slug": "osusume-ai-shakaijin",
@@ -2342,8 +2345,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-12T09:34:27.740Z",
+      "structure": 2,
+      "publishedAt": "2026-11-12T09:35:01.305Z"
     },
     {
       "slug": "osusume-ai-daigakusei",
@@ -2361,8 +2367,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-12T09:35:00.924Z",
+      "structure": 2,
+      "publishedAt": "2026-11-12T09:35:01.305Z"
     },
     {
       "slug": "osusume-ai-tenshoku",
@@ -11592,8 +11601,8 @@
       "publishedAt": "2026-11-11T15:50:29.687Z"
     }
   ],
-  "publishedCount": 238,
-  "estimatedMrrUsd": 71400,
+  "publishedCount": 240,
+  "estimatedMrrUsd": 72000,
   "history": [
     {
       "date": "2026-07-24",
@@ -12144,7 +12153,12 @@
       "date": "2026-11-11",
       "published": 238,
       "estimatedMrrUsd": 71400
+    },
+    {
+      "date": "2026-11-12",
+      "published": 240,
+      "estimatedMrrUsd": 72000
     }
   ],
-  "lastRun": "2026-11-11T15:50:33.093Z"
+  "lastRun": "2026-11-12T09:35:05.101Z"
 }
