@@ -175,5 +175,5 @@ TechAcademyやCodeCampでは、現役エンジニアから週2回のメンタリ
 - [プログラマカレッジの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-programmercollege/)
 - [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [社会人におすすめのAI・データ分析プログラミングスクール](/blog/osusume-ai-shakaijin/)
-- [大学生におすすめのAI・データ分析プログラミングスクール](/blog/osusume-ai-daigakusei/)
+- [定年後移住に仙台が推される理由と岩手山「ジェネリック富士山」の実態](/blog/news-20261112-c6c5v/)
+- [MetaのAIエージェントMuse、課金利用で見えた実力と運用のコツ](/blog/news-20261112-umh54/)
