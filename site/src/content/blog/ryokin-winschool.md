@@ -135,5 +135,5 @@ TechAcademyやCodeCampも同様に返金保証は設けていないため、こ�
 - [Winスクールの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-winschool/)
 - [Winスクールは教育訓練給付金の対象？戻る金額・対象コース・申請の順番](/blog/kyufukin-winschool/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [定年後移住に仙台が推される理由と岩手山「ジェネリック富士山」の実態](/blog/news-20261112-c6c5v/)
-- [MetaのAIエージェントMuse、課金利用で見えた実力と運用のコツ](/blog/news-20261112-umh54/)
+- [40代におすすめのAI・データ分析プログラミングスクール](/blog/osusume-ai-yondai/)
+- [転職希望者におすすめのAI・データ分析プログラミングスクール](/blog/osusume-ai-tenshoku/)

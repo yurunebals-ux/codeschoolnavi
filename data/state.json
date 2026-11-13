@@ -2389,8 +2389,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-13T09:19:14.632Z",
+      "structure": 2,
+      "publishedAt": "2026-11-13T09:20:41.365Z"
     },
     {
       "slug": "osusume-ai-fukugyo",
@@ -2408,8 +2411,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-13T09:19:56.690Z",
+      "structure": 2,
+      "publishedAt": "2026-11-13T09:20:41.365Z"
     },
     {
       "slug": "osusume-ai-yondai",
@@ -2427,8 +2433,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-13T09:20:40.938Z",
+      "structure": 2,
+      "publishedAt": "2026-11-13T09:20:41.366Z"
     },
     {
       "slug": "osusume-ai-josei",
@@ -11787,8 +11796,8 @@
       "publishedAt": "2026-11-12T16:33:52.280Z"
     }
   ],
-  "publishedCount": 242,
-  "estimatedMrrUsd": 72600,
+  "publishedCount": 245,
+  "estimatedMrrUsd": 73500,
   "history": [
     {
       "date": "2026-07-24",
@@ -12344,7 +12353,12 @@
       "date": "2026-11-12",
       "published": 242,
       "estimatedMrrUsd": 72600
+    },
+    {
+      "date": "2026-11-13",
+      "published": 245,
+      "estimatedMrrUsd": 73500
     }
   ],
-  "lastRun": "2026-11-12T16:33:56.339Z"
+  "lastRun": "2026-11-13T09:20:45.851Z"
 }

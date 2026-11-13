@@ -136,5 +136,5 @@ draft: false
 - [プログラマカレッジは自分に合う？申込前に潰す3つの不安](/blog/yametoke-programmercollege/)
 - [プログラマカレッジに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-programmercollege/)
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
-- [定年後移住に仙台が推される理由と岩手山「ジェネリック富士山」の実態](/blog/news-20261112-c6c5v/)
-- [MetaのAIエージェントMuse、課金利用で見えた実力と運用のコツ](/blog/news-20261112-umh54/)
+- [40代におすすめのAI・データ分析プログラミングスクール](/blog/osusume-ai-yondai/)
+- [転職希望者におすすめのAI・データ分析プログラミングスクール](/blog/osusume-ai-tenshoku/)

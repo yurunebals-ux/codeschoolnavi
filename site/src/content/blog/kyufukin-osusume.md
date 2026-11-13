@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [40代におすすめのAI・データ分析プログラミングスクール](/blog/osusume-ai-yondai/)
+- [転職希望者におすすめのAI・データ分析プログラミングスクール](/blog/osusume-ai-tenshoku/)
+- [副業したい人におすすめのAI・データ分析プログラミングスクール](/blog/osusume-ai-fukugyo/)
 - [定年後移住に仙台が推される理由と岩手山「ジェネリック富士山」の実態](/blog/news-20261112-c6c5v/)
 - [MetaのAIエージェントMuse、課金利用で見えた実力と運用のコツ](/blog/news-20261112-umh54/)
-- [社会人におすすめのAI・データ分析プログラミングスクール](/blog/osusume-ai-shakaijin/)
-- [大学生におすすめのAI・データ分析プログラミングスクール](/blog/osusume-ai-daigakusei/)
-- [大学生のAI月2万円課金が生活費を圧迫する現実と学びの格差](/blog/news-20261111-1h9rt/)
