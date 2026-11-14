@@ -2455,8 +2455,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-14T08:49:11.032Z",
+      "structure": 2,
+      "publishedAt": "2026-11-14T08:49:56.133Z"
     },
     {
       "slug": "osusume-free-mikeiken",
@@ -2469,8 +2472,11 @@
       "kind": "money",
       "cluster": "無料スクール",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-14T08:49:33.062Z",
+      "structure": 2,
+      "publishedAt": "2026-11-14T08:49:56.133Z"
     },
     {
       "slug": "osusume-free-shakaijin",
@@ -2483,8 +2489,11 @@
       "kind": "money",
       "cluster": "無料スクール",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "rejected",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-14T08:49:55.796Z",
+      "structure": 2,
+      "rejectReason": "score=65; 薄い: 3268字（基準4200字）; 見出しやや不足: 6; 構造: 段落の重複(広告表記：本記事はスクール運営者からの広告依頼に基づき作成し)"
     },
     {
       "slug": "osusume-free-daigakusei",
@@ -11889,8 +11898,8 @@
       "publishedAt": "2026-11-14T01:57:29.009Z"
     }
   ],
-  "publishedCount": 246,
-  "estimatedMrrUsd": 73800,
+  "publishedCount": 248,
+  "estimatedMrrUsd": 74400,
   "history": [
     {
       "date": "2026-07-24",
@@ -12454,9 +12463,9 @@
     },
     {
       "date": "2026-11-14",
-      "published": 246,
-      "estimatedMrrUsd": 73800
+      "published": 248,
+      "estimatedMrrUsd": 74400
     }
   ],
-  "lastRun": "2026-11-14T01:57:33.070Z"
+  "lastRun": "2026-11-14T08:49:59.748Z"
 }
