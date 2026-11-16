@@ -2540,8 +2540,11 @@
       "kind": "money",
       "cluster": "無料スクール",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-15T07:29:08.617Z"
+      "status": "published",
+      "createdAt": "2026-09-15T07:29:08.617Z",
+      "draftedAt": "2026-11-16T09:18:58.476Z",
+      "structure": 2,
+      "publishedAt": "2026-11-16T09:20:29.461Z"
     },
     {
       "slug": "topic-ai-engineer-mikeiken",
@@ -3495,8 +3498,11 @@
       "kind": "money",
       "cluster": "無料スクール",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-11-16T09:19:57.718Z",
+      "structure": 2,
+      "publishedAt": "2026-11-16T09:20:29.462Z"
     },
     {
       "slug": "osusume-free-josei",
@@ -3509,8 +3515,11 @@
       "kind": "money",
       "cluster": "無料スクール",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-11-16T09:20:29.121Z",
+      "structure": 2,
+      "publishedAt": "2026-11-16T09:20:29.462Z"
     },
     {
       "slug": "osusume-tsugaku-mikeiken",
@@ -11948,8 +11957,8 @@
       "publishedAt": "2026-11-15T09:01:36.705Z"
     }
   ],
-  "publishedCount": 250,
-  "estimatedMrrUsd": 75000,
+  "publishedCount": 253,
+  "estimatedMrrUsd": 75900,
   "history": [
     {
       "date": "2026-07-24",
@@ -12520,7 +12529,12 @@
       "date": "2026-11-15",
       "published": 250,
       "estimatedMrrUsd": 75000
+    },
+    {
+      "date": "2026-11-16",
+      "published": 253,
+      "estimatedMrrUsd": 75900
     }
   ],
-  "lastRun": "2026-11-15T09:01:40.324Z"
+  "lastRun": "2026-11-16T09:20:33.157Z"
 }
