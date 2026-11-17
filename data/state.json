@@ -3532,8 +3532,11 @@
       "kind": "money",
       "cluster": "通学・オンライン",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-11-17T10:27:00.941Z",
+      "structure": 2,
+      "publishedAt": "2026-11-17T10:28:12.785Z"
     },
     {
       "slug": "osusume-tsugaku-shakaijin",
@@ -3546,8 +3549,11 @@
       "kind": "money",
       "cluster": "通学・オンライン",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-11-17T10:27:37.426Z",
+      "structure": 2,
+      "publishedAt": "2026-11-17T10:28:12.785Z"
     },
     {
       "slug": "osusume-tsugaku-daigakusei",
@@ -3560,8 +3566,11 @@
       "kind": "money",
       "cluster": "通学・オンライン",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-11-17T10:28:12.506Z",
+      "structure": 2,
+      "publishedAt": "2026-11-17T10:28:12.785Z"
     },
     {
       "slug": "osusume-tsugaku-tenshoku",
@@ -11957,8 +11966,8 @@
       "publishedAt": "2026-11-15T09:01:36.705Z"
     }
   ],
-  "publishedCount": 253,
-  "estimatedMrrUsd": 75900,
+  "publishedCount": 256,
+  "estimatedMrrUsd": 76800,
   "history": [
     {
       "date": "2026-07-24",
@@ -12534,7 +12543,12 @@
       "date": "2026-11-16",
       "published": 253,
       "estimatedMrrUsd": 75900
+    },
+    {
+      "date": "2026-11-17",
+      "published": 256,
+      "estimatedMrrUsd": 76800
     }
   ],
-  "lastRun": "2026-11-16T09:20:33.157Z"
+  "lastRun": "2026-11-17T10:28:15.676Z"
 }
