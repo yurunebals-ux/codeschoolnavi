@@ -744,7 +744,12 @@
       "link": "https://news.yahoo.co.jp/articles/96562e2afb133efd110daca76a40d3d1d0dda89f?source=rss",
       "slug": "news-20261115-i2yps",
       "date": "2026-11-15"
+    },
+    {
+      "link": "https://qiita.com/nuco_d/items/b279477cbcdbe5921abd",
+      "slug": "news-20261118-1enir",
+      "date": "2026-11-18"
     }
   ],
-  "lastRun": "2026-11-15"
+  "lastRun": "2026-11-18"
 }
