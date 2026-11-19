@@ -3617,8 +3617,11 @@
       "kind": "money",
       "cluster": "通学・オンライン",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-11-19T10:04:45.755Z",
+      "structure": 2,
+      "publishedAt": "2026-11-19T10:05:51.367Z"
     },
     {
       "slug": "osusume-tsugaku-josei",
@@ -3631,8 +3634,11 @@
       "kind": "money",
       "cluster": "通学・オンライン",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "rejected",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-11-19T10:05:21.653Z",
+      "structure": 2,
+      "rejectReason": "score=85; 薄い: 3982字（基準4200字）; 構造: 生成の残骸(【著者】シニアライター・編集長)"
     },
     {
       "slug": "osusume-dokugaku-mikeiken",
@@ -3645,8 +3651,11 @@
       "kind": "money",
       "cluster": "独学・買い切り",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-11-19T10:05:51.030Z",
+      "structure": 2,
+      "publishedAt": "2026-11-19T10:05:51.367Z"
     },
     {
       "slug": "osusume-dokugaku-shakaijin",
@@ -12065,8 +12074,8 @@
       "publishedAt": "2026-11-18T09:57:33.569Z"
     }
   ],
-  "publishedCount": 259,
-  "estimatedMrrUsd": 77700,
+  "publishedCount": 261,
+  "estimatedMrrUsd": 78300,
   "history": [
     {
       "date": "2026-07-24",
@@ -12652,7 +12661,12 @@
       "date": "2026-11-18",
       "published": 259,
       "estimatedMrrUsd": 77700
+    },
+    {
+      "date": "2026-11-19",
+      "published": 261,
+      "estimatedMrrUsd": 78300
     }
   ],
-  "lastRun": "2026-11-18T09:57:38.045Z"
+  "lastRun": "2026-11-19T10:05:55.151Z"
 }
