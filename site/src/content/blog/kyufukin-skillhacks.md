@@ -168,4 +168,4 @@ SkillHacksは69,800円〜で買い切り形式。TechAcademyやCodeCampの約3�
 - [独学・買い切りのプログラミングスクールおすすめ比較](/blog/osusume-hikaku-dokugaku/)
 - [SkillHacksの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-skillhacks/)
 - [未経験者におすすめの独学・買い切りプログラミングスクール](/blog/osusume-dokugaku-mikeiken/)
-- [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [社会人におすすめの独学・買い切りプログラミングスクール](/blog/osusume-dokugaku-shakaijin/)

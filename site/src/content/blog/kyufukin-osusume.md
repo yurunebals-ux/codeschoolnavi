@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [大学生におすすめの独学・買い切りプログラミングスクール](/blog/osusume-dokugaku-daigakusei/)
+- [社会人におすすめの独学・買い切りプログラミングスクール](/blog/osusume-dokugaku-shakaijin/)
 - [AIの返答理解に時間がかかる人向け「認知特性分析Skill」の実用例](/blog/news-20261120-1egi3/)
 - [電車内でパソコン作業中のプライバシー問題、隣席からの注意は正当か](/blog/news-20261120-k05i2/)
 - [家系ラーメン壱角家、2億円投資でも客足戻らず業績低迷の理由](/blog/news-20261119-1dsoq/)
-- [40代におすすめの通学・オンラインプログラミングスクール](/blog/osusume-tsugaku-yondai/)
-- [未経験者におすすめの独学・買い切りプログラミングスクール](/blog/osusume-dokugaku-mikeiken/)

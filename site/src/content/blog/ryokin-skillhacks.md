@@ -169,4 +169,4 @@ TechAcademyやCodeCampも返金保証はありませんが、分割払いが可�
 - [SkillHacksの評判・口コミは？不満の声の真相と向いている人](/blog/hyoban-skillhacks/)
 - [SkillHacksに教育訓練給付金は使える？対象外の場合に使える制度と実質負担](/blog/kyufukin-skillhacks/)
 - [未経験者におすすめの独学・買い切りプログラミングスクール](/blog/osusume-dokugaku-mikeiken/)
-- [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [社会人におすすめの独学・買い切りプログラミングスクール](/blog/osusume-dokugaku-shakaijin/)

@@ -3668,8 +3668,11 @@
       "kind": "money",
       "cluster": "独学・買い切り",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-11-20T09:53:24.469Z",
+      "structure": 2,
+      "publishedAt": "2026-11-20T09:53:55.898Z"
     },
     {
       "slug": "osusume-dokugaku-daigakusei",
@@ -3682,8 +3685,11 @@
       "kind": "money",
       "cluster": "独学・買い切り",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-18T07:14:27.537Z"
+      "status": "published",
+      "createdAt": "2026-09-18T07:14:27.537Z",
+      "draftedAt": "2026-11-20T09:53:55.496Z",
+      "structure": 2,
+      "publishedAt": "2026-11-20T09:53:55.899Z"
     },
     {
       "slug": "topic-portfolio-mikeiken",
@@ -12343,10 +12349,53 @@
       "draftedAt": "2026-11-20T02:49:09.593Z",
       "structure": 2,
       "publishedAt": "2026-11-20T02:49:11.048Z"
+    },
+    {
+      "slug": "news-20261120-1w62p",
+      "keyword": "AIで作業も開発も「手放し」で済む時代の落とし穴",
+      "template": "news:weekly",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 95,
+      "status": "rejected",
+      "createdAt": "2026-11-20T09:52:34.419Z",
+      "news": {
+        "items": [
+          {
+            "title": "アプリ作りに専門知識が不要に!? AIが変える常識と落とし穴 | NHKニュース",
+            "link": "https://news.web.nhk/newsweb/na/nd-20261117de77369",
+            "source": "news.web.nhk",
+            "published": "2026年11月18日",
+            "snippet": "アプリは、専門家だけが作るもの。そんな常識が変わり始めています。 AIに言葉で指示するだけで、誰でもアプリを作れる時代に。被災地で人々の命をつなぎ、仕事の効率化にも大きな成果を上げています。 一方…",
+            "bookmarks": 223,
+            "text": "アプリは、専門家だけが作るもの。そんな常識が変わり始めています。\nAIに言葉で指示するだけで、誰でもアプリを作れる時代に。被災地で人々の命をつなぎ、仕事の効率化にも大きな成果を上げています。\n日本の自動車業界 主要素材・部品共通化 競争力強化へ【QA】\nAPEC 高市首相 習近平国家主席と握手 プーチン氏と意見交わす\nAPEC首脳会議開幕へ 習主席 トランプ大統領をみずから出迎え\n地球から1光日 259億キロ離れた宇宙を進むボイジャー1号の旅\nアプリ作りに専門知識が不要に!? AIが変える常識と落とし穴\n地球から1光日 259億キロ離れた宇宙を進むボイジャー1号の旅\nパナソニック野球部 最後の戦い 名門が示した社会人野球の価値\nNHK ONEはどなたでもご利用になれます。受信契約がお済みの世帯の方は、別途の契約や追加のご負担なく利用できます。契約をされていない世帯の方が利用した場合は、放送法に基づき契約が必要です。 受信契約の詳細や、事業・学校での利用については下記のリンクをご覧ください。"
+          },
+          {
+            "title": "AI副業の作業を「寝ている間に」回す仕組み。Claudeはパソコンを閉じていても動く。でも任せていいのは下書きまで",
+            "link": "https://youtu.be/2Uby1HE8Y8I",
+            "source": "YouTube",
+            "published": "2026年11月18日",
+            "snippet": "AI副業の作業を「寝ている間に」回す仕組み。Claudeはパソコンを閉じていても動く。でも任せていいのは下書きまで&nbsp;&nbsp;YouTube",
+            "text": "Final URL: https://youtu.be/watch?v=2Uby1HE8Y8I\n\nBack \n\nSkip navigation\n\n Search \n\n Search with your voice \n\nSign in\n\nSign in to confirm you’re not a bot\n\nThis helps protect our community\n\nSign inLearn more\n\n# AI副業の作業を「寝ている間に」回す仕組み。Claudeはパソコンを閉じていても動く。でも任せていいのは下書きまで\n\nAI\n\nDigital Ads JP - 広告のプロのAI副業\n\n Digital Ads JP - 広告のプロのAI副業 \n\n417 subscribers\n\nSubscribe\n\nSubscribed\n\n1\n\n Download \n\n27 views 1d ago#AI副業#ClaudeCode#副業\n\n 27 views • Nov 18, 2026 • #AI副業 #ClaudeCode #副業 \n\nClaude のスケジュールされたタスクは、パソコンがスリープでも、アプリを閉じていても、決めた時間に動きます（Claude 公式ヘルプ）。一方で、AI の答えの手直しに週に平均4.5時間かけている、という調査もあります（Zapier、1,100人）。 この動画では、Claude の公式ヘルプと海外の調査をもとに、副業の作業を寝ている間に回して、朝5分で確かめる仕組みを整理…more \n\nmore \n\nHow this was made\n\nMade with AI\n\nSounds or visuals were altered or fully generated. Learn more\n\n## Chapters\n\nView all\n\n ### オープニング ### オープニング 0:00\n\n### オープニング\n\n0:00\n\n ### 第1章 寝ている間に動く、2つのしくみ ### 第1章 寝ている間に動く、2つのしくみ 1:34\n\n### 第1章 寝ている間に動く、2つのしくみ\n\n1:34\n\n ### 第2章 任せていい仕事、任せない仕事 ### 第2章 任せていい仕事、任せない仕事 4:27\n\n### 第2章 任せていい仕事、任せない仕事\n\n4:27\n\n ### 第3章 副業の作業を自動化する5つの例 ### 第3章 副業の作業を自動化する5つの例 7:02\n\n### 第3章 副業の作業を自動化する5つの例\n\n7:02\n\n ### 第4章 安全に回す決まりと、朝5分の確認 ### 第4章 安全に回す決まりと、朝5分の確認 11:20\n\n### 第4章 安全に回す決まりと、朝5分の確認\n\n11:20\n\nTranscript\n\nFollow along using the transcript.\n\nShow transcript\n\n ### Digital Ads JP - 広告のプロのAI副業 417 subscribers\n\nVideosAbout\n\n## Video details\n\nDate\n\nNov 18, 2026\n\nViews\n\n27\n\nLikes\n\n1\n\nShow less \n\n#AI副業#ClaudeCode#副業\n# AI副業の作業を「寝ている間に」回す仕組み。Claudeはパソコンを閉じていても動く。でも任せていいのは下書きまで\n\nAI\n\n27 views 27 views\n\nNov 18, 2026\n\n1\n\n Download \n\n## Comments\n\n## Comments 1\n\nTop Show featured commentsNewest Show recent comments, including potential spam\n\n## In this video\n\nChapters\n\nTranscript\n\n## Chapters\n\n ### オープニング ### オープニング 0:00\n\n### オープニング\n\n0:00\n\n ### 第1章 寝ている間に動く、2つのしくみ ### 第1章 寝ている間に動く、2つのしくみ 1:34\n\n### 第1章 寝ている間に動く、2つのしくみ\n\n1:34\n\n ### 第2章 任せていい仕事、任せない仕事 ### 第2章 任せていい仕事、任せない仕事 4:27\n\n### 第2章 任せていい仕事、任せない仕事\n\n4:27\n\n ### 第3章 副業の作業を自動化する5つの例 ### 第3章 副業の作業を自動化する5つの例 7:02\n\n### 第3章 副業の作業を自動化する5つの例\n\n7:02\n\n ### 第4章 安全に回す決まりと、朝5分の確認 ### 第4章 安全に回す決まりと、朝5分の確認 11:20\n\n### 第4章 安全に回す決まりと、朝5分の確認\n\n11:20\n\nSync to video time\n\n## AI副業の作業を「寝ている間に」回す仕組み。Claudeはパソコンを閉じていても動く。でも任せていいのは下書きまで\n\nDigital Ads JP - 広告のプロのAI副業\n\n Digital Ads JP - 広告のプロのAI副業 \n\n1 Likes\n\n27 Views\n\nNov 18 2026\n\nClaude のスケジュールされたタスクは、パソコンがスリープでも、アプリを閉じていても、決めた時間に動きます（Claude 公式ヘルプ）。一方で、AI の答えの手直しに週に平均4.5時間かけている、という調査もあります（Zapier、1,100人）。 この動画では、Claude の公式ヘルプと海外の調査をもとに、副業の作業を寝ている間に回して、朝5分で確かめる仕組みを整理します。広告代理店で働く筆者の目線で、任せていい仕事・任せない仕事の線引きと、5つの例、今夜から始める手順も紹介します。 ▶ この動画の絵と映像は Higgsfield AI で作っています https://higgsfield.ai?fpr=digital55 ※上のリンクはアフィリエイトリンク（広告）です。 ■ この動画でわかること ・時間で動く Claude のスケジュールされたタスク（Pro から、毎時・毎日・毎週・平日・手動）と、出来事で動く n8n（月170万人、1,000以上のサービスとつながる） ・AI の手直しに週3時間以上 58%、平均約4.5時間、困った経験 74%（Zapier） ・大切な力の1位は AI の答えの品質チェック 50%、86% が AI の答えを「たたき台」として扱う（Microsoft 2026 Work Trend Index） ・読み取りと書き込み、プロンプトインジェクション（Claude 公式ヘルプ） ・副業の作業を自動化する5つの例と、安全に回す4つの決まり、朝5分の確認 ※寝ている間に「稼げる」という話ではありません。作業の下書きを進め、朝に人が確かめる仕組みの紹介です。稼げる金額を約束するものではありません。 ※5つの例は、このチャンネルの整理です。このチャンネルは、同じ形で試していません。機能は2026年11月14日時点で確認したもので、変わることがあります。 ※ナレーターのキャラクターは、このチャンネルのオリジナルで、AI で作った絵です。 ■ チャプター 0:00 オープニング 1:34 第1章 寝ている間に動く、2つのしくみ 4:27 第2章 任せていい仕事、任せない仕事 7:02 第3章 副業の作業を自動化する5つの例 11:20 第4章 安全に回す決まりと、朝5分の確認 ■ 主な出典 ・Claude ヘルプ「Claude Cowork で定期的なタスクをスケジュールする」https://support.claude.com/ja/article... ・Claude ヘルプ「Claude Cowork を安全に使用する」https://support.claude.com/ja/article... ・Zapier「AI workslop」調査（2026年1月）https://zapier.com/blog/ai-workslop/ ・Microsoft「2026 Work Trend Index」（2026年5月5日）https://www.microsoft.com/en-us/workl... ・n8n と SAP の発表（2026年5月12日）https://www.highlandeurope.com/n8n-va... ・Fiverr「Business Trends Index 2026」（2026年6月9日）https://www.globenewswire.com/news-re... ▶ 前回：Claude・ChatGPT・Geminiを仕事で使い分ける方法。目かくしのランキングでは、1位は分野ごとに入れかわる •Claude・ChatGPT・Geminiを仕事で使い分ける方法。目かくしのランキン... ※このチャンネルは Anthropic・Zapier・Microsoft・n8n・Fiverr とは関係ありません。 ※ナレーションはAI合成音声、イラストと映像はAI生成です。 ■ Digital Ads JP ブログ：https://www.digitaladsjp.com/ note：https://note.com/adsextremer X：https://x.com/Ad"
+          },
+          {
+            "title": "プレスリリース：規程のFAQ化から採用・評価まで生成AIで──株式会社if、「人事・総務のための生成AI活用コース」をChatGPT・Gemini・Copilot・Claude Coworkの4編で展開（PR TIMES）",
+            "link": "https://mainichi.jp/articles/20261120/pr2/00m/020/005000c",
+            "source": "毎日新聞",
+            "published": "2026年11月19日",
+            "snippet": "プレスリリース：規程のFAQ化から採用・評価まで生成AIで──株式会社if、「人事・総務のための生成AI活用コース」をChatGPT・Gemini・Copilot・Claude Coworkの4編で展開（PR TIMES）&nbsp;&nbsp;毎日新聞",
+            "text": "特集 プレスリリース ＠Press、Digital PR Platform、共同通信PRワイヤー、PR TIMESが提供するプレスリリースを掲載します。 この特集をフォロー 特集一覧 プレスリリース 規程のFAQ化から採用・評価まで生成AIで──株式会社if、「人事・総務のための生成AI活用コース」をChatGPT・Gemini・Copilot・Claude Coworkの4編で展開（PR TIMES） 2026/11/20 00:40（最終更新 11/20 00:40） 3679文字 情報提供 プレスリリースページの情報について ポスト みんなのポストを見る シェア ブックマーク 保存 メール リンク 印刷 共通の基礎と人事・総務の実務は全編共通、ツールの機能を使う部分だけを編ごとに学ぶ2ヶ月のeラーニング研修です。最後に自部署で最初に取り組む1業務を決めて終えます。 株式会社if（本社：東京都中野区、代表取締役：伊藤保幸）が運営する「Tech Mentor 法人研修」は、2026年11月10日より、人事・総務職向けの生成AI研修「人事・総務のための生成AI活用コース」を、社内で使うAIツールに合わせて選べる4つの編（ChatGPT／Gemini／Copilot／Claude Cowork）で提供を開始しました。本コースは、社内規程やFAQの整備、問い合わせ対応、採用、評価といった人事・総務の仕事を、受講者が自社のツールで回せる手順に落とし込むためのeラーニング研修（期間2ヶ月）です。 「人事・総務のための生成AI活用コース」概要 - 名称：人事・総務のための生成AI活用コース- 対象：人事・総務職の方- ツール編：ChatGPT編／Gemini編／Copilot編／Claude Cowork編から1つを選択- 期間：2ヶ月（各ツール編共通）- 学習時間：約12時間～約15時間40分（ツール編により異なる）- 形式：eラーニング- 詳細・お問い合わせ：https://biz.tech-mentor.dev/ai-training/hr 人事・総務のための生成AI活用コースの背景：使うAIツールは会社ごとに違う 人事・総務の業務は、規程の整備、社内からの問い合わせ対応、採用、評価、オンボーディングなど、文章や資料を扱う仕事が多く、生成AIを生かしやすい領域です。一方で、社内で使える生成AIツールは会社ごとに異なります。Microsoft 365 を使う会社では Copilot、Google Workspace を使う会社では Gemini、というように、研修で学んだツールと実際に使えるツールが違うと、学んだ手順をそのまま業務に移せません。 そこで本コースでは、人事・総務の実務の部分は全編で共通にしたうえで、ツールの機能と連携先を使う部分だけを4つの編に分けました。受講者は自社で使っているツールの編を選び、そのツールで回せる手順を作ります。 人事・総務のための生成AI活用コースの特徴：変わるのはツール別パートだけ - 共通の基礎（第1～7章）：生成AIの基礎知識、プロンプト、倫理とセキュリティ、文章・データ・資料の基本を学びます。- 人事・総務の実務（第8～9章）：育成と評価、労務と問い合わせ対応を題材に、全ツール編共通の内容で学びます。- ツール別パート（第10～11章）：選んだツールの機能と連携先を使って業務を動かします。ツール編によって内容が変わるのはこのパートだけです。- 最初の1業務を決めて終える：まとめでは業務の棚卸しを行い、自部署で最初に取り組む1業務を決めて研修を終えます。 人事・総務のための生成AI活用コースのカリキュラム：育成・評価から労務・問い合わせ対応まで 第8章 育成と評価 - 人事評価制度の素案づくり- トレーニング・オンボーディングのカリキュラム作成- 学習計画の立案と教材・ツールの選定 第9章 労務と問い合わせ対応 - 勤怠・休暇データの集計と異常値の確認- 社内問い合わせの類型化とFAQ化- 入社手続きの案内づくり 人事・総務のための生成AI活用コースの4つのツール編 - ChatGPT編（約13時間20分）：Projects、カスタムGPT、Scheduled Tasks、Deep Research を使います。演習例は、規程一式からのFAQ・マニュアル作成、求人票・スカウト文面の作成です。- Gemini編（約15時間40分）：Gmail、Google Meet、スプレッドシート、Googleスライドと連携します。演習例は、フォーム等のアンケート結果の分析、Driveの教材を使ったトレンド調査です。- Copilot編（約14時間40分）：Outlook、Teams、Excel、Word と連携します。演習例は、Teams・Outlookと連携した社内問い合わせ対応、面接調整と面談記録の要約です。- Claude Cowork編（約12時間）：フォルダの一括読み込み、Excel・Word・PowerPoint出力、Skills、スケジュール実行を使います。演習例は、契約書・社内規程のリスク指摘、履歴書・職務経歴書の比較です。 人事・総務のための生成AI活用コースと人材開発支援助成金 本コースは、人材開発支援助成金（事業展開等リスキリング支援コース）の対象となる可能性があります。同コースの要件を満たし、労働局に認められた場合、中小企業は受講料（税込）の75%が助成されます。eラーニングによる訓練は、1人あたりの上限が15万円で、賃金助成の対象外です。同コースは令和8年度（2027年3月末）までの制度です。 ※受給を保証するものではありません。支給要件・支給額は管轄労働局の判断によります。 ※助成の対象となるには、担当する職務に直結した訓練であることなどの要件を満たす必要があります。最新の要件は厚生労働省・都道府県労働局の公式情報をご確認ください。 人事・総務のための生成AI活用コースの導入の流れ - お問い合わせフォームから、受講を検討している業務・人数・社内で使っている生成AIツールをお知らせください。- 社内で使っているツールに合わせて、受講するツール編を決めます。- 助成金の活用を予定する場合は、受講者が担当する業務を特定したうえで、貴社から管轄の労働局へ計画届を提出していただきます。- eラーニングで受講を開始し、2ヶ月で修了します。 よくある質問（FAQ）：人事・総務のための生成AI活用コース Q. ツール編によって何が変わりますか？ A. 変わるのは第10～11章のツール別パートだけです。生成AIの共通基礎（第1～7章）と、人事・総務の実務を扱う第8～9章は、どのツール編でも同じ内容です。 Q. どのツール編を選べばよいですか？ A. 社内で使っている、または使う予定の生成AIツールに合わせてお選びください。本コースは、自社で使うツールで回せる手順を作ることを目的にしています。 Q. 期間と学習時間はどのくらいですか？ A. 期間はどのツール編も2ヶ月です。学習時間はツール編により異なり、Claude Cowork編が約12時間、ChatGPT編が約13時間20分、Copilot編が約14時間40分、Gemini編が約15時間40分です。 人事・総務のための生成AI活用コースの今後の展開 当社は、人事・総務のほか、経理・財務、営業、マーケティングの職種別コースも、同じく4つのツール編で提供しています。今後も各ツールの機能追加に合わせてツール別パートの演習を更新し、人事・総務の現場で使える手順を増やしていきます。 お申し込み・お問い合わせ Tech Mentor 法人研修 人事・総務のための生成AI活用コース：https://biz.tech-mentor.dev/ai-training/hr ＜報道関係者向けお問い合わせ先＞ 株式会社if 広報担当/E-mail:support@if-tech.co.jp 株式会社ifについて 株式会社if（イフ）は、「テクノロジーで誰もが創造できる世界へ」をビジョンに掲げ、「Tech Mentor」ブランドを通じてIT人材育成・生成AI人材育成・法人向けリスキリング研修を提供しています。研修にとどまらず、企業の生成AI活用を戦略立案から構築・教育・実践まで一気通貫で伴走支援しています。 会社概要 会社名：株式会社if 代表者：代表取締役 伊藤保幸 設立：2021年1月 所在地：東京都中野区野方 2-17-1 メール:support@if-tech.co.jp 会社ホームページ：https://if-tech.co.jp/ 株式会社ifの事業内容： ・プログラミング学習サービス『Code Lesson』運営：https://code-lesson.com ・プログラミング教育スクール『Tech Mentor』運営：https://tech-mentor.dev ・人材開発ソリューション事業：https://tech-mentor.dev/business ・人材紹介事業：https://tech-mentor.dev/agent ・システムソリューション事業：https://if-tech.co.jp/entrusted_development ※記載の製品名・サービス名（ChatGPT、Gemini、Copilot、Claude等）は各社の商標または登録商標であり、参照目的で記載しています。企業プレスリリース詳細へ Google検索で「毎日新聞」の記事を優先的に表示で"
+          }
+        ]
+      },
+      "draftedAt": "2026-11-20T09:52:55.420Z",
+      "structure": 2,
+      "rejectReason": "score=95; 見出しやや不足: 6; 内部リンクなし; データにない金額・調査の言及: 当サイトの調査によると"
     }
   ],
-  "publishedCount": 264,
-  "estimatedMrrUsd": 79200,
+  "publishedCount": 266,
+  "estimatedMrrUsd": 79800,
   "history": [
     {
       "date": "2026-07-24",
@@ -12940,9 +12989,9 @@
     },
     {
       "date": "2026-11-20",
-      "published": 264,
-      "estimatedMrrUsd": 79200
+      "published": 266,
+      "estimatedMrrUsd": 79800
     }
   ],
-  "lastRun": "2026-11-20T02:49:15.861Z"
+  "lastRun": "2026-11-20T09:54:00.577Z"
 }
