@@ -3971,8 +3971,11 @@
       "kind": "money",
       "cluster": "独学・買い切り",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-19T07:11:41.729Z"
+      "status": "published",
+      "createdAt": "2026-09-19T07:11:41.729Z",
+      "draftedAt": "2026-11-21T09:28:25.991Z",
+      "structure": 2,
+      "publishedAt": "2026-11-21T09:28:45.422Z"
     },
     {
       "slug": "osusume-dokugaku-fukugyo",
@@ -3985,8 +3988,11 @@
       "kind": "money",
       "cluster": "独学・買い切り",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-09-19T07:11:41.729Z"
+      "status": "published",
+      "createdAt": "2026-09-19T07:11:41.729Z",
+      "draftedAt": "2026-11-21T09:28:45.022Z",
+      "structure": 2,
+      "publishedAt": "2026-11-21T09:28:45.422Z"
     },
     {
       "slug": "osusume-dokugaku-yondai",
@@ -12469,10 +12475,54 @@
       "draftedAt": "2026-11-20T16:41:51.796Z",
       "structure": 2,
       "publishedAt": "2026-11-20T16:41:52.732Z"
+    },
+    {
+      "slug": "news-20261121-1v8p9",
+      "keyword": "AIの民主化が進む一方で、利用環境の壁が浮き彫りに",
+      "template": "news:weekly",
+      "tools": [],
+      "kind": "news",
+      "cluster": "ニュース",
+      "score": 95,
+      "status": "published",
+      "createdAt": "2026-11-21T09:27:45.958Z",
+      "news": {
+        "items": [
+          {
+            "title": "1万円のシンセをAIで魔改造。電子楽器のファームウェア開放が始まった | ギズモード・ジャパン",
+            "link": "https://www.gizmodo.jp/article/0b0516f2-94f8-442e-bdae-2987f090be13/",
+            "source": "gizmodo.jp",
+            "published": "2026年11月20日",
+            "snippet": "中国のM-VAVEという楽器メーカーが販売している小型FMシンセ「FM-1」が、ちょっとした話題になっています。きっかけはユーザーによるカスタムファームウェアの開発です。 FM-1はアリエクなどを覗くと、だいたい1万円以下で買えるガジェットシンセ。音源方式はFMで、6オペレーター、32アルゴリズム、同時発音数12とシンプ...",
+            "bookmarks": 161,
+            "text": "Published Time: 2026-11-20T22:00:00+09:00\n\n*   グローバルナビゲーションへジャンプ\n*   メインコンテンツへジャンプ\n*   フッターへジャンプ\n\n18:12:25\nJST\n\nMENUSNS\n\n# 1万円のシンセをAIで魔改造。電子楽器のファームウェア開放が始まった\n\nNov 20,2026 22:00 8,474\n\n巽英俊 ( GIZMODOライター )\n\nGoogle検索でギズモードを お気に入りに追加\n\nImage: M-VAVE\n\n中国の**M-VAVE**という楽器メーカーが販売している小型FMシンセ「**FM-1**」が、ちょっとした話題になっています。きっかけはユーザーによる**カスタムファームウェアの開発**です。\n\nPR(シュア・ジャパン株式会社) その音、どう作った？プロに聞ける特別な夜 \n\n## この秋からソフトウェア改造が流行\n\nImage: M-VAVE\n\nFM-1はアリエクなどを覗くと、だいたい1万円以下で買えるガジェットシンセ。音源方式はFMで、6オペレーター、32アルゴリズム、同時発音数12とシンプルな構成です。\n\n今年の夏ごろから有志がこのFM-1の**内部プログラムの解析**を始め、秋になってAIコーディングツールを活用した**カスタムファームウェア**が急加速。**FM以外のシンセエンジンやら、リズムマシンやサンプラーの機能を盛り込むやら**で、グルーブボックス化する猛者も現れ、SNSで情報共有しています。ツマミが多いインターフェースがグルーブボックス向きだったのも目をつけられた理由でしょう。しかも安いし。\n\n注目すべきは、これに対するM-VAVE側の反応です。非公式でやりたい放題な改造ブームを排除するどころか、10月には「**FM1 Open**」を発表。開発用SDKやソースコード、ブラウザ上で動く開発環境まで提供し、「**どんどんいじっちゃってください**」とばかりに、ユーザーによる機能拡張を後押しする姿勢を見せています。\n\nこの動きに呼応したのかは定かではありませんが、**AKAI Professional（アカイ プロフェッショナル）**は次の新製品「Sample Key」でファームウェアの開放をほのめかしています。**BEHRINGER（ベリンガー）**も開発中のサンプラー「KICK」のオープンソース化を打ち出しています。\n\n> この投稿をInstagramで見る\n> Akai Professional(@akai_pro)がシェアした投稿\n\n## AIを使って自分好みに進化させる\n\nファームウェアといったら、その製品がどう機能するのかを定義する超重要事項であり、勝手な書き換えなどメーカーからすればご法度だったはず。そこをユーザーに開放することに、楽器業界が新しい可能性を見い出し始めているようです。\n\n背景にあるのは、**AIによるソフトウェア開発の民主化**です。これまではC言語などでプログラムを書ける一部の技術者だけが参加できた領域を、AIがどどっと開放しました。プログラミング経験が乏しくても、欲しい機能をAIに言葉で伝えて実装できるようになったわけです。\n\nメーカー側にもメリットがあります。低価格化が進む楽器市場では、ハードウェアの性能や音色だけで差別化するのが難しくなっています。実際のところ、最近は各社の製品がかなり似通ってきていますしね。しかし、ユーザーが自由に機能を追加できる製品なら、**購入後も話題が続き、コミュニティが育ち、製品寿命も延びます**。ユーザー自身が無償の開発チームになってくれるわけですから。\n\nもちろん、改造による故障や動作保証、セキュリティなどの課題は残ります。すべてを自由にするのではなく、メーカーがどこまで責任を持つかという制度の設計も重要になるでしょう。しかし、これからの楽器は、完成された製品を買うだけのものではなくなるのかもしれません。**メーカーはハードウェアと基本OSだけを用意**し、そこから先はユーザーが好きなように育てていく。\n\nなかには途方もなく斬新な手法を生み出すユーザーが生まれるかもしれません。そんな電子楽器って、夢があると思いませんか？\n\nSource: M-VAVE, AKAI Professional, BEHRINGER\n\nAdvertisement\n\nAdvertisement\n\nAdvertisement\n\n#NEOヘルスケア#NEO DIY#iPhone Duo#ギズマート#20 YEARS OF GIZMODO JAPAN\n\n### Ranking\n\nDaily\n\nWeekly\n\nMonthly\n\nAmazon\n\n1. どシンプル、それが良い。通話特化の携帯電話「INFOBAR ZERO」が登場 Nov 18,2026 23:10 81,8582. びっくりドンキーのハンバーグを焼くロボット。注文から約3分、1時間180食つくる Nov 19,2026 21:00 22,4473. 全米のデータセンターだけで東京都1年分の電力を消費。その半分以上は化石燃料 Nov 19,2026 20:00 20,6514. iPad miniをデスクトップPCとして使う。Nape Pro SEとのコンビで快適作業 Nov 20,2026 10:20 23,6065. 日本の流出パスワード展2026、開催。トップ10を勝手に品評してみよう Nov 20,2026 12:00 11,415\n\n1. どシンプル、それが良い。通話特化の携帯電話「INFOBAR ZERO」が登場 Nov 18,2026 23:10 81,8582. 280万匹のウナギが海底の山に大集結。理由は未だ謎のまま Nov 18,2026 21:00 49,7053. RAMの空き具合を送りつける迷惑メール装置「RAMアルトマン」が開発される Nov 16,2026 07:00 31,1644. 楽天証券も不正アクセス。資産を守るために確認しておきたい設定 Nov 18,2026 06:35 39,8555. GTA6を実況プレイする研究員、募集中。報酬1,600万円から Nov 17,2026 11:45 27,549\n\n1. 地球に「第2の月」が誕生 Nov 10,2026 21:15 379,5182. 超デカいくせに25年で処分。風力発電機の第二の人生は、住居・セメント・鉄 Oct 25,2026 22:30 149,9943. アプリから“火をつけられる”スマホが発売 Nov 9,2026 17:00 139,7274. 女子高生が作った「音の消火器」、水も粉も使わずに5秒でボヤを消す Oct 28,2026 15:20 134,1975. Googleのデータセンター予定地、OK出す前に森がごっそり消えた。警察が捜査はじめる Nov 7,2026 17:30 132,986\n\nPR\n\n1. キオクシア microSD 128GB ￥2,080￥2,6802. On Cloud 6 ランニングシューズ ￥22,0003. Apple iPad mini（A20 Pro） ￥153,8004. コジット 泡立つ洗濯せっけんケース ￥1,288￥1,4085. Amazon Kindle 16GB 広告なし ￥29,980\n\n## Latest\n\nNov 21,2026 17:35 ## 発明した人えらい。「昨日どこまで読んだっけ？」がなくなる技ありブックマーカー Nov 21,2026 17:00 ## 買い替え不要。このケーブルで古いHDMIモニターもUSB-C充電対応になる Nov 21,2026 16:35 ## その指をマウスに変えろ。「人指し指にハメるゲーミングマウス」が斬新すぎる Nov 21,2026 15:00 ## 3D感が斬新。平面で立体的に遊べるカードゲーム \n\n#NEOヘルスケア#NEO DIY#iPhone Duo#ギズマート#20 YEARS OF GIZMODO JAPAN\n\n### Ranking\n\nDaily\n\nWeekly\n\nMonthly\n\nAmazon\n\n1. どシンプル、それが良い。通話特化の携帯電話「INFOBAR ZERO」が登場 Nov 18,2026 23:10 81,8582. びっくりドンキーのハンバーグを焼くロボット。注文から約3分、1時間180食つくる Nov 19,2026 21:00 22,4473. 全米のデータセンターだけで東京都1年分の電力を消費。その半分以上は化石燃料 Nov 19,2026 20:00 20,6514. iPad miniをデスクトップPCとして使う。Nape Pro SEとのコンビで快適作業 Nov 20,2026 10:20 23,6065. 日本の流出パスワード展2026、開催。トップ10を勝手に品評してみよう Nov 20,2026 12:00 11,415\n\n1. どシンプル、それが良い。通話特化の携帯電話「INFOBAR ZERO」が登場 Nov 18,2026 23:10 81,8582. 280万匹のウナギが海底の山に大集結。理由は未だ謎のまま Nov 18,2026 21:00 49,7053. RAMの空き具合を送りつける迷惑メール装置「RAMアルトマン」が開発される Nov 16,2026 07:00 31,1644. 楽天証券も不正アクセス。資産を守るために確認しておきたい設定 Nov 18,2026 06:35 39"
+          },
+          {
+            "title": "どれだけGeminiが賢くなってもAIオタクが避ける理由。ついに解消の可能性",
+            "link": "https://smhn.info/202611-gemini-subscription-third-party-harness-december-2",
+            "source": "smhn.info",
+            "published": "2026年11月20日",
+            "snippet": "評判の悪かったGeminiですが、ようやく最近はClaudeのOpusやFable、ChatGPT CodexのAstraなどに匹敵、または超えてくるようなモデルも出てきています。 ところが、実際にGeminiに本格的に乗り換えている人はまだまだ少ない印象です。その大きな原因がついに解消されるかもしれません。 GoogleのLogan Kilpatrick氏は日本...",
+            "bookmarks": 188,
+            "text": "評判の悪かったGeminiですが、ようやく最近はClaudeのOpusやFable、ChatGPT CodexのAstraなどに匹敵、または超えてくるようなモデルも出てきています。\nところが、実際にGeminiに本格的に乗り換えている人はまだまだ少ない印象です。その大きな原因がついに解消されるかもしれません。\nGoogleのLogan Kilpatrick氏は日本時間11月20日、Xで開発者のKun Chen氏の投稿に「12月2日、我々は最初の一歩を踏み出す」と返信しました。Kilpatrick氏はGoogleで「Gemini」やGoogle AI Studio、Gemini APIを担当する人物です。\n返信先の投稿は、Kun Chen氏の「Gemini 4 Neonは悪くない！話していると実に新鮮だ」と評価。続けて「あとはGeminiのサブスクリプション（定額）をどのハーネスでも使えるようにするだけ。そうすれば巻き返しは簡単だ」という内容。つまり、文脈的には、Geminiの定額プランを契約していれば、好きなソフトでAIを呼び出して定額内で使えるようになる、そんな発表が12月2日にありそうな示唆だといえます。\ngemini 4 neon is not bad! talking to it is such a breath of fresh air all they need to do now is to allow gemini subscription in any harness a come back is as easy as that\n— Kun Chen (@kunchenguid) November 20, 2026\n@kunchenguid December 2nd we take the first step\n— Logan Kilpatrick (@OfficialLoganK) November 20, 2026\nここで言う「ハーネス」とは、AIモデルにファイルの読み書きやコマンドの実行をさせ、エージェントとして動かすためのソフトのことです。Googleも自社のハーネスとして、アプリやCLI、IDE拡張、SDKを揃えた開発環境「Google Antigravity」を提供しています。\nそして有料プラン「Google AI Pro」や「Google AI Ultra」の契約者であれば、米国時間11月18日に発表されたGemini 4 Neonを、Geminiアプリに加えてAntigravityでも利用できます。\nところが、そのAntigravityの使い勝手は評判がよくありません。AIに詳しい人、特にコーディングなどエージェントとしてAIを使う人の間では、Antigravityの使いにくさを理由にClaudeやChatGPT（Codex）からGeminiへ乗り換えられないという声がSNSで多く上がっています。\nGoogle自身もこうした状況を把握している様子。同社でAntigravityのデベロッパーリレーションズ（開発者向けの広報・支援）を担当するRody Davis氏は日本時間11月20日、Xで「Antigravityのアプリを毎日使う道具にするために、一番足りない機能は何か」と利用者に尋ねました。\nWhat is the single most important missing feature for you to use the Antigravity app as your daily driver? 👀\n— Rody Davis (@rodydavis) November 19, 2026\nこの投稿には日本時間11月20日22時37分の時点で1673件の返信が寄せられています。一部を見ると、スマホのGeminiアプリからの遠隔操作や同アプリとの連携、パソコンを直接操作させる「コンピューター操作」、外部ツールをつなぐMCPやスキルの設定のしやすさを求める声が並んでいます。\nじゃあ別にAntigravity以外の好きなハーネスを使ったり、他のAIからCLI経由でGeminiを子分として使えばいいんじゃないかと思うところですが、Antigravityの追加利用規約はサードパーティーのソフトやツール、サービスを使ったアクセスを違反と明記。具体例としてOpenClawでAntigravityのOAuth認証を使うことを挙げ、Google以外の製品と合わせて使うことも禁じています。Antigravityの規約は違反をアカウントの停止・解約の理由になりうると定めています。\n実際に処分も行われています。Gemini CLIの開発チームは2月27日、サードパーティーのツールやプロキシでAntigravityの計算資源や利用枠を使った規約違反に対し、Antigravityでアカウントの利用停止を実施したと説明しました。\nこの処分はGemini CLIやGemini Code Assistの利用にも及びましたが、停止はいったん一斉に解除されました。しかし以後は、違反が見つかると通知とフォームでの再確認を経て復帰する形となり、2回目の違反では恒久的に利用停止になるとされています。\n一方、他社製のハーネス「Hermes Agent」を手掛けるNous Researchの公式ドキュメント（11月18日更新）を見ると、他社の定額プランとの差が際立ちます。ChatGPTのプランやxAIのSuperGrokは、OAuthでサインインして使えると案内。Geminiは寛容さにおいても負けているというわけですね。\nまた同じ日本時間11月20日、オープンソースのAIエージェント「OpenClaw」が公式XでGemini 4 Neonへの対応を発表しました。\nこれに「APIのみ？」と尋ねた利用者に対し、プロフィールでOpenClaw所属としているHannes Rudolph氏は「そう。でも、近く大きな知らせがある」と回答しています。\nGemini 4 Neon is now in OpenClaw! 🦞 Google built Neon to get hard coding jobs done faster and for less than Carbon. At Neon’s default setting, Google reports 32% lower cost per task than Carbon on the Artificial Analysis Intelligence Index. https://t.co/Vl9UYNJ4BI pic.x.com/14GXMz6Sqb\n— OpenClaw🦞 (@openclaw) November 20, 2026\n@itsLuisV8 @openclaw Yes. But big news coming soon\n— Hannes Rudolph (@hrudolph) November 20, 2026\nOpenClawは、Antigravityの規約で違反の例として名指しされているツールそのものです。Rudolph氏の言う「大きな知らせ」の中身は明かされていないものの、Google側の動きとの関連をうかがわせます。\n加えてNous ResearchもGitHubで、正式公開前（pre-release）のプロバイダー「Solstice」を公開しています。Googleアカウントでサインインし、「利用者ごとのGeminiの利用枠」でHermes Agentを動かすものです。使えるのは利用を認められたアカウントに限られ、どの契約の利用枠なのかは説明されていません。\nもっとも、12月2日にGoogleの発表イベントが予定されているとの公式告知は見つかっていません。Kilpatrick氏の言う「最初の一歩」が何を指すのかも不明なものの、どのハーネスでも定額プランを使えるようにして欲しいという要望への返信だけに、それに向けた動きを示唆したものと読めます。\nGeminiのモデル自体は賢くなっているのに、定額プランをハーネスで使うとなるとAntigravityなどGoogle純正のツールに縛られ、好みのハーネスから使えば規約違反でアカウント停止の危険すらあるのが現状です。もし12月2日の「最初の一歩」が定額プランの開放につながるなら、これまでGeminiを避けてきた一番の理由がついに消えることになります。"
+          },
+          {
+            "title": "AIで資格取得や副業をもっと身近に！『Gemini』活用実践講座12/12開催",
+            "link": "https://8dabe.com/2026/11/16/hachioji-seminar-kawaguchi-46/",
+            "source": "八王子ジャーニー",
+            "published": "2026年11月16日",
+            "snippet": "AIで資格取得や副業をもっと身近に！『Gemini』活用実践講座12/12開催&nbsp;&nbsp;八王子ジャーニー",
+            "text": "資格取得や創業、副業に挑戦したいけれど、何から始めればいいかわからない…。そんな方におすすめ！Googleの生成AI『Gemini』などを活用して、アイデアを広げたり、情報を整理したりする実践講座が八王子で開催されます。AIを学びや仕事に役立てるヒントを学んでみませんか？\n2026年12月12日(土)、生涯学習センター川口分館の第2・3学習室で『「カタチにしたい」を実現する～資格取得・創業・副業を叶えるためのGemini＆Gemini Notebook実践講座』を開催します。講師はNPO法人情報ボランティアの会 八王子理事長の千種康民さん。生成AI『Gemini』を使ったアイデアの発想や、情報の整理・活用方法を実践的に学びます。時間は13:00～17:30(途中休憩あり)、定員15名、費用は教材費込みで500円。参加にはGoogleアカウントのログイン情報と、Wi-Fi接続が可能なWindows11のパソコンの持参が必要です。申込締切は11月19日(木)(必着)。詳細は下記案内、もしくは公式HPをご参照ください。\n※情報は取材当時のものです。来店の際は公式情報をご確認ください。"
+          }
+        ]
+      },
+      "draftedAt": "2026-11-21T09:28:04.788Z",
+      "structure": 2,
+      "publishedAt": "2026-11-21T09:28:45.422Z"
     }
   ],
-  "publishedCount": 267,
-  "estimatedMrrUsd": 80100,
+  "publishedCount": 270,
+  "estimatedMrrUsd": 81000,
   "history": [
     {
       "date": "2026-07-24",
@@ -13068,7 +13118,12 @@
       "date": "2026-11-20",
       "published": 267,
       "estimatedMrrUsd": 80100
+    },
+    {
+      "date": "2026-11-21",
+      "published": 270,
+      "estimatedMrrUsd": 81000
     }
   ],
-  "lastRun": "2026-11-20T16:41:56.362Z"
+  "lastRun": "2026-11-21T09:28:50.137Z"
 }
