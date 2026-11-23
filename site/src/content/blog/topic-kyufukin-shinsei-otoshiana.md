@@ -115,8 +115,8 @@ SHIFT TERAS CAMPUSは転職保証付きで169,800円から、テックキャン�
 ## あわせて読みたい
 
 - [給付金対象のプログラミングスクールおすすめ｜実質負担額と申請手順を解説](/blog/kyufukin-osusume/)
+- [Claude Codeの安全自走、Docker Sandboxesでリスク9割減は本当か](/blog/news-20261123-1t24c/)
+- [AI時代のエンジニア生存戦略は「気概」が決め手になる](/blog/news-20261123-grsij/)
 - [バイテック生成AIは自分に合う？申込前に潰す3つの不安](/blog/yametoke-bytech/)
 - [生成AIで1000枚超のイラスト制作体験、工学系プログラマーの実感](/blog/news-20261123-2kcl9/)
 - [バイテック生成AIの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-bytech/)
-- [2026年リーマン予想をAIが証明、人間理解を超えた数学の特異点](/blog/news-20261123-fab3u/)
-- [女性におすすめの独学・買い切りプログラミングスクール](/blog/osusume-dokugaku-josei/)
