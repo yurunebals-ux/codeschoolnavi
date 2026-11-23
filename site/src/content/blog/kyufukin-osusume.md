@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [2026年リーマン予想をAIが証明、人間理解を超えた数学の特異点](/blog/news-20261123-fab3u/)
 - [女性におすすめの独学・買い切りプログラミングスクール](/blog/osusume-dokugaku-josei/)
 - [AIエージェントpstackが1か月で3,000本PRを自動生成した理由](/blog/news-20261122-1qzgg/)
 - [生成AIで作業効率10倍でも売上が伸びない理由は何か](/blog/news-20261121-1x00b/)
 - [転職希望者におすすめの独学・買い切りプログラミングスクール](/blog/osusume-dokugaku-tenshoku/)
-- [副業したい人におすすめの独学・買い切りプログラミングスクール](/blog/osusume-dokugaku-fukugyo/)
