@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [バイテック生成AIは自分に合う？申込前に潰す3つの不安](/blog/yametoke-bytech/)
+- [生成AIで1000枚超のイラスト制作体験、工学系プログラマーの実感](/blog/news-20261123-2kcl9/)
+- [バイテック生成AIの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-bytech/)
 - [2026年リーマン予想をAIが証明、人間理解を超えた数学の特異点](/blog/news-20261123-fab3u/)
 - [女性におすすめの独学・買い切りプログラミングスクール](/blog/osusume-dokugaku-josei/)
-- [AIエージェントpstackが1か月で3,000本PRを自動生成した理由](/blog/news-20261122-1qzgg/)
-- [生成AIで作業効率10倍でも売上が伸びない理由は何か](/blog/news-20261121-1x00b/)
-- [転職希望者におすすめの独学・買い切りプログラミングスクール](/blog/osusume-dokugaku-tenshoku/)
