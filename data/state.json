@@ -7947,8 +7947,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-10-10T08:16:30.850Z"
+      "status": "rejected",
+      "createdAt": "2026-10-10T08:16:30.850Z",
+      "draftedAt": "2026-11-24T12:14:09.688Z",
+      "structure": 2,
+      "rejectReason": "score=115; 構造: 重複見出し(バイテックGEEKは転職支援がない場合、学習後のキャリア形成はどう考えればよいか), 表崩れ(先頭が欠けた行: -------------|----------|-----), 表崩れ(区切り行がない: | バイテックGEEK   | 228,000〜438,00), 段落の重複(### バイテックGEEKは転職支援がない場合、学習後のキャ)"
     },
     {
       "slug": "yametoke-bytechgeek",
@@ -7960,8 +7963,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-10-10T08:16:30.850Z"
+      "status": "published",
+      "createdAt": "2026-10-10T08:16:30.850Z",
+      "draftedAt": "2026-11-24T12:14:50.051Z",
+      "structure": 2,
+      "publishedAt": "2026-11-24T12:15:22.294Z"
     },
     {
       "slug": "hikaku-bytech-dmmaicamp",
@@ -7974,8 +7980,11 @@
       "kind": "money",
       "cluster": "AI・データ分析",
       "score": 82,
-      "status": "queued",
-      "createdAt": "2026-10-10T08:16:30.850Z"
+      "status": "published",
+      "createdAt": "2026-10-10T08:16:30.850Z",
+      "draftedAt": "2026-11-24T12:15:21.866Z",
+      "structure": 2,
+      "publishedAt": "2026-11-24T12:15:22.294Z"
     },
     {
       "slug": "hikaku-bytechgeek-ninjacode",
@@ -13071,8 +13080,8 @@
       "publishedAt": "2026-11-23T19:49:18.472Z"
     }
   ],
-  "publishedCount": 279,
-  "estimatedMrrUsd": 83700,
+  "publishedCount": 281,
+  "estimatedMrrUsd": 84300,
   "history": [
     {
       "date": "2026-07-24",
@@ -13683,7 +13692,12 @@
       "date": "2026-11-23",
       "published": 279,
       "estimatedMrrUsd": 83700
+    },
+    {
+      "date": "2026-11-24",
+      "published": 281,
+      "estimatedMrrUsd": 84300
     }
   ],
-  "lastRun": "2026-11-23T19:49:23.731Z"
+  "lastRun": "2026-11-24T12:15:27.348Z"
 }

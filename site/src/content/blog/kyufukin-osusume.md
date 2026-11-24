@@ -133,8 +133,8 @@ SHIFT TERAS CAMPUS、テックキャンプ、Aidemy、テックアイエスで�
 ## あわせて読みたい
 
 - [教育訓練給付金の申請で落ちる人の共通点と、2週間前ルールの意味](/blog/topic-kyufukin-shinsei-otoshiana/)
+- [バイテックGEEKは自分に合う？申込前に潰す3つの不安](/blog/yametoke-bytechgeek/)
+- [バイテック生成AIとDMM 生成AI CAMPを徹底比較｜どっちがおすすめ？](/blog/hikaku-bytech-dmmaicamp/)
 - [Claude Codeの安全自走、Docker Sandboxesでリスク9割減は本当か](/blog/news-20261123-1t24c/)
 - [AI時代のエンジニア生存戦略は「気概」が決め手になる](/blog/news-20261123-grsij/)
 - [バイテック生成AIは自分に合う？申込前に潰す3つの不安](/blog/yametoke-bytech/)
-- [生成AIで1000枚超のイラスト制作体験、工学系プログラマーの実感](/blog/news-20261123-2kcl9/)
-- [バイテック生成AIの料金は高い？月あたりで他校と比べた結果](/blog/ryokin-bytech/)
