@@ -4149,8 +4149,11 @@
       "kind": "info",
       "cluster": "通学・オンライン",
       "score": 54,
-      "status": "queued",
-      "createdAt": "2026-09-19T07:11:41.729Z"
+      "status": "published",
+      "createdAt": "2026-09-19T07:11:41.729Z",
+      "draftedAt": "2026-11-28T10:01:58.183Z",
+      "structure": 2,
+      "publishedAt": "2026-11-28T10:03:23.762Z"
     },
     {
       "slug": "erabikata-dokugaku",
@@ -4162,8 +4165,11 @@
       "kind": "info",
       "cluster": "独学・買い切り",
       "score": 54,
-      "status": "queued",
-      "createdAt": "2026-09-19T07:11:41.729Z"
+      "status": "rejected",
+      "createdAt": "2026-09-19T07:11:41.729Z",
+      "draftedAt": "2026-11-28T10:02:40.123Z",
+      "structure": 2,
+      "rejectReason": "score=75; 薄い: 4150字（基準4200字）; 見出しやや不足: 7; 構造: リンク崩れ(今回紹介した3校は、教育訓練給付金の対象講座を持たない。SkillHacksは買)"
     },
     {
       "slug": "towa-techacademy",
@@ -4175,8 +4181,11 @@
       "kind": "info",
       "cluster": "オンライン学習",
       "score": 45,
-      "status": "queued",
-      "createdAt": "2026-09-19T07:11:41.729Z"
+      "status": "published",
+      "createdAt": "2026-09-19T07:11:41.729Z",
+      "draftedAt": "2026-11-28T10:03:23.338Z",
+      "structure": 2,
+      "publishedAt": "2026-11-28T10:03:23.762Z"
     },
     {
       "slug": "towa-codecamp",
@@ -13330,8 +13339,8 @@
       "publishedAt": "2026-11-26T10:40:53.848Z"
     }
   ],
-  "publishedCount": 288,
-  "estimatedMrrUsd": 86400,
+  "publishedCount": 290,
+  "estimatedMrrUsd": 87000,
   "history": [
     {
       "date": "2026-07-24",
@@ -13962,7 +13971,12 @@
       "date": "2026-11-27",
       "published": 288,
       "estimatedMrrUsd": 86400
+    },
+    {
+      "date": "2026-11-28",
+      "published": 290,
+      "estimatedMrrUsd": 87000
     }
   ],
-  "lastRun": "2026-11-27T10:43:15.831Z"
+  "lastRun": "2026-11-28T10:03:29.255Z"
 }
